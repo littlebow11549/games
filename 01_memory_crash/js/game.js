@@ -115,11 +115,19 @@
   const audioProbe = new Audio();
   const musicFormat = audioProbe.canPlayType('audio/ogg; codecs="vorbis"') ? "ogg" : "mp3";
   const bgmTracks = {
-    normal: new Audio(`assets/source/music/bgm_01.${musicFormat}`),
-    intense: new Audio(`assets/source/music/bgm_02.${musicFormat}`),
+    entry: new Audio(`assets/source/music/bgm_entry.${musicFormat}`),   // 進場/選單
+    normal: new Audio(`assets/source/music/bgm_01.${musicFormat}`),     // 遊戲中
+    intense: new Audio(`assets/source/music/bgm_02.${musicFormat}`),    // 高關/大師
   };
   Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "metadata"; });
-  let bgm = bgmTracks.normal;
+  let bgm = bgmTracks.entry;
+  // 切換並播放指定曲目（進場 entry / 遊戲 normal / 高關 intense）
+  function playBgm(key) {
+    if (!state.music) return;
+    const sel = bgmTracks[key] || bgmTracks.normal;
+    if (bgm !== sel) { bgm.pause(); bgm = sel; try { bgm.currentTime = 0; } catch (e) {} }
+    bgm.play().catch(() => {});
+  }
   let musicDuckTimer = 0;
   function startMusic() {
     if (!state.music) return;
@@ -172,6 +180,8 @@
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
     hud.classList.toggle("hidden", name !== "game");
+    // 非遊戲畫面播放進場曲；遊戲畫面由 startGame/startMusic 切成遊戲曲
+    if (name !== "game") playBgm("entry");
     window.MemoryCrashMascot?.show(name);
     window.MemoryCrashPresentation?.show(name);
   }
