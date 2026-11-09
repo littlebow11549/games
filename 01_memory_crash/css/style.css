@@ -1002,3 +1002,22 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 .title-start.start-hero .start-word {
   display: block; width: 100%; height: auto; pointer-events: none;
 }
+
+/* Full-body chibi: reserve separate space for helmet, feet and controls.
+   Coordinates use the existing 430×820 design canvas, scaled by --fit. */
+#screen-title .logo { position: absolute; top: 20px; left: 40px; width: 350px; height: 210px; margin: 0; }
+#screen-title .logo-img { width: 100% !important; height: 100%; object-fit: contain; }
+.title-char.hero-char {
+  position: absolute; top: 235px; left: 25px;
+  width: 380px !important; height: 430px !important;
+  max-height: none !important; aspect-ratio: auto !important; margin: 0 !important;
+}
+.hero-char .hero-img { object-fit: contain; object-position: center; }
+.title-start.start-hero { bottom: 35px; width: 300px; height: 100px; }
+.title-start.start-hero .start-word { height: 100%; object-fit: contain; }
+#screen-menu .menu-logo { height: 155px; object-fit: contain; flex-shrink: 0; }
+.menu-char.hero-char {
+  width: 300px !important; height: 285px !important;
+  max-height: none !important; margin: 4px auto 16px !important;
+}
+.menu-char.hero-char .hero-img { object-position: center; }

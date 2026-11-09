@@ -405,6 +405,7 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 > 交付後放對應資料夾，告知「素材更新了」，我接入並做視差/飄動/切幀。
 
 ### 第三批交付更新（Codex，2026-11-09）
+- 後續使用者修正：KV2 正式角色須全身、Q 版短腿，已確認稍長腿版。改用 `pic/character/pug_fullbody.png`（1122×1402）及 `runtime/pic/batch3/pug_fullbody.webp`，首頁／選單皆接入 contain 全身顯示。舊半身像保留歷史；詳見 `docs/handoffs/2026-11-09-fullbody-chibi-pug.md`（repo 根目錄）。
 - [x] KV1 `pic/kv/kv_main.png`（941×1672 不透明，未達原建議1080×1920）及 `kv_pug.png`（1090×1443去背角色）。
 - [x] KV2 `pic/character/pug_head.png`（1254×1254透明半身像）。
 - [x] KV3 `pic/titles/start_hero.png`（1774×887透明）。

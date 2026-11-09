@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-09 全身 Q 版巴哥與不裁切版面修正](handoffs/2026-11-09-fullbody-chibi-pug.md)：使用者確認稍長短腿版本，首頁／選單改用完整全身。
+
 - [2026-11-09 第三批 KV 正式接入（Claude）](handoffs/2026-11-09-batch3-integration.md)：首頁/選單改用 pug_head 半身像、START 字藝、遊戲橫幅換 v3 六詞；遊戲/結算保留可變表情 canvas。已接入。
 
 - [2026-11-09 第三批 KV1–KV4 主視覺、角色、START 與六詞特效](handoffs/2026-11-09-batch3-hero-art.md)：10 張來源圖、無損 WebP、獨立動態預覽；正式遊戲待接入。
