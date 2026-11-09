@@ -34,10 +34,16 @@
 - [x] 齒輪鈕（`gear.png`）→ `.icon-btn`
 - [x] 切圖工具：`tools/`（slice 腳本於 scratchpad；已產出 `ui/*.png`）
 
+## ✅ 文字/數字/教學素材已接入
+- [x] 數字 `numbers_01.png`（6×2）→ 切成 n0–n9/lv/colon，HUD LV 用圖顯示
+- [x] 主視覺文字 `titles_01.png`（3×4）→ 切成 11 字藝：START/OPTION/READY/
+      YOUR TURN/PERFECT/MISS/GAMEOVER/MASTER MODE/HOW TO PLAY/HOME/AGAIN
+      （標題、動態橫幅、GAMEOVER、按鈕字、彈窗標題皆已替換）
+- [x] 教學圖示 `howto_01.png`（4 格）→ 切成 step1–4，替換說明彈窗 SVG（保留文字）
+
 ## 🟡 進行中 / 待辦
-- [ ] 寶石格子框 `slot.png`/`slot_lit.png`（已切好，備用；目前棋盤用 CSS 框，視覺已佳）
-- [ ] 數字 `numbers_01.png`（6×2）切圖替換 LV 數字（選做）
-- [ ] 主視覺文字 `titles_01.png`、教學圖示 `howto_01.png`（待素材生成）
+- [ ] 字型 `font_01.png`（A–Z/a–z/符號）待素材；供一般文字用（主體一致）
+- [ ] 寶石格子框 `slot.png`/`slot_lit.png`（已切好備用；棋盤目前用 CSS 框）
 - [ ] 實機聽測音樂循環接縫、混音音量
 - [ ] 加入「連續過關 combo」與分數系統（可選）
 - [ ] 手機觸控測試 / 不同螢幕比例微調
