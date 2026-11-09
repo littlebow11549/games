@@ -1,0 +1,12 @@
+{
+  "source": "source/pic/character/pug_fullbody.png",
+  "runtime": "runtime/pic/batch3/pug_fullbody.webp",
+  "width": 1122,
+  "height": 1402,
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "rgba_sha256": "792b82ee54b72bfc3fbabb447c2134fc87059eba345d16322a1091c1305603a4",
+  "pixel_identical": true
+}

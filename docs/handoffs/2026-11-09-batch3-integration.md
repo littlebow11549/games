@@ -44,3 +44,19 @@
 
 ### 驗證（本輪）
 - Playwright 430×820：首頁、選單漂浮寶石就位、START 定位正常、壓縮後畫質清晰；YOUR TURN 置中（中線落於 YOUR/TURN 間）；無 console / pageerror。
+
+## 第三輪（全身主角 + OPTION 續玩 + 漂浮寶石放大）
+- **全身主角接入**：GPT 於 `codex/full-body-chibi-pug` 交付 `pug_fullbody.png`（1122×1402 透明全身站姿，完整頭到腳）。只取素材自接（未合併其基於舊版的 css/html）：首頁與選單 `.hero-img` 由 `pug_head` 改 `pug_fullbody`，移除底部柔化 mask，框架改 `aspect-ratio:1122/1402` 完整置中顯示。runtime webp 壓縮為 lossy 134KB（來源無損保留）。來源交付 `PUG_FULLBODY_DELIVERY.json` 與 GPT 交接 `docs/handoffs/2026-11-09-fullbody-chibi-pug.md` 一併帶入。
+- **OPTION 回到遊戲**：新增 `#btnResume`「▶ BACK TO GAME」（置頂、綠光強調）。僅在遊戲中按齒輪進 OPTION 時顯示（`btnOptionTop` 設 hidden=false；title/menu 入口設 hidden=true）。點擊回到遊戲並重播本關序列續玩（`show("game")` + `nextLevel(false)`）。
+- **漂浮寶石放大**：`floatgems.js` 加 `SCALE=3.2`，整體放大約 3.2x，首頁/選單呈現有份量的漂浮寶石場。
+- 驗證（Playwright 430×820）：全身主角完整置中、START 在下方；選單主角＋大寶石環繞；OPTION 顯示 BACK TO GAME 且續玩成功（resumedToGame=true）；無 console/pageerror。
+
+## 第四輪（OPTION 字藝 + KV 封面 + 漂浮寶石加大到 5.5x）
+使用者提供兩張新素材並要求寶石再放大。
+- **OPTION 字藝**：使用者圖 → `source/pic/titles/option_hero.png` + runtime `option_hero.webp`(64KB)。OPTION 畫面標題由純文字改為字藝圖。
+- **遊戲封面 KV**：使用者圖（1254×1254 方形）→ `source/pic/kv/kv_cover.png` + runtime `kv_cover.webp`(99KB)。遊戲中心（根 `index.html` / `assets/js/hub.js`）的遊戲卡片 icon 由 `icon_01.png` 改為此 KV 封面。
+- **漂浮寶石加大**：`floatgems.js` SCALE 3.2 → **5.5**（使用者要求至少 5x），首頁/選單寶石明顯放大成寶石場。
+- 驗證（Playwright）：OPTION 字藝置中；hub 卡片顯示 KV 封面；首頁/選單大寶石就位；無 console/pageerror。
+
+## 設計需求：GAME OVER 字藝（交 GPT）
+使用者要求 GAME OVER 文字比照 OPTION 做成字藝圖。已於 `assets/ASSETS.md` 第五批開出 **T1 `pic/titles/gameover_hero.png`**（1774×887 透明、金色立體卡通字、與 OPTION/START 同風格、水平置中）。GPT 交付後，`#screen-over` 的 `GAME OVER` h2 改為 `<img class="title-word">`（比照 `option_hero` 接法）＋ runtime 壓縮 webp。選做 T2：HOW TO PLAY 標題字藝一致化。
