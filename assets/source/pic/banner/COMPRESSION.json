@@ -1,0 +1,12 @@
+{
+  "path": "assets/source/pic/banner/banner_01.png",
+  "size": [
+    2172,
+    724
+  ],
+  "mode": "RGB",
+  "before_bytes": 1939095,
+  "after_bytes": 1820990,
+  "pixel_sha256": "281e5bb4b604f967bcf461f7584d764a9cd7fabd11c01d120c26afb5e8442fde",
+  "identical_pixels": true
+}

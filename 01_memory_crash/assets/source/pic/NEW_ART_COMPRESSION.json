@@ -1,0 +1,26 @@
+[
+  {
+    "path": "titles/titles_01.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1123349,
+    "after_bytes": 1057785,
+    "pixel_sha256": "2b833bcddc1d9e01c21e17b689d7b3ccdbaa7c23a6ba24000d51e344aa9e5001",
+    "identical_pixels": true
+  },
+  {
+    "path": "howto/howto_01.png",
+    "size": [
+      2172,
+      724
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1033149,
+    "after_bytes": 989994,
+    "pixel_sha256": "75c0cdd9542527aa0550dc2e8d8d54045fb8a42687c04df75929b6d1b71cef2c",
+    "identical_pixels": true
+  }
+]

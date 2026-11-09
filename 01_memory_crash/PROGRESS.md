@@ -65,3 +65,8 @@
 - 六項主要圖片、主 BGM 與五種音效已依 ASSETS.md 分類放入 assets/source/。
 - 寶石已接上浮動、發光與點擊動畫，其餘素材待 Claude 接入。
 - 詳見 CLAUDE_HANDOFF.md 與 assets/DELIVERY_V2.md，包含原始尺寸與尚待聽測項目。
+
+## 新增美術交付（2026-11-09）
+- 已補齊 `assets/source/pic/titles/titles_01.png` 與 `assets/source/pic/howto/howto_01.png`。
+- 已確認透明與無損像素一致，尚待切圖與接入。
+- 完整切圖順序、實際解析度與後續事項見根目錄 `docs/handoffs/2026-11-09-titles-howto.md`；全專案交接入口 `docs/HANDOFF.md`。
