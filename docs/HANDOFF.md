@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-09 縮小 Banner、遊戲新分頁與關閉按鈕](handoffs/2026-11-09-compact-banner-game-tabs.md)
+
 - [2026-11-09 移除頁首導覽、圖示與品牌句點，簡化 copyright](handoffs/2026-11-09-header-footer.md)
 
 - [2026-11-09 網站更名為遊戲中心](handoffs/2026-11-09-site-name.md)

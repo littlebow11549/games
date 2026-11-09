@@ -497,3 +497,9 @@ html, body {
   cursor: default; filter: none;
 }
 .gold-btn:disabled:active { transform: none; }
+
+/* Always available exit, outside the game board and options. */
+.exit-game{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:100;display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 15px;border:1px solid #73d9ef66;border-radius:24px;background:#061322ed;color:#d8eaf5;font:600 12px "Segoe UI","PingFang TC",Tahoma,sans-serif;cursor:pointer;box-shadow:0 4px 20px #0004}
+.exit-game>span:first-child{font-size:20px;line-height:1}
+.exit-game:hover{border-color:#f8d577;color:#f8d577}
+.exit-game:focus-visible{outline:3px solid #f8d577;outline-offset:3px}
