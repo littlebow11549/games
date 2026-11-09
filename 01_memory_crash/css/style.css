@@ -21,7 +21,8 @@
 html, body {
   height: 100%;
   background: #05101f;
-  font-family: "Fredoka", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Arial", "Helvetica Neue", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -709,23 +710,23 @@ html, body {
 /* 2b. 遊戲中彈出橫幅：置中、放大 3-5 倍、彈出後淡出 */
 #screen-game { position: relative; }
 .game-banner {
-  position: absolute; top: 33%; left: 50%; transform: translate(-50%,-50%);
-  margin: 0; z-index: 14; pointer-events: none; opacity: 0; width: 100%; text-align: center;
-  min-height: 0;
+  position: absolute !important; top: 42% !important; left: 50% !important;
+  transform: translate(-50%,-50%); margin: 0 !important; z-index: 14 !important;
+  pointer-events: none; opacity: 0; width: 100% !important; text-align: center; min-height: 0;
 }
 .game-banner .word {
-  width: min(94vw, 440px); height: auto;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(73,199,255,.45));
+  width: min(118vw, 560px) !important; height: auto !important; max-width: none !important;
+  filter: drop-shadow(0 12px 26px rgba(0,0,0,.75)) drop-shadow(0 0 30px rgba(73,199,255,.6));
 }
-.game-banner.pop { animation: bannerSlam 1.25s cubic-bezier(.2,.9,.2,1) forwards; }
+.game-banner.pop { animation: bannerSlam 1.3s cubic-bezier(.2,.9,.2,1) forwards; }
 @keyframes bannerSlam {
-  0%   { opacity: 0; transform: translate(-50%,-50%) scale(2.1) rotate(-7deg); filter: blur(7px); }
-  12%  { opacity: 1; transform: translate(-50%,-50%) scale(1.28) rotate(2deg); filter: blur(0); }
-  22%  { transform: translate(-50%,-50%) scale(.9) rotate(-1.5deg); }
-  32%  { transform: translate(-50%,-50%) scale(1.07) rotate(.5deg); }
-  44%  { transform: translate(-50%,-50%) scale(1) rotate(0); }
-  74%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%,-58%) scale(1.03); }
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(2.4) rotate(-8deg); filter: blur(8px); }
+  12%  { opacity: 1; transform: translate(-50%,-50%) scale(1.42) rotate(2deg); filter: blur(0); }
+  22%  { transform: translate(-50%,-50%) scale(1.0) rotate(-1.5deg); }
+  32%  { transform: translate(-50%,-50%) scale(1.18) rotate(.5deg); }
+  44%  { transform: translate(-50%,-50%) scale(1.08) rotate(0); }
+  74%  { opacity: 1; transform: translate(-50%,-50%) scale(1.08); }
+  100% { opacity: 0; transform: translate(-50%,-60%) scale(1.12); }
 }
 
 /* 3. 首頁大巴哥（更大，約 2/3；START 疊上去沒關係） */
@@ -856,3 +857,26 @@ html, body {
   mix-blend-mode: screen; animation: logoShine 3.8s ease-in-out infinite;
 }
 @keyframes logoShine { 0%{ background-position: 185% 0; } 58%,100%{ background-position: -120% 0; } }
+
+/* ============================================================
+   通用文字（Nunito 粗體，可愛偏正式）＋ 重新設計的星星
+   ============================================================ */
+.star-icon {
+  display: inline-block; width: 1.05em; height: 1.05em; vertical-align: -.17em; margin-right: .14em;
+  background: linear-gradient(180deg, #fff2b0 0%, #ffd23e 52%, #f59016 100%);
+  clip-path: polygon(50% 0, 63% 34%, 99% 35%, 70% 58%, 80% 93%, 50% 72%, 20% 93%, 30% 58%, 1% 35%, 37% 34%);
+  filter: drop-shadow(0 1.5px 0 #7a3d04) drop-shadow(0 2px 3px rgba(0,0,0,.5));
+}
+.score-tag {
+  font-family: "Inter", "Helvetica Neue", "Arial", sans-serif !important; font-weight: 900 !important;
+  -webkit-text-stroke: 0 !important; color: #ffffff !important;
+  display: inline-flex; align-items: center; gap: .06em;
+}
+.score-big {
+  font-family: "Inter", "Helvetica Neue", "Arial", sans-serif !important; font-weight: 900 !important;
+  -webkit-text-stroke: 0 !important; font-size: clamp(42px, 12.5vw, 58px) !important;
+  color: #ffd23e; display: flex; align-items: center; justify-content: center; gap: .08em;
+  margin-bottom: 8px;
+}
+.score-big b { color: #fff; }
+.over-score { font-family: "Inter", "Helvetica Neue", "Arial", sans-serif; font-weight: 800; }

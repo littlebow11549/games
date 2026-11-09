@@ -7,7 +7,7 @@
   <link rel="icon" href="assets/source/pic/branding/icon_01.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@600;700&family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -75,7 +75,7 @@
 
     <!-- ========== 遊戲畫面 ========== -->
     <section id="screen-game" class="screen">
-      <div id="scoreTag" class="score-tag">★ <span id="scoreNum">0</span></div>
+      <div id="scoreTag" class="score-tag"><span class="star-icon"></span><span id="scoreNum">0</span></div>
       <div id="perfectBanner" class="banner game-banner">READY</div>
       <div id="comboPop" class="combo-pop" aria-hidden="true"></div>
       <div id="timerBar" class="timer-bar" aria-hidden="true"><span id="timerFill" class="timer-fill"></span></div>
@@ -88,7 +88,7 @@
       <h2 class="screen-title gameover-title">GAME OVER</h2>
       <div class="mascot over-char" data-mascot role="img" aria-label="Space Pug"><canvas width="280" height="320" aria-hidden="true"></canvas></div>
       <div class="over-score">
-        <div class="score-big">★ <b id="finalScore">0</b></div>
+        <div class="score-big"><span class="star-icon"></span><b id="finalScore">0</b></div>
         <div><span id="reachedLabel">Reached level</span> <b id="finalLevel">1</b></div>
         <div class="best"><span id="bestScoreLabel">Best score</span> <b id="bestScore">0</b> · <span id="bestLvLabel">Best LV</span> <b id="bestLevel">1</b></div>
       </div>

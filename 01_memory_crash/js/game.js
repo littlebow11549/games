@@ -506,14 +506,10 @@
       if (e.target.closest(".gold-btn, .icon-btn, .title-start")) playSfx("tap");
     });
 
-    // 標題 START → 主選單
-    let introShown = false;
+    // 標題 START → 主選單（省略開場動畫，保留場景動態）
     const enterMenu = () => {
-      if (window.MemoryCrashPresentation?.introPlaying) return;
       const ctx = ac(); if (ctx && ctx.state === "suspended") ctx.resume().catch(() => {});
-      if (introShown || !window.MemoryCrashPresentation) { showMenu(); return; }
-      introShown = true;
-      window.MemoryCrashPresentation.intro(showMenu);
+      showMenu();
     };
     $("#btnStart").addEventListener("click", enterMenu);
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
