@@ -1,0 +1,57 @@
+{
+  "previews": [
+    {
+      "file": "character_idle.gif",
+      "frames": 8,
+      "duration_ms": 2670,
+      "bytes": 254480,
+      "size": [
+        320,
+        360
+      ]
+    },
+    {
+      "file": "character_happy.gif",
+      "frames": 8,
+      "duration_ms": 1000,
+      "bytes": 251561,
+      "size": [
+        320,
+        360
+      ]
+    },
+    {
+      "file": "character_sad.gif",
+      "frames": 8,
+      "duration_ms": 1600,
+      "bytes": 240341,
+      "size": [
+        320,
+        360
+      ]
+    },
+    {
+      "file": "character_celebrate.gif",
+      "frames": 8,
+      "duration_ms": 1000,
+      "bytes": 229178,
+      "size": [
+        320,
+        360
+      ]
+    },
+    {
+      "file": "character_all.gif",
+      "frames": 80,
+      "duration_ms": 8000,
+      "bytes": 9339315,
+      "size": [
+        640,
+        720
+      ]
+    }
+  ],
+  "source_png_unchanged": true,
+  "purpose": "GIF preview only; PNG source assets remain lossless",
+  "layout": "combined: top-left idle, top-right happy, bottom-left sad, bottom-right celebrate"
+}
