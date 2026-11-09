@@ -31,9 +31,11 @@
     playerStep: 0,    // 玩家目前點到第幾個
     accepting: false, // 是否開放點擊
     master: false,    // 大師模式
-    sound: true,
+    sound: true,                                       // 音效(SFX)
+    music: localStorage.getItem("mc_music") !== "0",   // 背景音樂(BGM)，預設開
     best: Number(localStorage.getItem("mc_best") || 1),
   };
+  let pendingStart = null; // 首次說明看完後要開始的模式
 
   // ---------- DOM ----------
   const $ = (sel) => document.querySelector(sel);
@@ -50,7 +52,8 @@
   const perfectBan  = $("#perfectBanner");
   const statusText  = $("#statusText");
   const modal       = $("#modal");
-  const soundState  = document.querySelector(".sound-state");
+  const soundState  = $("#soundState");
+  const musicState  = $("#musicState");
 
   // ---------- 音效（WebAudio，免檔案） ----------
   let audioCtx = null;
@@ -78,6 +81,58 @@
   const sndWrong  = () => beep(140, .32, "sawtooth", .25);
   const sndPerfect= () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .18, "triangle"), i * 90)); };
   const sndOver   = () => { [440, 349, 262, 196].forEach((f, i) => setTimeout(() => beep(f, .28, "sawtooth", .22), i * 160)); };
+
+  // ---------- 背景音樂（WebAudio 合成，循環） ----------
+  let musGain = null;
+  const MUS = {
+    playing: false, timer: null, step: 0, nextTime: 0,
+    tempo: 0.30, // 每步秒數
+    // C 大調五聲音階的循環旋律（半音偏移，相對 C4）
+    melody: [0, 4, 7, 9, 7, 4, 0, 4,  9, 12, 9, 7, 4, 7, 2, 0],
+    // 低音（每兩拍一顆）
+    bass:   [0, null, 5, null, 7, null, 4, null,  9, null, 5, null, 7, null, -1, null],
+  };
+  const NOTE = (semi) => 261.63 * Math.pow(2, semi / 12);
+  function getMusGain() {
+    const ctx = ac(); if (!ctx) return null;
+    if (!musGain) { musGain = ctx.createGain(); musGain.gain.value = 0.5; musGain.connect(ctx.destination); }
+    return musGain;
+  }
+  function musVoice(freq, dur, type, vol, when) {
+    const ctx = ac(); const g = getMusGain(); if (!ctx || !g) return;
+    const o = ctx.createOscillator(), env = ctx.createGain();
+    o.type = type; o.frequency.value = freq;
+    env.gain.setValueAtTime(0.0001, when);
+    env.gain.exponentialRampToValueAtTime(vol, when + 0.03);
+    env.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+    o.connect(env); env.connect(g);
+    o.start(when); o.stop(when + dur + 0.03);
+  }
+  function musSchedule() {
+    const ctx = ac(); if (!ctx) return;
+    while (MUS.nextTime < ctx.currentTime + 0.25) {
+      const i = MUS.step % MUS.melody.length;
+      const m = MUS.melody[i];
+      if (m !== null) musVoice(NOTE(m), MUS.tempo * 0.95, "triangle", 0.08, MUS.nextTime);
+      const b = MUS.bass[i];
+      if (b !== null && b !== undefined) musVoice(NOTE(b - 12), MUS.tempo * 1.8, "sine", 0.11, MUS.nextTime);
+      MUS.nextTime += MUS.tempo;
+      MUS.step++;
+    }
+  }
+  function startMusic() {
+    if (!state.music || MUS.playing) return;
+    const ctx = ac(); if (!ctx) return;
+    if (ctx.state === "suspended") ctx.resume();
+    MUS.playing = true;
+    MUS.nextTime = ctx.currentTime + 0.1;
+    MUS.timer = setInterval(musSchedule, 60);
+    musSchedule();
+  }
+  function stopMusic() {
+    MUS.playing = false;
+    if (MUS.timer) { clearInterval(MUS.timer); MUS.timer = null; }
+  }
 
   // ---------- 建立棋盤 ----------
   const gems = [];
@@ -131,6 +186,7 @@
     buildBoard();
     renderHearts();
     show("game");
+    startMusic();
     nextLevel(true);
   }
 
@@ -254,18 +310,44 @@
     soundState.classList.toggle("muted", !on);
     if (on) beep(660, .1, "triangle");
   }
+  function setMusic(on) {
+    state.music = on;
+    localStorage.setItem("mc_music", on ? "1" : "0");
+    musicState.classList.toggle("muted", !on);
+    if (on) startMusic(); else stopMusic();
+  }
+
+  // 首次遊玩自動顯示玩法說明，看完才開始
+  function requestStart(master) {
+    ac();
+    if (!localStorage.getItem("mc_seen_howto")) {
+      pendingStart = { master };
+      modal.classList.remove("hidden");
+      return;
+    }
+    startGame(master);
+  }
+  function closeModal() {
+    modal.classList.add("hidden");
+    if (pendingStart) {
+      localStorage.setItem("mc_seen_howto", "1");
+      const p = pendingStart; pendingStart = null;
+      startGame(p.master);
+    }
+  }
 
   // ---------- 事件綁定 ----------
   function bind() {
-    $("#btnStart").addEventListener("click", () => { ac(); startGame(false); });
+    $("#btnStart").addEventListener("click", () => requestStart(false));
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
     $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
 
     $("#btnHome").addEventListener("click", () => show("title"));
-    $("#btnMaster").addEventListener("click", () => { ac(); startGame(true); });
+    $("#btnMaster").addEventListener("click", () => requestStart(true));
     $("#btnSound").addEventListener("click", () => setSound(!state.sound));
+    $("#btnMusic").addEventListener("click", () => setMusic(!state.music));
     $("#btnHowTo").addEventListener("click", () => modal.classList.remove("hidden"));
-    $("#btnCloseModal").addEventListener("click", () => modal.classList.add("hidden"));
+    $("#btnCloseModal").addEventListener("click", closeModal);
 
     $("#btnAgain").addEventListener("click", () => startGame(state.master));
     $("#btnHomeOver").addEventListener("click", () => show("title"));
@@ -273,7 +355,7 @@
     // 鍵盤：Enter 開始
     document.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && screens.title.classList.contains("active")) {
-        ac(); startGame(false);
+        requestStart(false);
       }
     });
   }
@@ -281,7 +363,8 @@
   // ---------- 啟動 ----------
   buildBoard();
   renderHearts();
-  setSound(true);
+  soundState.classList.toggle("muted", !state.sound);  // 音效預設開
+  musicState.classList.toggle("muted", !state.music);  // 音樂標示（實際於開始/手勢後播放）
   bind();
   show("title");
 })();

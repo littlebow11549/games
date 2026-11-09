@@ -197,9 +197,10 @@ html, body {
 .gold-btn.small { width: auto; align-self: center; padding: 12px 34px; margin-top: 8px; }
 .gold-btn.master { max-width: 320px; margin-top: 26px; filter: grayscale(.15) brightness(.92); }
 
-.sound-state .off { opacity: .45; }
-.sound-state.muted .on { opacity: .45; }
-.sound-state.muted .off { opacity: 1; }
+.sw-state .off { opacity: .4; }
+.sw-state .on  { opacity: 1; }
+.sw-state.muted .on  { opacity: .4; }
+.sw-state.muted .off { opacity: 1; }
 
 /* ============================================================
    頂部 HUD（愛心 / 等級 / 齒輪）
@@ -357,8 +358,38 @@ html, body {
   color: var(--gold-1); text-align: center; margin-bottom: 16px; font-size: 24px;
   -webkit-text-stroke: 1px #123;
 }
-.modal-box ul { list-style: none; display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; line-height: 1.4; }
-.modal-box li b { color: #fff; }
+.modal-box { max-height: 88%; overflow-y: auto; }
+
+/* 縮圖步驟教學 */
+.howto-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.step {
+  position: relative;
+  background: rgba(7,31,68,.6);
+  border: 1px solid rgba(73,199,255,.35);
+  border-radius: 14px;
+  padding: 10px 8px 8px;
+  text-align: center;
+}
+.step-no {
+  position: absolute; top: -8px; left: -8px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(180deg, var(--gold-1), var(--gold-3));
+  border: 2px solid #7a3d04; color: #5a2e00; font-weight: 700; font-size: 13px;
+  display: grid; place-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+.step-thumb {
+  width: 100%; max-width: 118px; height: auto; display: block; margin: 0 auto 6px;
+}
+.step-cap { font-size: 12.5px; line-height: 1.35; color: #cfe4ff; }
+.step-cap b { color: #ffe17a; font-size: 13.5px; }
+.howto-foot {
+  margin-top: 14px; font-size: 12px; color: #9fc3ef; text-align: center; line-height: 1.5;
+}
 
 /* ---------- 短螢幕 / 桌機微調 ---------- */
 @media (max-height: 680px) {
