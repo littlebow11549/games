@@ -1017,9 +1017,9 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   animation-iteration-count: infinite;
 }
 @keyframes fgFloat {
-  0%   { transform: translateY(0) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
-  50%  { transform: translateY(calc(var(--amp) * -1)) rotate(var(--rot)) scale(1.04); opacity: 1; }
-  100% { transform: translateY(0) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
+  0%   { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
+  50%  { transform: translate(-50%, calc(-50% - var(--amp))) rotate(var(--rot)) scale(1.04); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
 }
 /* 內容疊在漂浮寶石之上（靜態 flex 項目設 relative 以生效 z-index） */
 #screen-title > .logo, #screen-title > .title-char,
