@@ -88,3 +88,9 @@ GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（�
 - CSS：`.idle-char canvas` 重置舊 `.mascot canvas` 的 scale(1.62/1.78) transform（否則放大 1.62x）；square aspect，title 470px、menu 280px。
 - 保留 GPT 半身 `pug_idle_01` 不用；全身版解決「要全身」需求。
 - 驗證：Playwright canvas 有繪製、循環取樣 6 種不同值（確認換格/眨眼）、全身置中、無 console/pageerror。
+
+## Hub 調整：移除收藏副標 + Banner 過渡修正 + 重製需求
+使用者：① 移除遊戲收藏的「找到你的下一場小挑戰。」副標 ② Banner 位置優化（矮版面切到 Logo）③ 請 GPT 重做最佳配置版。
+- 移除 `index.html` 的 `collectionIntro` 段落。
+- Banner：hub 在矮視窗（max-height 精簡模式）會把橫幅壓到約 198px 寬扁，`cover`+center 切到 Logo。過渡修正：`@media(min-width:761px){.banner-art{background-position:80% 24%}}` 上移裁切，Logo 與巴哥臉完整。
+- 重製需求：`assets/ASSETS.md` 第六批 B1 `banner_03`（2560×900，左 42% 留空給文案，Logo/角色/寶石置於垂直中央 56% 安全帶，確保任何高度置中裁切不切重點）。GPT 交付後接入並移除過渡修正。

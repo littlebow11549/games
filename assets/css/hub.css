@@ -52,3 +52,6 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
  .banner .intro{display:none}
  h1,html[lang] h1{font-size:32px}
 }
+
+/* 過渡：寬螢幕矮橫幅時上移裁切，避免切到 Logo/角色（待 banner_03 重製後移除）*/
+@media(min-width:761px){.banner-art{background-position:80% 24%}}

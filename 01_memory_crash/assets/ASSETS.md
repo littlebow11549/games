@@ -456,3 +456,20 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 - GAME OVER：`#screen-over` 的 `<h2 class="screen-title gameover-title">GAME OVER</h2>` 改為 `<img class="title-word">`（比照 OPTION 的 `option_hero`），runtime 壓成 lossy webp。
 - HOW TO PLAY：`#modal` 的 `<h3 class="modal-title">HOW TO PLAY</h3>` 同樣改為字藝圖。
 - COMBO：字藝圖 `titles_fx_combo_v3.webp` **已交付但遊戲仍用純文字**顯示「COMBO x2」。Claude 可直接接入（字藝圖為底 + 倍率數字覆層），不需新素材。
+
+## 🆕 設計需求（2026-11-10 第六批，交 GPT）— 遊戲中心 Banner 重製（最佳配置）
+
+使用者回饋：現有 `banner_02` 在遊戲中心首頁橫幅，於**矮版面**（筆電/短視窗，橫幅高度會被壓到約 200px 寬扁比例）時，Logo 與角色會被 `cover` 裁切。需重製一個「任何高度都好看、不切到 Logo 與角色」的最佳配置版。
+
+### B1. 遊戲中心首頁橫幅　`assets/source/pic/banner/banner_03.png`（相對 repo 根）
+- **用途**：遊戲中心 `index.html` 首頁 `.banner-art` 背景（CSS `background: cover`）。左側會疊上 HTML 文案（多語系大標＋按鈕），右側為主視覺。
+- **關鍵限制（安全區）**：橫幅在不同裝置會呈現**從約 3:1（高）到約 6:1（很扁）**的可視比例，且以**水平置中裁切**。因此：
+  - **左側約 42% 必須是純深藍星空負空間**（可極淡粒子/星塵），不可放 Logo、角色或大寶石 —— 這區要留給文案，裁切時也不心疼。
+  - **Logo 與主角（巴哥）＋主要寶石，全部放在畫面「垂直中央安全帶」內**：即上下各留約 22% 空白，所有重點元素落在中間 56% 高度內，確保壓到很扁（6:1 置中裁切）時仍完整不切頭、不切 Logo、不切腳。
+  - Logo 不要貼頂或貼右邊緣；四周留足內距。
+- **構圖**：右側衝鋒巴哥（沿用現有造型/配色）＋環繞 12 色寶石＋次元漩渦光；MEMORY CRASH Logo 置於右上但在安全帶內。整體與遊戲內主視覺一致。
+- **尺寸 / 格式**：**2560×900 PNG（約 2.84:1），RGB 不透明**，原生輸出、不插值放大。若要同時附一張 **方形/高版（如 1600×1200）** 給窄螢幕直式堆疊使用更佳（選做）。
+- **交付**：來源 `pic/banner/banner_03.png` + `runtime/pic/banner_03.webp`（有損 q82 可）；尺寸/雜湊見交付 JSON。另附安全區示意或桌面/筆電/手機三種高度的預覽截圖。
+
+### 接入方式（Claude）
+- 收到後，`assets/css/hub.css` 的 `.banner-art` 背景改為 `banner_03.webp`；因重點已在中央安全帶，`cover` + `center` 即可在任何高度不切到重點。移除目前為了防切所加的過渡 `background-size/position` 調整。
