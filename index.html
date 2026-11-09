@@ -1,140 +1,76 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GAME HUB — 遊戲中心</title>
-<link rel="icon" href="01_memory_crash/assets/source/pic/branding/icon_01.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070e1b">
+<meta name="description" content="Game Hub，給日常一點遊戲時間。立即挑戰 Memory Crash，記住光的順序，探索你的記憶極限。">
+<title>GAME HUB — 給日常一點遊戲時間</title>
+<link rel="icon" href="01_memory_crash/assets/source/pic/branding/icon_01.svg">
 <style>
-  :root{
-    --blue-deep:#061a3a; --blue-glow:#49c7ff;
-    --gold-1:#ffe17a; --gold-2:#ffc02e; --gold-3:#e88a12;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-  html,body{min-height:100%;}
-  body{
-    font-family:"Fredoka","Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
-    color:#eaf3ff;
-    background:
-      radial-gradient(120% 70% at 50% 0%, #1a5bb0 0%, #0c3a78 35%, var(--blue-deep) 72%, #03122b 100%) fixed;
-    min-height:100vh; position:relative; overflow-x:hidden;
-  }
-  /* 透視格線地板 */
-  body::after{
-    content:"";position:fixed;left:-20%;right:-20%;bottom:-2%;height:42%;
-    background-image:
-      linear-gradient(rgba(90,190,255,.28) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(90,190,255,.28) 1px,transparent 1px);
-    background-size:46px 46px;
-    transform:perspective(420px) rotateX(62deg);transform-origin:bottom center;
-    -webkit-mask-image:linear-gradient(to top,#000,transparent);mask-image:linear-gradient(to top,#000,transparent);
-    pointer-events:none;z-index:0;
-  }
-  .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:46px 22px 80px;}
-
-  /* 標題 */
-  header{text-align:center;margin-bottom:38px;}
-  .title{
-    font-family:"Luckiest Guy",Impact,sans-serif;
-    font-size:clamp(40px,10vw,76px);letter-spacing:2px;transform:skewX(-5deg);
-    background:linear-gradient(#fff3bf 10%,var(--gold-1) 45%,var(--gold-2) 70%,var(--gold-3) 100%);
-    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-    -webkit-text-stroke:3px #16305f;
-    filter:drop-shadow(0 4px 0 #11224d) drop-shadow(0 8px 12px rgba(0,0,0,.55));
-  }
-  .subtitle{margin-top:6px;color:#bfe0ff;font-size:clamp(14px,3.6vw,18px);letter-spacing:.5px;}
-
-  /* 遊戲卡片格 */
-  .grid{
-    display:grid;gap:22px;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  }
-  .card{
-    position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
-    padding:26px 20px 22px;border-radius:22px;text-decoration:none;color:inherit;
-    background:linear-gradient(180deg,rgba(14,52,104,.72),rgba(6,26,58,.72));
-    border:2px solid rgba(73,199,255,.45);
-    box-shadow:0 0 0 rgba(73,199,255,0),0 10px 24px rgba(0,0,0,.4),inset 0 0 26px rgba(73,199,255,.12);
-    transition:transform .14s ease,box-shadow .2s ease,border-color .2s ease;
-  }
-  .card:hover{
-    transform:translateY(-6px);border-color:var(--blue-glow);
-    box-shadow:0 0 24px rgba(73,199,255,.5),0 16px 30px rgba(0,0,0,.45),inset 0 0 26px rgba(73,199,255,.2);
-  }
-  .card .thumb{
-    width:116px;height:116px;border-radius:26px;margin-bottom:16px;
-    background:#071f44;border:2px solid rgba(73,199,255,.4);
-    box-shadow:inset 0 0 18px rgba(0,0,0,.5);overflow:hidden;display:grid;place-items:center;
-  }
-  .card .thumb img{width:100%;height:100%;display:block;}
-  .card .name{
-    font-family:"Luckiest Guy",Impact,sans-serif;font-size:22px;letter-spacing:.5px;
-    color:var(--gold-1);-webkit-text-stroke:1px #16305f;text-shadow:0 2px 0 #11224d;
-  }
-  .card .desc{margin-top:6px;font-size:13.5px;color:#cfe4ff;line-height:1.35;min-height:2.6em;}
-  .card .play{
-    margin-top:14px;padding:10px 26px;border-radius:12px;font-weight:700;font-size:16px;color:#5a2e00;
-    border:2px solid #7a3d04;
-    background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 50%,var(--gold-3));
-    box-shadow:inset 0 2px 0 rgba(255,255,255,.7),0 4px 0 #a85e08,0 7px 10px rgba(0,0,0,.4);
-  }
-  .card.soon{opacity:.6;filter:grayscale(.3);pointer-events:none;}
-  .card.soon .play{background:linear-gradient(180deg,#9fb4c9,#6f869c);border-color:#3c4b5a;color:#1b2a38;box-shadow:none;}
-  .badge{
-    position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;letter-spacing:.5px;
-    padding:4px 10px;border-radius:999px;background:#0b3f7a;border:1px solid var(--blue-glow);color:#bfe9ff;
-  }
-  footer{margin-top:48px;text-align:center;color:#8fb6e0;font-size:12.5px;line-height:1.7;}
-  footer a{color:#bfe0ff;}
+:root{color-scheme:dark;--bg:#070e1b;--surface:#0d1829;--line:#ffffff14;--text:#f3f4ee;--muted:#95a4b8;--gold:#f8d577;--cyan:#73d9ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible{outline:3px solid var(--cyan);outline-offset:6px}::selection{background:var(--gold);color:var(--bg)}.container{width:min(1200px,calc(100% - 96px));margin:auto}.skip{position:fixed;top:12px;left:16px;transform:translateY(-160%);padding:12px;background:var(--gold);color:#101522;z-index:10}.skip:focus{transform:none}
+header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:inline-flex;align-items:center;gap:12px;font-size:18px;font-weight:850;letter-spacing:1px}.brand-mark{width:34px;height:34px;display:grid;place-items:center;border:1px solid #f8d57755;border-radius:11px;background:#f8d5770c;color:var(--gold)}svg{display:block}nav{display:flex;gap:32px;align-items:center;font-size:13px;color:#c1cad6}.nav-link{transition:color .2s}.nav-link:hover{color:var(--gold)}.nav-link.active{color:var(--text)}.nav-link.active::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:3px}.nav-small{color:#8b9bad;font-size:11px;letter-spacing:1.6px}
+.hero{padding:72px 0 64px;display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:11px;font-weight:650;letter-spacing:2.8px}.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold)}h1{font-size:clamp(40px,4.8vw,65px);line-height:1.28;font-weight:850;letter-spacing:-2px;margin:25px 0 24px}h1 em{font-style:normal;color:var(--gold)}.intro{max-width:350px;color:var(--muted);font-size:15px;line-height:1.95;letter-spacing:.3px}.actions{display:flex;align-items:center;gap:24px;margin-top:32px}.button{display:inline-flex;align-items:center;justify-content:center;gap:24px;padding:17px 23px;border-radius:9px;font-size:14px;font-weight:750;transition:transform .2s,background .2s}.primary{background:var(--gold);color:#171c25;box-shadow:0 5px 24px #f8d57710}.primary:hover{background:#ffe4a1;transform:translateY(-3px)}.text-link{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#bac6d5}.text-link:hover{color:var(--text)}.hero-note{margin-top:32px;display:flex;align-items:center;gap:9px;font-size:11px;color:#7f91a8}.hero-note span{width:4px;height:4px;border-radius:50%;background:var(--cyan)}
+.artwork{position:relative;min-width:0;height:474px;border-radius:24px;isolation:isolate;background:#0b2037;overflow:hidden;border:1px solid #82d9ff22;box-shadow:0 30px 80px #0003}.artwork::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#081529 0%,#08152922 40%,#06172833 100%),url('01_memory_crash/assets/source/pic/background/bg_01.png') center 64%/cover;opacity:.82;z-index:-2}.artwork::after{content:"";position:absolute;inset:15%;border-radius:50%;background:#32baff1a;filter:blur(38px);z-index:-1}.art-label{position:absolute;top:23px;left:24px;display:flex;align-items:center;gap:8px;color:#bce5f4;font-size:10px;letter-spacing:1.8px}.live-dot{width:5px;height:5px;border-radius:50%;background:#7fe4c0;box-shadow:0 0 10px #7fe4c099}.edition{position:absolute;right:24px;top:23px;color:#98b7cc;font-size:10px;letter-spacing:2px}.game-logo{position:absolute;left:50%;top:61px;transform:translateX(-50%);width:72%;height:225px;object-fit:contain;filter:drop-shadow(0 8px 22px #0006)}.gem{position:absolute;width:102px;height:102px;background-image:url('01_memory_crash/assets/source/pic/gems/gems_01.png');background-size:400% 300%;background-repeat:no-repeat;filter:drop-shadow(0 0 16px #46bdff44);animation:float 5s ease-in-out infinite;pointer-events:none}.gem-one{left:14%;top:260px;background-position:0 0;transform:rotate(-12deg)}.gem-two{left:40%;top:288px;background-position:100% 100%;animation-delay:-1.8s;width:120px;height:120px}.gem-three{right:10%;top:251px;background-position:66.6667% 0;animation-delay:-3s;transform:rotate(13deg)}@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}.art-bottom{position:absolute;bottom:22px;left:24px;right:24px;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#b3ccdc;letter-spacing:1.4px}.art-bottom span:last-child{color:#f7d77d}.feature-caption{margin-top:13px;display:flex;justify-content:space-between;color:#74879d;font-size:10px;letter-spacing:1.4px;padding:0 3px}.feature-caption span:last-child{color:#afbccb}
+.collection{border-top:1px solid var(--line);padding:42px 0 64px}.section-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.section-heading{display:flex;align-items:center;gap:14px}h2{font-size:23px;font-weight:700;letter-spacing:-.5px;margin:0}.count{border:1px solid #ffffff20;border-radius:6px;padding:4px 7px;color:var(--muted);font-size:10px}.section-top>p{color:#7d8da2;font-size:12px}.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:22px}.game-card{display:flex;align-items:center;gap:22px;padding:25px;background:linear-gradient(115deg,#132338,#0d1829);border:1px solid #96c7e320;border-radius:16px;transition:border-color .2s,transform .2s}.game-card:hover{transform:translateY(-4px);border-color:#73d9ef77}.game-icon{width:104px;height:104px;object-fit:cover;border-radius:22px;border:1px solid #94e4ff33;flex-shrink:0}.tags{display:flex;gap:6px;margin-bottom:10px}.tag{font-size:9px;letter-spacing:.5px;color:#acd8e3;padding:4px 7px;border-radius:4px;background:#73d9ef0b;border:1px solid #73d9ef1c}.game-card h3{font-size:20px;margin:0 0 7px;letter-spacing:-.5px}.game-card p{font-size:12px;color:#93a5bb;line-height:1.7;margin:0;max-width:270px}.card-arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid #ffffff1c;color:var(--gold);margin-left:auto;flex-shrink:0}.soon{border:1px dashed #ffffff24;border-radius:16px;padding:26px 28px;display:flex;align-items:center;gap:20px;background:#ffffff02}.soon-plus{font-size:28px;font-weight:200;color:#71849b;width:42px;flex-shrink:0}.soon .small{font-size:9px;letter-spacing:2px;color:#7f91aa}.soon h3{font-size:17px;font-weight:550;margin:10px 0 8px}.soon p{color:#7f91a8;font-size:12px;line-height:1.7;margin:0}footer{padding:24px 0 34px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);color:#718198;font-size:10px;letter-spacing:1px}.footer-brand{color:#a2afbf;font-size:11px;font-weight:700}.footer-note{letter-spacing:.5px}
+@media(min-width:1500px){.hero{padding-top:90px;padding-bottom:80px}.artwork{height:520px}.game-logo{top:75px}.gem-one{top:300px}.gem-two{top:325px}.gem-three{top:290px}}
+@media(max-width:900px){.container{width:calc(100% - 48px)}.hero{gap:24px;padding-top:48px}h1{font-size:44px}.artwork{height:420px}.game-logo{top:64px;height:190px}.gem{width:85px;height:85px}.gem-one{top:235px;left:10%}.gem-two{top:265px;left:36%;width:100px;height:100px}.gem-three{top:230px;right:8%}.grid{grid-template-columns:1fr}.game-card p{max-width:none}.soon{padding:22px 26px}.actions{gap:16px}.button{gap:14px;padding:16px 19px}}
+@media(max-width:620px){.container{width:calc(100% - 40px)}header{height:78px}.brand{font-size:16px;gap:9px}nav{gap:18px;font-size:12px}.nav-small{display:none}.hero{grid-template-columns:1fr;gap:35px;padding:42px 0 36px}.eyebrow{font-size:9px;letter-spacing:2.4px}h1{font-size:clamp(36px,9.5vw,52px);margin-top:21px;margin-bottom:18px;letter-spacing:-1.5px}.intro{font-size:14px;max-width:100%;margin:0;line-height:1.9}.actions{margin-top:24px;gap:22px}.hero-note{margin-top:22px}.artwork{height:410px;border-radius:18px}.game-logo{top:52px;height:200px;width:77%}.gem-one{top:235px;left:12%}.gem-two{top:260px;left:38%}.gem-three{top:234px;right:9%}.feature-caption{font-size:9px}.collection{padding:30px 0 38px}.section-top{margin-bottom:20px}.section-top>p{font-size:10px}h2{font-size:21px}.game-card{padding:20px;gap:16px}.game-icon{width:75px;height:75px;border-radius:17px}.game-card h3{font-size:17px}.game-card p{font-size:11px}.tags{margin-bottom:8px}.tag{font-size:8px}.card-arrow{width:28px;height:28px}.soon{padding:22px}.soon h3{font-size:16px}footer{gap:14px;flex-wrap:wrap;font-size:9px}.footer-note{width:100%;order:3;margin-top:3px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="title">GAME HUB</div>
-      <div class="subtitle">選一款開始遊玩 · Pick a game to play</div>
-    </header>
-
-    <main class="grid" id="grid"><!-- 卡片由 JS 產生 --></main>
-
-    <footer>
-      純前端小遊戲合集 · 每款獨立資料夾（<code>編號_名稱</code>）<br/>
-      新遊戲做好後會自動出現在這裡。
-    </footer>
-  </div>
-
-  <script>
-    // ====== 遊戲清單（新增遊戲只要在這裡加一筆） ======
-    const GAMES = [
-      {
-        folder: "01_memory_crash",
-        name: "Memory Crash",
-        desc: "記住寶石發光順序，照順序點回來，挑戰最高關卡！",
-        icon: "01_memory_crash/assets/source/pic/branding/icon_01.svg",
-        status: "ready",         // ready | soon
-      },
-      // 範例：之後新增遊戲
-      // { folder:"02_xxx", name:"XXX", desc:"…", icon:"02_xxx/assets/source/pic/branding/icon_01.svg", status:"soon" },
-    ];
-
-    const grid = document.getElementById("grid");
-    GAMES.forEach(g => {
-      const ready = g.status === "ready";
-      const a = document.createElement("a");
-      a.className = "card" + (ready ? "" : " soon");
-      a.href = ready ? g.folder + "/index.html" : "javascript:void(0)";
-      a.innerHTML = `
-        <span class="badge">${ready ? "可遊玩" : "開發中"}</span>
-        <span class="thumb"><img src="${g.icon}" alt="${g.name}" onerror="this.style.display='none'"></span>
-        <span class="name">${g.name}</span>
-        <span class="desc">${g.desc}</span>
-        <span class="play">${ready ? "▶ PLAY" : "COMING SOON"}</span>
-      `;
-      grid.appendChild(a);
-    });
-  </script>
+<a class="skip" href="#main">跳至主要內容</a>
+<div class="container">
+<header>
+<a class="brand" href="./" aria-label="Game Hub 首頁"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 7h10c2 0 3 2 3.5 4l1 6c.3 2-1.5 3-3 1l-2-2h-9l-2 2c-1.5 2-3.3 1-3-1l1-6C4 9 5 7 7 7Z" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 10v5M5 12.5h5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="14" r="1" fill="currentColor"/></svg></span>GAME HUB<span style="color:var(--gold)">.</span></a>
+<nav aria-label="主要導覽"><a class="nav-link active" href="#games">遊戲收藏</a><a class="nav-link" href="01_memory_crash/">立即遊玩 ↗</a><span class="nav-small">EST. 2026</span></nav>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div>
+<div class="eyebrow">SMALL GAMES. BIG MOMENTS.</div>
+<h1 id="hero-title">給日常一點<br><em>遊戲時間。</em></h1>
+<p class="intro">把忙碌暫停，讓玩心上線。<br>一點專注、一點挑戰，下一個紀錄由你創造。</p>
+<div class="actions"><a class="button primary" href="01_memory_crash/">開始挑戰 <span aria-hidden="true">↗</span></a><a class="text-link" href="#games">探索遊戲 <span aria-hidden="true">↓</span></a></div>
+<div class="hero-note"><span aria-hidden="true"></span>免下載，打開就能玩<span aria-hidden="true"></span>手機・電腦皆適用</div>
+</div>
+<div>
+<a class="artwork" style="display:block" href="01_memory_crash/" aria-label="開始遊玩 Memory Crash">
+<div class="art-label"><span class="live-dot" aria-hidden="true"></span>本期精選 / FEATURED</div><div class="edition">NO. 001</div>
+<img class="game-logo" src="01_memory_crash/assets/source/pic/branding/logo_01.png" width="1422" height="1106" alt="Memory Crash" fetchpriority="high">
+<span class="gem gem-one" aria-hidden="true"></span><span class="gem gem-two" aria-hidden="true"></span><span class="gem gem-three" aria-hidden="true"></span>
+<div class="art-bottom"><span>記住光的順序，挑戰記憶極限。</span><span>PLAY NOW ↗</span></div>
+</a>
+<div class="feature-caption"><span>MEMORY × FOCUS × CHALLENGE</span><span>你的下一個最高紀錄。</span></div>
+</div>
+</section>
+<section class="collection" id="games" aria-labelledby="collection-title">
+<div class="section-top"><div class="section-heading"><h2 id="collection-title">遊戲收藏</h2><span class="count" id="game-count">01</span></div><p>精選小遊戲，隨時來一局。</p></div>
+<div class="grid" id="grid"></div>
+</section>
+</main>
+<footer><span class="footer-brand">GAME HUB<span style="color:var(--gold)">.</span></span><span class="footer-note">為每一個想玩一下的時刻。</span><span>© 2026 GAME HUB</span></footer>
+</div>
+<script>
+// 新增遊戲時在此加入資料；ready 顯示可玩卡片，soon 顯示預告。
+const GAMES=[{folder:'01_memory_crash',name:'Memory Crash',desc:'記住寶石的發光順序，重現你的完美記憶。',icon:'01_memory_crash/assets/source/pic/branding/icon_01.png',tags:['記憶挑戰','益智'],status:'ready'}];
+const grid=document.getElementById('grid');
+GAMES.forEach(game=>{
+ const ready=game.status==='ready';
+ const card=document.createElement(ready?'a':'article');
+ card.className='game-card';
+ if(ready){card.href=game.folder+'/';card.setAttribute('aria-label','開始遊玩 '+game.name);}
+ const image=document.createElement('img');image.className='game-icon';image.src=game.icon;image.alt='';image.width=104;image.height=104;image.loading='lazy';card.append(image);
+ const body=document.createElement('div');const tags=document.createElement('div');tags.className='tags';
+ (game.tags||[]).forEach(label=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=label;tags.append(tag);});
+ if(!ready){const tag=document.createElement('span');tag.className='tag';tag.textContent='開發中';tags.append(tag);}
+ const title=document.createElement('h3');title.textContent=game.name;const desc=document.createElement('p');desc.textContent=game.desc;body.append(tags,title,desc);card.append(body);
+ if(ready){const arrow=document.createElement('span');arrow.className='card-arrow';arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');card.append(arrow);}grid.append(card);
+});
+document.getElementById('game-count').textContent=String(GAMES.length).padStart(2,'0');
+const soon=document.createElement('article');soon.className='soon';soon.innerHTML='<span class="soon-plus" aria-hidden="true">＋</span><div><span class="small">NEXT UP</span><h3>下一份樂趣，準備中。</h3><p>更多新挑戰，將在這裡與你見面。</p></div>';grid.append(soon);
+</script>
 </body>
 </html>
