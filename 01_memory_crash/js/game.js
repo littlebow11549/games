@@ -208,7 +208,7 @@
     else window.MemoryCrashMascot?.play("idle");
     const f = BANNER_IMG[text];
     perfectBan.innerHTML = f
-      ? `<img class="word" src="assets/source/pic/titles/titles_fx_${f}.png" alt="${text}">`
+      ? `<img class="word" src="assets/runtime/pic/batch3/titles_fx_${f}_v3.webp" alt="${text}">`
       : text;
     perfectBan.className = "banner game-banner " + cls;
     // 觸發動畫

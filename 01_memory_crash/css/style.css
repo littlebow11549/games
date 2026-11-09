@@ -739,7 +739,7 @@ html, body {
   filter: drop-shadow(0 14px 24px rgba(0,0,0,.6));
 }
 /* 頭部放大、焦點上移、置中（不一定要全身） */
-.title-char.mascot canvas { transform: scale(1.62); transform-origin: 50% 30%; }
+.title-char.mascot canvas { transform: translateX(-6%) scale(1.62); transform-origin: 50% 30%; }
 
 /* START 疊在巴哥下方（絕對置中底部）— 高級 Inter 金字 */
 .title-start {
@@ -941,7 +941,7 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 @keyframes mcBtn   { 0%{ opacity:0; transform: translateX(-34px);} 100%{ opacity:1; transform:none;} }
 
 /* 選單巴哥頭再大、置中 */
-.menu-char.mascot canvas { transform: scale(1.78) !important; transform-origin: 50% 27% !important; }
+.menu-char.mascot canvas { transform: translateX(-7%) scale(1.78) !important; transform-origin: 50% 27% !important; }
 
 /* ============================================================
    提示功能：猶豫時下一顆寶石搖擺＋發光
@@ -960,4 +960,45 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 @media (prefers-reduced-motion: reduce) {
   .gem.hint { animation: none; }
   .gem.hint::after { animation: none; opacity: .6; }
+}
+
+/* ============================================================
+   第三批 KV 接入：首頁/選單改用 pug_head 半身像 + START 字藝
+   ============================================================ */
+/* 共用：真實去背半身像（contain，不裁頭），加待機呼吸動態 */
+.hero-char { overflow: visible !important; background: none !important; display: block !important; }
+.hero-char .hero-img {
+  display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom;
+  filter: drop-shadow(0 16px 26px rgba(0,0,0,.55));
+  animation: heroBreath 3.6s ease-in-out infinite; transform-origin: 50% 90%;
+}
+@keyframes heroBreath {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%     { transform: translateY(-1.2%) scale(1.018); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-char .hero-img { animation: none; } }
+
+/* 首頁：大頭置中、佔畫面主體 */
+.title-char.hero-char {
+  width: min(100%, 440px) !important; height: auto !important; aspect-ratio: 1 / 1 !important;
+  max-height: 60vh !important; margin: -4% auto 0 !important; overflow: visible !important;
+}
+
+/* 選單：半身像探出面板上方 */
+.menu-char.hero-char {
+  width: min(70vw, 280px) !important; height: min(30vh, 240px) !important; max-height: 30vh !important;
+  margin: 0 auto -16px !important; overflow: visible !important;
+}
+.menu-char.hero-char .hero-img { object-position: center top; }
+
+/* START 字藝按鈕 */
+.title-start.start-hero {
+  position: absolute; left: 50%; bottom: 2.5%; transform: translateX(-50%);
+  width: min(78%, 340px); height: auto; padding: 0; margin: 0;
+  background: none !important; border: 0; -webkit-text-fill-color: initial; color: transparent;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.5));
+  animation: pulseStart 1.3s ease-in-out infinite;
+}
+.title-start.start-hero .start-word {
+  display: block; width: 100%; height: auto; pointer-events: none;
 }
