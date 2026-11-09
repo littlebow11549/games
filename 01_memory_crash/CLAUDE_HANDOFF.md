@@ -39,3 +39,6 @@ JS 語法與 git diff --check 通過。先前以系統 Chromium 390×844 檢查 
 ## 遊戲庫首頁更新
 根目錄 index.html 已改為響應式深藍／金色首頁，沿用 source/pic 的背景、Logo、寶石與圖示，不新增美術原圖。首頁有精選遊戲主視覺、浮動寶石、遊戲收藏與新增遊戲預留區。GAMES 陣列保留為卡片資料入口；新增精選遊戲時也需更新 hero 與導覽連結。
 已驗證 320、390、1440 寬度無橫向溢出，圖片成功載入、PLAY 連至遊戲、無 pageerror 或失敗資源，支援減少動態效果。預覽為 assets/preview/hub_desktop.png、hub_mobile.png。
+
+## 最新全專案交接入口
+首頁已再次重做為大 Banner，新增六語系、桌機四欄、分類與最愛；最新報告請讀 repo 根目錄 docs/HANDOFF.md。本檔上方首頁描述為歷史版本。後續每次製作皆須更新交接報告，規則見根目錄 AGENTS.md／CLAUDE.md。
