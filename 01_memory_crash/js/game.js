@@ -61,6 +61,8 @@
   const appEl       = $("#app");
   const scoreNum    = $("#scoreNum");
   const comboPop    = $("#comboPop");
+  const timerBar    = $("#timerBar");
+  const timerFill   = $("#timerFill");
   const modal       = $("#modal");
   const soundState  = $("#soundState");
   const musicState  = $("#musicState");
@@ -214,6 +216,7 @@
     state.playerStep = 0;
     state.accepting = false;
     board.classList.add("locked");
+    stopTimer();
     banner(fresh ? "READY" : "AGAIN", "");
     statusText.textContent = "Watch the gems light up…";
     setTimeout(playSequence, 650);
@@ -233,6 +236,7 @@
           board.classList.remove("locked");
           banner("YOUR TURN", "");
           statusText.textContent = "Your turn — tap them back in order";
+          startTimer();
         }, 180);
         return;
       }
@@ -277,6 +281,43 @@
     }
   }
 
+  // ---------- 回合倒數（限時，沒操作扣血） ----------
+  let turnTimer = null, lowTimer = null;
+  function turnDuration() {
+    const base = state.master ? 3.6 : 5;
+    return Math.max(2.2, base - state.level * 0.12);
+  }
+  function startTimer() {
+    const dur = turnDuration();
+    clearTimeout(turnTimer); clearTimeout(lowTimer);
+    timerBar.classList.add("active");
+    timerFill.classList.remove("low");
+    timerFill.style.transition = "none"; timerFill.style.width = "100%";
+    void timerFill.offsetWidth;
+    timerFill.style.transition = `width ${dur}s linear`;
+    timerFill.style.width = "0%";
+    lowTimer = setTimeout(() => timerFill.classList.add("low"), dur * 700);
+    turnTimer = setTimeout(onTimeout, dur * 1000);
+  }
+  function resetTimer() { if (state.accepting) startTimer(); }
+  function stopTimer() {
+    clearTimeout(turnTimer); clearTimeout(lowTimer); turnTimer = null;
+    timerBar.classList.remove("active"); timerFill.classList.remove("low");
+    timerFill.style.transition = "none"; timerFill.style.width = "100%";
+  }
+  function onTimeout() {
+    if (!state.accepting) return;
+    state.accepting = false; board.classList.add("locked"); stopTimer();
+    sndWrong(); shakeScreen(); state.combo = 0;
+    state.hearts--; renderHearts();
+    if (state.hearts <= 0) { setTimeout(gameOver, 500); }
+    else {
+      banner("MISS", "miss");
+      statusText.textContent = "Too slow! Watch again";
+      setTimeout(() => nextLevel(false), 1100);
+    }
+  }
+
   function onGemClick(idx) {
     if (!state.accepting) return;
     const expected = state.sequence[state.playerStep];
@@ -293,12 +334,16 @@
       updateScore(); floatPlus(gem, gain); showCombo(state.combo);
       state.playerStep++;
       if (state.playerStep >= state.sequence.length) {
+        stopTimer();
         levelClear();
+      } else {
+        resetTimer();   // 每點對一次就重置倒數
       }
     } else {
       // 錯誤
       state.accepting = false;
       board.classList.add("locked");
+      stopTimer();
       gem.classList.add("wrong");
       setTimeout(() => gem.classList.remove("wrong"), 360);
       sndWrong(); shakeScreen();
@@ -332,6 +377,7 @@
   }
 
   function gameOver() {
+    stopTimer();
     sndOver();
     const bestScore = Math.max(Number(localStorage.getItem("mc_bestscore") || 0), state.score);
     localStorage.setItem("mc_bestscore", String(bestScore));
@@ -410,7 +456,7 @@
     // 標題 START → 主選單
     $("#btnStart").addEventListener("click", showMenu);
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
-    $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
+    $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); stopTimer(); show("option"); });
 
     // 主選單
     $("#btnArcade").addEventListener("click", () => requestStart(false));
