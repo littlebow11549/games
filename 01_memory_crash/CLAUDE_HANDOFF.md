@@ -32,3 +32,6 @@ JS 語法與 git diff --check 通過。先前以系統 Chromium 390×844 檢查 
 
 啟動：python -m http.server 8000 --directory /workspace/games
 開啟：http://localhost:8000/01_memory_crash/
+
+## 使用者最新圖片要求
+圖片須大而清晰，壓縮不得失真。現有八張 PNG 已無損最佳化，原生尺寸、透明度與逐像素內容保持不變；詳見 assets/LOSSLESS_COMPRESSION.json。後續新製圖片以 ASSETS.md 原訂尺寸為目標，不以插值放大代替高解析度來源。部分現有來源仍低於規格，並未藉本次壓縮補足解析度。

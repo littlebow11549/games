@@ -1,0 +1,82 @@
+[
+  {
+    "path": "assets/source/pic/background/bg_01.png",
+    "width": 941,
+    "height": 1672,
+    "mode": "RGB",
+    "before_bytes": 1572818,
+    "after_bytes": 1315646,
+    "decoded_pixel_sha256": "628457baa6f4d64a252384d6fba97452061ccaf51a265059bad27bb22686451b",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/branding/icon_01.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "before_bytes": 1562988,
+    "after_bytes": 1299646,
+    "decoded_pixel_sha256": "628d02cbd941f337530f813d8e87a372f0644da6e190b16a5758e80d021d0dc1",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/branding/logo_01.png",
+    "width": 1422,
+    "height": 1106,
+    "mode": "RGBA",
+    "before_bytes": 1366055,
+    "after_bytes": 1284111,
+    "decoded_pixel_sha256": "3a42ebe1f52537d0f4be19aa03ab82171be51eae667a162280016856a3612021",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/branding/logo_02.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "before_bytes": 1978696,
+    "after_bytes": 1856327,
+    "decoded_pixel_sha256": "21a83269bd0b1d7b73b1a731b6f8f054c14de2e5378deea104183eb8e7825c79",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/gems/gems_01.png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGBA",
+    "before_bytes": 1314765,
+    "after_bytes": 1272561,
+    "decoded_pixel_sha256": "3fd8fc3626dc8ef351ae8bac23bcfd28b3acbc827ccb0439dba66bfd6bd201e3",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/gems/gems_02.png",
+    "width": 1448,
+    "height": 1086,
+    "mode": "RGBA",
+    "before_bytes": 1345015,
+    "after_bytes": 1301385,
+    "decoded_pixel_sha256": "d3a0b566a8012d4eeeaf4c03ba5fa4f4e27e0c9f0d274a756bdd2ab9f15f5d36",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/numbers/numbers_01.png",
+    "width": 2172,
+    "height": 724,
+    "mode": "RGBA",
+    "before_bytes": 1665404,
+    "after_bytes": 1514559,
+    "decoded_pixel_sha256": "1e75fce22fb9a8e104b4b5263895dd62557b6400d69da0605f52003f52ca0673",
+    "identical_pixels": true
+  },
+  {
+    "path": "assets/source/pic/ui/ui_01.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "before_bytes": 1185855,
+    "after_bytes": 1073866,
+    "decoded_pixel_sha256": "abdad296b6a13cd9f0006b517914f8a9ec6a2c76e13166ff0524f8901c99e942",
+    "identical_pixels": true
+  }
+]
