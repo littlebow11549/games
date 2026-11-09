@@ -175,7 +175,7 @@ html, body {
   transform: translateY(3px);
   border-image-source: url("../assets/source/pic/ui/btn_pressed.png");
 }
-.gold-btn.small { width: auto; align-self: center; padding: 10px 40px; margin-top: 8px; }
+.gold-btn.small { display: block; width: 100%; align-self: stretch; padding: 12px 24px; margin: 14px auto 0; box-sizing: border-box; }
 .gold-btn.master {
   max-width: 330px; margin-top: 26px;
   border-image-source: url("../assets/source/pic/ui/btn_disabled.png");
