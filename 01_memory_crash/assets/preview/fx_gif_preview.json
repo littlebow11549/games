@@ -1,0 +1,71 @@
+{
+  "source": "Actual Chromium game recording; genuine PERFECT, MISS and GAME OVER events; all native CSS, particle, shake and character animations retained.",
+  "viewport": [
+    390,
+    844
+  ],
+  "output_size": [
+    390,
+    836
+  ],
+  "marker_removed_by_top_crop": 8,
+  "fps": 15,
+  "clips": [
+    {
+      "name": "burst",
+      "start": 4,
+      "duration": 1.2,
+      "file": "fx_burst.gif",
+      "bytes": 2301488
+    },
+    {
+      "name": "shatter",
+      "start": 8.84,
+      "duration": 1,
+      "file": "fx_shatter.gif",
+      "bytes": 1530603
+    },
+    {
+      "name": "crack",
+      "start": 18.8,
+      "duration": 2.96,
+      "file": "fx_crack.gif",
+      "bytes": 3083117
+    }
+  ],
+  "combined": {
+    "file": "fx_all.gif",
+    "bytes": 7060238
+  },
+  "game_source_unchanged": true,
+  "validation": [
+    {
+      "file": "fx_burst.gif",
+      "frames": 26,
+      "duration_ms": 1740,
+      "unique_frames": 18,
+      "loop": 0
+    },
+    {
+      "file": "fx_shatter.gif",
+      "frames": 23,
+      "duration_ms": 1540,
+      "unique_frames": 15,
+      "loop": 0
+    },
+    {
+      "file": "fx_crack.gif",
+      "frames": 52,
+      "duration_ms": 3470,
+      "unique_frames": 41,
+      "loop": 0
+    },
+    {
+      "file": "fx_all.gif",
+      "frames": 101,
+      "duration_ms": 6740,
+      "unique_frames": 73,
+      "loop": 0
+    }
+  ]
+}
