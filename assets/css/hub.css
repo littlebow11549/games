@@ -52,3 +52,21 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
  .banner .intro{display:none}
  h1,html[lang] h1{font-size:32px}
 }
+
+/* Same hero artwork across the game icon and featured banner. */
+.banner{width:100%;min-height:340px;aspect-ratio:3/1}
+.banner-art{background:#061322;display:block}
+.banner-art img{display:block;width:100%;height:100%;object-fit:contain}
+.banner::before{background:linear-gradient(90deg,#06132255,transparent 45%)}
+.banner-content{width:43%;max-width:520px;padding:28px 32px}
+.banner-content .intro{max-width:100%}
+.banner-content .actions{flex-wrap:wrap;gap:12px}
+.game-icon{object-fit:contain}
+@media(max-width:760px){
+ .banner{aspect-ratio:auto;min-height:0;display:block}
+ .banner-art{position:relative;inset:auto;width:100%;height:280px;z-index:0}
+ .banner-art img{object-fit:contain}
+ .banner::before{display:none}
+ .banner-content{width:100%;max-width:none;padding:22px 24px;background:#061322}
+ .banner-orbit{display:none}
+}

@@ -1003,6 +1003,10 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   display: block; width: 100%; height: auto; pointer-events: none;
 }
 
+/* Custom OPTION lettering, with readable accessible text via the image alt. */
+#screen-option .option-art { width: 340px; height: 130px; margin: 8px auto 16px; background: none; padding: 0; flex-shrink: 0; }
+.option-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
 /* ============================================================
    漂浮動態寶石（首頁/選單背景，使用現成 gems_01 sprite）
    ============================================================ */

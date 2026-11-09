@@ -54,6 +54,8 @@ characters, high detail. Opaque. 1080x1920.
 ```
 
 ## 2. 品牌　`pic/branding/`
+
+2026-11-10 更新：正式遊戲 icon 改 `icon_02.png`（1254×1254 衝鋒巴哥＋Logo，舊 icon_01 保留）。OPTION 標題新增 `pic/titles/option_hero.png`（1774×887）；首頁同系列 Banner 存根目錄 `assets/source/pic/banner/banner_02.png`。詳見 `docs/handoffs/2026-11-10-hero-brand-refresh.md`。
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
 | `logo_01.png` | 遊戲 LOGO「MEMORY CRASH」 | 1422×1106（原建議 900×700） | 去背 |
