@@ -20,17 +20,15 @@
 - [x] 完整素材製作列表 `assets/ASSETS.md`（背景/Logo/UI/寶石/數字/特效/音樂音效/Icon，依全專案標準範本）
 
 ## 🟡 進行中 / 待辦
-- [ ] **接入外部美術素材**（等使用者產出後）
-  - 圖片放 `assets/img/`，影片放 `assets/video/`，檔名見 ASSETS.md
-  - 圖集需切圖：寶石(4×3)、UI、數字(0–9)、標題各切成單件再套用
+- [ ] **接入外部美術素材**（等使用者產出後；路徑/檔名見 `assets/ASSETS.md`）
+  - 圖集需切圖：`gems_01`(4×3)、`ui_01`、`numbers_01` 各切成單件再套用
   - 接法建議：
-    - `bg_main.png` → `.app` 背景改 `background-image`
-    - `logo.png` → 用 `<img>` 取代 `.logo` 文字
-    - `gem_01..12.png` → `buildBoard()` 內把 `.stone` 的 CSS 造型換成 `background-image`（依 index 對應檔名）
-    - `btn_gold*.png` → `.gold-btn` 改用九宮格 `border-image`
-    - `heart_full/empty.png` → `.heart` 改 `<img>`
-    - 影片 `bg_loop/intro/fx_*` → 新增 `<video>` 疊層（透明 WebM）
-- [ ] 音效改用真實音檔（可選；目前為合成音）
+    - `source/pic/background/bg_01.png` → `.app` 背景改 `background-image`
+    - `source/pic/branding/logo_01.png` → 用 `<img>` 取代 `.logo` 文字
+    - `source/pic/gems/gems_01.png` → `buildBoard()` 內把 `.stone` 的 CSS 造型換成切好的寶石圖（依 index 對應）
+    - `source/pic/ui/ui_01.png` → 按鈕用九宮格 `border-image`、愛心/齒輪/格子框改 `<img>`
+    - `source/video/vid_01.webm` → 新增 `<video>` 疊層
+- [ ] 音訊改用真實音檔（`music/bgm/bgm_01.mp3`、`music/sfx/sfx_01..05.mp3`；目前為 WebAudio 合成）
 - [ ] 加入「連續過關 combo」與分數系統（可選）
 - [ ] 手機觸控測試 / 不同螢幕比例微調
 - [ ] 之後若要上線，考慮部署（GitHub Pages / Netlify）

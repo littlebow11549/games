@@ -19,10 +19,12 @@
 ├── js/
 │   └── game.js           # 遊戲邏輯、音效(WebAudio)、關卡流程
 ├── assets/
-│   ├── ASSETS.md        # 美術/音樂素材製作列表（完整規格＋提示詞）
-│   ├── img/              # 放圖片素材（PNG 去背）
-│   ├── audio/            # 放音樂/音效（mp3）
-│   └── _preview_*.png    # 目前成果截圖（參考用）
+│   ├── ASSETS.md         # 美術/音樂素材製作列表（完整規格＋提示詞）
+│   ├── source/           # 外部素材（放這）
+│   │   ├── pic/          #   圖片：background·branding·ui·gems·numbers·fx
+│   │   ├── music/        #   音訊：bgm·sfx
+│   │   └── video/        #   影片
+│   └── preview/          # 開發截圖（參考用）
 ├── README.md             # 本說明
 └── PROGRESS.md           # 進度 / 待辦 / 交接筆記
 ```
