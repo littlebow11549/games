@@ -19,7 +19,7 @@
 ├── js/
 │   └── game.js           # 遊戲邏輯、音效(WebAudio)、關卡流程
 ├── assets/
-│   ├── ASSET_SPEC.md     # 素材規格 + 提示詞總表（給外部工具生成用）
+│   ├── PROMPTS.md        # 美術圖集提示詞（系列合併版，給外部工具生成用）
 │   ├── img/              # 放圖片素材（PNG 去背）
 │   ├── video/            # 放影片素材（WebM）
 │   └── _preview_*.png    # 目前成果截圖（參考用）
@@ -32,7 +32,7 @@
 - ✅ 記憶序列玩法、愛心、關卡、PERFECT/MISS 回饋
 - ✅ WebAudio 音效（可在選項開關）、最佳紀錄（localStorage）
 - ✅ MASTER MODE、鍵盤 Enter 開始
-- 🟡 美術為 **CSS placeholder**，待外部素材替換（見 `assets/ASSET_SPEC.md`）
+- 🟡 美術為 **CSS placeholder**，待外部素材替換（見 `assets/PROMPTS.md`）
 
 ## 🔧 技術備註
 - 版面為手機直式（9:16），桌機會置中顯示。

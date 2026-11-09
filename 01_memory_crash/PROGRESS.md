@@ -15,11 +15,12 @@
 - [x] WebAudio 音效（寶石音高、過關、失敗；可開關）
 - [x] 最佳紀錄 localStorage（key: `mc_best`）
 - [x] 截圖驗證四畫面、無 JS 錯誤
-- [x] 素材規格表 `assets/ASSET_SPEC.md`（圖片27 + 影片5，含提示詞）
+- [x] 美術圖集提示詞 `assets/PROMPTS.md`（系列合併版：寶石/UI/數字/標題/背景/特效 共 6 張）
 
 ## 🟡 進行中 / 待辦
 - [ ] **接入外部美術素材**（等使用者產出後）
-  - 圖片放 `assets/img/`，影片放 `assets/video/`，檔名見 ASSET_SPEC.md
+  - 圖片放 `assets/img/`，影片放 `assets/video/`，檔名見 PROMPTS.md
+  - 圖集需切圖：寶石(4×3)、UI、數字(0–9)、標題各切成單件再套用
   - 接法建議：
     - `bg_main.png` → `.app` 背景改 `background-image`
     - `logo.png` → 用 `<img>` 取代 `.logo` 文字
