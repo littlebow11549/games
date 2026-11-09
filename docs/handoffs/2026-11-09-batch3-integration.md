@@ -99,3 +99,9 @@ GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（�
 使用者直接提供最佳配置版 banner（2000×704，左側留空、Logo/巴哥/寶石置於中央安全帶）。存 `source/pic/banner/banner_03.png` + `runtime/pic/banner_03.webp`(43KB)。
 - `assets/css/hub.css` `.banner-art` 改用 banner_03.webp，並**移除先前的過渡裁切修正**（`@media(min-width:761px) background-position:80% 24%`），回到 `cover`+center。
 - 驗證（Playwright）：短(1680×820,~198px)、正常(1280×980)、手機(430) 三種高度，Logo/角色/寶石在短版面也完整不切；左側文案清楚。
+
+## Banner 填滿度 + 手機只顯示 Logo
+使用者：桌面 banner 右側太空、填滿度要更高；手機版只顯示主 Logo。
+- 桌面：`.banner-art` `background-size:130% auto`（≤760 用 150%），主視覺放大填滿、Logo 完整不切。
+- 手機（≤500）：`.banner-art` 改用 `logo_01.png`（`auto 46%`，置右），只顯示主 Logo，不顯示衝鋒巴哥叢集。
+- 驗證：矮(1680×820)、正常(1280×980)、手機(430) 三版面確認。
