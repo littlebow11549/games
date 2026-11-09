@@ -436,3 +436,64 @@ html, body {
   height: 32px; width: auto; display: block; margin: 0 auto 16px;
   filter: drop-shadow(0 3px 6px rgba(0,0,0,.5));
 }
+
+/* ============================================================
+   穿梭次元背景動畫（暫用 CSS 星流；正式版用 video vid_01）
+   ============================================================ */
+.warp { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.warp-layer {
+  position: absolute; inset: -12%;
+  background-image:
+    radial-gradient(2px 2px at 50% 42%, #cffcff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 30% 55%, #9fe8ff, transparent 60%),
+    radial-gradient(2px 2px at 68% 48%, #bfefff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 44% 30%, #d8f6ff, transparent 60%),
+    radial-gradient(2px 2px at 60% 66%, #a8e4ff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 38% 70%, #c8f1ff, transparent 60%),
+    radial-gradient(2px 2px at 72% 36%, #bfefff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 26% 40%, #e8fbff, transparent 60%),
+    radial-gradient(2px 2px at 55% 58%, #bfefff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 48% 50%, #ffffff, transparent 60%),
+    radial-gradient(2px 2px at 34% 36%, #a8e4ff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 64% 60%, #d8f6ff, transparent 60%);
+  transform-origin: 50% 42%;
+  animation: warpZoom 2.6s linear infinite;
+  mix-blend-mode: screen; opacity: 0;
+}
+.warp-layer.l2 { animation-delay: 1.3s; }
+@keyframes warpZoom {
+  0%   { transform: scale(.35); opacity: 0; }
+  22%  { opacity: .85; }
+  100% { transform: scale(2.9); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .warp-layer { animation: none; opacity: .25; } }
+
+/* ============================================================
+   主選單
+   ============================================================ */
+#screen-menu { justify-content: flex-start; padding-top: 46px; }
+.menu-logo {
+  width: min(48%, 210px); height: auto; margin: 0 auto -2px; display: block;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,.5));
+  animation: logoFloat 3.2s ease-in-out infinite;
+}
+.menu-char {
+  width: min(30%, 124px); height: auto; margin: 2px auto 0; display: block;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.55));
+  animation: charBob 2.8s ease-in-out infinite;
+}
+@keyframes charBob { 0%,100%{ transform: translateY(0) rotate(-1.5deg);} 50%{ transform: translateY(-9px) rotate(1.5deg);} }
+.menu-panel {
+  max-width: 294px; gap: 10px; margin-top: 12px; margin-bottom: 5%;
+  padding: 18px 22px; border-width: 20px;
+  border-image: url("../assets/source/pic/ui/panel.png") 64 fill / 20px / 0 stretch;
+}
+.menu-panel .gold-btn { padding: 9px 12px; font-size: clamp(16px, 4.4vw, 19px); }
+
+/* 禁用按鈕（如無進度的 CONTINUE） */
+.gold-btn:disabled {
+  border-image-source: url("../assets/source/pic/ui/btn_disabled.png");
+  color: #434b54; text-shadow: 0 1px 0 rgba(255,255,255,.3);
+  cursor: default; filter: none;
+}
+.gold-btn:disabled:active { transform: none; }

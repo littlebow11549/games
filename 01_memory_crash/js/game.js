@@ -41,6 +41,7 @@
   const $ = (sel) => document.querySelector(sel);
   const screens = {
     title:  $("#screen-title"),
+    menu:   $("#screen-menu"),
     option: $("#screen-option"),
     game:   $("#screen-game"),
     over:   $("#screen-over"),
@@ -168,9 +169,9 @@
   }
 
   // ---------- 遊戲流程 ----------
-  function startGame(master) {
+  function startGame(master, startLevel) {
     state.master = master;
-    state.level = master ? 3 : 1;
+    state.level = startLevel || (master ? 3 : 1);
     state.hearts = 3;
     state.best = Number(localStorage.getItem("mc_best") || 1);
     buildBoard();
@@ -308,22 +309,30 @@
   }
 
   // 首次遊玩自動顯示玩法說明，看完才開始
-  function requestStart(master) {
+  function requestStart(master, startLevel) {
     ac();
     if (!localStorage.getItem("mc_seen_howto")) {
-      pendingStart = { master };
+      pendingStart = { master, startLevel };
       modal.classList.remove("hidden");
       return;
     }
-    startGame(master);
+    startGame(master, startLevel);
   }
   function closeModal() {
     modal.classList.add("hidden");
     if (pendingStart) {
       localStorage.setItem("mc_seen_howto", "1");
       const p = pendingStart; pendingStart = null;
-      startGame(p.master);
+      startGame(p.master, p.startLevel);
     }
+  }
+
+  // 顯示主選單（更新 CONTINUE 可用狀態）
+  function showMenu() {
+    ac();
+    const best = Number(localStorage.getItem("mc_best") || 1);
+    $("#btnContinue").disabled = best <= 1;
+    show("menu");
   }
 
   // ---------- 事件綁定 ----------
@@ -333,11 +342,21 @@
       if (e.target.closest(".gold-btn, .icon-btn, .title-start")) playSfx("tap");
     });
 
-    $("#btnStart").addEventListener("click", () => requestStart(false));
+    // 標題 START → 主選單
+    $("#btnStart").addEventListener("click", showMenu);
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
     $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
 
-    $("#btnHome").addEventListener("click", () => show("title"));
+    // 主選單
+    $("#btnArcade").addEventListener("click", () => requestStart(false));
+    $("#btnContinue").addEventListener("click", () => {
+      const best = Number(localStorage.getItem("mc_best") || 1);
+      if (best > 1) requestStart(false, best);
+    });
+    $("#btnMenuOption").addEventListener("click", () => show("option"));
+    $("#btnExit").addEventListener("click", () => { location.href = "../index.html"; });
+
+    $("#btnHome").addEventListener("click", showMenu);
     $("#btnMaster").addEventListener("click", () => requestStart(true));
     $("#btnSound").addEventListener("click", () => setSound(!state.sound));
     $("#btnMusic").addEventListener("click", () => setMusic(!state.music));
@@ -345,13 +364,13 @@
     $("#btnCloseModal").addEventListener("click", closeModal);
 
     $("#btnAgain").addEventListener("click", () => startGame(state.master));
-    $("#btnHomeOver").addEventListener("click", () => show("title"));
+    $("#btnHomeOver").addEventListener("click", showMenu);
 
-    // 鍵盤：Enter 開始
+    // 鍵盤：Enter 在標題開選單、在選單開始 Arcade
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && screens.title.classList.contains("active")) {
-        requestStart(false);
-      }
+      if (e.key !== "Enter") return;
+      if (screens.title.classList.contains("active")) showMenu();
+      else if (screens.menu.classList.contains("active")) requestStart(false);
     });
   }
 

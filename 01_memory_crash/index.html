@@ -14,6 +14,8 @@
   <!-- 遊戲外框（手機直式比例） -->
   <div id="app" class="app">
     <div class="grid-floor"></div>
+    <!-- 穿梭次元動畫（暫用 CSS 星流；正式版用 video vid_01） -->
+    <div class="warp" aria-hidden="true"><span class="warp-layer"></span><span class="warp-layer l2"></span></div>
     <div class="vignette"></div>
 
     <!-- ========== 頂部狀態列（遊戲中顯示） ========== -->
@@ -34,6 +36,18 @@
         <img class="logo-img" src="assets/source/pic/branding/logo_01.png" alt="MEMORY CRASH" />
       </div>
       <button id="btnStart" class="title-start" aria-label="START"><img class="word start-word" src="assets/source/pic/titles/start.png" alt="START" /></button>
+    </section>
+
+    <!-- ========== 主選單 ========== -->
+    <section id="screen-menu" class="screen">
+      <img class="menu-logo" src="assets/source/pic/branding/logo_01.png" alt="MEMORY CRASH" />
+      <img class="menu-char" src="assets/source/pic/character/char_placeholder.svg" alt="主角：太空巴哥" />
+      <div class="panel menu-panel">
+        <button id="btnArcade" class="gold-btn">ARCADE</button>
+        <button id="btnContinue" class="gold-btn">CONTINUE</button>
+        <button id="btnMenuOption" class="gold-btn">OPTION</button>
+        <button id="btnExit" class="gold-btn">EXIT</button>
+      </div>
     </section>
 
     <!-- ========== 選項畫面 ========== -->
