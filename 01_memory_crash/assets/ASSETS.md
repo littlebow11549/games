@@ -13,7 +13,8 @@ assets/source/
 ├── pic/                  # 圖片
 │   ├── background/  bg_01.png
 │   ├── branding/    logo_01.png · blade_01.png · icon_01.png (icon_01.svg 已有)
-│   ├── titles/      titles_01.png          # 主視覺文字（word-art）
+│   ├── character/   char_01.png            # 主角（太空巴哥）；char_placeholder.svg 墊底
+│   ├── titles/      titles_01.png · titles_02.png   # 主視覺文字 + 主選單字
 │   ├── ui/          ui_01.png
 │   ├── gems/        gems_01.png
 │   ├── numbers/     numbers_01.png         # 數字 0–9 + LV + :
@@ -84,6 +85,7 @@ high detail. 512x512 PNG.
 | 檔案 | 內含文字 | 尺寸 | 背景 |
 |------|----------|------|------|
 | `titles_01.png` | START · OPTION · READY · YOUR TURN · PERFECT · MISS · GAMEOVER · MASTER MODE · HOW TO PLAY · HOME · AGAIN | 2048×2048 | 去背 |
+| `titles_02.png` | **（主選單）** ARCADE · CONTINUE · EXIT · MENU · PAUSE · RESUME | 2048×1024 | 去背 |
 ```
 sprite sheet of game word-art phrases, transparent background, laid out in a neat grid with
 clear spacing, consistent chunky cartoon 3D style matching the game logo: glossy GOLD letters
@@ -91,6 +93,12 @@ with thick dark-blue outline, bevel, highlights and slight skew, bright and arca
 phrase a separate clean piece, not overlapping, not cropped. Phrases:
 "START", "OPTION", "READY", "YOUR TURN", "PERFECT", "MISS", "GAMEOVER", "MASTER MODE",
 "HOW TO PLAY", "HOME", "AGAIN". High detail. 2048x2048 PNG, transparent.
+```
+**titles_02（主選單字，同風格）**
+```
+sprite sheet of menu word-art, same chunky cartoon 3D gold style as the logo, transparent
+background, clear spacing, each phrase separate and not overlapping:
+"ARCADE", "CONTINUE", "EXIT", "MENU", "PAUSE", "RESUME". High detail. 2048x1024 PNG, transparent.
 ```
 > 註：`PERFECT` 為慶祝金字、`MISS`/`GAMEOVER` 可偏紅警示色；其餘金色。
 > 開關字（SOUND / MUSIC / ON / OFF）字數多，可留用字型，不一定要做圖。
@@ -211,6 +219,58 @@ still bright and electronic, seamless loop, no vocals.
 | 檔案 | 用途 | 規格 |
 |------|------|------|
 | `vid_01.webm` | 開場/背景動態（透明或不透明） | 1080×1920, WebM |
+| `vid_warp.webm` | **穿梭次元背景動畫**（循環，疊在背景上） | 1080×1920, WebM alpha 或不透明循環 |
+
+**vid_warp（穿梭次元）提示詞**
+```
+seamless looping "dimension warp / hyperspace travel" background, vertical 9:16, deep
+navy-blue to cyan, streaks of light and stars rushing outward from a central vanishing
+point, glowing energy ripples and particles, fast but smooth, perfectly loopable, no text.
+1080x1920 WebM.
+```
+
+---
+
+## 12. 主角 / 角色（Character）　`pic/character/`
+> 主角：**可愛宇宙冒險巴哥狗**，痞痞（帶壞笑、挑眉、自信）又富正義感（英雄站姿、金星徽章）。
+> 深藍科技＋金色風格一致。目前為 SVG 墊底（`char_placeholder.svg`），待高質感版替換。
+
+**角色設定（Character Bible）**
+- 物種：巴哥犬（大眼、短皺鼻、垂耳、捲尾），可愛比例、頭大身小
+- 個性：痞痞（嘴角壞笑、單邊挑眉、翹下巴）＋ 正義感（挺胸、手插腰或比讚）
+- 服裝：太空探險裝＋透明頭盔（可開可關），胸口金色星形徽章，藍/白太空衣配金邊
+- 世界觀：宇宙冒險，背景星雲、水晶、次元穿梭
+
+| 檔案 | 用途 | 尺寸 | 背景 |
+|------|------|------|------|
+| `char_01.png` | 多姿態圖集（下列 6 姿態） | 2048×2048 | 去背 |
+
+**姿態（sprite sheet，6 格）**
+1. idle 待機（自信站姿，手插腰，微笑）
+2. cheer 歡呼（過關 PERFECT，雙手舉起、興奮）
+3. hurt 沮喪（GAME OVER，頭暈/失落）
+4. think 專注（記憶階段，手托下巴、盯著看）
+5. wave 打招呼 / thumbs-up 比讚（選單）
+6. point 指引（教學）
+
+```
+character sprite sheet, 6 poses in a grid, transparent background, a cute cosmic-adventure
+PUG DOG mascot: big expressive eyes, wrinkly short muzzle, floppy ears, chibi proportions,
+wearing a space explorer suit with a clear helmet and a gold star badge on the chest.
+Personality: a bit cheeky/roguish (smirk, raised eyebrow, confident) yet heroic and
+righteous (hands on hips, chest out). Glossy cartoon 3D style, deep navy-blue + cyan glow +
+gold, same lighting across all poses. Poses: 1 idle confident (hands on hips), 2 cheering
+(arms up, excited), 3 dizzy/sad (knocked out), 4 focused thinking (paw on chin), 5 waving /
+thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High detail.
+2048x2048 PNG, transparent.
+```
+
+### 角色動態（交他 AI 做動畫；此處列規格）
+> 使用者會另請 AI 製作動態。以下為需求：
+- **呼吸/待機動態（idle breathing）**：胸口/身體輕微起伏＋微浮動，2–3s 無縫循環
+- **眨眼（blink）**：每 3–6s 隨機眨一次
+- **歡呼/受傷/專注**的小動畫（配合過關/失敗/記憶階段）
+- 交付格式：序列幀 sprite sheet（`char_anim_*.png`）、或透明 WebM、或 Lottie JSON（`char_idle.json`）
 
 ---
 
@@ -225,6 +285,9 @@ still bright and electronic, seamless loop, no vocals.
 - [ ] `music/bgm_01.mp3`
 - [ ] `sfx/sfx_01.mp3` … `sfx_05.mp3`
 - [ ] `pic/branding/icon_01.png`
+- [ ] **`pic/character/char_01.png`（主角 6 姿態）** + 角色動態（呼吸/眨眼…）
+- [ ] `pic/titles/titles_02.png`（主選單字 ARCADE/CONTINUE/EXIT…）
+- [ ] `video/vid_warp.webm`（穿梭次元背景動畫）
 - [ ] 選做：`blade_01.png`、`pic/fx/fx_01.png`、`pic/howto/howto_01.png`、`bgm_02.mp3`、`video/vid_01.webm`
 
 > 給 GPT 的總指示：「請依這份清單做一套**風格統一**（深藍科技＋青光＋金色）的手機益智遊戲素材，
