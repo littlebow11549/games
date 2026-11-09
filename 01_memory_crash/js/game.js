@@ -198,7 +198,7 @@
     else window.MemoryCrashMascot?.play("idle");
     const f = BANNER_IMG[text];
     perfectBan.innerHTML = f
-      ? `<img class="word" src="assets/source/pic/titles/${f}.png" alt="${text}">`
+      ? `<img class="word" src="assets/source/pic/titles/titles_fx_${f}.png" alt="${text}">`
       : text;
     perfectBan.className = "banner game-banner " + cls;
     // 觸發動畫
@@ -333,10 +333,10 @@
     clearTimeout(turnTimer); clearTimeout(lowTimer);
     timerBar.classList.add("active");
     timerFill.classList.remove("low");
-    timerFill.style.transition = "none"; timerFill.style.width = "100%";
+    timerFill.style.transition = "none"; timerFill.style.clipPath = "inset(0 0 0 0)";
     void timerFill.offsetWidth;
-    timerFill.style.transition = `width ${dur}s linear`;
-    timerFill.style.width = "0%";
+    timerFill.style.transition = `clip-path ${dur}s linear`;
+    timerFill.style.clipPath = "inset(0 100% 0 0)";   // 由右往左裁切，不拉伸紋理
     lowTimer = setTimeout(() => timerFill.classList.add("low"), dur * 700);
     turnTimer = setTimeout(onTimeout, dur * 1000);
   }
@@ -344,7 +344,7 @@
   function stopTimer() {
     clearTimeout(turnTimer); clearTimeout(lowTimer); turnTimer = null;
     timerBar.classList.remove("active"); timerFill.classList.remove("low");
-    timerFill.style.transition = "none"; timerFill.style.width = "100%";
+    timerFill.style.transition = "none"; timerFill.style.clipPath = "inset(0 0 0 0)";
   }
   function onTimeout() {
     if (!state.accepting) return;

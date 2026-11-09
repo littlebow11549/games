@@ -24,7 +24,10 @@
     </div>
     <!-- 穿梭次元動畫（暫用 CSS 星流；正式版用 video vid_01） -->
     <div class="warp" aria-hidden="true"><span class="warp-layer"></span><span class="warp-layer l2"></span></div>
-    <!-- 場景氣氛：光線 / 次元風暴 / 漂浮粒子（暫用 CSS；正式效果交 GPT） -->
+    <!-- 場景氣氛：GPT 次元風暴影片（screen 混合）＋ CSS 光束/粒子補強 -->
+    <video id="ambientVideo" class="ambient-video" muted loop playsinline autoplay preload="auto" aria-hidden="true">
+      <source src="assets/runtime/video/vid_ambient.webm" type="video/webm" />
+    </video>
     <div class="ambient" aria-hidden="true"><span class="amb-glow"></span><span class="amb-rays"></span><span class="amb-dust"></span></div>
     <div class="vignette"></div>
 

@@ -582,21 +582,20 @@ html, body {
    回合倒數進度條（限時，沒操作扣血）
    ============================================================ */
 .timer-bar {
-  width: 100%; max-width: 330px; height: 13px; margin: 0 auto 12px;
-  border-radius: 999px; background: rgba(4,14,32,.6);
-  box-shadow: inset 0 0 0 1.5px rgba(73,199,255,.3), inset 0 2px 4px rgba(0,0,0,.45);
-  overflow: hidden; opacity: 0; transition: opacity .2s;
+  width: 100%; max-width: 340px; height: 42px; margin: 2px auto 8px; position: relative;
+  background: url("../assets/source/pic/ui/gauge_frame.png") center/100% 100% no-repeat;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.4));
+  opacity: 0; transition: opacity .2s;
 }
 .timer-bar.active { opacity: 1; }
 .timer-fill {
-  display: block; height: 100%; width: 100%; border-radius: 999px;
-  background: linear-gradient(90deg, #5effa0, #ffe17a);
-  box-shadow: 0 0 10px rgba(255,225,122,.55);
+  position: absolute; left: 6%; top: 30%; width: 88%; height: 40%;
+  background: url("../assets/source/pic/ui/gauge_fill.png") left center/100% 100% no-repeat;
+  border-radius: 999px;
 }
 .timer-fill.low {
-  background: linear-gradient(90deg, #ff6b6b, #ff3b53);
-  box-shadow: 0 0 12px rgba(255,59,83,.7);
-  animation: timerPulse .4s ease-in-out infinite;
+  background-image: url("../assets/source/pic/ui/gauge_fill_low.png");
+  animation: timerPulse .5s ease-in-out infinite;
 }
 @keyframes timerPulse { 0%,100%{ opacity: 1;} 50%{ opacity: .55;} }
 /* Sequential character sprites: shared controller preserves aspect ratio. */
@@ -717,8 +716,8 @@ html, body {
   pointer-events: none; opacity: 0; width: 100% !important; text-align: center; min-height: 0;
 }
 .game-banner .word {
-  width: min(84vw, 380px) !important; height: auto !important; max-width: none !important;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,.72)) drop-shadow(0 0 26px rgba(73,199,255,.55));
+  width: min(98vw, 470px) !important; height: auto !important; max-width: none !important;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.6));
 }
 .game-banner.pop { animation: bannerSlam 1.25s cubic-bezier(.2,.9,.2,1) forwards; }
 @keyframes bannerSlam {
@@ -892,3 +891,25 @@ html, body {
 }
 .score-big b { color: #fff; }
 .over-score { font-family: "Inter", "Helvetica Neue", "Arial", sans-serif; font-weight: 800; }
+
+/* ============================================================
+   選單：按鈕上移、巴哥放大只露上半身（夠大夠清楚）
+   ============================================================ */
+#screen-menu { justify-content: flex-start !important; padding-top: 16px !important; }
+.menu-logo { width: min(58%, 250px) !important; margin: 0 auto 0 !important; }
+.menu-char.mascot {
+  width: min(66vw, 262px) !important; height: min(27vh, 215px) !important; max-height: 27vh !important;
+  overflow: hidden !important; margin: 0 auto -22px !important; animation: none !important;
+}
+.menu-char.mascot canvas { transform: scale(1.55); transform-origin: 50% 32%; }
+.menu-panel { margin-top: 0 !important; margin-bottom: auto !important; }
+
+/* D3 場景氣氛影片（次元風暴，screen 混合疊在背景上） */
+.ambient-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: .5;
+}
+@media (prefers-reduced-motion: reduce) { .ambient-video { display: none; } }
+/* 有影片時降低 CSS 粒子避免過亮 */
+.ambient .amb-rays { opacity: .3; }
+.ambient .amb-dust { opacity: .3; }
