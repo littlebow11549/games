@@ -202,7 +202,7 @@ still bright and electronic, seamless loop, no vocals.
 ## ✅ 交付清單（越前面越重要）
 - [ ] `pic/background/bg_01.png`
 - [ ] `pic/branding/logo_01.png`
-- [ ] `pic/titles/titles_01.png`（主視覺文字）
+- [x] `pic/titles/titles_01.png`（已交付原生 1254×1254，待切圖接入；未達原訂 2048×2048）
 - [ ] `pic/ui/ui_01.png`（含 **❤ 愛心滿/空**、⚙ 齒輪、按鈕三態、面板框、格子框）
 - [ ] `pic/gems/gems_01.png`
 - [ ] `pic/numbers/numbers_01.png`
@@ -222,3 +222,9 @@ still bright and electronic, seamless loop, no vocals.
 - 現有圖保留原生尺寸；實際像素仍以 DELIVERY_V2.md 為準，部分尚未達本表指定尺寸。
 - 已對現有八張 PNG 執行無損最佳化；逐張驗證見 LOSSLESS_COMPRESSION.json，重跑工具為 ../tools/optimize_png.py。
 - 接手切圖時保留來源原圖，另產遊戲使用尺寸，避免重複縮放與失真。
+
+## 最新新增素材交付（2026-11-09）
+- `pic/titles/titles_01.png`：已交付，3 欄×4 列、十一組字與一格留白。
+- `pic/howto/howto_01.png`：已交付，4 欄×1 列，原生 2172×724。
+- 兩者皆透明 PNG，完成無損壓縮與逐像素驗證，尚待 Claude 切圖接入。
+- 原生尺寸與原訂規格不同，保留真實解析度，不插值放大；詳見 repo 根目錄 docs/handoffs/2026-11-09-titles-howto.md。
