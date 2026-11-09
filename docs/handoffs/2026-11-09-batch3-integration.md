@@ -68,3 +68,10 @@ GPT 於 `codex/hero-game-icon` 交付 icon_02（全身衝鋒封面）、banner_0
 - OPTION 字藝 `option_hero.webp` 更新為精修版（66KB，與既有近乎一致）。
 - 來源 PNG 保留；GPT 交接 `docs/handoffs/2026-11-10-hero-brand-refresh.md` 一併帶入。
 - 注意：此批**不含 GAME OVER / HOW TO PLAY 字藝**，T1/T2 仍待 GPT 製作。
+
+## GAME OVER / HOW TO PLAY 字藝接入
+使用者要求這兩個標題字藝化。repo 內既有單詞字藝 `pic/titles/gameover.png`、`how_to_play.png`（較早 titles_01 批次切出，橘紅/金色 3D＋藍邊，風格與 OPTION 一致）直接接入：
+- `#screen-over` 的 `GAME OVER` h2 → `<img>`（`gameover.webp`，lossless 66KB）。
+- `#modal` 的 `HOW TO PLAY` h3 → `<img>`（`how_to_play.webp`，lossless 59KB）。
+- 驗證：Playwright 兩畫面字藝置中、風格一致、無 console/pageerror。
+- 註：此兩張原生 393px，顯示尺寸下清晰度可接受；若要更銳利可日後請 GPT 出 1774px hero 版（原 T1/T2），非必要。

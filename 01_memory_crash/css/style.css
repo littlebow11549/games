@@ -1069,3 +1069,15 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   display: block; width: min(72%, 300px); height: auto; margin: 0 auto;
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.5));
 }
+
+/* GAME OVER / HOW TO PLAY 標題字藝（比照 OPTION） */
+.screen-title.gameover-title { font-size: 0; margin-bottom: 14px; }
+.screen-title.gameover-title .title-word {
+  display: block; width: min(74%, 310px); height: auto; margin: 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.55));
+}
+.modal-title { font-size: 0; margin-bottom: 14px; text-align: center; }
+.modal-title .title-word {
+  display: block; width: min(76%, 280px); height: auto; margin: 0 auto;
+  filter: drop-shadow(0 5px 12px rgba(0,0,0,.5));
+}
