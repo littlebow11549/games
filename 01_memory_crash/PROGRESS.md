@@ -76,3 +76,7 @@
 - 已補齊 `assets/source/pic/titles/titles_01.png` 與 `assets/source/pic/howto/howto_01.png`。
 - 已確認透明與無損像素一致，尚待切圖與接入。
 - 完整切圖順序、實際解析度與後續事項見根目錄 `docs/handoffs/2026-11-09-titles-howto.md`；全專案交接入口 `docs/HANDOFF.md`。
+
+## 遊戲新分頁與關閉（2026-11-09）
+- 首頁遊戲入口皆另開新分頁；遊戲右下角新增六語「關閉遊戲」，不允許關閉時返回中心。
+- 實作、測試與限制見根目錄 docs/handoffs/2026-11-09-compact-banner-game-tabs.md。

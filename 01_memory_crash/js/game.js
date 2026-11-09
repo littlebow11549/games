@@ -326,8 +326,27 @@
     }
   }
 
+  // Exit only the game tab. Directly opened tabs fall back to the hub.
+  const exitLabels = {"zh-Hant":"關閉遊戲", "zh-Hans":"关闭游戏", en:"Close game", ja:"ゲームを閉じる", ko:"게임 닫기", th:"ปิดเกม"};
+  const browserLanguage = (navigator.language || "").toLowerCase();
+  let exitLanguage = browserLanguage.startsWith("zh")
+    ? (/hans|cn|sg/.test(browserLanguage) ? "zh-Hans" : "zh-Hant")
+    : (browserLanguage.split("-")[0] || "zh-Hant");
+  try { exitLanguage = localStorage.getItem("gamehub_language") || exitLanguage; } catch {}
+  $("#exitGameLabel").textContent = exitLabels[exitLanguage] || exitLabels["zh-Hant"];
+  function exitGame() {
+    state.accepting = false;
+    stopMusic();
+    Object.values(SFX).forEach(audio => audio.pause());
+    if (audioCtx && audioCtx.state !== "closed") audioCtx.suspend().catch(() => {});
+    window.close();
+    // Browsers may refuse to close a manually opened tab.
+    setTimeout(() => window.location.replace(new URL("../", window.location.href).href), 150);
+  }
+
   // ---------- 事件綁定 ----------
   function bind() {
+    $("#btnExitGame").addEventListener("click", exitGame);
     // 所有按鈕（金色按鈕/圓鈕/START）點擊音
     document.addEventListener("click", (e) => {
       if (e.target.closest(".gold-btn, .icon-btn, .title-start")) playSfx("tap");
@@ -349,7 +368,7 @@
 
     // 鍵盤：Enter 開始
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && screens.title.classList.contains("active")) {
+      if (e.key === "Enter" && !e.target.closest("#btnExitGame") && screens.title.classList.contains("active")) {
         requestStart(false);
       }
     });

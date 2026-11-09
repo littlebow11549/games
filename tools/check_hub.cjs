@@ -11,8 +11,8 @@ const assert=require('node:assert/strict');
   await page.setViewportSize({width,height:960});
   for(const language of ['zh-Hant','zh-Hans','en','ja','ko','th']){
    await page.selectOption('#language',language);
-   const layout=await page.evaluate(()=>({language:document.documentElement.lang,overflow:document.documentElement.scrollWidth>innerWidth,columns:getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ').length,heading:document.querySelector('h1').getBoundingClientRect().bottom,footer:document.querySelector('.banner-footer').getBoundingClientRect().top,images:[...document.images].every(i=>i.complete&&i.naturalWidth)}));
-   assert.equal(layout.language,language);assert.equal(layout.overflow,false,`${width}/${language}: overflow`);assert.ok(layout.heading<layout.footer,`${width}/${language}: banner overlap`);
+   const layout=await page.evaluate(()=>({language:document.documentElement.lang,overflow:document.documentElement.scrollWidth>innerWidth,columns:getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ').length,heading:document.querySelector('h1').getBoundingClientRect().bottom,bannerBottom:document.querySelector('.banner').getBoundingClientRect().bottom,images:[...document.images].every(i=>i.complete&&i.naturalWidth)}));
+   assert.equal(layout.language,language);assert.equal(layout.overflow,false,`${width}/${language}: overflow`);assert.ok(layout.heading<layout.bannerBottom,`${width}/${language}: banner overlap`);
    assert.equal(layout.columns,width>760?4:2);assert.equal(await page.locator('.empty-slot').count(),3);
   }
  }
@@ -30,7 +30,7 @@ const assert=require('node:assert/strict');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/workspace/games/assets/preview/hub_banner_mobile.png',fullPage:true});
  await page.selectOption('#language','th');await page.screenshot({path:'/workspace/games/assets/preview/hub_banner_thai.png',fullPage:true});
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.banner-orbit').first().evaluate(e=>getComputedStyle(e).animationName),'none');
- await page.locator('.primary').click();assert.ok(page.url().endsWith('/01_memory_crash/'));
+ const popupPromise=page.waitForEvent('popup');await page.locator('.primary').click();const popup=await popupPromise;await popup.waitForLoadState();assert.ok(popup.url().endsWith('/01_memory_crash/'));assert.equal(page.url(),url);const closed=popup.waitForEvent('close');await popup.locator('#btnExitGame').click();await closed;
  const restricted=await browser.newContext({locale:'zh-CN'});await restricted.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new Error('disabled');}}));const rp=await restricted.newPage();await rp.goto(url);assert.equal(await rp.locator('html').getAttribute('lang'),'zh-Hans');await rp.selectOption('#language','en');await rp.locator('.favorite-button').click();assert.equal(await rp.locator('.favorite-button').getAttribute('aria-pressed'),'true');await restricted.close();
  const corrupt=await browser.newContext({locale:'en-US'});await corrupt.addInitScript(()=>{localStorage.setItem('gamehub_language','invalid');localStorage.setItem('gamehub_favorites','{broken');});const cp=await corrupt.newPage();await cp.goto(url);assert.equal(await cp.locator('html').getAttribute('lang'),'en');assert.equal(await cp.locator('#favorite-count').textContent(),'0');await corrupt.close();
  assert.deepEqual(errors,[]);console.log('PASS: 24 locale/viewport layouts; language and favorite persistence; filters; empty states; blocked/corrupt storage; reduced motion; play link.');

@@ -54,7 +54,7 @@ function renderGames(message=''){
  if(storageFailed)status.textContent+=' '+text('storageUnavailable');
  visible.forEach(game=>{
   const card=document.createElement('article');card.className='game-card';card.dataset.gameId=game.id;
-  const cover=document.createElement('a');cover.className='game-cover';cover.href=game.folder+'/';cover.tabIndex=-1;cover.setAttribute('aria-hidden','true');
+  const cover=document.createElement('a');cover.className='game-cover';cover.href=game.folder+'/';cover.target='_blank';cover.rel='noopener noreferrer';cover.tabIndex=-1;cover.setAttribute('aria-hidden','true');
   const image=document.createElement('img');image.className='game-icon';image.src=game.icon;image.alt='';image.width=106;image.height=106;image.loading='lazy';cover.append(image);
   const favorite=document.createElement('button');favorite.className='favorite-button';favorite.type='button';favorite.dataset.favoriteId=game.id;
   const isFavorite=favorites.has(game.id);favorite.setAttribute('aria-pressed',String(isFavorite));favorite.setAttribute('aria-label',`${text(isFavorite?'removeFavorite':'addFavorite')} — ${game.name}`);
@@ -70,7 +70,7 @@ function renderGames(message=''){
   const tags=document.createElement('div');tags.className='tags';
   game.categories.forEach(category=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=text(category);tags.append(tag);});
   const heading=document.createElement('div');heading.className='game-title';
-  const title=document.createElement('h3');const link=document.createElement('a');link.href=game.folder+'/';link.textContent=game.name;link.setAttribute('aria-label',`${text('play')} — ${game.name}`);title.append(link);
+  const title=document.createElement('h3');const link=document.createElement('a');link.href=game.folder+'/';link.target='_blank';link.rel='noopener noreferrer';link.textContent=game.name;link.setAttribute('aria-label',`${text('play')} — ${game.name}`);title.append(link);
   const arrow=document.createElement('span');arrow.className='card-arrow';arrow.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 18 18 6M6 6h12v12"/></svg>';arrow.setAttribute('aria-hidden','true');heading.append(title,arrow);
   const description=document.createElement('p');description.textContent=text(game.descriptionKey);body.append(tags,heading,description);card.append(cover,favorite,body);grid.append(card);
  });
