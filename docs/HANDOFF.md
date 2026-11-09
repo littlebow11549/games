@@ -4,6 +4,10 @@
 
 ## 最新交付
 
+- [2026-11-09 移除頁首導覽、圖示與品牌句點，簡化 copyright](handoffs/2026-11-09-header-footer.md)
+
+- [2026-11-09 網站更名為遊戲中心](handoffs/2026-11-09-site-name.md)
+
 - [2026-11-09 新增美術：十一組立體字、四步驟教學圖集](handoffs/2026-11-09-titles-howto.md)
 
 - [2026-11-09 首頁大 Banner、六語系、四欄遊戲列表、類型篩選與最愛](handoffs/2026-11-09-homepage.md)
