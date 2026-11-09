@@ -22,7 +22,7 @@ const COPY = {
 };
 const LANGUAGE_KEY='gamehub_language';
 const FAVORITES_KEY='gamehub_favorites';
-const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/batch3/kv_cover.webp',categories:['puzzle','memory'],status:'ready'}];
+const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/branding/icon_02.webp',categories:['puzzle','memory'],status:'ready'}];
 const grid=document.getElementById('grid');
 const status=document.getElementById('result-status');
 const select=document.getElementById('language');

@@ -60,3 +60,11 @@
 
 ## 設計需求：GAME OVER 字藝（交 GPT）
 使用者要求 GAME OVER 文字比照 OPTION 做成字藝圖。已於 `assets/ASSETS.md` 第五批開出 **T1 `pic/titles/gameover_hero.png`**（1774×887 透明、金色立體卡通字、與 OPTION/START 同風格、水平置中）。GPT 交付後，`#screen-over` 的 `GAME OVER` h2 改為 `<img class="title-word">`（比照 `option_hero` 接法）＋ runtime 壓縮 webp。選做 T2：HOW TO PLAY 標題字藝一致化。
+
+## 品牌刷新接入（icon_02 / banner_02 / OPTION 精修）
+GPT 於 `codex/hero-game-icon` 交付 icon_02（全身衝鋒封面）、banner_02（hub 首頁橫幅）、精修 option_hero。只取素材自接（未合併其基於舊版的程式）：
+- hub 遊戲卡片 icon：`kv_cover.webp` → `icon_02.webp`（76KB）。
+- hub 首頁主視覺 `.banner-art`：`banner_01.png` → `banner_02.webp`（96KB）。
+- OPTION 字藝 `option_hero.webp` 更新為精修版（66KB，與既有近乎一致）。
+- 來源 PNG 保留；GPT 交接 `docs/handoffs/2026-11-10-hero-brand-refresh.md` 一併帶入。
+- 注意：此批**不含 GAME OVER / HOW TO PLAY 字藝**，T1/T2 仍待 GPT 製作。

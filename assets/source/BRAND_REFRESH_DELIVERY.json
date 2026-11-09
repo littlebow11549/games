@@ -1,0 +1,32 @@
+[
+  {
+    "source": "01_memory_crash/assets/source/pic/branding/icon_02.png",
+    "runtime": "01_memory_crash/assets/runtime/pic/branding/icon_02.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "rgba_sha256": "74f2e73b9f881fa43e5d35835045b213af111e033ded66a9b27bf6427fcf1abe",
+    "pixel_identical": true
+  },
+  {
+    "source": "01_memory_crash/assets/source/pic/titles/option_hero.png",
+    "runtime": "01_memory_crash/assets/runtime/pic/batch3/option_hero.webp",
+    "size": [
+      1774,
+      887
+    ],
+    "rgba_sha256": "d07aa67d592b411748caeb4fa2047509454b225a3c641ecadd42d0c0771c4636",
+    "pixel_identical": true
+  },
+  {
+    "source": "assets/source/pic/banner/banner_02.png",
+    "runtime": "assets/runtime/pic/banner_02.webp",
+    "size": [
+      2172,
+      724
+    ],
+    "rgba_sha256": "3ccdc821aaac123f594d98a206759871c2cc8a5cb3bf226a5d92a4390067b382",
+    "pixel_identical": true
+  }
+]
