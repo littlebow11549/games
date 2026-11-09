@@ -3,6 +3,9 @@
 > 依全專案標準範本（`/ASSETS_TEMPLATE.md`）。本款風格：**深藍科技感**。
 > 產出後依「路徑」放檔，**檔名勿改**（含編號），我才接得到。
 > 圖片優先用「系列圖集（sprite sheet）」一次生成，風格統一又省資源；排版不需完全對齊，我會依實際位置切圖。
+>
+> ⭐ **完整性原則（最高原則）**：遊戲內**所有**視覺/音訊元素，凡是以 CSS/placeholder 暫代、
+> 需更高質感者，一律列入本表交外部 AI 美化，**不遺漏**。新增設計需求也直接補進本表。
 
 ## 📁 資料夾結構（媒體分類 + 編號）
 ```
@@ -10,10 +13,12 @@ assets/source/
 ├── pic/                  # 圖片
 │   ├── background/  bg_01.png
 │   ├── branding/    logo_01.png · blade_01.png · icon_01.png (icon_01.svg 已有)
+│   ├── titles/      titles_01.png          # 主視覺文字（word-art）
 │   ├── ui/          ui_01.png
 │   ├── gems/        gems_01.png
 │   ├── numbers/     numbers_01.png
-│   └── fx/          fx_01.png
+│   ├── fx/          fx_01.png
+│   └── howto/       howto_01.png           # 教學步驟圖示
 ├── music/           bgm_01.mp3 · bgm_02.mp3     # 背景音樂
 ├── sfx/             sfx_01.mp3 … sfx_05.mp3     # 音效
 └── video/           vid_01.webm（選做）
@@ -71,7 +76,25 @@ faceted blue gemstone glowing in the center, small gold sparkles, polished, game
 high detail. 512x512 PNG.
 ```
 
-## 3. 介面 UI　`pic/ui/`
+## 3. 主視覺文字（word-art）　`pic/titles/`
+> 遊戲裡的大型文字標語，做成與 LOGO 同風格的立體字圖（取代目前的 CSS 字）。
+> 每個詞各自獨立、可個別切出使用。
+
+| 檔案 | 內含文字 | 尺寸 | 背景 |
+|------|----------|------|------|
+| `titles_01.png` | START · OPTION · READY · YOUR TURN · PERFECT · MISS · GAMEOVER · MASTER MODE · HOW TO PLAY · HOME · AGAIN | 2048×2048 | 去背 |
+```
+sprite sheet of game word-art phrases, transparent background, laid out in a neat grid with
+clear spacing, consistent chunky cartoon 3D style matching the game logo: glossy GOLD letters
+with thick dark-blue outline, bevel, highlights and slight skew, bright and arcade. Each
+phrase a separate clean piece, not overlapping, not cropped. Phrases:
+"START", "OPTION", "READY", "YOUR TURN", "PERFECT", "MISS", "GAMEOVER", "MASTER MODE",
+"HOW TO PLAY", "HOME", "AGAIN". High detail. 2048x2048 PNG, transparent.
+```
+> 註：`PERFECT` 為慶祝金字、`MISS`/`GAMEOVER` 可偏紅警示色；其餘金色。
+> 開關字（SOUND / MUSIC / ON / OFF）字數多，可留用字型，不一定要做圖。
+
+## 4. 介面 UI　`pic/ui/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
 | `ui_01.png` | UI 圖集（按鈕三態／面板／愛心／齒輪／格子框） | 2048×2048 | 去背 |
@@ -87,8 +110,10 @@ Include, each a separate clean element with NO text:
   glowing border), both empty inside.
 High detail, not overlapping, not cropped. 2048x2048 PNG, transparent.
 ```
+> **含元件（都要有）**：▭ 金色按鈕（一般/按下/禁用）、▢ 藍色面板框、
+> **❤ 愛心（滿 / 空）**、⚙ 齒輪鈕、▣ 寶石格子框（一般 / 發光）。
 
-## 4. 遊戲元件（寶石）　`pic/gems/`
+## 5. 遊戲元件（寶石）　`pic/gems/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
 | `gems_01.png` | 12 顆寶石圖集（4欄×3列） | 2048×1536 | 去背 |
@@ -104,7 +129,7 @@ lighting. Colors in reading order:
 High detail. 2048x1536 PNG, transparent.
 ```
 
-## 5. 數字　`pic/numbers/`
+## 6. 數字　`pic/numbers/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
 | `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」 | 2048×512 | 去背 |
@@ -114,7 +139,7 @@ gold lettering with thick dark-blue outline, bevel and glossy highlights, each c
 its own equal cell, evenly spaced in a single row, clear gaps, transparent background. 2048x512 PNG.
 ```
 
-## 6. 特效　`pic/fx/`（選做）
+## 7. 特效　`pic/fx/`（選做）
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
 | `fx_01.png` | 特效圖集（PERFECT 爆閃／寶石碎裂／GAME OVER 裂痕） | 1536×512 | 透明 |
@@ -124,7 +149,23 @@ style: 1) golden celebration burst with light rays and sparkles; 2) shattering g
 glowing shards; 3) cracked glass overlay in dark-blue tint. High detail. 1536x512 PNG.
 ```
 
-## 7. 音樂　`music/`
+## 8. 教學步驟圖示　`pic/howto/`（選做）
+> HOW TO PLAY 的 4 步驟小圖（目前為 CSS/SVG），可美化成精緻圖示。
+
+| 檔案 | 用途 | 尺寸 | 背景 |
+|------|------|------|------|
+| `howto_01.png` | 4 格教學圖示（記住順序／照順序點／PERFECT／小心愛心） | 2048×512 | 去背 |
+```
+sprite sheet of 4 small tutorial step icons in a row, transparent background, clear gaps,
+consistent glossy cartoon style, deep navy-blue + cyan + gold:
+1) a 3x3 grid of gems with three gems glowing in numbered order (memorize);
+2) a hand tapping gems following a dotted path (repeat in order);
+3) a green check with "PERFECT" sparkle (level clear);
+4) three red hearts with one breaking (careful, 3 lives).
+High detail, not overlapping. 2048x512 PNG, transparent.
+```
+
+## 9. 音樂　`music/`
 | 檔案 | 用途 | 長度 | 循環 |
 |------|------|------|------|
 | `bgm_01.mp3` | 背景音樂（主） | 60–120s | 可無縫循環 |
@@ -142,16 +183,16 @@ Faster, tense version of the same puzzle-game theme, driving beat ~130 BPM, more
 still bright and electronic, seamless loop, no vocals.
 ```
 
-## 8. 音效　`sfx/`
+## 10. 音效　`sfx/`
 | 檔案 | 用途 | 長度 | 說明 |
 |------|------|------|------|
-| `sfx_01.mp3` | 點擊寶石 | <0.4s | 清脆短「叮」(bright blip) |
+| `sfx_01.mp3` | 點擊 | <0.4s | 清脆短「叮」(bright blip) |
 | `sfx_02.mp3` | 正確 | <0.6s | 悅耳上揚兩音 (positive chime) |
 | `sfx_03.mp3` | 點錯 | <0.6s | 低沉錯誤 buzz (soft error) |
 | `sfx_04.mp3` | 過關 PERFECT | 1–2s | 歡樂上行琶音 (success fanfare) |
 | `sfx_05.mp3` | GAME OVER | 1–2s | 下行失落音 (game-over descend) |
 
-## 9. 影片　`video/`（選做）
+## 11. 影片　`video/`（選做）
 | 檔案 | 用途 | 規格 |
 |------|------|------|
 | `vid_01.webm` | 開場/背景動態（透明或不透明） | 1080×1920, WebM |
@@ -161,13 +202,14 @@ still bright and electronic, seamless loop, no vocals.
 ## ✅ 交付清單（越前面越重要）
 - [ ] `pic/background/bg_01.png`
 - [ ] `pic/branding/logo_01.png`
-- [ ] `pic/ui/ui_01.png`
+- [ ] `pic/titles/titles_01.png`（主視覺文字）
+- [ ] `pic/ui/ui_01.png`（含 **❤ 愛心滿/空**、⚙ 齒輪、按鈕三態、面板框、格子框）
 - [ ] `pic/gems/gems_01.png`
 - [ ] `pic/numbers/numbers_01.png`
 - [ ] `music/bgm_01.mp3`
 - [ ] `sfx/sfx_01.mp3` … `sfx_05.mp3`
 - [ ] `pic/branding/icon_01.png`
-- [ ] 選做：`blade_01.png`、`pic/fx/fx_01.png`、`bgm_02.mp3`、`video/vid_01.webm`
+- [ ] 選做：`blade_01.png`、`pic/fx/fx_01.png`、`pic/howto/howto_01.png`、`bgm_02.mp3`、`video/vid_01.webm`
 
 > 給 GPT 的總指示：「請依這份清單做一套**風格統一**（深藍科技＋青光＋金色）的手機益智遊戲素材，
 > 圖片透明背景、元件排整齊等距方便切圖。」
