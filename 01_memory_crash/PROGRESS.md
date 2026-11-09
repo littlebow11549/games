@@ -50,3 +50,8 @@
 ## 🤝 協作備忘
 - AI 寫規格+提示詞 → 使用者用外部工具（含影片生成）產出 → 放進 assets → AI 接上。
 - 使用者更新素材後，告知「素材更新了」即可。
+
+## Codex 素材交接（2026-11-09）
+- 六項主要圖片、主 BGM 與五種音效已依 ASSETS.md 分類放入 assets/source/。
+- 寶石已接上浮動、發光與點擊動畫，其餘素材待 Claude 接入。
+- 詳見 CLAUDE_HANDOFF.md 與 assets/DELIVERY_V2.md，包含原始尺寸與尚待聽測項目。

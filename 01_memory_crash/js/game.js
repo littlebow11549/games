@@ -145,8 +145,11 @@
       gem.className = "gem";
       gem.style.setProperty("--gem", GEM_COLORS[i % GEM_COLORS.length]);
       gem.dataset.index = i;
+      gem.setAttribute("aria-label", `寶石 ${i + 1}`);
+      gem.style.setProperty("--idle-delay", `${-i * 0.29}s`);
       const stone = document.createElement("span");
       stone.className = "stone";
+      stone.style.backgroundPosition = `${(i % 4) * 100 / 3}% ${Math.floor(i / 4) * 50}%`;
       gem.appendChild(stone);
       gem.addEventListener("click", () => onGemClick(i));
       board.appendChild(gem);
