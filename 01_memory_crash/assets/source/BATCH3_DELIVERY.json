@@ -1,0 +1,162 @@
+[
+  {
+    "source": "source/pic/kv/kv_main.png",
+    "runtime": "runtime/pic/batch3/kv_main.webp",
+    "width": 941,
+    "height": 1672,
+    "mode": "RGB",
+    "alpha_extrema": [
+      255,
+      255
+    ],
+    "source_bytes": 2183673,
+    "runtime_bytes": 1622680,
+    "source_sha256": "bd275d153d9b3c178b476ce0b825e3c8fc543dc8efa785913b2bb7b451896582",
+    "rgba_sha256": "deb6d9b8c58810d0f139671cc5a857f1761fe8a15502fd587ff4dcf93e150229",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/kv/kv_pug.png",
+    "runtime": "runtime/pic/batch3/kv_pug.webp",
+    "width": 1090,
+    "height": 1443,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 2071642,
+    "runtime_bytes": 1387344,
+    "source_sha256": "2d8f356f7fad2ae1e9b85b38753a9e2c9510c54acc1e082e2ac3aace7ad95ca5",
+    "rgba_sha256": "736e3849b6c42a6f9a0143d27ccb37eeae77514d5bbfed06caafeaa3d826c896",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/character/pug_head.png",
+    "runtime": "runtime/pic/batch3/pug_head.webp",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 2090421,
+    "runtime_bytes": 1394104,
+    "source_sha256": "8713218de41ef7ad16d10003bf5cf656e683f0698b72725a7608450725670636",
+    "rgba_sha256": "76fbb6e23e2dba52544c0827d0bb3a27b59403e7b215a804383cb834f715b146",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/start_hero.png",
+    "runtime": "runtime/pic/batch3/start_hero.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1251284,
+    "runtime_bytes": 898160,
+    "source_sha256": "a875f02091f62c5b5c65ae23a930da013b6de772fc6d38a26fbe5157ba79754e",
+    "rgba_sha256": "878bb5ac90b9d5518368fab011b81b8226ad24e70167b2b510a3959fd3b1c081",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_ready_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_ready_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1390793,
+    "runtime_bytes": 1051010,
+    "source_sha256": "0334afa593a8a6d60e8edd37b9bf183248148d97cb2c8cc11fdca7471062872b",
+    "rgba_sha256": "5d38d422d1738104173a6642ff970c90ffcdd5c32f3c75454f70ad7b093775ac",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_your_turn_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_your_turn_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1229818,
+    "runtime_bytes": 930046,
+    "source_sha256": "599310fc1e79c457f75e4da024c9a34108febafa3a74e308d13669874aa3769f",
+    "rgba_sha256": "700c32983cda1d0d644c1487d117cbe37259083bcf7ca1c9d100febc5ecff85e",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_perfect_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_perfect_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1513497,
+    "runtime_bytes": 1118258,
+    "source_sha256": "e5a2bd9a8769cbf7072053d75b24c3bc0d38d7bd88eec96d031875a3c04d61c1",
+    "rgba_sha256": "05ef9c869c70700cd5dd58c7d3554997263e12dd76a4c74196baf8d88ac65b50",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_miss_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_miss_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1402859,
+    "runtime_bytes": 1007790,
+    "source_sha256": "065015429756148a7cd71b923b004f0b5fb2b20995d8f22ef73e075acc8dbefa",
+    "rgba_sha256": "b6bb6840ca88cee055ed17a00eb1aa4d2415f92d2f24ef212fffed4ddf7a1d4d",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_again_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_again_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1360769,
+    "runtime_bytes": 1047582,
+    "source_sha256": "521f95fa7c8faf46f0a2c0ea49143c5029d2e0022af1d8bf4c5bb2528d8cb2d3",
+    "rgba_sha256": "7f558b1e3155b35a6fe25006bcd8b1a66606aa5e9d3a597d662ea329ad5601a9",
+    "runtime_pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/titles_fx_combo_v3.png",
+    "runtime": "runtime/pic/batch3/titles_fx_combo_v3.webp",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "source_bytes": 1519514,
+    "runtime_bytes": 1144072,
+    "source_sha256": "e9583db43158fd8bdcf6cc71be83f1cfbc9b2c0255319e5ac139d7a84445531b",
+    "rgba_sha256": "821401c464424bdd3bda8b5217a04d23f6f9feea9ef6c8da97844dda1d8265e2",
+    "runtime_pixel_identical": true
+  }
+]

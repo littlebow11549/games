@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Memory Crash · 第三批美術預覽</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050d20;color:#e8f5ff;font:16px/1.6 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:32px 20px}h1{font-size:clamp(24px,5vw,40px);line-height:1.2}h2{font-size:22px}p{color:#9fb6cf}.eyebrow{color:#67dfff;font-size:12px;letter-spacing:.2em}button,a{touch-action:manipulation}button{border:1px solid #42628d;background:#102541;color:#e8f5ff;padding:10px 16px;border-radius:8px;font:inherit;cursor:pointer}button:hover{border-color:#6de3ff}button:focus-visible,a:focus-visible{outline:3px solid #ffe17a;outline-offset:4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.card{min-width:0;background:#0b1930;border:1px solid #203a5b;border-radius:20px;padding:20px}.stage{position:relative;width:100%;aspect-ratio:941/1672;border-radius:14px;overflow:hidden;background:#061a3a}.poster{width:100%;height:100%;object-fit:cover;display:block}.logo{position:absolute;top:0;left:22%;width:56%;height:22%;object-fit:contain}.start{z-index:4;position:absolute;bottom:5%;left:19%;width:62%;border:0;background:transparent;padding:0;filter:drop-shadow(0 4px 15px #001027)}.start img{width:100%;display:block}.layered{background:#061a3a url('../source/pic/fx/ambient_plate.png') center/cover}.hero{position:absolute;width:88%;height:76%;object-fit:contain;left:6%;top:13%;animation:float 5s ease-in-out infinite}.gem{pointer-events:none;position:absolute;width:15%;aspect-ratio:1;background-image:url('../source/pic/gems/gems_01.png');background-size:400% 300%;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 0 8px #49c7ff88)}.head{display:block;width:100%;max-height:480px;object-fit:contain}.fxstage{min-height:210px;display:grid;place-items:center;overflow:hidden;border-radius:12px;background:radial-gradient(ellipse,#123558,#050d20)}#fx{width:95%;max-width:720px;display:block}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.controls [aria-pressed=true]{border-color:#ffe17a;color:#ffe17a}.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.gallery figure{margin:0;background:#061225;border-radius:12px;padding:12px}.gallery img{width:100%;display:block}.gallery figcaption{text-align:center;font-size:12px;color:#adc6df}a{color:#73dfff}.paused *{animation-play-state:paused!important}@keyframes float{50%{transform:translateY(-10px) rotate(2deg)}}@media(max-width:650px){main{padding:24px 14px}.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:14px}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<main>
+<div class="eyebrow">MEMORY CRASH / ART DROP 03</div>
+<h1>英雄登場，衝破次元。</h1>
+<p>第三批獨立美術預覽 · 正式遊戲尚未接入。點 START 可試看提示動態。</p>
+<button id="motion" aria-pressed="false">暫停漂浮</button>
+<div class="grid" style="margin-top:24px">
+<section class="card"><h2>KV1 · 完整主視覺</h2><div class="stage"><img class="poster" src="../runtime/pic/batch3/kv_main.webp" alt="衝鋒巴哥與十二色環繞寶石"><img class="logo" src="../source/pic/branding/logo_01.png" alt="Memory Crash"><button class="start" aria-label="試看 READY 特效"><img src="../runtime/pic/batch3/start_hero.webp" alt="START"></button></div><p>合成圖中的寶石是靜態；原生 941×1672。</p></section>
+<section class="card"><h2>KV1 · 分層漂浮示範</h2><div class="stage layered" id="layers"><img class="hero" src="../runtime/pic/batch3/kv_pug.webp" alt="獨立去背衝鋒巴哥"><img class="logo" src="../source/pic/branding/logo_01.png" alt="Memory Crash"><button class="start" aria-label="試看 READY 特效"><img src="../runtime/pic/batch3/start_hero.webp" alt="START"></button></div><p>角色為新繪去背層；12 顆獨立漂浮節點重用既有寶石圖集，非主視覺切圖。</p></section>
+<section class="card"><h2>KV2 · 選單半身像</h2><img class="head" src="../runtime/pic/batch3/pug_head.webp" alt="大頭太空英雄巴哥半身像"><p>原生 1254×1254，透明 PNG 與逐像素一致 WebP。</p></section>
+<section class="card"><h2>KV3 · START</h2><img class="head" src="../runtime/pic/batch3/start_hero.webp" alt="金屬金 START 立體字"><p>乾淨金屬切面、深藍立體邊、青色能量環。原生 1774×887。</p></section>
+</div>
+<section class="card" style="margin-top:24px"><h2>KV4 · 提示字特效</h2><p>高解析單張字藝＋程式砸入／回彈／淡出示範；不是序列幀動畫。減少動態設定下顯示靜態。</p><div class="controls" id="words"></div><div class="fxstage"><img id="fx" src="../runtime/pic/batch3/titles_fx_ready_v3.webp" alt="READY"></div><div class="gallery" id="gallery"></div></section>
+<p><a href="../source/BATCH3_DELIVERY.json">尺寸與無損驗證清單</a> · <a href="../../../../docs/handoffs/2026-11-09-batch3-hero-art.md">交接報告</a></p>
+</main>
+<script>
+const words=['ready','your_turn','perfect','miss','again','combo'];
+const labels=word=>word.replace('_',' ').toUpperCase();
+const asset=word=>'../runtime/pic/batch3/titles_fx_'+word+'_v3.webp';
+const fx=document.querySelector('#fx'),reduce=matchMedia('(prefers-reduced-motion: reduce)');
+let animation,request=0;
+async function play(word){const id=++request;animation?.cancel();fx.src=asset(word);fx.alt=labels(word);await fx.decode().catch(()=>{});if(id!==request)return;document.querySelectorAll('[data-word]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.word===word)));if(!reduce.matches&&!document.body.classList.contains('paused'))animation=fx.animate([{transform:'scale(1.55)',opacity:0,offset:0},{transform:'scale(.94)',opacity:1,offset:.16},{transform:'scale(1.03)',opacity:1,offset:.23},{transform:'scale(1)',opacity:1,offset:.32},{transform:'scale(1)',opacity:1,offset:.8},{transform:'scale(1.06)',opacity:0,offset:1}],{duration:1600,easing:'ease-out'});}
+words.forEach(word=>{const b=document.createElement('button');b.textContent=labels(word);b.dataset.word=word;b.setAttribute('aria-pressed',String(word==='ready'));b.onclick=()=>play(word);document.querySelector('#words').append(b);const f=document.createElement('figure'),i=document.createElement('img'),c=document.createElement('figcaption');i.src=asset(word);i.alt=labels(word);c.textContent=labels(word);f.append(i,c);document.querySelector('#gallery').append(f);});
+const positions=[[5,23],[23,18],[68,19],[80,29],[82,44],[80,59],[76,71],[66,72],[30,73],[15,72],[3,57],[1,40]];
+positions.forEach(([x,y],n)=>{const g=document.createElement('span');g.className='gem';g.setAttribute('aria-hidden','true');g.style.cssText=`left:${x}%;top:${y}%;background-position:${n%4*100/3}% ${Math.floor(n/4)*50}%;animation-delay:${-n*.43}s`;document.querySelector('#layers').append(g);});
+document.querySelectorAll('.start').forEach(b=>b.onclick=()=>{document.querySelector('#words').scrollIntoView({behavior:reduce.matches?'instant':'smooth',block:'center'});play('ready');});
+document.querySelector('#motion').onclick=e=>{const paused=document.body.classList.toggle('paused');e.target.setAttribute('aria-pressed',String(paused));e.target.textContent=paused?'恢復漂浮':'暫停漂浮';animation?.cancel();};
+reduce.addEventListener('change',()=>animation?.cancel());
+document.addEventListener('visibilitychange',()=>{document.documentElement.classList.toggle('paused',document.hidden);if(document.hidden)animation?.cancel();});
+</script>
+</html>

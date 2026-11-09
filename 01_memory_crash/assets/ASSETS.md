@@ -403,3 +403,12 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 - 詞：READY / YOUR TURN / PERFECT / MISS / AGAIN / COMBO。
 
 > 交付後放對應資料夾，告知「素材更新了」，我接入並做視差/飄動/切幀。
+
+### 第三批交付更新（Codex，2026-11-09）
+- [x] KV1 `pic/kv/kv_main.png`（941×1672 不透明，未達原建議1080×1920）及 `kv_pug.png`（1090×1443去背角色）。
+- [x] KV2 `pic/character/pug_head.png`（1254×1254透明半身像）。
+- [x] KV3 `pic/titles/start_hero.png`（1774×887透明）。
+- [x] KV4 `pic/titles/titles_fx_{ready,your_turn,perfect,miss,again,combo}_v3.png`（各1774×887透明高品質單張，非序列幀）。
+- 全數有同原生解析度、逐像素相同的無損 WebP，見 `runtime/pic/batch3/`；容量／雜湊／alpha 見 `source/BATCH3_DELIVERY.json`。
+- 獨立預覽 `preview/batch3.html`，12顆漂浮寶石重用既有圖集；選配新寶石獨立圖未製作。
+- **勾選代表素材交付，正式遊戲尚未接入。** 接入說明、驗證與限制見根目錄 `docs/handoffs/2026-11-09-batch3-hero-art.md`。
