@@ -1,0 +1,18 @@
+{
+  "pngs_verified": 13,
+  "webps_rgba_identical": 11,
+  "browser": {
+    "viewports": [
+      1100,
+      390
+    ],
+    "horizontal_overflow": false,
+    "js_errors": [],
+    "reduced_motion_pauses_video": true,
+    "video_decoded_frames": 15,
+    "video_duration_seconds": 6,
+    "video_width": 940,
+    "video_height": 1672
+  },
+  "source_and_runtime_video_full_decode": "passed"
+}

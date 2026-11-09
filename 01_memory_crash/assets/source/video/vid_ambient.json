@@ -1,0 +1,14 @@
+{
+  "width": 941,
+  "height": 1672,
+  "fps": 24,
+  "frames": 144,
+  "seconds": 6,
+  "audio": false,
+  "source_encoding": "VP9 RGB lossless",
+  "runtime_encoding": "VP9 CRF18 lossy playback derivative, cropped to even dimensions, no resize",
+  "periodic": true,
+  "seam_mean_abs_delta": 0.05271886604735198,
+  "source_bytes": 5809605,
+  "runtime_bytes": 232601
+}
