@@ -231,14 +231,15 @@
   }
 
   function seqLength() {
-    // 關卡越高序列越長
-    return Math.min(CELLS, 2 + state.level);
+    // 放緩：每 2 關才 +1 顆（大師模式維持每關 +1），讓遊戲更耐玩
+    const grow = state.master ? state.level : Math.floor((state.level - 1) / 2);
+    return Math.min(CELLS, 3 + grow);
   }
   function flashTiming() {
-    // 關卡越高速度越快；大師模式更快
-    const base = state.master ? 420 : 560;
-    const on = Math.max(230, base - state.level * 22);
-    const gap = Math.max(90, (state.master ? 130 : 170) - state.level * 6);
+    // 放緩閃示速度並提高下限，較長序列也看得清楚
+    const base = state.master ? 460 : 600;
+    const on = Math.max(300, base - state.level * (state.master ? 20 : 12));
+    const gap = Math.max(110, (state.master ? 130 : 185) - state.level * (state.master ? 6 : 4));
     return { on, gap };
   }
 
@@ -349,8 +350,9 @@
     }, HINT_DELAY);
   }
   function turnDuration() {
-    const base = state.master ? 3.6 : 5;
-    return Math.max(2.2, base - state.level * 0.12);
+    // 放緩限時衰減、提高下限（每一下都有從容時間）
+    const base = state.master ? 3.8 : 5.5;
+    return Math.max(state.master ? 2.6 : 3.2, base - state.level * (state.master ? 0.1 : 0.05));
   }
   function startTimer() {
     const dur = turnDuration();
