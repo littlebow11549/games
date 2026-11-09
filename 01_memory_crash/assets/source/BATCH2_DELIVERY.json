@@ -1,0 +1,183 @@
+{
+  "images": [
+    {
+      "file": "pic/titles/titles_fx_atlas.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 2767033,
+      "rgba_sha256": "7db39a20ee64103e8a9bf108b151c25bfa58f5712f1a688750e5959695a596f4",
+      "crop": null
+    },
+    {
+      "file": "pic/ui/gauge_atlas.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 853036,
+      "rgba_sha256": "c8a459b90e64c504e36847e4d295a75974d57495ceb37a205670d6e7a3af1eba",
+      "crop": null
+    },
+    {
+      "file": "pic/ui/gauge_frame.png",
+      "size": [
+        1672,
+        340
+      ],
+      "bytes": 257987,
+      "rgba_sha256": "f30a7b227d68cb17499307c91c148ccf28d9dbf8cd86b168a4aed9d6a270e9ea",
+      "crop": [
+        0,
+        0,
+        1672,
+        340
+      ],
+      "runtime": "runtime/pic/batch2/gauge_frame.webp",
+      "runtime_bytes": 198344,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/ui/gauge_fill.png",
+      "size": [
+        1672,
+        290
+      ],
+      "bytes": 301010,
+      "rgba_sha256": "80b7b9405a411840ad976c7095756d1c88814478102638d5e26d00d01460a861",
+      "crop": [
+        0,
+        340,
+        1672,
+        630
+      ],
+      "runtime": "runtime/pic/batch2/gauge_fill.webp",
+      "runtime_bytes": 228902,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/ui/gauge_fill_low.png",
+      "size": [
+        1672,
+        311
+      ],
+      "bytes": 293873,
+      "rgba_sha256": "8280f14db8c1855ff03f600e700ef3858bc2009d42d02ce2a5f85832ea19128b",
+      "crop": [
+        0,
+        630,
+        1672,
+        941
+      ],
+      "runtime": "runtime/pic/batch2/gauge_fill_low.webp",
+      "runtime_bytes": 220902,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/fx/ambient_plate.png",
+      "size": [
+        941,
+        1672
+      ],
+      "bytes": 1330072,
+      "rgba_sha256": "497ba264c6d29b83ee1eab8dcd4215bb32fe129a7235d0bd55e07ec9406f9730",
+      "crop": null,
+      "runtime": "runtime/pic/batch2/ambient_plate.webp",
+      "runtime_bytes": 907430,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/branding/logo_shine.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "bytes": 993827,
+      "rgba_sha256": "10e9b9428cbb27553244b0be65d7a676955f43974ef18b580fb626ba2c75de46",
+      "crop": null,
+      "runtime": "runtime/pic/batch2/logo_shine.webp",
+      "runtime_bytes": 659426,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_ready.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 1884202,
+      "rgba_sha256": "19999c361023cd27fcc7d626758f34644d1b05e50d8827651874335144329b48",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_ready.webp",
+      "runtime_bytes": 1520128,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_your_turn.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 1923593,
+      "rgba_sha256": "8dc2d05cc5253524b2e5adce47f10c2edfe493aeaabdb4405b23d292bed2931b",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_your_turn.webp",
+      "runtime_bytes": 1561368,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_perfect.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 2134698,
+      "rgba_sha256": "914083b223cb338e3006b4d5db3ac9f1ad461af8a1bf0cdc0a59e3a8b052934a",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_perfect.webp",
+      "runtime_bytes": 1728838,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_miss.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 1944756,
+      "rgba_sha256": "70bf911d993b6c75db3086fe258a304fa3a33a82dfd8deda1f8045ba17530824",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_miss.webp",
+      "runtime_bytes": 1536804,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_again.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 1963451,
+      "rgba_sha256": "559ce39dfe78d7026cad93d5dd8dd3fffc1734b722c279dcf88a8764716f5ede",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_again.webp",
+      "runtime_bytes": 1579900,
+      "webp_rgba_identical": true
+    },
+    {
+      "file": "pic/titles/titles_fx_combo.png",
+      "size": [
+        1774,
+        887
+      ],
+      "bytes": 2029984,
+      "rgba_sha256": "1b794cecf0810d6b85f3b6e03dbfd2504819a9e77f23e9f4c2a1db2b84e88808",
+      "native_standalone": true,
+      "runtime": "runtime/pic/batch2/titles_fx_combo.webp",
+      "runtime_bytes": 1626602,
+      "webp_rgba_identical": true
+    }
+  ],
+  "note": "All PNG source files preserved at native pixel dimensions; six final words individually generated, not enlarged from atlas. PNG and WebP lossless/exact RGBA validated. Atlas retained as initial art-direction reference only."
+}

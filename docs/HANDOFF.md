@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-09 第二批 D1–D4 美術素材、動態獨立預覽與接入說明](handoffs/2026-11-09-batch2-art.md)
+
 - [2026-11-09 過關／失誤／結束特效 GIF 實錄預覽](handoffs/2026-11-09-fx-gif-preview.md)
 
 - [2026-11-09 剩餘素材補齊、全數接入與驗證收尾](handoffs/2026-11-09-finish-assets-integration.md)

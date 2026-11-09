@@ -370,3 +370,12 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 ```
 
 > 交付後放入對應資料夾並告知「素材更新了」，我接圖/影片、替換 CSS 暫代版。
+
+
+### 第二批交付更新（Codex，2026-11-09）
+- [x] D1 六組高解析獨立透明衝擊字藝 `titles_fx_{ready,your_turn,perfect,miss,again,combo}.png`。
+- [x] D2 `gauge_frame.png`／`gauge_fill.png`／`gauge_fill_low.png`。
+- [x] D3 `video/vid_ambient.webm` 六秒24fps循環，原生941×1672；無 alpha，RGB無損母檔＋940×1672輕量播放版。不是1080×1920，未插值放大。
+- [x] D4 `branding/logo_shine.png` 1024×1536透明斜光帶。
+- 以上勾選代表素材交付，**正式遊戲尚待 Claude 接入**。圖片真實原生尺寸、無損核對與容量：`source/BATCH2_DELIVERY.json`。
+- 獨立動態展示：`assets/preview/batch2.html`（相對遊戲根目錄）；完整交接：根目錄 `docs/handoffs/2026-11-09-batch2-art.md`。
