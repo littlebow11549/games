@@ -32,3 +32,15 @@
 
 ## 後續微調
 - HOW TO PLAY 的「OK, Let's Play」按鈕原本靠左（modal-box 非 flex，`align-self:center` 無效）。改為 `display:block; width:100%` 左右撐滿、與步驟卡片對齊置中。（commit db2a481）
+
+## 第二輪調整（效能＋置中＋漂浮寶石＋全身主角需求）
+使用者回饋：YOUR TURN 偏右、讀取慢、主角被切、選單要漂浮寶石。
+
+- **字藝置中**：以實心字（alpha>120）bbox 將每張 `titles_fx_*_v3` 與 `start_hero` 水平平移到正中（YOUR TURN 原 cx≈0.516 → 置中）。
+- **效能壓縮**：遊戲實際載入的 8 張 runtime webp 由無損重編為 lossy（Pillow，q84–86）＋降尺寸（字藝寬≤1000、start≤760、pug_head≤900）。總量 ~9.6MB → ~0.8MB（約 −92%），首屏與橫幅載入大幅加快。來源 PNG 無損保留於 `source/`，`BATCH3_DELIVERY.json` 記錄不變。
+- **漂浮動態寶石**：新增 `js/floatgems.js` + CSS `.float-gems/.fg/fgFloat`，用現成 `gems_01.png`（4×3 共12顆）sprite 在首頁/選單側邊與角落飄動（translate/opacity 動畫，reduced-motion 停用）。首頁/選單內容提升 z-index 疊於其上。
+- **主角切邊過渡**：首頁半身像底部加 mask 柔化淡出，避免硬切；正式解法見下方 KV5。
+- **全身主角設計需求（KV5）**：已於 `assets/ASSETS.md` 第四批開出 `pic/character/pug_full.png`（1024×1536 透明全身站姿）規格，待 GPT 製作後接入取代半身像。
+
+### 驗證（本輪）
+- Playwright 430×820：首頁、選單漂浮寶石就位、START 定位正常、壓縮後畫質清晰；YOUR TURN 置中（中線落於 YOUR/TURN 間）；無 console / pageerror。

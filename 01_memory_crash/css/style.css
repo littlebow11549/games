@@ -1002,3 +1002,36 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 .title-start.start-hero .start-word {
   display: block; width: 100%; height: auto; pointer-events: none;
 }
+
+/* ============================================================
+   漂浮動態寶石（首頁/選單背景，使用現成 gems_01 sprite）
+   ============================================================ */
+.float-gems { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.float-gems .fg {
+  position: absolute; display: block;
+  background-image: url("../assets/source/pic/gems/gems_01.png");
+  background-size: 400% 300%; background-repeat: no-repeat;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.45));
+  opacity: .9; will-change: transform;
+  animation-name: fgFloat; animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes fgFloat {
+  0%   { transform: translateY(0) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
+  50%  { transform: translateY(calc(var(--amp) * -1)) rotate(var(--rot)) scale(1.04); opacity: 1; }
+  100% { transform: translateY(0) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
+}
+/* 內容疊在漂浮寶石之上（靜態 flex 項目設 relative 以生效 z-index） */
+#screen-title > .logo, #screen-title > .title-char,
+#screen-menu > .menu-logo, #screen-menu > .menu-char, #screen-menu > .menu-panel {
+  position: relative; z-index: 2;
+}
+/* 已定位元素只提升層級，不動 position */
+#screen-title > .title-start, #screen-title > .title-gear { z-index: 3; }
+@media (prefers-reduced-motion: reduce) { .float-gems .fg { animation: none; } }
+
+/* 首頁主角底部柔化（過渡用，正式改接全身圖後移除） */
+.title-char.hero-char .hero-img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+}
