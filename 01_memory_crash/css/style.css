@@ -337,8 +337,10 @@ html, body {
 .board.locked .gem { cursor: default; }
 
 .status-text {
-  margin-top: 20px; color: #bfe0ff; font-size: 15px; letter-spacing: .5px;
-  text-shadow: 0 1px 4px rgba(0,0,0,.6); text-align: center; min-height: 1.2em;
+  margin-top: 22px; color: #eaf5ff; font-weight: 600;
+  font-size: clamp(18px, 5.4vw, 26px); letter-spacing: .5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7), 0 0 14px rgba(73,199,255,.4);
+  text-align: center; min-height: 1.3em; padding: 0 16px;
 }
 
 /* ============================================================

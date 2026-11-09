@@ -129,7 +129,7 @@
       gem.className = "gem";
       gem.style.setProperty("--gem", GEM_COLORS[i % GEM_COLORS.length]);
       gem.dataset.index = i;
-      gem.setAttribute("aria-label", `寶石 ${i + 1}`);
+      gem.setAttribute("aria-label", `Gem ${i + 1}`);
       gem.style.setProperty("--idle-delay", `${-i * 0.29}s`);
       const stone = document.createElement("span");
       stone.className = "stone";
@@ -215,7 +215,7 @@
     state.accepting = false;
     board.classList.add("locked");
     banner(fresh ? "READY" : "AGAIN", "");
-    statusText.textContent = "看好寶石發光的順序…";
+    statusText.textContent = "Watch the gems light up…";
     setTimeout(playSequence, 650);
   }
 
@@ -232,7 +232,7 @@
           state.accepting = true;
           board.classList.remove("locked");
           banner("YOUR TURN", "");
-          statusText.textContent = "換你了！照順序點回寶石";
+          statusText.textContent = "Your turn — tap them back in order";
         }, 180);
         return;
       }
@@ -309,7 +309,7 @@
         setTimeout(gameOver, 500);
       } else {
         banner("MISS", "miss");
-        statusText.textContent = "記錯了！再看一次順序";
+        statusText.textContent = "Missed! Watch the sequence again";
         setTimeout(() => nextLevel(false), 1100);
       }
     }
@@ -322,7 +322,7 @@
     sndPerfect(); burstParticles();
     const bonus = 50 * state.level;          // 過關獎勵
     state.score += bonus; updateScore();
-    statusText.textContent = "太棒了！進入下一關";
+    statusText.textContent = "Great! Next level";
     if (state.level > state.best) {
       state.best = state.level;
       localStorage.setItem("mc_best", String(state.best));
@@ -384,13 +384,11 @@
 
   // Exit only the game tab. Directly opened tabs fall back to the hub.
   const exitLabels = {"zh-Hant":"關閉遊戲", "zh-Hans":"关闭游戏", en:"Close game", ja:"ゲームを閉じる", ko:"게임 닫기", th:"ปิดเกม"};
-  const browserLanguage = (navigator.language || "").toLowerCase();
-  let exitLanguage = browserLanguage.startsWith("zh")
-    ? (/hans|cn|sg/.test(browserLanguage) ? "zh-Hans" : "zh-Hant")
-    : (browserLanguage.split("-")[0] || "zh-Hant");
-  try { exitLanguage = localStorage.getItem("gamehub_language") || exitLanguage; } catch {}
+  // 預設英文；僅當首頁語言明確設定時才跟隨
+  let exitLanguage = "en";
+  try { exitLanguage = localStorage.getItem("gamehub_language") || "en"; } catch {}
   const _exitLabelEl = $("#exitGameLabel");
-  if (_exitLabelEl) _exitLabelEl.textContent = exitLabels[exitLanguage] || exitLabels["zh-Hant"];
+  if (_exitLabelEl) _exitLabelEl.textContent = exitLabels[exitLanguage] || exitLabels["en"];
   function exitGame() {
     state.accepting = false;
     stopMusic();
