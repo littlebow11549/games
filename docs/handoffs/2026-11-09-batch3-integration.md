@@ -29,3 +29,6 @@
 
 - 可選：KV1 全幅主視覺的分層「飄動寶石」動態版（kv_pug + CSS 寶石節點）。
 - 可選：遊戲／結算巴哥是否也換成更高解析來源（目前維持可變表情 canvas）。
+
+## 後續微調
+- HOW TO PLAY 的「OK, Let's Play」按鈕原本靠左（modal-box 非 flex，`align-self:center` 無效）。改為 `display:block; width:100%` 左右撐滿、與步驟卡片對齊置中。（commit db2a481）
