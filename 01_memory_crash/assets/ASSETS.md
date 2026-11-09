@@ -444,8 +444,15 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 - **尺寸 / 格式**：**1774×887 PNG，透明去背（RGBA，含完整 alpha）**；原生輸出、不插值放大、不減色。字體內容**水平置中**（實心字質心接近 50%），方便程式直接置中。
 - **交付**：來源 `pic/titles/gameover_hero.png` + 對應 `runtime/pic/batch3/gameover_hero.webp`；附尺寸/雜湊/alpha 範圍於交付 JSON。
 
-### T2.（選做）其他純文字標題一致化
-- 若行有餘力，可一併提供 `how_to_play_hero`（HOW TO PLAY 彈窗標題）同風格字藝；非必要。
+### T2. HOW TO PLAY 字藝　`pic/titles/howto_hero.png`
+- **用途**：說明彈窗標題（`#modal` 的 `HOW TO PLAY`），取代現有純文字 `h3`。
+- **風格 / 格式**：同 OPTION/START 金色立體字，**1774×887 透明去背 PNG**，水平置中；交付來源 PNG + `runtime/pic/batch3/howto_hero.webp` + 交付 JSON。
+- 這是與 OPTION/GAME OVER 同類型的畫面標題，需一併設計以求一致。
+
+### T3.（選做）按鈕字藝化
+- 選單/選項/結算的金色按鈕文字（ARCADE / CONTINUE / EXIT / HOME / AGAIN / SOUND / MUSIC / MASTER MODE / BACK TO GAME / OK Let's Play）目前為純文字，疊在金色立體按鈕上。按鈕本身已是設計過的立體底，文字字藝化為選做；若要，建議做成單一長條字藝或各詞透明 PNG（統一字高），再疊在按鈕上。非必要。
 
 ### 接入方式（Claude）
-- 收到後，`#screen-over` 的 `<h2 class="screen-title gameover-title">GAME OVER</h2>` 改為 `<img class="title-word">`（比照 OPTION 的 `option_hero` 作法），runtime 壓成 lossy webp。
+- GAME OVER：`#screen-over` 的 `<h2 class="screen-title gameover-title">GAME OVER</h2>` 改為 `<img class="title-word">`（比照 OPTION 的 `option_hero`），runtime 壓成 lossy webp。
+- HOW TO PLAY：`#modal` 的 `<h3 class="modal-title">HOW TO PLAY</h3>` 同樣改為字藝圖。
+- COMBO：字藝圖 `titles_fx_combo_v3.webp` **已交付但遊戲仍用純文字**顯示「COMBO x2」。Claude 可直接接入（字藝圖為底 + 倍率數字覆層），不需新素材。
