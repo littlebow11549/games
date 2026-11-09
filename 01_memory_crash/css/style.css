@@ -675,3 +675,184 @@ html, body {
 }
 
 .gold-btn.master:not(:disabled){border-image-source:url("../assets/source/pic/ui/btn_normal.png")}
+
+/* ============================================================
+   使用者調整（2026-11-09）：文字化標題/按鈕、巨大彈出橫幅、
+   首頁大巴哥、放大 logo、愛心置中、快速靜音鍵
+   ============================================================ */
+
+/* 1. 畫面標題（OPTION / GAME OVER / HOW TO PLAY）改金色文字 */
+.screen-title {
+  font-family: "Luckiest Guy", Impact, sans-serif; font-size: clamp(40px, 13vw, 58px);
+  letter-spacing: 1px; text-align: center; margin: 2px auto 20px; transform: skewX(-4deg);
+  background: linear-gradient(#fff3bf 10%, var(--gold-1) 45%, var(--gold-2) 70%, var(--gold-3) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2.5px #123;
+  filter: drop-shadow(0 4px 0 #11224d) drop-shadow(0 8px 10px rgba(0,0,0,.55));
+}
+.gameover-title { font-size: clamp(30px, 9.5vw, 46px); }
+.modal-title {
+  font-family: "Luckiest Guy", Impact, sans-serif; letter-spacing: 1px; color: var(--gold-1);
+  text-align: center; margin-bottom: 16px; font-size: 24px; -webkit-text-stroke: 1px #123;
+}
+
+/* 2. START 文字按鈕（取代字藝圖） */
+.title-start {
+  margin-top: auto; background: none; border: 0; padding: 6px 12px; cursor: pointer;
+  font-family: "Luckiest Guy", Impact, sans-serif; font-size: clamp(46px, 14vw, 66px);
+  letter-spacing: 3px; color: var(--gold-1); -webkit-text-fill-color: var(--gold-1);
+  -webkit-text-stroke: 2px #1a2f66; text-shadow: 0 4px 0 #11224d, 0 7px 10px rgba(0,0,0,.6);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.07);} }
+
+/* 2b. 遊戲中彈出橫幅：置中、放大 3-5 倍、彈出後淡出 */
+#screen-game { position: relative; }
+.game-banner {
+  position: absolute; top: 33%; left: 50%; transform: translate(-50%,-50%);
+  margin: 0; z-index: 14; pointer-events: none; opacity: 0; width: 100%; text-align: center;
+  min-height: 0;
+}
+.game-banner .word {
+  width: min(94vw, 440px); height: auto;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(73,199,255,.45));
+}
+.game-banner.pop { animation: bannerSlam 1.25s cubic-bezier(.2,.9,.2,1) forwards; }
+@keyframes bannerSlam {
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(2.1) rotate(-7deg); filter: blur(7px); }
+  12%  { opacity: 1; transform: translate(-50%,-50%) scale(1.28) rotate(2deg); filter: blur(0); }
+  22%  { transform: translate(-50%,-50%) scale(.9) rotate(-1.5deg); }
+  32%  { transform: translate(-50%,-50%) scale(1.07) rotate(.5deg); }
+  44%  { transform: translate(-50%,-50%) scale(1) rotate(0); }
+  74%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%,-58%) scale(1.03); }
+}
+
+/* 3. 首頁大巴哥（更大，約 2/3；START 疊上去沒關係） */
+#screen-title { padding-top: 34px; padding-bottom: 0; justify-content: flex-start; }
+.title-char.mascot {
+  width: min(100vw, 440px); height: auto; aspect-ratio: 36 / 40;
+  max-height: 66vh; flex: 0 0 auto;
+  margin: -2% auto 0; background-size: contain; animation: none;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.55));
+}
+
+/* START 疊在巴哥下方（絕對置中底部） */
+.title-start {
+  position: absolute; left: 50%; bottom: 3.5%; transform: translateX(-50%);
+  margin: 0; animation: pulseStart 1.3s ease-in-out infinite;
+}
+@keyframes pulseStart {
+  0%,100% { transform: translateX(-50%) scale(1); }
+  50%     { transform: translateX(-50%) scale(1.07); }
+}
+
+/* 8. 放大 logo */
+#screen-title .logo { margin-top: 0; margin-bottom: 0; }
+#screen-title .logo-img { width: min(76%, 330px); }
+.menu-logo { width: min(66%, 300px) !important; }
+
+/* 6. HP 愛心置中 */
+.hud { position: absolute; }
+.hearts { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+/* 4. 快速靜音鍵（固定左下） */
+.music-quick {
+  position: fixed; left: max(12px, env(safe-area-inset-left));
+  bottom: max(12px, env(safe-area-inset-bottom)); z-index: 100;
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid #73d9ef66; background: #061322ed; color: #d8eaf5;
+  font-size: 22px; cursor: pointer; box-shadow: 0 4px 20px #0004;
+  display: grid; place-items: center;
+}
+.music-quick:hover { border-color: #f8d577; }
+.music-quick.off { opacity: .6; }
+
+/* ============================================================
+   遊戲畫面巴哥：置底、約佔 1/4、對話框，表情依進程（mascot.js）
+   ============================================================ */
+.game-reaction {
+  margin-top: auto !important; width: 100% !important; max-width: 380px !important;
+  display: flex !important; align-items: flex-end !important; justify-content: flex-start !important;
+  gap: 2px !important; padding: 0 2px 2px !important; min-height: 0 !important;
+}
+.game-reaction .game-char {
+  width: min(46vw, 180px) !important; height: min(25vh, 200px) !important; flex: 0 0 auto !important;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.55));
+}
+.game-reaction .status-text {
+  position: relative; flex: 1 1 auto !important; margin: 0 2px 34px 0 !important; text-align: left !important;
+  max-width: none !important;
+  background: rgba(8,22,46,.92); border: 2px solid rgba(73,199,255,.55);
+  border-radius: 18px; padding: 11px 15px;
+  font-size: clamp(15px,4.2vw,19px) !important; line-height: 1.3; color: #eaf5ff;
+  box-shadow: 0 5px 16px rgba(0,0,0,.5); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+.game-reaction .status-text::before,
+.game-reaction .status-text::after {
+  content: ""; position: absolute; bottom: 18px; border: 8px solid transparent;
+}
+.game-reaction .status-text::before { left: -14px; border-right-color: rgba(73,199,255,.55); }
+.game-reaction .status-text::after  { left: -11px; border-right-color: rgba(8,22,46,.92); }
+/* 遊戲中把快速靜音鍵移到右上，避免壓到巴哥 */
+#screen-game.screen ~ * .music-quick { }
+
+/* ---- 再放大 logo（title ~2x / menu 加大） ---- */
+#screen-title .logo-img { width: min(96%, 420px) !important; }
+.menu-logo { width: min(86%, 380px) !important; }
+
+/* ---- 愛心閃光動態 ---- */
+.heart { animation: heartShimmer 2.2s ease-in-out infinite; }
+.hearts .heart:nth-child(2) { animation-delay: .5s; }
+.hearts .heart:nth-child(3) { animation-delay: 1s; }
+.hearts .heart:nth-child(4) { animation-delay: 1.5s; }
+@keyframes heartShimmer {
+  0%, 68%, 100% { filter: drop-shadow(0 0 3px rgba(0,0,0,.85)) drop-shadow(0 0 7px rgba(255,59,83,.65)); }
+  80% { filter: drop-shadow(0 0 3px rgba(0,0,0,.85)) drop-shadow(0 0 16px rgba(255,150,170,1)) brightness(1.5); }
+  88% { filter: drop-shadow(0 0 3px rgba(0,0,0,.85)) drop-shadow(0 0 9px rgba(255,120,140,.9)) brightness(1.15); }
+}
+.heart.lost { animation: none; }
+
+/* ============================================================
+   場景氣氛（光線/次元風暴/漂浮粒子）＋ logo 流光（暫用 CSS）
+   ============================================================ */
+.ambient { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.amb-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(62% 42% at 50% 28%, rgba(90,190,255,.14), transparent 70%);
+  mix-blend-mode: screen; animation: ambPulse 6.5s ease-in-out infinite;
+}
+@keyframes ambPulse { 0%,100%{ opacity:.4;} 50%{ opacity:1;} }
+.amb-rays {
+  position: absolute; left: 50%; top: -22%; width: 160%; height: 95%; transform: translateX(-50%);
+  background: repeating-conic-gradient(from 90deg at 50% 0,
+    transparent 0 6deg, rgba(140,210,255,.05) 6deg 9deg);
+  mix-blend-mode: screen; opacity: .55; animation: ambRays 24s linear infinite;
+}
+@keyframes ambRays { to { transform: translateX(-50%) rotate(10deg); } }
+.amb-dust {
+  position: absolute; inset: -14%; mix-blend-mode: screen; opacity: .5;
+  background-image:
+    radial-gradient(2px 2px at 15% 70%, #bfeaff, transparent),
+    radial-gradient(1.5px 1.5px at 35% 86%, #9fd8ff, transparent),
+    radial-gradient(2px 2px at 55% 60%, #cfeeff, transparent),
+    radial-gradient(1.5px 1.5px at 75% 82%, #a8e0ff, transparent),
+    radial-gradient(2px 2px at 86% 66%, #bfeaff, transparent),
+    radial-gradient(1.5px 1.5px at 25% 50%, #d8f4ff, transparent),
+    radial-gradient(2px 2px at 66% 42%, #a8e0ff, transparent);
+  animation: ambDust 20s linear infinite;
+}
+@keyframes ambDust { 0%{ transform: translateY(7%);} 100%{ transform: translateY(-11%);} }
+@media (prefers-reduced-motion: reduce) { .amb-rays, .amb-dust, .amb-glow { animation: none; } }
+
+/* logo 流光（掃光） */
+#screen-title .logo { position: relative; width: fit-content; max-width: 100%; margin-left: auto; margin-right: auto; }
+#screen-title .logo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url("../assets/source/pic/branding/logo_01.png") center/contain no-repeat;
+          mask: url("../assets/source/pic/branding/logo_01.png") center/contain no-repeat;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.92) 50%, transparent 58%);
+  background-size: 280% 100%; background-position: 185% 0;
+  mix-blend-mode: screen; animation: logoShine 3.8s ease-in-out infinite;
+}
+@keyframes logoShine { 0%{ background-position: 185% 0; } 58%,100%{ background-position: -120% 0; } }

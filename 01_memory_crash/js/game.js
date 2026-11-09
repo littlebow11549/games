@@ -176,11 +176,15 @@
     window.MemoryCrashPresentation?.show(name);
   }
 
-  // ---------- 愛心 ----------
+  // ---------- 愛心（動態渲染，支援金手指加命） ----------
   function renderHearts() {
-    [...heartsWrap.children].forEach((h, i) => {
-      h.classList.toggle("lost", i >= state.hearts);
-    });
+    const max = Math.max(3, state.maxHearts || 3);
+    heartsWrap.innerHTML = "";
+    for (let i = 0; i < max; i++) {
+      const h = document.createElement("span");
+      h.className = "heart" + (i >= state.hearts ? " lost" : "");
+      heartsWrap.appendChild(h);
+    }
   }
 
   // ---------- 橫幅文字 ----------
@@ -206,7 +210,7 @@
   function startGame(master, startLevel) {
     state.master = master;
     state.level = startLevel || (master ? 3 : 1);
-    state.hearts = 3;
+    state.hearts = 3; state.maxHearts = 3;
     state.score = 0; state.combo = 0; updateScore();
     state.best = Number(localStorage.getItem("mc_best") || 1);
     buildBoard();
@@ -441,6 +445,8 @@
     state.music = on;
     localStorage.setItem("mc_music", on ? "1" : "0");
     musicState.classList.toggle("muted", !on);
+    const qi = $("#musicQuickIcon"); if (qi) qi.textContent = on ? "🔊" : "🔇";
+    $("#btnMusicQuick")?.classList.toggle("off", !on);
     if (on) startMusic(); else stopMusic();
   }
 
@@ -539,6 +545,29 @@
       if (screens.title.classList.contains("active")) enterMenu();
       else if (screens.menu.classList.contains("active")) requestStart(false);
     });
+
+    // 快速靜音鍵（任意畫面可用）
+    $("#btnMusicQuick")?.addEventListener("click", () => setMusic(!state.music));
+
+    // 🎮 金手指（秘技）：遊戲進行中輸入 188 → 加一條命
+    let cheatBuf = "";
+    document.addEventListener("keydown", (e) => {
+      if (!/^[0-9]$/.test(e.key)) return;
+      cheatBuf = (cheatBuf + e.key).slice(-3);
+      if (cheatBuf === "188" && screens.game.classList.contains("active")) {
+        cheatBuf = "";
+        state.hearts++;
+        if (state.hearts > state.maxHearts) state.maxHearts = state.hearts;
+        renderHearts();
+        playSfx("good");
+        window.MemoryCrashMascot?.play("happy", 800);
+        if (statusText) {
+          const prev = statusText.textContent;
+          statusText.textContent = "CHEAT! +1 life ❤";
+          setTimeout(() => { if (statusText.textContent.startsWith("CHEAT")) statusText.textContent = prev; }, 1000);
+        }
+      }
+    });
   }
 
   // ---------- 啟動 ----------
@@ -546,6 +575,8 @@
   renderHearts();
   soundState.classList.toggle("muted", !state.sound);  // 音效預設開
   musicState.classList.toggle("muted", !state.music);  // 音樂標示（實際於開始/手勢後播放）
+  $("#musicQuickIcon") && ($("#musicQuickIcon").textContent = state.music ? "🔊" : "🔇");
+  $("#btnMusicQuick")?.classList.toggle("off", !state.music);
   bind();
   show("title");
 })();

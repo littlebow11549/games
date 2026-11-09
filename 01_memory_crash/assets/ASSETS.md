@@ -320,3 +320,53 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 
 ## 清單收尾完成（2026-11-09）
 前述四項選做素材已補齊並接入；字型 metrics、穿梭影片、格子框已完成接入。來源表尺寸已如實列原生值，保留原建議作對照，沒有插值假放大。標題與選單使用輕量視訊播放版，RGB 無損母檔仍保留。完整收尾與驗證報告：repo 根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。舊段落提到的待辦以此及勾選清單為準。
+
+---
+
+## 🆕 設計需求（2026-11-09 第二批，交 GPT 製作）
+> 以下為目前用 CSS 暫代、需 GPT 做高質感版的項目。風格一律沿用：深藍科技＋青光＋金色，與現有素材一致。
+
+### D1. 彈出主視覺文字（衝擊版）　`pic/titles/`
+遊戲中的彈出提示（READY / YOUR TURN / PERFECT / MISS / AGAIN / COMBO）要**大且有衝擊力**。
+- 需求：每個詞做成**帶能量爆裂/光爆背景**的立體字，置中彈出用。可做兩種交付：
+  - (a) 單張去背 PNG（字＋光爆一體），檔名 `titles_fx_<word>.png`，每張約 1200×700，去背。
+  - (b) 或序列幀 sprite sheet `titles_fx_<word>_seq.png`（6–8 格）做出「砸下→抖動→殘光」動態。
+```
+game popup word-art "{WORD}" with explosive impact: chunky gold 3D letters (blue outline,
+bevel, glossy) bursting out of a radial energy shockwave, light rays, sparks and shards,
+cyan + gold, dramatic, centered, transparent background. PERFECT=celebratory gold burst,
+MISS/GAMEOVER=red alert burst. 1200x700 PNG (or 6-8 frame sprite sheet for the slam anim).
+```
+
+### D2. 計量表 / 倒數進度條　`pic/ui/`
+目前倒數條是純 CSS，需要有質感的框與填充。
+- `gauge_frame.png`：進度條外框（膠囊狀，金屬/能量框，兩端有端蓋），約 1000×160，去背，九宮格可拉伸。
+- `gauge_fill.png`：填充條（青→金漸層、帶流動高光），約 1000×120，可水平裁切顯示。
+- `gauge_fill_low.png`：剩餘不多時的紅色警示填充（帶脈動光）。
+```
+sci-fi game progress/timer bar, horizontal capsule, glossy metal-and-energy frame with glowing
+cyan rim and gold end-caps (empty inside), plus a separate fill bar (cyan-to-gold gradient with
+a flowing highlight) and a red "low/danger" fill variant. Deep navy + cyan + gold, transparent
+background. Frame 1000x160, fills 1000x120 PNG, 9-slice friendly.
+```
+
+### D3. 場景氣氛（光線 / 次元風暴）　`video/` 或 `pic/fx/`
+畫面要有動態場景氣氛（目前 CSS 暫代）。
+- 首選影片：`video/vid_ambient.webm`（1080×1920，無縫循環，可疊在背景上）：緩慢流動的**次元風暴**、光束、漂浮粒子、能量波紋。
+- 或序列/透明疊圖：`pic/fx/ambient_sheet.png`（光束掃動＋粒子，多格）。
+```
+seamless looping atmospheric overlay for a deep-blue sci-fi puzzle game, vertical 9:16:
+slow swirling dimension-storm energy, soft god-ray light beams sweeping from the top, drifting
+glowing particles and faint energy ripples, subtle (must not overpower UI), loopable, mostly
+transparent/dark. 1080x1920 WebM (alpha preferred) or a particle+rays sprite sheet PNG.
+```
+
+### D4. Logo 流光（選做）　`pic/branding/`
+- `logo_shine.png`：可疊在 logo 上掃過的高光帶（白色柔光斜帶，去背），或直接交付**已內建流光的 logo 動態** `logo_anim.webm`（透明循環，光帶定時掃過字面）。
+```
+glossy sweeping light streak / shine band overlay (soft white diagonal highlight) to animate
+across the game logo, transparent background; OR a transparent looping WebM of the "MEMORY
+CRASH" logo with a light sweep crossing the letters every few seconds.
+```
+
+> 交付後放入對應資料夾並告知「素材更新了」，我接圖/影片、替換 CSS 暫代版。
