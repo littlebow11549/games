@@ -27,12 +27,17 @@
 - [x] 音訊：背景音樂 `bgm_01.mp3`（循環）、音效 `sfx_01..05`（點擊/正確/點錯/過關/結束）
       ；保留 SFX/MUSIC 獨立開關、記憶設定、互動後播放；寶石音高仍用 WebAudio
 
+## ✅ UI 圖集已接入（ui_01 切成 9 張乾淨單圖 → `assets/source/pic/ui/`）
+- [x] 金色按鈕三態（`btn_normal/pressed/disabled.png`）→ `.gold-btn` `border-image`
+- [x] 藍色面板框（`panel.png`）→ `.panel` `border-image`
+- [x] 愛心滿/空（`heart_full/empty.png`）→ `.heart`
+- [x] 齒輪鈕（`gear.png`）→ `.icon-btn`
+- [x] 切圖工具：`tools/`（slice 腳本於 scratchpad；已產出 `ui/*.png`）
+
 ## 🟡 進行中 / 待辦
-- [ ] **UI 圖集 `ui_01.png` 切圖替換**（3×3：按鈕三態／面板框/紅心/空心/齒輪/格子框兩態）
-  - 愛心（滿/空）、齒輪：切成單圖替換 `.heart`、`.icon-btn`
-  - 金色按鈕三態：九宮格 `border-image`
-  - 面板框、寶石格子框：切圖替換（注意圖集邊緣有雜訊，需裁乾淨）
+- [ ] 寶石格子框 `slot.png`/`slot_lit.png`（已切好，備用；目前棋盤用 CSS 框，視覺已佳）
 - [ ] 數字 `numbers_01.png`（6×2）切圖替換 LV 數字（選做）
+- [ ] 主視覺文字 `titles_01.png`、教學圖示 `howto_01.png`（待素材生成）
 - [ ] 實機聽測音樂循環接縫、混音音量
 - [ ] 加入「連續過關 combo」與分數系統（可選）
 - [ ] 手機觸控測試 / 不同螢幕比例微調
