@@ -29,7 +29,7 @@ for name,required,target in entries:
    if videos:row['dimensions']=[videos[0]['width'],videos[0]['height']]
   if target:row['exact_target_dimensions']=row.get('dimensions')==target
  rows.append(row)
-summary={'required_missing':[r['path'] for r in rows if r['required'] and not r['present']], 'optional_missing':[r['path'] for r in rows if not r['required'] and not r['present']], 'dimension_mismatches':[r['path'] for r in rows if r.get('exact_target_dimensions') is False], 'source_delivery_only':True,'runtime_integration':'See docs/handoffs/2026-11-09-character-animation-audit.md'}
+summary={'required_missing':[r['path'] for r in rows if r['required'] and not r['present']], 'optional_missing':[r['path'] for r in rows if not r['required'] and not r['present']], 'dimension_mismatches':[r['path'] for r in rows if r.get('exact_target_dimensions') is False], 'source_inventory_complete':all(row['present'] for row in rows), 'dimension_note':'Actual native dimensions versus initial design suggestions; ASSETS.md now records both. No upscaling used to claim added detail.','runtime_integration':'See docs/handoffs/2026-11-09-finish-assets-integration.md'}
 report={'summary':summary,'assets':rows};(ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(summary,indent=2))
 
 # Optional full decode audit, including homepage source images.
@@ -41,7 +41,7 @@ if '--full' in sys.argv:
  hub_png=list(hub_source.rglob('*.png')) if hub_source.exists() else []
  for path in source_png+hub_png:
   with Image.open(path) as im:im.verify()
- media=[path for path in SOURCE.rglob('*') if path.suffix in ['.mp3','.webm']]
+ media=[path for path in SOURCE.rglob('*') if path.suffix in ['.mp3','.ogg','.webm']]
  def full_decode(path):
   subprocess.run(['ffmpeg','-v','error','-i',str(path),'-f','null','-'],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
   return str(path.relative_to(SOURCE))
@@ -49,3 +49,19 @@ if '--full' in sys.argv:
  report['full_source_validation']={'game_png_files_verified':len(source_png),'homepage_png_files_verified':len(hub_png),'total_source_png_verified':len(source_png)+len(hub_png),'media_files_fully_decoded':decoded,'failed_files':[]}
  (ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n')
  print(json.dumps(report['full_source_validation'],indent=2))
+
+if '--full' in sys.argv:
+ runtime=ROOT/'assets/runtime';checks=[]
+ if (runtime/'MEDIA.json').exists():
+  for entry in json.loads((runtime/'MEDIA.json').read_text()):
+   path=ROOT/entry['file']
+   if path.suffix=='.webp':
+    with Image.open(path) as im,Image.open(ROOT/entry['source']) as original:
+     im.load();original.load();assert im.mode==original.mode and im.size==original.size and im.tobytes()==original.tobytes()
+    checks.append({'file':entry['file'],'decoded_pixels_identical_to_png':True})
+   else:
+    subprocess.run(['ffmpeg','-v','error','-i',str(path),'-f','null','-'],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
+    checks.append({'file':entry['file'],'fully_decoded':True})
+ report['runtime_validation']=checks
+ (ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n')
+ print('Runtime playback variants verified:',len(checks))

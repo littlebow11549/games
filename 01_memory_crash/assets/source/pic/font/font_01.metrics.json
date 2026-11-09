@@ -1,0 +1,560 @@
+{
+  "image": "font_01.png",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "cap_height_pixels": 119.0,
+  "glyphs": {
+    "A": {
+      "x": 47,
+      "y": 38,
+      "width": 113,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 1.024579831932773
+    },
+    "B": {
+      "x": 211,
+      "y": 38,
+      "width": 99,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9069327731092437
+    },
+    "C": {
+      "x": 356,
+      "y": 37,
+      "width": 103,
+      "height": 121,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.940546218487395
+    },
+    "D": {
+      "x": 505,
+      "y": 37,
+      "width": 109,
+      "height": 120,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9909663865546218
+    },
+    "E": {
+      "x": 659,
+      "y": 38,
+      "width": 97,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.890126050420168
+    },
+    "F": {
+      "x": 813,
+      "y": 38,
+      "width": 95,
+      "height": 120,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.8733193277310924
+    },
+    "G": {
+      "x": 952,
+      "y": 37,
+      "width": 110,
+      "height": 122,
+      "baseline_offset_em": 0.01680672268907563,
+      "advance_em": 0.9993697478991597
+    },
+    "H": {
+      "x": 1106,
+      "y": 38,
+      "width": 108,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.982563025210084
+    },
+    "I": {
+      "x": 62,
+      "y": 193,
+      "width": 80,
+      "height": 113,
+      "baseline_offset_em": -0.025210084033613446,
+      "advance_em": 0.7472689075630252
+    },
+    "J": {
+      "x": 204,
+      "y": 192,
+      "width": 101,
+      "height": 118,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.9237394957983193
+    },
+    "K": {
+      "x": 354,
+      "y": 191,
+      "width": 105,
+      "height": 118,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9573529411764705
+    },
+    "L": {
+      "x": 506,
+      "y": 191,
+      "width": 98,
+      "height": 116,
+      "baseline_offset_em": -0.01680672268907563,
+      "advance_em": 0.8985294117647058
+    },
+    "M": {
+      "x": 645,
+      "y": 192,
+      "width": 122,
+      "height": 116,
+      "baseline_offset_em": -0.008403361344537815,
+      "advance_em": 1.1002100840336133
+    },
+    "N": {
+      "x": 801,
+      "y": 191,
+      "width": 109,
+      "height": 118,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9909663865546218
+    },
+    "O": {
+      "x": 949,
+      "y": 191,
+      "width": 114,
+      "height": 120,
+      "baseline_offset_em": 0.01680672268907563,
+      "advance_em": 1.032983193277311
+    },
+    "P": {
+      "x": 1108,
+      "y": 191,
+      "width": 104,
+      "height": 119,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.9489495798319327
+    },
+    "Q": {
+      "x": 39,
+      "y": 337,
+      "width": 119,
+      "height": 129,
+      "baseline_offset_em": 0.07563025210084033,
+      "advance_em": 1.075
+    },
+    "R": {
+      "x": 205,
+      "y": 338,
+      "width": 106,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9657563025210084
+    },
+    "S": {
+      "x": 355,
+      "y": 337,
+      "width": 101,
+      "height": 121,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.9237394957983193
+    },
+    "T": {
+      "x": 500,
+      "y": 338,
+      "width": 109,
+      "height": 119,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9909663865546218
+    },
+    "U": {
+      "x": 650,
+      "y": 339,
+      "width": 112,
+      "height": 119,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 1.0161764705882352
+    },
+    "V": {
+      "x": 796,
+      "y": 339,
+      "width": 117,
+      "height": 118,
+      "baseline_offset_em": 0.0,
+      "advance_em": 1.0581932773109244
+    },
+    "W": {
+      "x": 936,
+      "y": 340,
+      "width": 141,
+      "height": 116,
+      "baseline_offset_em": -0.008403361344537815,
+      "advance_em": 1.259873949579832
+    },
+    "X": {
+      "x": 1105,
+      "y": 338,
+      "width": 112,
+      "height": 118,
+      "baseline_offset_em": -0.008403361344537815,
+      "advance_em": 1.0161764705882352
+    },
+    "Y": {
+      "x": 49,
+      "y": 484,
+      "width": 105,
+      "height": 113,
+      "baseline_offset_em": -0.008403361344537815,
+      "advance_em": 0.9573529411764705
+    },
+    "Z": {
+      "x": 207,
+      "y": 485,
+      "width": 102,
+      "height": 113,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.932142857142857
+    },
+    "a": {
+      "x": 360,
+      "y": 503,
+      "width": 92,
+      "height": 91,
+      "baseline_offset_em": -0.03361344537815126,
+      "advance_em": 0.848109243697479
+    },
+    "b": {
+      "x": 510,
+      "y": 484,
+      "width": 98,
+      "height": 113,
+      "baseline_offset_em": -0.008403361344537815,
+      "advance_em": 0.8985294117647058
+    },
+    "c": {
+      "x": 659,
+      "y": 505,
+      "width": 93,
+      "height": 93,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.8565126050420168
+    },
+    "d": {
+      "x": 804,
+      "y": 484,
+      "width": 100,
+      "height": 114,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9153361344537815
+    },
+    "e": {
+      "x": 957,
+      "y": 504,
+      "width": 100,
+      "height": 96,
+      "baseline_offset_em": 0.01680672268907563,
+      "advance_em": 0.9153361344537815
+    },
+    "f": {
+      "x": 1115,
+      "y": 482,
+      "width": 88,
+      "height": 117,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.8144957983193277
+    },
+    "g": {
+      "x": 54,
+      "y": 631,
+      "width": 97,
+      "height": 105,
+      "baseline_offset_em": 0.06302521008403361,
+      "advance_em": 0.890126050420168
+    },
+    "h": {
+      "x": 209,
+      "y": 619,
+      "width": 97,
+      "height": 109,
+      "baseline_offset_em": -0.004201680672268907,
+      "advance_em": 0.890126050420168
+    },
+    "i": {
+      "x": 377,
+      "y": 618,
+      "width": 57,
+      "height": 111,
+      "baseline_offset_em": 0.004201680672268907,
+      "advance_em": 0.5539915966386555
+    },
+    "j": {
+      "x": 510,
+      "y": 617,
+      "width": 79,
+      "height": 119,
+      "baseline_offset_em": 0.06302521008403361,
+      "advance_em": 0.7388655462184873
+    },
+    "k": {
+      "x": 658,
+      "y": 618,
+      "width": 95,
+      "height": 110,
+      "baseline_offset_em": -0.004201680672268907,
+      "advance_em": 0.8733193277310924
+    },
+    "l": {
+      "x": 824,
+      "y": 618,
+      "width": 59,
+      "height": 111,
+      "baseline_offset_em": 0.004201680672268907,
+      "advance_em": 0.5707983193277311
+    },
+    "m": {
+      "x": 942,
+      "y": 639,
+      "width": 127,
+      "height": 90,
+      "baseline_offset_em": 0.004201680672268907,
+      "advance_em": 1.1422268907563025
+    },
+    "n": {
+      "x": 1109,
+      "y": 639,
+      "width": 102,
+      "height": 89,
+      "baseline_offset_em": -0.004201680672268907,
+      "advance_em": 0.932142857142857
+    },
+    "o": {
+      "x": 49,
+      "y": 761,
+      "width": 104,
+      "height": 93,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9489495798319327
+    },
+    "p": {
+      "x": 209,
+      "y": 756,
+      "width": 99,
+      "height": 105,
+      "baseline_offset_em": 0.058823529411764705,
+      "advance_em": 0.9069327731092437
+    },
+    "q": {
+      "x": 354,
+      "y": 761,
+      "width": 100,
+      "height": 102,
+      "baseline_offset_em": 0.07563025210084033,
+      "advance_em": 0.9153361344537815
+    },
+    "r": {
+      "x": 512,
+      "y": 761,
+      "width": 87,
+      "height": 93,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.8060924369747898
+    },
+    "s": {
+      "x": 660,
+      "y": 760,
+      "width": 92,
+      "height": 95,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 0.848109243697479
+    },
+    "t": {
+      "x": 809,
+      "y": 745,
+      "width": 91,
+      "height": 112,
+      "baseline_offset_em": 0.025210084033613446,
+      "advance_em": 0.8397058823529411
+    },
+    "u": {
+      "x": 953,
+      "y": 763,
+      "width": 104,
+      "height": 91,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9489495798319327
+    },
+    "v": {
+      "x": 1107,
+      "y": 762,
+      "width": 105,
+      "height": 92,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9573529411764705
+    },
+    "w": {
+      "x": 35,
+      "y": 881,
+      "width": 132,
+      "height": 90,
+      "baseline_offset_em": 0.008403361344537815,
+      "advance_em": 1.1842436974789916
+    },
+    "x": {
+      "x": 206,
+      "y": 878,
+      "width": 100,
+      "height": 92,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.9153361344537815
+    },
+    "y": {
+      "x": 355,
+      "y": 876,
+      "width": 103,
+      "height": 104,
+      "baseline_offset_em": 0.08403361344537816,
+      "advance_em": 0.940546218487395
+    },
+    "z": {
+      "x": 506,
+      "y": 879,
+      "width": 97,
+      "height": 89,
+      "baseline_offset_em": -0.01680672268907563,
+      "advance_em": 0.890126050420168
+    },
+    ".": {
+      "x": 677,
+      "y": 911,
+      "width": 56,
+      "height": 53,
+      "baseline_offset_em": -0.05042016806722689,
+      "advance_em": 0.5455882352941176
+    },
+    ",": {
+      "x": 829,
+      "y": 911,
+      "width": 59,
+      "height": 67,
+      "baseline_offset_em": 0.06722689075630252,
+      "advance_em": 0.5707983193277311
+    },
+    ":": {
+      "x": 979,
+      "y": 877,
+      "width": 57,
+      "height": 91,
+      "baseline_offset_em": -0.01680672268907563,
+      "advance_em": 0.5539915966386555
+    },
+    ";": {
+      "x": 1131,
+      "y": 876,
+      "width": 58,
+      "height": 102,
+      "baseline_offset_em": 0.06722689075630252,
+      "advance_em": 0.5623949579831933
+    },
+    "!": {
+      "x": 74,
+      "y": 994,
+      "width": 57,
+      "height": 109,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.5539915966386555
+    },
+    "?": {
+      "x": 211,
+      "y": 994,
+      "width": 92,
+      "height": 109,
+      "baseline_offset_em": 0.0,
+      "advance_em": 0.848109243697479
+    },
+    "'": {
+      "x": 379,
+      "y": 999,
+      "width": 56,
+      "height": 64,
+      "baseline_offset_em": -0.33613445378151263,
+      "advance_em": 0.5455882352941176
+    },
+    "\"": {
+      "x": 510,
+      "y": 999,
+      "width": 88,
+      "height": 63,
+      "baseline_offset_em": -0.3445378151260504,
+      "advance_em": 0.8144957983193277
+    },
+    "-": {
+      "x": 656,
+      "y": 1027,
+      "width": 95,
+      "height": 50,
+      "baseline_offset_em": -0.2184873949579832,
+      "advance_em": 0.8733193277310924
+    },
+    "+": {
+      "x": 799,
+      "y": 1002,
+      "width": 107,
+      "height": 96,
+      "baseline_offset_em": -0.04201680672268908,
+      "advance_em": 0.9741596638655462
+    },
+    "/": {
+      "x": 960,
+      "y": 994,
+      "width": 92,
+      "height": 114,
+      "baseline_offset_em": 0.04201680672268908,
+      "advance_em": 0.848109243697479
+    },
+    "%": {
+      "x": 1093,
+      "y": 995,
+      "width": 131,
+      "height": 113,
+      "baseline_offset_em": 0.04201680672268908,
+      "advance_em": 1.1758403361344538
+    },
+    "&": {
+      "x": 43,
+      "y": 1122,
+      "width": 112,
+      "height": 111,
+      "baseline_offset_em": 0.0,
+      "advance_em": 1.0161764705882352
+    },
+    "(": {
+      "x": 217,
+      "y": 1118,
+      "width": 71,
+      "height": 122,
+      "baseline_offset_em": 0.058823529411764705,
+      "advance_em": 0.6716386554621848
+    },
+    ")": {
+      "x": 373,
+      "y": 1117,
+      "width": 69,
+      "height": 123,
+      "baseline_offset_em": 0.058823529411764705,
+      "advance_em": 0.6548319327731092
+    },
+    " ": {
+      "advance_em": 0.34
+    }
+  },
+  "kerning_em": {
+    "AV": -0.07,
+    "WA": -0.04,
+    "To": -0.05,
+    "Yo": -0.05,
+    "Ta": -0.05,
+    "LT": -0.035,
+    "PA": -0.04
+  },
+  "method": "Alpha>32 optical bounds; per-row baseline anchors; preserved descenders; shared cap height and explicit advances.",
+  "source_png_unchanged": true
+}

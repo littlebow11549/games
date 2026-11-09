@@ -637,3 +637,41 @@ html, body {
   #screen-over .over-panel{padding:16px;border-width:20px;gap:10px}
   #screen-over .over-panel .gold-btn{padding:8px 12px}
 }
+
+/* Final asset integration: optical bitmap labels, cinematic media and VFX. */
+.bitmap-label{display:inline-flex;align-items:center;vertical-align:middle;line-height:1}
+.bitmap-label canvas{display:block;height:30px;width:auto;max-width:100%;object-fit:contain}
+.sw-state .bitmap-label canvas{height:24px}
+.energy-blade{display:block;width:auto;height:clamp(70px,14vh,118px);margin:5px auto 15px;object-fit:contain;filter:drop-shadow(0 0 12px #49c7ff88);pointer-events:none}
+.warp-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen;opacity:0;pointer-events:none;z-index:1}
+.warp-video-active .warp-video{opacity:.48}.warp-video-active .warp{opacity:0}
+.intro-layer{position:absolute;inset:0;z-index:90;background:#061322}.intro-layer[hidden]{display:none}
+.intro-layer video{display:block;width:100%;height:100%;object-fit:cover}
+.skip-intro{position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;min-height:44px;padding:10px 16px;border:1px solid #73d9ef66;border-radius:24px;background:#061322db;color:#f8d577;font:600 13px sans-serif;cursor:pointer}
+.skip-intro:focus-visible{outline:3px solid #f8d577;outline-offset:3px}
+.fx-layer{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden}
+.fx-art{position:absolute;left:50%;top:46%;width:min(70%,280px);aspect-ratio:1;background-image:url("../assets/runtime/pic/fx_01.webp");background-size:300% 100%;background-repeat:no-repeat;transform:translate(-50%,-50%);animation:assetBurst .7s ease-out both}
+.fx-shatter{width:min(50%,190px);top:51%;animation-duration:.6s}.fx-crack{width:100%;top:50%;animation:assetCrack 1.5s ease-out both}
+@keyframes assetBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.45)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.3)}}
+@keyframes assetCrack{0%{opacity:0}12%,60%{opacity:.8}100%{opacity:0}}
+.gem{border:0;background:url("../assets/source/pic/ui/slot.png") center/100% 100% no-repeat,radial-gradient(circle at 50% 42%,#ffffff08,#0005);box-shadow:none}
+.gem.lit{background-image:url("../assets/source/pic/ui/slot_lit.png"),radial-gradient(circle at 50% 42%,#ffffff18,#0005)}
+@media(max-height:680px){.energy-blade{height:70px;margin:0 auto 8px}.bitmap-label canvas{height:27px}.sw-state .bitmap-label canvas{height:22px}}
+@media(prefers-reduced-motion:reduce){.warp-video{display:none}.fx-art{animation:none;opacity:.65}}
+/* Keep bitmap music/sound controls readable without widening small screens. */
+#screen-option .panel{padding:18px 14px;border-width:18px;gap:12px}
+#btnSound,#btnMusic{display:flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap;padding:7px 4px;font-size:16px}
+#screen-option .bitmap-label canvas{height:26px}#screen-option .sw-state .bitmap-label canvas{height:22px}
+.modal-box{max-height:min(88svh,720px);overflow-y:auto;overscroll-behavior:contain}
+@media(max-height:680px){
+ #screen-option{padding:58px 20px 20px}
+ #screen-option>.title-word{width:min(52%,150px);margin:0 auto 10px}
+ #screen-option .panel{padding:10px;border-width:14px;gap:6px}
+ #screen-option .gold-btn{padding:5px 8px}
+ #screen-option .btn-word{max-height:22px}
+ #screen-option .master{margin-top:10px}
+ #screen-option .bitmap-label canvas{height:22px}
+ #screen-option .sw-state .bitmap-label canvas{height:18px}
+}
+
+.gold-btn.master:not(:disabled){border-image-source:url("../assets/source/pic/ui/btn_normal.png")}

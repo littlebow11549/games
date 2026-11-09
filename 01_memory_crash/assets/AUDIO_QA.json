@@ -1,0 +1,75 @@
+{
+  "audio": [
+    {
+      "file": "assets/source/music/bgm_01.mp3",
+      "seconds": 69.81818594104308,
+      "peak_dbfs": -10.16,
+      "rms_dbfs": -26.19,
+      "clipped_samples": 0,
+      "loop_boundary_step": 0.0004478590562939644
+    },
+    {
+      "file": "assets/source/music/bgm_01.ogg",
+      "seconds": 69.81818594104308,
+      "peak_dbfs": -9.78,
+      "rms_dbfs": -25.87,
+      "clipped_samples": 0,
+      "loop_boundary_step": 0.0008773291483521461
+    },
+    {
+      "file": "assets/source/music/bgm_02.mp3",
+      "seconds": 73.84614512471656,
+      "peak_dbfs": -8.66,
+      "rms_dbfs": -25.04,
+      "clipped_samples": 0,
+      "loop_boundary_step": 0.0015160571783781052
+    },
+    {
+      "file": "assets/source/music/bgm_02.ogg",
+      "seconds": 73.84614512471656,
+      "peak_dbfs": -8.23,
+      "rms_dbfs": -24.72,
+      "clipped_samples": 0,
+      "loop_boundary_step": 0.002149103442206979
+    },
+    {
+      "file": "assets/source/sfx/sfx_01.mp3",
+      "seconds": 0.32,
+      "peak_dbfs": -9.42,
+      "rms_dbfs": -18.05,
+      "clipped_samples": 0
+    },
+    {
+      "file": "assets/source/sfx/sfx_02.mp3",
+      "seconds": 0.52,
+      "peak_dbfs": -6.02,
+      "rms_dbfs": -17.75,
+      "clipped_samples": 0
+    },
+    {
+      "file": "assets/source/sfx/sfx_03.mp3",
+      "seconds": 0.45,
+      "peak_dbfs": -5.58,
+      "rms_dbfs": -15.9,
+      "clipped_samples": 0
+    },
+    {
+      "file": "assets/source/sfx/sfx_04.mp3",
+      "seconds": 1.5,
+      "peak_dbfs": -4.43,
+      "rms_dbfs": -17.92,
+      "clipped_samples": 0
+    },
+    {
+      "file": "assets/source/sfx/sfx_05.mp3",
+      "seconds": 1.6,
+      "peak_dbfs": -7.46,
+      "rms_dbfs": -19.17,
+      "clipped_samples": 0
+    }
+  ],
+  "runtime_music_gain": 0.38,
+  "ducked_music_gain": 0.18,
+  "runtime_sfx_gain": 0.55,
+  "method": "Complete decode, peak/RMS and loop-boundary measurement; browser playback/loop tests separately. Physical handset listening not performed."
+}

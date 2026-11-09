@@ -15,6 +15,12 @@
   <!-- 遊戲外框（手機直式比例） -->
   <div id="app" class="app">
     <div class="grid-floor"></div>
+    <video id="warpVideo" class="warp-video" data-src="assets/runtime/video/vid_warp.webm" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div id="fxLayer" class="fx-layer" aria-hidden="true"></div>
+    <div id="introLayer" class="intro-layer" hidden>
+      <video id="introVideo" data-src="assets/runtime/video/vid_01.webm" muted playsinline preload="none" aria-label="Memory Crash opening"></video>
+      <button id="skipIntro" class="skip-intro" type="button">Skip intro ↗</button>
+    </div>
     <!-- 穿梭次元動畫（暫用 CSS 星流；正式版用 video vid_01） -->
     <div class="warp" aria-hidden="true"><span class="warp-layer"></span><span class="warp-layer l2"></span></div>
     <div class="vignette"></div>
@@ -36,6 +42,7 @@
       <div class="logo">
         <img class="logo-img" src="assets/source/pic/branding/logo_01.png" alt="MEMORY CRASH" />
       </div>
+      <img class="energy-blade" src="assets/source/pic/branding/blade_01.png" alt="" aria-hidden="true" />
       <button id="btnStart" class="title-start" aria-label="START"><img class="word start-word" src="assets/source/pic/titles/start.png" alt="START" /></button>
     </section>
 
@@ -56,8 +63,8 @@
       <img class="title-word" src="assets/source/pic/titles/option.png" alt="OPTION" />
       <div class="panel">
         <button id="btnHowTo" class="gold-btn" aria-label="HOW TO PLAY"><img class="btn-word" src="assets/source/pic/titles/how_to_play.png" alt="HOW TO PLAY" /></button>
-        <button id="btnSound" class="gold-btn">SOUND <span id="soundState" class="sw-state"><span class="on">ON</span>/<span class="off">OFF</span></span></button>
-        <button id="btnMusic" class="gold-btn">MUSIC <span id="musicState" class="sw-state"><span class="on">ON</span>/<span class="off">OFF</span></span></button>
+        <button id="btnSound" class="gold-btn"><span data-bitmap="SOUND">SOUND</span> <span id="soundState" class="sw-state"><span class="on" data-bitmap="ON">ON</span>/<span class="off" data-bitmap="OFF">OFF</span></span></button>
+        <button id="btnMusic" class="gold-btn"><span data-bitmap="MUSIC">MUSIC</span> <span id="musicState" class="sw-state"><span class="on" data-bitmap="ON">ON</span>/<span class="off" data-bitmap="OFF">OFF</span></span></button>
         <button id="btnHome" class="gold-btn" aria-label="HOME"><img class="btn-word" src="assets/source/pic/titles/home.png" alt="HOME" /></button>
       </div>
       <button id="btnMaster" class="gold-btn master" aria-label="MASTER MODE"><img class="btn-word" src="assets/source/pic/titles/master_mode.png" alt="MASTER MODE" /></button>
@@ -120,6 +127,7 @@
     </div>
   </div>
 
+  <script src="js/presentation.js"></script>
   <script src="js/mascot.js"></script>
   <script src="js/game.js"></script>
 </body>

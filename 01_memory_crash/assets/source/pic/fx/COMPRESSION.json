@@ -1,0 +1,24 @@
+[
+  {
+    "image": "branding/blade_01.png",
+    "size": [
+      845,
+      1862
+    ],
+    "before_bytes": 737220,
+    "after_bytes": 703931,
+    "identical_pixels": true,
+    "pixel_sha256": "c2d76dcac773fe1c2b09e4227f81995a38e6f19557f928006ffdb23b9708a781"
+  },
+  {
+    "image": "fx/fx_01.png",
+    "size": [
+      2172,
+      724
+    ],
+    "before_bytes": 1878149,
+    "after_bytes": 1584568,
+    "identical_pixels": true,
+    "pixel_sha256": "7be9b319f17ad66d9464fb10d1f875f9d3351e1440066f5615fe324308d54e76"
+  }
+]

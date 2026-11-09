@@ -1,12 +1,7 @@
 {
   "summary": {
     "required_missing": [],
-    "optional_missing": [
-      "pic/branding/blade_01.png",
-      "pic/fx/fx_01.png",
-      "music/bgm_02.mp3",
-      "video/vid_01.webm"
-    ],
+    "optional_missing": [],
     "dimension_mismatches": [
       "pic/background/bg_01.png",
       "pic/branding/logo_01.png",
@@ -18,10 +13,13 @@
       "pic/numbers/numbers_01.png",
       "pic/font/font_01.png",
       "pic/howto/howto_01.png",
-      "pic/character/char_01.png"
+      "pic/character/char_01.png",
+      "pic/branding/blade_01.png",
+      "pic/fx/fx_01.png"
     ],
-    "source_delivery_only": true,
-    "runtime_integration": "See docs/handoffs/2026-11-09-character-animation-audit.md"
+    "source_inventory_complete": true,
+    "dimension_note": "Actual native dimensions versus initial design suggestions; ASSETS.md now records both. No upscaling used to claim added detail.",
+    "runtime_integration": "See docs/handoffs/2026-11-09-finish-assets-integration.md"
   },
   "assets": [
     {
@@ -374,50 +372,107 @@
     {
       "path": "pic/branding/blade_01.png",
       "required": false,
-      "present": false,
+      "present": true,
       "target_dimensions": [
         400,
         900
-      ]
+      ],
+      "bytes": 703931,
+      "dimensions": [
+        845,
+        1862
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
     },
     {
       "path": "pic/fx/fx_01.png",
       "required": false,
-      "present": false,
+      "present": true,
       "target_dimensions": [
         1536,
         512
-      ]
+      ],
+      "bytes": 1584568,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
     },
     {
       "path": "music/bgm_02.mp3",
       "required": false,
-      "present": false,
-      "target_dimensions": null
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1773652,
+      "seconds": 73.874286,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
     },
     {
       "path": "video/vid_01.webm",
       "required": false,
-      "present": false,
+      "present": true,
       "target_dimensions": [
         1080,
         1920
-      ]
+      ],
+      "bytes": 25025329,
+      "seconds": 4.0,
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "exact_target_dimensions": true
     }
   ],
   "full_source_validation": {
+    "game_png_files_verified": 55,
+    "homepage_png_files_verified": 1,
+    "total_source_png_verified": 56,
     "media_files_fully_decoded": [
       "sfx/sfx_01.mp3",
       "sfx/sfx_03.mp3",
       "sfx/sfx_02.mp3",
       "sfx/sfx_04.mp3",
       "sfx/sfx_05.mp3",
+      "video/vid_01.webm",
       "video/vid_warp.webm",
-      "music/bgm_01.mp3"
+      "music/bgm_02.mp3",
+      "music/bgm_01.ogg",
+      "music/bgm_01.mp3",
+      "music/bgm_02.ogg"
     ],
-    "failed_files": [],
-    "game_png_files_verified": 53,
-    "homepage_png_files_verified": 1,
-    "total_source_png_verified": 54
-  }
+    "failed_files": []
+  },
+  "runtime_validation": [
+    {
+      "file": "assets/runtime/video/vid_01.webm",
+      "fully_decoded": true
+    },
+    {
+      "file": "assets/runtime/video/vid_warp.webm",
+      "fully_decoded": true
+    },
+    {
+      "file": "assets/runtime/pic/fx_01.webp",
+      "decoded_pixels_identical_to_png": true
+    }
+  ]
 }

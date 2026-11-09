@@ -42,6 +42,8 @@ def finish(name, track, loop=False):
             w.setnchannels(2); w.setsampwidth(2); w.setframerate(RATE)
             w.writeframes((track*32767).astype('<i2').tobytes())
         subprocess.run(['ffmpeg','-y','-v','error','-i',f.name,'-codec:a','libmp3lame','-b:a','192k',str(OUT / ('music' if name.startswith('bgm_') else 'sfx') / name)],check=True)
+        if name.startswith('bgm_'):
+            subprocess.run(['ffmpeg','-y','-v','error','-i',f.name,'-codec:a','libvorbis','-q:a','6',str(OUT/'music'/name.replace('.mp3','.ogg'))],check=True)
 
 for name, notes, duration in [
  ('sfx_01.mp3',[(784,0,.23)],.32),
@@ -74,3 +76,33 @@ for bar in range(32):
         place(track,kick,(bar*4+step)*beat,.16,0,True)
 finish('bgm_01.mp3',track,True)
 print('Rendered original crystal BGM and five effects:', OUT)
+
+# Master/high-level score: same melodic identity, faster groove, 40 complete bars.
+beat=60/130
+track=np.zeros((round(160*beat*RATE),2))
+rng=np.random.default_rng(20261109)
+for bar in range(40):
+    root=roots[(bar//2)%4]
+    for step in range(8):
+        when=(bar*4+step*.5)*beat
+        semi=melody[(bar%2)*8+step]+root
+        place(track,bell(523.25*2**(semi/12),.42),when,.17,(-1 if step%2 else 1)*.3,True)
+        t=np.arange(int(.055*RATE))/RATE
+        noise=rng.normal(0,1,len(t));noise=np.r_[0,np.diff(noise)]
+        hat=noise*(1-np.exp(-t*1000))*np.exp(-t*75)
+        place(track,hat,when,.015,.35,True)
+    for step in range(4):
+        when=(bar*4+step)*beat
+        t=np.arange(int(.30*RATE))/RATE
+        freq=130.8128*2**(root/12)
+        bass=(np.sin(2*np.pi*freq*t)+.18*np.sin(2*np.pi*freq*2*t))*(1-np.exp(-t*160))*np.exp(-t*13)
+        place(track,bass,when,.23,0,True)
+        t=np.arange(int(.16*RATE))/RATE
+        kick=np.sin(2*np.pi*(48*t+3*(1-np.exp(-t*36))))*np.exp(-t*32)
+        place(track,kick,when,.18,0,True)
+        if step in (1,3):
+            t=np.arange(int(.12*RATE))/RATE
+            snare=(rng.normal(0,1,len(t))*.25+np.sin(2*np.pi*170*t)*.35)*(1-np.exp(-t*800))*np.exp(-t*35)
+            place(track,snare,when,.07,-.15,True)
+finish('bgm_02.mp3',track,True)
+print('Master BGM plus gapless Ogg playback variants rendered.')

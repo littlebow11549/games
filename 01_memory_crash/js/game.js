@@ -35,6 +35,7 @@
     music: localStorage.getItem("mc_music") !== "0",   // 背景音樂(BGM)，預設開
     best: Number(localStorage.getItem("mc_best") || 1),
   };
+  let flowVersion = 0;
   let pendingStart = null; // 首次說明看完後要開始的模式
 
   // ---------- DOM ----------
@@ -78,6 +79,7 @@
   }
   function beep(freq, dur = 0.16, type = "sine", vol = 0.22) {
     if (!state.sound) return;
+    duckMusic();
     const ctx = ac(); if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -97,7 +99,7 @@
     win:   new Audio("assets/source/sfx/sfx_04.mp3"),
     over:  new Audio("assets/source/sfx/sfx_05.mp3"),
   };
-  Object.values(SFX).forEach(a => { a.preload = "auto"; a.volume = 0.6; });
+  Object.values(SFX).forEach(a => { a.preload = "auto"; a.volume = 0.55; });
   function playSfx(name) {
     if (!state.sound) return;
     const a = SFX[name]; if (!a) return;
@@ -110,14 +112,29 @@
   const sndOver   = () => playSfx("over");
 
   // ---------- 背景音樂（mp3，循環） ----------
-  const bgm = new Audio("assets/source/music/bgm_01.mp3");
-  bgm.loop = true; bgm.volume = 0.45; bgm.preload = "auto";
+  const audioProbe = new Audio();
+  const musicFormat = audioProbe.canPlayType('audio/ogg; codecs="vorbis"') ? "ogg" : "mp3";
+  const bgmTracks = {
+    normal: new Audio(`assets/source/music/bgm_01.${musicFormat}`),
+    intense: new Audio(`assets/source/music/bgm_02.${musicFormat}`),
+  };
+  Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "metadata"; });
+  let bgm = bgmTracks.normal;
+  let musicDuckTimer = 0;
   function startMusic() {
     if (!state.music) return;
-    bgm.play().catch(() => {}); // 需使用者互動後瀏覽器才允許播放
+    const selected = state.master || state.level >= 10 ? bgmTracks.intense : bgmTracks.normal;
+    if (bgm !== selected) { bgm.pause(); bgm = selected; bgm.currentTime = 0; }
+    bgm.play().catch(() => {});
   }
   function stopMusic() {
-    bgm.pause();
+    clearTimeout(musicDuckTimer);
+    Object.values(bgmTracks).forEach(audio => { audio.pause(); audio.volume = 0.38; });
+  }
+  function duckMusic() {
+    bgm.volume = 0.18;
+    clearTimeout(musicDuckTimer);
+    musicDuckTimer = setTimeout(() => { bgm.volume = 0.38; }, 260);
   }
 
   // ---------- 建立棋盤 ----------
@@ -145,10 +162,18 @@
 
   // ---------- 畫面切換 ----------
   function show(name) {
+    if (name !== "game") {
+      flowVersion++;
+      state.accepting = false;
+      stopTimer();
+      board.classList.add("locked");
+      gems.forEach(gem => gem.classList.remove("lit", "correct", "wrong"));
+    }
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
     hud.classList.toggle("hidden", name !== "game");
     window.MemoryCrashMascot?.show(name);
+    window.MemoryCrashPresentation?.show(name);
   }
 
   // ---------- 愛心 ----------
@@ -164,7 +189,7 @@
     "MISS": "miss", "AGAIN": "again",
   };
   function banner(text, cls = "") {
-    if (text === "PERFECT") window.MemoryCrashMascot?.play("celebrate", 1250);
+    if (text === "PERFECT") { window.MemoryCrashMascot?.play("celebrate", 1250); window.MemoryCrashPresentation?.effect("burst"); }
     else if (text === "MISS") window.MemoryCrashMascot?.play("sad", 1100);
     else window.MemoryCrashMascot?.play("idle");
     const f = BANNER_IMG[text];
@@ -214,7 +239,15 @@
     return seq;
   }
 
+  function laterInGame(callback, delay) {
+    const version = flowVersion;
+    return setTimeout(() => {
+      if (version === flowVersion && screens.game.classList.contains("active")) callback();
+    }, delay);
+  }
   function nextLevel(fresh) {
+    flowVersion++;
+    startMusic();
     levelTag.innerHTML = lvHTML(state.level);
     if (fresh) state.sequence = generateSequence();
     state.playerStep = 0;
@@ -223,7 +256,7 @@
     stopTimer();
     banner(fresh ? "READY" : "AGAIN", "");
     statusText.textContent = "Watch the gems light up…";
-    setTimeout(playSequence, 650);
+    laterInGame(playSequence, 650);
   }
 
   function playSequence() {
@@ -235,7 +268,7 @@
         prev.classList.remove("lit");
       }
       if (i >= state.sequence.length) {
-        setTimeout(() => {
+        laterInGame(() => {
           state.accepting = true;
           board.classList.remove("locked");
           banner("YOUR TURN", "");
@@ -248,7 +281,7 @@
       gem.classList.add("lit");
       beep(SCALE[state.sequence[i] % SCALE.length], on / 1000 * 0.9, "sine", .18);
       i++;
-      setTimeout(step, on + gap);
+      laterInGame(step, on + gap);
     };
     step();
   }
@@ -312,14 +345,15 @@
   function onTimeout() {
     if (!state.accepting) return;
     state.accepting = false; board.classList.add("locked"); stopTimer();
+    window.MemoryCrashPresentation?.effect("shatter");
     window.MemoryCrashMascot?.play("sad", 1100);
     sndWrong(); shakeScreen(); state.combo = 0;
     state.hearts--; renderHearts();
-    if (state.hearts <= 0) { setTimeout(gameOver, 500); }
+    if (state.hearts <= 0) { laterInGame(gameOver, 500); }
     else {
       banner("MISS", "miss");
       statusText.textContent = "Too slow! Watch again";
-      setTimeout(() => nextLevel(false), 1100);
+      laterInGame(() => nextLevel(false), 1100);
     }
   }
 
@@ -351,6 +385,7 @@
       board.classList.add("locked");
       stopTimer();
       window.MemoryCrashMascot?.play("sad", 1100);
+      window.MemoryCrashPresentation?.effect("shatter");
       gem.classList.add("wrong");
       setTimeout(() => gem.classList.remove("wrong"), 360);
       sndWrong(); shakeScreen();
@@ -358,11 +393,11 @@
       state.hearts--;
       renderHearts();
       if (state.hearts <= 0) {
-        setTimeout(gameOver, 500);
+        laterInGame(gameOver, 500);
       } else {
         banner("MISS", "miss");
         statusText.textContent = "Missed! Watch the sequence again";
-        setTimeout(() => nextLevel(false), 1100);
+        laterInGame(() => nextLevel(false), 1100);
       }
     }
   }
@@ -380,10 +415,11 @@
       localStorage.setItem("mc_best", String(state.best));
     }
     state.level++;
-    setTimeout(() => nextLevel(true), 1250);
+    laterInGame(() => nextLevel(true), 1250);
   }
 
   function gameOver() {
+    window.MemoryCrashPresentation?.effect("crack");
     stopTimer();
     sndOver();
     const bestScore = Math.max(Number(localStorage.getItem("mc_bestscore") || 0), state.score);
@@ -443,7 +479,10 @@
   const _exitLabelEl = $("#exitGameLabel");
   if (_exitLabelEl) _exitLabelEl.textContent = exitLabels[exitLanguage] || exitLabels["en"];
   function exitGame() {
+    flowVersion++;
+    stopTimer();
     window.MemoryCrashMascot?.stop();
+    window.MemoryCrashPresentation?.stop();
     state.accepting = false;
     stopMusic();
     Object.values(SFX).forEach(audio => audio.pause());
@@ -462,7 +501,15 @@
     });
 
     // 標題 START → 主選單
-    $("#btnStart").addEventListener("click", showMenu);
+    let introShown = false;
+    const enterMenu = () => {
+      if (window.MemoryCrashPresentation?.introPlaying) return;
+      const ctx = ac(); if (ctx && ctx.state === "suspended") ctx.resume().catch(() => {});
+      if (introShown || !window.MemoryCrashPresentation) { showMenu(); return; }
+      introShown = true;
+      window.MemoryCrashPresentation.intro(showMenu);
+    };
+    $("#btnStart").addEventListener("click", enterMenu);
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
     $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); stopTimer(); show("option"); });
 
@@ -488,8 +535,8 @@
     // 鍵盤：Enter 在標題開選單、在選單開始 Arcade
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Enter") return;
-      if (e.target.closest("#btnExitGame")) return;
-      if (screens.title.classList.contains("active")) showMenu();
+      if (e.target.closest("button, a, input, select, textarea")) return;
+      if (screens.title.classList.contains("active")) enterMenu();
       else if (screens.menu.classList.contains("active")) requestStart(false);
     });
   }

@@ -13,11 +13,13 @@
 ## 🗂️ 檔案結構
 ```
 01_memory_crash/
-├── index.html            # 頁面結構（四個畫面 + 說明彈窗）
+├── index.html            # 頁面結構（標題／主選單／選項／遊戲／結算 + 說明）
 ├── css/
-│   └── style.css         # 全部視覺（背景/按鈕/寶石/愛心/標題，純 CSS）
+│   └── style.css         # 全部視覺（來源圖集、背景、角色與特效）
 ├── js/
-│   └── game.js           # 遊戲邏輯、音效(WebAudio)、關卡流程
+│   ├── game.js           # 遊戲邏輯、音訊與關卡
+│   ├── mascot.js         # 巴哥連續影格
+│   └── presentation.js   # 字型、影片與特效
 ├── assets/
 │   ├── ASSETS.md         # 美術/音樂素材製作列表（完整規格＋提示詞）
 │   ├── source/           # 外部素材（放這）
@@ -35,13 +37,13 @@
 - ✅ 記憶序列玩法、愛心、關卡、PERFECT/MISS 回饋
 - ✅ WebAudio 音效（可在選項開關）、最佳紀錄（localStorage）
 - ✅ MASTER MODE、鍵盤 Enter 開始
-- 🟡 美術為 **CSS placeholder**，待外部素材替換（見 `assets/ASSETS.md`）
+- ✅ 圖集、字型短標籤、角色動態、特效、配樂與影片皆已接入（見 `assets/ASSETS.md`）
 
 ## 🔧 技術備註
 - 版面為手機直式（9:16），桌機會置中顯示。
 - 字體用 Google Fonts（Luckiest Guy / Fredoka），離線時自動退回系統粗體。
-- 寶石 = CSS `clip-path` 幾何造型 + 每顆專屬顏色（共 12 色）。
-- 之後接上 `assets/img/gem_01.png`… 時，會改以圖片顯示（替換邏輯見 PROGRESS 待辦）。
+- 寶石使用 gems_01 來源圖集與 slot／slot_lit 格子框。
+- 無損母檔在 assets/source；行動網頁播放版在 assets/runtime。
 
 ## ▶️ 執行
-用瀏覽器直接開 `index.html`。（若音效無聲，點一下畫面以啟用瀏覽器音訊。）
+完整字型 metrics 與媒體驗證請以本機 HTTP server 開啟：`python -m http.server 8000`，再瀏覽 `http://localhost:8000/01_memory_crash/`。音訊於首次互動啟用；字型載入失敗會保留一般文字。

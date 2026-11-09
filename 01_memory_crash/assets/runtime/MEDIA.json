@@ -1,0 +1,32 @@
+[
+  {
+    "file": "assets/runtime/video/vid_01.webm",
+    "source": "assets/source/video/vid_01.webm",
+    "source_bytes": 25025329,
+    "bytes": 1444639,
+    "width": 1080,
+    "height": 1920,
+    "codec": "VP9",
+    "lossless": false,
+    "quality": "CRF18 web playback; lossless RGB source master retained"
+  },
+  {
+    "file": "assets/runtime/video/vid_warp.webm",
+    "source": "assets/source/video/vid_warp.webm",
+    "source_bytes": 21143016,
+    "bytes": 1105610,
+    "width": 1080,
+    "height": 1920,
+    "codec": "VP9",
+    "lossless": false,
+    "quality": "CRF18 web playback; lossless RGB source master retained"
+  },
+  {
+    "file": "assets/runtime/pic/fx_01.webp",
+    "source": "assets/source/pic/fx/fx_01.png",
+    "source_bytes": 1584568,
+    "bytes": 1254154,
+    "lossless": true,
+    "decoded_pixels_identical": true
+  }
+]

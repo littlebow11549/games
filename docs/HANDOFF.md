@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-09 剩餘素材補齊、全數接入與驗證收尾](handoffs/2026-11-09-finish-assets-integration.md)
+
 - [2026-11-09 巴哥四種 GIF 預覽與合併比較](handoffs/2026-11-09-pug-gif-preview.md)
 
 - [2026-11-09 巴哥四種連續動態、選單字藝、影片與全素材核對](handoffs/2026-11-09-character-animation-audit.md)

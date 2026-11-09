@@ -45,7 +45,7 @@ assets/source/
 ## 1. 背景　`pic/background/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `bg_01.png` | 主背景（全畫面共用） | 1080×1920 | 不透明 |
+| `bg_01.png` | 主背景（全畫面共用） | 941×1672（原建議 1080×1920） | 不透明 |
 ```
 mobile puzzle game background, vertical 9:16, deep navy-blue sci-fi scene, glowing cyan
 perspective grid floor fading into darkness at the bottom, soft radial blue glow from top
@@ -56,9 +56,9 @@ characters, high detail. Opaque. 1080x1920.
 ## 2. 品牌　`pic/branding/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `logo_01.png` | 遊戲 LOGO「MEMORY CRASH」 | 900×700 | 去背 |
-| `blade_01.png` | 標題裝飾：能量劍刃 | 400×900 | 去背 |
-| `icon_01.png` | App Icon（點陣版；向量版 `icon_01.svg` 已有） | 512×512 | 圓角方形 |
+| `logo_01.png` | 遊戲 LOGO「MEMORY CRASH」 | 1422×1106（原建議 900×700） | 去背 |
+| `blade_01.png` | 標題裝飾：能量劍刃 | 845×1862（原建議 400×900） | 去背 |
+| `icon_01.png` | App Icon（點陣版；向量版 `icon_01.svg` 已有） | 1254×1254（原建議 512×512） | 圓角方形 |
 
 **logo_01**
 ```
@@ -84,8 +84,8 @@ high detail. 512x512 PNG.
 
 | 檔案 | 內含文字 | 尺寸 | 背景 |
 |------|----------|------|------|
-| `titles_01.png` | START · OPTION · READY · YOUR TURN · PERFECT · MISS · GAMEOVER · MASTER MODE · HOW TO PLAY · HOME · AGAIN | 2048×2048 | 去背 |
-| `titles_02.png` | **（主選單）** ARCADE · CONTINUE · EXIT · MENU · PAUSE · RESUME | 2048×1024 | 去背 |
+| `titles_01.png` | START · OPTION · READY · YOUR TURN · PERFECT · MISS · GAMEOVER · MASTER MODE · HOW TO PLAY · HOME · AGAIN | 1254×1254（原建議 2048×2048） | 去背 |
+| `titles_02.png` | **（主選單）** ARCADE · CONTINUE · EXIT · MENU · PAUSE · RESUME | 1774×887（原建議 2048×1024） | 去背 |
 ```
 sprite sheet of game word-art phrases, transparent background, laid out in a neat grid with
 clear spacing, consistent chunky cartoon 3D style matching the game logo: glossy GOLD letters
@@ -106,7 +106,7 @@ background, clear spacing, each phrase separate and not overlapping:
 ## 4. 介面 UI　`pic/ui/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `ui_01.png` | UI 圖集（按鈕三態／面板／愛心／齒輪／格子框） | 2048×2048 | 去背 |
+| `ui_01.png` | UI 圖集（按鈕三態／面板／愛心／齒輪／格子框） | 1254×1254（原建議 2048×2048） | 去背 |
 ```
 UI kit sprite sheet for a mobile puzzle game, transparent background, items neatly laid out
 with clear spacing, consistent glossy cartoon 3D style, deep navy-blue + cyan glow + gold.
@@ -125,7 +125,7 @@ High detail, not overlapping, not cropped. 2048x2048 PNG, transparent.
 ## 5. 遊戲元件（寶石）　`pic/gems/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `gems_01.png` | 12 顆寶石圖集（4欄×3列） | 2048×1536 | 去背 |
+| `gems_01.png` | 12 顆寶石圖集（4欄×3列） | 1448×1086（原建議 2048×1536） | 去背 |
 ```
 sprite sheet of 12 faceted gemstones in a neat 4x3 grid, evenly spaced with clear gaps,
 each gem centered in its own equal cell, transparent background, glossy cartoon 3D crystal
@@ -143,8 +143,8 @@ High detail. 2048x1536 PNG, transparent.
 
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」（分數/等級用） | 2048×512 | 去背 |
-| `font_01.png` | 字型：A–Z、a–z、常用符號（一般文字用） | 2048×2048 | 去背 |
+| `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」（分數/等級用） | 2172×724（原建議 2048×512） | 去背 |
+| `font_01.png` | 字型：A–Z、a–z、常用符號（一般文字用） | 1254×1254（原建議 2048×2048） | 去背 |
 
 **numbers_01**
 ```
@@ -165,7 +165,7 @@ size, transparent background, not overlapping. High detail. 2048x2048 PNG, trans
 ## 7. 特效　`pic/fx/`（選做）
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `fx_01.png` | 特效圖集（PERFECT 爆閃／寶石碎裂／GAME OVER 裂痕） | 1536×512 | 透明 |
+| `fx_01.png` | 特效圖集（PERFECT 爆閃／寶石碎裂／GAME OVER 裂痕） | 2172×724（原建議 1536×512） | 透明 |
 ```
 VFX sprite sheet, transparent background, 3 effects side by side with clear gaps, consistent
 style: 1) golden celebration burst with light rays and sparkles; 2) shattering gemstone into
@@ -177,7 +177,7 @@ glowing shards; 3) cracked glass overlay in dark-blue tint. High detail. 1536x51
 
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `howto_01.png` | 4 格教學圖示（記住順序／照順序點／PERFECT／小心愛心） | 2048×512 | 去背 |
+| `howto_01.png` | 4 格教學圖示（記住順序／照順序點／PERFECT／小心愛心） | 2172×724（原建議 2048×512） | 去背 |
 ```
 sprite sheet of 4 small tutorial step icons in a row, transparent background, clear gaps,
 consistent glossy cartoon style, deep navy-blue + cyan + gold:
@@ -233,7 +233,7 @@ point, glowing energy ripples and particles, fast but smooth, perfectly loopable
 
 ## 12. 主角 / 角色（Character）　`pic/character/`
 > 主角：**可愛宇宙冒險巴哥狗**，痞痞（帶壞笑、挑眉、自信）又富正義感（英雄站姿、金星徽章）。
-> 深藍科技＋金色風格一致。目前為 SVG 墊底（`char_placeholder.svg`），待高質感版替換。
+> 深藍科技＋金色風格一致。正式六姿態及四種連續動態已交付並套用；`char_placeholder.svg` 僅作載入 fallback。
 
 **角色設定（Character Bible）**
 - 物種：巴哥犬（大眼、短皺鼻、垂耳、捲尾），可愛比例、頭大身小
@@ -243,7 +243,7 @@ point, glowing energy ripples and particles, fast but smooth, perfectly loopable
 
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `char_01.png` | 多姿態圖集（下列 6 姿態） | 2048×2048 | 去背 |
+| `char_01.png` | 多姿態圖集（下列 6 姿態） | 1254×1254（原建議 2048×2048） | 去背 |
 
 **姿態（sprite sheet，6 格）**
 1. idle 待機（自信站姿，手插腰，微笑）
@@ -278,18 +278,21 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 - [x] `pic/background/bg_01.png`（來源已交付／已接入，原生尺寸見 audit）
 - [x] `pic/branding/logo_01.png`（已交付／已接入）
 - [x] `pic/titles/titles_01.png`（已交付／已切圖接入；原生 1254×1254，非 2048×2048）
-- [x] `pic/ui/ui_01.png`（已交付；按鈕、愛心、齒輪、面板已接入，格子框備用）
+- [x] `pic/ui/ui_01.png`（按鈕、愛心、齒輪、面板、一般／發光格子框皆已接入）
 - [x] `pic/gems/gems_01.png`（已交付／已接入）
 - [x] `pic/numbers/numbers_01.png`（已交付，已接 LV）
-- [x] `pic/font/font_01.png`（單張字型原圖已交付，原生 1254×1254；含 JSON 字元座標，待校正 baseline／字距與接入）
+- [x] `pic/font/font_01.png`（68 字元 metrics 已校正，bitmap 短標籤已接入，含原圖與 JSON）
 - [x] `music/bgm_01.mp3`（已交付／已接入）
 - [x] `sfx/sfx_01.mp3` … `sfx_05.mp3`（已交付／已接入）
 - [x] `pic/branding/icon_01.png`（已交付／已接入）
 - [x] `pic/character/char_01.png`（6 姿態來源）與 `char_anim_idle/happy/sad/celebrate.png`（32 格，四種動態已套用）
 - [x] `pic/titles/titles_02.png`（六詞已交付；ARCADE／CONTINUE／EXIT 已套用）
-- [x] `video/vid_warp.webm`（1080×1920 無損來源已交付，尚未接入）
+- [x] `video/vid_warp.webm`（無損母檔已交付，輕量播放版已接標題與選單）
 - [x] 選做：`pic/howto/howto_01.png`（已交付／已接入）
-- [ ] 尚缺選做：`pic/branding/blade_01.png`、`pic/fx/fx_01.png`、`music/bgm_02.mp3`、`video/vid_01.webm`
+- [x] `pic/branding/blade_01.png`（已接標題）
+- [x] `pic/fx/fx_01.png`（已接過關／失誤／結束）
+- [x] `music/bgm_02.mp3`（已接 Master／LV10+，含 Ogg）
+- [x] `video/vid_01.webm`（已接可跳過開場，無損母檔保留）
 
 > 給 GPT 的總指示：「請依這份清單做一套**風格統一**（深藍科技＋青光＋金色）的手機益智遊戲素材，
 > 圖片透明背景、元件排整齊等距方便切圖。」
@@ -306,11 +309,14 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 ## 最新新增素材交付（2026-11-09）
 - `pic/titles/titles_01.png`：已交付，3 欄×4 列、十一組字與一格留白。
 - `pic/howto/howto_01.png`：已交付，4 欄×1 列，原生 2172×724。
-- 兩者皆透明 PNG，完成無損壓縮與逐像素驗證，尚待 Claude 切圖接入。
+- 兩者皆透明 PNG，已完成無損壓縮、逐像素驗證及切圖接入。
 - 原生尺寸與原訂規格不同，保留真實解析度，不插值放大；詳見 repo 根目錄 docs/handoffs/2026-11-09-titles-howto.md。
 
 ## 字型單張交付（2026-11-09）
-`pic/font/font_01.png` 已依使用者要求合併為一整張透明 PNG，包含大寫、小寫與常用符號；實際切圖座標見同資料夾 font_01.json，無損壓縮見 COMPRESSION.json。原生解析度未達原訂 2048×2048，未插值放大。接入前需光學校正基線／字距，報告見根目錄 docs/handoffs/2026-11-09-font-atlas.md。
+`pic/font/font_01.png` 已依使用者要求合併為一整張透明 PNG，包含大寫、小寫與常用符號；實際切圖座標見同資料夾 font_01.json，無損壓縮見 COMPRESSION.json。原生解析度未達原訂 2048×2048，未插值放大。基線／字距現已校正並接入，舊交付報告保留歷史，最新狀態見根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。
 
 ## 最新素材核對與角色動態（2026-11-09）
 勾選代表來源檔案已交付，並非每張圖片都符合原訂精確像素；實際尺寸與缺檔見 `assets/ASSET_AUDIT.json`（相對遊戲根目錄）。四種巴哥動態已按使用者要求製作並套用；32 格在 `pic/character/char_anim_*.png`。完整驗證、待接入項及四項尚缺選做素材見 repo 根目錄 `docs/handoffs/2026-11-09-character-animation-audit.md`。
+
+## 清單收尾完成（2026-11-09）
+前述四項選做素材已補齊並接入；字型 metrics、穿梭影片、格子框已完成接入。來源表尺寸已如實列原生值，保留原建議作對照，沒有插值假放大。標題與選單使用輕量視訊播放版，RGB 無損母檔仍保留。完整收尾與驗證報告：repo 根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。舊段落提到的待辦以此及勾選清單為準。

@@ -1,0 +1,12 @@
+{
+  "file": "vid_01.webm",
+  "width": 1080,
+  "height": 1920,
+  "seconds": 4,
+  "fps": 24,
+  "codec": "VP9 lossless RGB",
+  "audio": false,
+  "first_frame_matches_source": true,
+  "bytes": 25025329,
+  "source": "Original procedural warp plus existing logo"
+}
