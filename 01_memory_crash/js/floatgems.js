@@ -17,7 +17,7 @@
     { x: 96, y: 11, s: 26, d: 10.0, delay: 2.1, g: 4,  amp: 18, rot: -11 },
   ];
 
-  const SCALE = 3.2;   // 漂浮寶石整體放大倍率（使用者要求放大）
+  const SCALE = 5.5;   // 漂浮寶石整體放大倍率（使用者要求至少 5x）
 
   function spritePos(i) {
     // 與 game.js buildBoard 相同的切圖座標（background-size:400% 300%）

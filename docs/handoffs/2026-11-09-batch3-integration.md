@@ -50,3 +50,10 @@
 - **OPTION 回到遊戲**：新增 `#btnResume`「▶ BACK TO GAME」（置頂、綠光強調）。僅在遊戲中按齒輪進 OPTION 時顯示（`btnOptionTop` 設 hidden=false；title/menu 入口設 hidden=true）。點擊回到遊戲並重播本關序列續玩（`show("game")` + `nextLevel(false)`）。
 - **漂浮寶石放大**：`floatgems.js` 加 `SCALE=3.2`，整體放大約 3.2x，首頁/選單呈現有份量的漂浮寶石場。
 - 驗證（Playwright 430×820）：全身主角完整置中、START 在下方；選單主角＋大寶石環繞；OPTION 顯示 BACK TO GAME 且續玩成功（resumedToGame=true）；無 console/pageerror。
+
+## 第四輪（OPTION 字藝 + KV 封面 + 漂浮寶石加大到 5.5x）
+使用者提供兩張新素材並要求寶石再放大。
+- **OPTION 字藝**：使用者圖 → `source/pic/titles/option_hero.png` + runtime `option_hero.webp`(64KB)。OPTION 畫面標題由純文字改為字藝圖。
+- **遊戲封面 KV**：使用者圖（1254×1254 方形）→ `source/pic/kv/kv_cover.png` + runtime `kv_cover.webp`(99KB)。遊戲中心（根 `index.html` / `assets/js/hub.js`）的遊戲卡片 icon 由 `icon_01.png` 改為此 KV 封面。
+- **漂浮寶石加大**：`floatgems.js` SCALE 3.2 → **5.5**（使用者要求至少 5x），首頁/選單寶石明顯放大成寶石場。
+- 驗證（Playwright）：OPTION 字藝置中；hub 卡片顯示 KV 封面；首頁/選單大寶石就位；無 console/pageerror。

@@ -1062,3 +1062,10 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   aspect-ratio: 1122 / 1402 !important; margin: 0 auto -6px !important; overflow: visible !important;
 }
 .menu-char.hero-char .hero-img { object-position: center !important; }
+
+/* OPTION 標題字藝 */
+.screen-title.option-title { font-size: 0; margin-bottom: 14px; }
+.screen-title.option-title .title-word {
+  display: block; width: min(72%, 300px); height: auto; margin: 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.5));
+}
