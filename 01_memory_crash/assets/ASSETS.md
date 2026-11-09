@@ -14,9 +14,8 @@ assets/source/
 │   ├── gems/        gems_01.png
 │   ├── numbers/     numbers_01.png
 │   └── fx/          fx_01.png
-├── music/                # 音訊
-│   ├── bgm/         bgm_01.mp3 · bgm_02.mp3
-│   └── sfx/         sfx_01.mp3 … sfx_05.mp3
+├── music/           bgm_01.mp3 · bgm_02.mp3     # 背景音樂
+├── sfx/             sfx_01.mp3 … sfx_05.mp3     # 音效
 └── video/           vid_01.webm（選做）
 ```
 > 同類型多檔就遞增編號（`bg_01`、`bg_02`…）。
@@ -125,7 +124,7 @@ style: 1) golden celebration burst with light rays and sparkles; 2) shattering g
 glowing shards; 3) cracked glass overlay in dark-blue tint. High detail. 1536x512 PNG.
 ```
 
-## 7. 音樂　`music/bgm/`
+## 7. 音樂　`music/`
 | 檔案 | 用途 | 長度 | 循環 |
 |------|------|------|------|
 | `bgm_01.mp3` | 背景音樂（主） | 60–120s | 可無縫循環 |
@@ -143,7 +142,7 @@ Faster, tense version of the same puzzle-game theme, driving beat ~130 BPM, more
 still bright and electronic, seamless loop, no vocals.
 ```
 
-## 8. 音效　`music/sfx/`
+## 8. 音效　`sfx/`
 | 檔案 | 用途 | 長度 | 說明 |
 |------|------|------|------|
 | `sfx_01.mp3` | 點擊寶石 | <0.4s | 清脆短「叮」(bright blip) |
@@ -165,8 +164,8 @@ still bright and electronic, seamless loop, no vocals.
 - [ ] `pic/ui/ui_01.png`
 - [ ] `pic/gems/gems_01.png`
 - [ ] `pic/numbers/numbers_01.png`
-- [ ] `music/bgm/bgm_01.mp3`
-- [ ] `music/sfx/sfx_01.mp3` … `sfx_05.mp3`
+- [ ] `music/bgm_01.mp3`
+- [ ] `sfx/sfx_01.mp3` … `sfx_05.mp3`
 - [ ] `pic/branding/icon_01.png`
 - [ ] 選做：`blade_01.png`、`pic/fx/fx_01.png`、`bgm_02.mp3`、`video/vid_01.webm`
 

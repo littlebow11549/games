@@ -22,7 +22,8 @@
 │   ├── ASSETS.md         # 美術/音樂素材製作列表（完整規格＋提示詞）
 │   ├── source/           # 外部素材（放這）
 │   │   ├── pic/          #   圖片：background·branding·ui·gems·numbers·fx
-│   │   ├── music/        #   音訊：bgm·sfx
+│   │   ├── music/        #   背景音樂（bgm_01…）
+│   │   ├── sfx/          #   音效（sfx_01…）
 │   │   └── video/        #   影片
 │   └── preview/          # 開發截圖（參考用）
 ├── README.md             # 本說明

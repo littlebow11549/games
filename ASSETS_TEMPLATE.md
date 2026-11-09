@@ -13,9 +13,8 @@ assets/source/
 │   ├── pieces/      pieces_01.png      # 核心玩法物件（寶石/棋子/方塊/角色…）
 │   ├── numbers/     numbers_01.png
 │   └── fx/          fx_01.png
-├── music/               # 音訊
-│   ├── bgm/         bgm_01.mp3
-│   └── sfx/         sfx_01.mp3 …
+├── music/           bgm_01.mp3 …      # 背景音樂
+├── sfx/             sfx_01.mp3 …      # 音效
 └── video/           vid_01.webm
 ```
 **命名規則**：`類別_編號.副檔名`（小寫英文），同類型多檔就遞增（`bg_01`、`bg_02`…）。檔名勿改。
@@ -63,12 +62,12 @@ assets/source/
 |------|------|------|------|--------|
 | `fx_01.png` | 特效系列 | — | 透明 | `…` |
 
-## 7. 音樂　`music/bgm/`
+## 7. 音樂　`music/`
 | 檔案 | 用途 | 長度 | 循環 | 提示詞 |
 |------|------|------|------|--------|
 | `bgm_01.mp3` | 背景音樂 | 60–120s | 可循環 | 風格/情緒/BPM/樂器 |
 
-## 8. 音效　`music/sfx/`
+## 8. 音效　`sfx/`
 | 檔案 | 用途 | 長度 | 說明 |
 |------|------|------|------|
 | `sfx_01.mp3` | 點擊/選取 | <0.5s | `…` |
@@ -90,6 +89,6 @@ assets/source/
 - [ ] `pic/ui/ui_01.png`
 - [ ] `pic/pieces/pieces_01.png`
 - [ ] `pic/numbers/numbers_01.png`
-- [ ] `music/bgm/bgm_01.mp3`
-- [ ] `music/sfx/sfx_01…05.mp3`
+- [ ] `music/bgm_01.mp3`
+- [ ] `sfx/sfx_01…05.mp3`
 - [ ] 選做：`pic/fx/fx_01.png`、`video/vid_01.webm`

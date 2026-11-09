@@ -28,7 +28,7 @@
     - `source/pic/gems/gems_01.png` → `buildBoard()` 內把 `.stone` 的 CSS 造型換成切好的寶石圖（依 index 對應）
     - `source/pic/ui/ui_01.png` → 按鈕用九宮格 `border-image`、愛心/齒輪/格子框改 `<img>`
     - `source/video/vid_01.webm` → 新增 `<video>` 疊層
-- [ ] 音訊改用真實音檔（`music/bgm/bgm_01.mp3`、`music/sfx/sfx_01..05.mp3`；目前為 WebAudio 合成）
+- [ ] 音訊改用真實音檔（`music/bgm_01.mp3`、`sfx/sfx_01..05.mp3`；目前為 WebAudio 合成）
 - [ ] 加入「連續過關 combo」與分數系統（可選）
 - [ ] 手機觸控測試 / 不同螢幕比例微調
 - [ ] 之後若要上線，考慮部署（GitHub Pages / Netlify）
