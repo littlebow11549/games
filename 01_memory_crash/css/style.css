@@ -1011,15 +1011,15 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   position: absolute; display: block;
   background-image: url("../assets/source/pic/gems/gems_01.png");
   background-size: 400% 300%; background-repeat: no-repeat;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,.45));
-  opacity: .9; will-change: transform;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.45)) blur(var(--blur, 0px));
+  will-change: transform; will-change: transform, opacity;
   animation-name: fgFloat; animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 @keyframes fgFloat {
-  0%   { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
-  50%  { transform: translate(-50%, calc(-50% - var(--amp))) rotate(var(--rot)) scale(1.04); opacity: 1; }
-  100% { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: .72; }
+  0%   { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: calc(var(--op, 1) * .8); }
+  50%  { transform: translate(-50%, calc(-50% - var(--amp))) rotate(var(--rot)) scale(1.04); opacity: var(--op, 1); }
+  100% { transform: translate(-50%, -50%) rotate(calc(var(--rot) * -1)) scale(.96); opacity: calc(var(--op, 1) * .8); }
 }
 /* 內容疊在漂浮寶石之上（靜態 flex 項目設 relative 以生效 z-index） */
 #screen-title > .logo, #screen-title > .title-char,
