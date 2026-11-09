@@ -38,29 +38,16 @@ html, body {
   overflow: hidden;
   border-radius: 18px;
   background:
+    url("../assets/source/pic/background/bg_01.png") center/cover no-repeat,
     radial-gradient(130% 80% at 50% 8%, #1a5bb0 0%, #0c3a78 34%, var(--blue-deep) 72%, #03122b 100%);
   box-shadow: 0 0 60px rgba(0,0,0,.6), inset 0 0 120px rgba(0,0,0,.35);
 }
 
-/* 透視地板格線 */
-.grid-floor {
-  position: absolute;
-  left: -20%; right: -20%; bottom: -2%;
-  height: 46%;
-  background-image:
-    linear-gradient(rgba(90,190,255,.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90,190,255,.35) 1px, transparent 1px);
-  background-size: 42px 42px;
-  transform: perspective(380px) rotateX(62deg);
-  transform-origin: bottom center;
-  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.15) 70%, transparent 100%);
-          mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.15) 70%, transparent 100%);
-  pointer-events: none;
-}
-
+/* 背景已改用實圖，隱藏原本的 CSS 格線與暗角 */
+.grid-floor { display: none; }
 .vignette {
   position: absolute; inset: 0;
-  background: radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(0,10,30,.55) 100%);
+  background: radial-gradient(120% 90% at 50% 38%, transparent 55%, rgba(0,8,24,.45) 100%);
   pointer-events: none;
 }
 
@@ -79,7 +66,13 @@ html, body {
 /* ============================================================
    標題 LOGO（黃金卡通立體字）
    ============================================================ */
-.logo { margin-top: 10%; text-align: center; line-height: .92; }
+.logo { margin-top: 12%; text-align: center; line-height: .92; }
+.logo-img {
+  width: min(86%, 360px); height: auto; display: block; margin: 0 auto;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.55));
+  animation: logoFloat 3.2s ease-in-out infinite;
+}
+@keyframes logoFloat { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
 .logo-line {
   font-family: "Luckiest Guy", Impact, "Arial Black", sans-serif;
   letter-spacing: 2px;

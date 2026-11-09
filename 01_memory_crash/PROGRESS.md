@@ -19,24 +19,29 @@
 - [x] 截圖驗證四畫面、無 JS 錯誤
 - [x] 完整素材製作列表 `assets/ASSETS.md`（背景/Logo/UI/寶石/數字/特效/音樂音效/Icon，依全專案標準範本）
 
+## ✅ 已接入實體素材
+- [x] 背景 `bg_01.png`（`.app` 背景；關閉原 CSS 格線/暗角）
+- [x] Logo `logo_01.png`（`<img>` 取代標題文字）
+- [x] favicon `icon_01.png`
+- [x] 寶石 `gems_01.png`（4×3 圖集，含浮動/發光動畫）← 前一棒接入
+- [x] 音訊：背景音樂 `bgm_01.mp3`（循環）、音效 `sfx_01..05`（點擊/正確/點錯/過關/結束）
+      ；保留 SFX/MUSIC 獨立開關、記憶設定、互動後播放；寶石音高仍用 WebAudio
+
 ## 🟡 進行中 / 待辦
-- [ ] **接入外部美術素材**（等使用者產出後；路徑/檔名見 `assets/ASSETS.md`）
-  - 圖集需切圖：`gems_01`(4×3)、`ui_01`、`numbers_01` 各切成單件再套用
-  - 接法建議：
-    - `source/pic/background/bg_01.png` → `.app` 背景改 `background-image`
-    - `source/pic/branding/logo_01.png` → 用 `<img>` 取代 `.logo` 文字
-    - `source/pic/gems/gems_01.png` → `buildBoard()` 內把 `.stone` 的 CSS 造型換成切好的寶石圖（依 index 對應）
-    - `source/pic/ui/ui_01.png` → 按鈕用九宮格 `border-image`、愛心/齒輪/格子框改 `<img>`
-    - `source/video/vid_01.webm` → 新增 `<video>` 疊層
-- [ ] 音訊改用真實音檔（`music/bgm_01.mp3`、`sfx/sfx_01..05.mp3`；目前為 WebAudio 合成）
+- [ ] **UI 圖集 `ui_01.png` 切圖替換**（3×3：按鈕三態／面板框/紅心/空心/齒輪/格子框兩態）
+  - 愛心（滿/空）、齒輪：切成單圖替換 `.heart`、`.icon-btn`
+  - 金色按鈕三態：九宮格 `border-image`
+  - 面板框、寶石格子框：切圖替換（注意圖集邊緣有雜訊，需裁乾淨）
+- [ ] 數字 `numbers_01.png`（6×2）切圖替換 LV 數字（選做）
+- [ ] 實機聽測音樂循環接縫、混音音量
 - [ ] 加入「連續過關 combo」與分數系統（可選）
 - [ ] 手機觸控測試 / 不同螢幕比例微調
-- [ ] 之後若要上線，考慮部署（GitHub Pages / Netlify）
 
 ## 🐞 已知事項
-- 美術目前全為 CSS placeholder，非最終視覺。
+- UI 按鈕/面板/愛心/齒輪目前仍為 CSS placeholder（視覺已佳），待 `ui_01` 切圖替換。
+- `ui_01.png` 與 `numbers_01.png` 邊緣有生成雜訊，切圖需依實際邊界裁切。
 - Google Fonts 需連網才會載入；離線時字體退回系統字（版面不受影響）。
-- 瀏覽器政策：音效需使用者先互動（點擊）才會發聲，屬正常現象。
+- 瀏覽器政策：音效/音樂需使用者先互動（點擊）才會發聲，屬正常現象。
 
 ## 🔑 關鍵程式位置（給接手者）
 | 功能 | 檔案 : 位置 |

@@ -77,61 +77,35 @@
     osc.connect(gain); gain.connect(ctx.destination);
     osc.start(); osc.stop(ctx.currentTime + dur + 0.02);
   }
-  const sndGood   = () => { beep(660, .12, "triangle"); setTimeout(() => beep(990, .14, "triangle"), 90); };
-  const sndWrong  = () => beep(140, .32, "sawtooth", .25);
-  const sndPerfect= () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .18, "triangle"), i * 90)); };
-  const sndOver   = () => { [440, 349, 262, 196].forEach((f, i) => setTimeout(() => beep(f, .28, "sawtooth", .22), i * 160)); };
-
-  // ---------- 背景音樂（WebAudio 合成，循環） ----------
-  let musGain = null;
-  const MUS = {
-    playing: false, timer: null, step: 0, nextTime: 0,
-    tempo: 0.30, // 每步秒數
-    // C 大調五聲音階的循環旋律（半音偏移，相對 C4）
-    melody: [0, 4, 7, 9, 7, 4, 0, 4,  9, 12, 9, 7, 4, 7, 2, 0],
-    // 低音（每兩拍一顆）
-    bass:   [0, null, 5, null, 7, null, 4, null,  9, null, 5, null, 7, null, -1, null],
+  // ---------- 音效（mp3 音檔） ----------
+  const SFX = {
+    tap:   new Audio("assets/source/sfx/sfx_01.mp3"),
+    good:  new Audio("assets/source/sfx/sfx_02.mp3"),
+    wrong: new Audio("assets/source/sfx/sfx_03.mp3"),
+    win:   new Audio("assets/source/sfx/sfx_04.mp3"),
+    over:  new Audio("assets/source/sfx/sfx_05.mp3"),
   };
-  const NOTE = (semi) => 261.63 * Math.pow(2, semi / 12);
-  function getMusGain() {
-    const ctx = ac(); if (!ctx) return null;
-    if (!musGain) { musGain = ctx.createGain(); musGain.gain.value = 0.5; musGain.connect(ctx.destination); }
-    return musGain;
+  Object.values(SFX).forEach(a => { a.preload = "auto"; a.volume = 0.6; });
+  function playSfx(name) {
+    if (!state.sound) return;
+    const a = SFX[name]; if (!a) return;
+    try { a.currentTime = 0; a.play().catch(() => {}); } catch (e) {}
   }
-  function musVoice(freq, dur, type, vol, when) {
-    const ctx = ac(); const g = getMusGain(); if (!ctx || !g) return;
-    const o = ctx.createOscillator(), env = ctx.createGain();
-    o.type = type; o.frequency.value = freq;
-    env.gain.setValueAtTime(0.0001, when);
-    env.gain.exponentialRampToValueAtTime(vol, when + 0.03);
-    env.gain.exponentialRampToValueAtTime(0.0001, when + dur);
-    o.connect(env); env.connect(g);
-    o.start(when); o.stop(when + dur + 0.03);
-  }
-  function musSchedule() {
-    const ctx = ac(); if (!ctx) return;
-    while (MUS.nextTime < ctx.currentTime + 0.25) {
-      const i = MUS.step % MUS.melody.length;
-      const m = MUS.melody[i];
-      if (m !== null) musVoice(NOTE(m), MUS.tempo * 0.95, "triangle", 0.08, MUS.nextTime);
-      const b = MUS.bass[i];
-      if (b !== null && b !== undefined) musVoice(NOTE(b - 12), MUS.tempo * 1.8, "sine", 0.11, MUS.nextTime);
-      MUS.nextTime += MUS.tempo;
-      MUS.step++;
-    }
-  }
+  // 寶石點擊/示範仍用 WebAudio 合成（beep + SCALE），保留每顆專屬音高
+  const sndGood   = () => playSfx("good");
+  const sndWrong  = () => playSfx("wrong");
+  const sndPerfect= () => playSfx("win");
+  const sndOver   = () => playSfx("over");
+
+  // ---------- 背景音樂（mp3，循環） ----------
+  const bgm = new Audio("assets/source/music/bgm_01.mp3");
+  bgm.loop = true; bgm.volume = 0.45; bgm.preload = "auto";
   function startMusic() {
-    if (!state.music || MUS.playing) return;
-    const ctx = ac(); if (!ctx) return;
-    if (ctx.state === "suspended") ctx.resume();
-    MUS.playing = true;
-    MUS.nextTime = ctx.currentTime + 0.1;
-    MUS.timer = setInterval(musSchedule, 60);
-    musSchedule();
+    if (!state.music) return;
+    bgm.play().catch(() => {}); // 需使用者互動後瀏覽器才允許播放
   }
   function stopMusic() {
-    MUS.playing = false;
-    if (MUS.timer) { clearInterval(MUS.timer); MUS.timer = null; }
+    bgm.pause();
   }
 
   // ---------- 建立棋盤 ----------
@@ -341,6 +315,11 @@
 
   // ---------- 事件綁定 ----------
   function bind() {
+    // 所有按鈕（金色按鈕/圓鈕/START）點擊音
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".gold-btn, .icon-btn, .title-start")) playSfx("tap");
+    });
+
     $("#btnStart").addEventListener("click", () => requestStart(false));
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
     $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
