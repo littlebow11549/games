@@ -942,3 +942,22 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 
 /* 選單巴哥頭再大、置中 */
 .menu-char.mascot canvas { transform: scale(1.78) !important; transform-origin: 50% 27% !important; }
+
+/* ============================================================
+   提示功能：猶豫時下一顆寶石搖擺＋發光
+   ============================================================ */
+.gem.hint { animation: gemHintSway .62s ease-in-out infinite; z-index: 2; }
+@keyframes gemHintSway {
+  0%,100% { transform: rotate(-6deg) scale(1.05); }
+  50%     { transform: rotate(6deg) scale(1.05); }
+}
+.gem.hint::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 14px; pointer-events: none;
+  box-shadow: 0 0 18px 5px #ffffff, 0 0 26px 8px var(--gem);
+  opacity: .0; animation: gemHintGlow .62s ease-in-out infinite;
+}
+@keyframes gemHintGlow { 0%,100%{ opacity: .25; } 50%{ opacity: .8; } }
+@media (prefers-reduced-motion: reduce) {
+  .gem.hint { animation: none; }
+  .gem.hint::after { animation: none; opacity: .6; }
+}

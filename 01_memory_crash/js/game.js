@@ -333,7 +333,21 @@
   }
 
   // ---------- 回合倒數（限時，沒操作扣血） ----------
-  let turnTimer = null, lowTimer = null;
+  let turnTimer = null, lowTimer = null, hintTimer = null;
+  const HINT_DELAY = 1800;                     // 猶豫多久後給提示（ms）
+  function clearHint() {
+    clearTimeout(hintTimer); hintTimer = null;
+    gems.forEach(g => g.classList.remove("hint"));
+  }
+  function scheduleHint() {
+    clearHint();
+    if (state.master) return;                  // 大師模式不給提示
+    hintTimer = setTimeout(() => {
+      if (!state.accepting) return;
+      const idx = state.sequence[state.playerStep];
+      if (gems[idx]) gems[idx].classList.add("hint");
+    }, HINT_DELAY);
+  }
   function turnDuration() {
     const base = state.master ? 3.6 : 5;
     return Math.max(2.2, base - state.level * 0.12);
@@ -341,6 +355,7 @@
   function startTimer() {
     const dur = turnDuration();
     clearTimeout(turnTimer); clearTimeout(lowTimer);
+    scheduleHint();
     timerBar.classList.add("active");
     timerFill.classList.remove("low");
     timerFill.style.transition = "none"; timerFill.style.clipPath = "inset(0 0 0 0)";
@@ -353,6 +368,7 @@
   function resetTimer() { if (state.accepting) startTimer(); }
   function stopTimer() {
     clearTimeout(turnTimer); clearTimeout(lowTimer); turnTimer = null;
+    clearHint();
     timerBar.classList.remove("active"); timerFill.classList.remove("low");
     timerFill.style.transition = "none"; timerFill.style.clipPath = "inset(0 0 0 0)";
   }
