@@ -266,7 +266,7 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 ```
 
 ### 角色動態（交他 AI 做動畫；此處列規格）
-> 使用者會另請 AI 製作動態。以下為需求：
+> 原先另交其他 AI；使用者後續已明確要求本次直接製作及套用四種動態，詳見最新交接報告。以下保留原規格：
 - **呼吸/待機動態（idle breathing）**：胸口/身體輕微起伏＋微浮動，2–3s 無縫循環
 - **眨眼（blink）**：每 3–6s 隨機眨一次
 - **歡呼/受傷/專注**的小動畫（配合過關/失敗/記憶階段）
@@ -275,20 +275,21 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 ---
 
 ## ✅ 交付清單（越前面越重要）
-- [ ] `pic/background/bg_01.png`
-- [ ] `pic/branding/logo_01.png`
-- [x] `pic/titles/titles_01.png`（已交付原生 1254×1254，待切圖接入；未達原訂 2048×2048）
-- [ ] `pic/ui/ui_01.png`（含 **❤ 愛心滿/空**、⚙ 齒輪、按鈕三態、面板框、格子框）
-- [ ] `pic/gems/gems_01.png`
-- [ ] `pic/numbers/numbers_01.png`（數字，已接 LV）
-- [ ] `pic/font/font_01.png`（字型 A–Z/a–z/符號）
-- [ ] `music/bgm_01.mp3`
-- [ ] `sfx/sfx_01.mp3` … `sfx_05.mp3`
-- [ ] `pic/branding/icon_01.png`
-- [ ] **`pic/character/char_01.png`（主角 6 姿態）** + 角色動態（呼吸/眨眼…）
-- [ ] `pic/titles/titles_02.png`（主選單字 ARCADE/CONTINUE/EXIT…）
-- [ ] `video/vid_warp.webm`（穿梭次元背景動畫）
-- [ ] 選做：`blade_01.png`、`pic/fx/fx_01.png`、`pic/howto/howto_01.png`、`bgm_02.mp3`、`video/vid_01.webm`
+- [x] `pic/background/bg_01.png`（來源已交付／已接入，原生尺寸見 audit）
+- [x] `pic/branding/logo_01.png`（已交付／已接入）
+- [x] `pic/titles/titles_01.png`（已交付／已切圖接入；原生 1254×1254，非 2048×2048）
+- [x] `pic/ui/ui_01.png`（已交付；按鈕、愛心、齒輪、面板已接入，格子框備用）
+- [x] `pic/gems/gems_01.png`（已交付／已接入）
+- [x] `pic/numbers/numbers_01.png`（已交付，已接 LV）
+- [x] `pic/font/font_01.png`（單張字型原圖已交付，原生 1254×1254；含 JSON 字元座標，待校正 baseline／字距與接入）
+- [x] `music/bgm_01.mp3`（已交付／已接入）
+- [x] `sfx/sfx_01.mp3` … `sfx_05.mp3`（已交付／已接入）
+- [x] `pic/branding/icon_01.png`（已交付／已接入）
+- [x] `pic/character/char_01.png`（6 姿態來源）與 `char_anim_idle/happy/sad/celebrate.png`（32 格，四種動態已套用）
+- [x] `pic/titles/titles_02.png`（六詞已交付；ARCADE／CONTINUE／EXIT 已套用）
+- [x] `video/vid_warp.webm`（1080×1920 無損來源已交付，尚未接入）
+- [x] 選做：`pic/howto/howto_01.png`（已交付／已接入）
+- [ ] 尚缺選做：`pic/branding/blade_01.png`、`pic/fx/fx_01.png`、`music/bgm_02.mp3`、`video/vid_01.webm`
 
 > 給 GPT 的總指示：「請依這份清單做一套**風格統一**（深藍科技＋青光＋金色）的手機益智遊戲素材，
 > 圖片透明背景、元件排整齊等距方便切圖。」
@@ -307,3 +308,9 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 - `pic/howto/howto_01.png`：已交付，4 欄×1 列，原生 2172×724。
 - 兩者皆透明 PNG，完成無損壓縮與逐像素驗證，尚待 Claude 切圖接入。
 - 原生尺寸與原訂規格不同，保留真實解析度，不插值放大；詳見 repo 根目錄 docs/handoffs/2026-11-09-titles-howto.md。
+
+## 字型單張交付（2026-11-09）
+`pic/font/font_01.png` 已依使用者要求合併為一整張透明 PNG，包含大寫、小寫與常用符號；實際切圖座標見同資料夾 font_01.json，無損壓縮見 COMPRESSION.json。原生解析度未達原訂 2048×2048，未插值放大。接入前需光學校正基線／字距，報告見根目錄 docs/handoffs/2026-11-09-font-atlas.md。
+
+## 最新素材核對與角色動態（2026-11-09）
+勾選代表來源檔案已交付，並非每張圖片都符合原訂精確像素；實際尺寸與缺檔見 `assets/ASSET_AUDIT.json`（相對遊戲根目錄）。四種巴哥動態已按使用者要求製作並套用；32 格在 `pic/character/char_anim_*.png`。完整驗證、待接入項及四項尚缺選做素材見 repo 根目錄 `docs/handoffs/2026-11-09-character-animation-audit.md`。

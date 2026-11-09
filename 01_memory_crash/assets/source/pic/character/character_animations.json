@@ -1,0 +1,67 @@
+{
+  "character": "cosmic-pug",
+  "layout": {
+    "columns": 4,
+    "rows": 2,
+    "frames": 8,
+    "order": "left to right, top row then bottom row"
+  },
+  "clips": {
+    "idle": {
+      "image": "char_anim_idle.png",
+      "image_size": [
+        1774,
+        887
+      ],
+      "frame_size": [
+        443.5,
+        443.5
+      ],
+      "fps": 3,
+      "duration_seconds": 2.6666666666666665,
+      "loop": true
+    },
+    "happy": {
+      "image": "char_anim_happy.png",
+      "image_size": [
+        1774,
+        887
+      ],
+      "frame_size": [
+        443.5,
+        443.5
+      ],
+      "fps": 8,
+      "duration_seconds": 1.0,
+      "loop": true
+    },
+    "sad": {
+      "image": "char_anim_sad.png",
+      "image_size": [
+        1774,
+        887
+      ],
+      "frame_size": [
+        443.5,
+        443.5
+      ],
+      "fps": 5,
+      "duration_seconds": 1.6,
+      "loop": true
+    },
+    "celebrate": {
+      "image": "char_anim_celebrate.png",
+      "image_size": [
+        1774,
+        887
+      ],
+      "frame_size": [
+        443.5,
+        443.5
+      ],
+      "fps": 8,
+      "duration_seconds": 1.0,
+      "loop": true
+    }
+  }
+}

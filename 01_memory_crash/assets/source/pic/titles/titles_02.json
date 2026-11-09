@@ -1,0 +1,51 @@
+{
+  "image": "titles_02.png",
+  "size": [
+    1774,
+    887
+  ],
+  "words": [
+    {
+      "word": "ARCADE",
+      "x": 37,
+      "y": 160,
+      "width": 525,
+      "height": 185
+    },
+    {
+      "word": "CONTINUE",
+      "x": 605,
+      "y": 162,
+      "width": 570,
+      "height": 176
+    },
+    {
+      "word": "EXIT",
+      "x": 1265,
+      "y": 152,
+      "width": 445,
+      "height": 207
+    },
+    {
+      "word": "MENU",
+      "x": 41,
+      "y": 575,
+      "width": 512,
+      "height": 200
+    },
+    {
+      "word": "PAUSE",
+      "x": 635,
+      "y": 574,
+      "width": 507,
+      "height": 203
+    },
+    {
+      "word": "RESUME",
+      "x": 1203,
+      "y": 579,
+      "width": 553,
+      "height": 193
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "image": "font_01.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "before_bytes": 1325408,
+  "after_bytes": 1228488,
+  "pixel_sha256": "75feb323d58a76a4c331ea237efc1f717fba3c2029129c44f892b27403f636d1",
+  "identical_pixels": true,
+  "fully_transparent_fraction": 0.5379945259698471,
+  "visible_glyph_frames_validated": 67,
+  "space_frame_max_alpha": 1,
+  "space_has_visible_glyph": false
+}

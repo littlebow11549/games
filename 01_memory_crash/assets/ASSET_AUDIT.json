@@ -1,0 +1,423 @@
+{
+  "summary": {
+    "required_missing": [],
+    "optional_missing": [
+      "pic/branding/blade_01.png",
+      "pic/fx/fx_01.png",
+      "music/bgm_02.mp3",
+      "video/vid_01.webm"
+    ],
+    "dimension_mismatches": [
+      "pic/background/bg_01.png",
+      "pic/branding/logo_01.png",
+      "pic/branding/icon_01.png",
+      "pic/titles/titles_01.png",
+      "pic/titles/titles_02.png",
+      "pic/ui/ui_01.png",
+      "pic/gems/gems_01.png",
+      "pic/numbers/numbers_01.png",
+      "pic/font/font_01.png",
+      "pic/howto/howto_01.png",
+      "pic/character/char_01.png"
+    ],
+    "source_delivery_only": true,
+    "runtime_integration": "See docs/handoffs/2026-11-09-character-animation-audit.md"
+  },
+  "assets": [
+    {
+      "path": "pic/background/bg_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        1080,
+        1920
+      ],
+      "bytes": 1315646,
+      "dimensions": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "transparent_pixels": false,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/branding/logo_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        900,
+        700
+      ],
+      "bytes": 1284111,
+      "dimensions": [
+        1422,
+        1106
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/branding/icon_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        512,
+        512
+      ],
+      "bytes": 1299646,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "transparent_pixels": false,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/titles/titles_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1057785,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/titles/titles_02.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        1024
+      ],
+      "bytes": 905479,
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/ui/ui_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1073866,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/gems/gems_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        1536
+      ],
+      "bytes": 1272561,
+      "dimensions": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/numbers/numbers_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        512
+      ],
+      "bytes": 1514559,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/font/font_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1228488,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/howto/howto_01.png",
+      "required": false,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        512
+      ],
+      "bytes": 989994,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/character/char_01.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 2208656,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true,
+      "exact_target_dimensions": false
+    },
+    {
+      "path": "pic/character/char_anim_idle.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1431490,
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true
+    },
+    {
+      "path": "pic/character/char_anim_happy.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1444753,
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true
+    },
+    {
+      "path": "pic/character/char_anim_sad.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1369431,
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true
+    },
+    {
+      "path": "pic/character/char_anim_celebrate.png",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1276872,
+      "dimensions": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "transparent_pixels": true
+    },
+    {
+      "path": "music/bgm_01.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 1677104,
+      "seconds": 69.851429,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "sfx/sfx_01.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 9447,
+      "seconds": 0.365714,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "sfx/sfx_02.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 13835,
+      "seconds": 0.548571,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "sfx/sfx_03.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 12581,
+      "seconds": 0.496327,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "sfx/sfx_04.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 37659,
+      "seconds": 1.541224,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "sfx/sfx_05.mp3",
+      "required": true,
+      "present": true,
+      "target_dimensions": null,
+      "bytes": 40167,
+      "seconds": 1.645714,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    {
+      "path": "video/vid_warp.webm",
+      "required": true,
+      "present": true,
+      "target_dimensions": [
+        1080,
+        1920
+      ],
+      "bytes": 21143016,
+      "seconds": 4.0,
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "exact_target_dimensions": true
+    },
+    {
+      "path": "pic/branding/blade_01.png",
+      "required": false,
+      "present": false,
+      "target_dimensions": [
+        400,
+        900
+      ]
+    },
+    {
+      "path": "pic/fx/fx_01.png",
+      "required": false,
+      "present": false,
+      "target_dimensions": [
+        1536,
+        512
+      ]
+    },
+    {
+      "path": "music/bgm_02.mp3",
+      "required": false,
+      "present": false,
+      "target_dimensions": null
+    },
+    {
+      "path": "video/vid_01.webm",
+      "required": false,
+      "present": false,
+      "target_dimensions": [
+        1080,
+        1920
+      ]
+    }
+  ],
+  "full_source_validation": {
+    "media_files_fully_decoded": [
+      "sfx/sfx_01.mp3",
+      "sfx/sfx_03.mp3",
+      "sfx/sfx_02.mp3",
+      "sfx/sfx_04.mp3",
+      "sfx/sfx_05.mp3",
+      "video/vid_warp.webm",
+      "music/bgm_01.mp3"
+    ],
+    "failed_files": [],
+    "game_png_files_verified": 53,
+    "homepage_png_files_verified": 1,
+    "total_source_png_verified": 54
+  }
+}

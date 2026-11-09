@@ -148,6 +148,7 @@
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
     hud.classList.toggle("hidden", name !== "game");
+    window.MemoryCrashMascot?.show(name);
   }
 
   // ---------- 愛心 ----------
@@ -163,6 +164,9 @@
     "MISS": "miss", "AGAIN": "again",
   };
   function banner(text, cls = "") {
+    if (text === "PERFECT") window.MemoryCrashMascot?.play("celebrate", 1250);
+    else if (text === "MISS") window.MemoryCrashMascot?.play("sad", 1100);
+    else window.MemoryCrashMascot?.play("idle");
     const f = BANNER_IMG[text];
     perfectBan.innerHTML = f
       ? `<img class="word" src="assets/source/pic/titles/${f}.png" alt="${text}">`
@@ -308,6 +312,7 @@
   function onTimeout() {
     if (!state.accepting) return;
     state.accepting = false; board.classList.add("locked"); stopTimer();
+    window.MemoryCrashMascot?.play("sad", 1100);
     sndWrong(); shakeScreen(); state.combo = 0;
     state.hearts--; renderHearts();
     if (state.hearts <= 0) { setTimeout(gameOver, 500); }
@@ -325,6 +330,7 @@
 
     if (idx === expected) {
       // 正確
+      window.MemoryCrashMascot?.play("happy", 1000);
       beep(SCALE[idx % SCALE.length], .14, "sine", .2);
       gem.classList.add("lit", "correct");
       setTimeout(() => gem.classList.remove("lit", "correct"), 260);
@@ -344,6 +350,7 @@
       state.accepting = false;
       board.classList.add("locked");
       stopTimer();
+      window.MemoryCrashMascot?.play("sad", 1100);
       gem.classList.add("wrong");
       setTimeout(() => gem.classList.remove("wrong"), 360);
       sndWrong(); shakeScreen();
@@ -436,6 +443,7 @@
   const _exitLabelEl = $("#exitGameLabel");
   if (_exitLabelEl) _exitLabelEl.textContent = exitLabels[exitLanguage] || exitLabels["en"];
   function exitGame() {
+    window.MemoryCrashMascot?.stop();
     state.accepting = false;
     stopMusic();
     Object.values(SFX).forEach(audio => audio.pause());

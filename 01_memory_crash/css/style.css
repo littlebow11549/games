@@ -598,3 +598,42 @@ html, body {
   animation: timerPulse .4s ease-in-out infinite;
 }
 @keyframes timerPulse { 0%,100%{ opacity: 1;} 50%{ opacity: .55;} }
+/* Sequential character sprites: shared controller preserves aspect ratio. */
+.mascot{position:relative;display:grid;place-items:center;flex-shrink:0;width:140px;height:160px;background:url("../assets/source/pic/character/char_placeholder.svg") center/contain no-repeat;pointer-events:none}
+.mascot canvas{display:block;width:100%;height:100%;opacity:0}
+.mascot.loaded{background:none}.mascot.loaded canvas{opacity:1}
+.menu-char.mascot{width:140px;height:160px;max-height:23vh;animation:none;margin:0 auto;filter:drop-shadow(0 5px 8px #0004)}
+.game-reaction{display:flex;align-items:center;justify-content:center;gap:8px;min-height:72px;margin-top:6px;width:100%;max-width:330px}
+.game-reaction .game-char{width:66px;height:76px}
+.game-reaction .status-text{margin:0;max-width:235px;text-align:left;font-size:clamp(18px,5.4vw,22px);line-height:1.4;padding:0}
+.over-char{width:100px;height:112px;margin:-12px auto 4px}
+@media(max-height:740px){.game-reaction{min-height:60px}.game-reaction .game-char{width:54px;height:62px}.game-reaction .status-text{font-size:18px}.menu-char.mascot{width:110px;height:125px}#screen-game .board{max-width:min(330px,calc((100svh - 252px)*.7))}.over-char{width:75px;height:84px}}
+
+.menu-word{display:block;width:170px;max-width:90%;margin:auto;background-image:url("../assets/source/pic/titles/titles_02.png");background-repeat:no-repeat;pointer-events:none}
+.gold-btn:disabled .menu-word{filter:grayscale(1);opacity:.6}
+.menu-word[data-word="ARCADE"]{aspect-ratio:525/185;background-size:337.90476190476187% 479.4594594594595%;background-position:2.9623698959167335% 22.79202279202279%}
+.menu-word[data-word="CONTINUE"]{aspect-ratio:570/176;background-size:311.2280701754386% 503.97727272727275%;background-position:50.24916943521595% 22.78481012658228%}
+.menu-word[data-word="EXIT"]{aspect-ratio:445/207;background-size:398.6516853932584% 428.5024154589372%;background-position:95.18434913468774% 22.35294117647059%}
+.menu-word[data-word="MENU"]{aspect-ratio:512/200;background-size:346.484375% 443.49999999999994%;background-position:3.248811410459588% 83.69723435225619%}
+.menu-word[data-word="PAUSE"]{aspect-ratio:507/203;background-size:349.90138067061145% 436.94581280788174%;background-position:50.118389897395424% 83.91812865497076%}
+.menu-word[data-word="RESUME"]{aspect-ratio:553/193;background-size:320.7956600361664% 459.58549222797933%;background-position:98.52579852579852% 83.42939481268012%}
+
+.menu-panel{gap:7px;padding:12px 18px;border-width:16px;margin-top:6px;margin-bottom:0}
+.menu-char.mascot{width:180px;height:200px}
+.menu-word{height:30px;max-width:90%}
+.menu-word[data-word="ARCADE"]{width:85.14px}
+.menu-word[data-word="CONTINUE"]{width:97.16px}
+.menu-word[data-word="EXIT"]{width:64.49px}
+.menu-word[data-word="MENU"]{width:76.8px}
+.menu-word[data-word="PAUSE"]{width:74.93px}
+.menu-word[data-word="RESUME"]{width:85.96px}
+@media(max-height:740px){.menu-char.mascot{width:110px;height:125px}.menu-panel{gap:5px;padding:10px 18px}#screen-menu{padding-top:35px}.menu-panel .gold-btn{padding:5px 12px}.menu-word{height:24px}.menu-word[data-word="ARCADE"]{width:68.11px}.menu-word[data-word="CONTINUE"]{width:77.73px}.menu-word[data-word="EXIT"]{width:51.59px}.menu-word[data-word="MENU"]{width:61.44px}.menu-word[data-word="PAUSE"]{width:59.94px}.menu-word[data-word="RESUME"]{width:68.77px}}
+/* Keep the score summary, mascot and both actions visible on short phones. */
+@media(max-height:680px){
+  #screen-over .gameover-word{width:min(62%,230px);margin-bottom:8px}
+  #screen-over .over-char{width:62px;height:66px;margin:0 auto 2px}
+  #screen-over .over-score{font-size:14px;margin-bottom:12px}
+  #screen-over .over-score .score-big{font-size:28px;margin-bottom:4px}
+  #screen-over .over-panel{padding:16px;border-width:20px;gap:10px}
+  #screen-over .over-panel .gold-btn{padding:8px 12px}
+}

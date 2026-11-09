@@ -1,0 +1,78 @@
+[
+  {
+    "image": "character/char_01.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "before_bytes": 2339730,
+    "after_bytes": 2208656,
+    "pixel_sha256": "90c679865d93aab2d1cb971c85f615a851fc26bda09d5ec21a1ca8b94cf4fcea",
+    "identical_pixels": true
+  },
+  {
+    "image": "titles/titles_02.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "before_bytes": 964602,
+    "after_bytes": 905479,
+    "pixel_sha256": "bbe76cfd6125926525c258cd374169ddd4d70843f234126dd337ad59ea8bf84b",
+    "identical_pixels": true
+  },
+  {
+    "image": "character/char_anim_idle.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1566177,
+    "after_bytes": 1431490,
+    "pixel_sha256": "5c740ae0dd4ed369d4ea0416b6e9178c2c68f32682f9ea2f8fffd7fcd1c51188",
+    "identical_pixels": true,
+    "frames": 8
+  },
+  {
+    "image": "character/char_anim_happy.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1522787,
+    "after_bytes": 1444753,
+    "pixel_sha256": "0e1917fab5f5939b1c7cd6da7402496d711343ad32b4334adb5d113cd1195a38",
+    "identical_pixels": true,
+    "frames": 8
+  },
+  {
+    "image": "character/char_anim_sad.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1445253,
+    "after_bytes": 1369431,
+    "pixel_sha256": "6d23ea99899d6affe8b00f3031818021a5f5431a58ef4fa94a5d809c94a16f33",
+    "identical_pixels": true,
+    "frames": 8
+  },
+  {
+    "image": "character/char_anim_celebrate.png",
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "before_bytes": 1385342,
+    "after_bytes": 1276872,
+    "pixel_sha256": "075ea9e8b6dcaa3953af368fd503cd962fb56212fbcdccfb7da4d2c6fab25a54",
+    "identical_pixels": true,
+    "frames": 8
+  }
+]

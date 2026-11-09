@@ -4,6 +4,10 @@
 
 ## 最新交付
 
+- [2026-11-09 巴哥四種連續動態、選單字藝、影片與全素材核對](handoffs/2026-11-09-character-animation-audit.md)
+
+- [2026-11-09 單張金色立體字型圖集與字元對照](handoffs/2026-11-09-font-atlas.md)
+
 - [2026-11-09 縮小 Banner、遊戲新分頁與關閉按鈕](handoffs/2026-11-09-compact-banner-game-tabs.md)
 
 - [2026-11-09 移除頁首導覽、圖示與品牌句點，簡化 copyright](handoffs/2026-11-09-header-footer.md)

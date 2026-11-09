@@ -1,0 +1,16 @@
+{
+  "file": "vid_warp.webm",
+  "width": 1080,
+  "height": 1920,
+  "fps": 24,
+  "frames": 96,
+  "seconds": 4,
+  "codec": "VP9 lossless RGB",
+  "opaque": true,
+  "audio": false,
+  "source": "Original procedural animation",
+  "loop_endpoint_identical": true,
+  "decoded_first_frame_matches_source": true,
+  "first_frame_sha256": "0322304efdd0e3b2dcb15e467f2ce2ac22384f627164629e9fac2c242821b160",
+  "bytes": 21143016
+}
