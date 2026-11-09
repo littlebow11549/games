@@ -1,48 +1,21 @@
-# 🎮 Games 專案集
+# 🎮 Games
 
-本 repo 收錄多款小遊戲，**每款遊戲一個獨立資料夾**。
+純前端小遊戲合集，每款一個獨立資料夾。根目錄 `index.html` 是遊戲選單首頁。
 
-## 📁 資料夾命名規則
-```
-編號_遊戲名稱
-```
-- 兩位數編號 + 底線 + 英文名（小寫、用底線分隔）
-- 依製作順序遞增：`01_`, `02_`, `03_` …
+## 命名規則
+`編號_遊戲名稱`（兩位數編號遞增，英文小寫）：`01_memory_crash`、`02_...`
 
 | 編號 | 遊戲 | 資料夾 | 狀態 |
 |------|------|--------|------|
-| 01 | Memory Crash（記憶序列） | `01_memory_crash/` | 🟢 可玩（CSS 版）|
+| 01 | Memory Crash | `01_memory_crash/` | 🟢 可玩 |
 
-## 🏠 統一遊戲入口（Game Hub）
-根目錄的 `index.html` 是**遊戲選單首頁**：列出所有遊戲（含 icon），點卡片即可進入該款。
-新增遊戲時，只要在 `index.html` 裡的 `GAMES` 陣列加一筆（folder / name / desc / icon / status）即可自動出現。
+## 部署（GitHub Pages）
+Settings → Pages → Deploy from a branch → `claude/fervent-ride-4h0vjm` / root → Save
 
-## 🌐 部署成網站（GitHub Pages，一次性設定）
-程式已在 repo 裡，啟用 GitHub Pages 即可得到公開網址：
-1. 到 `https://github.com/littlebow11549/games` → **Settings** → 左側 **Pages**
-2. **Source** 選 **Deploy from a branch**
-3. **Branch** 選 `claude/fervent-ride-4h0vjm`、資料夾選 **/ (root)** → **Save**
-4. 等 1–2 分鐘，網址會是：
-   - 首頁：`https://littlebow11549.github.io/games/`
-   - 直接進遊戲：`https://littlebow11549.github.io/games/01_memory_crash/`
+- 首頁：`https://littlebow11549.github.io/games/`
+- 遊戲：`https://littlebow11549.github.io/games/01_memory_crash/`
 
-> 之後每次 `git push` 到該分支，Pages 會自動更新。
+## 新增遊戲
+建資料夾 `NN_name/`（內含 `index.html`），再到根目錄 `index.html` 的 `GAMES` 陣列加一筆。
 
-## 🤝 美術協作流程（人 × AI 分工）
-1. **AI**：先用純 CSS/SVG 做出可玩、風格到位的版本（placeholder 美術）。
-2. **AI**：凡是需要更高質感、CSS 做不出來的素材（真實寶石、3D Logo、特效影片…），
-   在該遊戲的 `assets/ASSET_SPEC.md` 寫好**規格＋提示詞**。
-3. **人**：用外部工具（圖片／影片生成）產出素材，依「檔名」放進 `assets/img/`、`assets/video/`。
-4. **人**：跟 AI 說「素材更新了」。
-5. **AI**：把素材接進遊戲，替換 placeholder，並提供預覽。
-
-## 🖥️ 跨裝置接手
-每款遊戲資料夾內都有：
-- `README.md` — 該遊戲說明、怎麼跑、檔案結構
-- `PROGRESS.md` — 目前進度、待辦清單、素材狀態、交接筆記
-- `assets/ASSET_SPEC.md` — 素材規格與提示詞總表
-
-> 在任何裝置開新 session，先讀該遊戲的 `PROGRESS.md` 即可接續工作。
-
-## ▶️ 怎麼玩
-直接用瀏覽器開啟各遊戲資料夾裡的 `index.html` 即可（純前端，無需安裝）。
+> 各遊戲資料夾內有 `README.md`（說明）、`PROGRESS.md`（進度）、`assets/ASSET_SPEC.md`（素材規格與提示詞）。
