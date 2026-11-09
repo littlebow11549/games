@@ -1081,3 +1081,21 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   display: block; width: min(76%, 280px); height: auto; margin: 0 auto;
   filter: drop-shadow(0 5px 12px rgba(0,0,0,.5));
 }
+
+/* 全身待機動畫 canvas（取代靜態 img；sprite 單格為正方） */
+.idle-char { overflow: visible !important; background: none !important; display: block !important; }
+.idle-char canvas {
+  display: block; width: 100%; height: 100%;
+  transform: none !important; transform-origin: 50% 50% !important;
+  filter: drop-shadow(0 16px 26px rgba(0,0,0,.55));
+  opacity: 0; transition: opacity .25s ease;
+}
+.idle-char canvas.idle-ready { opacity: 1; }
+.title-char.hero-char.idle-char {
+  aspect-ratio: 1 / 1 !important; width: auto !important; height: 470px !important;
+  max-height: none !important; margin: -6px auto 0 !important;
+}
+.menu-char.hero-char.idle-char {
+  aspect-ratio: 1 / 1 !important; width: auto !important; height: 280px !important;
+  max-height: none !important; margin: -4px auto -20px !important;
+}

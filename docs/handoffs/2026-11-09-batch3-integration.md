@@ -81,3 +81,10 @@ GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（�
 - `#screen-over` → `gameover_hero.webp`（67KB）；`#modal` → `howto_hero.webp`（63KB）；舊低解析 runtime 已移除。
 - 另交付 `pug_idle_01`（8格待機 sprite，444×444 頭/半身）＋ `hero-idle.js`：**暫不接入**，因會使首頁/選單從全身退回半身，與使用者「要全身」衝突。若日後想要待機呼吸/眨眼動畫，可改以全身版重做再接。
 - 驗證：Playwright 兩畫面 hero 字藝置中清晰、風格一致、無 console/pageerror。
+
+## 全身待機動畫接入（pug_idle_full）
+使用者提供全身版待機 sprite（1774×887，4×2＝8 格，各 443×443，透明全身）。存為 `source/pic/character/pug_idle_full.png` + `runtime/pic/batch3/pug_idle_full.webp`(423KB)。
+- 首頁/選單主角由靜態 `<img>` 改為 `<canvas data-hero-idle>`，新增 `js/hero-idle.js`（8 格時間軸 durations=[1500,520,90,110,90,520,700,470]=4s，含眨眼、相鄰格淡入過渡；非作用畫面/隱藏/reduced-motion 暫停）。
+- CSS：`.idle-char canvas` 重置舊 `.mascot canvas` 的 scale(1.62/1.78) transform（否則放大 1.62x）；square aspect，title 470px、menu 280px。
+- 保留 GPT 半身 `pug_idle_01` 不用；全身版解決「要全身」需求。
+- 驗證：Playwright canvas 有繪製、循環取樣 6 種不同值（確認換格/眨眼）、全身置中、無 console/pageerror。
