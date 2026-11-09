@@ -57,3 +57,6 @@
 - **遊戲封面 KV**：使用者圖（1254×1254 方形）→ `source/pic/kv/kv_cover.png` + runtime `kv_cover.webp`(99KB)。遊戲中心（根 `index.html` / `assets/js/hub.js`）的遊戲卡片 icon 由 `icon_01.png` 改為此 KV 封面。
 - **漂浮寶石加大**：`floatgems.js` SCALE 3.2 → **5.5**（使用者要求至少 5x），首頁/選單寶石明顯放大成寶石場。
 - 驗證（Playwright）：OPTION 字藝置中；hub 卡片顯示 KV 封面；首頁/選單大寶石就位；無 console/pageerror。
+
+## 設計需求：GAME OVER 字藝（交 GPT）
+使用者要求 GAME OVER 文字比照 OPTION 做成字藝圖。已於 `assets/ASSETS.md` 第五批開出 **T1 `pic/titles/gameover_hero.png`**（1774×887 透明、金色立體卡通字、與 OPTION/START 同風格、水平置中）。GPT 交付後，`#screen-over` 的 `GAME OVER` h2 改為 `<img class="title-word">`（比照 `option_hero` 接法）＋ runtime 壓縮 webp。選做 T2：HOW TO PLAY 標題字藝一致化。
