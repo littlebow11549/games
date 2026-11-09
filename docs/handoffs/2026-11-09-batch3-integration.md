@@ -44,3 +44,9 @@
 
 ### 驗證（本輪）
 - Playwright 430×820：首頁、選單漂浮寶石就位、START 定位正常、壓縮後畫質清晰；YOUR TURN 置中（中線落於 YOUR/TURN 間）；無 console / pageerror。
+
+## 第三輪（全身主角 + OPTION 續玩 + 漂浮寶石放大）
+- **全身主角接入**：GPT 於 `codex/full-body-chibi-pug` 交付 `pug_fullbody.png`（1122×1402 透明全身站姿，完整頭到腳）。只取素材自接（未合併其基於舊版的 css/html）：首頁與選單 `.hero-img` 由 `pug_head` 改 `pug_fullbody`，移除底部柔化 mask，框架改 `aspect-ratio:1122/1402` 完整置中顯示。runtime webp 壓縮為 lossy 134KB（來源無損保留）。來源交付 `PUG_FULLBODY_DELIVERY.json` 與 GPT 交接 `docs/handoffs/2026-11-09-fullbody-chibi-pug.md` 一併帶入。
+- **OPTION 回到遊戲**：新增 `#btnResume`「▶ BACK TO GAME」（置頂、綠光強調）。僅在遊戲中按齒輪進 OPTION 時顯示（`btnOptionTop` 設 hidden=false；title/menu 入口設 hidden=true）。點擊回到遊戲並重播本關序列續玩（`show("game")` + `nextLevel(false)`）。
+- **漂浮寶石放大**：`floatgems.js` 加 `SCALE=3.2`，整體放大約 3.2x，首頁/選單呈現有份量的漂浮寶石場。
+- 驗證（Playwright 430×820）：全身主角完整置中、START 在下方；選單主角＋大寶石環繞；OPTION 顯示 BACK TO GAME 且續玩成功（resumedToGame=true）；無 console/pageerror。

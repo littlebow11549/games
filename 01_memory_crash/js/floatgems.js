@@ -17,6 +17,8 @@
     { x: 96, y: 11, s: 26, d: 10.0, delay: 2.1, g: 4,  amp: 18, rot: -11 },
   ];
 
+  const SCALE = 3.2;   // 漂浮寶石整體放大倍率（使用者要求放大）
+
   function spritePos(i) {
     // 與 game.js buildBoard 相同的切圖座標（background-size:400% 300%）
     return `${(i % 4) * 100 / 3}% ${Math.floor(i / 4) * 50}%`;
@@ -31,8 +33,8 @@
       el.className = "fg";
       el.style.left = c.x + "%";
       el.style.top = c.y + "%";
-      el.style.width = c.s + "px";
-      el.style.height = c.s + "px";
+      el.style.width = Math.round(c.s * SCALE) + "px";
+      el.style.height = Math.round(c.s * SCALE) + "px";
       el.style.backgroundPosition = spritePos(c.g);
       el.style.setProperty("--amp", c.amp + "px");
       el.style.setProperty("--rot", c.rot + "deg");

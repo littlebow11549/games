@@ -540,8 +540,9 @@
       showMenu();
     };
     $("#btnStart").addEventListener("click", enterMenu);
-    $("#btnOptionTitle").addEventListener("click", () => show("option"));
-    $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); stopTimer(); show("option"); });
+    $("#btnOptionTitle").addEventListener("click", () => { $("#btnResume").hidden = true; show("option"); });
+    $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); stopTimer(); $("#btnResume").hidden = false; show("option"); });
+    $("#btnResume").addEventListener("click", () => { $("#btnResume").hidden = true; show("game"); nextLevel(false); });
 
     // 主選單
     $("#btnArcade").addEventListener("click", () => requestStart(false));
@@ -549,7 +550,7 @@
       const best = Number(localStorage.getItem("mc_best") || 1);
       if (best > 1) requestStart(false, best);
     });
-    $("#btnMenuOption").addEventListener("click", () => show("option"));
+    $("#btnMenuOption").addEventListener("click", () => { $("#btnResume").hidden = true; show("option"); });
     $("#btnExit").addEventListener("click", exitGame);
 
     $("#btnHome").addEventListener("click", showMenu);
