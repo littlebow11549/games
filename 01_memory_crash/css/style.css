@@ -503,3 +503,60 @@ html, body {
 .exit-game>span:first-child{font-size:20px;line-height:1}
 .exit-game:hover{border-color:#f8d577;color:#f8d577}
 .exit-game:focus-visible{outline:3px solid #f8d577;outline-offset:3px}
+
+/* ============================================================
+   手感升級：分數 / 連擊 / 粒子 / 震動 / +N
+   ============================================================ */
+.score-tag {
+  align-self: center; margin: 2px auto 2px; font-family: "Luckiest Guy", Impact, sans-serif;
+  font-size: 20px; color: var(--gold-1); -webkit-text-stroke: 1px #123;
+  text-shadow: 0 2px 0 #11224d; letter-spacing: 1px;
+}
+.score-tag.bump { animation: scoreBump .25s ease; }
+@keyframes scoreBump { 0%,100%{ transform: scale(1);} 40%{ transform: scale(1.25); color:#fff;} }
+
+/* 連擊彈出 */
+.combo-pop {
+  position: absolute; top: 20%; left: 50%; transform: translate(-50%,0) scale(.4);
+  font-family: "Luckiest Guy", Impact, sans-serif; font-size: 34px; letter-spacing: 1px;
+  color: #ffd34e; -webkit-text-stroke: 2px #6b2d00;
+  text-shadow: 0 0 14px rgba(255,180,60,.8); opacity: 0; pointer-events: none; z-index: 8;
+}
+.combo-pop.show { animation: comboShow .7s ease; }
+@keyframes comboShow {
+  0% { transform: translate(-50%,10px) scale(.4); opacity: 0; }
+  30%{ transform: translate(-50%,0) scale(1.15); opacity: 1; }
+  75%{ opacity: 1; } 100%{ transform: translate(-50%,-18px) scale(1); opacity: 0; }
+}
+
+/* 點錯畫面震動 */
+.app.shake { animation: appShake .4s cubic-bezier(.36,.07,.19,.97); }
+@keyframes appShake {
+  10%,90%{ transform: translateX(-2px);} 20%,80%{ transform: translateX(4px);}
+  30%,50%,70%{ transform: translateX(-7px);} 40%,60%{ transform: translateX(7px);}
+}
+
+/* 過關星星粒子 */
+.particle {
+  position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; pointer-events: none;
+  color: #ffe17a; font-size: 14px; z-index: 7;
+  animation: particleFly .72s ease-out forwards;
+}
+@keyframes particleFly {
+  0%   { transform: translate(-50%,-50%) translate(0,0) scale(.4); opacity: 1; }
+  100% { transform: translate(-50%,-50%) translate(var(--dx), var(--dy)) scale(1.1) rotate(var(--rot)); opacity: 0; }
+}
+
+/* 正確 +N 浮字 */
+.float-plus {
+  position: absolute; left: 50%; top: 10%; transform: translateX(-50%);
+  font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 15px; color: #fff6c0;
+  text-shadow: 0 1px 3px rgba(0,0,0,.6); pointer-events: none; z-index: 9;
+  animation: floatUp .7s ease-out forwards;
+}
+@keyframes floatUp { 0%{ opacity:0; transform:translateX(-50%) translateY(6px);} 20%{opacity:1;} 100%{ opacity:0; transform:translateX(-50%) translateY(-22px);} }
+.over-score .score-big {
+  font-family: "Luckiest Guy", Impact, sans-serif; font-size: 40px; color: var(--gold-1);
+  -webkit-text-stroke: 1.5px #123; text-shadow: 0 3px 0 #11224d; margin-bottom: 8px;
+}
+.over-score .score-big b { color: #fff; }

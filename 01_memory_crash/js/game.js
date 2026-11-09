@@ -58,6 +58,9 @@
   }
   const perfectBan  = $("#perfectBanner");
   const statusText  = $("#statusText");
+  const appEl       = $("#app");
+  const scoreNum    = $("#scoreNum");
+  const comboPop    = $("#comboPop");
   const modal       = $("#modal");
   const soundState  = $("#soundState");
   const musicState  = $("#musicState");
@@ -173,6 +176,7 @@
     state.master = master;
     state.level = startLevel || (master ? 3 : 1);
     state.hearts = 3;
+    state.score = 0; state.combo = 0; updateScore();
     state.best = Number(localStorage.getItem("mc_best") || 1);
     buildBoard();
     renderHearts();
@@ -241,6 +245,38 @@
     step();
   }
 
+  // ---------- 手感：分數 / 連擊 / 粒子 / 震動 ----------
+  function updateScore() { if (scoreNum) scoreNum.textContent = state.score; const t = scoreNum && scoreNum.parentElement; if (t) { t.classList.remove("bump"); void t.offsetWidth; t.classList.add("bump"); } }
+  function floatPlus(gem, n) {
+    const el = document.createElement("span");
+    el.className = "float-plus"; el.textContent = "+" + n;
+    gem.appendChild(el); setTimeout(() => el.remove(), 700);
+  }
+  function showCombo(c) {
+    if (!comboPop || c < 2) return;
+    comboPop.textContent = "COMBO x" + c;
+    comboPop.classList.remove("show"); void comboPop.offsetWidth; comboPop.classList.add("show");
+  }
+  function shakeScreen() {
+    if (!appEl) return;
+    appEl.classList.remove("shake"); void appEl.offsetWidth; appEl.classList.add("shake");
+    setTimeout(() => appEl.classList.remove("shake"), 420);
+  }
+  function burstParticles() {
+    const n = 16;
+    for (let i = 0; i < n; i++) {
+      const p = document.createElement("span");
+      p.className = "particle"; p.textContent = "★";
+      const ang = (Math.PI * 2 * i) / n + Math.random() * 0.4;
+      const dist = 70 + Math.random() * 60;
+      p.style.setProperty("--dx", Math.cos(ang) * dist + "px");
+      p.style.setProperty("--dy", Math.sin(ang) * dist + "px");
+      p.style.setProperty("--rot", (Math.random() * 360 | 0) + "deg");
+      p.style.color = ["#ffe17a", "#8fe0ff", "#5effa0", "#ff8aa0"][i % 4];
+      board.appendChild(p); setTimeout(() => p.remove(), 760);
+    }
+  }
+
   function onGemClick(idx) {
     if (!state.accepting) return;
     const expected = state.sequence[state.playerStep];
@@ -251,6 +287,10 @@
       beep(SCALE[idx % SCALE.length], .14, "sine", .2);
       gem.classList.add("lit", "correct");
       setTimeout(() => gem.classList.remove("lit", "correct"), 260);
+      state.combo++;
+      const gain = 10 * state.combo;         // 連擊越高分越多
+      state.score += gain;
+      updateScore(); floatPlus(gem, gain); showCombo(state.combo);
       state.playerStep++;
       if (state.playerStep >= state.sequence.length) {
         levelClear();
@@ -261,7 +301,8 @@
       board.classList.add("locked");
       gem.classList.add("wrong");
       setTimeout(() => gem.classList.remove("wrong"), 360);
-      sndWrong();
+      sndWrong(); shakeScreen();
+      state.combo = 0;
       state.hearts--;
       renderHearts();
       if (state.hearts <= 0) {
@@ -278,7 +319,9 @@
     state.accepting = false;
     board.classList.add("locked");
     banner("PERFECT", "");
-    sndPerfect();
+    sndPerfect(); burstParticles();
+    const bonus = 50 * state.level;          // 過關獎勵
+    state.score += bonus; updateScore();
     statusText.textContent = "太棒了！進入下一關";
     if (state.level > state.best) {
       state.best = state.level;
@@ -290,8 +333,12 @@
 
   function gameOver() {
     sndOver();
+    const bestScore = Math.max(Number(localStorage.getItem("mc_bestscore") || 0), state.score);
+    localStorage.setItem("mc_bestscore", String(bestScore));
     $("#finalLevel").textContent = state.level;
     $("#bestLevel").textContent = Math.max(state.best, state.level);
+    const fs = $("#finalScore"); if (fs) fs.textContent = state.score;
+    const bs = $("#bestScore"); if (bs) bs.textContent = bestScore;
     show("over");
   }
 

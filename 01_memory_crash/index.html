@@ -65,7 +65,9 @@
 
     <!-- ========== 遊戲畫面 ========== -->
     <section id="screen-game" class="screen">
+      <div id="scoreTag" class="score-tag">★ <span id="scoreNum">0</span></div>
       <div id="perfectBanner" class="banner game-banner">READY</div>
+      <div id="comboPop" class="combo-pop" aria-hidden="true"></div>
       <div id="board" class="board"><!-- 寶石由 JS 產生 --></div>
       <div id="statusText" class="status-text">看好寶石發光的順序</div>
     </section>
@@ -74,8 +76,9 @@
     <section id="screen-over" class="screen">
       <img class="title-word gameover-word" src="assets/source/pic/titles/gameover.png" alt="GAMEOVER" />
       <div class="over-score">
+        <div class="score-big">★ <b id="finalScore">0</b></div>
         <div>到達關卡 <b id="finalLevel">1</b></div>
-        <div class="best">最佳紀錄 LV <b id="bestLevel">1</b></div>
+        <div class="best">最高分 <b id="bestScore">0</b>　·　最佳 LV <b id="bestLevel">1</b></div>
       </div>
       <div class="panel over-panel">
         <button id="btnAgain" class="gold-btn" aria-label="AGAIN"><img class="btn-word" src="assets/source/pic/titles/again.png" alt="AGAIN" /></button>
