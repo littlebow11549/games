@@ -1,0 +1,71 @@
+{
+  "source": "source/pic/character/pug_idle_01.png",
+  "runtime": "runtime/pic/batch3/pug_idle_01.webp",
+  "size": [
+    1774,
+    887
+  ],
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 444,
+      "height": 444
+    },
+    {
+      "x": 444,
+      "y": 0,
+      "width": 443,
+      "height": 444
+    },
+    {
+      "x": 887,
+      "y": 0,
+      "width": 443,
+      "height": 444
+    },
+    {
+      "x": 1330,
+      "y": 0,
+      "width": 444,
+      "height": 444
+    },
+    {
+      "x": 0,
+      "y": 444,
+      "width": 444,
+      "height": 443
+    },
+    {
+      "x": 444,
+      "y": 444,
+      "width": 443,
+      "height": 443
+    },
+    {
+      "x": 887,
+      "y": 444,
+      "width": 443,
+      "height": 443
+    },
+    {
+      "x": 1330,
+      "y": 444,
+      "width": 444,
+      "height": 443
+    }
+  ],
+  "durations_ms": [
+    850,
+    400,
+    90,
+    110,
+    90,
+    400,
+    450,
+    610
+  ],
+  "loop_ms": 3000,
+  "pixel_identical": true,
+  "rgba_sha256": "861075317b156035cb8cafe3998564545c847858e3c05b277d5093b866a351b9"
+}

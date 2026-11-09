@@ -458,3 +458,9 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 - GAME OVER：`#screen-over` 的 `<h2 class="screen-title gameover-title">GAME OVER</h2>` 改為 `<img class="title-word">`（比照 OPTION 的 `option_hero`），runtime 壓成 lossy webp。
 - HOW TO PLAY：`#modal` 的 `<h3 class="modal-title">HOW TO PLAY</h3>` 同樣改為字藝圖。
 - COMBO：字藝圖 `titles_fx_combo_v3.webp` **已交付但遊戲仍用純文字**顯示「COMBO x2」。Claude 可直接接入（字藝圖為底 + 倍率數字覆層），不需新素材。
+
+
+### 2026-11-10 新需求交付
+- T1 GAME OVER、T2 HOW TO PLAY 已交付並接入：原生1774×887 PNG與逐像素一致無損WebP；COMBO已接既有字藝＋倍率。
+- KV5b待機：pug_idle_01.png 4×2八格，1774×887；每格約443/444px，3秒循環。preview/pug_idle.html 可播放，正式角色尚未改接。
+- T3一般按鈕字藝仍為選做未製作。詳見根目錄 docs/handoffs/2026-11-10-extra-titles-idle.md。

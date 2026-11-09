@@ -310,7 +310,13 @@
   }
   function showCombo(c) {
     if (!comboPop || c < 2) return;
-    comboPop.textContent = "COMBO x" + c;
+    const art = document.createElement("img");
+    art.src = "assets/runtime/pic/batch3/titles_fx_combo_v3.webp";
+    art.alt = "COMBO";
+    const multiplier = document.createElement("span");
+    multiplier.className = "combo-multiplier";
+    multiplier.textContent = "×" + c;
+    comboPop.replaceChildren(art, multiplier);
     comboPop.classList.remove("show"); void comboPop.offsetWidth; comboPop.classList.add("show");
   }
   function shakeScreen() {

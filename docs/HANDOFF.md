@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-10 新標題、COMBO 與八格待機圖集](handoffs/2026-11-10-extra-titles-idle.md)：標題已接入；待機附獨立播放器及錄影。
+
 - [2026-11-10 主視覺 Icon、Banner 與 OPTION 字藝](handoffs/2026-11-10-hero-brand-refresh.md)：三張新圖與無損版本、首頁／遊戲接入、六語系驗證。
 - [2026-11-09 全身 chibi 主角交付（Codex）](handoffs/2026-11-09-fullbody-chibi-pug.md)：pug_fullbody 全身站姿；Claude 已接入首頁/選單。
 

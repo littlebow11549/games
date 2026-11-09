@@ -1007,6 +1007,13 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 #screen-option .option-art { width: 340px; height: 130px; margin: 8px auto 16px; background: none; padding: 0; flex-shrink: 0; }
 .option-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
+.heading-art img { display:block; width:100%; height:100%; object-fit:contain; }
+#screen-over .gameover-title.heading-art { width:340px; height:105px; flex-shrink:0; margin:0 auto 4px; padding:0; background:none; }
+.modal-title.heading-art { width:100%; height:78px; margin:0 auto 8px; }
+.combo-pop { width:250px; height:125px; }
+.combo-pop img { display:block; width:100%; height:100%; object-fit:contain; }
+.combo-multiplier { position:absolute; right:8px; bottom:0; padding:0 8px; border-radius:10px; background:#061a3aee; color:#ffe17a; font:900 26px/1.2 Inter, sans-serif; -webkit-text-stroke:0; text-shadow:0 2px 3px #000; }
+
 /* ============================================================
    漂浮動態寶石（首頁/選單背景，使用現成 gems_01 sprite）
    ============================================================ */

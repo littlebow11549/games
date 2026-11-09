@@ -15,7 +15,7 @@
 - 首頁與遊戲頁 favicon 改為 `icon_02.png`，舊 icon 保留；favicon 很小時完整字樣可能無法辨讀，未另繪簡化版。
 - `index.html` Banner 使用 picture；桌面顯示橫幅，760px 以下使用同系列方形圖置於文案上方。圖片採 contain，不把角色裁去；保留原六語系文案、入口與最愛功能。
 - `01_memory_crash/index.html` OPTION 頁標題改為專用字藝，alt 保留 OPTION；CSS 使用 contain。一般設定按鈕文字保留原可操作文字。
-- 本批沒有修改主角全身修正分支的檔案內容；PR #2 的全身角色變更仍由該 PR 獨立交付。
+- 後續已合併 Claude 至4a50573，其正式首頁／選單已接全身角色；保留其最新角色與漂浮寶石調整。
 
 ## 驗證
 
