@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <button id="btnExitGame" class="exit-game" type="button"><span aria-hidden="true">×</span><span id="exitGameLabel">Close game</span></button>
-  <button id="btnMusicQuick" class="music-quick" type="button" aria-label="Toggle music"><span id="musicQuickIcon">🔊</span></button>
   <!-- 遊戲外框（手機直式比例） -->
   <div id="app" class="app">
+    <button id="btnExitGame" class="exit-game" type="button"><span aria-hidden="true">×</span><span id="exitGameLabel">Close game</span></button>
+    <button id="btnMusicQuick" class="music-quick" type="button" aria-label="Toggle music"><span id="musicQuickIcon">🔊</span></button>
     <div class="grid-floor"></div>
     <video id="warpVideo" class="warp-video" data-src="assets/runtime/video/vid_warp.webm" muted loop playsinline preload="none" aria-hidden="true"></video>
     <div id="fxLayer" class="fx-layer" aria-hidden="true"></div>
@@ -133,6 +133,18 @@
     </div>
   </div>
 
+  <script>
+    /* 自適應：整個 430x820 設計等比縮放置中，任何裝置都看得到全局 */
+    (function () {
+      function fit() {
+        var s = Math.min(window.innerWidth / 430, window.innerHeight / 820);
+        document.documentElement.style.setProperty('--fit', s);
+      }
+      window.addEventListener('resize', fit);
+      window.addEventListener('orientationchange', fit);
+      fit();
+    })();
+  </script>
   <script src="js/presentation.js"></script>
   <script src="js/mascot.js"></script>
   <script src="js/game.js"></script>
