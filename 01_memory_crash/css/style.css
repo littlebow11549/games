@@ -409,3 +409,30 @@ html, body {
   .blade { height: 80px; margin: 16px 0 18px; }
   .screen { padding-top: 58px; }
 }
+
+/* ============================================================
+   主視覺文字（word-art 圖，切自 titles_01）
+   ============================================================ */
+.title-word {
+  width: min(72%, 320px); height: auto; display: block; margin: 4px auto 22px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.5));
+}
+.gameover-word { width: min(78%, 340px); }
+.title-start { background: none; border: 0; font-size: 0; padding: 0; }
+.title-start .word {
+  height: clamp(56px, 16vw, 86px); width: auto; display: block; margin: 0 auto;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.5));
+}
+.game-banner .word {
+  height: clamp(42px, 12vw, 66px); width: auto; display: inline-block;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.45));
+}
+.btn-word {
+  height: auto; width: auto; max-height: 30px; max-width: 80%;
+  display: block; margin: 0 auto; pointer-events: none;
+}
+.gold-btn.master .btn-word { opacity: .9; }
+.modal-word {
+  height: 32px; width: auto; display: block; margin: 0 auto 16px;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.5));
+}

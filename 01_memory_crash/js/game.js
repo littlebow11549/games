@@ -152,8 +152,15 @@
   }
 
   // ---------- 橫幅文字 ----------
+  const BANNER_IMG = {
+    "READY": "ready", "YOUR TURN": "your_turn", "PERFECT": "perfect",
+    "MISS": "miss", "AGAIN": "again",
+  };
   function banner(text, cls = "") {
-    perfectBan.textContent = text;
+    const f = BANNER_IMG[text];
+    perfectBan.innerHTML = f
+      ? `<img class="word" src="assets/source/pic/titles/${f}.png" alt="${text}">`
+      : text;
     perfectBan.className = "banner game-banner " + cls;
     // 觸發動畫
     void perfectBan.offsetWidth;
