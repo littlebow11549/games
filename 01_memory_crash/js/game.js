@@ -1,0 +1,287 @@
+/* ============================================================
+   MEMORY CRASH — 遊戲邏輯
+   玩法：寶石依序發光 → 玩家照順序點回 → 全對過關(PERFECT)
+         點錯扣愛心，愛心歸零 GAME OVER。
+   ============================================================ */
+(() => {
+  "use strict";
+
+  // ---------- 棋盤設定 ----------
+  const COLS = 3;
+  const ROWS = 4;
+  const CELLS = COLS * ROWS; // 12 顆寶石
+
+  // 12 種寶石顏色（對應設計稿的多彩寶石）
+  const GEM_COLORS = [
+    "#49c7ff", "#7fe0ff", "#9b7bff",
+    "#5effa0", "#3ddc84", "#b6ff4e",
+    "#ff7a3c", "#ff5ea8", "#ff4e4e",
+    "#ffb14e", "#c98b5a", "#eaf2ff",
+  ];
+
+  // 每顆寶石的音高（五聲音階，點擊有不同聲音）
+  const SCALE = [261.6, 293.7, 329.6, 392.0, 440.0, 523.3,
+                 587.3, 659.3, 784.0, 880.0, 987.8, 1046.5];
+
+  // ---------- 遊戲狀態 ----------
+  const state = {
+    level: 1,
+    hearts: 3,
+    sequence: [],     // 本關要記住的寶石序列（存 cell index）
+    playerStep: 0,    // 玩家目前點到第幾個
+    accepting: false, // 是否開放點擊
+    master: false,    // 大師模式
+    sound: true,
+    best: Number(localStorage.getItem("mc_best") || 1),
+  };
+
+  // ---------- DOM ----------
+  const $ = (sel) => document.querySelector(sel);
+  const screens = {
+    title:  $("#screen-title"),
+    option: $("#screen-option"),
+    game:   $("#screen-game"),
+    over:   $("#screen-over"),
+  };
+  const board       = $("#board");
+  const hud         = $("#hud");
+  const heartsWrap  = $("#hearts");
+  const levelNum    = $("#levelNum");
+  const perfectBan  = $("#perfectBanner");
+  const statusText  = $("#statusText");
+  const modal       = $("#modal");
+  const soundState  = document.querySelector(".sound-state");
+
+  // ---------- 音效（WebAudio，免檔案） ----------
+  let audioCtx = null;
+  function ac() {
+    if (!audioCtx) {
+      try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      catch (e) { audioCtx = null; }
+    }
+    return audioCtx;
+  }
+  function beep(freq, dur = 0.16, type = "sine", vol = 0.22) {
+    if (!state.sound) return;
+    const ctx = ac(); if (!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + dur + 0.02);
+  }
+  const sndGood   = () => { beep(660, .12, "triangle"); setTimeout(() => beep(990, .14, "triangle"), 90); };
+  const sndWrong  = () => beep(140, .32, "sawtooth", .25);
+  const sndPerfect= () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .18, "triangle"), i * 90)); };
+  const sndOver   = () => { [440, 349, 262, 196].forEach((f, i) => setTimeout(() => beep(f, .28, "sawtooth", .22), i * 160)); };
+
+  // ---------- 建立棋盤 ----------
+  const gems = [];
+  function buildBoard() {
+    board.innerHTML = "";
+    board.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+    gems.length = 0;
+    for (let i = 0; i < CELLS; i++) {
+      const gem = document.createElement("button");
+      gem.className = "gem";
+      gem.style.setProperty("--gem", GEM_COLORS[i % GEM_COLORS.length]);
+      gem.dataset.index = i;
+      const stone = document.createElement("span");
+      stone.className = "stone";
+      gem.appendChild(stone);
+      gem.addEventListener("click", () => onGemClick(i));
+      board.appendChild(gem);
+      gems.push(gem);
+    }
+  }
+
+  // ---------- 畫面切換 ----------
+  function show(name) {
+    Object.values(screens).forEach((s) => s.classList.remove("active"));
+    screens[name].classList.add("active");
+    hud.classList.toggle("hidden", name !== "game");
+  }
+
+  // ---------- 愛心 ----------
+  function renderHearts() {
+    [...heartsWrap.children].forEach((h, i) => {
+      h.classList.toggle("lost", i >= state.hearts);
+    });
+  }
+
+  // ---------- 橫幅文字 ----------
+  function banner(text, cls = "") {
+    perfectBan.textContent = text;
+    perfectBan.className = "banner game-banner " + cls;
+    // 觸發動畫
+    void perfectBan.offsetWidth;
+    perfectBan.classList.add("pop");
+  }
+
+  // ---------- 遊戲流程 ----------
+  function startGame(master) {
+    state.master = master;
+    state.level = master ? 3 : 1;
+    state.hearts = 3;
+    state.best = Number(localStorage.getItem("mc_best") || 1);
+    buildBoard();
+    renderHearts();
+    show("game");
+    nextLevel(true);
+  }
+
+  function seqLength() {
+    // 關卡越高序列越長
+    return Math.min(CELLS, 2 + state.level);
+  }
+  function flashTiming() {
+    // 關卡越高速度越快；大師模式更快
+    const base = state.master ? 420 : 560;
+    const on = Math.max(230, base - state.level * 22);
+    const gap = Math.max(90, (state.master ? 130 : 170) - state.level * 6);
+    return { on, gap };
+  }
+
+  function generateSequence() {
+    const seq = [];
+    let last = -1;
+    for (let i = 0; i < seqLength(); i++) {
+      let c;
+      do { c = Math.floor(Math.random() * CELLS); } while (c === last);
+      seq.push(c); last = c;
+    }
+    return seq;
+  }
+
+  function nextLevel(fresh) {
+    levelNum.textContent = state.level;
+    if (fresh) state.sequence = generateSequence();
+    state.playerStep = 0;
+    state.accepting = false;
+    board.classList.add("locked");
+    banner(fresh ? "READY" : "AGAIN", "");
+    statusText.textContent = "看好寶石發光的順序…";
+    setTimeout(playSequence, 650);
+  }
+
+  function playSequence() {
+    const { on, gap } = flashTiming();
+    let i = 0;
+    const step = () => {
+      if (i > 0) { // 關掉上一顆
+        const prev = gems[state.sequence[i - 1]];
+        prev.classList.remove("lit");
+      }
+      if (i >= state.sequence.length) {
+        setTimeout(() => {
+          state.accepting = true;
+          board.classList.remove("locked");
+          banner("YOUR TURN", "");
+          statusText.textContent = "換你了！照順序點回寶石";
+        }, 180);
+        return;
+      }
+      const gem = gems[state.sequence[i]];
+      gem.classList.add("lit");
+      beep(SCALE[state.sequence[i] % SCALE.length], on / 1000 * 0.9, "sine", .18);
+      i++;
+      setTimeout(step, on + gap);
+    };
+    step();
+  }
+
+  function onGemClick(idx) {
+    if (!state.accepting) return;
+    const expected = state.sequence[state.playerStep];
+    const gem = gems[idx];
+
+    if (idx === expected) {
+      // 正確
+      beep(SCALE[idx % SCALE.length], .14, "sine", .2);
+      gem.classList.add("lit", "correct");
+      setTimeout(() => gem.classList.remove("lit", "correct"), 260);
+      state.playerStep++;
+      if (state.playerStep >= state.sequence.length) {
+        levelClear();
+      }
+    } else {
+      // 錯誤
+      state.accepting = false;
+      board.classList.add("locked");
+      gem.classList.add("wrong");
+      setTimeout(() => gem.classList.remove("wrong"), 360);
+      sndWrong();
+      state.hearts--;
+      renderHearts();
+      if (state.hearts <= 0) {
+        setTimeout(gameOver, 500);
+      } else {
+        banner("MISS", "miss");
+        statusText.textContent = "記錯了！再看一次順序";
+        setTimeout(() => nextLevel(false), 1100);
+      }
+    }
+  }
+
+  function levelClear() {
+    state.accepting = false;
+    board.classList.add("locked");
+    banner("PERFECT", "");
+    sndPerfect();
+    statusText.textContent = "太棒了！進入下一關";
+    if (state.level > state.best) {
+      state.best = state.level;
+      localStorage.setItem("mc_best", String(state.best));
+    }
+    state.level++;
+    setTimeout(() => nextLevel(true), 1250);
+  }
+
+  function gameOver() {
+    sndOver();
+    $("#finalLevel").textContent = state.level;
+    $("#bestLevel").textContent = Math.max(state.best, state.level);
+    show("over");
+  }
+
+  // ---------- 選項 / 說明 ----------
+  function setSound(on) {
+    state.sound = on;
+    soundState.classList.toggle("muted", !on);
+    if (on) beep(660, .1, "triangle");
+  }
+
+  // ---------- 事件綁定 ----------
+  function bind() {
+    $("#btnStart").addEventListener("click", () => { ac(); startGame(false); });
+    $("#btnOptionTitle").addEventListener("click", () => show("option"));
+    $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
+
+    $("#btnHome").addEventListener("click", () => show("title"));
+    $("#btnMaster").addEventListener("click", () => { ac(); startGame(true); });
+    $("#btnSound").addEventListener("click", () => setSound(!state.sound));
+    $("#btnHowTo").addEventListener("click", () => modal.classList.remove("hidden"));
+    $("#btnCloseModal").addEventListener("click", () => modal.classList.add("hidden"));
+
+    $("#btnAgain").addEventListener("click", () => startGame(state.master));
+    $("#btnHomeOver").addEventListener("click", () => show("title"));
+
+    // 鍵盤：Enter 開始
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && screens.title.classList.contains("active")) {
+        ac(); startGame(false);
+      }
+    });
+  }
+
+  // ---------- 啟動 ----------
+  buildBoard();
+  renderHearts();
+  setSound(true);
+  bind();
+  show("title");
+})();

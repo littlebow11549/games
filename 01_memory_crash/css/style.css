@@ -1,0 +1,368 @@
+/* ============================================================
+   MEMORY CRASH — 樣式表
+   視覺風格參考：深藍科技背景 + 金色立體按鈕 + 黃色卡通標題
+   所有元件皆以純 CSS 刻畫（無外部圖片）
+   ============================================================ */
+
+:root {
+  --blue-deep:   #061a3a;
+  --blue-mid:    #0b3f7a;
+  --blue-bright: #1f7fe0;
+  --blue-glow:   #49c7ff;
+  --gold-1:      #ffe17a;
+  --gold-2:      #ffc02e;
+  --gold-3:      #e88a12;
+  --gold-edge:   #7a3d04;
+  --text-cream:  #fff6e0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  background: #05101f;
+  font-family: "Fredoka", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ---------- 遊戲外框（手機直式 9:16） ---------- */
+.app {
+  position: relative;
+  width: min(100vw, 430px);
+  height: min(100vh, 820px);
+  aspect-ratio: 43 / 82;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(130% 80% at 50% 8%, #1a5bb0 0%, #0c3a78 34%, var(--blue-deep) 72%, #03122b 100%);
+  box-shadow: 0 0 60px rgba(0,0,0,.6), inset 0 0 120px rgba(0,0,0,.35);
+}
+
+/* 透視地板格線 */
+.grid-floor {
+  position: absolute;
+  left: -20%; right: -20%; bottom: -2%;
+  height: 46%;
+  background-image:
+    linear-gradient(rgba(90,190,255,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,190,255,.35) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(380px) rotateX(62deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.15) 70%, transparent 100%);
+          mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,.15) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 50% 35%, transparent 40%, rgba(0,10,30,.55) 100%);
+  pointer-events: none;
+}
+
+/* ---------- 畫面切換 ---------- */
+.screen {
+  position: absolute; inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 26px 40px;
+  z-index: 3;
+}
+.screen.active { display: flex; }
+.hidden { display: none !important; }
+
+/* ============================================================
+   標題 LOGO（黃金卡通立體字）
+   ============================================================ */
+.logo { margin-top: 10%; text-align: center; line-height: .92; }
+.logo-line {
+  font-family: "Luckiest Guy", Impact, "Arial Black", sans-serif;
+  letter-spacing: 2px;
+  background: linear-gradient(#fff3bf 8%, var(--gold-1) 40%, var(--gold-2) 62%, var(--gold-3) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  -webkit-text-stroke: 3px #1a2f66;
+  filter:
+    drop-shadow(0 3px 0 #1a2f66)
+    drop-shadow(0 6px 0 #11224d)
+    drop-shadow(0 10px 14px rgba(0,0,0,.6));
+  transform: skewX(-5deg);
+}
+.logo-top    { font-size: clamp(42px, 15vw, 72px); }
+.logo-bottom {
+  font-size: clamp(52px, 18vw, 88px);
+  background: linear-gradient(#ffffff 10%, #e9f3ff 45%, #b9d6ff 70%, #7fb0ef 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 標題下方發光刀刃 */
+.blade {
+  width: 10px; height: 110px; margin: 26px 0 30px;
+  background: linear-gradient(180deg, #d9f4ff, #49c7ff 45%, #1f7fe0 70%, transparent);
+  clip-path: polygon(50% 0, 100% 30%, 50% 100%, 0 30%);
+  filter: drop-shadow(0 0 16px var(--blue-glow));
+  animation: floaty 2.4s ease-in-out infinite;
+}
+@keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-10px);} }
+
+/* START 文字按鈕 */
+.title-start {
+  margin-top: auto;
+  font-family: "Luckiest Guy", Impact, sans-serif;
+  font-size: clamp(40px, 13vw, 62px);
+  letter-spacing: 3px;
+  background: none; border: 0; cursor: pointer;
+  color: var(--gold-1);
+  -webkit-text-stroke: 2px #1a2f66;
+  text-shadow: 0 4px 0 #11224d, 0 7px 10px rgba(0,0,0,.6);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.08);} }
+
+/* ============================================================
+   橫幅標題（OPTION / PERFECT / GAMEOVER）
+   ============================================================ */
+.banner {
+  font-family: "Luckiest Guy", Impact, sans-serif;
+  font-size: clamp(40px, 13vw, 60px);
+  letter-spacing: 1px;
+  text-align: center;
+  background: linear-gradient(#fff3bf 10%, var(--gold-1) 45%, var(--gold-2) 70%, var(--gold-3) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2.5px #123;
+  filter: drop-shadow(0 4px 0 #11224d) drop-shadow(0 8px 10px rgba(0,0,0,.55));
+  transform: skewX(-4deg);
+  margin-bottom: 26px;
+}
+.gameover-banner { font-size: clamp(34px, 11vw, 50px); }
+
+/* ============================================================
+   藍色發光面板（包住按鈕）
+   ============================================================ */
+.panel {
+  width: 100%;
+  max-width: 320px;
+  padding: 26px 22px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(14,52,104,.65), rgba(6,26,58,.65));
+  border: 2px solid var(--blue-glow);
+  box-shadow: 0 0 22px rgba(73,199,255,.55), inset 0 0 26px rgba(73,199,255,.18);
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+/* ============================================================
+   金色立體按鈕
+   ============================================================ */
+.gold-btn {
+  position: relative;
+  width: 100%;
+  padding: 15px 18px;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: clamp(17px, 4.6vw, 21px);
+  letter-spacing: .5px;
+  color: #5a2e00;
+  text-shadow: 0 1px 0 rgba(255,255,255,.55);
+  cursor: pointer;
+  border: 2px solid var(--gold-edge);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 48%, var(--gold-3) 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.75),
+    inset 0 -4px 6px rgba(120,60,0,.4),
+    0 5px 0 #a85e08,
+    0 8px 12px rgba(0,0,0,.45);
+  transition: transform .06s ease, box-shadow .06s ease, filter .15s ease;
+}
+.gold-btn::after {
+  content: ""; position: absolute; left: 8%; right: 8%; top: 5px; height: 34%;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.gold-btn:active {
+  transform: translateY(5px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.6),
+    inset 0 -2px 4px rgba(120,60,0,.4),
+    0 0 0 #a85e08, 0 3px 6px rgba(0,0,0,.4);
+}
+.gold-btn.small { width: auto; align-self: center; padding: 12px 34px; margin-top: 8px; }
+.gold-btn.master { max-width: 320px; margin-top: 26px; filter: grayscale(.15) brightness(.92); }
+
+.sound-state .off { opacity: .45; }
+.sound-state.muted .on { opacity: .45; }
+.sound-state.muted .off { opacity: 1; }
+
+/* ============================================================
+   頂部 HUD（愛心 / 等級 / 齒輪）
+   ============================================================ */
+.hud {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 58px; padding: 14px 18px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 6;
+}
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid var(--blue-glow);
+  background: radial-gradient(circle at 35% 30%, #0f4a8f, #072247);
+  color: #bfe9ff; font-size: 20px; cursor: pointer;
+  box-shadow: 0 0 12px rgba(73,199,255,.5);
+  display: grid; place-items: center;
+}
+.icon-btn .gear { animation: spin 7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg);} }
+.title-gear { position: absolute; top: 16px; left: 18px; z-index: 6; }
+
+.hearts { display: flex; gap: 4px; }
+.heart {
+  font-size: 24px; color: #ff3b53;
+  text-shadow: 0 0 8px rgba(255,59,83,.8), 0 1px 0 #7a0016;
+  transition: transform .2s, opacity .3s, filter .3s;
+}
+.heart.lost { opacity: .22; filter: grayscale(1); transform: scale(.8); }
+
+.level-tag {
+  font-family: "Luckiest Guy", Impact, sans-serif;
+  font-size: 18px; color: var(--gold-1);
+  -webkit-text-stroke: 1px #123;
+  text-shadow: 0 2px 0 #11224d;
+}
+
+/* ============================================================
+   遊戲橫幅（READY / PERFECT / MISS）
+   ============================================================ */
+.game-banner {
+  margin-top: 6px; margin-bottom: 18px;
+  min-height: 1.1em;
+  transition: transform .2s, opacity .2s;
+}
+.game-banner.pop { animation: bannerPop .5s ease; }
+@keyframes bannerPop {
+  0% { transform: scale(.4) skewX(-4deg); opacity: 0; }
+  60%{ transform: scale(1.15) skewX(-4deg); opacity: 1; }
+  100%{ transform: scale(1) skewX(-4deg); opacity: 1; }
+}
+.game-banner.miss {
+  background: linear-gradient(#ffd0d0 10%, #ff6b6b 55%, #c21111 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* ============================================================
+   寶石棋盤
+   ============================================================ */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 330px;
+  margin: 4px auto 0;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(6,26,58,.5);
+  border: 2px solid rgba(73,199,255,.5);
+  box-shadow: inset 0 0 24px rgba(73,199,255,.14);
+}
+
+.gem {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.08), rgba(0,0,0,.35));
+  border: 2px solid rgba(120,180,255,.35);
+  display: grid; place-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.gem:active { transform: scale(.94); }
+
+/* 寶石本體：以 clip-path 畫出寶石造型 + 每顆專屬顏色 */
+.gem .stone {
+  width: 62%; height: 62%;
+  clip-path: polygon(50% 2%, 85% 22%, 98% 60%, 72% 98%, 28% 98%, 2% 60%, 15% 22%);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.85), rgba(255,255,255,0) 40%),
+    var(--gem, #49c7ff);
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,.4), inset 0 4px 6px rgba(255,255,255,.5);
+  filter: saturate(1.15);
+  transition: filter .15s, transform .15s;
+}
+.gem .stone::after {
+  content: ""; position: absolute; top: 14%; left: 22%;
+  width: 26%; height: 18%; border-radius: 50%;
+  background: rgba(255,255,255,.7); filter: blur(1px);
+}
+
+/* 發光（示範順序時 / 玩家點擊回饋） */
+.gem.lit {
+  border-color: #fff;
+  box-shadow: 0 0 22px 4px var(--gem), inset 0 0 18px rgba(255,255,255,.6);
+  transform: scale(1.06);
+}
+.gem.lit .stone { filter: saturate(1.6) brightness(1.6); transform: scale(1.12); }
+
+.gem.correct { animation: crack .4s ease; }
+@keyframes crack {
+  0% { transform: scale(1.12); box-shadow: 0 0 26px 6px var(--gem); }
+  100%{ transform: scale(1); }
+}
+.gem.wrong { animation: shake .35s ease; }
+@keyframes shake {
+  0%,100%{ transform: translateX(0);} 25%{ transform: translateX(-7px);} 75%{ transform: translateX(7px);}
+}
+
+.board.locked .gem { cursor: default; }
+
+.status-text {
+  margin-top: 20px; color: #bfe0ff; font-size: 15px; letter-spacing: .5px;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6); text-align: center; min-height: 1.2em;
+}
+
+/* ============================================================
+   GAME OVER 畫面
+   ============================================================ */
+.over-score { color: var(--text-cream); text-align: center; margin-bottom: 24px; font-size: 18px; }
+.over-score .best { margin-top: 6px; color: var(--gold-1); font-size: 15px; }
+.over-score b { color: #fff; }
+.over-panel { max-width: 300px; }
+
+/* ============================================================
+   說明彈窗
+   ============================================================ */
+.modal {
+  position: absolute; inset: 0; z-index: 20;
+  background: rgba(2,10,24,.72);
+  display: grid; place-items: center; padding: 24px;
+}
+.modal-box {
+  width: 100%; max-width: 330px;
+  background: linear-gradient(180deg, #0e3468, #072247);
+  border: 2px solid var(--blue-glow);
+  border-radius: 18px; padding: 24px 22px;
+  box-shadow: 0 0 30px rgba(73,199,255,.5);
+  color: #dcefff;
+}
+.modal-box h3 {
+  font-family: "Luckiest Guy", Impact, sans-serif; letter-spacing: 1px;
+  color: var(--gold-1); text-align: center; margin-bottom: 16px; font-size: 24px;
+  -webkit-text-stroke: 1px #123;
+}
+.modal-box ul { list-style: none; display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; line-height: 1.4; }
+.modal-box li b { color: #fff; }
+
+/* ---------- 短螢幕 / 桌機微調 ---------- */
+@media (max-height: 680px) {
+  .logo { margin-top: 4%; }
+  .blade { height: 80px; margin: 16px 0 18px; }
+  .screen { padding-top: 58px; }
+}

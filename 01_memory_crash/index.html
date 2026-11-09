@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MEMORY CRASH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 遊戲外框（手機直式比例） -->
+  <div id="app" class="app">
+    <div class="grid-floor"></div>
+    <div class="vignette"></div>
+
+    <!-- ========== 頂部狀態列（遊戲中顯示） ========== -->
+    <header id="hud" class="hud hidden">
+      <button id="btnOptionTop" class="icon-btn" aria-label="選項">
+        <span class="gear">⚙</span>
+      </button>
+      <div class="hearts" id="hearts">
+        <span class="heart">♥</span><span class="heart">♥</span><span class="heart">♥</span>
+      </div>
+      <div class="level-tag">LV:<span id="levelNum">1</span></div>
+    </header>
+
+    <!-- ========== 標題畫面 ========== -->
+    <section id="screen-title" class="screen active">
+      <button id="btnOptionTitle" class="icon-btn title-gear" aria-label="選項"><span class="gear">⚙</span></button>
+      <div class="logo">
+        <div class="logo-line logo-top">MEMORY</div>
+        <div class="logo-line logo-bottom">CRASH</div>
+      </div>
+      <div class="blade" aria-hidden="true"></div>
+      <button id="btnStart" class="title-start">START</button>
+    </section>
+
+    <!-- ========== 選項畫面 ========== -->
+    <section id="screen-option" class="screen">
+      <h2 class="banner">OPTION</h2>
+      <div class="panel">
+        <button id="btnHowTo" class="gold-btn">HOW TO PLAY</button>
+        <button id="btnSound" class="gold-btn">SOUND <span class="sound-state"><span id="soundOnLabel" class="on">ON</span>/<span id="soundOffLabel" class="off">OFF</span></span></button>
+        <button id="btnHome" class="gold-btn">HOME</button>
+      </div>
+      <button id="btnMaster" class="gold-btn master">MASTER MODE</button>
+    </section>
+
+    <!-- ========== 遊戲畫面 ========== -->
+    <section id="screen-game" class="screen">
+      <div id="perfectBanner" class="banner game-banner">READY</div>
+      <div id="board" class="board"><!-- 寶石由 JS 產生 --></div>
+      <div id="statusText" class="status-text">看好寶石發光的順序</div>
+    </section>
+
+    <!-- ========== GAME OVER 畫面 ========== -->
+    <section id="screen-over" class="screen">
+      <h2 class="banner gameover-banner">GAMEOVER</h2>
+      <div class="over-score">
+        <div>到達關卡 <b id="finalLevel">1</b></div>
+        <div class="best">最佳紀錄 LV <b id="bestLevel">1</b></div>
+      </div>
+      <div class="panel over-panel">
+        <button id="btnAgain" class="gold-btn">AGAIN</button>
+        <button id="btnHomeOver" class="gold-btn">HOME</button>
+      </div>
+    </section>
+
+    <!-- ========== 說明彈窗 ========== -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-box">
+        <h3>HOW TO PLAY</h3>
+        <ul>
+          <li>💎 每關寶石會<b>依序發光</b>，記住它的順序。</li>
+          <li>👆 發光結束後，<b>照順序點回寶石</b>。</li>
+          <li>✨ 全部點對 → <b>PERFECT</b>，進入下一關。</li>
+          <li>❤️ 點錯會<b>扣一顆愛心</b>，愛心用完就 GAME OVER。</li>
+          <li>🔥 關卡越高，順序越長、速度越快。</li>
+          <li>⚡ MASTER MODE：更快、更刺激的挑戰！</li>
+        </ul>
+        <button id="btnCloseModal" class="gold-btn small">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
