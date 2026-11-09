@@ -94,3 +94,8 @@ GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（�
 - 移除 `index.html` 的 `collectionIntro` 段落。
 - Banner：hub 在矮視窗（max-height 精簡模式）會把橫幅壓到約 198px 寬扁，`cover`+center 切到 Logo。過渡修正：`@media(min-width:761px){.banner-art{background-position:80% 24%}}` 上移裁切，Logo 與巴哥臉完整。
 - 重製需求：`assets/ASSETS.md` 第六批 B1 `banner_03`（2560×900，左 42% 留空給文案，Logo/角色/寶石置於垂直中央 56% 安全帶，確保任何高度置中裁切不切重點）。GPT 交付後接入並移除過渡修正。
+
+## Banner 重製接入（banner_03，使用者直接提供）
+使用者直接提供最佳配置版 banner（2000×704，左側留空、Logo/巴哥/寶石置於中央安全帶）。存 `source/pic/banner/banner_03.png` + `runtime/pic/banner_03.webp`(43KB)。
+- `assets/css/hub.css` `.banner-art` 改用 banner_03.webp，並**移除先前的過渡裁切修正**（`@media(min-width:761px) background-position:80% 24%`），回到 `cover`+center。
+- 驗證（Playwright）：短(1680×820,~198px)、正常(1280×980)、手機(430) 三種高度，Logo/角色/寶石在短版面也完整不切；左側文案清楚。
