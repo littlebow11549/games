@@ -13,6 +13,7 @@
 - [x] 關卡難度曲線（序列長度、閃示速度隨關卡增加）
 - [x] MASTER MODE（更快、起始關卡較高）
 - [x] WebAudio 音效（寶石音高、過關、失敗；可開關）
+- [x] 循環背景音樂 BGM（`assets/bgm_loop.ogg` / `.mp3`，60s 無縫循環，接 SOUND 開關、首次互動啟動）
 - [x] 最佳紀錄 localStorage（key: `mc_best`）
 - [x] 截圖驗證四畫面、無 JS 錯誤
 - [x] 美術圖集提示詞 `assets/PROMPTS.md`（系列合併版：寶石/UI/數字/標題/背景/特效 共 6 張）

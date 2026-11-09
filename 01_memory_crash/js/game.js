@@ -79,6 +79,28 @@
   const sndPerfect= () => { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .18, "triangle"), i * 90)); };
   const sndOver   = () => { [440, 349, 262, 196].forEach((f, i) => setTimeout(() => beep(f, .28, "sawtooth", .22), i * 160)); };
 
+  // ---------- 背景音樂（循環 BGM） ----------
+  // 60 秒無縫循環；優先 OGG（循環最乾淨），不支援時退回 MP3。
+  const bgm = new Audio();
+  bgm.loop = true;
+  bgm.volume = 0.42;                      // 壓低，讓出音效空間
+  bgm.preload = "auto";
+  bgm.src = (bgm.canPlayType && bgm.canPlayType("audio/ogg; codecs=vorbis"))
+    ? "assets/bgm_loop.ogg"
+    : "assets/bgm_loop.mp3";
+  let bgmUnlocked = false;
+  function playBgm() {
+    if (!state.sound) return;
+    const p = bgm.play();
+    if (p && p.catch) p.catch(() => {});   // 忽略自動播放被擋（等下次互動）
+  }
+  function unlockBgm() {                    // 首次使用者互動時啟動（瀏覽器政策）
+    bgmUnlocked = true;
+    playBgm();
+    window.removeEventListener("pointerdown", unlockBgm);
+    window.removeEventListener("keydown", unlockBgm);
+  }
+
   // ---------- 建立棋盤 ----------
   const gems = [];
   function buildBoard() {
@@ -252,11 +274,15 @@
   function setSound(on) {
     state.sound = on;
     soundState.classList.toggle("muted", !on);
-    if (on) beep(660, .1, "triangle");
+    if (on) { beep(660, .1, "triangle"); if (bgmUnlocked) playBgm(); }
+    else { bgm.pause(); }
   }
 
   // ---------- 事件綁定 ----------
   function bind() {
+    // 首次互動即啟動背景音樂（任一點擊 / 按鍵）
+    window.addEventListener("pointerdown", unlockBgm);
+    window.addEventListener("keydown", unlockBgm);
     $("#btnStart").addEventListener("click", () => { ac(); startGame(false); });
     $("#btnOptionTitle").addEventListener("click", () => show("option"));
     $("#btnOptionTop").addEventListener("click", () => { state.accepting = false; board.classList.add("locked"); show("option"); });
