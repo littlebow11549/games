@@ -13,6 +13,21 @@
 |------|------|--------|------|
 | 01 | Memory Crash（記憶序列） | `01_memory_crash/` | 🟢 可玩（CSS 版）|
 
+## 🏠 統一遊戲入口（Game Hub）
+根目錄的 `index.html` 是**遊戲選單首頁**：列出所有遊戲（含 icon），點卡片即可進入該款。
+新增遊戲時，只要在 `index.html` 裡的 `GAMES` 陣列加一筆（folder / name / desc / icon / status）即可自動出現。
+
+## 🌐 部署成網站（GitHub Pages，一次性設定）
+程式已在 repo 裡，啟用 GitHub Pages 即可得到公開網址：
+1. 到 `https://github.com/littlebow11549/games` → **Settings** → 左側 **Pages**
+2. **Source** 選 **Deploy from a branch**
+3. **Branch** 選 `claude/fervent-ride-4h0vjm`、資料夾選 **/ (root)** → **Save**
+4. 等 1–2 分鐘，網址會是：
+   - 首頁：`https://littlebow11549.github.io/games/`
+   - 直接進遊戲：`https://littlebow11549.github.io/games/01_memory_crash/`
+
+> 之後每次 `git push` 到該分支，Pages 會自動更新。
+
 ## 🤝 美術協作流程（人 × AI 分工）
 1. **AI**：先用純 CSS/SVG 做出可玩、風格到位的版本（placeholder 美術）。
 2. **AI**：凡是需要更高質感、CSS 做不出來的素材（真實寶石、3D Logo、特效影片…），

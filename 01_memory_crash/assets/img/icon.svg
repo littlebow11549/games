@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#1a5bb0"/>
+      <stop offset="55%" stop-color="#0c3a78"/>
+      <stop offset="100%" stop-color="#061a3a"/>
+    </radialGradient>
+    <linearGradient id="gem" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bff0ff"/>
+      <stop offset="45%" stop-color="#49c7ff"/>
+      <stop offset="100%" stop-color="#1f7fe0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff3bf"/>
+      <stop offset="50%" stop-color="#ffc02e"/>
+      <stop offset="100%" stop-color="#e88a12"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 圓角底 -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="#49c7ff" stroke-width="6" opacity=".55"/>
+
+  <!-- 透視格線地板 -->
+  <g opacity=".35" stroke="#5abeff" stroke-width="2" fill="none">
+    <path d="M60 470 L256 300 L452 470"/>
+    <path d="M110 490 L256 330 L402 490"/>
+    <path d="M30 420 H482"/>
+    <path d="M70 460 H442"/>
+  </g>
+
+  <!-- 主寶石 -->
+  <g filter="url(#glow)">
+    <polygon points="256,96 372,170 404,300 256,430 108,300 140,170"
+             fill="url(#gem)" stroke="#eaffff" stroke-width="6"/>
+    <!-- 切面 -->
+    <g opacity=".45" stroke="#06305f" stroke-width="4" fill="none">
+      <path d="M256 96 L256 430 M140 170 L372 170 M108 300 L404 300 M140 170 L256 300 L372 170"/>
+    </g>
+    <!-- 高光 -->
+    <polygon points="200,150 256,120 256,180 220,220" fill="#ffffff" opacity=".55"/>
+  </g>
+
+  <!-- 星光點綴 -->
+  <g fill="url(#gold)">
+    <path d="M150 120 l10 26 26 10 -26 10 -10 26 -10 -26 -26 -10 26 -10z"/>
+    <path d="M382 360 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7z" opacity=".9"/>
+  </g>
+</svg>

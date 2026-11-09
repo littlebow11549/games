@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GAME HUB — 遊戲中心</title>
+<link rel="icon" href="01_memory_crash/assets/img/icon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blue-deep:#061a3a; --blue-glow:#49c7ff;
+    --gold-1:#ffe17a; --gold-2:#ffc02e; --gold-3:#e88a12;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{min-height:100%;}
+  body{
+    font-family:"Fredoka","Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:#eaf3ff;
+    background:
+      radial-gradient(120% 70% at 50% 0%, #1a5bb0 0%, #0c3a78 35%, var(--blue-deep) 72%, #03122b 100%) fixed;
+    min-height:100vh; position:relative; overflow-x:hidden;
+  }
+  /* 透視格線地板 */
+  body::after{
+    content:"";position:fixed;left:-20%;right:-20%;bottom:-2%;height:42%;
+    background-image:
+      linear-gradient(rgba(90,190,255,.28) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(90,190,255,.28) 1px,transparent 1px);
+    background-size:46px 46px;
+    transform:perspective(420px) rotateX(62deg);transform-origin:bottom center;
+    -webkit-mask-image:linear-gradient(to top,#000,transparent);mask-image:linear-gradient(to top,#000,transparent);
+    pointer-events:none;z-index:0;
+  }
+  .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:46px 22px 80px;}
+
+  /* 標題 */
+  header{text-align:center;margin-bottom:38px;}
+  .title{
+    font-family:"Luckiest Guy",Impact,sans-serif;
+    font-size:clamp(40px,10vw,76px);letter-spacing:2px;transform:skewX(-5deg);
+    background:linear-gradient(#fff3bf 10%,var(--gold-1) 45%,var(--gold-2) 70%,var(--gold-3) 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    -webkit-text-stroke:3px #16305f;
+    filter:drop-shadow(0 4px 0 #11224d) drop-shadow(0 8px 12px rgba(0,0,0,.55));
+  }
+  .subtitle{margin-top:6px;color:#bfe0ff;font-size:clamp(14px,3.6vw,18px);letter-spacing:.5px;}
+
+  /* 遊戲卡片格 */
+  .grid{
+    display:grid;gap:22px;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  }
+  .card{
+    position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:26px 20px 22px;border-radius:22px;text-decoration:none;color:inherit;
+    background:linear-gradient(180deg,rgba(14,52,104,.72),rgba(6,26,58,.72));
+    border:2px solid rgba(73,199,255,.45);
+    box-shadow:0 0 0 rgba(73,199,255,0),0 10px 24px rgba(0,0,0,.4),inset 0 0 26px rgba(73,199,255,.12);
+    transition:transform .14s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);border-color:var(--blue-glow);
+    box-shadow:0 0 24px rgba(73,199,255,.5),0 16px 30px rgba(0,0,0,.45),inset 0 0 26px rgba(73,199,255,.2);
+  }
+  .card .thumb{
+    width:116px;height:116px;border-radius:26px;margin-bottom:16px;
+    background:#071f44;border:2px solid rgba(73,199,255,.4);
+    box-shadow:inset 0 0 18px rgba(0,0,0,.5);overflow:hidden;display:grid;place-items:center;
+  }
+  .card .thumb img{width:100%;height:100%;display:block;}
+  .card .name{
+    font-family:"Luckiest Guy",Impact,sans-serif;font-size:22px;letter-spacing:.5px;
+    color:var(--gold-1);-webkit-text-stroke:1px #16305f;text-shadow:0 2px 0 #11224d;
+  }
+  .card .desc{margin-top:6px;font-size:13.5px;color:#cfe4ff;line-height:1.35;min-height:2.6em;}
+  .card .play{
+    margin-top:14px;padding:10px 26px;border-radius:12px;font-weight:700;font-size:16px;color:#5a2e00;
+    border:2px solid #7a3d04;
+    background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 50%,var(--gold-3));
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.7),0 4px 0 #a85e08,0 7px 10px rgba(0,0,0,.4);
+  }
+  .card.soon{opacity:.6;filter:grayscale(.3);pointer-events:none;}
+  .card.soon .play{background:linear-gradient(180deg,#9fb4c9,#6f869c);border-color:#3c4b5a;color:#1b2a38;box-shadow:none;}
+  .badge{
+    position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;letter-spacing:.5px;
+    padding:4px 10px;border-radius:999px;background:#0b3f7a;border:1px solid var(--blue-glow);color:#bfe9ff;
+  }
+  footer{margin-top:48px;text-align:center;color:#8fb6e0;font-size:12.5px;line-height:1.7;}
+  footer a{color:#bfe0ff;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">GAME HUB</div>
+      <div class="subtitle">選一款開始遊玩 · Pick a game to play</div>
+    </header>
+
+    <main class="grid" id="grid"><!-- 卡片由 JS 產生 --></main>
+
+    <footer>
+      純前端小遊戲合集 · 每款獨立資料夾（<code>編號_名稱</code>）<br/>
+      新遊戲做好後會自動出現在這裡。
+    </footer>
+  </div>
+
+  <script>
+    // ====== 遊戲清單（新增遊戲只要在這裡加一筆） ======
+    const GAMES = [
+      {
+        folder: "01_memory_crash",
+        name: "Memory Crash",
+        desc: "記住寶石發光順序，照順序點回來，挑戰最高關卡！",
+        icon: "01_memory_crash/assets/img/icon.svg",
+        status: "ready",         // ready | soon
+      },
+      // 範例：之後新增遊戲
+      // { folder:"02_xxx", name:"XXX", desc:"…", icon:"02_xxx/assets/img/icon.svg", status:"soon" },
+    ];
+
+    const grid = document.getElementById("grid");
+    GAMES.forEach(g => {
+      const ready = g.status === "ready";
+      const a = document.createElement("a");
+      a.className = "card" + (ready ? "" : " soon");
+      a.href = ready ? g.folder + "/index.html" : "javascript:void(0)";
+      a.innerHTML = `
+        <span class="badge">${ready ? "可遊玩" : "開發中"}</span>
+        <span class="thumb"><img src="${g.icon}" alt="${g.name}" onerror="this.style.display='none'"></span>
+        <span class="name">${g.name}</span>
+        <span class="desc">${g.desc}</span>
+        <span class="play">${ready ? "▶ PLAY" : "COMING SOON"}</span>
+      `;
+      grid.appendChild(a);
+    });
+  </script>
+</body>
+</html>
