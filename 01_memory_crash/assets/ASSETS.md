@@ -16,7 +16,8 @@ assets/source/
 │   ├── titles/      titles_01.png          # 主視覺文字（word-art）
 │   ├── ui/          ui_01.png
 │   ├── gems/        gems_01.png
-│   ├── numbers/     numbers_01.png
+│   ├── numbers/     numbers_01.png         # 數字 0–9 + LV + :
+│   ├── font/        font_01.png            # 字型 A–Z / a–z / 符號
 │   ├── fx/          fx_01.png
 │   └── howto/       howto_01.png           # 教學步驟圖示
 ├── music/           bgm_01.mp3 · bgm_02.mp3     # 背景音樂
@@ -129,15 +130,29 @@ lighting. Colors in reading order:
 High detail. 2048x1536 PNG, transparent.
 ```
 
-## 6. 數字　`pic/numbers/`
+## 6. 數字 / 字型　`pic/numbers/` · `pic/font/`
+> 遊戲要有**一套主體一致的字型**（與 LOGO 同風格）。數字給分數/LV；字母+符號給一般文字。
+
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」 | 2048×512 | 去背 |
+| `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」（分數/等級用） | 2048×512 | 去背 |
+| `font_01.png` | 字型：A–Z、a–z、常用符號（一般文字用） | 2048×2048 | 去背 |
+
+**numbers_01**
 ```
 sprite sheet of numbers 0 1 2 3 4 5 6 7 8 9 plus "LV" and a colon ":", chunky cartoon 3D
 gold lettering with thick dark-blue outline, bevel and glossy highlights, each character in
 its own equal cell, evenly spaced in a single row, clear gaps, transparent background. 2048x512 PNG.
 ```
+**font_01**（整套字型，與數字/LOGO 同一主體風格）
+```
+bitmap font sprite sheet, SAME style as the game logo/numbers: chunky cartoon 3D glossy GOLD
+letters with thick dark-blue outline, bevel and highlights. Include uppercase A-Z, lowercase
+a-z, and symbols: . , : ; ! ? ' " - + / % & ( ) and space. Each glyph centered in its own
+equal cell, arranged in a neat grid, evenly spaced with clear gaps, consistent baseline and
+size, transparent background, not overlapping. High detail. 2048x2048 PNG, transparent.
+```
+> 註：字母/符號須**等高、同基線、同風格**，方便當 bitmap 字型逐字拼排。
 
 ## 7. 特效　`pic/fx/`（選做）
 | 檔案 | 用途 | 尺寸 | 背景 |
@@ -205,7 +220,8 @@ still bright and electronic, seamless loop, no vocals.
 - [ ] `pic/titles/titles_01.png`（主視覺文字）
 - [ ] `pic/ui/ui_01.png`（含 **❤ 愛心滿/空**、⚙ 齒輪、按鈕三態、面板框、格子框）
 - [ ] `pic/gems/gems_01.png`
-- [ ] `pic/numbers/numbers_01.png`
+- [ ] `pic/numbers/numbers_01.png`（數字，已接 LV）
+- [ ] `pic/font/font_01.png`（字型 A–Z/a–z/符號）
 - [ ] `music/bgm_01.mp3`
 - [ ] `sfx/sfx_01.mp3` … `sfx_05.mp3`
 - [ ] `pic/branding/icon_01.png`

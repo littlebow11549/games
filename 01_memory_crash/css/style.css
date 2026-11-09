@@ -218,11 +218,11 @@ html, body {
 }
 
 .level-tag {
-  font-family: "Luckiest Guy", Impact, sans-serif;
-  font-size: 18px; color: var(--gold-1);
-  -webkit-text-stroke: 1px #123;
-  text-shadow: 0 2px 0 #11224d;
+  display: flex; align-items: center; gap: 1px; height: 30px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.5));
 }
+.level-tag .nimg { height: 100%; width: auto; display: block; }
+.level-tag .ncolon { height: 55%; align-self: center; margin: 0 1px; }
 
 /* ============================================================
    遊戲橫幅（READY / PERFECT / MISS）

@@ -48,7 +48,13 @@
   const board       = $("#board");
   const hud         = $("#hud");
   const heartsWrap  = $("#hearts");
-  const levelNum    = $("#levelNum");
+  const levelTag    = $("#levelTag");
+  const NUMDIR = "assets/source/pic/numbers/";
+  function lvHTML(n) {
+    let h = `<img class="nimg" src="${NUMDIR}lv.png" alt="LV"><img class="nimg ncolon" src="${NUMDIR}colon.png" alt=":">`;
+    for (const d of String(n)) h += `<img class="nimg" src="${NUMDIR}n${d}.png" alt="${d}">`;
+    return h;
+  }
   const perfectBan  = $("#perfectBanner");
   const statusText  = $("#statusText");
   const modal       = $("#modal");
@@ -191,7 +197,7 @@
   }
 
   function nextLevel(fresh) {
-    levelNum.textContent = state.level;
+    levelTag.innerHTML = lvHTML(state.level);
     if (fresh) state.sequence = generateSequence();
     state.playerStep = 0;
     state.accepting = false;
