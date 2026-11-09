@@ -1,0 +1,30 @@
+[
+  {
+    "source": "source/pic/titles/gameover_hero.png",
+    "runtime": "runtime/pic/batch3/gameover_hero.webp",
+    "size": [
+      1774,
+      887
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "rgba_sha256": "ab33c9da8ce1f699f9fd953270144684e5b8576b1a8fed689cef774d2c5c4614",
+    "pixel_identical": true
+  },
+  {
+    "source": "source/pic/titles/howto_hero.png",
+    "runtime": "runtime/pic/batch3/howto_hero.webp",
+    "size": [
+      1774,
+      887
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "rgba_sha256": "00ddbd806de414fe6155e8f61e20f15f069cdecbcabd08ef27da369adf1c283b",
+    "pixel_identical": true
+  }
+]

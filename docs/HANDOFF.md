@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-10 補齊標題字藝與巴哥待機 sprite（Codex）](handoffs/2026-11-10-extra-titles-idle.md)：gameover_hero／howto_hero 高解析字藝（已接入）；pug_idle 待機動畫（備用，暫不接以保留全身）。
+
 - [2026-11-10 主視覺 Icon／Banner／OPTION 字藝刷新（Codex）](handoffs/2026-11-10-hero-brand-refresh.md)：icon_02 封面、banner_02 首頁橫幅、OPTION 精修；Claude 已接入。
 
 - [2026-11-09 全身 chibi 主角交付（Codex）](handoffs/2026-11-09-fullbody-chibi-pug.md)：pug_fullbody 全身站姿；Claude 已接入首頁/選單。

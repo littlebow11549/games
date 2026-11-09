@@ -75,3 +75,9 @@ GPT 於 `codex/hero-game-icon` 交付 icon_02（全身衝鋒封面）、banner_0
 - `#modal` 的 `HOW TO PLAY` h3 → `<img>`（`how_to_play.webp`，lossless 59KB）。
 - 驗證：Playwright 兩畫面字藝置中、風格一致、無 console/pageerror。
 - 註：此兩張原生 393px，顯示尺寸下清晰度可接受；若要更銳利可日後請 GPT 出 1774px hero 版（原 T1/T2），非必要。
+
+## 升級為 hero 高解析字藝（GAME OVER / HOW TO PLAY）
+GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（各1774×887，金色立體＋藍邊＋水晶，與 OPTION 同款，GAME OVER 另帶細裂紋）。以此取代先前的低解析 `gameover.png`/`how_to_play.png`：
+- `#screen-over` → `gameover_hero.webp`（67KB）；`#modal` → `howto_hero.webp`（63KB）；舊低解析 runtime 已移除。
+- 另交付 `pug_idle_01`（8格待機 sprite，444×444 頭/半身）＋ `hero-idle.js`：**暫不接入**，因會使首頁/選單從全身退回半身，與使用者「要全身」衝突。若日後想要待機呼吸/眨眼動畫，可改以全身版重做再接。
+- 驗證：Playwright 兩畫面 hero 字藝置中清晰、風格一致、無 console/pageerror。
