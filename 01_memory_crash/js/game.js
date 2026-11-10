@@ -53,8 +53,8 @@
   const levelTag    = $("#levelTag");
   const NUMDIR = "assets/source/pic/numbers/";
   function lvHTML(n) {
-    let h = `<img class="nimg" src="${NUMDIR}lv.png" alt="LV"><img class="nimg ncolon" src="${NUMDIR}colon.png" alt=":">`;
-    for (const d of String(n)) h += `<img class="nimg" src="${NUMDIR}n${d}.png" alt="${d}">`;
+    let h = `<img class="nimg" src="${NUMDIR}lv.webp" alt="LV"><img class="nimg ncolon" src="${NUMDIR}colon.webp" alt=":">`;
+    for (const d of String(n)) h += `<img class="nimg" src="${NUMDIR}n${d}.webp" alt="${d}">`;
     return h;
   }
   const perfectBan  = $("#perfectBanner");
@@ -119,7 +119,7 @@
     normal: new Audio(`assets/source/music/bgm_01.${musicFormat}`),     // 遊戲中
     intense: new Audio(`assets/source/music/bgm_02.${musicFormat}`),    // 高關/大師
   };
-  Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "metadata"; });
+  Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "none"; });
   let bgm = bgmTracks.entry;
   // 切換並播放指定曲目（進場 entry / 遊戲 normal / 高關 intense）
   function playBgm(key) {

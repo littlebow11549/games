@@ -3,10 +3,10 @@
   'use strict';
   const root='assets/source/pic/character/';
   const clips={
-    idle:{file:'char_anim_idle.png',fps:3,label:'Idle breathing'},
-    happy:{file:'char_anim_happy.png',fps:8,label:'Happy'},
-    sad:{file:'char_anim_sad.png',fps:5,label:'Sad'},
-    celebrate:{file:'char_anim_celebrate.png',fps:8,label:'Celebrating'},
+    idle:{file:'char_anim_idle.webp',fps:3,label:'Idle breathing'},
+    happy:{file:'char_anim_happy.webp',fps:8,label:'Happy'},
+    sad:{file:'char_anim_sad.webp',fps:5,label:'Sad'},
+    celebrate:{file:'char_anim_celebrate.webp',fps:8,label:'Celebrating'},
   };
   const cache=new Map();
   const nodes=[...document.querySelectorAll('[data-mascot]')];
@@ -47,13 +47,12 @@
     if(duration>0)reactionTimer=setTimeout(()=>play('idle'),duration);
   }
   window.MemoryCrashMascot={
-    show(screen){stopped=false;play(screen==='over'?'sad':'idle');},
+    show(screen){stopped=false;if(!nodes.some(node=>node.closest('.screen.active')))return;play(screen==='over'?'sad':'idle');},
     play,
     stop(){stopped=true;clearTimeout(reactionTimer);cancelAnimationFrame(request);request=0;},
     get state(){return state;},
   };
   document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(request);request=0;if(!document.hidden){started=performance.now();wake();}});
   reduced.addEventListener('change',()=>{cancelAnimationFrame(request);request=0;wake();});
-  // Character images retain a static fallback until the first clip is ready.
-  load('idle');
+  // Character clips load lazily on the first screen that actually shows the mascot.
 })();

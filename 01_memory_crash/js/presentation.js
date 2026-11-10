@@ -8,7 +8,7 @@
   const skip=document.querySelector('#skipIntro');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let screen='title',introPlaying=false,introFinish=null,introDeadline=0;
-  const fontImage=new Image();fontImage.src='assets/source/pic/font/font_01.png';
+  let fontImage=null;
   function paintLabel(node,metrics){
     const value=node.dataset.bitmap;const em=26,pad=3;let width=pad;
     for(let i=0;i<value.length;i++){
@@ -25,8 +25,14 @@
     }
     node.replaceChildren(canvas);node.classList.add('bitmap-label');node.setAttribute('role','img');node.setAttribute('aria-label',value);node.dataset.rendered='true';
   }
-  let readyMetrics=null;
-  const fontReady=Promise.all([fontImage.decode(),fetch('assets/source/pic/font/font_01.metrics.json').then(r=>{if(!r.ok)throw new Error('font metrics');return r.json();})]).then(([,metrics])=>{readyMetrics=metrics;document.querySelectorAll('[data-bitmap]').forEach(node=>paintLabel(node,metrics));}).catch(()=>{});
+  let readyMetrics=null,fontReady=null;
+  function ensureFont(){
+    if(fontReady)return fontReady;
+    fontImage=new Image();fontImage.src='assets/source/pic/font/font_01.webp';
+    fontReady=Promise.all([fontImage.decode(),fetch('assets/source/pic/font/font_01.metrics.json').then(r=>{if(!r.ok)throw new Error('font metrics');return r.json();})]).then(([,metrics])=>{readyMetrics=metrics;document.querySelectorAll('[data-bitmap]').forEach(node=>paintLabel(node,metrics));}).catch(()=>{});
+    return fontReady;
+  }
+  if(document.querySelector('[data-bitmap]'))ensureFont();
   function syncBackground(){
     const allowed=!document.hidden&&!reduced.matches&&!navigator.connection?.saveData&&!introPlaying&&['title','menu'].includes(screen);
     if(!allowed){warp.pause();app.classList.remove('warp-video-active');return;}
@@ -65,7 +71,7 @@
     effect,
     stop(){clearTimeout(introDeadline);introFinish=null;introPlaying=false;intro.pause();warp.pause();layer.hidden=true;fxRoot.replaceChildren();},
     get introPlaying(){return introPlaying;},
-    fontReady,
-    async renderLabel(node,value){await fontReady;if(!readyMetrics)return false;node.dataset.bitmap=value;paintLabel(node,readyMetrics);return node.dataset.rendered==='true';},
+    get fontReady(){return fontReady||Promise.resolve();},
+    async renderLabel(node,value){await ensureFont();if(!readyMetrics)return false;node.dataset.bitmap=value;paintLabel(node,readyMetrics);return node.dataset.rendered==='true';},
   };
 })();

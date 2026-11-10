@@ -39,7 +39,7 @@ html, body {
   overflow: hidden;
   border-radius: 18px;
   background:
-    url("../assets/source/pic/background/bg_01.png") center/cover no-repeat,
+    url("../assets/source/pic/background/bg_01.webp") center/cover no-repeat,
     radial-gradient(130% 80% at 50% 8%, #1a5bb0 0%, #0c3a78 34%, var(--blue-deep) 72%, #03122b 100%);
   box-shadow: 0 0 60px rgba(0,0,0,.6), inset 0 0 120px rgba(0,0,0,.35);
 }
@@ -146,7 +146,7 @@ html, body {
   padding: 30px 30px;
   background: none;
   border: 26px solid transparent;
-  border-image: url("../assets/source/pic/ui/panel.png") 64 fill / 26px / 0 stretch;
+  border-image: url("../assets/source/pic/ui/panel.webp") 64 fill / 26px / 0 stretch;
   filter: drop-shadow(0 0 14px rgba(73,199,255,.4));
   display: flex; flex-direction: column; gap: 16px;
 }
@@ -167,18 +167,18 @@ html, body {
   cursor: pointer;
   background: none;
   border: 15px solid transparent;
-  border-image: url("../assets/source/pic/ui/btn_normal.png") 46 fill / 15px / 0 stretch;
+  border-image: url("../assets/source/pic/ui/btn_normal.webp") 46 fill / 15px / 0 stretch;
   filter: drop-shadow(0 4px 5px rgba(0,0,0,.4));
   transition: transform .06s ease, filter .15s ease;
 }
 .gold-btn:active {
   transform: translateY(3px);
-  border-image-source: url("../assets/source/pic/ui/btn_pressed.png");
+  border-image-source: url("../assets/source/pic/ui/btn_pressed.webp");
 }
 .gold-btn.small { display: block; width: 100%; align-self: stretch; padding: 12px 24px; margin: 14px auto 0; box-sizing: border-box; }
 .gold-btn.master {
   max-width: 330px; margin-top: 26px;
-  border-image-source: url("../assets/source/pic/ui/btn_disabled.png");
+  border-image-source: url("../assets/source/pic/ui/btn_disabled.webp");
   color: #40474f; text-shadow: 0 1px 0 rgba(255,255,255,.3);
 }
 
@@ -198,7 +198,7 @@ html, body {
 }
 .icon-btn {
   width: 44px; height: 44px; border: 0; background: none; cursor: pointer;
-  background: url("../assets/source/pic/ui/gear.png") center/contain no-repeat;
+  background: url("../assets/source/pic/ui/gear.webp") center/contain no-repeat;
   color: transparent; font-size: 0;
   filter: drop-shadow(0 0 8px rgba(73,199,255,.5));
   display: grid; place-items: center;
@@ -216,12 +216,12 @@ html, body {
 }
 .heart {
   width: 40px; height: 40px; display: inline-block; font-size: 0; color: transparent;
-  background: url("../assets/source/pic/ui/heart_full.png") center/contain no-repeat;
+  background: url("../assets/source/pic/ui/heart_full.webp") center/contain no-repeat;
   filter: drop-shadow(0 0 3px rgba(0,0,0,.85)) drop-shadow(0 0 7px rgba(255,59,83,.7));
   transition: transform .2s, opacity .3s, filter .3s;
 }
 .heart.lost {
-  background-image: url("../assets/source/pic/ui/heart_empty.png");
+  background-image: url("../assets/source/pic/ui/heart_empty.webp");
   filter: drop-shadow(0 0 3px rgba(0,0,0,.7)); opacity: .9; transform: scale(.86);
 }
 
@@ -287,7 +287,7 @@ html, body {
 .gem .stone {
   position: relative;
   width: 86%; height: 86%;
-  background-image: url("../assets/source/pic/gems/gems_01.png");
+  background-image: url("../assets/source/pic/gems/gems_01.webp");
   background-size: 400% 300%;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -501,13 +501,13 @@ html, body {
 .menu-panel {
   max-width: 294px; gap: 10px; margin-top: 12px; margin-bottom: 5%;
   padding: 18px 22px; border-width: 20px;
-  border-image: url("../assets/source/pic/ui/panel.png") 64 fill / 20px / 0 stretch;
+  border-image: url("../assets/source/pic/ui/panel.webp") 64 fill / 20px / 0 stretch;
 }
 .menu-panel .gold-btn { padding: 9px 12px; font-size: clamp(16px, 4.4vw, 19px); }
 
 /* 禁用按鈕（如無進度的 CONTINUE） */
 .gold-btn:disabled {
-  border-image-source: url("../assets/source/pic/ui/btn_disabled.png");
+  border-image-source: url("../assets/source/pic/ui/btn_disabled.webp");
   color: #434b54; text-shadow: 0 1px 0 rgba(255,255,255,.3);
   cursor: default; filter: none;
 }
@@ -583,18 +583,18 @@ html, body {
    ============================================================ */
 .timer-bar {
   width: 100%; max-width: 340px; height: 42px; margin: 2px auto 8px; position: relative;
-  background: url("../assets/source/pic/ui/gauge_frame.png") center/100% 100% no-repeat;
+  background: url("../assets/source/pic/ui/gauge_frame.webp") center/100% 100% no-repeat;
   filter: drop-shadow(0 3px 6px rgba(0,0,0,.4));
   opacity: 0; transition: opacity .2s;
 }
 .timer-bar.active { opacity: 1; }
 .timer-fill {
   position: absolute; left: 6%; top: 30%; width: 88%; height: 40%;
-  background: url("../assets/source/pic/ui/gauge_fill.png") left center/100% 100% no-repeat;
+  background: url("../assets/source/pic/ui/gauge_fill.webp") left center/100% 100% no-repeat;
   border-radius: 999px;
 }
 .timer-fill.low {
-  background-image: url("../assets/source/pic/ui/gauge_fill_low.png");
+  background-image: url("../assets/source/pic/ui/gauge_fill_low.webp");
   animation: timerPulse .5s ease-in-out infinite;
 }
 @keyframes timerPulse { 0%,100%{ opacity: 1;} 50%{ opacity: .55;} }
@@ -609,7 +609,7 @@ html, body {
 .over-char{width:100px;height:112px;margin:-12px auto 4px}
 @media(max-height:740px){.game-reaction{min-height:60px}.game-reaction .game-char{width:54px;height:62px}.game-reaction .status-text{font-size:18px}.menu-char.mascot{width:110px;height:125px}#screen-game .board{max-width:min(330px,calc((100svh - 252px)*.7))}.over-char{width:75px;height:84px}}
 
-.menu-word{display:block;width:170px;max-width:90%;margin:auto;background-image:url("../assets/source/pic/titles/titles_02.png");background-repeat:no-repeat;pointer-events:none}
+.menu-word{display:block;width:170px;max-width:90%;margin:auto;background-image:url("../assets/source/pic/titles/titles_02.webp");background-repeat:no-repeat;pointer-events:none}
 .gold-btn:disabled .menu-word{filter:grayscale(1);opacity:.6}
 .menu-word[data-word="ARCADE"]{aspect-ratio:525/185;background-size:337.90476190476187% 479.4594594594595%;background-position:2.9623698959167335% 22.79202279202279%}
 .menu-word[data-word="CONTINUE"]{aspect-ratio:570/176;background-size:311.2280701754386% 503.97727272727275%;background-position:50.24916943521595% 22.78481012658228%}
@@ -654,8 +654,8 @@ html, body {
 .fx-shatter{width:min(50%,190px);top:51%;animation-duration:.6s}.fx-crack{width:100%;top:50%;animation:assetCrack 1.5s ease-out both}
 @keyframes assetBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.45)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.3)}}
 @keyframes assetCrack{0%{opacity:0}12%,60%{opacity:.8}100%{opacity:0}}
-.gem{border:0;background:url("../assets/source/pic/ui/slot.png") center/100% 100% no-repeat,radial-gradient(circle at 50% 42%,#ffffff08,#0005);box-shadow:none}
-.gem.lit{background-image:url("../assets/source/pic/ui/slot_lit.png"),radial-gradient(circle at 50% 42%,#ffffff18,#0005)}
+.gem{border:0;background:url("../assets/source/pic/ui/slot.webp") center/100% 100% no-repeat,radial-gradient(circle at 50% 42%,#ffffff08,#0005);box-shadow:none}
+.gem.lit{background-image:url("../assets/source/pic/ui/slot_lit.webp"),radial-gradient(circle at 50% 42%,#ffffff18,#0005)}
 @media(max-height:680px){.energy-blade{height:70px;margin:0 auto 8px}.bitmap-label canvas{height:27px}.sw-state .bitmap-label canvas{height:22px}}
 @media(prefers-reduced-motion:reduce){.warp-video{display:none}.fx-art{animation:none;opacity:.65}}
 /* Keep bitmap music/sound controls readable without widening small screens. */
@@ -674,7 +674,7 @@ html, body {
  #screen-option .sw-state .bitmap-label canvas{height:18px}
 }
 
-.gold-btn.master:not(:disabled){border-image-source:url("../assets/source/pic/ui/btn_normal.png")}
+.gold-btn.master:not(:disabled){border-image-source:url("../assets/source/pic/ui/btn_normal.webp")}
 
 /* ============================================================
    使用者調整（2026-11-09）：文字化標題/按鈕、巨大彈出橫幅、
@@ -861,8 +861,8 @@ html, body {
 #screen-title .logo { position: relative; width: fit-content; max-width: 100%; margin-left: auto; margin-right: auto; }
 #screen-title .logo::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  -webkit-mask: url("../assets/source/pic/branding/logo_01.png") center/contain no-repeat;
-          mask: url("../assets/source/pic/branding/logo_01.png") center/contain no-repeat;
+  -webkit-mask: url("../assets/source/pic/branding/logo_01.webp") center/contain no-repeat;
+          mask: url("../assets/source/pic/branding/logo_01.webp") center/contain no-repeat;
   background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.92) 50%, transparent 58%);
   background-size: 280% 100%; background-position: 185% 0;
   mix-blend-mode: screen; animation: logoShine 3.8s ease-in-out infinite;
@@ -1009,7 +1009,7 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
 .float-gems { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
 .float-gems .fg {
   position: absolute; display: block;
-  background-image: url("../assets/source/pic/gems/gems_01.png");
+  background-image: url("../assets/source/pic/gems/gems_01.webp");
   background-size: 400% 300%; background-repeat: no-repeat;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,.45)) blur(var(--blur, 0px));
   will-change: transform; will-change: transform, opacity;
