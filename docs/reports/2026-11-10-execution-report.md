@@ -155,3 +155,8 @@ _整理人：Claude Code · 日期 2026-11-10_
 - BGM（mp3 共 2.9MB）：可降 192k→128k 約省一半（音質取捨，使用者曾對雜音敏感，暫不動）。
 - char_anim 仍 1.2MB：可減幀數或降解析。
 - 重複來訪快取：GitHub Pages 無法設長快取，可改用檔名雜湊。
+
+### 追加：影片與 BGM 壓縮（2026-11-10）
+- 影片重編 720p＋高 CRF：warp 1.08MB→146KB、intro 1.41MB→207KB、ambient 228KB→46KB（合計 ~2.7MB→~0.4MB）。抽幀確認畫質無破綻。
+- BGM 192kbps→128kbps（乾淨降碼，非爛轉檔）：mp3 2.9MB→2.0MB、ogg ~1.6MB；192k 原檔備份於 `_archive/01_memory_crash/assets/source/music_192k/` 可還原。
+- **標題首屏下載：最初 ~8MB → 最終約 2.0MB（↓ ~75%）。**
