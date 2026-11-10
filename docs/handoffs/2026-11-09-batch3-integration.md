@@ -105,3 +105,9 @@ GPT 於 `codex/hero-game-icon` 補交 `gameover_hero.png`、`howto_hero.png`（�
 - 桌面：`.banner-art` `background-size:130% auto`（≤760 用 150%），主視覺放大填滿、Logo 完整不切。
 - 手機（≤500）：`.banner-art` 改用 `logo_01.png`（`auto 46%`，置右），只顯示主 Logo，不顯示衝鋒巴哥叢集。
 - 驗證：矮(1680×820)、正常(1280×980)、手機(430) 三版面確認。
+
+## 素材整理：廢案封存至 _archive/
+將目前未被任何程式碼引用的美術廢案移至單一資料夾 `_archive/`（保留原路徑結構），正式素材樹只留使用中的檔案。
+- 封存：character(char_01/pug_head/pug_fullbody)、kv(kv_cover/main/pug)、titles 早期單詞字藝與舊 titles_fx/combo、對應 batch3 webp、hub banner_02/03。
+- 保留使用中：char_anim_*、pug_idle_full、*_hero 字藝、titles_fx_*_v3、titles_02、banner_01、icon_02 及 ui/gems/numbers/music/sfx/howto/font/background/branding/video。
+- 驗證：Playwright 煙霧測試遊戲（title→arcade→game）與遊戲中心皆無素材 404、無 console/pageerror。詳見 `_archive/README.md`。
