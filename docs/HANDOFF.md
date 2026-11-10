@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-10 第二款遊戲（3D 仙俠戰鬥）：參考影片分析與交 GPT 的素材需求（Claude）](handoffs/2026-11-10-game02-battle-analysis-and-reqs.md)：僅需求文件 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)；程式與素材皆未開始。
+
 - [2026-11-10 執行報告：第三批接入與優化（含反覆修正檢討、下一專案速度/品質改進建議）](reports/2026-11-10-execution-report.md)
 
 - [2026-11-10 補齊標題字藝與巴哥待機 sprite（Codex）](handoffs/2026-11-10-extra-titles-idle.md)：gameover_hero／howto_hero 高解析字藝（已接入）；pug_idle 待機動畫（備用，暫不接以保留全身）。
