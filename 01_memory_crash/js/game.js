@@ -121,19 +121,34 @@
   };
   Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "none"; });
   let bgm = bgmTracks.entry;
+  // 首次互動時預熱所有 BGM（改 preload=auto 並開始緩衝），確保進遊戲前已備妥，避免「剛進遊戲沒音樂」
+  let bgmWarmed = false;
+  function warmBgm() {
+    if (bgmWarmed) return; bgmWarmed = true;
+    Object.values(bgmTracks).forEach(a => { try { a.preload = "auto"; a.load(); } catch (e) {} });
+  }
+  // 播放；若尚未緩衝好而失敗，待可播放時自動補播（不會卡住靜音）
+  function safePlay(audio) {
+    const p = audio.play();
+    if (p && p.catch) p.catch(() => {
+      const retry = () => { audio.removeEventListener("canplay", retry); if (bgm === audio && state.music) audio.play().catch(() => {}); };
+      audio.addEventListener("canplay", retry);
+    });
+  }
   // 切換並播放指定曲目（進場 entry / 遊戲 normal / 高關 intense）
   function playBgm(key) {
     if (!state.music) return;
     const sel = bgmTracks[key] || bgmTracks.normal;
     if (bgm !== sel) { bgm.pause(); bgm = sel; try { bgm.currentTime = 0; } catch (e) {} }
-    bgm.play().catch(() => {});
+    safePlay(bgm);
   }
   let musicDuckTimer = 0;
   function startMusic() {
     if (!state.music) return;
+    warmBgm();
     const selected = state.master || state.level >= 10 ? bgmTracks.intense : bgmTracks.normal;
-    if (bgm !== selected) { bgm.pause(); bgm = selected; bgm.currentTime = 0; }
-    bgm.play().catch(() => {});
+    if (bgm !== selected) { bgm.pause(); bgm = selected; try { bgm.currentTime = 0; } catch (e) {} }
+    safePlay(bgm);
   }
   function stopMusic() {
     clearTimeout(musicDuckTimer);
@@ -531,7 +546,7 @@
     $("#btnExitGame").addEventListener("click", exitGame);
     // 所有按鈕（金色按鈕/圓鈕/START）點擊音
     document.addEventListener("click", (e) => {
-      if (e.target.closest(".gold-btn, .icon-btn, .title-start")) playSfx("tap");
+      if (e.target.closest(".gold-btn, .icon-btn, .title-start")) { playSfx("tap"); warmBgm(); }
     });
 
     // 標題 START → 主選單（省略開場動畫，保留場景動態）
