@@ -4,7 +4,7 @@
 
 ## 最新交付
 
-- [2026-11-10 第二款遊戲（3D 仙俠戰鬥）：參考影片分析與交 GPT 的素材需求（Claude）](handoffs/2026-11-10-game02-battle-analysis-and-reqs.md)：僅需求文件 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)；程式與素材皆未開始。
+- [2026-11-10 第二款遊戲（3D 仙俠戰鬥）：影片分析、交 GPT 的素材需求、佔位版原型（Claude）](handoffs/2026-11-10-game02-battle-analysis-and-reqs.md)：需求 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)、進度 [`02_xianxia_battle/PROGRESS.md`](../02_xianxia_battle/PROGRESS.md)；可玩但全為佔位素材，未加入首頁。
 
 - [2026-11-10 執行報告：第三批接入與優化（含反覆修正檢討、下一專案速度/品質改進建議）](reports/2026-11-10-execution-report.md)
 

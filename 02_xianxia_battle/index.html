@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>仙俠戰鬥（原型）</title>
+<link rel="stylesheet" href="css/game.css">
+<script type="importmap">
+{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<div id="hud" hidden>
+  <div class="hud-top-left">
+    <div class="portrait"><span id="lv">1</span></div>
+    <div class="bars">
+      <div class="bar hp"><i id="hp-fill"></i><b id="hp-text"></b></div>
+      <div class="bar mp"><i id="mp-fill"></i><b id="mp-text"></b></div>
+    </div>
+  </div>
+
+  <div class="hud-top-right">
+    <button class="icon-btn" id="btn-mute" aria-label="靜音">🔊</button>
+    <button class="icon-btn" id="btn-pause" aria-label="暫停">Ⅱ</button>
+  </div>
+
+  <div class="quest">
+    <h3>任務追蹤</h3>
+    <p id="quest-wave">清除妖物</p>
+    <p id="quest-count">擊殺 0</p>
+  </div>
+
+  <div class="boss-bar" id="boss-bar" hidden>
+    <span>山嶽妖王</span>
+    <div class="bar boss"><i id="boss-fill"></i></div>
+  </div>
+
+  <div id="banner" class="banner"></div>
+  <div id="world-ui"></div>
+
+  <div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div>
+
+  <div class="actions">
+    <button class="act skill s3" data-action="skill3"><span>天降</span><em></em></button>
+    <button class="act skill s2" data-action="skill2"><span>劍氣</span><em></em></button>
+    <button class="act skill s1" data-action="skill1"><span>旋風</span><em></em></button>
+    <button class="act dodge" data-action="dodge"><span>閃</span><em></em></button>
+    <button class="act attack" data-action="attack"><span>攻</span></button>
+  </div>
+</div>
+
+<div id="overlay" class="overlay">
+  <div class="card">
+    <h1 id="ov-title">仙俠戰鬥 · 原型</h1>
+    <p id="ov-text">搖桿／WASD 移動　攻擊 J　技能 K・L・I　閃避 Shift</p>
+    <p id="ov-load" class="muted">載入中…</p>
+    <button id="ov-btn" disabled>開始</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

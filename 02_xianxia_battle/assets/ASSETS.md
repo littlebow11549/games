@@ -8,7 +8,7 @@
 > 角色造型、怪物造型、UI 紋飾、圖示、字藝**一律原創**，不得描摹或重現參考影片中的任何角色、
 > 介面圖案、Logo 或文字。
 >
-> 狀態：**需求已開，尚未產出任何素材；遊戲程式尚未開始。**
+> 狀態：**需求已開，尚未產出任何素材。** 遊戲已有佔位版原型（見 `../PROGRESS.md`），素材接入方式見 [`README.md`](README.md)。
 
 ---
 
@@ -138,10 +138,17 @@ lotus-pink accents, clean shapes, high detail, no text unless specified
 | `numbers_heal.png` | 回復數字 `0–9`、`+`（綠） |
 | `numbers_ui.png` | 介面數字 `0–9`、`/`、`:`、`LV`（墨色或金色） |
 
-## 8. 特效貼圖　`pic/fx/`（選做；沒有的話 Claude 用程式生成）
-**黑底或去背**，供粒子與面片使用，各 512×512 或序列圖集。
-`fx_slash.png`（半月刀光）、`fx_spark.png`（命中火花）、`fx_smoke.png`（煙塵）、`fx_petal.png`（蓮花瓣）、
-`fx_leaf.png`（落葉）、`fx_ring.png`（地面衝擊環）、`fx_fire_sheet.png`（爆炸序列 4×4）、`fx_magic_circle.png`（技能法陣）。
+## 8. 特效　`pic/fx/`（使用者要求：特效做成 3D）
+
+特效一律是 **3D 場景內的特效**（網格、粒子、shader），由 Claude 在 Three.js 內製作，不用 2D 動畫疊圖。
+原型已有佔位版：刀光、衝擊環、粒子爆散、光柱、巨劍落下。
+
+GPT 這邊只需提供 3D 特效要用的**貼圖**（選做；沒有就維持純色幾何）。**黑底或去背**，各 512×512，序列圖另註：
+`fx_slash.png`（刀光漸層，橫向條狀，供弧形網格 UV 使用）、`fx_spark.png`（火花粒子）、`fx_smoke.png`（煙塵粒子）、
+`fx_petal.png`（蓮花瓣粒子）、`fx_leaf.png`（落葉粒子）、`fx_ring.png`（衝擊環）、`fx_fire_sheet.png`（爆炸序列 4×4）、
+`fx_magic_circle.png`（地面法陣）、`fx_noise.png`（可無縫拼接的雜訊圖，供 shader 溶解與流動用）。
+
+若要交付 3D 特效模型（例如巨劍、法陣立體件），請給 GLB 並放 `model/`。
 
 ## 9. 教學圖　`pic/howto/`
 `howto_01.png`：四步驟（移動、普攻連段、施放技能、閃避），1920×1080 或四格圖集。
