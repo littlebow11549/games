@@ -261,7 +261,7 @@ html, body {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: 100%;
-  max-width: 330px;
+  max-width: 392px;
   margin: 4px auto 0;
   padding: 14px;
   border-radius: 18px;
@@ -607,7 +607,7 @@ html, body {
 .game-reaction .game-char{width:66px;height:76px}
 .game-reaction .status-text{margin:0;max-width:235px;text-align:left;font-size:clamp(18px,5.4vw,22px);line-height:1.4;padding:0}
 .over-char{width:100px;height:112px;margin:-12px auto 4px}
-@media(max-height:740px){.game-reaction{min-height:60px}.game-reaction .game-char{width:54px;height:62px}.game-reaction .status-text{font-size:18px}.menu-char.mascot{width:110px;height:125px}#screen-game .board{max-width:min(330px,calc((100svh - 252px)*.7))}.over-char{width:75px;height:84px}}
+@media(max-height:740px){.game-reaction{min-height:60px}.game-reaction .game-char{width:54px;height:62px}.game-reaction .status-text{font-size:18px}.menu-char.mascot{width:110px;height:125px}#screen-game .board{max-width:min(392px,calc((100svh - 232px)*.7))}.over-char{width:75px;height:84px}}
 
 .menu-word{display:block;width:170px;max-width:90%;margin:auto;background-image:url("../assets/source/pic/titles/titles_02.webp");background-repeat:no-repeat;pointer-events:none}
 .gold-btn:disabled .menu-word{filter:grayscale(1);opacity:.6}
@@ -1099,3 +1099,8 @@ html, body { height: 100%; margin: 0; overflow: hidden; background: #05101f; }
   aspect-ratio: 1 / 1 !important; width: auto !important; height: 256px !important;
   max-height: none !important; margin: 6px auto -16px !important;
 }
+
+/* 漸進盤面：大格數時關閉寶石待機浮動（省效能），格子小時縮小圓角/邊框 */
+.board.dense .stone { animation: none !important; }
+.board[data-side="7"] .gem,.board[data-side="8"] .gem,.board[data-side="9"] .gem,.board[data-side="10"] .gem{border-width:1.5px;border-radius:9px;}
+.board[data-side="9"] .gem,.board[data-side="10"] .gem{border-radius:7px;}

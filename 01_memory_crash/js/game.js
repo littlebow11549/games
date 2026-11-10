@@ -7,9 +7,9 @@
   "use strict";
 
   // ---------- 棋盤設定 ----------
-  const COLS = 3;
-  const ROWS = 4;
-  const CELLS = COLS * ROWS; // 12 顆寶石
+  // 漸進盤面：2×2 起，每 2 關擴一圈，最難 10×10（方形，置中於直式版面）
+  function gridSide(level) { return Math.min(10, 2 + Math.floor((level - 1) / 2)); }
+  let curSide = 2, curCells = 4;   // 當前盤面邊長 / 格數
 
   // 12 種寶石顏色（對應設計稿的多彩寶石）
   const GEM_COLORS = [
@@ -162,20 +162,29 @@
 
   // ---------- 建立棋盤 ----------
   const gems = [];
-  function buildBoard() {
+  function buildBoard(side) {
+    side = Math.max(2, Math.min(10, side || curSide));
+    curSide = side; curCells = side * side;
     board.innerHTML = "";
-    board.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+    board.style.gridTemplateColumns = `repeat(${side}, 1fr)`;
+    // 格數越多，間距與內距越小，格子才不會太小
+    board.style.gap = Math.max(3, 14 - side) + "px";
+    board.style.padding = Math.max(7, 16 - side) + "px";
+    board.dataset.side = side;
+    board.classList.toggle("dense", side >= 7); // 大盤面關閉待機浮動動畫，省效能
     gems.length = 0;
-    for (let i = 0; i < CELLS; i++) {
+    for (let i = 0; i < curCells; i++) {
+      const g = Math.floor(Math.random() * 12);  // 隨機寶石（每次重建＝洗牌）
       const gem = document.createElement("button");
       gem.className = "gem";
-      gem.style.setProperty("--gem", GEM_COLORS[i % GEM_COLORS.length]);
+      gem.style.setProperty("--gem", GEM_COLORS[g % GEM_COLORS.length]);
       gem.dataset.index = i;
+      gem.dataset.gem = g;
       gem.setAttribute("aria-label", `Gem ${i + 1}`);
-      gem.style.setProperty("--idle-delay", `${-i * 0.29}s`);
+      gem.style.setProperty("--idle-delay", `${-i * 0.11}s`);
       const stone = document.createElement("span");
       stone.className = "stone";
-      stone.style.backgroundPosition = `${(i % 4) * 100 / 3}% ${Math.floor(i / 4) * 50}%`;
+      stone.style.backgroundPosition = `${(g % 4) * 100 / 3}% ${Math.floor(g / 4) * 50}%`;
       gem.appendChild(stone);
       gem.addEventListener("click", () => onGemClick(i));
       board.appendChild(gem);
@@ -238,7 +247,7 @@
     state.hearts = 3; state.maxHearts = 3;
     state.score = 0; state.combo = 0; updateScore();
     state.best = Number(localStorage.getItem("mc_best") || 1);
-    buildBoard();
+    buildBoard(gridSide(state.level));
     renderHearts();
     show("game");
     startMusic();
@@ -246,9 +255,9 @@
   }
 
   function seqLength() {
-    // 放緩：每 2 關才 +1 顆（大師模式維持每關 +1），讓遊戲更耐玩
-    const grow = state.master ? state.level : Math.floor((state.level - 1) / 2);
-    return Math.min(CELLS, 3 + grow);
+    // 序列長度隨關卡漸增，但不超過當前格數（盤面小時自然短）
+    const grow = state.master ? state.level : Math.floor(state.level * 0.7);
+    return Math.max(2, Math.min(curCells, 2 + grow));
   }
   function flashTiming() {
     // 放緩閃示速度並提高下限，較長序列也看得清楚
@@ -263,7 +272,7 @@
     let last = -1;
     for (let i = 0; i < seqLength(); i++) {
       let c;
-      do { c = Math.floor(Math.random() * CELLS); } while (c === last);
+      do { c = Math.floor(Math.random() * curCells); } while (c === last && curCells > 1);
       seq.push(c); last = c;
     }
     return seq;
@@ -279,7 +288,8 @@
     flowVersion++;
     startMusic();
     levelTag.innerHTML = lvHTML(state.level);
-    if (fresh) state.sequence = generateSequence();
+    // 過關升級時重建盤面（擴大格數＋洗牌），再生成新序列；重試則沿用同盤面/序列
+    if (fresh) { buildBoard(gridSide(state.level)); state.sequence = generateSequence(); }
     state.playerStep = 0;
     state.accepting = false;
     board.classList.add("locked");
