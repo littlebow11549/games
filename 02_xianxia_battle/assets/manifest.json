@@ -1,0 +1,16 @@
+{
+  "_說明": "素材插槽表。值為 null 時遊戲使用程式繪製的佔位版；素材到位後把路徑填進來即可替換，不需改程式。格式見 assets/README.md。",
+  "models": {
+    "hero": null,
+    "sword": null,
+    "mob_spear": null,
+    "mob_imp": null,
+    "mob_plant": null,
+    "boss": null
+  },
+  "audio": {
+    "bgm_battle": null,
+    "bgm_boss": null,
+    "bgm_victory": null
+  }
+}

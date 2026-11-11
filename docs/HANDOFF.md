@@ -4,6 +4,14 @@
 
 ## 最新交付
 
+- [2026-11-11 勇氣超人：設計底 D1 實作與美術製作需求 v2.0（Claude）](handoffs/2026-11-11-game02-braveguy-d1.md)：原型已改成勇氣超人的核心玩法（兩種型態、四條計量、三小招一大招、變身）；進度見 [`02_xianxia_battle/PROGRESS.md`](../02_xianxia_battle/PROGRESS.md)；美術需求見 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)。
+
+- [2026-11-11 第二款遊戲改為《勇氣超人 Brave Guy》：概念圖歸檔與企劃書（Claude）](handoffs/2026-11-11-game02-braveguy-design.md)：企劃書 [`02_xianxia_battle/DESIGN.md`](../02_xianxia_battle/DESIGN.md)、劇情腳本初稿 [`02_xianxia_battle/SCRIPT.md`](../02_xianxia_battle/SCRIPT.md)、角色設定集 [`02_xianxia_battle/CHARACTERS.md`](../02_xianxia_battle/CHARACTERS.md)；名稱已改（當時原型仍是仙俠佔位版；已於 D1 改掉）。
+
+- [2026-11-11 第二款遊戲：首頁入口、簡單版美術、美術優先級清單（Claude）](handoffs/2026-11-11-game02-hub-entry-simple-art.md)：首頁新增第二款卡片（當時暫名青玉劍試煉，已改為勇氣超人）；65 張 SVG＋17 張三視圖暫代圖；優先級見 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)。
+
+- [2026-11-10 第二款遊戲（3D 仙俠戰鬥）：影片分析、交 GPT 的素材需求、佔位版原型（Claude）](handoffs/2026-11-10-game02-battle-analysis-and-reqs.md)：需求 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)、進度 [`02_xianxia_battle/PROGRESS.md`](../02_xianxia_battle/PROGRESS.md)；可玩但全為佔位素材（首頁入口於 11-11 加入）。
+
 - [2026-11-10 執行報告：第三批接入與優化（含反覆修正檢討、下一專案速度/品質改進建議）](reports/2026-11-10-execution-report.md)
 
 - [2026-11-10 補齊標題字藝與巴哥待機 sprite（Codex）](handoffs/2026-11-10-extra-titles-idle.md)：gameover_hero／howto_hero 高解析字藝（已接入）；pug_idle 待機動畫（備用，暫不接以保留全身）。
