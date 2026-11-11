@@ -108,6 +108,8 @@ function startGame() {
   $('overlay').hidden = true;
   $('hud').hidden = false;
   $('boss-bar').hidden = true;
+  $('btn-pause').classList.remove('on');
+  $('quest-wave').textContent = '清除妖物';
   audio.playBgm('bgm_battle');
 }
 
@@ -569,6 +571,9 @@ function endGame(win) {
     game.phase = 'over';
     audio.playBgm(win ? 'bgm_victory' : null);
     audio.sfx(win ? 'win' : 'lose');
+    $('ov-logo').hidden = true;
+    $('ov-title').hidden = false;
+    $('overlay').classList.add('result');
     $('ov-title').textContent = win ? '勝 利' : '落 敗';
     $('ov-text').textContent = `用時 ${game.time.toFixed(1)} 秒　擊殺 ${game.kills}`;
     $('ov-load').textContent = '';
@@ -646,18 +651,18 @@ async function boot() {
   game.phase = 'ready';
   $('ov-load').textContent = models.length ? `已載入模型 ${ok}/${models.length}，其餘使用佔位角色` : '目前全部使用佔位素材';
   $('ov-btn').disabled = false;
-  $('btn-mute').textContent = audio.muted ? '🔇' : '🔊';
+  $('btn-mute').classList.toggle('off', audio.muted);
 }
 
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startGame(); });
-$('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').textContent = audio.muted ? '🔇' : '🔊'; });
+$('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
 $('btn-pause').addEventListener('click', () => {
   if (game.phase !== 'playing') return;
   game.paused = !game.paused;
-  $('btn-pause').textContent = game.paused ? '▶' : 'Ⅱ';
+  $('btn-pause').classList.toggle('on', game.paused);
   if (game.paused) banner('暫停');
 });
-document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').textContent = '▶'; } });
+document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').classList.add('on'); } });
 
 // 供自動化測試與除錯讀取狀態
 window.__game = { game, hero, get enemies() { return enemies; }, startGame, spawnEnemy, HERO };

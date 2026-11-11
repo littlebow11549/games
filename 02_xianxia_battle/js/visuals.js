@@ -57,7 +57,9 @@ function buildHumanoid(look) {
 
   if (look === LOOKS.hero) {
     head.add(mesh(new THREE.SphereGeometry(0.17, 12, 10), mats.hair, 0, headR + 0.1, -0.08));
-    head.add(mesh(new THREE.TorusGeometry(0.1, 0.03, 6, 14), mats.gold, 0, headR + 0.0, -0.08)).rotation.x = Math.PI / 2;
+    const band = mesh(new THREE.TorusGeometry(0.1, 0.03, 6, 14), mats.gold, 0, headR, -0.08);
+    band.rotation.x = Math.PI / 2; // 注意：add() 回傳的是父物件，旋轉要設在子物件上
+    head.add(band);
   }
   if (look.leaf) {
     const leaf = mesh(new THREE.ConeGeometry(0.16, 0.5, 6), toon(0x2f7a3a), 0, headR + 0.2, 0);
@@ -102,7 +104,9 @@ function buildHumanoid(look) {
     hand.add(mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.3, 8), mats.dark, 0, -0.02, 0));
   } else if (look.weapon === 'spear') {
     hand.add(mesh(new THREE.CylinderGeometry(0.03, 0.03, 2.2, 6), toon(0x6b4a2a), 0, -0.6, 0));
-    hand.add(mesh(new THREE.ConeGeometry(0.09, 0.32, 6), toon(0xd9dde2), 0, -1.86, 0)).rotation.x = Math.PI;
+    const tip = mesh(new THREE.ConeGeometry(0.09, 0.32, 6), toon(0xd9dde2), 0, -1.86, 0);
+    tip.rotation.x = Math.PI;
+    hand.add(tip);
   }
   return { root, rig, torso, head, armR, armL, legR, legL, hand, look };
 }

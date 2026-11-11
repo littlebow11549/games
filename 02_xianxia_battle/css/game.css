@@ -95,3 +95,24 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d1b1a;color:#fff;
   .actions{transform:scale(.86);transform-origin:right bottom}
   #stick-base{width:96px;height:96px}
 }
+
+/* ---- 簡單版美術圖（assets/source/pic/*.svg，由 tools/make_simple_art.py 產生）---- */
+.overlay{background:linear-gradient(#06100f99,#06100fcc),url(../assets/source/pic/background/bg_loading.svg) center/cover}
+.overlay.result{background:linear-gradient(#06100f66,#06100fcc),url(../assets/source/pic/background/bg_result.svg) center/cover}
+.logo{display:block;width:min(100%,360px);margin:0 auto 6px}
+.logo[hidden],.card h1[hidden]{display:none}
+.back{display:block;margin-top:12px;color:var(--jade-light);font-size:13px;text-decoration:none}
+.portrait{background:url(../assets/source/pic/ui/hud_portrait_hero.svg) center/cover}
+.icon-btn{background:url(../assets/source/pic/icons/fn_pause.svg) center/cover;border:0}
+#btn-mute{background-image:url(../assets/source/pic/icons/fn_sound_on.svg)}
+#btn-mute.off{background-image:url(../assets/source/pic/icons/fn_sound_off.svg)}
+#btn-pause.on{outline:3px solid var(--gold)}
+#stick-base{background:url(../assets/source/pic/ui/joystick_base.svg) center/cover;border:0}
+#stick-knob{background:url(../assets/source/pic/ui/joystick_knob.svg) center/cover;box-shadow:none}
+.act{border:0;background-size:cover!important;background-position:center!important}
+.act span{display:none}
+.act.attack{background:url(../assets/source/pic/ui/btn_attack.svg)}
+.act.dodge{background:url(../assets/source/pic/ui/btn_dodge.svg)}
+.act.s1{background:url(../assets/source/pic/icons/skill_02.svg)}
+.act.s2{background:url(../assets/source/pic/icons/skill_01.svg)}
+.act.s3{background:url(../assets/source/pic/icons/skill_06.svg)}

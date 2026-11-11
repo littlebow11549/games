@@ -1,0 +1,66 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>三視圖輸出（佔位角色）</title>
+<script type="importmap">{"imports":{"three":"../vendor/three/three.module.min.js","three/addons/":"../vendor/three/addons/"}}</script>
+<body style="margin:0;background:#333">
+<script type="module">
+// 把程式拼的佔位角色輸出成 A 字站姿三視圖，規格對應 assets/ASSETS.md §1。由 tools/render_concepts.cjs 呼叫。
+import * as THREE from 'three';
+import { ProcVisual } from '../js/visuals.js';
+
+const SIZE = 2048;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(SIZE, SIZE, false);
+document.body.append(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x808080);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xbbbbbb, 2.2));
+const key = new THREE.DirectionalLight(0xffffff, 0.8);
+scene.add(key);
+const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+const VIEWS = { front: [0, 0, 1], side: [1, 0, 0], back: [0, 0, -1] };
+
+function shoot(obj, view) {
+  scene.add(obj);
+  obj.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(obj);
+  const c = box.getCenter(new THREE.Vector3()), s = box.getSize(new THREE.Vector3());
+  const half = Math.max(s.x, s.y, s.z) * 0.62;
+  cam.left = cam.bottom = -half; cam.right = cam.top = half;
+  cam.updateProjectionMatrix();
+  const d = new THREE.Vector3(...VIEWS[view]);
+  cam.position.copy(c).addScaledVector(d, 30);
+  cam.lookAt(c);
+  key.position.copy(cam.position);
+  renderer.render(scene, cam);
+  scene.remove(obj);
+  return renderer.domElement.toDataURL('image/png');
+}
+
+function aPose(kind) {
+  const v = new ProcVisual(kind);
+  const p = v.p;
+  if (!p.plant) {
+    p.armR.rotation.set(0, 0, -0.78);
+    p.armL.rotation.set(0, 0, 0.78);
+    p.hand.removeFromParent(); // 規格：手上不拿東西，武器另出一張
+  }
+  return v;
+}
+
+window.renderAll = () => {
+  const out = {};
+  for (const [kind, name] of [['hero', 'hero'], ['mob_spear', 'mob_spear'], ['mob_imp', 'mob_imp'], ['mob_plant', 'mob_plant'], ['boss', 'boss']]) {
+    for (const view of Object.keys(VIEWS)) out[`${name}_${view}`] = shoot(aPose(kind).root, view);
+  }
+  for (const [kind, name] of [['hero', 'sword_01'], ['mob_spear', 'mob_spear_weapon']]) {
+    const hand = new ProcVisual(kind).p.hand;
+    hand.removeFromParent();
+    hand.position.set(0, 0, 0);
+    hand.rotation.set(0, 0, Math.PI); // 尖端朝上
+    out[name] = shoot(hand, 'front');
+  }
+  return out;
+};
+window.ready = true;
+</script>
