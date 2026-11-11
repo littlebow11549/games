@@ -27,3 +27,9 @@
 - 音樂與音效本身（另一個工作階段）。
 - 使用者決定：主題曲要不要有歌詞、配音範圍、曲風參考。
 - Claude：音效讀檔功能；其餘 BGM 鍵隨關卡接上。
+
+## 更新 v1.1（同日）
+- 使用者指定：**每一關都要有不同的戰鬥電音 BGM，要很ㄎㄧㄤ又很刺激。**
+- `MUSIC.md` 第 0、3 節改寫：戰鬥曲全部改為電子舞曲，14 關各一首、各用不同子類型（Happy hardcore、Drum & bass、台式電音、Hardstyle、Melodic dubstep、Psytrance、Gabber、Tech house、Techno、Bass house、Big room、Trance 等），並寫明每關的惡搞取樣點子；另有守關曲 1 首與非戰鬥曲 7 首，共 22 首。原 v1.0 的「放克加鼓號樂隊／原聲樂器」方向作廢。
+- 各關的子類型與取樣是 Claude 的提案。第一次變身的演出曲維持管弦，理由寫在文件內。
+- `assets/manifest.json` 的音訊鍵改為每關一個（`bgm_stage_1_0` … `bgm_stage_4_1`）。程式目前仍只播 `bgm_battle`、`bgm_boss`、`bgm_victory`。

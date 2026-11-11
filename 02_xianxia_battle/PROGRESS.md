@@ -11,7 +11,7 @@
 | [`SCRIPT.md`](SCRIPT.md) 初稿 v1.5 | 劇情腳本：主線 670 句、泡泡 52 句，附台詞 ID。**尚未接進遊戲** |
 | [`CHARACTERS.md`](CHARACTERS.md) | 16 個角色的設定與「角色設定合輯」規格。合輯圖尚未製作 |
 | [`assets/ASSETS.md`](assets/ASSETS.md) v2.0 | 交 GPT 的美術製作需求，含優先順序 |
-| [`assets/MUSIC.md`](assets/MUSIC.md) v1.0 | 音樂與音效製作需求（交另一個工作階段）：15 首 BGM、約 60 個音效 |
+| [`assets/MUSIC.md`](assets/MUSIC.md) v1.1 | 音樂與音效製作需求（交另一個工作階段）：每關不同的戰鬥電音共 14 首，加上守關曲與非戰鬥曲共 22 首；音效 54 個 |
 | [`assets/README.md`](assets/README.md) | GLB 模型與音樂怎麼接進遊戲 |
 
 ## 設計底 D1 已有的功能
