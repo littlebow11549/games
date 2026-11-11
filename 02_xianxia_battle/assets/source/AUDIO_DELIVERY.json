@@ -1,0 +1,120 @@
+{
+  "_about": "勇氣超人 Brave Guy — P0 音樂交付清單。母帶 WAV 於 repo 根 _archive/02_xianxia_battle/music/。",
+  "produced": "2026-11-12",
+  "tool": "原創程式合成(Python/numpy 加法合成，ffmpeg loudnorm 母帶處理)",
+  "license": "原創，版權歸使用者所有，可商用；未取樣任何第三方素材",
+  "items": [
+    {
+      "file_base": "bgm_campus",
+      "manifest_key": "bgm_battle",
+      "use": "地圖一校園一般戰鬥",
+      "description": "硬派電音 / bigroom hype，160 BPM，A 大調；supersaw 主旋律(主角主題)＋四踩大鼓＋reese/donk 低音＋arp",
+      "loop": true,
+      "loop_length_s": 60.0,
+      "duration_s": 60.0,
+      "loudness_LUFS": -16.17,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_campus.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 107,
+        "size_bytes": 805688
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_campus.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 960932
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_campus.wav"
+    },
+    {
+      "file_base": "bgm_boss",
+      "manifest_key": "bgm_boss",
+      "use": "各區守關戰",
+      "description": "更重更快的電音，174 BPM，A 小調；失真 power chord＋雙踩＋滾動 reese bass＋小調主題 riff",
+      "loop": true,
+      "loop_length_s": 60.69,
+      "duration_s": 60.69,
+      "loudness_LUFS": -15.99,
+      "true_peak_dBTP": -1.68,
+      "ogg": {
+        "path": "assets/source/music/bgm_boss.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 99,
+        "size_bytes": 751688
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_boss.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 972217
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_boss.wav"
+    },
+    {
+      "file_base": "jingle_clear",
+      "manifest_key": "bgm_victory",
+      "use": "過關『突破』短曲",
+      "description": "明亮電音號角，6 秒；三連上行和弦衝到大和弦，結尾故意收得隨便(配小天使『還行。』)",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 5.24,
+      "loudness_LUFS": -19.31,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/jingle_clear.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 98,
+        "size_bytes": 64331
+      },
+      "mp3": {
+        "path": "assets/source/music/jingle_clear.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 129,
+        "size_bytes": 84889
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/jingle_clear.wav"
+    },
+    {
+      "file_base": "theme_braveguy_demo",
+      "manifest_key": null,
+      "use": "主角主題動機 demo(非 manifest 鍵)",
+      "description": "展示可哼唱的主角主題，供確認方向；campus/title/wild/office/credits 都是它的改編",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 9.08,
+      "loudness_LUFS": -15.99,
+      "true_peak_dBTP": -1.17,
+      "ogg": {
+        "path": "assets/source/music/theme_braveguy_demo.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 109,
+        "size_bytes": 124146
+      },
+      "mp3": {
+        "path": "assets/source/music/theme_braveguy_demo.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 146329
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/theme_braveguy_demo.wav"
+    }
+  ]
+}

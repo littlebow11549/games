@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-12 勇氣超人：P0 音樂交付（電音方向）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音**；交 `bgm_campus`／`bgm_boss`／`jingle_clear`＋主題 demo（各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；三個 P0 鍵已填入 manifest（未改 `js/`）。分支 `claude/brave-guy-audio`。
+
 - [2026-11-11 勇氣超人：音樂與音效製作需求（Claude）](handoffs/2026-11-11-game02-music-requirements.md)：[`02_xianxia_battle/assets/MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)，交另一個工作階段製作。第二款遊戲已合併並上線。
 
 - [2026-11-11 勇氣超人：設計底 D1 實作與美術製作需求 v2.0（Claude）](handoffs/2026-11-11-game02-braveguy-d1.md)：原型已改成勇氣超人的核心玩法（兩種型態、四條計量、三小招一大招、變身）；進度見 [`02_xianxia_battle/PROGRESS.md`](../02_xianxia_battle/PROGRESS.md)；美術需求見 [`02_xianxia_battle/assets/ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)。

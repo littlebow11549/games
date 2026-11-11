@@ -10,9 +10,9 @@
     "boss": null
   },
   "audio": {
-    "bgm_battle": null,
-    "bgm_boss": null,
-    "bgm_victory": null,
+    "bgm_battle": "assets/source/music/bgm_campus.ogg",
+    "bgm_boss": "assets/source/music/bgm_boss.ogg",
+    "bgm_victory": "assets/source/music/jingle_clear.ogg",
     "bgm_title": null,
     "bgm_transform": null,
     "bgm_shadow_1": null,
