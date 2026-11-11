@@ -1,36 +1,56 @@
-# 🎨 02 青玉劍試煉（暫定名）— 素材製作需求清單（交 GPT／Codex）
+# 🎨 02 勇氣超人 Brave Guy — 素材製作需求清單（交 GPT／Codex）
 
 > 依全專案標準範本（`/ASSETS_TEMPLATE.md`），一次開齊。
 > 產出後依「路徑」放檔，**檔名勿改**（含編號），Claude 才接得到。
 > 圖片僅可無損壓縮，保留原生解析度與透明度（見 `/AGENTS.md`）。
 >
-> ⚠️ **原創要求**：使用者提供的參考影片只用來參考「類型、鏡頭與 UI 佈局」。
-> 角色造型、怪物造型、UI 紋飾、圖示、字藝**一律原創**，不得描摹或重現參考影片中的任何角色、
-> 介面圖案、Logo 或文字。
+> ⚠️ **美術依據**：本作是使用者大學時期的原創作品《勇氣超人 Brave Guy》。角色與世界觀以使用者提供的兩張概念圖為準：
+> `pic/reference/braveguy_cover_front.jpg`（封面，角色群像與 Logo）、`pic/reference/braveguy_cover_back.jpg`（封底，角色立繪與舊版 3D 畫面）。
+> 更早提供的仙俠廣告影片只用來參考「斜俯視戰鬥的鏡頭與 HUD 佈局」，不得沿用其角色或介面圖案。
 >
-> 狀態：**Claude 已做完全部項目的「簡單版」（SVG／程式繪製），正式版尚未產出。** 遊戲已有可玩原型（見 `../PROGRESS.md`），素材接入方式見 [`README.md`](README.md)。
+> 狀態：**Claude 已做完全部項目的「簡單版」（SVG／程式繪製），正式版尚未產出。簡單版是改名前照仙俠風畫的（玉青色、劍、蓮花），除 Logo 文字外尚未改成勇氣超人的配色與圖案；§2–§9 的造型描述也還是舊的，請以 Game Brief 與概念圖為準。** 遊戲已有可玩原型（見 `../PROGRESS.md`），素材接入方式見 [`README.md`](README.md)。
 
 ---
 
 ## 📝 Game Brief
 
-- **遊戲名稱**：暫定「青玉劍試煉 / Jade Sword Trial」（Claude 為了做首頁入口先取的，使用者可改；改名後 Logo 需重做）
-- **概念**：斜俯視 3D 即時動作砍殺，Q 版劍修清怪、打 Boss
-- **世界觀**：東方仙俠；仙門小弟子下山歷練
-- **主題風格**：Q 版（2.5 頭身）、手繪卡通質感、明亮柔和
-- **類型**：ARPG／動作砍殺（單機、網頁、手機橫式）
-- **核心循環**：搖桿移動 → 普攻連段＋技能清怪 → 波次結束出 Boss → 結算
-- **主角**：有。Q 版仙門小弟子，手持比自己還大的巨劍（造型見 §3，可由使用者改定）
-- **配色**：玉青 `#2fa88f`／淺玉 `#bfeee0`／金邊 `#e9c46a`／蓮粉 `#f4b6c2`／血紅 `#e2413d`／靈力藍 `#3aa0ff`／墨字 `#1d2a2a`
+- **遊戲名稱**：勇氣超人 Brave Guy（Logo 沿用概念圖的造型：綠色能量球＋橘紅金立體字）
+- **概念**：斜俯視 3D 即時動作。平凡大學生在夢中變身勇氣超人，打倒內心的心魔
+- **世界觀**：主角是一般大學生，在夢裡進入自己內心的黑暗迷宮；心裡出現一位美麗小天使，賜予他力量，讓他可以變身成勇氣超人。內心世界有校園、有野外，並擴充到出社會後的職場；惡夢超人是勇氣超人的反面、主角內心的黑影。完整故事與角色見 [`../DESIGN.md`](../DESIGN.md)
+- **標語**（取自概念圖）：突破自我的旅程／面對艱難勇往直前的少年／逗趣可愛的畫風／一段勇敢與冒險的傳奇
+- **主題風格**：逗趣可愛的日系卡通、粗黑描邊、高彩度；Q 版比例
+- **類型**：ARPG／動作（單機、網頁、手機橫式）
+- **核心循環**：搖桿移動 → 普攻連段＋技能清怪 → 累積勇氣 → 變身勇氣超人 → 打倒心魔 Boss（變身機制為 Claude 提案，待使用者確認）
+- **配色**（取自概念圖）：勇氣綠 `#3fb53a`／能量球亮綠 `#9be564`／外套黃 `#f6c21c`／圍巾紅 `#e23a1e`／橘 `#f28a1b`／天使粉 `#f48fc6`／描邊黑 `#111111`
 - **比例**：**手機橫式 16:9**（設計基準 1920×1080）
-- **參考**：僅參考佈局與類型，見上方原創要求
+
+### 角色表（Claude 依概念圖辨識外觀；**名稱、身分、敵我關係待使用者確認**）
+
+| 代號 | 概念圖中的外觀 | 推測定位 |
+|------|----------------|----------|
+| 大學生（變身前） | 黃色棒球帽、黃色「BRAVE」T 恤、綠袖 | 主角平常型態 |
+| 勇氣超人（變身後） | 棕色刺蝟頭、紅圍巾、黃橘外套、紅色露指手套、黑褲、綠護膝、紅白鞋 | 主角戰鬥型態 |
+| 小天使 | 粉紅長髮、紅色小丑帽（黃鈴鐺）、白翅膀、紅白外套、藍裙 | 引導者，賜予變身力量；使用者設定：外表美麗但毒舌（表情圖需要「嫌棄」「翻白眼」「勉強認可」） |
+| 水手服少女 | 粉紅馬尾、黃色頭帶、水手服、手持大紙扇 | 待確認（夥伴？對手？） |
+| 惡夢超人 | 與勇氣超人相似的髮型、綠圍巾、綠紫服裝（封面中間上方後面那位） | 使用者確認：勇氣超人的反面，主角內心的黑影 |
+| 藍衣大叔 | 藍色服裝、怒吼表情 | 待確認 |
+| 面具熊 | 橘色布偶熊、曲棍球面具、紅色雞冠頭 | 心魔（敵人） |
+| 鑽頭龍 | 橘色小龍、黃角、嘴咬鑽頭 | 心魔（敵人） |
+| 灰角獸 | 灰色、大角、紫眼、尖牙 | 心魔（敵人） |
+| 綠爪蜥 | 綠色、黃角、紅眼、灰色大爪（封底舊畫面中的小怪） | 心魔（敵人） |
+| 骷髏臉熊 | 棕色熊、骷髏面 | 心魔（敵人） |
+| 條紋小丑 | 黑白條紋衣、棕帽、紅格紋臉 | 心魔（敵人） |
+
+舊版場景（封底截圖）：粉紅地毯的房間、夜晚的木造村落、籃球場、紫色格紋地板的房間、木牌主選單（開始遊戲／遊戲結束／操作說明）。
 
 ### 統一風格提示詞（貼在每則 2D 圖片開頭）
 ```
-consistent game art series, original design, chibi eastern fantasy (xianxia) style,
-hand-painted cartoon look, soft bright lighting, jade-green and gold palette with
-lotus-pink accents, clean shapes, high detail, no text unless specified
+consistent game art series, cute and funny Japanese cartoon style with thick black outlines,
+flat vivid colors with simple cel shading, chibi proportions, palette of brave green,
+jacket yellow, scarf red and orange, same character designs as the provided Brave Guy
+concept art, no text unless specified
 ```
+出圖時請附上 `pic/reference/` 的兩張概念圖當角色依據。企劃書見 [`../DESIGN.md`](../DESIGN.md)。
 
 ---
 
@@ -61,9 +81,9 @@ lotus-pink accents, clean shapes, high detail, no text unless specified
 
 | 優先級 | 項目 | 對應章節 | 需要的軟體／負責 | 為什麼排這裡 |
 |--------|------|----------|------------------|--------------|
-| **P0** | 主角設定圖三視圖＋巨劍 | §1 | 繪圖 AI（GPT）或使用者；使用者把關品質 | 擋住主角 3D 模型，整個畫面觀感取決於它 |
+| **P0** | 勇氣超人與大學生的設定圖三視圖 | §1 | 繪圖 AI（GPT）或使用者；使用者把關品質 | 擋住主角 3D 模型，整個畫面觀感取決於它 |
 | **P0** | 主角 3D 模型＋綁骨＋動作 | §11 | Tripo（Claude 經 API 操作，**需使用者提供 API 金鑰**） | 最影響觀感；先做一隻驗證整條流程與花費 |
-| **P1** | 三種小怪與 Boss 設定圖 | §1 | 繪圖 AI（GPT） | 主角流程驗證通過後才值得投入 |
+| **P1** | 惡夢超人、小天使、綠爪蜥的設定圖；其餘心魔為 P2 | §1 | 繪圖 AI（GPT） | 主角流程驗證通過後才值得投入 |
 | **P1** | 小怪與 Boss 3D 模型 | §11 | Tripo；非人形（植物怪）可能需 Claude 以程式動畫補 | 同上 |
 | **P2** | UI 正式圖（§5）、圖示（§6） | §5 §6 | 繪圖 AI（GPT） | 簡單版已可用，不擋玩法；影響質感 |
 | **P2** | BGM、配音 | §10 | 使用者 | 不擋玩法；程式已留插槽 |
@@ -110,15 +130,20 @@ lotus-pink accents, clean shapes, high detail, no text unless specified
 - 頭髮、衣襬避免細碎飄帶與鏤空，飾品要貼身（細薄懸空的部件轉 3D 會破）。
 - 畫面內**不要任何文字、標註、浮水印**。
 
-### 清單
-| 檔案 | 內容 | 造型方向（可調整，須原創） |
-|------|------|------|
-| `hero_front.png` `hero_side.png` `hero_back.png` | 主角 | Q 版 2.5 頭身仙門小弟子；玉青色短道袍、金色滾邊、腰繫蓮花玉佩；髮型簡潔成塊（如高馬尾或單髻），避免細碎髮絲 |
-| `sword_01.png` | 主角巨劍（單獨一張，劍身垂直、劍尖朝上、正面） | 寬刃巨劍，長度約為主角身高 1.5 倍；青玉劍身、金色劍格、蓮花紋 |
-| `mob_spear_front/side/back.png` | 持槍小怪（人形） | 矮胖小妖兵，赭紅色皮甲、圓盔；**長槍另畫一張** `mob_spear_weapon.png` |
-| `mob_imp_front/side/back.png` | 小雜兵（人形） | 更小隻的草葉小精怪，綠色、圓頭、短手短腳 |
-| `mob_plant_front/side/back.png` | 植物怪（非人形，不需 A 字站姿） | 大花苞頭、粗莖、兩片葉手、根部為球狀底座；遠程吐彈 |
-| `boss_front/side/back.png` | Boss | 體型為主角 3 倍的山嶽獸形妖王；**請畫成雙足站立的人形比例**（方便自動綁骨），厚重石甲、角、發光胸核 |
+### 清單（造型一律依 `pic/reference/` 概念圖，不要重新設計）
+
+| 優先 | 檔案 | 角色 | 備註 |
+|------|------|------|------|
+| P0 | `braveguy_front/side/back.png` | 勇氣超人（主角變身後） | 圍巾請畫短、貼著身體，長飄帶轉 3D 會破；頭髮尖刺畫成厚實的塊狀 |
+| P0 | `student_front/side/back.png` | 大學生（主角變身前） | 黃帽、黃色 BRAVE T 恤 |
+| P1 | `nightmare_front/side/back.png` | 惡夢超人（最終 Boss） | 與勇氣超人同體型同髮型，綠圍巾、綠紫配色；可由勇氣超人模型改色，視品質決定是否另生 |
+| P1 | `angel_front/side/back.png` | 小天使 | 翅膀與長髮畫厚、不要鏤空；帽子的兩個尖角各自成塊 |
+| P1 | `mob_lizard_front/side/back.png` | 綠爪蜥 | 序章就會出現的基本小兵 |
+| P2 | `mob_maskbear_*`、`mob_drilldragon_*`、`mob_hornbeast_*`、`mob_skullbear_*`、`mob_clown_*` | 其餘五種心魔 | 四足或非人形者不需 A 字站姿，改自然站姿 |
+| P2 | `sailor_front/side/back.png`、`uncle_front/side/back.png` | 水手服少女、藍衣大叔 | **定位待使用者確認後再做**；紙扇另出一張 |
+| P3 | `worker_*`、`nightmare_adult_*`、`mob_clock_*`、`mob_paper_*`、`mob_faceless_*`、`mob_lamp_*` | 職場篇：上班族主角、大人版惡夢超人、四種職場心魔 | **概念圖沒有，需先有新設計**（見企劃書第 3 節）；屬第二章，最後做 |
+
+原先仙俠版的 `hero_*`、`sword_01`、`mob_spear_*`、`mob_imp_*`、`mob_plant_*`、`boss_*` 已作廢；`pic/concept/` 裡那 17 張是舊佔位角色的輸出，僅留作規格示範。
 
 ---
 
@@ -164,7 +189,7 @@ lotus-pink accents, clean shapes, high detail, no text unless specified
 | `tab_01.png` | 分頁籤（選中／未選中） |
 
 ## 6. 圖示　`pic/icons/`（去背 PNG，各 256×256）
-- **技能** `skill_01`–`skill_06`：劍氣斬、旋風斬、落劍衝擊、蓮華護體、靈力爆發、終結技（巨劍天降）。
+- **技能** `skill_01`–`skill_06`：三連拳、勇氣衝拳、圍巾旋風、勇氣爆發、變身、小天使的鼓勵。
 - **功能** `fn_bag`、`fn_character`、`fn_settings`、`fn_pause`、`fn_sound_on`、`fn_sound_off`、`fn_quest`。
 - **Buff** `buff_atk`、`buff_def`、`buff_speed`。
 - **掉落** `drop_coin`、`drop_hp`、`drop_mp`。

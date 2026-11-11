@@ -96,15 +96,15 @@ save('branding', 'icon_01', 1024, 1024,
      + sword(512, 470, 760, 120, 28) + lotus(512, 900, 190)
      + '<rect x="24" y="24" width="976" height="976" rx="160" fill="none" stroke="#e9c46a" stroke-width="26"/>')
 save('branding', 'logo_01', 1600, 520,
-     sword(800, 250, 560, 70, 90) + text(800, 300, '青玉劍試煉', 230, sw=30)
-     + text(800, 440, 'JADE SWORD TRIAL', 70, fill=JADE_L, stroke=JADE_D, sw=12, extra='letter-spacing="18"')
+     sword(800, 250, 560, 70, 90) + text(800, 300, '勇氣超人', 250, sw=30)
+     + text(800, 440, 'BRAVE GUY', 70, fill=JADE_L, stroke=JADE_D, sw=12, extra='letter-spacing="18"')
      + lotus(180, 330, 90) + lotus(1420, 330, 90))
 save('branding', 'banner_01', 1920, 720,
      '<rect width="1920" height="720" fill="url(#lSky)"/>' + clouds(1920, 180, 6, 0.3)
      + mountains(1920, 720, 520, '#7fc3ae', 0.4, 6, 0.3) + mountains(1920, 720, 600, '#3f9a84', 1.9, 7, 0.22)
      + mountains(1920, 720, 690, '#1f6f62', 3.1, 9, 0.12) + clouds(1920, 600, 5, 2.0, 0.5)
-     + sword(1420, 330, 620, 90, 24) + chibi_head(1250, 430, 120) + text(560, 330, '青玉劍試煉', 150, sw=22)
-     + text(560, 440, '斬妖 × 連段 × 妖王', 56, fill=JADE_L, stroke=JADE_D, sw=10))
+     + sword(1420, 330, 620, 90, 24) + chibi_head(1250, 430, 120) + text(560, 330, '勇氣超人', 160, sw=22)
+     + text(560, 440, '突破自我的旅程', 56, fill=JADE_L, stroke=JADE_D, sw=10))
 
 # ---------- 背景 ----------
 for name, sky in (('bg_loading', 'url(#lSky)'), ('bg_result', 'url(#lJade)')):
