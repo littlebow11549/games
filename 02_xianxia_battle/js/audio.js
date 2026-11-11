@@ -1,4 +1,4 @@
-// 音訊：音效先以 WebAudio 合成佔位；BGM 由 assets/manifest.json 的 audio 欄位提供。
+// 音訊：音效先以 WebAudio 合成佔位；BGM 由 assets/manifest.json 的 audio 欄位提供（需求見 assets/MUSIC.md）。
 const MUTE_KEY = 'game02.muted';
 
 export class GameAudio {
@@ -7,7 +7,9 @@ export class GameAudio {
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
     this.bgm = null;
+    this.bgmSrc = null;
     this.bgmName = null;
+    this.buffers = {};
   }
 
   // 必須在使用者手勢內呼叫（瀏覽器的自動播放限制）
@@ -19,6 +21,10 @@ export class GameAudio {
     this.master = this.ctx.createGain();
     this.master.gain.value = this.muted ? 0 : 0.5;
     this.master.connect(this.ctx.destination);
+    // BGM 走另一條音量，不受音效主音量影響
+    this.bgmGain = this.ctx.createGain();
+    this.bgmGain.gain.value = this.muted ? 0 : 0.55;
+    this.bgmGain.connect(this.ctx.destination);
     const len = this.ctx.sampleRate * 0.5;
     this.noiseBuf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
     const d = this.noiseBuf.getChannelData(0);
@@ -29,20 +35,52 @@ export class GameAudio {
     this.muted = m;
     localStorage.setItem(MUTE_KEY, m ? '1' : '0');
     if (this.master) this.master.gain.value = m ? 0 : 0.5;
+    if (this.bgmGain) this.bgmGain.gain.value = m ? 0 : 0.55;
     if (this.bgm) this.bgm.muted = m;
   }
 
-  playBgm(name) {
-    if (this.bgmName === name) return;
+  // 裝置不支援 OGG（部分 iOS Safari）時改讀同名的 .mp3；兩種格式都有交付
+  resolve(url) {
+    if (!/\.ogg$/i.test(url)) return url;
+    if (this.oggOk === undefined) this.oggOk = !!new Audio().canPlayType('audio/ogg; codecs="vorbis"');
+    return this.oggOk ? url : url.replace(/\.ogg$/i, '.mp3');
+  }
+
+  stopBgm() {
+    if (this.bgmSrc) { try { this.bgmSrc.stop(); } catch { /* 已停止 */ } this.bgmSrc = null; }
     if (this.bgm) { this.bgm.pause(); this.bgm = null; }
+  }
+
+  // 優先用 WebAudio 解碼後循環：OGG 這樣才是真的無縫。解碼失敗再退回 <audio>。
+  async playBgm(name) {
+    if (this.bgmName === name) return;
+    this.stopBgm();
     this.bgmName = name;
-    const url = this.tracks[name];
-    if (!url) return;
-    this.bgm = new Audio(url);
-    this.bgm.loop = name !== 'bgm_victory';
-    this.bgm.volume = 0.5;
-    this.bgm.muted = this.muted;
-    this.bgm.play().catch(() => {});
+    const raw = this.tracks[name];
+    if (!raw) return;
+    const url = this.resolve(raw);
+    const loop = name !== 'bgm_victory' && name !== 'bgm_defeat' && name !== 'bgm_transform';
+    try {
+      if (!this.ctx) throw new Error('no audio context');
+      if (!this.buffers[url]) {
+        const data = await (await fetch(url)).arrayBuffer();
+        this.buffers[url] = await this.ctx.decodeAudioData(data);
+      }
+      if (this.bgmName !== name) return; // 載入期間已經換曲
+      const src = this.ctx.createBufferSource();
+      src.buffer = this.buffers[url];
+      src.loop = loop;
+      src.connect(this.bgmGain);
+      src.start();
+      this.bgmSrc = src;
+    } catch (err) {
+      if (this.bgmName !== name) return;
+      this.bgm = new Audio(url);
+      this.bgm.loop = loop;
+      this.bgm.volume = 0.5;
+      this.bgm.muted = this.muted;
+      this.bgm.play().catch(() => {});
+    }
   }
 
   noise(dur, freq, q, gain, sweepTo) {

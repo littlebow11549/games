@@ -1,5 +1,5 @@
 {
-  "_說明": "素材插槽表。值為 null 時遊戲使用程式拼的佔位版；素材到位後把路徑填進來即可替換，不需改程式。模型格式見 assets/README.md，音樂見 assets/MUSIC.md。",
+  "_說明": "素材插槽表。值為 null 時遊戲使用程式拼的佔位版；素材到位後把路徑填進來即可替換，不需改程式。模型格式見 assets/README.md，音樂見 assets/MUSIC.md。 音訊填 .ogg 路徑；裝置不支援 OGG 時程式會自動改讀同名的 .mp3。",
   "models": {
     "student": null,
     "brave": null,
@@ -10,11 +10,11 @@
     "boss": null
   },
   "audio": {
-    "bgm_battle": null,
-    "bgm_boss": null,
-    "bgm_victory": null,
+    "bgm_battle": "assets/source/music/bgm_campus.ogg",
+    "bgm_boss": "assets/source/music/bgm_boss.ogg",
+    "bgm_victory": "assets/source/music/jingle_clear.ogg",
     "bgm_stage_1_0": null,
-    "bgm_stage_1_1": null,
+    "bgm_stage_1_1": "assets/source/music/bgm_campus.ogg",
     "bgm_stage_1_2": null,
     "bgm_stage_1_3": null,
     "bgm_stage_1_4": null,

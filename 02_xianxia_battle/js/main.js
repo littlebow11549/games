@@ -1089,7 +1089,7 @@ $('btn-pause').addEventListener('click', () => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').classList.add('on'); } });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, get enemies() { return enemies; }, startGame, spawnEnemy, hurtHero, HERO, GAUGE, SKILLS };
+window.__game = { game, hero, get audio() { return audio; }, get enemies() { return enemies; }, startGame, spawnEnemy, hurtHero, HERO, GAUGE, SKILLS };
 
 requestAnimationFrame(frame);
 boot();
