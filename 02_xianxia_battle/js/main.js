@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
-import { Input } from './input.js';
+import { Input, lockViewport } from './input.js';
 import { GameAudio } from './audio.js';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
@@ -102,6 +102,7 @@ const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 200);
 const CAM_OFFSET = new THREE.Vector3(0, 13, 12.5);
 const { sun } = buildWorld(scene);
 const fx = new Fx(scene);
+lockViewport();
 const input = new Input();
 let audio = new GameAudio(null);
 
