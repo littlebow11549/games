@@ -5,7 +5,7 @@
 > 圖片僅可無損壓縮，保留原生解析度與透明度（見 `/AGENTS.md`）。
 >
 > ⚠️ **美術依據**：本作是使用者大學時期的原創作品《勇氣超人 Brave Guy》。角色與世界觀以使用者提供的兩張概念圖為準：
-> `pic/reference/braveguy_cover_front.jpg`（封面，角色群像與 Logo）、`pic/reference/braveguy_cover_back.jpg`（封底，角色立繪與舊版 3D 畫面）。
+> `pic/reference/braveguy_cover_front.jpg`（封面，角色群像與 Logo）、`braveguy_ganqiaolong_initial_mid.png` 與 `braveguy_ganqiaolong_full.png`（使用者從封面裁出的幹譙龍三型態）、`pic/reference/braveguy_cover_back.jpg`（封底，角色立繪與舊版 3D 畫面）。
 > 更早提供的仙俠廣告影片只用來參考「斜俯視戰鬥的鏡頭與 HUD 佈局」，不得沿用其角色或介面圖案。
 >
 > 狀態：**Claude 已做完全部項目的「簡單版」（SVG／程式繪製），正式版尚未產出。簡單版是改名前照仙俠風畫的（玉青色、劍、蓮花），除 Logo 文字外尚未改成勇氣超人的配色與圖案；§2–§9 的造型描述也還是舊的，請以 Game Brief 與概念圖為準。** 遊戲已有可玩原型（見 `../PROGRESS.md`），素材接入方式見 [`README.md`](README.md)。
@@ -35,9 +35,9 @@
 | 惡夢超人 | 與勇氣超人相似的髮型、綠圍巾、綠紫服裝（封面中間上方後面那位） | 使用者確認：勇氣超人的反面，主角內心的黑影 |
 | 藍教頭 | 藍色服裝、怒吼表情 | 使用者確認：邪惡教官，與入侵校園的黑社會勾結 |
 | 裝熊 | 橘色布偶熊、曲棍球面具、紅色雞冠頭 | 心魔；使用者確認：恐怖片帶來的幼時恐懼 |
-| 趕死龍 | 橘色小龍、黃角、嘴咬鑽頭 | 心魔（敵人） |
-| 生悶犀 | 灰色、大角、紫眼、尖牙 | 心魔（敵人） |
-| 休蜥 | 綠色、黃角、紅眼、灰色大爪（封底舊畫面中的小怪） | 心魔（敵人） |
+| 幹譙龍・完全體 | 橘色龍、黃角、紅眼、嘴裡噴出一串藍色的東西 | 使用者確認：幹譙龍的完全體 |
+| 幹譙龍・中階進化型 | 灰色、大角、紫眼、尖牙 | 使用者確認：幹譙龍的中階（與綠色誰先誰後待確認） |
+| 幹譙龍・初始型態 | 綠色、黃角、紅眼、灰色大爪（封底舊畫面中的小怪） | 使用者確認：幹譙龍的初始型態 |
 | 抱怨熊 | 白臉黑眼的小孩與尖牙棕熊（封面右側） | 心魔；使用者確認：對應日本鬼片的鬼小孩，恐怖片帶來的幼時恐懼。是一組還是兩個角色待確認 |
 | 賴床鬼 | 黑白條紋衣、棕帽、紅格紋臉 | 心魔；使用者確認：恐怖片帶來的幼時恐懼 |
 
@@ -141,7 +141,7 @@ concept art, no text unless specified
 | P1 | `nightmare_front/side/back.png` | 惡夢超人（最終 Boss） | 與勇氣超人同體型同髮型，綠圍巾、綠紫配色；可由勇氣超人模型改色，視品質決定是否另生 |
 | P1 | `angel_front/side/back.png` | 小天使 | 翅膀與長髮畫厚、不要鏤空；帽子的兩個尖角各自成塊 |
 | P1 | `mob_lizard_front/side/back.png` | 休蜥 | 序章就會出現的基本小兵 |
-| P2 | `mob_maskbear_*`、`mob_drilldragon_*`、`mob_hornbeast_*`、`mob_skullbear_*`、`mob_clown_*` | 其餘五種心魔 | 四足或非人形者不需 A 字站姿，改自然站姿 |
+| P2 | `ganqiao_b_*`（灰）、`ganqiao_c_*`（橘）、`mob_zhuangxiong_*`（裝熊）、`mob_laichuang_*`（賴床鬼）、`mob_baoyuan_*`（抱怨熊） | 幹譙龍中階與完全體、三隻恐怖片戲仿心魔 | 四足或非人形者不需 A 字站姿，改自然站姿 |
 | P2 | `sailor_front/side/back.png`、`uncle_front/side/back.png` | 校園大姐頭、藍教頭 | 紙扇、哨子另出一張 |
 | P3 | `worker_*`、`nightmare_adult_*`、`mob_clock_*`、`mob_paper_*`、`mob_faceless_*`、`mob_lamp_*` | 地獄超人、夢魘超人、上班族主角、四種職場心魔、大姐頭與藍教頭的職場服裝 | **概念圖沒有，需先有新設計**（見企劃書第 3 節）；屬第二章，最後做 |
 
