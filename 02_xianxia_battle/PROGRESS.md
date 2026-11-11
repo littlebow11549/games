@@ -1,7 +1,7 @@
 # 02 勇氣超人 Brave Guy — 進度
 
 狀態：**設計底 D1 完成**（2026-11-11）。可以實際玩到企劃書的核心玩法；所有美術都是程式拼的佔位物，沒有任何正式美術、模型或音樂。
-資料夾 `02_xianxia_battle` 是早期工作代號，尚未改名。已在首頁遊戲收藏（分類：動作）。
+資料夾 `02_xianxia_battle` 是早期工作代號，尚未改名。**已合併並上線**：https://littlebow11549.github.io/games/02_xianxia_battle/ ，首頁遊戲收藏有入口（分類：動作）。
 
 ## 文件
 
@@ -11,6 +11,7 @@
 | [`SCRIPT.md`](SCRIPT.md) 初稿 v1.5 | 劇情腳本：主線 670 句、泡泡 52 句，附台詞 ID。**尚未接進遊戲** |
 | [`CHARACTERS.md`](CHARACTERS.md) | 16 個角色的設定與「角色設定合輯」規格。合輯圖尚未製作 |
 | [`assets/ASSETS.md`](assets/ASSETS.md) v2.0 | 交 GPT 的美術製作需求，含優先順序 |
+| [`assets/MUSIC.md`](assets/MUSIC.md) v1.0 | 音樂與音效製作需求（交另一個工作階段）：15 首 BGM、約 60 個音效 |
 | [`assets/README.md`](assets/README.md) | GLB 模型與音樂怎麼接進遊戲 |
 
 ## 設計底 D1 已有的功能

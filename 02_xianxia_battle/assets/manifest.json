@@ -1,16 +1,29 @@
 {
-  "_說明": "素材插槽表。值為 null 時遊戲使用程式繪製的佔位版；素材到位後把路徑填進來即可替換，不需改程式。格式見 assets/README.md。",
+  "_說明": "素材插槽表。值為 null 時遊戲使用程式拼的佔位版；素材到位後把路徑填進來即可替換，不需改程式。模型格式見 assets/README.md，音樂見 assets/MUSIC.md。",
   "models": {
-    "hero": null,
-    "sword": null,
-    "mob_spear": null,
-    "mob_imp": null,
-    "mob_plant": null,
+    "student": null,
+    "brave": null,
+    "angel": null,
+    "ganqiao": null,
+    "jiasen": null,
+    "folaidi": null,
     "boss": null
   },
   "audio": {
     "bgm_battle": null,
     "bgm_boss": null,
-    "bgm_victory": null
+    "bgm_victory": null,
+    "bgm_title": null,
+    "bgm_transform": null,
+    "bgm_shadow_1": null,
+    "bgm_defeat": null,
+    "bgm_talk": null,
+    "bgm_wild": null,
+    "bgm_shadow_2": null,
+    "bgm_office": null,
+    "bgm_office_mute": null,
+    "bgm_shadow_3": null,
+    "bgm_ending": null,
+    "bgm_credits": null
   }
 }
