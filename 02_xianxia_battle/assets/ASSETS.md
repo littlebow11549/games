@@ -205,7 +205,9 @@ jacket yellow, scarf red and orange, no watermark
 | `pic/character/hero_face_*.png` | 主角對話頭像，三種型態各 5 個表情：呆滯、嘴硬、心虛、嚇到、認真 |
 | `pic/howto/howto_01.png` | 教學圖四格：移動與閃避、累積勇氣、變身（可按住拖延）、三小招一大招。1920×1080 |
 
-## 12. 音訊（使用者負責 BGM 與配音）
+## 12. 音訊
+
+完整的音樂與音效製作需求另立一份：[`MUSIC.md`](MUSIC.md)（交由另一個工作階段製作）。下表只是摘要。
 
 | 類別 | 路徑 | 規格 |
 |------|------|------|
