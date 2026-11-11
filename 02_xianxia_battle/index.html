@@ -15,10 +15,11 @@
 
 <div id="hud" hidden>
   <div class="hud-top-left">
-    <div class="portrait"><span id="lv">1</span></div>
+    <div class="portrait" id="portrait"></div>
     <div class="bars">
       <div class="bar hp"><i id="hp-fill"></i><b id="hp-text"></b></div>
-      <div class="bar mp"><i id="mp-fill"></i><b id="mp-text"></b></div>
+      <div class="bar courage" id="courage"><i id="courage-fill"></i><b>勇氣</b></div>
+      <div class="bar guilt" id="guilt"><i id="guilt-fill"></i><b>罪惡感</b></div>
     </div>
   </div>
 
@@ -28,27 +29,32 @@
   </div>
 
   <div class="quest">
-    <h3>任務追蹤</h3>
-    <p id="quest-wave">清除妖物</p>
-    <p id="quest-count">擊殺 0</p>
+    <h3>任務</h3>
+    <p id="quest-wave">打倒心魔</p>
+    <p id="quest-count">擊倒 0</p>
   </div>
 
+  <div class="combo" id="combo" hidden><b id="combo-n">0</b><span>連擊</span></div>
+
   <div class="boss-bar" id="boss-bar" hidden>
-    <span>山嶽妖王</span>
+    <span id="boss-name"></span>
     <div class="bar boss"><i id="boss-fill"></i></div>
   </div>
 
   <div id="banner" class="banner"></div>
   <div id="world-ui"></div>
+  <div id="angel-bubble" class="bubble" hidden></div>
 
   <div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div>
 
   <div class="actions">
-    <button class="act skill s3" data-action="skill3" aria-label="天降巨劍"><span>天降</span><em></em></button>
-    <button class="act skill s2" data-action="skill2" aria-label="劍氣"><span>劍氣</span><em></em></button>
-    <button class="act skill s1" data-action="skill1" aria-label="旋風斬"><span>旋風</span><em></em></button>
+    <button class="act skill s3" data-action="skill3" aria-label="氣功震地"><span>震</span><em></em></button>
+    <button class="act skill s2" data-action="skill2" aria-label="氣功彈"><span>彈</span><em></em></button>
+    <button class="act skill s1" data-action="skill1" aria-label="勇氣衝拳"><span>衝</span><em></em></button>
+    <button class="act ult" data-action="ult" aria-label="超勇氣波"><span>波</span><em></em></button>
+    <button class="act transform" data-action="transform" aria-label="變身"><span>變身</span></button>
     <button class="act dodge" data-action="dodge" aria-label="閃避"><span>閃</span><em></em></button>
-    <button class="act attack" data-action="attack" aria-label="攻擊"><span>攻</span></button>
+    <button class="act attack" data-action="attack" aria-label="攻擊"><span>拳</span></button>
   </div>
 </div>
 
@@ -56,9 +62,10 @@
   <div class="card">
     <img id="ov-logo" class="logo" src="assets/source/pic/branding/logo_01.svg" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
-    <p id="ov-text">搖桿／WASD 移動　攻擊 J　技能 K・L・I　閃避 Shift</p>
+    <p id="ov-text">搖桿／WASD 移動　J 出拳　Shift 閃避<br>勇氣滿了按空白鍵變身（可按住拖延）　K・L・I 小招　O 大招</p>
     <p id="ov-load" class="muted">載入中…</p>
     <button id="ov-btn" disabled>開始</button>
+    <button id="ov-easy" class="ghost" hidden>調簡單一點（不丟臉，她只會笑你三天）</button>
     <a class="back" href="../">← 回遊戲中心</a>
   </div>
 </div>

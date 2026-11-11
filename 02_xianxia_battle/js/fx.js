@@ -1,4 +1,5 @@
 // 3D 特效：全部是場景內的網格與粒子（不是 2D 貼片疊圖）。
+// 刀光 slash 在這版改當拳風使用。
 import * as THREE from 'three';
 
 const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
@@ -119,31 +120,24 @@ export class Fx {
     });
   }
 
-  // 天降巨劍：落下 → 插地停留 → 淡出。onImpact 在觸地瞬間呼叫一次。
-  giantSword(pos, onImpact) {
-    const g = new THREE.Group();
-    const blade = new THREE.Mesh(new THREE.BoxGeometry(1.6, 9, 0.3), new THREE.MeshToonMaterial({
-      color: 0x9ff0dc, emissive: 0x2fd0a8, emissiveIntensity: 1.2, transparent: true,
-    }));
-    blade.position.y = 5.5;
-    const tip = new THREE.Mesh(new THREE.ConeGeometry(0.8, 1.6, 4), blade.material);
-    tip.position.y = 0.3;
-    tip.rotation.x = Math.PI;
-    tip.rotation.y = Math.PI / 4;
-    tip.scale.z = 0.25;
-    const guard = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.5, 0.6), new THREE.MeshToonMaterial({ color: 0xe9c46a, transparent: true }));
-    guard.position.y = 10.2;
-    g.add(blade, tip, guard);
-    g.position.set(pos.x, 30, pos.z);
-    g.rotation.y = Math.random() * Math.PI;
-    let hit = false;
-    return this.add(g, 1.3, (k) => {
-      const fall = Math.min(1, k / 0.22);
-      g.position.y = 30 * (1 - fall * fall) - 0.6 * fall;
-      if (fall >= 1 && !hit) { hit = true; onImpact(); }
-      const fade = k > 0.7 ? 1 - (k - 0.7) / 0.3 : 1;
-      blade.material.opacity = fade;
-      guard.material.opacity = fade;
+  // 殘影：衝拳路徑上留下的拖尾
+  trail(from, to, width, color = 0xffe08a, life = 0.3) {
+    const len = Math.hypot(to.x - from.x, to.z - from.z);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), additive(color, 0.7));
+    m.rotation.x = -Math.PI / 2;
+    m.rotation.z = -Math.atan2(to.x - from.x, to.z - from.z);
+    m.position.set((from.x + to.x) / 2, 0.2, (from.z + to.z) / 2);
+    return this.add(m, life, (k) => { m.material.opacity = 0.7 * (1 - k); m.scale.x = 1 - k * 0.6; });
+  }
+
+  // 半球衝擊波：變身與爆炸用
+  dome(pos, radius, color = 0x9be564, life = 0.5) {
+    const m = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), additive(color, 0.55));
+    m.position.set(pos.x, 0, pos.z);
+    return this.add(m, life, (k) => {
+      const e = 1 - (1 - k) * (1 - k);
+      m.scale.setScalar(0.5 + radius * e);
+      m.material.opacity = 0.55 * (1 - k);
     });
   }
 }

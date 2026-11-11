@@ -4,7 +4,9 @@
 import math, os
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'source', 'pic')
-JADE, JADE_D, JADE_L, GOLD, PINK, INK = '#2fa88f', '#14564b', '#bfeee0', '#e9c46a', '#f4b6c2', '#1d2a2a'
+# 配色取自《勇氣超人》概念圖：勇氣綠、外套黃、圍巾紅
+JADE, JADE_D, JADE_L, GOLD, PINK, INK = '#3fb53a', '#1f6b25', '#c8f5a8', '#f6c21c', '#f48fc6', '#111111'
+RED = '#e23a1e'
 FONT = "font-family=\"'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif\""
 count = 0
 
@@ -26,26 +28,31 @@ def grad(i, c0, c1, kind='radial'):
 
 
 DEFS = ''.join([
-    grad('gJade', '#3fd0a9', JADE_D), grad('gRed', '#ff9a7a', '#a3271f'), grad('gBlue', '#9fd4ff', '#1f5fa3'),
+    grad('gJade', '#9be564', JADE_D), grad('gRed', '#ff9a7a', '#a3271f'), grad('gBlue', '#9fd4ff', '#1f5fa3'),
     grad('gGold', '#ffe08a', '#b06a00'), grad('gDark', '#2c4a45', '#0d1b1a'), grad('gPurple', '#c9a2ff', '#4a2a8a'),
-    grad('lGold', '#fff3c4', GOLD, 'linear'), grad('lJade', '#1f6f62', '#103a34', 'linear'),
-    grad('lBlade', '#e8fff8', '#6fcfb6', 'linear'), grad('lSky', '#bfe3d6', '#f4f1e0', 'linear'),
+    grad('lGold', '#fff3c4', GOLD, 'linear'), grad('lJade', '#22402a', '#12241a', 'linear'),
+    grad('lBlade', '#ffd9c9', '#e23a1e', 'linear'), grad('lSky', '#2a1f4a', '#5a4a8f', 'linear'),
 ])
 
 
 def sword(cx, cy, length, width, rot=0, blade='url(#lBlade)'):
-    l, w = length, width
-    pts = f'0,{-l*0.62} {w/2},{-l*0.5} {w/2},{l*0.18} {-w/2},{l*0.18} {-w/2},{-l*0.5}'
-    return (f'<g transform="translate({cx},{cy}) rotate({rot})"><polygon points="{pts}" fill="{blade}" stroke="{JADE_D}" stroke-width="{w*0.08}"/>'
-            f'<rect x="{-w*1.1}" y="{l*0.18}" width="{w*2.2}" height="{l*0.05}" rx="{l*0.02}" fill="{GOLD}" stroke="#7a4a08" stroke-width="{w*0.06}"/>'
-            f'<rect x="{-w*0.2}" y="{l*0.23}" width="{w*0.4}" height="{l*0.15}" fill="{INK}"/></g>')
+    """舊版畫的是劍；《勇氣超人》用拳頭，所以改畫一顆拳頭（函式名沿用，呼叫處不用改）。"""
+    r = length * 0.3
+    knuckles = ''.join(f'<rect x="{-r + i * r * 0.5 + r * 0.04:.1f}" y="{-r * 0.95:.1f}" width="{r * 0.44:.1f}" height="{r * 0.6:.1f}" rx="{r * 0.16:.1f}" fill="{blade}" stroke="{INK}" stroke-width="{r * 0.08:.1f}"/>' for i in range(4))
+    return (f'<g transform="translate({cx},{cy}) rotate({rot * 0.3:.0f})">'
+            f'<rect x="{-r:.1f}" y="{-r * 0.6:.1f}" width="{r * 2:.1f}" height="{r * 1.5:.1f}" rx="{r * 0.35:.1f}" fill="{blade}" stroke="{INK}" stroke-width="{r * 0.1:.1f}"/>'
+            f'{knuckles}<rect x="{-r * 1.15:.1f}" y="{-r * 0.1:.1f}" width="{r * 0.6:.1f}" height="{r * 0.8:.1f}" rx="{r * 0.25:.1f}" fill="{blade}" stroke="{INK}" stroke-width="{r * 0.08:.1f}"/>'
+            f'<rect x="{-r * 0.8:.1f}" y="{r * 0.9:.1f}" width="{r * 1.6:.1f}" height="{r * 0.5:.1f}" rx="{r * 0.1:.1f}" fill="{GOLD}" stroke="{INK}" stroke-width="{r * 0.08:.1f}"/></g>')
 
 
-def lotus(cx, cy, r, fill=PINK):
-    out = ''
-    for a in (-60, -30, 0, 30, 60):
-        out += f'<ellipse cx="{cx}" cy="{cy - r*0.5}" rx="{r*0.26}" ry="{r*0.6}" fill="{fill}" stroke="#d9879a" stroke-width="{r*0.04}" transform="rotate({a} {cx} {cy})"/>'
-    return out
+def lotus(cx, cy, r, fill=GOLD):
+    """舊版畫的是蓮花；改畫一顆星（函式名沿用）。"""
+    pts = []
+    for k in range(10):
+        a = -math.pi / 2 + k * math.pi / 5
+        rr = r * (0.6 if k % 2 == 0 else 0.26)
+        pts.append(f'{cx + rr * math.cos(a):.1f},{cy - r * 0.45 + rr * math.sin(a):.1f}')
+    return f'<polygon points="{" ".join(pts)}" fill="{fill}" stroke="{INK}" stroke-width="{r * 0.06:.1f}" stroke-linejoin="round"/>'
 
 
 def badge(body, bg='url(#gJade)', size=256):
@@ -79,25 +86,29 @@ def clouds(w, y, n, seed, op=0.7):
     return out
 
 
-def chibi_head(cx, cy, r):
-    return (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#ffe3cf" stroke="{INK}" stroke-width="{r*0.06}"/>'
-            f'<path d="M{cx-r},{cy-r*0.05} A{r},{r} 0 0 1 {cx+r},{cy-r*0.05} Q{cx+r*0.5},{cy-r*0.55} {cx},{cy-r*0.4} Q{cx-r*0.5},{cy-r*0.55} {cx-r},{cy-r*0.05}Z" fill="#2b2f3a"/>'
-            f'<circle cx="{cx}" cy="{cy-r*1.12}" r="{r*0.34}" fill="#2b2f3a"/><rect x="{cx-r*0.3}" y="{cy-r*0.95}" width="{r*0.6}" height="{r*0.12}" rx="{r*0.05}" fill="{GOLD}"/>'
-            f'<ellipse cx="{cx-r*0.38}" cy="{cy+r*0.15}" rx="{r*0.11}" ry="{r*0.16}" fill="{INK}"/><ellipse cx="{cx+r*0.38}" cy="{cy+r*0.15}" rx="{r*0.11}" ry="{r*0.16}" fill="{INK}"/>'
-            f'<circle cx="{cx-r*0.58}" cy="{cy+r*0.42}" r="{r*0.13}" fill="{PINK}" opacity=".8"/><circle cx="{cx+r*0.58}" cy="{cy+r*0.42}" r="{r*0.13}" fill="{PINK}" opacity=".8"/>'
-            f'<path d="M{cx-r*0.14},{cy+r*0.5} Q{cx},{cy+r*0.62} {cx+r*0.14},{cy+r*0.5}" fill="none" stroke="{INK}" stroke-width="{r*0.05}" stroke-linecap="round"/>')
+def chibi_head(cx, cy, r, brave=False):
+    """主角頭像。student：黃色棒球帽；brave：棕色刺蝟頭。"""
+    face = (f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#f7c9a0" stroke="{INK}" stroke-width="{r*0.07}"/>'
+            f'<ellipse cx="{cx-r*0.38}" cy="{cy+r*0.15}" rx="{r*0.11}" ry="{r*0.17}" fill="{"#d21f1f" if brave else INK}"/><ellipse cx="{cx+r*0.38}" cy="{cy+r*0.15}" rx="{r*0.11}" ry="{r*0.17}" fill="{"#d21f1f" if brave else INK}"/>'
+            f'<path d="M{cx-r*0.16},{cy+r*0.52} Q{cx},{cy+r*(0.68 if brave else 0.58)} {cx+r*0.16},{cy+r*0.52}" fill="none" stroke="{INK}" stroke-width="{r*0.06}" stroke-linecap="round"/>')
+    if brave:
+        spikes = ''.join(f'<polygon points="{cx + r*x0:.0f},{cy - r*0.35:.0f} {cx + r*x1:.0f},{cy - r*y1:.0f} {cx + r*x2:.0f},{cy - r*0.35:.0f}" fill="#8a4b1f" stroke="{INK}" stroke-width="{r*0.05}" stroke-linejoin="round"/>'
+                         for x0, x1, y1, x2 in ((-1.05, -1.35, 1.0, -0.55), (-0.75, -0.7, 1.55, -0.2), (-0.35, 0.0, 1.75, 0.35), (0.2, 0.7, 1.55, 0.75), (0.55, 1.35, 1.0, 1.05)))
+        return face + spikes + f'<path d="M{cx-r},{cy-r*0.1} Q{cx},{cy-r*0.75} {cx+r},{cy-r*0.1} L{cx+r*0.9},{cy-r*0.5} Q{cx},{cy-r*1.2} {cx-r*0.9},{cy-r*0.5}Z" fill="#8a4b1f" stroke="{INK}" stroke-width="{r*0.05}"/>'
+    return (face + f'<path d="M{cx-r*1.02},{cy-r*0.12} A{r*1.02},{r*1.02} 0 0 1 {cx+r*1.02},{cy-r*0.12}Z" fill="{GOLD}" stroke="{INK}" stroke-width="{r*0.07}"/>'
+            f'<path d="M{cx-r*0.2},{cy-r*0.12} H{cx+r*1.45} Q{cx+r*1.5},{cy+r*0.08} {cx+r*1.3},{cy+r*0.08} H{cx-r*0.2}Z" fill="{GOLD}" stroke="{INK}" stroke-width="{r*0.07}"/>')
 
 
 # ---------- 品牌 ----------
 save('branding', 'icon_01', 1024, 1024,
-     '<rect width="1024" height="1024" rx="180" fill="url(#gJade)"/>'
-     + mountains(1024, 1024, 760, '#0f4a40', 1.0, 4, 0.22) + mountains(1024, 1024, 860, '#0b352e', 2.2, 5, 0.14)
-     + '<circle cx="512" cy="430" r="250" fill="#fff7dc" opacity=".18"/>'
-     + sword(512, 470, 760, 120, 28) + lotus(512, 900, 190)
-     + '<rect x="24" y="24" width="976" height="976" rx="160" fill="none" stroke="#e9c46a" stroke-width="26"/>')
+     '<rect width="1024" height="1024" rx="180" fill="#1a1230"/>'
+     + ''.join(f'<polygon points="512,512 {512 + 900*math.cos(a):.0f},{512 + 900*math.sin(a):.0f} {512 + 900*math.cos(a+0.16):.0f},{512 + 900*math.sin(a+0.16):.0f}" fill="#f6c21c" opacity=".16"/>' for a in [k * math.pi / 8 for k in range(16)])
+     + '<circle cx="512" cy="500" r="330" fill="url(#gJade)" stroke="#111" stroke-width="26"/><ellipse cx="420" cy="380" rx="130" ry="80" fill="#fff" opacity=".45"/>'
+     + text(512, 640, 'B', 440, fill='#f6c21c', stroke='#111', sw=40, extra='font-style="italic"')
+     + '<rect x="24" y="24" width="976" height="976" rx="160" fill="none" stroke="#f6c21c" stroke-width="26"/>')
 save('branding', 'logo_01', 1600, 520,
-     sword(800, 250, 560, 70, 90) + text(800, 300, '勇氣超人', 250, sw=30)
-     + text(800, 440, 'BRAVE GUY', 70, fill=JADE_L, stroke=JADE_D, sw=12, extra='letter-spacing="18"')
+     '<circle cx="800" cy="230" r="210" fill="url(#gJade)" stroke="#111" stroke-width="16"/><ellipse cx="740" cy="150" rx="80" ry="46" fill="#fff" opacity=".45"/>' + text(800, 300, '勇氣超人', 250, fill='#f6c21c', stroke='#111', sw=34)
+     + text(800, 450, 'BRAVE GUY', 96, fill='#e23a1e', stroke='#111', sw=18, extra='letter-spacing="14" font-style="italic"')
      + lotus(180, 330, 90) + lotus(1420, 330, 90))
 save('branding', 'banner_01', 1920, 720,
      '<rect width="1920" height="720" fill="url(#lSky)"/>' + clouds(1920, 180, 6, 0.3)
@@ -123,8 +134,8 @@ save('background', 'sky_01', 4096, 1024,
 
 # ---------- 字藝 ----------
 for name, s, size, fill, stroke in (
-        ('title_start', 'START', 220, '#fff7dc', '#7a4a08'), ('title_victory', '勝 利', 260, '#fff3c4', '#b06a00'),
-        ('title_defeat', '落 敗', 260, '#d9dde2', '#3a3f4a'), ('title_boss', 'BOSS 來襲', 200, '#ffd0c4', '#a3271f'),
+        ('title_start', 'START', 220, '#fff7dc', '#7a4a08'), ('title_victory', '突 破', 260, '#fff3c4', '#b06a00'),
+        ('title_defeat', '倒 下', 260, '#d9dde2', '#3a3f4a'), ('title_boss', '心魔來襲', 200, '#ffd0c4', '#a3271f'),
         ('title_wave_a', '第', 220, '#fff7dc', '#14564b'), ('title_wave_b', '波', 220, '#fff7dc', '#14564b'),
         ('title_pause', '暫 停', 220, '#eaf6ff', '#1f5fa3'), ('title_combo', 'COMBO', 200, '#ffe08a', '#a3271f')):
     w = 1200 if len(s) > 1 else 360
@@ -135,7 +146,9 @@ save('ui', 'hud_portrait_frame', 512, 512,
      '<circle cx="256" cy="256" r="226" fill="none" stroke="#e9c46a" stroke-width="30"/><circle cx="256" cy="256" r="246" fill="none" stroke="#7a4a08" stroke-width="6"/>'
      + lotus(256, 500, 70) + f'<circle cx="420" cy="420" r="70" fill="{INK}" stroke="{GOLD}" stroke-width="12"/>')
 save('ui', 'hud_portrait_hero', 512, 512,
-     '<circle cx="256" cy="256" r="256" fill="url(#gDark)"/><path d="M96,512 Q256,300 416,512Z" fill="#2fa88f" stroke="#e9c46a" stroke-width="10"/>' + chibi_head(256, 260, 170))
+     '<circle cx="256" cy="256" r="256" fill="#c8f5a8"/><path d="M96,512 Q256,330 416,512Z" fill="#f6c21c" stroke="#111" stroke-width="12"/>' + chibi_head(236, 270, 150))
+save('ui', 'hud_portrait_brave', 512, 512,
+     '<circle cx="256" cy="256" r="256" fill="#ffd9c9"/><path d="M96,512 Q256,330 416,512Z" fill="#f6c21c" stroke="#111" stroke-width="12"/><path d="M130,430 Q256,380 382,430 L370,480 Q256,430 142,480Z" fill="#e23a1e" stroke="#111" stroke-width="10"/>' + chibi_head(256, 290, 140, brave=True))
 save('ui', 'hud_bar_frame', 900, 80, f'<rect x="6" y="6" width="888" height="68" rx="34" fill="#000a" stroke="{GOLD}" stroke-width="8"/>')
 save('ui', 'hud_bar_hp', 860, 48, '<rect width="860" height="48" rx="24" fill="url(#h)"/><rect y="6" width="860" height="10" rx="5" fill="#fff" opacity=".35"/>', grad('h', '#ff7a6e', '#e2413d', 'linear'))
 save('ui', 'hud_bar_mp', 860, 48, '<rect width="860" height="48" rx="24" fill="url(#m)"/><rect y="6" width="860" height="10" rx="5" fill="#fff" opacity=".35"/>', grad('m', '#8fd0ff', '#3aa0ff', 'linear'))

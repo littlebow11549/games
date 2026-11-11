@@ -1,5 +1,5 @@
 // 輸入：虛擬搖桿（觸控／滑鼠）＋鍵盤，動作鍵以佇列回傳。
-const KEY_ACTIONS = { KeyJ: 'attack', Space: 'attack', KeyK: 'skill1', KeyL: 'skill2', KeyI: 'skill3', ShiftLeft: 'dodge', ShiftRight: 'dodge' };
+const KEY_ACTIONS = { KeyJ: 'attack', Space: 'transform', KeyK: 'skill1', KeyL: 'skill2', KeyI: 'skill3', KeyO: 'ult', ShiftLeft: 'dodge', ShiftRight: 'dodge' };
 const KEY_MOVE = { KeyW: [0, -1], ArrowUp: [0, -1], KeyS: [0, 1], ArrowDown: [0, 1], KeyA: [-1, 0], ArrowLeft: [-1, 0], KeyD: [1, 0], ArrowRight: [1, 0] };
 
 export class Input {
