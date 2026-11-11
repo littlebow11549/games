@@ -79,11 +79,13 @@ concept art, no text unless specified
 
 重新產生：`python3 02_xianxia_battle/tools/make_simple_art.py`（SVG）、`node 02_xianxia_battle/tools/render_concepts.cjs`（三視圖，需先啟動本機伺服器）。
 
+**角色設定合輯（使用者要求每個角色都要做）**：版式、13 個角色各自要填的內容與通用提示詞在 [`../CHARACTERS.md`](../CHARACTERS.md)。流程是「先出合輯定案造型 → 使用者把關 → 再出 3D 生成用的單角度 A 字站姿圖」，所以下表 P0 的第一步是合輯。
+
 ### B 組：需要其他軟體協作（依優先級）
 
 | 優先級 | 項目 | 對應章節 | 需要的軟體／負責 | 為什麼排這裡 |
 |--------|------|----------|------------------|--------------|
-| **P0** | 勇氣超人與大學生的設定圖三視圖 | §1 | 繪圖 AI（GPT）或使用者；使用者把關品質 | 擋住主角 3D 模型，整個畫面觀感取決於它 |
+| **P0** | 勇氣超人與大學生：先出角色設定合輯（`pic/sheet/`），定案後出三視圖 | §1、`../CHARACTERS.md` | 繪圖 AI（GPT）或使用者；使用者把關品質 | 擋住主角 3D 模型，整個畫面觀感取決於它 |
 | **P0** | 主角 3D 模型＋綁骨＋動作 | §11 | Tripo（Claude 經 API 操作，**需使用者提供 API 金鑰**） | 最影響觀感；先做一隻驗證整條流程與花費 |
 | **P1** | 惡夢超人、小天使、綠爪蜥的設定圖；其餘心魔為 P2 | §1 | 繪圖 AI（GPT） | 主角流程驗證通過後才值得投入 |
 | **P1** | 小怪與 Boss 3D 模型 | §11 | Tripo；非人形（植物怪）可能需 Claude 以程式動畫補 | 同上 |
@@ -100,6 +102,7 @@ concept art, no text unless specified
 ```
 02_xianxia_battle/assets/source/
 ├── pic/
+│   ├── sheet/       ★ 角色設定合輯，一個角色一張（規格見 ../CHARACTERS.md）
 │   ├── concept/     ★ 3D 生成用的角色設定圖（B 組 P0）
 │   ├── background/  載入畫面、結算背景
 │   ├── branding/    logo、icon、首頁 banner
