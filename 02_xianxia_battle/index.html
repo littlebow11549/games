@@ -5,7 +5,7 @@
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
 <link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css?v=20261112g">
+<link rel="stylesheet" href="css/game.css?v=20261112h">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -27,7 +27,6 @@
   </div>
 
   <div class="hud-top-right">
-    <button class="icon-btn" id="btn-lock" data-key="T" aria-label="自動鎖定" aria-pressed="false">鎖</button>
     <button class="icon-btn" id="btn-mute" aria-label="靜音"></button>
     <button class="icon-btn" id="btn-pause" aria-label="暫停"></button>
   </div>
@@ -59,6 +58,7 @@
     <button class="act skill s2" data-action="skill2" data-key="E" aria-label="氣功彈"><span>彈</span><em></em></button>
     <button class="act skill s1" data-action="skill1" data-key="Q" aria-label="勇氣衝拳"><span>衝</span><em></em></button>
     <button class="act ult" data-action="ult" data-key="F" aria-label="超勇氣波"><span>波</span><em></em></button>
+    <button class="act lock" id="btn-lock" data-key="T" aria-label="自動鎖定" aria-pressed="false"><span>鎖</span></button>
     <button class="act transform" data-action="transform" data-key="空白鍵" aria-label="變身"><span>變身</span></button>
     <button class="act dodge" data-action="dodge" data-key="右鍵" aria-label="閃避"><span>閃</span><em></em></button>
     <button class="act attack" data-action="attack" data-key="左鍵" aria-label="攻擊"><span>拳</span></button>
@@ -71,6 +71,15 @@
     <p id="dlg-text"></p>
     <span class="dlg-next">▼</span>
     <button id="dlg-skip">跳過</button>
+  </div>
+</div>
+
+<div id="pause-menu" class="overlay pause" hidden>
+  <div class="card">
+    <h1>暫　停</h1>
+    <button id="pm-resume">繼續</button>
+    <button id="pm-restart" class="ghost">重新開始這一關</button>
+    <button id="pm-menu" class="ghost">回標題／選關</button>
   </div>
 </div>
 
@@ -113,7 +122,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261112g';
+    s.src = 'js/main.js?v=20261112h';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');
