@@ -1,6 +1,6 @@
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白資料在 story.js。所有美術都是佔位物。
-import * as THREE from 'three';
+import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
@@ -110,18 +110,41 @@ const ANGEL = {
 // ---------- 基礎建置 ----------
 
 const $ = (id) => document.getElementById(id);
+
+// 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
+if (!$('dialog') || !$('ov-stages')) {
+  if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
+  throw new Error('頁面版本過舊，正在重新載入');
+}
+
+// ---------- 畫質分級（效能） ----------
+// 手機預設中等；執行中若持續掉幀會自動往下調，並記住下次直接用較低的等級。
+const QUALITY_KEY = 'braveguy.quality';
+const QUALITY = [
+  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 0.7 },
+  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 1 },
+  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 1 },
+];
+const coarse = matchMedia('(pointer: coarse)').matches;
+const forced = new URLSearchParams(location.search).get('q');
+let quality = forced !== null ? +forced : coarse ? 1 : 2;
+try { const q = localStorage.getItem(QUALITY_KEY); if (forced === null && q !== null) quality = Math.min(quality, +q); } catch { /* 無法讀取就用預設 */ }
+quality = Math.max(0, Math.min(2, quality | 0));
+const Q = () => QUALITY[quality];
+
 const canvas = $('scene');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// 手機螢幕像素密度高，關掉抗鋸齒差異不大但省很多
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: !coarse, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, Q().ratio));
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.type = coarse ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 200);
 const CAM_OFFSET = new THREE.Vector3(0, 13, 12.5);
-let { sun } = buildWorld(scene, 'corridor');
+let { sun } = buildWorld(scene, 'corridor', Q());
 const fx = new Fx(scene);
 lockViewport();
 const input = new Input();
@@ -129,6 +152,7 @@ let audio = new GameAudio(null);
 
 function resize() {
   const w = innerWidth, h = innerHeight;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, Q().ratio));
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.fov = w < h ? 58 : 42; // 直式畫面拉寬視野
@@ -213,7 +237,7 @@ function clearField() {
 function startStage(index) {
   game.stage = index;
   const st = stage();
-  ({ sun } = buildWorld(scene, st.theme));
+  ({ sun } = buildWorld(scene, st.theme, Q()));
   game.rules = st.rules || {};
   game.abilities = abilitiesFor(index);
   if (game.rules.tutorial) game.abilities.add('transform'); // 序章就是學變身的地方
@@ -305,6 +329,8 @@ function say(key, force = false) {
   b.hidden = false;
 }
 
+const ACT_BUTTONS = [...document.querySelectorAll('.act[data-action]')]; // 每幀都要用，先查好
+
 function updateHud() {
   const brave = hero.form === 'brave';
   $('hp-fill').style.transform = `scaleX(${Math.max(0, hero.hp / hero.maxHp)})`;
@@ -323,7 +349,7 @@ function updateHud() {
   $('combo').hidden = game.combo < 5;
   $('combo-n').textContent = game.combo;
 
-  for (const btn of document.querySelectorAll('.act[data-action]')) {
+  for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / SKILLS[a].cd}turn`);
@@ -465,9 +491,20 @@ function revert() {
 
 // ---------- 怪物 ----------
 
+// 小怪腳下的假陰影：全部共用同一份幾何與材質
+const BLOB_GEO = new THREE.CircleGeometry(1, 16);
+const BLOB_MAT = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28, depthWrite: false });
+
 function spawnEnemy(kind, at, delay = 0) {
   const def = ENEMIES[kind] || BOSSES[kind];
-  const visual = createVisual(def.vis || kind);
+  const visual = createVisual(def.vis || kind, !!def.boss); // 只有守關者投射即時陰影
+  if (!def.boss) {
+    const blob = new THREE.Mesh(BLOB_GEO, BLOB_MAT);
+    blob.rotation.x = -Math.PI / 2;
+    blob.position.y = 0.03;
+    blob.scale.setScalar(def.radius * 1.5);
+    visual.root.add(blob);
+  }
   const pos = at ? at.clone() : new THREE.Vector3();
   if (!at) {
     const a = rand(0, Math.PI * 2);
@@ -503,7 +540,8 @@ function nextWave() {
   const wave = stage().waves[game.wave];
   banner(`第 ${game.wave + 1} 波`);
   let i = 0;
-  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < n; k++) spawnEnemy(kind, null, (i++) * 0.08);
+  // 低畫質時同場的小怪少一些
+  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd)); k++) spawnEnemy(kind, null, (i++) * 0.08);
 }
 
 function spawnBoss() {
@@ -1504,10 +1542,30 @@ function updateCamera(dt) {
   sun.target.position.copy(camTarget);
 }
 
+// 持續掉幀就自動降一級畫質（只降不升，避免來回跳）
+const perf = { acc: 0, n: 0, slow: 0 };
+function watchPerformance(rawDt) {
+  if (game.phase !== 'playing' || game.paused || quality === 0 || forced !== null) return;
+  perf.acc += rawDt; perf.n++;
+  if (perf.n < 90) return;
+  const avg = perf.acc / perf.n;
+  perf.acc = 0; perf.n = 0;
+  perf.slow = avg > 1 / 38 ? perf.slow + 1 : 0;   // 平均低於約 38 FPS
+  if (perf.slow < 2) return;
+  perf.slow = 0;
+  quality--;
+  try { localStorage.setItem(QUALITY_KEY, String(quality)); } catch { /* 存不了也沒關係 */ }
+  sun.castShadow = Q().shadows;
+  resize();
+  console.info(`[效能] 畫質自動降為「${Q().name}」`);
+}
+
 let last = performance.now();
 function frame(now) {
-  const dt = Math.min(0.05, (now - last) / 1000);
+  const rawDt = (now - last) / 1000;
+  const dt = Math.min(0.05, rawDt);
   last = now;
+  watchPerformance(rawDt);
   if (!game.paused && (game.phase === 'playing' || game.phase === 'ending')) { update(dt); updateAngel(dt); }
   else if (game.phase === 'dialog' && hero.visual) { hero.visual.update(dt); updateAngel(dt); fx.update(dt); }
   else if (hero.visual) { hero.visual.update(dt); updateAngel(dt); }
@@ -1540,6 +1598,7 @@ async function boot() {
   $('ov-load').textContent = models.length ? `已載入模型 ${ok}/${models.length}，其餘使用佔位角色` : '目前全部使用佔位美術';
   $('btn-mute').classList.toggle('off', audio.muted);
   showMenu();
+  window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
 }
 
 // ---------- 選關 ----------
@@ -1613,7 +1672,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').classList.add('on'); } });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { game, hero, save, STAGES, get quality() { return quality; }, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   startGame, startStage, spawnEnemy, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
