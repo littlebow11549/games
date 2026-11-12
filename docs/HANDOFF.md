@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-12 勇氣超人：新字型與中英語系切換（Claude）](handoffs/2026-11-12-game02-fonts-i18n.md)：粉圓體＋思源黑體 Black（子集內嵌）；標題與暫停選單可切換中文／English，598 條翻譯；改文字後要重跑 `tools/make_game02_fonts.py`。
+
 - [2026-11-12 勇氣超人：招式全開、變身專用音樂、接上地圖二三的戰鬥曲（Claude）](handoffs/2026-11-12-game02-brave-bgm-wiring.md)：開發期間每關都能用全部招式；變身期間切到 `bgm_brave`（目前暫用主題 demo，正式曲需求已開在 MUSIC.md）；`bgm_wild`／`bgm_office`／`bgm_office_mute` 已填進各關的鍵。
 
 - [2026-11-12 勇氣超人：自動鎖定、怪量加倍、怪會嘲諷、招式加強（Claude）](handoffs/2026-11-12-game02-lock-crowd-taunts.md)：「鎖」按鈕（T 鍵）；每波怪量約三倍並排隊補進場；小怪輪流講賤話、變身後改求饒；三小招範圍加大，大招收尾全場清空。追加：開發期間關卡預設全開（`DEV_UNLOCK`，正式完成時要關）。
