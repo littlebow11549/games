@@ -5,8 +5,7 @@
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
 <link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css?v=20261112b">
-<link rel="modulepreload" href="vendor/three/three.module.min.js">
+<link rel="stylesheet" href="css/game.css?v=20261112c">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -37,6 +36,7 @@
     <p id="quest-wave">打倒心魔</p>
     <p id="quest-count">擊倒 0</p>
     <p id="suanle" hidden>本月算了次數 <b id="suanle-n">0</b></p>
+    <p id="music-loading" hidden>♪ 音樂載入中…</p>
   </div>
 
   <div class="combo" id="combo" hidden><b id="combo-n">0</b><span>連擊</span></div>
@@ -78,7 +78,9 @@
     <img id="ov-logo" class="logo" src="assets/source/pic/branding/logo_01.svg" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
     <p id="ov-text">搖桿／WASD 移動　J 出拳　Shift 閃避<br>勇氣滿了按空白鍵變身（可按住拖延）　K・L・I 小招　O 大招</p>
-    <p id="ov-load" class="muted">載入中…</p>
+    <div class="loadbar" id="loadbar"><i id="loadbar-fill"></i></div>
+    <p id="loadbar-text" class="muted">讀取中　0%</p>
+    <p id="ov-load" class="muted"></p>
     <button id="ov-btn" disabled>開始</button>
     <button id="ov-next" hidden>下一關</button>
     <button id="ov-menu" class="ghost" hidden>選關</button>
@@ -89,19 +91,76 @@
 </div>
 
 <script>
-// 載入出問題時要讓玩家看得到，而不是永遠停在「載入中」
+// 讀取進度條與錯誤提示。這段不依賴模組，所以主程式還沒下載完就能顯示。
 (function () {
   var note = document.getElementById('ov-load');
-  function show(msg) {
-    if (window.__booted) return;
-    note.innerHTML = msg + '<br><a href="#" id="ov-reload" style="color:#f6c21c">重新載入</a>';
-    document.getElementById('ov-reload').onclick = function (e) { e.preventDefault(); location.replace(location.pathname + '?r=' + Date.now()); };
+  var bar = document.getElementById('loadbar'), fill = document.getElementById('loadbar-fill'), label = document.getElementById('loadbar-text');
+  var pct = 0, failed = false;
+
+  // 進度只會往前，不會倒退
+  window.__progress = function (value, text) {
+    if (failed) return;
+    pct = Math.max(pct, Math.min(100, value));
+    fill.style.width = pct + '%';
+    label.textContent = (text || '讀取中') + '　' + Math.round(pct) + '%';
+    if (pct >= 100) setTimeout(function () { bar.hidden = true; label.hidden = true; }, 400);
+  };
+
+  // 3%–55%：3D 引擎（最大的檔案，佔全部程式的九成）。邊下載邊依實際位元組數推進。
+  // 下載完才載入主程式；主程式匯入同一個網址時會直接用瀏覽器快取，不會重抓。
+  var ENGINE = 'vendor/three/three.module.min.js', ENGINE_BYTES = 691648;
+  function startGame() {
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = 'js/main.js?v=20261112c';
+    document.body.appendChild(s);
   }
-  window.addEventListener('error', function (e) { show('載入失敗：' + (e.message || (e.target && (e.target.src || e.target.href)) || '未知錯誤')); }, true);
-  window.addEventListener('unhandledrejection', function (e) { show('載入失敗：' + (e.reason && e.reason.message || e.reason)); });
-  setTimeout(function () { show('載入比較久。網路慢的話請再等一下，或'); }, 9000);
+  window.__progress(3, '開始讀取');
+  (function loadEngine() {
+    if (!window.fetch || !window.ReadableStream) { startGame(); return; }
+    fetch(ENGINE).then(function (res) {
+      if (!res.ok || !res.body) throw new Error('HTTP ' + res.status);
+      var reader = res.body.getReader(), got = 0;
+      return (function pump() {
+        return reader.read().then(function (r) {
+          if (r.done) return;
+          got += r.value.length;
+          window.__progress(3 + Math.min(1, got / ENGINE_BYTES) * 52, '下載 3D 引擎');
+          return pump();
+        });
+      })();
+    }).then(function () { window.__progress(55, '下載遊戲程式'); startGame(); })
+      .catch(function () { startGame(); }); // 進度抓不到也照樣啟動，讓模組載入自己處理錯誤
+  })();
+
+  // 55%–60%：其餘的小檔案，每下載完一個前進一格
+  var files = ['main.js', 'world.js', 'visuals.js', 'fx.js', 'input.js', 'audio.js', 'story.js'];
+  var done = {};
+  function seen(url) {
+    for (var i = 0; i < files.length; i++) {
+      if (url.indexOf('/' + files[i]) !== -1 && !done[files[i]]) {
+        done[files[i]] = true;
+        if (done['main.js']) window.__progress(55 + Object.keys(done).length / files.length * 5, '下載遊戲程式');
+      }
+    }
+  }
+  try {
+    new PerformanceObserver(function (list) { list.getEntries().forEach(function (e) { seen(e.name); }); }).observe({ type: 'resource', buffered: true });
+  } catch (err) { /* 不支援就只顯示主程式回報的進度 */ }
+
+  // 出問題時要讓玩家看得到原因，而不是永遠停在讀取中
+  window.__fail = function (html) {
+    if (window.__booted) return;
+    failed = true;
+    bar.hidden = true; label.hidden = true;
+    note.innerHTML = html + '<br><a href="#" id="ov-reload" style="color:#f6c21c">重新載入</a>';
+    note.style.opacity = 1;
+    document.getElementById('ov-reload').onclick = function (e) { e.preventDefault(); location.replace(location.pathname + '?r=' + Date.now()); };
+  };
+  window.addEventListener('error', function (e) { if (!failed) window.__fail('載入失敗：' + (e.message || (e.target && (e.target.src || e.target.href)) || '未知錯誤')); }, true);
+  window.addEventListener('unhandledrejection', function (e) { if (!failed) window.__fail('載入失敗：' + (e.reason && e.reason.message || e.reason)); });
+  setTimeout(function () { if (!window.__booted && !failed) label.textContent += '（比較久，網路慢的話請再等一下）'; }, 12000);
 })();
 </script>
-<script type="module" src="js/main.js?v=20261112b"></script>
 </body>
 </html>

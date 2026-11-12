@@ -112,7 +112,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -132,9 +132,41 @@ try { const q = localStorage.getItem(QUALITY_KEY); if (forced === null && q !== 
 quality = Math.max(0, Math.min(2, quality | 0));
 const Q = () => QUALITY[quality];
 
+const progress = (value, text) => { if (window.__progress) window.__progress(value, text); };
+progress(62, '啟動 3D 繪圖');
+
 const canvas = $('scene');
+let glReason = '';
+canvas.addEventListener('webglcontextcreationerror', (e) => { glReason = e.statusMessage || glReason; });
+
+// 3D 繪圖（WebGL）啟動不了時，告訴玩家原因與解法，而不是丟一句看不懂的英文
+function explainNoWebGL() {
+  const probe = (type) => { try { return !!document.createElement('canvas').getContext(type); } catch { return false; } };
+  const has2 = probe('webgl2'), has1 = probe('webgl');
+  const why = has2 ? '這個分頁暫時拿不到 3D 繪圖資源（可能同時開了太多 3D 網頁，或顯示卡驅動剛出狀況）。'
+    : has1 ? '這個瀏覽器只支援舊版的 3D 繪圖（WebGL 1），這款遊戲需要 WebGL 2。請更新瀏覽器或系統。'
+      : '這個瀏覽器目前<b>沒有開啟 3D 繪圖（WebGL）</b>，所以遊戲畫面出不來。這不是網路問題。';
+  const fix = has2 ? '請關掉其他分頁後按下面的「重新載入」，或把瀏覽器整個關掉再開。'
+    : '<b>解法</b>：<br>・Chrome／Edge：設定 → 系統 → 開啟「使用硬體加速」→ 重新啟動瀏覽器<br>・Safari：設定 → 進階 → 確認沒有關閉 WebGL；或更新 macOS／iOS<br>・如果是在 App 內建的瀏覽器或遠端桌面裡開的，請改用一般的 Chrome 或 Safari<br>・也可以改用手機開';
+  if (window.__fail) window.__fail(`<b>3D 繪圖啟動失敗</b><br>${why}<br>${fix}${glReason ? `<br><span style="opacity:.6">瀏覽器回報：${glReason}</span>` : ''}`);
+}
+
+// 依序用越來越保守的設定嘗試建立，全部失敗才放棄
+function makeRenderer() {
+  const tries = [
+    { antialias: !coarse, powerPreference: 'high-performance' },
+    { antialias: false, powerPreference: 'default' },
+    { antialias: false, powerPreference: 'low-power', failIfMajorPerformanceCaveat: false, precision: 'mediump', stencil: false },
+  ];
+  for (const opts of tries) {
+    try { return new THREE.WebGLRenderer({ canvas, ...opts }); } catch (err) { console.warn('[WebGL] 建立失敗，改用較保守的設定重試', opts, err); }
+  }
+  explainNoWebGL();
+  throw new Error('WebGL unavailable');
+}
 // 手機螢幕像素密度高，關掉抗鋸齒差異不大但省很多
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: !coarse, powerPreference: 'high-performance' });
+const renderer = makeRenderer();
+progress(70, '建立場景');
 renderer.setPixelRatio(Math.min(devicePixelRatio, Q().ratio));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = coarse ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
@@ -149,6 +181,7 @@ const fx = new Fx(scene);
 lockViewport();
 const input = new Input();
 let audio = new GameAudio(null);
+progress(76, '讀取設定');
 
 function resize() {
   const w = innerWidth, h = innerHeight;
@@ -1586,8 +1619,11 @@ async function boot() {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
   }
   audio = new GameAudio(manifest);
+  audio.onLoading = (on) => { $('music-loading').hidden = !on; }; // 音樂進關後才下載，載的時候在任務欄提示
   const models = Object.entries(manifest.models || {}).filter(([, cfg]) => cfg && cfg.url);
-  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg)));
+  progress(82, models.length ? '載入角色模型' : '準備角色');
+  let got = 0;
+  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(82 + (++got / models.length) * 13, `載入角色模型 ${got}/${models.length}`); return r; })));
   const ok = loaded.filter(Boolean).length;
 
   game.stage = firstOpenStage();
@@ -1595,10 +1631,12 @@ async function boot() {
   resetHero();
   camTarget.copy(hero.pos);
   game.phase = 'ready';
+  progress(96, '準備選關畫面');
   $('ov-load').textContent = models.length ? `已載入模型 ${ok}/${models.length}，其餘使用佔位角色` : '目前全部使用佔位美術';
   $('btn-mute').classList.toggle('off', audio.muted);
   showMenu();
   window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
+  progress(100, '完成');
 }
 
 // ---------- 選關 ----------
