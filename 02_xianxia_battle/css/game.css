@@ -162,3 +162,11 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 #suanle b{color:var(--yellow)}
 /* 選關清單在小螢幕上要能上下捲 */
 .overlay,.overlay *{touch-action:pan-y}
+
+/* ---- 讀取進度條 ---- */
+.loadbar{height:16px;margin:12px auto 4px;width:min(100%,340px);border-radius:9px;border:2.5px solid var(--ink);background:#0008;overflow:hidden}
+.loadbar i{display:block;height:100%;width:0;background:linear-gradient(var(--green-light),var(--green));transition:width .25s ease-out}
+#loadbar-text{margin:0 0 4px!important;font-variant-numeric:tabular-nums}
+#ov-load{line-height:1.7}
+#ov-load b{color:var(--yellow)}
+#ov-load:empty{display:none}

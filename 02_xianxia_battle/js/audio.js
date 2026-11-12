@@ -63,9 +63,11 @@ export class GameAudio {
     try {
       if (!this.ctx) throw new Error('no audio context');
       if (!this.buffers[url]) {
+        if (this.onLoading) this.onLoading(true);
         const data = await (await fetch(url)).arrayBuffer();
         this.buffers[url] = await this.ctx.decodeAudioData(data);
       }
+      if (this.onLoading) this.onLoading(false);
       if (this.bgmName !== name) return; // 載入期間已經換曲
       const src = this.ctx.createBufferSource();
       src.buffer = this.buffers[url];
@@ -74,6 +76,7 @@ export class GameAudio {
       src.start();
       this.bgmSrc = src;
     } catch (err) {
+      if (this.onLoading) this.onLoading(false);
       if (this.bgmName !== name) return;
       this.bgm = new Audio(url);
       this.bgm.loop = loop;
