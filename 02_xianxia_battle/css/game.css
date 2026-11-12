@@ -221,3 +221,22 @@ html[lang="en"] .act.transform{letter-spacing:.04em;font-size:13px}
 html[lang="en"] .act.transform span{font-size:13px}
 html[lang="en"] .quest h3,html[lang="en"] .card h1{letter-spacing:.04em!important}
 html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text-align:center}
+
+/* ---- 小地圖（左上，血條下方） ---- */
+#minimap{position:absolute;left:calc(12px + var(--safe-l));top:calc(78px + var(--safe-t));width:112px;height:112px;border-radius:50%;
+  border:2.5px solid var(--ink);outline:2px solid var(--yellow);background:#0c1611cc;box-shadow:0 3px 0 #0008}
+@media (max-height:430px){ #minimap{width:92px;height:92px;top:calc(70px + var(--safe-t))} }
+#minimap{pointer-events:auto;cursor:pointer;transition:width .15s,height .15s}
+#minimap.big{width:210px;height:210px}
+@media (max-height:430px){ #minimap.big{width:170px;height:170px} }
+
+/* ---- 難度選擇 ---- */
+.diff-row{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.diff-row[hidden]{display:none}
+.card button.diff{margin:0;padding:6px 16px;font-size:14px;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 2px 0 #0006;opacity:.55}
+.card button.diff.on{opacity:1;outline:3px solid var(--yellow)}
+.card button.diff.easy.on{background:#b8f2a0}
+.card button.diff.normal.on{background:#ffe98a}
+.card button.diff.hell.on{background:#ff6a5a;color:#fff}
+/* 主角頂嘴的泡泡 */
+.taunt.hero{background:#fff4c2;box-shadow:0 2px 0 var(--yellow);z-index:2}

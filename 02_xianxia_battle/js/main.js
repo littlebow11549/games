@@ -81,6 +81,19 @@ const BOSSES = {
 };
 for (const b of Object.values(BOSSES)) Object.assign(b, { boss: true, reach: 4.2, windup: 0.95, recover: 1.0, dmg: 200, ...b });
 const BOSS_GROUPS = { duo: ['xinji', 'baguashe'] }; // 一關有兩隻守關者時
+// 難度：怪的數量、同場上限、嘲諷頻率、俊熊出現的次數都跟著變。
+// crowd／cap 是乘在畫質表上的倍率；地獄難度的怪會直接生在整張地圖上，幾乎鋪滿。
+const DIFFS = [
+  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false },
+  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: false },
+  { id: 'hell', name: '地獄', crowd: 2.2, cap: 2.5, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true },
+];
+const DIFF_KEY = 'braveguy.diff';
+let diff = 1;
+try { const d = localStorage.getItem(DIFF_KEY); if (d !== null && DIFFS[+d]) diff = +d; } catch { /* 讀不到就用普通 */ }
+const D = () => DIFFS[diff];
+function setDiff(i) { diff = i; try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
+
 const MAX_ATTACKERS = 4;      // 同時出手的小怪上限，避免被圍毆到無法反應
 const SAVE_KEY = 'braveguy.save.v1';
 
@@ -89,7 +102,9 @@ const ANGEL = {
   start: '左邊那根是搖桿。不是裝飾。',
   ready: '勇氣滿了。按變身，還是你要再想三年？',
   transform: '衣服換好了？上工。',
-  revert: '魔法時間結束，灰姑娘。',
+  // 變身結束時隨機挑一句，越嗆越好
+  revert: ['魔法時間結束，灰姑娘。', '沒力了嗎，小娘炮。', '就這樣？我阿嬤變身都比你久。', '時間到。廢物模式，啟動。', '帥三十秒，遜一輩子。',
+    '圍巾還我。你不配戴那麼久。', '喔，變回那個只會說「沒關係」的了。', '電池這麼小顆也敢叫超人。', '剛剛那個很帥的人去哪了？喔，是你。', '喘成這樣。你是變身還是跑馬拉松。'],
   burst: '喔，終於會生氣了。',
   clutch: '……這樣都沒倒。還行。',
   revive: '起來。我可沒說你可以躺。',
@@ -113,7 +128,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu') || !document.querySelector('[data-lang-toggle]')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu') || !document.querySelector('[data-lang-toggle]') || !$('minimap') || !$('ov-diff')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -298,8 +313,10 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(8, 12), caught: 0, final: false, queue: [], queueT: 0 });
-  Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0 });
+    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, queue: [], queueT: 0 });
+  Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
+  if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
+  hero.sayNext = null;
   camTarget.copy(hero.pos);
   $('overlay').hidden = true;
   $('hud').hidden = false;
@@ -379,7 +396,8 @@ function say(key, force = false) {
   angel.sayT = 2.8;
   angel.quiet = 5;
   const b = $('angel-bubble');
-  b.textContent = t(ANGEL[key]);
+  const line = ANGEL[key];
+  b.textContent = t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
   b.hidden = false;
 }
 
@@ -544,6 +562,7 @@ function revert() {
   hero.state = 'free';
   fx.ring(hero.pos, 0.5, 2.5, 0xffffff, 0.3);
   say('revert', true);
+  hero.sayNext = { text: pickLine(HERO_BACK_ANGEL), t: 1.1 }; // 主角小聲頂回去
 }
 
 // ---------- 怪物 ----------
@@ -552,22 +571,37 @@ function revert() {
 const BLOB_GEO = new THREE.CircleGeometry(1, 16);
 const BLOB_MAT = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28, depthWrite: false });
 
+// 小怪有大中小三種體型：小隻的跑得快但一碰就倒，大隻的血厚、打人痛、走得慢
+const HOLD_AGGRO = 8.5;
+const SIZES = [
+  { w: 45, s: 0.78, hp: 0.6, dmg: 0.8, speed: 1.2 },
+  { w: 40, s: 1, hp: 1, dmg: 1, speed: 1 },
+  { w: 15, s: 1.4, hp: 2.2, dmg: 1.3, speed: 0.82 },
+];
+function pickSize() { let r = Math.random() * 100; for (const z of SIZES) { if ((r -= z.w) < 0) return z; } return SIZES[1]; }
+
 function spawnEnemy(kind, at, delay = 0) {
-  const def = ENEMIES[kind] || BOSSES[kind];
+  let def = ENEMIES[kind] || BOSSES[kind];
+  let size = 1;
+  if (!def.boss) {
+    const z = pickSize();
+    size = z.s;
+    def = { ...def, hp: def.hp * z.hp, dmg: def.dmg * z.dmg, speed: def.speed * z.speed, radius: def.radius * z.s, height: def.height * z.s, reach: def.ranged ? def.reach : def.reach * (0.6 + 0.4 * z.s) };
+  }
   const visual = createVisual(def.vis || kind, !!def.boss); // 只有守關者投射即時陰影
   if (!def.boss) {
     const blob = new THREE.Mesh(BLOB_GEO, BLOB_MAT);
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.03;
-    blob.scale.setScalar(def.radius * 1.5);
+    blob.scale.setScalar(def.radius * 1.5 / size);
     visual.root.add(blob);
   }
   const pos = at ? at.clone() : new THREE.Vector3();
   if (!at) {
     const a = rand(0, Math.PI * 2);
-    const r = rand(13, ARENA_RADIUS - 2);
+    const r = D().spread ? Math.sqrt(rand(0.04, 1)) * (ARENA_RADIUS - 2) : rand(13, ARENA_RADIUS - 2); // 地獄難度：鋪滿整張地圖
     pos.set(Math.cos(a) * r, 0, Math.sin(a) * r);
-    if (dist2d(pos, hero.pos) < 8) pos.multiplyScalar(-1); // 不要生在主角臉上
+    if (dist2d(pos, hero.pos) < (D().spread ? 5 : 8)) pos.multiplyScalar(-1); // 不要生在主角臉上
     if (def.boss) pos.set(rand(-3, 3), 0, -7);
   }
   clampArena(pos, def.radius);
@@ -587,7 +621,7 @@ function spawnEnemy(kind, at, delay = 0) {
   const maxHp = def.boss ? def.hp : Math.round(def.hp * hpMult);
   const e = { kind, def, visual, pos, y: 0, vy: 0, yaw: 0, hp: maxHp, maxHp, state: 'spawn', t: -delay, vel: new THREE.Vector3(), bar,
     cool: rand(0.6, 2.5), stun: 0, struck: false, shown: false, cds: {}, cast: null, haste: 0, fear: 0, fly: false, lineT: 0,
-    shield: !!def.incubus, broken: new Set(), phase: 0 };
+    shield: !!def.incubus, broken: new Set(), phase: 0, size, hold: !def.boss && !at && D().spread && Math.random() < 0.75 };
   enemies.push(e);
   return e;
 }
@@ -598,7 +632,7 @@ function nextWave() {
   banner(tf('第 {0} 波', game.wave + 1));
   // 怪的總數是關卡表的 crowd 倍；同時在場有上限，其餘排隊陸續補進來（清不完的感覺，但不會卡）
   const list = [];
-  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
+  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * D().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
   for (let i = list.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [list[i], list[j]] = [list[j], list[i]]; }
   game.queue = list;
   game.queueT = 0;
@@ -609,7 +643,7 @@ function feedQueue(dt) {
   game.queueT -= dt;
   if (game.queueT > 0) return;
   const onField = enemies.filter((e) => e.state !== 'dead' && !e.def.boss).length;
-  if (onField >= Q().cap) return;
+  if (onField >= Math.round(Q().cap * D().cap)) return;
   game.queueT = 0.07;
   spawnEnemy(game.queue.shift());
 }
@@ -639,7 +673,7 @@ function endTransformIfDead() {
 
 function hurtHero(amount, opts = {}) {
   if (hero.invuln > 0 || hero.state === 'dead' || hero.state === 'transforming' || game.phase !== 'playing') return;
-  const dmg = Math.round(amount * rand(0.9, 1.1) * stats().hurtMult * (game.easy ? 0.75 : 1));
+  const dmg = Math.round(amount * rand(0.9, 1.1) * stats().hurtMult * D().hurt);
   hero.hp -= dmg;
   hero.invuln = 0.4;
   hero.visual.flash();
@@ -809,7 +843,19 @@ const TAUNTS_BEG = {
   kaban: ['我也想下班啦～', '你先走我才能走～'],
   jiamang: ['我很忙！我真的很忙！', '螢幕沒開是省電！'],
 };
-const taunt = { t: 2.5, recent: [], last: null, begT: 0 };
+// 主角也會頂嘴。括號是心裡話
+const HERO_BACK = ['（真想變成勇氣超人揍你……）', '你才廢物！', '吵死了！', '等我變身你就知道。', '我有在準備期中考啦！', '（忍住……先記起來。）', '一個一個來好不好！', '嘴巴這麼壞，你媽知道嗎。'];
+const HERO_BACK_BRAVE = ['剛剛誰說我廢物？', '再講一次？', '現在知道怕了？', '排好隊，一個一個來。', '剛剛不是很會講嗎。'];
+const HERO_BACK_ANGEL = ['（真想變成勇氣超人揍妳……）', '妳到底是哪一邊的！', '我聽得到好嗎。', '（忍住。她會飛，我追不到。）', '……等我集滿再跟妳算。', '妳行妳來啊！'];
+const taunt = { t: 2.5, recent: [], last: null, begT: 0, backT: 3 };
+function heroSay(text, dur = 1.8) {
+  if (hero.sayEl) hero.sayEl.remove();
+  const el = document.createElement('div');
+  el.className = 'taunt hero';
+  el.textContent = t(text);
+  $('world-ui').append(el);
+  hero.sayEl = el; hero.sayT = dur;
+}
 
 function pickLine(pool) {
   // 先挑最近沒講過的；句子不夠用時，至少不跟畫面上正在講的重複
@@ -848,14 +894,28 @@ function updateTaunts(dt) {
     e.sayEl.style.left = `${p.x}px`;
     e.sayEl.style.top = `${p.y}px`;
   }
+  if (hero.sayEl) {
+    hero.sayT -= dt;
+    const p = screenPos(hero.pos, 2.9);
+    if (hero.sayT <= 0 || game.phase !== 'playing') { hero.sayEl.remove(); hero.sayEl = null; }
+    else { hero.sayEl.style.left = `${p.x}px`; hero.sayEl.style.top = `${p.y}px`; }
+  }
+  if (hero.sayNext && (hero.sayNext.t -= dt) <= 0) { heroSay(hero.sayNext.text); hero.sayNext = null; }
+  taunt.backT -= dt;
   taunt.begT -= dt;
   taunt.t -= dt;
-  if (taunt.t > 0 || talking >= 3 || game.phase !== 'playing') return; // 同時最多三隻在講
-  taunt.t = rand(0.55, 1.1);                                          // 每句之間的間隔
-  const pool = enemies.filter((e) => alive(e) && e !== taunt.last && !e.sayEl && e.y === 0 && !e.def.boss && TAUNTS[e.kind] && dist2d(e.pos, hero.pos) < 14 && onScreen(e));
+  if (taunt.t > 0 || talking >= D().bubbles || game.phase !== 'playing') return; // 同時開口的上限看難度
+  taunt.t = rand(0.55, 1.1) * D().tauntGap;                                          // 每句之間的間隔
+  const pool = enemies.filter((e) => alive(e) && e !== taunt.last && !e.sayEl && e.y === 0 && !e.def.boss && TAUNTS[e.kind] && dist2d(e.pos, hero.pos) < 18 && onScreen(e));
   if (!pool.length) return;
   const e = pool[Math.floor(Math.random() * pool.length)];
   enemySay(e, pickLine(hero.form === 'brave' ? TAUNTS_SCARED : TAUNTS[e.kind]));
+  // 被嗆了幾句之後，主角偶爾回嘴
+  if (taunt.backT <= 0 && !hero.sayEl && Math.random() < 0.3) {
+    taunt.backT = rand(4, 7);
+    const back = pickLine(hero.form === 'brave' ? HERO_BACK_BRAVE : HERO_BACK);
+    hero.sayNext = { text: back, t: 0.6 };
+  }
 }
 
 // 事件觸發的嘲諷：找一隻附近、沒在講話的怪來講
@@ -1055,7 +1115,7 @@ function updateEnemy(e, dt, attackers) {
   if (e.state === 'spawn') {
     if (e.t < 0) return;
     if (!e.shown) { e.shown = true; e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4); }
-    e.visual.root.scale.setScalar(Math.min(1, e.t / 0.35));
+    e.visual.root.scale.setScalar(Math.min(1, e.t / 0.35) * e.size);
     if (e.t > 0.45) { e.state = 'chase'; e.t = 0; }
     return;
   }
@@ -1121,6 +1181,11 @@ function updateEnemy(e, dt, attackers) {
   } else if (e.state === 'chase') {
     e.cool -= dt;
     e.yaw = Math.atan2(dx, dz);
+    // 地獄難度：守在原地的怪，主角靠近或自己挨打才撲上來（所以整張地圖都是怪）
+    if (e.hold) {
+      if (d < HOLD_AGGRO || e.hp < e.maxHp || !heroAlive) e.hold = false;
+      else { e.visual.play('idle'); return; }
+    }
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
     if (heroAlive && d <= def.reach && e.cool <= 0 && canAttack) {
       e.state = 'windup'; e.t = 0; e.struck = false;
@@ -1187,7 +1252,7 @@ function updateHazards(dt) {
 
 // 俊熊：躲在場上各處，跳出來用恐懼攻擊。預兆期間打牠或閃開就會抓到牠。
 function updateAmbush(dt) {
-  if (!game.rules.junxiong || game.caught >= 3) return;
+  if (!game.rules.junxiong || game.caught >= D().bearMax) return;
   if (!ambush) {
     game.ambushT -= dt;
     if (game.ambushT > 0 || !enemies.some(alive)) return;
@@ -1215,6 +1280,10 @@ function updateAmbush(dt) {
       a.done = true; a.t = 0; a.caught = true;
       game.caught++;
       addCourage(15);
+      const heal = Math.round(hero.maxHp * 0.1);
+      hero.hp = Math.min(hero.maxHp, hero.hp + heal);
+      popup(hero.pos, 3.2, `+${heal} HP`, 'good');
+      fx.ring(hero.pos, 0.4, 2.4, 0x7dff9a, 0.45);
       popup(a.pos, 1.8, '你怎麼知道我在這裡啦～～', 'good');
       say('caught');
     } else if (a.t >= a.warn) {
@@ -1226,7 +1295,7 @@ function updateAmbush(dt) {
     }
   } else {
     if (a.caught) a.visual.root.position.y = Math.max(-1.2, a.visual.root.position.y - dt * 2);
-    if (a.t > 0.9) { scene.remove(a.visual.root); a.visual.dispose(); ambush = null; game.ambushT = rand(9, 14); }
+    if (a.t > 0.9) { scene.remove(a.visual.root); a.visual.dispose(); ambush = null; game.ambushT = rand(...D().bearGap); }
   }
 }
 
@@ -1251,7 +1320,11 @@ function separate() {
     }
     const dx = hero.pos.x - a.pos.x, dz = hero.pos.z - a.pos.z;
     const d = Math.hypot(dx, dz) || 0.001, min = a.def.radius + HERO.radius;
-    if (d < min && hero.state !== 'dodge' && hero.state !== 'skill1') { hero.pos.x += (dx / d) * (min - d); hero.pos.z += (dz / d) * (min - d); }
+    if (d < min && hero.state !== 'dodge' && hero.state !== 'skill1') {
+      // 守關者推得動主角；小怪推不動，自己被擠開（不然一大群會把主角一路推到場邊）
+      if (a.def.boss) { hero.pos.x += (dx / d) * (min - d); hero.pos.z += (dz / d) * (min - d); }
+      else { a.pos.x -= (dx / d) * (min - d); a.pos.z -= (dz / d) * (min - d); }
+    }
   }
 }
 
@@ -1656,6 +1729,7 @@ function showOverlay({ title, text, note, btn, next, easy }) {
   $('ov-easy').hidden = !easy;
   $('ov-menu').hidden = false;
   $('ov-stages').hidden = true;
+  $('ov-diff').hidden = true;
   $('hud').hidden = true;
   $('overlay').hidden = false;
 }
@@ -1669,7 +1743,7 @@ function endGame(win) {
     game.bgm = null; audio.playBgm(null);
     audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
-    showOverlay({ title: '倒 下', text: `${stage().id}　${t(stage().name)}`, note: t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && !game.easy });
+    showOverlay({ title: '倒 下', text: `${stage().id}　${t(stage().name)}`, note: t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
   }, 1200);
 }
 
@@ -1751,6 +1825,61 @@ function updateAngel(dt) {
   if (angel.sayT > 0) { angel.sayT -= dt; if (angel.sayT <= 0) $('angel-bubble').hidden = true; }
 }
 
+// ---------- 小地圖 ----------
+// 整個場地縮在一個圓裡：小怪小點、較強的怪中點、守關者大點；主角是黃色箭頭，前方扇形是目前的瞄準方向。
+// 畫面上方 = 遠離鏡頭的方向，和主畫面一致。
+const mini = { cv: $('minimap'), ctx: $('minimap').getContext('2d'), skip: 0 };
+const isElite = (e) => e.def.bar || e.def.armored || e.def.enrage || e.maxHp >= 220 || e.size > 1.2;
+function aimYaw() {
+  const locked = lockTarget();
+  if (locked) return yawTo(locked);
+  const m = mouseYaw();
+  return m !== null ? m : hero.yaw;
+}
+// 點一下放大、再點一下縮小；記住上次的大小
+const MINI_KEY = 'braveguy.minimap';
+try { mini.cv.classList.toggle('big', localStorage.getItem(MINI_KEY) === 'big'); } catch { /* 讀不到就用小的 */ }
+mini.cv.addEventListener('pointerdown', (e) => {
+  e.preventDefault(); e.stopPropagation();
+  const big = mini.cv.classList.toggle('big');
+  try { localStorage.setItem(MINI_KEY, big ? 'big' : 'small'); } catch { /* 存不了也沒關係 */ }
+});
+function updateMinimap() {
+  if (mini.skip++ % 3) return; // 每三幀畫一次就夠
+  const c = mini.ctx, S = mini.cv.width, R = S / 2, k = (R - 10) / ARENA_RADIUS;
+  const X = (p) => R + p.x * k, Y = (p) => R + p.z * k;
+  c.clearRect(0, 0, S, S);
+  c.strokeStyle = '#ffffff30'; c.lineWidth = 2;
+  c.beginPath(); c.arc(R, R, ARENA_RADIUS * k, 0, 6.283); c.stroke();
+  c.beginPath(); c.arc(R, R, ARENA_RADIUS * k * 0.5, 0, 6.283); c.stroke();
+  // 危險區
+  for (const h of hazards) { c.fillStyle = '#ff3b3040'; c.beginPath(); c.arc(X(h.pos), Y(h.pos), Math.max(3, h.r * k), 0, 6.283); c.fill(); }
+  // 瞄準方向：扇形
+  const yaw = aimYaw(), a = Math.atan2(Math.cos(yaw), Math.sin(yaw)); // 世界 +z 對應畫面往下
+  const hx = X(hero.pos), hy = Y(hero.pos);
+  const g = c.createRadialGradient(hx, hy, 0, hx, hy, 80);
+  g.addColorStop(0, lockOn && lockTargetEnemy ? '#ff5a4fcc' : '#ffe98acc'); g.addColorStop(1, '#ffe98a00');
+  c.fillStyle = g;
+  c.beginPath(); c.moveTo(hx, hy); c.arc(hx, hy, 80, a - 0.32, a + 0.32); c.closePath(); c.fill();
+  // 怪
+  const locked = lockOn ? lockTargetEnemy : null;
+  for (const e of enemies) {
+    if (e.state === 'dead') continue;
+    const boss = !!e.def.boss, r = boss ? 11 : isElite(e) ? 6.5 : 3.6;
+    c.fillStyle = boss ? '#c05cff' : isElite(e) ? '#ff9a2e' : '#ff4a3d';
+    c.globalAlpha = e.state === 'spawn' ? 0.4 : 1;
+    c.beginPath(); c.arc(X(e.pos), Y(e.pos), r, 0, 6.283); c.fill();
+    if (boss || e === locked) { c.strokeStyle = '#fff'; c.lineWidth = 2.5; c.stroke(); }
+  }
+  c.globalAlpha = 1;
+  // 主角：朝向的小箭頭
+  const f = Math.atan2(Math.cos(hero.yaw), Math.sin(hero.yaw));
+  c.save(); c.translate(hx, hy); c.rotate(f);
+  c.fillStyle = hero.form === 'brave' ? '#9be564' : '#ffd23c'; c.strokeStyle = '#10131a'; c.lineWidth = 2.5;
+  c.beginPath(); c.moveTo(12, 0); c.lineTo(-8, 8); c.lineTo(-4, 0); c.lineTo(-8, -8); c.closePath(); c.fill(); c.stroke();
+  c.restore();
+}
+
 function updateCamera(dt) {
   camTarget.lerp(hero.pos, 1 - Math.exp(-8 * dt));
   camera.position.copy(camTarget).add(CAM_OFFSET);
@@ -1796,6 +1925,7 @@ function frame(now) {
   updateCamera(dt);
   updateLockMarker(dt);
   if (game.phase !== 'loading') updateHud();
+  if (game.phase === 'playing' || game.phase === 'dialog') updateMinimap();
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
@@ -1858,6 +1988,17 @@ function showMenu() {
   game.stage = next;
   $('ov-btn').textContent = save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
   $('ov-btn').disabled = false;
+  const dbox = $('ov-diff');
+  dbox.replaceChildren();
+  DIFFS.forEach((d, i) => {
+    const b = document.createElement('button');
+    b.className = `diff ${d.id}`;
+    b.textContent = t(d.name);
+    b.classList.toggle('on', i === diff);
+    b.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); setDiff(i); showMenu(); });
+    dbox.append(b);
+  });
+  dbox.hidden = false;
   const box = $('ov-stages');
   box.replaceChildren();
   let group = null, map = 0;
@@ -1887,7 +2028,7 @@ function showMenu() {
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
 $('ov-menu').addEventListener('click', () => { audio.sfx('ui'); showMenu(); });
-$('ov-easy').addEventListener('click', () => { game.easy = true; game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
+$('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
 $('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
 addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
@@ -1926,7 +2067,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { game, hero, save, STAGES, setDiff, get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   startGame, startStage, spawnEnemy, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };

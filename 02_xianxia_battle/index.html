@@ -5,7 +5,7 @@
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
 <link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css?v=20261112i">
+<link rel="stylesheet" href="css/game.css?v=20261112k">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -27,6 +27,8 @@
       <div class="bar guilt" id="guilt"><i id="guilt-fill"></i><b data-i18n="罪惡感">罪惡感</b></div>
     </div>
   </div>
+
+  <canvas id="minimap" width="240" height="240" aria-hidden="true"></canvas>
 
   <div class="hud-top-right">
     <button class="icon-btn" id="btn-mute" aria-label="靜音"></button>
@@ -97,6 +99,7 @@
     <button id="ov-btn" disabled>開始</button>
     <button id="ov-next" hidden data-i18n="下一關">下一關</button>
     <button id="ov-menu" class="ghost" hidden data-i18n="選關">選關</button>
+    <div id="ov-diff" class="diff-row" hidden></div>
     <div id="ov-stages" hidden></div>
     <button id="ov-easy" class="ghost" hidden data-i18n="調簡單一點（不丟臉，她只會笑你三天）">調簡單一點（不丟臉，她只會笑你三天）</button>
     <button class="ghost lang-btn" data-lang-toggle>🌐 English</button>
@@ -126,7 +129,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261112i';
+    s.src = 'js/main.js?v=20261112k';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

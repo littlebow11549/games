@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-12 勇氣超人：小地圖、三種難度、體型大小、俊熊補血、嗆聲與頂嘴（Claude）](handoffs/2026-11-12-game02-minimap-difficulty.md)：可點擊縮放的小地圖；輕鬆／普通／地獄（地獄同場最多 120 隻、鋪滿地圖）；小怪分大中小；小天使變身結束 10 句嗆聲、主角會回嘴。
+
 - [2026-11-12 勇氣超人：新字型與中英語系切換（Claude）](handoffs/2026-11-12-game02-fonts-i18n.md)：粉圓體＋思源黑體 Black（子集內嵌）；標題與暫停選單可切換中文／English，598 條翻譯；改文字後要重跑 `tools/make_game02_fonts.py`。
 
 - [2026-11-12 勇氣超人：招式全開、變身專用音樂、接上地圖二三的戰鬥曲（Claude）](handoffs/2026-11-12-game02-brave-bgm-wiring.md)：開發期間每關都能用全部招式；變身期間切到 `bgm_brave`（目前暫用主題 demo，正式曲需求已開在 MUSIC.md）；`bgm_wild`／`bgm_office`／`bgm_office_mute` 已填進各關的鍵。
