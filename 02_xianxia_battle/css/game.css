@@ -240,3 +240,15 @@ html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text
 .card button.diff.hell.on{background:#ff6a5a;color:#fff}
 /* 主角頂嘴的泡泡 */
 .taunt.hero{background:#fff4c2;box-shadow:0 2px 0 var(--yellow);z-index:2}
+
+/* ---- 版面調整：小地圖在右上（暫停鍵下方），任務欄在左上血條下方 ---- */
+#minimap{left:auto;right:calc(12px + var(--safe-r));top:calc(58px + var(--safe-t))}
+.quest{right:auto;left:calc(10px + var(--safe-l));top:calc(76px + var(--safe-t))}
+#minimap.big ~ .combo{right:calc(240px + var(--safe-r))}
+@media (max-height:430px){
+  #minimap{top:calc(52px + var(--safe-t))}
+  #minimap.big{width:118px;height:118px}
+  #minimap{width:84px;height:84px}
+  #minimap.big ~ .combo{right:calc(170px + var(--safe-r))}
+  .quest{top:calc(66px + var(--safe-t))}
+}
