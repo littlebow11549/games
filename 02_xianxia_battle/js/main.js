@@ -201,7 +201,11 @@ const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hits
   stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0 };
 let save = { cleared: [], seenTransform: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
-const unlockAll = new URLSearchParams(location.search).get('unlock') === 'all';
+// 開發期間：所有關卡預設全開，方便隨時試玩任何一關。正式完成時把 DEV_UNLOCK 改成 false。
+// 想看正式的逐關解鎖流程，網址加 ?unlock=off。
+const DEV_UNLOCK = true;
+const unlockParam = new URLSearchParams(location.search).get('unlock');
+const unlockAll = unlockParam === 'all' || (DEV_UNLOCK && unlockParam !== 'off');
 const writeSave = () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch { /* 無法存檔時本次仍可玩 */ } };
 const hero = { pos: new THREE.Vector3(), yaw: 0, vis: {}, visual: null, cds: {} };
 const angel = { visual: null, pos: new THREE.Vector3(), sayT: 0, lastKey: '', quiet: 0 };
