@@ -252,3 +252,17 @@ html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text
   #minimap.big ~ .combo{right:calc(170px + var(--safe-r))}
   .quest{top:calc(66px + var(--safe-t))}
 }
+
+/* ---- 守關者血條不要蓋到主角的血條 ---- */
+/* 窄螢幕橫向：守關者血條緊接在主角血條右邊，不再置中 */
+@media (max-width:1000px){
+  .bar{width:min(28vw,240px)}
+  .boss-bar{left:calc(104px + min(28vw,240px) + var(--safe-l));transform:none;text-align:left}
+  .boss-bar .bar{width:min(32vw,300px)}
+}
+/* 直向：獨立一排，放在任務欄與小地圖下方 */
+@media (max-width:600px) and (orientation:portrait){
+  .bar{width:min(46vw,240px)}
+  .boss-bar{left:50%;transform:translateX(-50%);text-align:center;top:calc(196px + var(--safe-t))}
+  .boss-bar .bar{width:72vw}
+}
