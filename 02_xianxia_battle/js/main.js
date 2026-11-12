@@ -47,10 +47,10 @@ const COMBO = {
 
 // 無雙感：範圍大、一次掃一片、把怪打飛
 const SKILLS = {
-  skill1: { name: '勇氣衝拳', cd: 3, dur: 0.34, dash: 11, width: 3.4, mult: 2.8, kb: 12, launch: 6 },
-  skill2: { name: '氣功彈', cd: 4.5, dur: 0.4, radius: 1.9, speed: 22, life: 1.15, mult: 3, blast: 4.5, blastMult: 2 },
-  skill3: { name: '氣功震地', cd: 7, dur: 0.6, radius: 8, mult: 3.2, kb: 6, launch: 11, stun: 1.6, ripple: 11.5, rippleMult: 1.2 },
-  ult: { name: '超勇氣波', dur: 2.3, length: 24, width: 5.5, tick: 0.12, mult: 1.3, turn: 1.8, endMult: 4, endRadius: 7 },
+  skill1: { name: '勇氣衝拳', cd: 3, dur: 0.34, dash: 15, width: 5.5, mult: 3.2, kb: 14, launch: 7, endRadius: 6.5 },
+  skill2: { name: '氣功彈', cd: 4.5, dur: 0.4, radius: 2.8, speed: 24, life: 1.25, mult: 3.4, blast: 9, blastMult: 3 },
+  skill3: { name: '氣功震地', cd: 7, dur: 0.6, radius: 11, mult: 3.6, kb: 6, launch: 12, stun: 1.8, ripple: 17, rippleMult: 1.6 },
+  ult: { name: '超勇氣波', dur: 2.3, length: 40, width: 10, tick: 0.1, mult: 1.6, turn: 2.2, endMult: 6, endRadius: 11, novaMult: 14 },
 };
 
 const ENEMIES = {
@@ -112,7 +112,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages') || !$('loadbar')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -121,9 +121,10 @@ if (!$('dialog') || !$('ov-stages') || !$('loadbar')) {
 // 手機預設中等；執行中若持續掉幀會自動往下調，並記住下次直接用較低的等級。
 const QUALITY_KEY = 'braveguy.quality';
 const QUALITY = [
-  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 0.7 },
-  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 1 },
-  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 1 },
+  // crowd：每波總數的倍率；cap：同時在場的小怪上限（超過的排隊，有怪倒下就補上）
+  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 1.8, cap: 22 },
+  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 3, cap: 36 },
+  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 3.5, cap: 48 },
 ];
 const coarse = matchMedia('(pointer: coarse)').matches;
 const forced = new URLSearchParams(location.search).get('q');
@@ -197,7 +198,7 @@ resize();
 // ---------- 狀態 ----------
 
 const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0, fails: 0, easy: false,
-  stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0 };
+  stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0 };
 let save = { cleared: [], seenTransform: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
 const unlockAll = new URLSearchParams(location.search).get('unlock') === 'all';
@@ -277,7 +278,8 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(8, 12), caught: 0, final: false });
+    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(8, 12), caught: 0, final: false, queue: [], queueT: 0 });
+  Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0 });
   camTarget.copy(hero.pos);
   $('overlay').hidden = true;
   $('hud').hidden = false;
@@ -475,6 +477,9 @@ function finishTransform() {
   hero.guilt *= 0.5;
   shockwave(hero.pos, 6 + 5 * extra, 1.6 + 1.6 * extra, 0x9be564);
   popup(hero.pos, 2.6, '勇氣超人！', 'shout');
+  for (const e of enemies) if (e.sayEl) { e.sayEl.remove(); e.sayEl = null; } // 囂張的話收回去
+  setTimeout(() => tauntFrom(TAUNTS_SCARED), 350);
+  setTimeout(() => tauntFrom(TAUNTS_SCARED), 900);
   say('transform', true);
 }
 
@@ -572,9 +577,22 @@ function nextWave() {
   game.wave++;
   const wave = stage().waves[game.wave];
   banner(`第 ${game.wave + 1} 波`);
-  let i = 0;
-  // 低畫質時同場的小怪少一些
-  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd)); k++) spawnEnemy(kind, null, (i++) * 0.08);
+  // 怪的總數是關卡表的 crowd 倍；同時在場有上限，其餘排隊陸續補進來（清不完的感覺，但不會卡）
+  const list = [];
+  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
+  for (let i = list.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [list[i], list[j]] = [list[j], list[i]]; }
+  game.queue = list;
+  game.queueT = 0;
+}
+
+function feedQueue(dt) {
+  if (!game.queue.length) return;
+  game.queueT -= dt;
+  if (game.queueT > 0) return;
+  const onField = enemies.filter((e) => e.state !== 'dead' && !e.def.boss).length;
+  if (onField >= Q().cap) return;
+  game.queueT = 0.07;
+  spawnEnemy(game.queue.shift());
 }
 
 function spawnBoss() {
@@ -609,6 +627,7 @@ function hurtHero(amount, opts = {}) {
   popup(hero.pos, 2.2, `-${dmg}`, 'hurt');
   game.shake = Math.max(game.shake, 0.25);
   audio.sfx('hurt');
+  tauntFrom(TAUNTS_HIT, 0.6);
   game.combo = 0;
   if (hero.form !== 'brave') addCourage(GAUGE.courageHurt);
   hero.guilt += (dmg / hero.maxHp) * 100 * GAUGE.guiltPerHpPct + (opts.guilt || 0);
@@ -689,6 +708,7 @@ function damageEnemy(e, mult, o = {}) {
     e.visual.play('die', 0.8);
     if (e.bar) e.bar.remove();
     game.kills++;
+    if (!e.def.boss && TAUNTS_BEG[e.kind] && taunt.begT <= 0 && Math.random() < 0.3) { taunt.begT = 1.4; popup(e.pos, e.def.height + 0.6 + e.y, pickLine(TAUNTS_BEG[e.kind]), 'beg'); }
     if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); } // 被打倒的怪飛出去
     else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; audio.sfx('boom'); }
   } else if (!e.def.boss && !guarded && e.state !== 'spawn') {
@@ -744,6 +764,85 @@ function lineStrike(a, b, width, mult, o = {}, skip = null) {
     res.push(damageEnemy(e, mult, { from: a, ...o }));
   }
   return tally(res, o.heavy);
+}
+
+// ---------- 嘲諷 ----------
+// 怪會輪流用賤賤的話嘲諷主角：一次只有一隻開口、每句之間有間隔、同一句短時間內不重複。
+// 主角變身後，小怪的台詞會從囂張變成卑微。
+const TAUNTS = {
+  ganqiao: ['就這？', '打不到～打不到～', '你出拳像在趕蚊子', '回去睡啦', '我阿嬤閃得比你快', '欸他在喘耶', '手痠了齁', '這拳有吃飯嗎', '好了啦可以放棄了', '你期中考準備了嗎？', '再練十年啦', '廢物～', '你是不是在放水？喔沒有，這就是全力', '看他那個認真的臉，好好笑', '加油喔（敷衍）', '打這麼慢是在等誰', '你剛剛那下是在按摩嗎', '同學，動作不標準喔'],
+  ganqiao_mid: ['你也只敢打我們', '回去又要一個人生悶氣了齁', '有種去跟本人講啊', '……（嘆氣，很大聲）', '這口氣你吞得下去的啦', '……（翻譯：遜）', '……！（翻譯：就這？）', '嗯？有人打我嗎', '吞下去啊，你不是很會吞', '……（鄙視的眼神）', '講啊，你不是有話要講', '又不敢講了齁', '悶著吧，習慣就好'],
+  folaidi: ['再睡五分鐘啦～', '這麼拚幹嘛，明天再打', '你鬧鐘響了喔，按掉按掉', '打我？你醒了我就不見了，白打', '報告寫了沒？', '你眼袋好重喔', '躺著不是比較舒服嗎', '明天的你會感謝現在偷懶的你', '我在夢裡等你很久了', '欸你今天是不是又遲到', '這麼努力要給誰看'],
+  jiasen: ['我很兇喔（抖）', '怕了吧！……怕了嗎？', '吼～～（小聲）', '面具很貴不要打臉', '不要看我裡面', '我、我可是恐怖片主角', '你小時候看到我會哭的', '我今天狀態不好而已', '有種你不要閃', '嚇到了吧（自己先嚇到）'],
+  kaban: ['這個今天要喔', '你要下班？真好，我沒有', '加一下班啦，又不會死', '打卡了沒？', '老闆在看喔', '我也不想這樣，但我有房貸', '這個很急，那個也很急', '你走了誰來做', '年輕人肝很新鮮嘛', '假日可以聯絡你吧？', '辛苦了（沒有加班費）'],
+  jiamang: ['我很忙不要吵', '這不是我的業務範圍', '當初是你提的', '我再確認一下（不會確認）', '鍋給你，接好', '已讀', '我手上三個案子耶', '這個要問你主管', '我有 cc 你啊', '你自己沒看信', '我只是轉達'],
+};
+// 主角變身後，小怪改講這些
+const TAUNTS_SCARED = ['等一下等一下', '我只是路過', '大哥我錯了', '剛剛那句是牠講的不是我', '有話好說', '我有小孩（沒有）', '可以用講的嗎', '我今天其實請假', '不公平啦，換衣服犯規', '我要回家了', '欸欸欸他看這邊了', '剛剛是開玩笑的啦', '我其實很尊敬你'];
+// 主角被打中時，附近的怪補一句
+const TAUNTS_HIT = ['哈哈哈', '痛齁', '就說打不到嘛', '中了中了', '再來一下', '臉接得很準喔', '欸他是不是要哭了', '好可憐喔（笑）'];
+// 小怪被打倒時偶爾講一句（取自腳本附錄 B）
+const TAUNTS_BEG = {
+  ganqiao: ['我只是嘴巴壞！', '你打人就有禮貌嗎！'],
+  ganqiao_mid: ['我沒有生氣！！', '……！！'],
+  folaidi: ['再讓我躺五分鐘～', '是你自己按掉鬧鐘的！'],
+  jiasen: ['不要拿我面具！', '我裡面是棉花，不要打！'],
+  kaban: ['我也想下班啦～', '你先走我才能走～'],
+  jiamang: ['我很忙！我真的很忙！', '螢幕沒開是省電！'],
+};
+const taunt = { t: 2.5, recent: [], last: null, begT: 0 };
+
+function pickLine(pool) {
+  // 先挑最近沒講過的；句子不夠用時，至少不跟畫面上正在講的重複
+  const showing = enemies.filter((e) => e.sayEl).map((e) => e.sayEl.textContent);
+  let fresh = pool.filter((l) => !taunt.recent.includes(l) && !showing.includes(l));
+  if (!fresh.length) fresh = pool.filter((l) => !showing.includes(l));
+  if (!fresh.length) fresh = pool;
+  const line = fresh[Math.floor(Math.random() * fresh.length)];
+  taunt.recent.push(line);
+  if (taunt.recent.length > 10) taunt.recent.shift(); // 最近講過的十句不重複
+  return line;
+}
+
+function enemySay(e, text, dur = 2.0) {
+  if (e.sayEl) e.sayEl.remove();
+  const el = document.createElement('div');
+  el.className = `taunt ${hero.form === 'brave' && !e.def.boss ? 'scared' : ''}`;
+  el.textContent = text;
+  $('world-ui').append(el);
+  e.sayEl = el;
+  e.sayT = dur;
+  taunt.last = e;
+}
+
+function onScreen(e) { const p = screenPos(e.pos, e.def.height); return p.visible && p.x > 60 && p.x < innerWidth - 60 && p.y > 70 && p.y < innerHeight - 40; }
+
+function updateTaunts(dt) {
+  let talking = 0;
+  for (const e of enemies) {
+    if (!e.sayEl) continue;
+    e.sayT -= dt;
+    const p = screenPos(e.pos, e.def.height + 0.9 + e.y);
+    if (e.sayT <= 0 || e.state === 'dead' || !p.visible) { e.sayEl.remove(); e.sayEl = null; continue; }
+    talking++;
+    e.sayEl.style.left = `${p.x}px`;
+    e.sayEl.style.top = `${p.y}px`;
+  }
+  taunt.begT -= dt;
+  taunt.t -= dt;
+  if (taunt.t > 0 || talking >= 3 || game.phase !== 'playing') return; // 同時最多三隻在講
+  taunt.t = rand(0.55, 1.1);                                          // 每句之間的間隔
+  const pool = enemies.filter((e) => alive(e) && e !== taunt.last && !e.sayEl && e.y === 0 && !e.def.boss && TAUNTS[e.kind] && dist2d(e.pos, hero.pos) < 14 && onScreen(e));
+  if (!pool.length) return;
+  const e = pool[Math.floor(Math.random() * pool.length)];
+  enemySay(e, pickLine(hero.form === 'brave' ? TAUNTS_SCARED : TAUNTS[e.kind]));
+}
+
+// 事件觸發的嘲諷：找一隻附近、沒在講話的怪來講
+function tauntFrom(lines, chance = 1) {
+  if (Math.random() > chance) return;
+  const pool = enemies.filter((e) => alive(e) && !e.sayEl && !e.def.boss && e.y === 0 && dist2d(e.pos, hero.pos) < 12);
+  if (pool.length) { enemySay(pool[Math.floor(Math.random() * pool.length)], pickLine(lines)); taunt.t = Math.max(taunt.t, 0.7); }
 }
 
 // 讓主角受到擊退、定身、緩速、封招
@@ -1161,7 +1260,49 @@ function mouseYaw() {
   return Math.hypot(dx, dz) < 0.3 ? null : Math.atan2(dx, dz);
 }
 
+// ---------- 自動鎖定 ----------
+// 開啟時，普攻與招式一律朝鎖定的敵人打，不看游標也不看移動方向。
+// 目標會黏住同一隻，直到牠倒下或離太遠才換最近的一隻。
+const LOCK_KEY = 'braveguy.lock';
+const LOCK_RANGE = 16;
+let lockOn = false;
+try { lockOn = localStorage.getItem(LOCK_KEY) === '1'; } catch { /* 讀不到就預設關閉 */ }
+let lockTargetEnemy = null;
+const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
+lockMarker.rotation.x = -Math.PI / 2;
+lockMarker.visible = false;
+scene.add(lockMarker);
+
+function lockTarget() {
+  if (!lockOn) return null;
+  const t = lockTargetEnemy;
+  if (t && alive(t) && !t.gone && dist2d(t.pos, hero.pos) - t.def.radius < LOCK_RANGE) return t;
+  lockTargetEnemy = nearestEnemy(LOCK_RANGE);
+  return lockTargetEnemy;
+}
+const yawTo = (e) => Math.atan2(e.pos.x - hero.pos.x, e.pos.z - hero.pos.z);
+
+function setLock(on) {
+  lockOn = on;
+  lockTargetEnemy = null;
+  try { localStorage.setItem(LOCK_KEY, on ? '1' : '0'); } catch { /* 存不了也沒關係 */ }
+  $('btn-lock').classList.toggle('on', on);
+  $('btn-lock').setAttribute('aria-pressed', String(on));
+  if (game.phase === 'playing') popup(hero.pos, 2.8, on ? '自動鎖定：開' : '自動鎖定：關', on ? 'good' : 'guard');
+}
+
+function updateLockMarker(dt) {
+  const t = game.phase === 'playing' ? lockTarget() : null;
+  lockMarker.visible = !!t;
+  if (!t) return;
+  lockMarker.position.set(t.pos.x, 0.08, t.pos.z);
+  lockMarker.scale.setScalar(t.def.radius * 1.9 + 0.5 + Math.sin(game.time * 8) * 0.08);
+  lockMarker.rotation.z += dt * 2.5;
+}
+
 function faceForAction(mv, autoRange = 9) {
+  const locked = lockTarget();
+  if (locked) { hero.yaw = yawTo(locked); return; } // 自動鎖定優先
   const aim = mouseYaw();
   if (aim !== null) { hero.yaw = aim; return; } // 電腦：朝游標方向打
   if (mv.len > 0) { hero.yaw = Math.atan2(mv.x, mv.y); return; }
@@ -1353,8 +1494,10 @@ function updateHero(dt) {
     if (hero.data.step === 0 && hero.t >= 0.24) {
       hero.data.step = 1;
       fx.trail(hero.data.from, hero.pos, s.width, 0xffe08a, 0.35);
-      fx.ring(hero.pos, 0.5, 4, 0xffe08a, 0.3);
-      areaStrike(hero.pos, 3.5, 1.2, { kb: 8, launch: 5 });
+      fx.ring(hero.pos, 0.5, s.endRadius, 0xffe08a, 0.35);
+      fx.dome(hero.pos, s.endRadius * 0.7, 0xffe08a, 0.35);
+      fx.burst(hero.pos, 0xffe08a, 24, 12, 0.4, 0.3);
+      areaStrike(hero.pos, s.endRadius, 1.8, { kb: 10, launch: 7, heavy: true });
       game.shake = Math.max(game.shake, 0.4);
     }
     if (hero.t >= s.dur) hero.state = 'free';
@@ -1395,9 +1538,10 @@ function updateHero(dt) {
   } else if (hero.state === 'ult') {
     // 超勇氣波：粗大的光束，可左右轉向，施放中無敵
     const s = SKILLS.ult;
-    const aim = mouseYaw();
+    const locked = lockTarget();
+    const aim = locked ? yawTo(locked) : mouseYaw();
     if (aim !== null || mv.len > 0) {
-      const want = aim !== null ? aim : Math.atan2(mv.x, mv.y); // 電腦用游標帶著光束掃
+      const want = aim !== null ? aim : Math.atan2(mv.x, mv.y); // 鎖定時追著目標；否則電腦用游標帶著光束掃
       let diff = ((want - hero.yaw + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
       hero.yaw += THREE.MathUtils.clamp(diff, -s.turn * dt, s.turn * dt);
     }
@@ -1422,6 +1566,15 @@ function updateHero(dt) {
       const end = hero.pos.clone().addScaledVector(f, s.length * 0.5);
       areaStrike(end, s.endRadius, s.endMult, { kb: 12, launch: 10, heavy: true });
       fx.dome(end, s.endRadius, 0xc8ff8a, 0.5);
+      // 收尾：以主角為中心的全場衝擊波，場上小怪基本上一次清光（守關者只是受重傷）
+      areaStrike(hero.pos, ARENA_RADIUS * 2.2, s.novaMult, { kb: 16, launch: 14, stun: 1.5, heavy: true });
+      for (let i = 0; i < 4; i++) fx.ring(hero.pos, 1 + i * 2, ARENA_RADIUS * (0.5 + i * 0.25), i % 2 ? 0xffffff : 0xc8ff8a, 0.5 + i * 0.15);
+      fx.dome(hero.pos, ARENA_RADIUS * 0.9, 0xc8ff8a, 0.8);
+      for (let i = 0; i < 14; i++) { const a = Math.random() * 6.283, r = rand(4, ARENA_RADIUS - 2); fx.pillar(new THREE.Vector3(hero.pos.x + Math.sin(a) * r, 0, hero.pos.z + Math.cos(a) * r), 1.4, 16, 0xe8ffc0, 0.7); }
+      fx.burst(hero.pos, 0xc8ff8a, 60, 22, 0.6, 0.4);
+      game.shake = 1.4; game.hitstop = Math.max(game.hitstop, 0.16);
+      audio.sfx('boom');
+      popup(hero.pos, 3.2, '全．場．清．空', 'shout');
       hero.state = 'free';
     }
   }
@@ -1535,12 +1688,14 @@ function update(dt) {
   updateShots(dt);
   updateHazards(dt);
   updateAmbush(dt);
+  updateTaunts(dt);
   fx.update(dt);
   hero.visual.root.position.copy(hero.pos);
   hero.visual.root.rotation.y = hero.yaw;
 
   // 關卡流程：一波一波 →（中途事件）→ 守關者 → 過關
-  if (game.phase === 'playing' && enemies.every((e) => e.state === 'dead')) {
+  feedQueue(dt);
+  if (game.phase === 'playing' && !game.queue.length && enemies.every((e) => e.state === 'dead')) {
     const st = stage();
     game.waveTimer -= dt;
     if (game.waveTimer > 0) return;
@@ -1619,6 +1774,7 @@ function frame(now) {
   else if (game.phase === 'dialog' && hero.visual) { hero.visual.update(dt); updateAngel(dt); fx.update(dt); }
   else if (hero.visual) { hero.visual.update(dt); updateAngel(dt); }
   updateCamera(dt);
+  updateLockMarker(dt);
   if (game.phase !== 'loading') updateHud();
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
@@ -1676,8 +1832,8 @@ function showMenu() {
   $('ov-easy').hidden = true;
   $('ov-menu').hidden = true;
   $('ov-text').innerHTML = coarse
-    ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）'
-    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）';
+    ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　右上「鎖」開關自動鎖定'
+    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定';
   const next = firstOpenStage();
   game.stage = next;
   $('ov-btn').textContent = save.cleared.length ? `繼續　${STAGES[next].id} ${STAGES[next].name}` : '開始';
@@ -1713,6 +1869,9 @@ $('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); 
 $('ov-menu').addEventListener('click', () => { audio.sfx('ui'); showMenu(); });
 $('ov-easy').addEventListener('click', () => { game.easy = true; game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
+$('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
+addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
+$('btn-lock').classList.toggle('on', lockOn);
 $('btn-pause').addEventListener('click', () => {
   if (game.phase !== 'playing') return;
   game.paused = !game.paused;
@@ -1728,7 +1887,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').classList.add('on'); } });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, get quality() { return quality; }, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { game, hero, save, STAGES, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   startGame, startStage, spawnEnemy, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
