@@ -112,7 +112,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -229,11 +229,26 @@ function clampArena(p, margin = 0) {
   if (r > max) { p.x *= max / r; p.z *= max / r; }
 }
 
+// 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
+const ALL_ABILITIES = ['transform', 'skill1', 'skill2', 'skill3', 'ult', 'hp', 'qi'];
+const stageAbilities = (index) => (unlockAll ? new Set(ALL_ABILITIES) : abilitiesFor(index));
+
+// ---------- 背景音樂 ----------
+// game.bgm 是「現在這個場面該播的曲子」。變身成勇氣超人的期間改播變身專用曲，變回來再接回去。
+function setBgm(name) { game.bgm = name; applyBgm(); }
+function applyBgm() {
+  if (!game.bgm) return;
+  audio.playBgm(hero.form === 'brave' && audio.tracks.bgm_brave && game.bgm !== 'bgm_transform' ? 'bgm_brave' : game.bgm);
+}
+const stageBgm = () => { const key = `bgm_stage_${stage().id.replace('-', '_')}`; return audio.tracks[key] ? key : 'bgm_battle'; };
+
 function setForm(form) {
+  const changed = hero.form !== form;
   hero.form = form;
   for (const [k, v] of Object.entries(hero.vis)) v.root.visible = k === form;
   hero.visual = hero.vis[form];
   hero.visual.glow(false);
+  if (changed) applyBgm();
   hero.visual.play('idle');
 }
 
@@ -277,7 +292,7 @@ function startStage(index) {
   const st = stage();
   ({ sun } = buildWorld(scene, st.theme, Q()));
   game.rules = st.rules || {};
-  game.abilities = abilitiesFor(index);
+  game.abilities = stageAbilities(index);
   if (game.rules.tutorial) game.abilities.add('transform'); // 序章就是學變身的地方
   clearField();
   resetHero();
@@ -292,8 +307,7 @@ function startStage(index) {
   $('quest-title').textContent = `${st.id}　${st.name}`;
   $('quest-wave').textContent = st.sub;
   $('suanle').hidden = st.map !== 3;
-  const key = `bgm_stage_${st.id.replace('-', '_')}`;
-  audio.playBgm(audio.tracks[key] ? key : 'bgm_battle');
+  setBgm(stageBgm());
   runDialog(st.intro, () => { if (index === 0) say('start', true); });
 }
 const startGame = () => startStage(game.stage);
@@ -610,7 +624,7 @@ function spawnBoss() {
   $('boss-name').textContent = names;
   $('quest-wave').textContent = `打倒${names}`;
   const own = `bgm_stage_${stage().id.replace('-', '_')}`;
-  if (!audio.tracks[own] || stage().waves.length) audio.playBgm('bgm_boss');
+  if (!audio.tracks[own] || stage().waves.length) setBgm('bgm_boss');
   if (stage().boss === 'incubus') say('shield', true);
 }
 
@@ -1438,10 +1452,10 @@ function updateHero(dt) {
         if (!save.seenTransform) {
           // 全遊戲只播一次的完整變身演出（企劃書 4.6）
           save.seenTransform = true; writeSave();
-          audio.playBgm('bgm_transform');
+          const back = game.bgm;
+          setBgm('bgm_transform');
           runDialog(FIRST_TRANSFORM, () => {
-            const key = `bgm_stage_${stage().id.replace('-', '_')}`;
-            audio.playBgm(audio.tracks[key] ? key : 'bgm_battle');
+            setBgm(back);
             hero.t = GAUGE.transformMax;
           }, 'stars');
         }
@@ -1650,7 +1664,7 @@ function endGame(win) {
   game.fails++;
   setTimeout(() => {
     game.phase = 'over';
-    audio.playBgm(null);
+    game.bgm = null; audio.playBgm(null);
     audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
     showOverlay({ title: '倒 下', text: `${stage().id}　${stage().name}`, note: '小天使：「起來。再一次。」', btn: '再來一次', easy: game.fails >= 3 && !game.easy });
@@ -1664,7 +1678,7 @@ function clearStage() {
   if (!save.cleared.includes(st.id)) { save.cleared.push(st.id); writeSave(); }
   if (hero.form === 'brave') revert();
   setTimeout(() => {
-    audio.playBgm('bgm_victory');
+    game.bgm = null; audio.playBgm('bgm_victory');
     audio.sfx('win');
     runDialog(st.outro, () => {
       game.phase = 'over';
@@ -1803,7 +1817,7 @@ async function boot() {
   const ok = loaded.filter(Boolean).length;
 
   game.stage = firstOpenStage();
-  game.abilities = abilitiesFor(game.stage);
+  game.abilities = stageAbilities(game.stage);
   resetHero();
   camTarget.copy(hero.pos);
   game.phase = 'ready';
@@ -1825,7 +1839,7 @@ function firstOpenStage() {
 
 function showMenu() {
   game.phase = 'ready';
-  audio.playBgm(null);
+  game.bgm = null; audio.playBgm(null);
   clearField();
   $('hud').hidden = true;
   $('dialog').hidden = true;
@@ -1836,8 +1850,8 @@ function showMenu() {
   $('ov-easy').hidden = true;
   $('ov-menu').hidden = true;
   $('ov-text').innerHTML = coarse
-    ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　右上「鎖」開關自動鎖定'
-    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定';
+    ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
+    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停';
   const next = firstOpenStage();
   game.stage = next;
   $('ov-btn').textContent = save.cleared.length ? `繼續　${STAGES[next].id} ${STAGES[next].name}` : '開始';
@@ -1876,19 +1890,25 @@ $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $(
 $('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
 addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
 $('btn-lock').classList.toggle('on', lockOn);
-$('btn-pause').addEventListener('click', () => {
-  if (game.phase !== 'playing') return;
-  game.paused = !game.paused;
-  $('btn-pause').classList.toggle('on', game.paused);
-  if (game.paused) banner('暫停');
-});
+// 暫停：跳出選單，可以繼續、重打這一關，或回標題選關
+function setPaused(on) {
+  if (on && (game.phase !== 'playing' || dialog)) return;
+  game.paused = on;
+  $('btn-pause').classList.toggle('on', on);
+  $('pause-menu').hidden = !on;
+}
+$('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!game.paused); });
+$('pm-resume').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
+$('pm-restart').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); startStage(game.stage); });
+$('pm-menu').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); showMenu(); });
+addEventListener('keydown', (e) => { if ((e.code === 'Escape' || e.code === 'KeyP') && !e.repeat && !dialog && (game.phase === 'playing')) setPaused(!game.paused); });
 $('dialog').addEventListener('pointerdown', (e) => { e.preventDefault(); advanceDialog(e.target.id === 'dlg-skip'); });
 addEventListener('keydown', (e) => {
   if (!dialog) return;
   if (['Space', 'Enter', 'KeyJ'].includes(e.code)) { e.preventDefault(); advanceDialog(); }
   else if (e.code === 'Escape') advanceDialog(true);
 });
-document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') { game.paused = true; $('btn-pause').classList.add('on'); } });
+document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
 window.__game = { game, hero, save, STAGES, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },

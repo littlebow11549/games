@@ -1,5 +1,5 @@
 {
-  "_about": "勇氣超人 Brave Guy — P0 音樂交付清單。母帶 WAV 於 repo 根 _archive/02_xianxia_battle/music/。",
+  "_about": "勇氣超人 Brave Guy — 音樂交付清單(電音方向)。母帶 WAV 於 repo 根 _archive/02_xianxia_battle/music/。",
   "produced": "2026-11-12",
   "tool": "原創程式合成(Python/numpy 加法合成，ffmpeg loudnorm 母帶處理)",
   "license": "原創，版權歸使用者所有，可商用；未取樣任何第三方素材",
@@ -8,7 +8,7 @@
       "file_base": "bgm_campus",
       "manifest_key": "bgm_battle",
       "use": "地圖一校園一般戰鬥",
-      "description": "硬派電音 / bigroom hype，160 BPM，A 大調；supersaw 主旋律(主角主題)＋四踩大鼓＋reese/donk 低音＋arp",
+      "description": "硬派電音/bigroom hype，160 BPM，A 大調；supersaw 主旋律(主角主題)＋四踩大鼓＋reese/donk bass＋arp",
       "loop": true,
       "loop_length_s": 60.0,
       "duration_s": 60.0,
@@ -36,7 +36,7 @@
       "file_base": "bgm_boss",
       "manifest_key": "bgm_boss",
       "use": "各區守關戰",
-      "description": "更重更快的電音，174 BPM，A 小調；失真 power chord＋雙踩＋滾動 reese bass＋小調主題 riff",
+      "description": "更重更快電音，174 BPM，A 小調；失真 power chord＋雙踩＋滾動 reese bass＋小調主題 riff",
       "loop": true,
       "loop_length_s": 60.69,
       "duration_s": 60.69,
@@ -64,7 +64,7 @@
       "file_base": "jingle_clear",
       "manifest_key": "bgm_victory",
       "use": "過關『突破』短曲",
-      "description": "明亮電音號角，6 秒；三連上行和弦衝到大和弦，結尾故意收得隨便(配小天使『還行。』)",
+      "description": "明亮電音號角，6 秒；三連上行衝到大和弦，結尾故意收得隨便",
       "loop": false,
       "loop_length_s": null,
       "duration_s": 5.24,
@@ -89,10 +89,94 @@
       "master_wav": "_archive/02_xianxia_battle/music/jingle_clear.wav"
     },
     {
+      "file_base": "bgm_wild",
+      "manifest_key": "bgm_wild",
+      "use": "地圖二荒野一般戰鬥",
+      "description": "psytrance/沙漠電，146 BPM，A 小調(phrygian 色彩)；四踩＋滾動 offbeat bass＋手鼓 tom＋acid 點綴，主題空曠版",
+      "loop": true,
+      "loop_length_s": 65.75,
+      "duration_s": 65.75,
+      "loudness_LUFS": -16.05,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_wild.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 107,
+        "size_bytes": 877470
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_wild.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 1053301
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_wild.wav"
+    },
+    {
+      "file_base": "bgm_office",
+      "manifest_key": "bgm_office",
+      "use": "地圖三職場一般戰鬥",
+      "description": "電梯爵士(Cmaj7-Am7-Dm7-G7)被鼓/貝斯硬打成 hardstyle，150 BPM；電鋼琴旋律被壓在底下，失真 kick＋screech",
+      "loop": true,
+      "loop_length_s": 64.0,
+      "duration_s": 64.0,
+      "loudness_LUFS": -16.0,
+      "true_peak_dBTP": -1.34,
+      "ogg": {
+        "path": "assets/source/music/bgm_office.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 92,
+        "size_bytes": 739481
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_office.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 1024879
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_office.wav"
+    },
+    {
+      "file_base": "bgm_office_mute",
+      "manifest_key": "bgm_office_mute",
+      "use": "地圖三開場(變不了身)",
+      "description": "只有電梯音樂：電鋼琴＋軟 pad＋日光燈 hum，無鼓，刻意平淡低動態",
+      "loop": true,
+      "loop_length_s": 35.2,
+      "duration_s": 35.2,
+      "loudness_LUFS": -16.0,
+      "true_peak_dBTP": -4.49,
+      "ogg": {
+        "path": "assets/source/music/bgm_office_mute.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 97,
+        "size_bytes": 426672
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_office_mute.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 564288
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_office_mute.wav"
+    },
+    {
       "file_base": "theme_braveguy_demo",
       "manifest_key": null,
       "use": "主角主題動機 demo(非 manifest 鍵)",
-      "description": "展示可哼唱的主角主題，供確認方向；campus/title/wild/office/credits 都是它的改編",
+      "description": "展示可哼唱的主角主題；多首戰鬥曲都是它的改編",
       "loop": false,
       "loop_length_s": null,
       "duration_s": 9.08,

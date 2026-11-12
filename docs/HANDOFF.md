@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-12 勇氣超人：招式全開、變身專用音樂、接上地圖二三的戰鬥曲（Claude）](handoffs/2026-11-12-game02-brave-bgm-wiring.md)：開發期間每關都能用全部招式；變身期間切到 `bgm_brave`（目前暫用主題 demo，正式曲需求已開在 MUSIC.md）；`bgm_wild`／`bgm_office`／`bgm_office_mute` 已填進各關的鍵。
+
 - [2026-11-12 勇氣超人：自動鎖定、怪量加倍、怪會嘲諷、招式加強（Claude）](handoffs/2026-11-12-game02-lock-crowd-taunts.md)：「鎖」按鈕（T 鍵）；每波怪量約三倍並排隊補進場；小怪輪流講賤話、變身後改求饒；三小招範圍加大，大招收尾全場清空。追加：開發期間關卡預設全開（`DEV_UNLOCK`，正式完成時要關）。
 
 - [2026-11-12 勇氣超人：電腦操作改為滑鼠攻擊與鍵盤快捷鍵（Claude）](handoffs/2026-11-12-game02-pc-controls.md)：左鍵普攻、右鍵閃避、Q／E／R 小招、F 大招、空白鍵變身；攻擊朝游標方向。
@@ -14,7 +16,7 @@
 
 - [2026-11-12 勇氣超人：鎖定畫面大小，防止操作時網頁被拉近（Claude）](handoffs/2026-11-12-game02-viewport-lock.md)：攔截兩指縮放、連點放大、Ctrl＋滾輪；頁面固定不捲動。
 
-- [2026-11-12 勇氣超人：P0 音樂交付（電音方向）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音**；交 `bgm_campus`／`bgm_boss`／`jingle_clear`＋主題 demo（各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；三個 P0 鍵已填入 manifest（未改 `js/`）。分支 `claude/brave-guy-audio`。
+- [2026-11-12 勇氣超人：電音音樂交付（P0＋各地圖戰鬥曲）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音、每關不同**；交 7 首（`bgm_campus`／`bgm_boss`／`jingle_clear`／`bgm_wild`／`bgm_office`／`bgm_office_mute`＋主題 demo，各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；六個鍵已填入 manifest（地圖二三的三首已於同日由 Claude 接到各關）。分支 `claude/brave-guy-audio`。
 
 - [2026-11-11 勇氣超人：音樂與音效製作需求（Claude）](handoffs/2026-11-11-game02-music-requirements.md)：[`02_xianxia_battle/assets/MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)，交另一個工作階段製作。第二款遊戲已合併並上線。
 

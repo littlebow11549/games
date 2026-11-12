@@ -182,12 +182,10 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
   .act.transform::after{bottom:-11px}
 }
 
-/* ---- 自動鎖定鍵 ---- */
-#btn-lock{position:relative;background:#16241a;border:2.5px solid var(--ink);outline:2px solid #8a8f96;color:#c9cdd3;font-weight:900;font-size:17px;padding:0}
-#btn-lock.on{background:radial-gradient(circle at 40% 30%,#ff8a70,#b3271a);outline-color:var(--yellow);color:#fff;box-shadow:0 0 10px #ff5a4f}
-@media (pointer:fine){
-  #btn-lock::after{content:attr(data-key);position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);padding:0 5px;border-radius:6px;background:var(--ink);color:#fff;font-size:10px;line-height:1.3;border:1.5px solid var(--yellow)}
-}
+/* ---- 自動鎖定鍵（在變身鍵左邊） ---- */
+.act.lock{right:142px;bottom:172px;width:44px;height:44px;font-size:17px;background:#2a3038;color:#c9cdd3;outline:2px solid #8a8f96}
+.act.lock.on{background:radial-gradient(circle at 40% 30%,#ff8a70,#b3271a);outline-color:var(--yellow);color:#fff;box-shadow:0 0 12px #ff5a4f}
+@media (pointer:fine){ .act.lock::after{bottom:-11px} }
 
 /* ---- 怪的嘲諷泡泡 ---- */
 .taunt{position:absolute;transform:translate(-50%,-100%);max-width:190px;padding:4px 9px;border-radius:12px;background:#fff;color:var(--ink);
@@ -196,3 +194,7 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 .taunt.scared{background:#eaf6ff;box-shadow:0 2px 0 #3a6fd0;font-style:italic}
 .dmg.beg{font-size:14px;color:#fff;-webkit-text-stroke:.8px var(--ink);text-shadow:0 2px 0 #3a6fd0;animation-duration:1.2s}
 @keyframes tauntIn{from{transform:translate(-50%,-80%) scale(.6);opacity:0}}
+
+/* ---- 暫停選單 ---- */
+.overlay.pause{background:#000a;z-index:9}
+.overlay.pause .card button.ghost{font-size:14px;padding:8px 18px;margin-top:12px}
