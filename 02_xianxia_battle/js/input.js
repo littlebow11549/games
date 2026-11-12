@@ -1,5 +1,10 @@
-// 輸入：虛擬搖桿（觸控／滑鼠）＋鍵盤，動作鍵以佇列回傳。
-const KEY_ACTIONS = { KeyJ: 'attack', Space: 'transform', KeyK: 'skill1', KeyL: 'skill2', KeyI: 'skill3', KeyO: 'ult', ShiftLeft: 'dodge', ShiftRight: 'dodge' };
+// 輸入：手機用虛擬搖桿與螢幕按鍵；電腦用 WASD 移動、滑鼠瞄準與攻擊、鍵盤放招。動作以佇列回傳。
+// 電腦主要按鍵：滑鼠左鍵普攻、右鍵或 Shift 閃避、Q／E／R 三個小招、F 大招、空白鍵變身。
+// J／K／L／I／O 是不用滑鼠時的備用鍵。
+const KEY_ACTIONS = {
+  KeyQ: 'skill1', KeyE: 'skill2', KeyR: 'skill3', KeyF: 'ult', Space: 'transform', ShiftLeft: 'dodge', ShiftRight: 'dodge',
+  KeyJ: 'attack', KeyK: 'skill1', KeyL: 'skill2', KeyI: 'skill3', KeyO: 'ult',
+};
 const KEY_MOVE = { KeyW: [0, -1], ArrowUp: [0, -1], KeyS: [0, 1], ArrowDown: [0, 1], KeyA: [-1, 0], ArrowLeft: [-1, 0], KeyD: [1, 0], ArrowRight: [1, 0] };
 
 // 鎖定畫面大小：擋掉會讓網頁被拉近的操作。
@@ -43,6 +48,8 @@ export class Input {
     this.keys = new Set();
     this.queue = [];
     this.held = new Set();
+    // 滑鼠游標位置（畫面座標）。active 表示玩家目前在用滑鼠，攻擊與招式會朝游標方向
+    this.mouse = { x: 0, y: 0, active: false };
 
     const zone = document.getElementById('stick-zone');
     const base = document.getElementById('stick-base');
@@ -78,6 +85,24 @@ export class Input {
       btn.addEventListener('pointerleave', up);
       btn.addEventListener('pointercancel', up);
     }
+
+    // 滑鼠：在遊戲畫面上按左鍵是普攻（可按住連打），右鍵是閃避
+    const canvas = document.getElementById('scene');
+    const track = (e) => {
+      if (e.pointerType === 'mouse') { this.mouse.x = e.clientX; this.mouse.y = e.clientY; this.mouse.active = true; }
+      else this.mouse.active = false; // 改用觸控時回到自動朝向最近敵人
+    };
+    addEventListener('pointermove', track);
+    addEventListener('pointerdown', track, true);
+    canvas.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const action = e.button === 0 ? 'attack' : e.button === 2 ? 'dodge' : null;
+      if (!action) return;
+      e.preventDefault();
+      this.queue.push(action);
+      if (action === 'attack') this.held.add('attack');
+    });
+    addEventListener('pointerup', (e) => { if (e.pointerType === 'mouse' && e.button === 0) this.held.delete('attack'); });
 
     addEventListener('keydown', (e) => {
       if (KEY_MOVE[e.code]) { this.keys.add(e.code); e.preventDefault(); }

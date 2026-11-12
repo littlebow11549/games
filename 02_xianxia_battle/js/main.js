@@ -1148,7 +1148,22 @@ function nearestEnemy(maxDist) {
   return best;
 }
 
+// 滑鼠游標指到的地面位置 → 主角該面向的角度。沒在用滑鼠時回傳 null
+const raycaster = new THREE.Raycaster();
+const GROUND = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+const aimPoint = new THREE.Vector3();
+function mouseYaw() {
+  if (!input.mouse.active) return null;
+  tmp.set((input.mouse.x / innerWidth) * 2 - 1, -(input.mouse.y / innerHeight) * 2 + 1, 0);
+  raycaster.setFromCamera(tmp, camera);
+  if (!raycaster.ray.intersectPlane(GROUND, aimPoint)) return null;
+  const dx = aimPoint.x - hero.pos.x, dz = aimPoint.z - hero.pos.z;
+  return Math.hypot(dx, dz) < 0.3 ? null : Math.atan2(dx, dz);
+}
+
 function faceForAction(mv, autoRange = 9) {
+  const aim = mouseYaw();
+  if (aim !== null) { hero.yaw = aim; return; } // 電腦：朝游標方向打
   if (mv.len > 0) { hero.yaw = Math.atan2(mv.x, mv.y); return; }
   const target = nearestEnemy(autoRange); // 沒推搖桿時自動朝向最近的怪
   if (target) hero.yaw = Math.atan2(target.pos.x - hero.pos.x, target.pos.z - hero.pos.z);
@@ -1380,8 +1395,9 @@ function updateHero(dt) {
   } else if (hero.state === 'ult') {
     // 超勇氣波：粗大的光束，可左右轉向，施放中無敵
     const s = SKILLS.ult;
-    if (mv.len > 0) {
-      const want = Math.atan2(mv.x, mv.y);
+    const aim = mouseYaw();
+    if (aim !== null || mv.len > 0) {
+      const want = aim !== null ? aim : Math.atan2(mv.x, mv.y); // 電腦用游標帶著光束掃
       let diff = ((want - hero.yaw + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
       hero.yaw += THREE.MathUtils.clamp(diff, -s.turn * dt, s.turn * dt);
     }
@@ -1659,7 +1675,9 @@ function showMenu() {
   $('ov-next').hidden = true;
   $('ov-easy').hidden = true;
   $('ov-menu').hidden = true;
-  $('ov-text').innerHTML = '搖桿／WASD 移動　J 出拳　Shift 閃避<br>勇氣滿了按空白鍵變身（可按住拖延）　K・L・I 小招　O 大招';
+  $('ov-text').innerHTML = coarse
+    ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）'
+    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）';
   const next = firstOpenStage();
   game.stage = next;
   $('ov-btn').textContent = save.cleared.length ? `繼續　${STAGES[next].id} ${STAGES[next].name}` : '開始';

@@ -5,7 +5,7 @@
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
 <link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css?v=20261112c">
+<link rel="stylesheet" href="css/game.css?v=20261112d">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -54,13 +54,13 @@
   <div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div>
 
   <div class="actions">
-    <button class="act skill s3" data-action="skill3" aria-label="氣功震地"><span>震</span><em></em></button>
-    <button class="act skill s2" data-action="skill2" aria-label="氣功彈"><span>彈</span><em></em></button>
-    <button class="act skill s1" data-action="skill1" aria-label="勇氣衝拳"><span>衝</span><em></em></button>
-    <button class="act ult" data-action="ult" aria-label="超勇氣波"><span>波</span><em></em></button>
-    <button class="act transform" data-action="transform" aria-label="變身"><span>變身</span></button>
-    <button class="act dodge" data-action="dodge" aria-label="閃避"><span>閃</span><em></em></button>
-    <button class="act attack" data-action="attack" aria-label="攻擊"><span>拳</span></button>
+    <button class="act skill s3" data-action="skill3" data-key="R" aria-label="氣功震地"><span>震</span><em></em></button>
+    <button class="act skill s2" data-action="skill2" data-key="E" aria-label="氣功彈"><span>彈</span><em></em></button>
+    <button class="act skill s1" data-action="skill1" data-key="Q" aria-label="勇氣衝拳"><span>衝</span><em></em></button>
+    <button class="act ult" data-action="ult" data-key="F" aria-label="超勇氣波"><span>波</span><em></em></button>
+    <button class="act transform" data-action="transform" data-key="空白鍵" aria-label="變身"><span>變身</span></button>
+    <button class="act dodge" data-action="dodge" data-key="右鍵" aria-label="閃避"><span>閃</span><em></em></button>
+    <button class="act attack" data-action="attack" data-key="左鍵" aria-label="攻擊"><span>拳</span></button>
   </div>
 </div>
 
@@ -77,7 +77,7 @@
   <div class="card">
     <img id="ov-logo" class="logo" src="assets/source/pic/branding/logo_01.svg" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
-    <p id="ov-text">搖桿／WASD 移動　J 出拳　Shift 閃避<br>勇氣滿了按空白鍵變身（可按住拖延）　K・L・I 小招　O 大招</p>
+    <p id="ov-text"></p>
     <div class="loadbar" id="loadbar"><i id="loadbar-fill"></i></div>
     <p id="loadbar-text" class="muted">讀取中　0%</p>
     <p id="ov-load" class="muted"></p>
@@ -112,7 +112,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261112c';
+    s.src = 'js/main.js?v=20261112d';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');
