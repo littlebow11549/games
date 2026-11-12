@@ -4,7 +4,7 @@
 
 ## 最新交付
 
-- [2026-11-12 勇氣超人：P0 音樂交付（電音方向）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音**；交 `bgm_campus`／`bgm_boss`／`jingle_clear`＋主題 demo（各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；三個 P0 鍵已填入 manifest（未改 `js/`）。分支 `claude/brave-guy-audio`。
+- [2026-11-12 勇氣超人：電音音樂交付（P0＋各地圖戰鬥曲）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音、每關不同**；交 7 首（`bgm_campus`／`bgm_boss`／`jingle_clear`／`bgm_wild`／`bgm_office`／`bgm_office_mute`＋主題 demo，各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；六個鍵已填入 manifest（`bgm_wild`／`bgm_office`／`bgm_office_mute` 為預留鍵，待地圖二三流程由 Claude 呼叫；未改 `js/`）。分支 `claude/brave-guy-audio`。
 
 - [2026-11-11 勇氣超人：音樂與音效製作需求（Claude）](handoffs/2026-11-11-game02-music-requirements.md)：[`02_xianxia_battle/assets/MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)，交另一個工作階段製作。第二款遊戲已合併並上線。
 

@@ -18,10 +18,10 @@
     "bgm_shadow_1": null,
     "bgm_defeat": null,
     "bgm_talk": null,
-    "bgm_wild": null,
+    "bgm_wild": "assets/source/music/bgm_wild.ogg",
     "bgm_shadow_2": null,
-    "bgm_office": null,
-    "bgm_office_mute": null,
+    "bgm_office": "assets/source/music/bgm_office.ogg",
+    "bgm_office_mute": "assets/source/music/bgm_office_mute.ogg",
     "bgm_shadow_3": null,
     "bgm_ending": null,
     "bgm_credits": null
