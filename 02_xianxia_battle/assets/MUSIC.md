@@ -1,4 +1,4 @@
-# 🎵 勇氣超人 Brave Guy — 音樂與音效製作需求（v1.1，2026-11-11）
+# 🎵 勇氣超人 Brave Guy — 音樂與音效製作需求（v1.2，2026-11-12）
 
 這份文件是給**負責製作音樂的另一個工作階段**看的，可以單獨讀懂。
 遊戲背景看 [`../DESIGN.md`](../DESIGN.md)（企劃書），劇情與台詞看 [`../SCRIPT.md`](../SCRIPT.md)。
@@ -40,8 +40,13 @@
 }
 ```
 
-- **現在程式會播的只有三個鍵**：`bgm_battle`（一般戰鬥，請填 1-1 那首）、`bgm_boss`（守關戰）、`bgm_victory`（過關）。先交這三首，填進去就能在正式網站聽到。
-- 其餘的鍵已經預留在 manifest 裡，但程式還沒呼叫；對應的關卡與系統做出來時 Claude 會接上。
+- **14 關都已經做出來了，每一關的鍵現在都會播**（v1.2 更新）。程式的規則是：
+  - 進入某一關時，播 `bgm_stage_X_Y`；這個鍵還是 `null` 的話，退回播 `bgm_battle`。
+  - 守關者登場後切到 `bgm_boss`。例外：1-4、2-2、4-1 這三關是黑影戰、沒有小怪波次，如果該關自己的曲子已經填了，就整關播它，不切 `bgm_boss`。
+  - 過關播 `bgm_victory`；第一次變身的完整演出播 `bgm_transform`（還是 `null` 就靜音）。
+  - 所以**每交一首關卡曲，把路徑填進對應的 `bgm_stage_X_Y`，那一關馬上就會換歌**，不需要改程式。
+- 還沒接上的鍵：`bgm_title`、`bgm_talk`、`bgm_defeat`、`bgm_ending`、`bgm_credits`、`bgm_brave_layer`。先做關卡曲。
+- 已交付並接上的：`bgm_battle`／`bgm_stage_1_1`（都指向 `bgm_campus`）、`bgm_boss`、`bgm_victory`。
 - 音效目前全是程式合成（`js/audio.js`），**還沒有讀檔的功能**。音效檔交付後由 Claude 改程式接入，音樂這邊不用動程式。
 - 瀏覽器規定要玩家點過畫面才能出聲，遊戲已用「開始」按鈕處理。
 
@@ -54,13 +59,13 @@
 
 | 優先 | manifest 鍵 | 檔名 | 關卡 | 提案的子類型與速度 | ㄎㄧㄤ點 |
 |------|-------------|------|------|--------------------|---------|
-| P1 | `bgm_stage_1_0` | `bgm_stage_1_0` | 序章 宿舍：不想面對今天 | Happy hardcore，約 170 BPM | 鬧鐘鈴聲當主旋律；中間有一段「按掉鬧鐘」全部停拍，然後更大聲回來 |
+| **P0** | `bgm_stage_1_0` | `bgm_stage_1_0` | 序章 宿舍：不想面對今天 | Happy hardcore，約 170 BPM | 鬧鐘鈴聲當主旋律；中間有一段「按掉鬧鐘」全部停拍，然後更大聲回來 |
 | **P0** | `bgm_stage_1_1`（現在程式用的 `bgm_battle` 也填這首） | `bgm_stage_1_1` | 教學大樓長廊：拖延與期限 | Drum & bass，約 174 BPM | 倒數計時器的滴答聲越來越快；drop 前一句打呵欠的取樣 |
-| P1 | `bgm_stage_1_2` | `bgm_stage_1_2` | 籃球場：錢大姐收過路費 | 台式電音／Hard bounce，約 140–150 BPM | 球鞋摩擦聲、籃球彈地當大鼓、收銀機「叮」 |
-| P1 | `bgm_stage_1_3` | `bgm_stage_1_3` | 教官室：藍教頭 | Hardstyle，約 150 BPM | 軍樂小鼓接 hardstyle 大鼓；哨子當 lead；口令取樣被切碎重組到聽不懂 |
-| P1 | `bgm_stage_1_4` | `bgm_stage_1_4` | 校門口：惡夢超人（黑影一） | Melodic dubstep，約 140 BPM | 主角主題的鏡像版，很可憐很黏；drop 是哭腔的 wobble bass |
-| P2 | `bgm_stage_2_1` | `bgm_stage_2_1` | 黑森林：沒有路 | Psytrance，約 145 BPM | 空曠的口哨與蟲鳴被捲進迷幻的十六分音符貝斯；方向感故意亂掉 |
-| P2 | `bgm_stage_2_2` | `bgm_stage_2_2` | 夜晚的村落：地獄超人（黑影二） | Hardcore／Gabber，約 180–190 BPM | 鏡像主題的暴怒版，失真到破掉的大鼓，他吼什麼音樂就吼什麼 |
+| **P0** | `bgm_stage_1_2` | `bgm_stage_1_2` | 籃球場：錢大姐收過路費 | 台式電音／Hard bounce，約 140–150 BPM | 球鞋摩擦聲、籃球彈地當大鼓、收銀機「叮」 |
+| **P0** | `bgm_stage_1_3` | `bgm_stage_1_3` | 教官室：藍教頭 | Hardstyle，約 150 BPM | 軍樂小鼓接 hardstyle 大鼓；哨子當 lead；口令取樣被切碎重組到聽不懂 |
+| **P0** | `bgm_stage_1_4` | `bgm_stage_1_4` | 校門口：惡夢超人（黑影一） | Melodic dubstep，約 140 BPM | 主角主題的鏡像版，很可憐很黏；drop 是哭腔的 wobble bass |
+| P1 | `bgm_stage_2_1` | `bgm_stage_2_1` | 黑森林：沒有路 | Psytrance，約 145 BPM | 空曠的口哨與蟲鳴被捲進迷幻的十六分音符貝斯；方向感故意亂掉 |
+| P1 | `bgm_stage_2_2` | `bgm_stage_2_2` | 夜晚的村落：地獄超人（黑影二） | Hardcore／Gabber，約 180–190 BPM | 鏡像主題的暴怒版，失真到破掉的大鼓，他吼什麼音樂就吼什麼 |
 | P2 | `bgm_stage_3_0` | `bgm_stage_3_0` | 加班的辦公桌：變不了身 | 壞掉的電梯音樂，約 90 BPM | 全遊戲唯一沒勁的戰鬥曲：想 drop 但每次都沒 drop 成，只「……算了」地滑回去 |
 | P2 | `bgm_stage_3_1` | `bgm_stage_3_1` | 一樓大廳與打卡機 | Tech house，約 126 BPM | 打卡機的「嗶」當節拍器；找回變身的那一刻才第一次真的 drop |
 | P2 | `bgm_stage_3_2` | `bgm_stage_3_2` | 開放式辦公室：甩鍋、新雞、八卦蛇 | Complextro／Electro swing，約 128 BPM | 鍵盤敲擊、手機通知音「叮」、鍋子「鏘」全部進節奏；蛇的「私私」當 hi-hat |
@@ -101,7 +106,7 @@
 
 - 戰鬥曲 14 首＋守關曲 1 首＋非戰鬥 7 首，共 22 首（另有 1 段選做的 stem）。
 - 每關進場時才載入該關的曲子，所以總量大沒關係，但**單首仍請控制在 1.5MB 以內**。
-- **目前遊戲只有一個場地**，程式只會播 `bgm_battle`、`bgm_boss`、`bgm_victory`。請先交 P0 三首，其中 `bgm_stage_1_1` 同時填進 `bgm_battle` 與 `bgm_stage_1_1` 兩個鍵。
+- **14 關都已可玩**。目前只有 1-1 有自己的曲子，其餘 13 關都退回播同一首 `bgm_battle`，所以現在每關聽起來一樣。**下一批請依關卡順序交 `bgm_stage_1_0`、`1_2`、`1_3`、`1_4`**（地圖一），再往地圖二、三。
 
 ## 4. 音效清單
 

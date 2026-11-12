@@ -129,3 +129,36 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
   #stick-base{width:96px;height:96px}
   .combo{right:calc(150px + var(--safe-r))}
 }
+
+/* ---- 對話 ---- */
+.dialog{position:fixed;inset:0;z-index:8;display:flex;align-items:flex-end;justify-content:center;padding:0 12px calc(14px + var(--safe-b));pointer-events:auto;
+  background:linear-gradient(transparent 55%,#000a)}
+.dialog.stars{background:radial-gradient(circle at 50% 35%,#fff7c2 0 6%,transparent 22%),radial-gradient(circle at 20% 20%,#fff 0 .4%,transparent .6%),
+  radial-gradient(circle at 75% 30%,#fff 0 .3%,transparent .5%),radial-gradient(circle at 60% 12%,#ffd6f0 0 .5%,transparent .7%),
+  radial-gradient(circle at 35% 55%,#fff 0 .3%,transparent .5%),radial-gradient(circle at 85% 62%,#c8f5a8 0 .4%,transparent .6%),linear-gradient(#2a1458ee,#7a3fb0dd)}
+.dlg-box{position:relative;width:min(100%,760px);min-height:92px;padding:14px 18px 16px;border-radius:16px;background:#fff;color:var(--ink);
+  border:3px solid var(--ink);box-shadow:0 4px 0 var(--yellow)}
+.dialog[data-who="angel"] .dlg-box{box-shadow:0 4px 0 var(--pink)}
+.dialog[data-who="hero"] .dlg-box{box-shadow:0 4px 0 var(--green)}
+.dialog[data-who="other"] .dlg-box{box-shadow:0 4px 0 var(--purple)}
+#dlg-name{position:absolute;left:14px;top:-16px;padding:2px 12px;border-radius:12px;background:var(--ink);color:#fff;font-size:14px}
+#dlg-text{margin:4px 0 0;font-size:clamp(15px,2.6vw,19px);font-weight:700;line-height:1.5}
+.dialog.narration #dlg-text{font-weight:500;color:#555;font-style:italic}
+.dlg-next{position:absolute;right:16px;bottom:8px;font-size:13px;animation:bob .7s infinite alternate}
+#dlg-skip{position:absolute;right:10px;top:-18px;padding:3px 12px;border-radius:12px;border:2px solid var(--ink);background:var(--yellow);font-weight:800;font-size:12px}
+@keyframes bob{to{transform:translateY(4px)}}
+/* ---- 選關 ---- */
+#ov-stages{margin-top:10px;text-align:left}
+#ov-stages h4{margin:8px 0 4px;font-size:12px;color:var(--yellow);letter-spacing:.1em}
+.stage-row{display:flex;flex-wrap:wrap;gap:6px}
+.card button.stage{margin:0;padding:6px 0;width:52px;font-size:14px;border-radius:10px;box-shadow:0 2px 0 var(--red);background:#fff}
+.card button.stage.done{background:linear-gradient(#c8f5a8,var(--green-light))}
+.card button.stage.current{outline:3px solid var(--yellow)}
+.card button.stage:disabled{opacity:.35;box-shadow:none}
+#ov-next{margin-left:8px}
+.card{max-height:94vh;overflow:auto}
+.quest h3{letter-spacing:.05em!important}
+#suanle{color:#c9cdd3}
+#suanle b{color:var(--yellow)}
+/* 選關清單在小螢幕上要能上下捲 */
+.overlay,.overlay *{touch-action:pan-y}

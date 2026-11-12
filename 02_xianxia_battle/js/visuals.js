@@ -26,6 +26,23 @@ const LOOKS = {
   jiasen: { scale: 0.95, shirt: 0xd9822b, pants: 0xb5651d, skin: 0xd9822b, hair: 0xd9822b, shoes: 0xb5651d, ears: true, mask: true, mohawk: 0xd62b1f, stubby: true },
   folaidi: { scale: 1, shirt: 0xf2f2f2, pants: 0x2b2b2b, skin: 0xc8322b, hair: 0x6b4a2a, shoes: 0x1b1b1b, stripes: true, hat: 0x6b4a2a },
   boss: { scale: 2.5, shirt: 0xf2f2f2, pants: 0x2b2b2b, skin: 0xc8322b, hair: 0x6b4a2a, shoes: 0x1b1b1b, stripes: true, hat: 0x6b4a2a, boss: true },
+  // 以下為各關新增的佔位角色
+  worker: { scale: 1.01, shirt: 0xf2f2f2, pants: 0x2c3440, skin: 0xf7c9a0, hair: 0x8a4b1f, shoes: 0x1b1b1b, shortHair: true, tie: 0x2c3440 },
+  kaban: { scale: 1, shirt: 0x3a4660, pants: 0x232a3a, skin: 0xc8322b, hair: 0x6b4a2a, shoes: 0x1b1b1b, stripes: true, hat: 0x232a3a },
+  kabanKing: { scale: 2.5, shirt: 0x3a4660, pants: 0x232a3a, skin: 0xc8322b, hair: 0x6b4a2a, shoes: 0x1b1b1b, stripes: true, hat: 0x232a3a, boss: true },
+  jiamang: { scale: 0.95, shirt: 0x39404f, pants: 0x2a2f3a, skin: 0xd9822b, hair: 0xd9822b, shoes: 0x1b1b1b, ears: true, mask: true, mohawk: 0xd62b1f, stubby: true, tie: 0xe23a1e },
+  ganqiao_mid: { scale: 1.25, shirt: 0x2b2b30, pants: 0x1c1c20, skin: 0x7c7f86, hair: 0x7c7f86, shoes: 0x1c1c20, horns: 0xf2f2f2, manyHorns: true, purpleEyes: true, stubby: true },
+  midKing: { scale: 2.6, shirt: 0x2b2b30, pants: 0x1c1c20, skin: 0x7c7f86, hair: 0x7c7f86, shoes: 0x1c1c20, horns: 0xf2f2f2, manyHorns: true, purpleEyes: true, stubby: true, boss: true },
+  ganqiaoFull: { scale: 3.0, shirt: 0xf29a2e, pants: 0xd97f1a, skin: 0xf29a2e, hair: 0xf29a2e, shoes: 0xd97f1a, horns: 0xf4d03f, redEyes: true, stubby: true, snout: true, boss: true },
+  junxiong: { scale: 0.6, shirt: 0xf4f4f0, pants: 0xf4f4f0, skin: 0xf4f4f0, hair: 0x8a5a2b, shoes: 0xf7c9a0, hood: 0x8a5a2b, stubby: true },
+  qian: { scale: 1.05, shirt: 0xffffff, pants: 0x1f3fa0, skin: 0xf7c9a0, hair: 0xf26fb5, shoes: 0x1b1b1b, ponytail: true, fan: true, scarf: 0xf4c542, boss: true },
+  lan: { scale: 1.35, shirt: 0x1e4e9a, pants: 0x12305e, skin: 0xf0b98a, hair: 0x7a4a22, shoes: 0x1b1b1b, shortHair: true, whistle: true, boss: true },
+  lanMgr: { scale: 1.35, shirt: 0x2a3550, pants: 0x1a2236, skin: 0xf0b98a, hair: 0x7a4a22, shoes: 0x1b1b1b, shortHair: true, whistle: true, tie: 0x1e4e9a, boss: true },
+  nightmare: { scale: 1.03, shirt: 0x5b2a86, pants: 0x1a1024, skin: 0xe6c2a6, hair: 0x6a3a18, shoes: 0x2e8b2e, spiky: true, scarf: 0x2e8b2e, gloves: 0x2e8b2e, knee: 0x5b2a86, redEyes: true, guard: true, boss: true },
+  hell: { scale: 1.12, shirt: 0x2a0f3a, pants: 0x120818, skin: 0x8a6a7a, hair: 0x9b3bd6, shoes: 0x3a0f4f, spiky: true, scarf: 0x3a0f4f, gloves: 0xff6a1a, knee: 0x3a0f4f, redEyes: true, guard: true, aura: 0x9b3bd6, boss: true },
+  incubus: { scale: 1.08, shirt: 0x22252b, pants: 0x191b20, skin: 0xe6c2a6, hair: 0x4a2a14, shoes: 0x0b0b10, shortHair: true, tie: 0x2e8b2e, redEyes: true, boss: true },
+  xinji: { scale: 0.75, shirt: 0x5c6b84, pants: 0xf9d84a, skin: 0xf9d84a, hair: 0xf9d84a, shoes: 0xf28a1b, beak: 0xf28a1b, stubby: true, boss: true },
+  guan: { scale: 1.9, shirt: 0x1f2a44, pants: 0x5a3a1e, skin: 0xf2ede0, hair: 0x5a3a1e, shoes: 0xf2b21c, beak: 0xf2b21c, crown: true, wings: 0x5a3a1e, stubby: true, boss: true },
 };
 
 function buildHumanoid(look) {
@@ -63,7 +80,8 @@ function buildHumanoid(look) {
   head.position.y = bodyLen / 2 + bodyR + headR * 0.8;
   torso.add(head);
   head.add(mesh(new THREE.SphereGeometry(headR, 20, 16), mats.skin));
-  const eyeMat = look.redEyes ? toon(0xd21f1f, { emissive: 0xd21f1f, emissiveIntensity: 0.8 }) : mats.dark;
+  const eyeColor = look.redEyes ? 0xd21f1f : look.purpleEyes ? 0xa24be0 : null;
+  const eyeMat = eyeColor ? toon(eyeColor, { emissive: eyeColor, emissiveIntensity: 0.8 }) : mats.dark;
   if (!look.mask) for (const sx of [-1, 1]) head.add(mesh(new THREE.SphereGeometry(headR * 0.14, 8, 8), eyeMat, sx * headR * 0.38, 0, headR * 0.9));
 
   if (look.cap) {
@@ -109,6 +127,49 @@ function buildHumanoid(look) {
   if (look.hat) {
     head.add(mesh(new THREE.CylinderGeometry(headR * 1.5, headR * 1.5, 0.04, 18), toon(look.hat), 0, headR * 0.55, 0));
     head.add(mesh(new THREE.CylinderGeometry(headR * 0.8, headR * 0.9, headR * 0.7, 14), toon(look.hat), 0, headR * 0.9, 0));
+  }
+  if (look.shortHair) head.add(mesh(new THREE.SphereGeometry(headR + 0.015, 16, 10, 0, Math.PI * 2, 0, Math.PI * 0.5), mats.hair, 0, 0.02, -0.03));
+  if (look.manyHorns) {
+    for (const [x, z, rz] of [[0, 0.3, 0], [0.7, 0, -0.9], [-0.7, 0, 0.9], [0.35, -0.5, -0.4], [-0.35, -0.5, 0.4]]) {
+      const horn = mesh(new THREE.ConeGeometry(headR * 0.2, headR * 0.9, 6), toon(look.horns), x * headR, headR * 0.95, z * headR);
+      horn.rotation.z = rz;
+      head.add(horn);
+    }
+  }
+  if (look.snout) {
+    const snout = mesh(new THREE.BoxGeometry(headR * 1.1, headR * 0.7, headR * 1.2), mats.skin, 0, -headR * 0.2, headR * 1.1);
+    head.add(snout);
+    head.add(mesh(new THREE.BoxGeometry(headR * 1.0, headR * 0.12, headR * 0.9), mats.white, 0, -headR * 0.5, headR * 1.25));
+  }
+  if (look.hood) {
+    head.add(mesh(new THREE.SphereGeometry(headR + 0.05, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.72), toon(look.hood), 0, 0.02, -0.05));
+    for (const sx of [-1, 1]) head.add(mesh(new THREE.SphereGeometry(headR * 0.34, 10, 8), toon(look.hood), sx * headR * 0.8, headR * 0.85, 0));
+  }
+  if (look.ponytail) {
+    head.add(mesh(new THREE.SphereGeometry(headR + 0.02, 16, 10, 0, Math.PI * 2, 0, Math.PI * 0.55), mats.hair, 0, 0.01, -0.02));
+    const tail = mesh(new THREE.CapsuleGeometry(headR * 0.3, headR * 1.6, 4, 8), mats.hair, 0, headR * 0.5, -headR * 1.3);
+    tail.rotation.x = -0.9;
+    head.add(tail);
+  }
+  if (look.beak) {
+    const beak = mesh(new THREE.ConeGeometry(headR * 0.3, headR * 0.7, 6), toon(look.beak), 0, -headR * 0.1, headR * 1.05);
+    beak.rotation.x = Math.PI / 2;
+    head.add(beak);
+  }
+  if (look.crown) {
+    head.add(mesh(new THREE.CylinderGeometry(headR * 0.5, headR * 0.42, headR * 0.35, 8), toon(0xe9c46a, { emissive: 0x7a5a10, emissiveIntensity: 0.6 }), 0, headR * 1.05, 0));
+    for (let i = 0; i < 5; i++) {
+      const a = (i / 5) * Math.PI * 2;
+      head.add(mesh(new THREE.ConeGeometry(headR * 0.1, headR * 0.3, 4), toon(0xe9c46a), Math.cos(a) * headR * 0.42, headR * 1.35, Math.sin(a) * headR * 0.42));
+    }
+  }
+  if (look.tie) torso.add(mesh(new THREE.BoxGeometry(0.07, bodyLen * 0.9, 0.03), toon(look.tie), 0, 0.02, bodyR + 0.01));
+  if (look.whistle) torso.add(mesh(new THREE.SphereGeometry(0.05, 8, 8), toon(0xc9ced6), 0.06, bodyLen * 0.3, bodyR + 0.03));
+  if (look.aura) {
+    const aura = mesh(new THREE.SphereGeometry(bodyR * 2.6, 12, 10), new THREE.MeshBasicMaterial({ color: look.aura, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending, depthWrite: false }), 0, 0.1, 0);
+    aura.castShadow = false;
+    aura.scale.y = 1.6;
+    torso.add(aura);
   }
   if (look.scarf) {
     const scarfMat = toon(look.scarf);
@@ -159,7 +220,36 @@ function buildHumanoid(look) {
   const hand = new THREE.Group();
   hand.position.y = handY;
   armR.add(hand);
+  if (look.wings) {
+    for (const arm of [armR, armL]) {
+      const wing = mesh(new THREE.BoxGeometry(0.08, armLen * 2.6, 0.7), toon(look.wings), 0, handY * 0.7, -0.1);
+      arm.add(wing);
+    }
+  }
+  if (look.fan) {
+    const fan = mesh(new THREE.CylinderGeometry(0.75, 0.75, 0.03, 16, 1, false, 0, Math.PI), mats.white, 0, -0.1, 0.1);
+    fan.rotation.set(Math.PI / 2, 0, Math.PI / 2);
+    hand.add(fan);
+  }
   return { root, rig, torso, head, armR, armL, legR, legL, hand, look, torsoY };
+}
+
+function buildSnake() {
+  // 八卦蛇：一串球體，由 updateSnake 做蠕動
+  const root = new THREE.Group();
+  const rig = new THREE.Group();
+  root.add(rig);
+  const segs = [];
+  for (let i = 0; i < 9; i++) {
+    const r = i === 0 ? 0.34 : 0.3 - i * 0.022;
+    const seg = mesh(new THREE.SphereGeometry(r, 12, 10), toon(i % 2 ? 0xf2f2f2 : 0x2f5d50), 0, r, -i * 0.42);
+    rig.add(seg);
+    segs.push(seg);
+  }
+  for (const sx of [-1, 1]) segs[0].add(mesh(new THREE.SphereGeometry(0.06, 8, 8), toon(0xd62b1f, { emissive: 0xd62b1f, emissiveIntensity: 0.8 }), sx * 0.15, 0.12, 0.26));
+  const tongue = mesh(new THREE.BoxGeometry(0.04, 0.02, 0.3), toon(0xd62b1f), 0, -0.05, 0.42);
+  segs[0].add(tongue);
+  return { root, rig, segs, snake: true };
 }
 
 function buildAngel() {
@@ -193,7 +283,7 @@ const ease = (x) => 1 - (1 - x) * (1 - x);
 export class ProcVisual {
   constructor(kind) {
     this.kind = kind;
-    this.p = kind === 'angel' ? buildAngel() : buildHumanoid(LOOKS[kind] || LOOKS.ganqiao);
+    this.p = kind === 'angel' ? buildAngel() : kind === 'baguashe' ? buildSnake() : buildHumanoid(LOOKS[kind] || LOOKS.ganqiao);
     this.root = this.p.root;
     this.state = 'idle';
     this.t = 0;
@@ -203,7 +293,7 @@ export class ProcVisual {
     this.glowOn = false;
     this.mats = [];
     this.root.traverse((o) => {
-      if (o.isMesh && !o.userData.keepEmissive) {
+      if (o.isMesh && o.material.emissive && !o.userData.keepEmissive) { // 沒有自發光屬性的材質（光暈）略過
         this.mats.push({ m: o.material, e: o.material.emissive.getHex(), i: o.material.emissiveIntensity });
       }
     });
@@ -240,7 +330,16 @@ export class ProcVisual {
       this.flashT -= dt;
       this.applyEmissive();
     }
-    if (this.p.angel) this.updateAngel(); else this.updateHumanoid();
+    if (this.p.angel) this.updateAngel(); else if (this.p.snake) this.updateSnake(); else this.updateHumanoid();
+  }
+
+  updateSnake() {
+    const { rig, segs } = this.p;
+    const k = Math.min(1, this.t / this.dur);
+    const speed = this.state === 'run' ? 9 : 4;
+    segs.forEach((seg, i) => { seg.position.x = Math.sin(this.clock * speed - i * 0.7) * 0.22 * Math.min(1, i * 0.4); });
+    segs[0].position.y = 0.34 + (this.state === 'attack' ? 0.9 * Math.sin(k * Math.PI) : 0.25);
+    rig.scale.setScalar(this.state === 'die' ? Math.max(0.001, 1 - k) : 1);
   }
 
   updateAngel() {

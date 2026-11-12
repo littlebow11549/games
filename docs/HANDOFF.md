@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-12 勇氣超人：遊戲底層完成，14 關可玩（Claude）](handoffs/2026-11-12-game02-all-stages.md)：選關與存檔、劇情對話、14 個場景、12 種守關者；落差見企劃書 10.5 節；音樂需求 v1.2。**尚無真人試玩。**
+
 - [2026-11-12 勇氣超人：鎖定畫面大小，防止操作時網頁被拉近（Claude）](handoffs/2026-11-12-game02-viewport-lock.md)：攔截兩指縮放、連點放大、Ctrl＋滾輪；頁面固定不捲動。
 
 - [2026-11-12 勇氣超人：P0 音樂交付（電音方向）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音**；交 `bgm_campus`／`bgm_boss`／`jingle_clear`＋主題 demo（各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_xianxia_battle/music/`](../_archive/02_xianxia_battle/music/)，規格表 [`02_xianxia_battle/assets/source/AUDIO_DELIVERY.json`](../02_xianxia_battle/assets/source/AUDIO_DELIVERY.json)；三個 P0 鍵已填入 manifest（未改 `js/`）。分支 `claude/brave-guy-audio`。

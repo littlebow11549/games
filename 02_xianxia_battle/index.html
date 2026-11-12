@@ -29,9 +29,10 @@
   </div>
 
   <div class="quest">
-    <h3>任務</h3>
+    <h3 id="quest-title">任務</h3>
     <p id="quest-wave">打倒心魔</p>
     <p id="quest-count">擊倒 0</p>
+    <p id="suanle" hidden>本月算了次數 <b id="suanle-n">0</b></p>
   </div>
 
   <div class="combo" id="combo" hidden><b id="combo-n">0</b><span>連擊</span></div>
@@ -44,6 +45,7 @@
   <div id="banner" class="banner"></div>
   <div id="world-ui"></div>
   <div id="angel-bubble" class="bubble" hidden></div>
+
 
   <div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div>
 
@@ -58,6 +60,15 @@
   </div>
 </div>
 
+<div id="dialog" class="dialog" hidden>
+  <div class="dlg-box">
+    <b id="dlg-name"></b>
+    <p id="dlg-text"></p>
+    <span class="dlg-next">▼</span>
+    <button id="dlg-skip">跳過</button>
+  </div>
+</div>
+
 <div id="overlay" class="overlay">
   <div class="card">
     <img id="ov-logo" class="logo" src="assets/source/pic/branding/logo_01.svg" alt="勇氣超人 Brave Guy">
@@ -65,6 +76,9 @@
     <p id="ov-text">搖桿／WASD 移動　J 出拳　Shift 閃避<br>勇氣滿了按空白鍵變身（可按住拖延）　K・L・I 小招　O 大招</p>
     <p id="ov-load" class="muted">載入中…</p>
     <button id="ov-btn" disabled>開始</button>
+    <button id="ov-next" hidden>下一關</button>
+    <button id="ov-menu" class="ghost" hidden>選關</button>
+    <div id="ov-stages" hidden></div>
     <button id="ov-easy" class="ghost" hidden>調簡單一點（不丟臉，她只會笑你三天）</button>
     <a class="back" href="../">← 回遊戲中心</a>
   </div>
