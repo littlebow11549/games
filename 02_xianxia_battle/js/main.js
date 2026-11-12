@@ -7,6 +7,7 @@ import { Fx } from './fx.js';
 import { Input, lockViewport } from './input.js';
 import { GameAudio } from './audio.js';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js';
+import { t, tf, lang, nextLang, applyStatic } from './i18n.js';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -112,7 +113,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu') || !document.querySelector('[data-lang-toggle]')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -133,7 +134,7 @@ try { const q = localStorage.getItem(QUALITY_KEY); if (forced === null && q !== 
 quality = Math.max(0, Math.min(2, quality | 0));
 const Q = () => QUALITY[quality];
 
-const progress = (value, text) => { if (window.__progress) window.__progress(value, text); };
+const progress = (value, text) => { if (window.__progress) window.__progress(value, t(text)); };
 progress(62, '啟動 3D 繪圖');
 
 const canvas = $('scene');
@@ -304,8 +305,8 @@ function startStage(index) {
   $('hud').hidden = false;
   $('boss-bar').hidden = true;
   $('btn-pause').classList.remove('on');
-  $('quest-title').textContent = `${st.id}　${st.name}`;
-  $('quest-wave').textContent = st.sub;
+  $('quest-title').textContent = `${st.id}　${t(st.name)}`;
+  $('quest-wave').textContent = t(st.sub);
   $('suanle').hidden = st.map !== 3;
   setBgm(stageBgm());
   runDialog(st.intro, () => { if (index === 0) say('start', true); });
@@ -325,9 +326,9 @@ function runDialog(lines, done, cls = '') {
 }
 function showLine() {
   const [who, text] = dialog.lines[dialog.i];
-  $('dlg-name').textContent = who;
+  $('dlg-name').textContent = t(who);
   $('dlg-name').hidden = !who;
-  $('dlg-text').textContent = text;
+  $('dlg-text').textContent = t(text);
   $('dialog').classList.toggle('narration', !who);
   $('dialog').dataset.who = who === '小天使' ? 'angel' : who === '主角' ? 'hero' : who ? 'other' : '';
 }
@@ -347,7 +348,7 @@ function advanceDialog(skip = false) {
 
 function banner(text) {
   const b = $('banner');
-  b.textContent = text;
+  b.textContent = t(text);
   b.classList.remove('show');
   void b.offsetWidth;
   b.classList.add('show');
@@ -364,7 +365,7 @@ function popup(world, height, text, cls = '') {
   const p = screenPos(world, height);
   const el = document.createElement('div');
   el.className = `dmg ${cls}`;
-  el.textContent = text;
+  el.textContent = t(text);
   el.style.left = `${p.x + rand(-14, 14)}px`;
   el.style.top = `${p.y + rand(-8, 8)}px`;
   ui.append(el);
@@ -378,7 +379,7 @@ function say(key, force = false) {
   angel.sayT = 2.8;
   angel.quiet = 5;
   const b = $('angel-bubble');
-  b.textContent = ANGEL[key];
+  b.textContent = t(ANGEL[key]);
   b.hidden = false;
 }
 
@@ -397,7 +398,7 @@ function updateHud() {
   $('guilt').classList.toggle('crack', g >= 0.9);
   $('guilt').classList.toggle('heavy', g >= GAUGE.guiltHesitate);
   $('portrait').classList.toggle('brave', brave);
-  $('quest-count').textContent = `擊倒 ${game.kills}`;
+  $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
   $('combo').hidden = game.combo < 5;
   $('combo-n').textContent = game.combo;
@@ -594,7 +595,7 @@ function spawnEnemy(kind, at, delay = 0) {
 function nextWave() {
   game.wave++;
   const wave = stage().waves[game.wave];
-  banner(`第 ${game.wave + 1} 波`);
+  banner(tf('第 {0} 波', game.wave + 1));
   // 怪的總數是關卡表的 crowd 倍；同時在場有上限，其餘排隊陸續補進來（清不完的感覺，但不會卡）
   const list = [];
   for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
@@ -618,11 +619,11 @@ function spawnBoss() {
   const key = stage().boss;
   const kinds = BOSS_GROUPS[key] || [key];
   for (const k of kinds) spawnEnemy(k);
-  const names = kinds.map((k) => BOSSES[k].name).join('＋');
+  const names = kinds.map((k) => t(BOSSES[k].name)).join(t('＋'));
   banner('心魔來襲');
   $('boss-bar').hidden = false;
   $('boss-name').textContent = names;
-  $('quest-wave').textContent = `打倒${names}`;
+  $('quest-wave').textContent = tf('打倒{0}', names);
   const own = `bgm_stage_${stage().id.replace('-', '_')}`;
   if (!audio.tracks[own] || stage().waves.length) setBgm('bgm_boss');
   if (stage().boss === 'incubus') say('shield', true);
@@ -695,7 +696,7 @@ function damageEnemy(e, mult, o = {}) {
     // 夢魘超人只會擋：要用三個小招各破一次
     if (['skill1', 'skill2', 'skill3'].includes(o.src) && !e.broken.has(o.src)) {
       e.broken.add(o.src);
-      popup(e.pos, e.def.height + 0.6, `破防 ${e.broken.size}/3`, 'good');
+      popup(e.pos, e.def.height + 0.6, tf('破防 {0}/3', e.broken.size), 'good');
       fx.ring(e.pos, 0.5, 4, 0x9be564, 0.4);
       if (e.broken.size >= 3) { e.shield = false; popup(e.pos, e.def.height + 1.2, '……有點痛。', 'shout'); game.shake = 0.6; }
     } else if (e.lineT <= 0) { e.lineT = 1.5; popup(e.pos, e.def.height + 0.4, '何必呢。', 'guard'); }
@@ -709,7 +710,7 @@ function damageEnemy(e, mult, o = {}) {
   dmg = Math.round(dmg);
   e.hp -= dmg;
   e.visual.flash();
-  popup(e.pos, e.def.height + e.y, guarded ? `擋 ${dmg}` : `-${dmg}`, guarded ? 'guard' : crit ? 'crit' : '');
+  popup(e.pos, e.def.height + e.y, guarded ? tf('擋 {0}', dmg) : `-${dmg}`, guarded ? 'guard' : crit ? 'crit' : '');
   const from = o.from || hero.pos;
   tmp.set(e.pos.x - from.x, 0, e.pos.z - from.z);
   if (tmp.lengthSq() < 0.01) tmp.set(rand(-1, 1), 0, rand(-1, 1));
@@ -812,7 +813,7 @@ const taunt = { t: 2.5, recent: [], last: null, begT: 0 };
 
 function pickLine(pool) {
   // 先挑最近沒講過的；句子不夠用時，至少不跟畫面上正在講的重複
-  const showing = enemies.filter((e) => e.sayEl).map((e) => e.sayEl.textContent);
+  const showing = enemies.filter((e) => e.sayEl).map((e) => e.sayRaw);
   let fresh = pool.filter((l) => !taunt.recent.includes(l) && !showing.includes(l));
   if (!fresh.length) fresh = pool.filter((l) => !showing.includes(l));
   if (!fresh.length) fresh = pool;
@@ -826,9 +827,10 @@ function enemySay(e, text, dur = 2.0) {
   if (e.sayEl) e.sayEl.remove();
   const el = document.createElement('div');
   el.className = `taunt ${hero.form === 'brave' && !e.def.boss ? 'scared' : ''}`;
-  el.textContent = text;
+  el.textContent = t(text);
   $('world-ui').append(el);
   e.sayEl = el;
+  e.sayRaw = text;
   e.sayT = dur;
   taunt.last = e;
 }
@@ -1645,10 +1647,10 @@ function showOverlay({ title, text, note, btn, next, easy }) {
   $('ov-logo').hidden = true;
   $('ov-title').hidden = false;
   $('overlay').classList.add('result');
-  $('ov-title').textContent = title;
+  $('ov-title').textContent = t(title);
   $('ov-text').textContent = text;
   $('ov-load').textContent = note || '';
-  $('ov-btn').textContent = btn;
+  $('ov-btn').textContent = t(btn);
   $('ov-btn').disabled = false;
   $('ov-next').hidden = !next;
   $('ov-easy').hidden = !easy;
@@ -1667,7 +1669,7 @@ function endGame(win) {
     game.bgm = null; audio.playBgm(null);
     audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
-    showOverlay({ title: '倒 下', text: `${stage().id}　${stage().name}`, note: '小天使：「起來。再一次。」', btn: '再來一次', easy: game.fails >= 3 && !game.easy });
+    showOverlay({ title: '倒 下', text: `${stage().id}　${t(stage().name)}`, note: t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && !game.easy });
   }, 1200);
 }
 
@@ -1685,8 +1687,8 @@ function clearStage() {
       const last = game.stage >= STAGES.length - 1;
       showOverlay({
         title: last ? '醒 來' : '突 破',
-        text: last ? '他知道自己要往哪走了。' : `${st.id}　${st.name}　用時 ${game.time.toFixed(0)} 秒　擊倒 ${game.kills}`,
-        note: last ? '小天使留下的便利貼：「還行。」' : st.grantName ? `得到：${st.grantName}` : '小天使：「還行。」',
+        text: last ? t('他知道自己要往哪走了。') : tf('{0}　{1}　用時 {2} 秒　擊倒 {3}', st.id, t(st.name), game.time.toFixed(0), game.kills),
+        note: last ? t('小天使留下的便利貼：「還行。」') : st.grantName ? tf('得到：{0}', st.grantName.split('、').map(t).join(lang === 'en' ? ', ' : '、')) : t('小天使：「還行。」'),
         btn: '再打一次', next: !last,
       });
     });
@@ -1813,7 +1815,7 @@ async function boot() {
   const models = Object.entries(manifest.models || {}).filter(([, cfg]) => cfg && cfg.url);
   progress(82, models.length ? '載入角色模型' : '準備角色');
   let got = 0;
-  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(82 + (++got / models.length) * 13, `載入角色模型 ${got}/${models.length}`); return r; })));
+  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(82 + (++got / models.length) * 13, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));
   const ok = loaded.filter(Boolean).length;
 
   game.stage = firstOpenStage();
@@ -1822,7 +1824,7 @@ async function boot() {
   camTarget.copy(hero.pos);
   game.phase = 'ready';
   progress(96, '準備選關畫面');
-  $('ov-load').textContent = models.length ? `已載入模型 ${ok}/${models.length}，其餘使用佔位角色` : '目前全部使用佔位美術';
+  $('ov-load').textContent = models.length ? tf('已載入模型 {0}/{1}，其餘使用佔位角色', ok, models.length) : t('目前全部使用佔位美術');
   $('btn-mute').classList.toggle('off', audio.muted);
   showMenu();
   window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
@@ -1849,12 +1851,12 @@ function showMenu() {
   $('ov-next').hidden = true;
   $('ov-easy').hidden = true;
   $('ov-menu').hidden = true;
-  $('ov-text').innerHTML = coarse
+  $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
-    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停';
+    : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
   const next = firstOpenStage();
   game.stage = next;
-  $('ov-btn').textContent = save.cleared.length ? `繼續　${STAGES[next].id} ${STAGES[next].name}` : '開始';
+  $('ov-btn').textContent = save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
   $('ov-btn').disabled = false;
   const box = $('ov-stages');
   box.replaceChildren();
@@ -1863,7 +1865,7 @@ function showMenu() {
     if (st.map !== map) {
       map = st.map;
       const h = document.createElement('h4');
-      h.textContent = MAP_NAMES[map];
+      h.textContent = t(MAP_NAMES[map]);
       group = document.createElement('div');
       group.className = 'stage-row';
       box.append(h, group);
@@ -1871,7 +1873,7 @@ function showMenu() {
     const b = document.createElement('button');
     b.className = 'stage';
     b.textContent = st.id;
-    b.title = `${st.name}：${st.sub}`;
+    b.title = `${t(st.name)}: ${t(st.sub)}`;
     b.disabled = !isOpen(i);
     b.classList.toggle('done', save.cleared.includes(st.id));
     b.classList.toggle('current', i === next);
@@ -1898,6 +1900,19 @@ function setPaused(on) {
   $('pause-menu').hidden = !on;
 }
 $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!game.paused); });
+// 語系切換：標題畫面與暫停選單各有一顆。切換後立刻重畫目前看得到的文字
+function refreshLang() {
+  applyStatic();
+  if (game.phase === 'ready') showMenu();
+  else if (game.phase === 'playing' || game.phase === 'dialog') {
+    const st = stage();
+    $('quest-title').textContent = `${st.id}　${t(st.name)}`;
+    if (!game.bossSpawned) $('quest-wave').textContent = t(st.sub);
+    if (dialog) showLine();
+  }
+}
+for (const el of document.querySelectorAll('[data-lang-toggle]')) el.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); nextLang(); refreshLang(); });
+applyStatic();
 $('pm-resume').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
 $('pm-restart').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); startStage(game.stage); });
 $('pm-menu').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); showMenu(); });

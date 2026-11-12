@@ -1,3 +1,8 @@
+/* 字型：內文用粉圓體（圓潤、好讀），標題與大字用思源黑體 Black。都只含遊戲用到的字，見 tools/make_game02_fonts.py */
+@font-face{font-family:"BG Round";src:url("../assets/fonts/huninn-subset.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"BG Black";src:url("../assets/fonts/notosanstc-black-subset.woff2") format("woff2");font-weight:900;font-display:swap}
+:root{--font-body:"BG Round","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+  --font-display:"BG Black","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif}
 /* 佔位 UI：以 CSS 繪製，配色取自概念圖（勇氣綠、外套黃、圍巾紅）。正式美術到位後替換。 */
 :root{
   --green:#3fb53a; --green-light:#9be564; --yellow:#f6c21c; --red:#e23a1e; --orange:#f28a1b;
@@ -9,7 +14,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:none;-webkit-touch-callout:none}
 html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%;overscroll-behavior:none;
   -webkit-text-size-adjust:100%;text-size-adjust:100%;background:#0e1a14;color:#fff;
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-family:var(--font-body);
   touch-action:none;user-select:none;-webkit-user-select:none}
 #scene{position:fixed;inset:0;width:100%;height:100%;display:block}
 #hud{position:fixed;inset:0;pointer-events:none}
@@ -198,3 +203,21 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 /* ---- 暫停選單 ---- */
 .overlay.pause{background:#000a;z-index:9}
 .overlay.pause .card button.ghost{font-size:14px;padding:8px 18px;margin-top:12px}
+
+/* ---- 字型套用 ---- */
+button,input,select{font-family:inherit}
+.banner,.combo,.dmg,.card h1,.card button,.act span,#dlg-name,.quest h3,.boss-bar span,.bar b,.stage-row,.card h4{font-family:var(--font-display);font-weight:900}
+.dlg-box p,.taunt,.bubble,.quest p,.card p,.card a{font-weight:400}
+.dlg-box p{font-size:17px;line-height:1.6;letter-spacing:.02em}
+.taunt{font-size:14px}
+.act::after{font-family:var(--font-display)}
+.card .lang-btn{font-size:13px!important;padding:6px 16px!important;box-shadow:0 2px 0 #3a6fd0!important}
+
+/* ---- 英文語系：按鍵上的字比較長，縮小並取消字距 ---- */
+html[lang="en"] .act span{font-size:11px;letter-spacing:0;-webkit-text-stroke:0}
+html[lang="en"] .act.attack span{font-size:20px}
+html[lang="en"] .act.ult span{font-size:13px}
+html[lang="en"] .act.transform{letter-spacing:.04em;font-size:13px}
+html[lang="en"] .act.transform span{font-size:13px}
+html[lang="en"] .quest h3,html[lang="en"] .card h1{letter-spacing:.04em!important}
+html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text-align:center}
