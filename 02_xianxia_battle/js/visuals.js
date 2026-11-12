@@ -2,9 +2,9 @@
 //   root（THREE.Group，原點在腳底、面向 +Z）、play(state)、update(dt)、flash()
 // ProcVisual：程式拼出的佔位角色與程式動畫（student、brave、angel、ganqiao、jiasen、folaidi、boss）。
 // GltfVisual：載入 GLB（骨架動畫），由 assets/manifest.json 指定後自動取代佔位版。
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
+import * as THREE from '../vendor/three/three.module.min.js';
+// GLB 載入器約 150KB，只有 manifest 真的指定了模型才動態載入，沒模型時不拖慢開場
+let SkeletonUtils = null;
 
 const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die']);
 
@@ -452,18 +452,24 @@ export class ProcVisual {
   }
 
   dispose() {
-    this.root.traverse((o) => { if (o.isMesh) { o.geometry.dispose(); o.material.dispose(); } });
+    // 腳下的假陰影是共用的幾何與材質（MeshBasicMaterial），不能跟著釋放
+    this.root.traverse((o) => { if (o.isMesh && o.material.isMeshToonMaterial) { o.geometry.dispose(); o.material.dispose(); } });
   }
 }
 
 // ---------- GLB 角色 ----------
 
-const loader = new GLTFLoader();
+let loader = null;
 const library = {}; // kind -> { scene, clips, cfg }
 
 // cfg 格式見 assets/README.md。載入失敗時回傳 false，呼叫端會退回佔位角色。
 export async function loadModel(kind, cfg) {
   try {
+    if (!loader) {
+      const [{ GLTFLoader }, utils] = await Promise.all([import('../vendor/three/addons/loaders/GLTFLoader.js'), import('../vendor/three/addons/utils/SkeletonUtils.js')]);
+      loader = new GLTFLoader();
+      SkeletonUtils = utils;
+    }
     const gltf = await loader.loadAsync(cfg.url);
     gltf.scene.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.frustumCulled = false; } });
     library[kind] = { scene: gltf.scene, clips: gltf.animations, cfg };
@@ -573,6 +579,9 @@ export class GltfVisual {
   dispose() { this.mixer.stopAllAction(); }
 }
 
-export function createVisual(kind) {
-  return library[kind] ? new GltfVisual(kind) : new ProcVisual(kind);
+// shadow=false 時這個角色不投射即時陰影（成群的小怪用，省掉一半的繪製次數）
+export function createVisual(kind, shadow = true) {
+  const v = library[kind] ? new GltfVisual(kind) : new ProcVisual(kind);
+  if (!shadow) v.root.traverse((o) => { if (o.isMesh) o.castShadow = false; });
+  return v;
 }

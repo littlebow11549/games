@@ -1,5 +1,5 @@
 // 佔位場景：主角內心的黑暗世界。每一關一個主題，全部以程式生成，之後可換成 GLB 場景件。
-import * as THREE from 'three';
+import * as THREE from '../vendor/three/three.module.min.js';
 
 export const ARENA_RADIUS = 26;
 
@@ -46,7 +46,7 @@ function floorTexture([c1, c2, n]) {
 
 function ringOf(group, rand, count, geo, color, place, tint = true) {
   const m = new THREE.InstancedMesh(geo, new THREE.MeshToonMaterial({ color: tint ? 0xffffff : color }), count);
-  m.castShadow = true;
+  m.castShadow = false; // 場景擺設不投射陰影（都在場地外圈，看不太出來，卻很花效能）
   const d = new THREE.Object3D();
   const c = new THREE.Color(color), c2 = new THREE.Color();
   for (let i = 0; i < count; i++) {
@@ -223,7 +223,7 @@ const PROPS = {
 let current = null;
 
 // 建立（或重建）指定主題的場景。回傳 { sun } 供鏡頭更新陰影位置。
-export function buildWorld(scene, themeName = 'corridor') {
+export function buildWorld(scene, themeName = 'corridor', quality = { shadows: true, shadowSize: 2048 }) {
   if (current) {
     scene.remove(current);
     current.traverse((o) => {
@@ -244,8 +244,8 @@ export function buildWorld(scene, themeName = 'corridor') {
   g.add(new THREE.HemisphereLight(t.hemi[0], t.hemi[1], t.hemi[2]));
   const sun = new THREE.DirectionalLight(t.sun[0], t.sun[1]);
   sun.position.set(-14, 26, 10);
-  sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  sun.castShadow = quality.shadows;
+  sun.shadow.mapSize.set(quality.shadowSize, quality.shadowSize);
   sun.shadow.camera.left = sun.shadow.camera.bottom = -24;
   sun.shadow.camera.right = sun.shadow.camera.top = 24;
   sun.shadow.camera.far = 80;

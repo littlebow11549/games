@@ -9,7 +9,7 @@ import {
 	TriangleStripDrawMode,
 	TrianglesDrawMode,
 	Vector3,
-} from 'three';
+} from '../../three.module.min.js'; // 改成相對路徑，不依賴 import map
 
 function computeMikkTSpaceTangents( geometry, MikkTSpace, negateSign = true ) {
 

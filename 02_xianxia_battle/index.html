@@ -5,10 +5,14 @@
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
 <link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css">
-<script type="importmap">
-{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}
-</script>
+<link rel="stylesheet" href="css/game.css?v=20261112b">
+<link rel="modulepreload" href="vendor/three/three.module.min.js">
+<link rel="modulepreload" href="js/world.js">
+<link rel="modulepreload" href="js/visuals.js">
+<link rel="modulepreload" href="js/fx.js">
+<link rel="modulepreload" href="js/input.js">
+<link rel="modulepreload" href="js/audio.js">
+<link rel="modulepreload" href="js/story.js">
 </head>
 <body>
 <canvas id="scene"></canvas>
@@ -84,6 +88,20 @@
   </div>
 </div>
 
-<script type="module" src="js/main.js"></script>
+<script>
+// 載入出問題時要讓玩家看得到，而不是永遠停在「載入中」
+(function () {
+  var note = document.getElementById('ov-load');
+  function show(msg) {
+    if (window.__booted) return;
+    note.innerHTML = msg + '<br><a href="#" id="ov-reload" style="color:#f6c21c">重新載入</a>';
+    document.getElementById('ov-reload').onclick = function (e) { e.preventDefault(); location.replace(location.pathname + '?r=' + Date.now()); };
+  }
+  window.addEventListener('error', function (e) { show('載入失敗：' + (e.message || (e.target && (e.target.src || e.target.href)) || '未知錯誤')); }, true);
+  window.addEventListener('unhandledrejection', function (e) { show('載入失敗：' + (e.reason && e.reason.message || e.reason)); });
+  setTimeout(function () { show('載入比較久。網路慢的話請再等一下，或'); }, 9000);
+})();
+</script>
+<script type="module" src="js/main.js?v=20261112b"></script>
 </body>
 </html>

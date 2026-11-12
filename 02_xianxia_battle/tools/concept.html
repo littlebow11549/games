@@ -1,11 +1,10 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>三視圖輸出（佔位角色）</title>
-<script type="importmap">{"imports":{"three":"../vendor/three/three.module.min.js","three/addons/":"../vendor/three/addons/"}}</script>
 <body style="margin:0;background:#333">
 <script type="module">
 // 把程式拼的佔位角色輸出成 A 字站姿三視圖，規格對應 assets/ASSETS.md §1。由 tools/render_concepts.cjs 呼叫。
-import * as THREE from 'three';
+import * as THREE from '../vendor/three/three.module.min.js';
 import { ProcVisual } from '../js/visuals.js';
 
 const SIZE = 2048;
