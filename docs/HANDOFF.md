@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-14 勇氣超人：變身曲 `bgm_brave` + 其餘關卡戰鬥曲（音樂階段）](handoffs/2026-11-14-game02-music-brave-batch.md)：交 `bgm_brave`、`bgm_stage_2_2`、`3_2`、`3_3`、`3_4`、`3_5`、`4_1`（各 ogg+mp3、−16 LUFS、無縫循環），已換掉暫代曲。**所有關卡戰鬥曲與變身曲皆有專屬曲**；尚缺非戰鬥曲（title/transform/defeat/talk/ending/credits）。分支 `claude/brave-guy-music`，未改 `js/`。
+
 - [2026-11-14 勇氣超人：接上地圖一各關與 2-1 的戰鬥曲（Claude）](handoffs/2026-11-14-game02-music-stage1-wiring.md)：合併音樂分支 `claude/brave-guy-music` 的五首；地圖一每關都有自己的曲子。**這次收到的只有音樂，沒有美術或模型。**
 
 - [2026-11-12 勇氣超人：關卡戰鬥電音（地圖一全數 + 2-1）（音樂階段）](handoffs/2026-11-12-game02-music-stage1.md)：依 MUSIC.md v1.2 做每關不同電音；交 `bgm_stage_1_0/1_2/1_3/1_4` 與 `bgm_stage_2_1`（各 ogg+mp3、−16 LUFS、無縫循環），地圖一一般戰鬥（1-0～1-4）全到位；六鍵已填 manifest，母帶於 `_archive/`，規格 `assets/source/AUDIO_DELIVERY.json`。分支已對齊主線，未改 `js/`。
