@@ -280,3 +280,7 @@ jacket yellow, scarf red and orange, no watermark
 ## 2026-11-14 選單整合補記
 
 difficulty_sheet六態及function_icons_sheet四個暫停選單圖示已透過css/menu-art.css接入一般入口；MENU_RUNTIME_REGIONS.json記錄十個範圍。來源PNG未修改，未另輸出切圖。完整驗證與限制見../../../docs/handoffs/2026-11-14-game02-menu-runtime.md。
+
+## 2026-11-14 任務卡與泡泡整合補記
+
+panel_sheet左上任務卡、bubble_sheet左上小天使泡泡已透過css/panel-art.css接入，保留動態文字與原圖。PANEL_RUNTIME_REGIONS.json記錄範圍；p1-panels-review.html提供長句檢查。其他泡泡與主劇情框未接入。詳見../../../docs/handoffs/2026-11-14-game02-panels-runtime.md。

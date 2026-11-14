@@ -1,0 +1,8 @@
+/* Original PNG atlas windows; text stays in live HTML. */
+.game-art .quest{width:180px;max-width:calc(100vw - 150px);padding:12px 14px 14px;min-height:106px;border:0;border-radius:12px;background:url('../assets/source/pic/ui/panel_sheet.png') 2.667% 11.236%/241.509% 208.98% no-repeat;color:#172114;overflow-wrap:anywhere}
+.game-art .quest h3{padding:3px 4px;margin:0 0 8px;border-radius:5px;background:#074600;color:#fff5b8;line-height:1.4}
+.game-art .quest p{line-height:1.45;text-shadow:none}
+.game-art .quest #suanle,.game-art .quest #suanle b{color:#713521}
+.game-art #angel-bubble,.game-art .art-bubble{width:max-content;min-width:180px;max-width:min(280px,calc(100vw - 32px));min-height:90px;padding:18px 22px 38px;border:0;border-radius:0;background:url('../assets/source/pic/ui/bubble_sheet.png') 1.225% 10.294%/208.696% 243.81% no-repeat;box-shadow:none;color:#141414;line-height:1.5;overflow-wrap:anywhere;text-align:center;text-shadow:none}
+.game-art #angel-bubble::after,.game-art .art-bubble::after{display:none}
+@media(max-width:380px){.game-art .quest{width:160px;padding:10px 12px 12px;font-size:11px}.game-art #angel-bubble{max-width:calc(100vw - 32px);font-size:13px}}

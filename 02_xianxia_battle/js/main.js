@@ -459,8 +459,9 @@ function updateHud() {
   const b = $('angel-bubble');
   if (!b.hidden) {
     const p = screenPos(angel.pos, 2.9);
-    b.style.left = `${Math.min(innerWidth - 150, Math.max(150, p.x))}px`;
-    b.style.top = `${Math.max(70, p.y)}px`;
+    const halfWidth = b.offsetWidth / 2 + 12;
+    b.style.left = `${Math.min(innerWidth - halfWidth, Math.max(halfWidth, p.x))}px`;
+    b.style.top = `${Math.min(innerHeight - 12, Math.max(b.offsetHeight + 12, p.y))}px`;
   }
 }
 

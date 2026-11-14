@@ -1,0 +1,8 @@
+{
+  "status": "css_render_windows_not_exported_crops",
+  "regions": [
+    {"id":"quest","source":"pic/ui/panel_sheet.png","size":[1536,1024],"rect":[24,60,636,490]},
+    {"id":"angel_bubble","source":"pic/ui/bubble_sheet.png","size":[1536,1024],"rect":[10,62,736,420]}
+  ],
+  "notes": ["Original PNG bytes and alpha unchanged", "CSS scales panel background to live text height; not a nine-slice export", "Only quest and angel hint are integrated; other bubble variants and story dialogue frame remain pending"]
+}
