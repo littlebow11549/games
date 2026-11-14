@@ -1,0 +1,412 @@
+{
+  "status": "css_render_windows_visually_calibrated_pending_device_qa",
+  "note": "Coordinates control rendering only. No independent PNG derivatives exported. Outer haze may be clipped at button boundary.",
+  "regions": [
+    {
+      "selector": ".game-art .act.attack::before",
+      "path": "icons/btn_attack_sheet",
+      "size": [
+        2172,
+        724
+      ],
+      "rect": [
+        55,
+        40,
+        614,
+        614
+      ]
+    },
+    {
+      "selector": ".game-art .act.dodge::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        54,
+        90,
+        430,
+        430
+      ]
+    },
+    {
+      "selector": ".game-art .act.transform::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        20,
+        635,
+        490,
+        245
+      ]
+    },
+    {
+      "selector": ".game-art .act.attack:active::before, .game-art .act.attack.art-pressed::before",
+      "path": "icons/btn_attack_sheet",
+      "size": [
+        2172,
+        724
+      ],
+      "rect": [
+        779,
+        40,
+        614,
+        614
+      ]
+    },
+    {
+      "selector": ".game-art .act.dodge:active::before, .game-art .act.dodge.art-pressed::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        554,
+        90,
+        430,
+        430
+      ]
+    },
+    {
+      "selector": ".game-art .act.transform:active::before, .game-art .act.transform.art-pressed::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        520,
+        635,
+        490,
+        245
+      ]
+    },
+    {
+      "selector": ".game-art .act.attack.locked::before",
+      "path": "icons/btn_attack_sheet",
+      "size": [
+        2172,
+        724
+      ],
+      "rect": [
+        1503,
+        40,
+        614,
+        614
+      ]
+    },
+    {
+      "selector": ".game-art .act.dodge.locked::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1054,
+        90,
+        430,
+        430
+      ]
+    },
+    {
+      "selector": ".game-art .act.transform.locked::before",
+      "path": "icons/btn_dodge_transform_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1020,
+        635,
+        490,
+        245
+      ]
+    },
+    {
+      "selector": ".game-art .act.s1::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        48,
+        16,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s1:active::before,.game-art .act.s1.art-pressed::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        48,
+        356,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s1.locked::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        48,
+        696,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s2::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        424,
+        16,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s2:active::before,.game-art .act.s2.art-pressed::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        424,
+        356,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s2.locked::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        424,
+        696,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s3::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        800,
+        16,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s3:active::before,.game-art .act.s3.art-pressed::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        800,
+        356,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.s3.locked::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        800,
+        696,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.ult::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1176,
+        16,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.ult:active::before,.game-art .act.ult.art-pressed::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1176,
+        356,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.ult.locked::before",
+      "path": "icons/skill_buttons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1176,
+        696,
+        312,
+        312
+      ]
+    },
+    {
+      "selector": ".game-art .act.lock::before",
+      "path": "icons/lock_heal_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        24,
+        26,
+        470,
+        470
+      ]
+    },
+    {
+      "selector": ".game-art .act.lock.on::before",
+      "path": "icons/lock_heal_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        532,
+        26,
+        470,
+        470
+      ]
+    },
+    {
+      "selector": ".game-art .act.lock.on:active::before",
+      "path": "icons/lock_heal_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1040,
+        26,
+        470,
+        470
+      ]
+    },
+    {
+      "selector": ".game-art #btn-pause",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        12,
+        100,
+        372,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #btn-mute",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        392,
+        100,
+        372,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #btn-mute.off",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        772,
+        100,
+        372,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #stick-base",
+      "path": "ui/control_extras_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        180,
+        24,
+        510,
+        510
+      ]
+    },
+    {
+      "selector": ".game-art #stick-knob",
+      "path": "ui/control_extras_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        970,
+        150,
+        274,
+        274
+      ]
+    }
+  ]
+}

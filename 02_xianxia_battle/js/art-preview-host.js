@@ -5,7 +5,7 @@ const status = document.getElementById('status');
 let savedHidden = null;
 function applyArt() {
   if (!frame.contentDocument?.body) return;
-  frame.contentDocument.body.classList.toggle('art-preview', art.checked);
+  frame.contentDocument.body.classList.toggle('game-art', art.checked);
 }
 frame.addEventListener('load', () => {
   const doc = frame.contentDocument;

@@ -272,3 +272,7 @@ jacket yellow, scarf red and orange, no watermark
 ## 2026-11-14 介面大批交付補記
 
 新增八張介面來源 PNG：bubble_sheet、panel_sheet、minimap_sheet、difficulty_sheet、aux_hud_sheet、bingo_card、function_icons_sheet、lock_heal_sheet。七張1536×1024，一張1254×1254，原生RGBA未放大；詳細紀錄見 source/P1_INTERFACE_DELIVERY.json 與 ../../../docs/handoffs/2026-11-14-game02-interface-preview.md。圖集仍待正式切圖及狀態對齊。art-preview.html 可切換新舊頭像、計量條及戰鬥按鍵，Chrome寬／窄介面已目視驗證；其餘素材先供總覽，未宣稱整批正式接入。Claude登入過期，本輪預覽由Codex製作。
+
+## 2026-11-14 按鍵正式接入補記
+
+一般index已載入css/ui-art.css，使用來源PNG的校準顯示範圍，接入七種操作三態、鎖定、功能圖示及搖桿。UI_RUNTIME_REGIONS.json記錄座標；沒有修改來源或輸出獨立PNG。21態比較頁為assets/preview/p1-runtime-states.html。完整驗證與限制見../../../docs/handoffs/2026-11-14-game02-buttons-runtime.md。
