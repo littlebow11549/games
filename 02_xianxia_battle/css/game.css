@@ -280,88 +280,111 @@ html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text
 body.blind #scene{filter:brightness(.6) saturate(.6)}
 @media (max-width:600px) and (orientation:portrait){ #debuffs{top:calc(240px + var(--safe-t))} }
 
-/* ================= 主選單（標題畫面＋選關畫面） ================= */
-/* 背景是主視覺；左邊放 Logo 與主要按鈕，選關是另一個畫面的玻璃面板 */
-.overlay.menu{place-items:stretch;background:#07130c;overflow:hidden}
-.overlay.menu::before{content:"";position:absolute;inset:0 0 0 22%;background:url(../assets/runtime/pic/branding/banner_01.webp) 72% center/cover no-repeat;animation:menuDrift 18s ease-in-out infinite alternate}
-.overlay.menu::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07130c 0%,#07130c 22%,#07130ca0 34%,transparent 52%),linear-gradient(0deg,#06120bb0,transparent 26%)}
-.overlay.menu.stages::after{background:linear-gradient(90deg,#06120bf5,#06120be0 55%,#06120ba0)}
-@keyframes menuDrift{from{transform:scale(1.03) translateX(0)}to{transform:scale(1.08) translateX(-1.5%)}}
+/* ================= 主選單 v3：漫畫分鏡風（標題畫面＋選關畫面） ================= */
+/* 背景是旋轉的放射線加網點；主視覺放在斜切的漫畫格裡，黑框外再一圈黃邊；按鈕是傾斜的色塊加硬陰影 */
+#menu-art{display:none}
+.overlay.menu{place-items:stretch;background:#0a1f12;overflow:hidden}
+.overlay.menu #menu-art{display:block;position:absolute;inset:0;overflow:hidden}
+#menu-art .rays{position:absolute;left:50%;top:50%;width:220vmax;height:220vmax;margin:-110vmax;
+  background:repeating-conic-gradient(from 0deg,#123a1e 0 7deg,#0b2414 7deg 14deg);animation:raysSpin 90s linear infinite}
+#menu-art .dots{position:absolute;inset:0;background:radial-gradient(#3fb53a55 1.6px,transparent 2px) 0 0/14px 14px;
+  -webkit-mask-image:linear-gradient(110deg,#000 0%,transparent 55%);mask-image:linear-gradient(110deg,#000 0%,transparent 55%)}
+@keyframes raysSpin{to{transform:rotate(360deg)}}
+#menu-art .frame{position:absolute;top:-2%;bottom:-2%;right:-1%;width:64%}
+#menu-art .f1{background:#10131a;clip-path:polygon(24% 0,100% 0,100% 100%,0 100%)}
+#menu-art .f2{background:var(--yellow);clip-path:polygon(25.2% 0,100% 0,100% 100%,1.6% 100%)}
+#menu-art .art{background:#07130c url(../assets/runtime/pic/branding/banner_01.webp) 66% center/auto 104% no-repeat;clip-path:polygon(26.6% 0,100% 0,100% 100%,3.4% 100%)}
+#menu-bubble{position:absolute;right:max(3vw,var(--safe-r));top:20%;max-width:200px;padding:9px 14px;border-radius:16px;background:#fff;color:var(--ink);
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);font-size:14px;font-weight:800;line-height:1.35;transform:rotate(3deg);animation:bubbleBob 3s ease-in-out infinite alternate}
+#menu-bubble::after{content:"";position:absolute;left:26px;bottom:-13px;border:7px solid transparent;border-top-color:var(--ink);border-bottom:0}
+@keyframes bubbleBob{to{transform:rotate(1deg) translateY(-5px)}}
+#menu-ticker{position:absolute;left:0;right:0;bottom:0;height:26px;background:#10131a;border-top:3px solid var(--yellow);overflow:hidden;white-space:nowrap;
+  font-size:12px;line-height:23px;color:#ffe98a;padding-bottom:var(--safe-b)}
+#menu-ticker span{display:inline-block;padding-left:100%;animation:ticker 46s linear infinite}
+@keyframes ticker{to{transform:translateX(-100%)}}
+
 .overlay.menu .card{position:relative;z-index:1;border:0;outline:0;border-radius:0;background:none;box-shadow:none;max-width:none;max-height:none;height:100%;
-  padding:max(18px,var(--safe-t)) max(28px,var(--safe-r)) max(14px,var(--safe-b)) max(5vw,calc(18px + var(--safe-l)));
-  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;gap:4px;overflow:hidden}
-.overlay.menu .logo{margin:0 0 4px -10px;max-width:min(44vw,400px);max-height:38vh;filter:drop-shadow(0 8px 24px #000a)}
-.overlay.menu #ov-text{max-width:min(46vw,460px);font-size:12px;line-height:1.7;color:#cfe3d0;margin:2px 0 6px}
-.overlay.menu #ov-load,.overlay.menu #loadbar-text{font-size:11px;opacity:.6;margin:0}
-.overlay.menu .loadbar{width:min(40vw,320px)}
-.overlay.menu #ov-btn{margin:6px 0 0;min-width:min(42vw,300px);padding:14px 30px;font-size:21px;border-radius:16px;letter-spacing:.06em;
-  background:linear-gradient(#fff3a8,#f6c21c 55%,#f08a1b);box-shadow:0 5px 0 #8a3a0c,0 10px 26px #f6c21c55;transition:transform .12s}
-.overlay.menu #ov-btn:hover{transform:translateY(-2px) scale(1.02)}
-.overlay.menu #ov-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #8a3a0c}
-.overlay.menu #ov-menu{margin:10px 0 0;min-width:min(42vw,300px);padding:10px 24px;font-size:16px;border-radius:14px;background:#10241acc;color:#eaffd8;border:2px solid #78d747;box-shadow:0 3px 0 #0a1a10}
-.overlay.menu #ov-menu:hover{background:#1c3a26}
-.overlay.menu .diff-row{justify-content:flex-start;gap:10px;margin:14px 0 4px}
-.overlay.menu .lang-btn{margin:8px 0 0!important;background:#ffffff18!important;color:#fff!important;border:1.5px solid #ffffff55!important;box-shadow:none!important}
-.overlay.menu .back{margin-top:8px;font-size:12px;opacity:.85}
+  padding:max(14px,var(--safe-t)) 20px calc(34px + var(--safe-b)) max(4.5vw,calc(16px + var(--safe-l)));
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;gap:0;overflow:hidden;pointer-events:none}
+.overlay.menu .card>*{pointer-events:auto}
+.overlay.menu .logo{margin:0 0 6px -8px;max-width:min(38vw,380px);max-height:40vh;filter:drop-shadow(5px 6px 0 #0009);transform:rotate(-3deg);animation:logoPop .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes logoPop{from{transform:rotate(-10deg) scale(.6);opacity:0}}
+.overlay.menu #ov-text{display:none}
+.overlay.menu #ov-load,.overlay.menu #loadbar-text{font-size:11px;opacity:.7;margin:0}
+.overlay.menu .loadbar{width:min(34vw,300px)}
+/* 主按鈕：傾斜色塊 */
+.overlay.menu #ov-btn,.overlay.menu #ov-menu{display:block;min-width:min(34vw,300px);max-width:min(40vw,360px);margin:8px 0 0;border-radius:6px;border:3.5px solid var(--ink);
+  transform:skewX(-9deg);font-style:normal;letter-spacing:.08em;transition:transform .12s,box-shadow .12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.overlay.menu #ov-btn{padding:13px 26px;font-size:22px;color:var(--ink);background:linear-gradient(#fff6b0,#f6c21c 50%,#f28a1b);box-shadow:6px 6px 0 var(--red),6px 6px 0 3px var(--ink)}
+.overlay.menu #ov-menu{padding:9px 22px;font-size:16px;margin-left:14px;color:#fff;background:linear-gradient(#59d354,#2c9a34);box-shadow:5px 5px 0 #0b2414,5px 5px 0 3px var(--ink);text-shadow:0 2px 0 #0b4a14}
+.overlay.menu #ov-btn:hover,.overlay.menu #ov-menu:hover{transform:skewX(-9deg) translate(-2px,-2px)}
+.overlay.menu #ov-btn:active,.overlay.menu #ov-menu:active{transform:skewX(-9deg) translate(4px,4px);box-shadow:1px 1px 0 var(--ink)}
+/* 難度：三顆徽章，沒有底框；選中的放大、背後有黃色光圈 */
+.overlay.menu .diff-row{justify-content:flex-start;gap:6px;margin:18px 0 0 4px}
+.game-art .overlay.menu .card button.diff,.overlay.menu .card button.diff{-webkit-text-stroke:0;flex:none;width:74px;max-width:none;padding:0;gap:3px;background:none!important;border:0;outline:0!important;box-shadow:none;
+  color:#9fb7a2;font-size:12px;opacity:1;transform:none;transition:transform .15s}
+.game-art .overlay.menu .card button.diff::before{width:52px;height:52px;filter:grayscale(.55) brightness(.75);transition:filter .15s,transform .15s}
+.game-art .overlay.menu .card button.diff.on{color:var(--yellow);background:none!important;text-shadow:0 2px 0 #000}
+.game-art .overlay.menu .card button.diff.on::before{filter:drop-shadow(0 0 0 #000) drop-shadow(0 0 10px #f6c21c);transform:scale(1.22) rotate(-4deg)}
+.overlay.menu .back{position:absolute;left:max(14px,var(--safe-l));top:max(12px,var(--safe-t));margin:0;padding:5px 12px;border-radius:999px;background:#10131acc;border:2px solid #3f6a45;color:#cfe3d0;font-size:12px}
 .overlay.menu #ov-stages{display:none}
+
 /* --- 選關畫面 --- */
-.overlay.menu.stages .card{justify-content:flex-start;align-items:stretch;padding-top:max(12px,var(--safe-t))}
-.overlay.menu.stages .logo,.overlay.menu.stages #ov-text,.overlay.menu.stages #ov-load,.overlay.menu.stages #ov-btn,.overlay.menu.stages .diff-row,
+.overlay.menu.stages #menu-art .frame,.overlay.menu.stages #menu-bubble{opacity:.16}
+.overlay.menu.stages .card{justify-content:flex-start;align-items:stretch;padding-top:max(12px,var(--safe-t));pointer-events:auto}
+.overlay.menu.stages .logo,.overlay.menu.stages #ov-load,.overlay.menu.stages #ov-btn,.overlay.menu.stages .diff-row,
 .overlay.menu.stages .lang-btn,.overlay.menu.stages .back,.overlay.menu.stages .loadbar,.overlay.menu.stages #loadbar-text{display:none!important}
-.overlay.menu.stages #ov-menu{align-self:flex-start;min-width:0;margin:0 0 8px;padding:7px 18px;font-size:14px;order:-1}
-.overlay.menu.stages #ov-stages{display:block;flex:1;min-height:0;overflow-y:auto;touch-action:pan-y;padding:2px 6px 20px 2px;scrollbar-width:thin;scrollbar-color:#78d747 transparent}
+.overlay.menu.stages #ov-menu{align-self:flex-start;min-width:0;margin:0 0 10px 6px;padding:6px 18px;font-size:14px;order:-1}
+.overlay.menu.stages #ov-stages{display:block;flex:1;min-height:0;overflow-y:auto;touch-action:pan-y;padding:2px 10px 20px 4px;scrollbar-width:thin;scrollbar-color:#f6c21c transparent}
 .overlay.menu.stages #ov-stages *{touch-action:pan-y}
-.overlay.menu .card h4{margin:14px 0 8px;font-size:17px;color:var(--yellow);letter-spacing:.12em;display:flex;align-items:center;gap:10px;text-shadow:0 2px 0 #000}
-.overlay.menu .card h4::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,#f6c21c99,transparent)}
-.overlay.menu .card h4:first-child{margin-top:0}
-.overlay.menu .stage-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
-.overlay.menu .card button.stage{position:relative;width:auto;margin:0;padding:10px 12px 10px 58px;min-height:74px;text-align:left;border-radius:14px;
-  background:linear-gradient(160deg,#17301fe8,#0c1a12e8);color:#fff;border:2px solid #3f6a45;box-shadow:0 4px 0 #050d08;font-size:14px;line-height:1.3;
-  display:flex;flex-direction:column;justify-content:center;gap:2px;transition:transform .12s,border-color .12s}
-.overlay.menu .card button.stage:hover:not(:disabled){transform:translateY(-3px);border-color:var(--yellow)}
-.overlay.menu .card button.stage i{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
-  font-style:normal;font-size:14px;background:#0a1a10;border:2px solid #78d747;color:#eaffd8}
+.overlay.menu #ov-stages h4{display:inline-block;margin:16px 0 10px;padding:4px 22px 4px 14px;font-size:16px;color:var(--ink);background:var(--yellow);border:3px solid var(--ink);
+  transform:skewX(-9deg);box-shadow:4px 4px 0 var(--red);letter-spacing:.1em}
+.overlay.menu #ov-stages h4:first-child{margin-top:2px}
+.overlay.menu .stage-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 14px;padding-right:6px}
+.overlay.menu .card button.stage{position:relative;width:auto;margin:0;padding:9px 12px 9px 62px;min-height:72px;text-align:left;border-radius:8px;
+  background:#fdf6e3;color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 #0b2414;font-size:14px;line-height:1.3;
+  display:flex;flex-direction:column;justify-content:center;gap:1px;transition:transform .12s,box-shadow .12s;overflow:hidden}
+.overlay.menu .card button.stage::before{content:"";position:absolute;left:0;top:0;bottom:0;width:52px;background:var(--green);border-right:3px solid var(--ink);clip-path:polygon(0 0,100% 0,82% 100%,0 100%)}
+.overlay.menu .card button.stage:hover:not(:disabled){transform:translate(-2px,-3px);box-shadow:8px 9px 0 var(--red)}
+.overlay.menu .card button.stage i{position:absolute;left:0;top:0;bottom:0;width:46px;display:grid;place-items:center;font-style:normal;font-size:16px;color:#fff;text-shadow:0 2px 0 #0009,0 0 3px #000}
 .overlay.menu .card button.stage b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.overlay.menu .card button.stage small{font-family:var(--font-body);font-weight:400;font-size:11px;color:#b7ccb8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.overlay.menu .card button.stage em{font-style:normal;font-size:10px;color:#ff9a8a;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.overlay.menu .card button.stage.done{background:linear-gradient(160deg,#235a2ee8,#12301ae8);border-color:#78d747}
-.overlay.menu .card button.stage.done i{background:var(--green);color:#fff;border-color:#eaffd8}
-.overlay.menu .card button.stage.done::after{content:"✓";position:absolute;right:10px;top:6px;color:#9be564;font-size:15px}
-.overlay.menu .card button.stage.current{border-color:var(--yellow);outline:0;box-shadow:0 4px 0 #050d08,0 0 16px #f6c21c66}
-.overlay.menu .card button.stage.current i{border-color:var(--yellow);color:var(--yellow)}
-.overlay.menu .card button.stage:disabled{opacity:.4;filter:grayscale(.7)}
-/* 直向手機：上面 42% 是主視覺（不被任何東西蓋住），Logo 與按鈕排在下面 */
+.overlay.menu .card button.stage small{font-family:var(--font-body);font-weight:400;font-size:11px;color:#5a6a5c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.overlay.menu .card button.stage em{font-style:normal;font-size:10px;color:#c2321c;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.overlay.menu .card button.stage.done::before{background:#f6c21c}
+.overlay.menu .card button.stage.done::after{content:"CLEAR";position:absolute;right:6px;top:7px;padding:1px 6px;border:2px solid #c2321c;border-radius:4px;color:#c2321c;font-size:9px;letter-spacing:.1em;transform:rotate(8deg);opacity:.85}
+.overlay.menu .card button.stage.current{box-shadow:5px 5px 0 var(--red),0 0 0 3px var(--yellow)}
+.overlay.menu .card button.stage.current::before{background:var(--red)}
+.overlay.menu .card button.stage:disabled{opacity:.45;filter:grayscale(.8)}
+
+/* 直向手機：主視覺在上方斜切的格子裡，Logo 壓在斜邊上，按鈕在下 */
 @media (orientation:portrait){
-  .overlay.menu::before{inset:0 0 auto 0;height:44vh;background-position:60% center;background-size:auto 100%;animation:none;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
-  .overlay.menu::after{background:linear-gradient(0deg,#07130c 0%,#07130c 56%,#07130c00 66%)}
-  .overlay.menu .card{justify-content:flex-start;align-items:center;text-align:center;padding:39vh 18px max(10px,var(--safe-b));gap:0}
-  .overlay.menu .logo{margin:0 0 -2px;max-width:78vw;max-height:20vh}
-  .overlay.menu #ov-text,.overlay.menu #ov-load{display:none}
-  .overlay.menu #ov-btn{min-width:78vw;margin-top:2px;padding:12px 20px;font-size:19px}
-  .overlay.menu #ov-menu{min-width:78vw;margin-top:9px;padding:9px 20px}
-  .overlay.menu .diff-row{justify-content:center;margin:10px 0 2px;gap:8px}
-  .overlay.menu .lang-btn{margin-top:6px!important}
-  .overlay.menu .back{margin-top:6px}
-  .overlay.menu.stages::before{opacity:.25}
+  #menu-art .frame{top:-1%;left:-1%;right:-1%;bottom:auto;width:auto;height:46vh}
+  #menu-art .f1{clip-path:polygon(0 0,100% 0,100% 84%,0 100%)}
+  #menu-art .f2{clip-path:polygon(0 0,100% 0,100% 82.6%,0 98.6%)}
+  #menu-art .art{clip-path:polygon(0 0,100% 0,100% 81%,0 97%);background-position:58% center;background-size:auto 104%}
+  #menu-bubble{right:10px;top:9vh;max-width:150px;font-size:12px}
+  .overlay.menu .card{justify-content:flex-start;align-items:center;text-align:center;padding:38vh 16px calc(32px + var(--safe-b))}
+  .overlay.menu .logo{margin:0 0 2px;max-width:76vw;max-height:20vh}
+  .overlay.menu #ov-btn,.overlay.menu #ov-menu{min-width:74vw;max-width:86vw;margin-left:0;text-align:center}
+  .overlay.menu #ov-btn{padding:11px 18px;font-size:20px}
+  .overlay.menu .diff-row{justify-content:center;margin:14px 0 0}
   .overlay.menu.stages .card{justify-content:flex-start;align-items:stretch;text-align:left;padding-top:max(12px,var(--safe-t))}
 }
-/* 直向但很矮的螢幕（App 內建瀏覽器上下有工具列）：再壓一點 */
 @media (orientation:portrait) and (max-height:700px){
-  .overlay.menu::before{height:38vh}
+  #menu-art .frame{height:40vh}
   .overlay.menu .card{padding-top:32vh}
-  .overlay.menu .logo{max-height:19vh}
-  .overlay.menu .diff-row{transform:scale(.86);margin:4px 0 -4px}
+  .overlay.menu .logo{max-height:18vh}
+  .overlay.menu .diff-row{margin-top:8px}
 }
-/* 矮螢幕（橫向手機）：壓縮間距 */
-@media (max-height:460px){
-  .overlay.menu .logo{max-height:32vh;max-width:36vw}
-  .overlay.menu #ov-text{display:none}
-  .overlay.menu #ov-btn{padding:9px 22px;font-size:17px;min-width:min(38vw,260px)}
-  .overlay.menu #ov-menu{padding:6px 18px;font-size:13px;margin-top:6px;min-width:min(38vw,260px)}
-  .overlay.menu .diff-row{margin:8px 0 0;transform:scale(.82);transform-origin:left center}
-  .overlay.menu .lang-btn{margin-top:2px!important}
-  .overlay.menu .card button.stage{min-height:60px;padding-top:6px;padding-bottom:6px}
-  .overlay.menu .stage-row{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+/* 矮螢幕（橫向手機） */
+@media (orientation:landscape) and (max-height:460px){
+  .overlay.menu .logo{max-height:34vh;max-width:34vw;margin:22px 0 0 -4px}
+  .overlay.menu #ov-btn{padding:8px 20px;font-size:17px;min-width:min(32vw,250px)}
+  .overlay.menu #ov-menu{padding:5px 18px;font-size:13px;margin-top:8px;min-width:min(30vw,230px)}
+  .overlay.menu .diff-row{margin:10px 0 0;transform:scale(.84);transform-origin:left center}
+  #menu-bubble{top:26%;font-size:12px}
+  .overlay.menu .card button.stage{min-height:58px;padding-top:5px;padding-bottom:5px}
+  .overlay.menu .stage-row{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px 12px}
 }
 
 /* ================= 語系切換鍵：遊戲風格的雙格開關 ================= */
@@ -382,3 +405,12 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 .overlay.menu:not(.stages) .lang-btn{position:absolute;right:max(16px,var(--safe-r));top:max(14px,var(--safe-t));margin:0!important}
 .game-art #pause-menu .card .lang-btn{padding:4px!important;min-height:0}
 @media (max-height:460px){ .card .lang-btn span{padding:5px 11px} .card .lang-btn i{width:22px;height:22px} }
+
+/* ================= 任務欄收合 ================= */
+.quest{pointer-events:auto;cursor:pointer}
+#quest-mini{display:none}
+.quest.mini,.game-art .quest.mini{width:auto;min-height:0;max-width:none;padding:4px 12px;background:#10131ad9!important;border:2px solid #78d747;border-radius:999px;color:#fff}
+.quest.mini h3,.quest.mini p{display:none!important}
+.quest.mini #quest-mini{display:flex!important;align-items:center;gap:10px;margin:0;font-size:13px;line-height:1.4;white-space:nowrap}
+.quest.mini #quest-mini b{font-family:var(--font-display);color:var(--yellow)}
+.quest.mini #quest-mini i{font-style:normal;color:#ff7fb6;letter-spacing:.08em}

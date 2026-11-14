@@ -663,5 +663,11 @@ export default {
  "喂，有人在看。至少倒得帥一點。": "Hey, people are watching. At least fall with style.",
  "沒了。再倒我就真的下班。": "That's the last one. Fall again and I clock off for real.",
  "額度用完了。你自己保重。": "You're out of rescues. Take care of yourself.",
- "← 返回": "← Back"
+ "← 返回": "← Back",
+ "又來了？": "You again?",
+ "今天也要被我笑嗎。": "Here to be laughed at again today?",
+ "按開始啊，還要我幫你按？": "Press Start. Or shall I press it for you?",
+ "你的內心在等你。很亂，但在等你。": "Your inner world awaits. A mess, but it awaits.",
+ "選地獄難度的人通常活不久。": "People who pick Hell don't last long.",
+ "怕成這樣還敢做夢？": "That scared, and you still dare to dream?"
 };

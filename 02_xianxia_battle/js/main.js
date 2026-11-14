@@ -150,7 +150,7 @@ const ANGEL = {
 const $ = (id) => document.getElementById(id);
 
 // 瀏覽器快取到舊版頁面、卻載到新版程式時，頁面上會少元素而整個卡住。偵測到就強制重新抓一次頁面。
-if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu') || !document.querySelector('[data-lang-toggle]') || !$('minimap') || !$('ov-diff')) {
+if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pause-menu') || !document.querySelector('[data-lang-toggle]') || !$('minimap') || !$('ov-diff') || !$('menu-art')) {
   if (!location.search.includes('r=')) location.replace(`${location.pathname}?r=${Date.now()}`);
   throw new Error('頁面版本過舊，正在重新載入');
 }
@@ -465,7 +465,9 @@ function updateHud() {
   $('portrait').classList.toggle('brave', brave);
   $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
-  $('rescue-n').textContent = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
+  const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
+  $('rescue-n').textContent = hearts;
+  $('quest-mini').innerHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`; // 收合時只顯示這一行
   $('combo').hidden = game.combo < 5;
   $('combo-n').textContent = game.combo;
 
@@ -2113,6 +2115,10 @@ function showMenu() {
   $('ov-menu').hidden = false;
   $('ov-menu').textContent = t(menuView === 'stages' ? '← 返回' : '選關');
   $('ov-load').textContent = ''; // 清掉上一個結算畫面留下的說明
+  // 主選單的小天使：泡泡隨機講一句，底下的跑馬燈輪播她的吐槽
+  const quips = ['又來了？', '今天也要被我笑嗎。', '按開始啊，還要我幫你按？', '還行。', '你的內心在等你。很亂，但在等你。', '選地獄難度的人通常活不久。', '怕成這樣還敢做夢？'];
+  $('menu-bubble').textContent = t(quips[Math.floor(Math.random() * quips.length)]);
+  $('menu-ticker').firstElementChild.textContent = quips.map((q) => `${t('小天使')}：「${t(q)}」`).join('　　★　　');
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
     : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
@@ -2201,6 +2207,19 @@ addEventListener('pointerdown', () => {
   audio.unlock();
   if (game.phase === 'ready' && audio.tracks.bgm_title) { audio.stopBgm(); audio.bgmName = null; audio.playBgm('bgm_title'); }
 }, true);
+// 任務欄：點一下收合成一行（關卡、擊倒數、救援次數），再點展開。手機預設收合
+const QUEST_KEY = 'braveguy.quest';
+{
+  const q = document.querySelector('.quest');
+  let mini = coarse;
+  try { const v = localStorage.getItem(QUEST_KEY); if (v) mini = v === 'mini'; } catch { /* 讀不到就用預設 */ }
+  q.classList.toggle('mini', mini);
+  q.addEventListener('pointerdown', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const now = q.classList.toggle('mini');
+    try { localStorage.setItem(QUEST_KEY, now ? 'mini' : 'full'); } catch { /* 存不了也沒關係 */ }
+  });
+}
 $('pm-resume').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
 $('pm-restart').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); startStage(game.stage); });
 $('pm-menu').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); showMenu(); });
