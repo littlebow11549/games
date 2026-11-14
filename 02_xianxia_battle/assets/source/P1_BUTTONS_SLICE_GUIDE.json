@@ -1,0 +1,119 @@
+{
+  "status": "layout_guide_not_final_crop_metadata",
+  "atlases": [
+    {
+      "path": "pic/icons/btn_attack_sheet.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "column_order": [
+        "normal",
+        "pressed",
+        "disabled"
+      ],
+      "row_order": [
+        "btn_attack"
+      ],
+      "cell_size": [
+        724,
+        724
+      ],
+      "target_output": [
+        384,
+        384
+      ]
+    },
+    {
+      "path": "pic/icons/btn_dodge_transform_sheet.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "columns": 3,
+      "rows": 2,
+      "column_order": [
+        "normal",
+        "pressed",
+        "disabled"
+      ],
+      "row_order": [
+        "btn_dodge",
+        "btn_transform"
+      ],
+      "cell_size": [
+        512,
+        512
+      ],
+      "target_output": "dodge256x256; transform preserve capsule aspect"
+    },
+    {
+      "path": "pic/icons/skill_buttons_sheet.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "columns": 4,
+      "rows": 3,
+      "column_order": [
+        "skill_dash",
+        "skill_ki",
+        "skill_quake",
+        "skill_ult"
+      ],
+      "row_order": [
+        "normal",
+        "pressed",
+        "disabled"
+      ],
+      "column_edges": [
+        0,
+        384,
+        768,
+        1152,
+        1536
+      ],
+      "row_edges": [
+        0,
+        341,
+        683,
+        1024
+      ],
+      "target_output": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "pic/ui/control_extras_sheet.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "regions": [
+        {
+          "id": "joystick_base",
+          "region": "upper-left"
+        },
+        {
+          "id": "joystick_knob",
+          "region": "upper-right"
+        },
+        {
+          "id": "btn_transform_ready",
+          "region": "bottom-center"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Preserve original sources; exact target-sized derivatives not yet exported",
+    "Grid cells are extraction starting regions; artwork centers and diameters need manual alignment",
+    "Pad glow before cropping; some generated haze exceeds intended narrow borders",
+    "Do not treat disabled as guaranteed pixel-neutral grayscale; only visually checked",
+    "Align normal/pressed/disabled hitboxes independently of graphic alpha bounds",
+    "Joystick center opacity and component scale must be set and verified during runtime integration"
+  ]
+}

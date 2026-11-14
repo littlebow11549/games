@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "id": "btn_attack_sheet",
+      "path": "pic/icons/btn_attack_sheet.png",
+      "width": 2172,
+      "height": 724,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1085326,
+      "sha256": "470A1CF7F482F97A417D61AC3DA49932A02DC8EEFEEDE2BAEFCE43A621F3F4C2",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 2171,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 723,
+          "alpha": 0
+        },
+        {
+          "x": 2171,
+          "y": 723,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "source_atlas_pending_slicing_and_runtime_validation"
+    },
+    {
+      "id": "btn_dodge_transform_sheet",
+      "path": "pic/icons/btn_dodge_transform_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1574857,
+      "sha256": "4B26867EA2EE5B1A8898EF55F374762695669C3636ABE71272CD808B946EE009",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1023,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 1023,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "source_atlas_pending_slicing_and_runtime_validation"
+    },
+    {
+      "id": "skill_buttons_sheet",
+      "path": "pic/icons/skill_buttons_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1935128,
+      "sha256": "32B1D7160BA5FA141CDD7C665DE9C3A68DF5D8E7B7090F898B2F40C7CB21C19F",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1023,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 1023,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "source_atlas_pending_slicing_and_runtime_validation"
+    },
+    {
+      "id": "control_extras_sheet",
+      "path": "pic/ui/control_extras_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1317563,
+      "sha256": "E03D9614B421BF4292DD2D4FF892D4A26A4A289523073A503EF87EDD5356678F",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1023,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 1023,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "source_atlas_pending_slicing_and_runtime_validation"
+    }
+  ],
+  "runtime_integrated": false
+}

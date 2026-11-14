@@ -127,6 +127,8 @@ jacket yellow, scarf red and orange, no watermark
 
 ### 4.2 右下角：按鍵
 
+**製作進度（2026-11-14）**：已產出 `icons/btn_attack_sheet.png`（2172×724）、`icons/btn_dodge_transform_sheet.png`、`icons/skill_buttons_sheet.png`、`ui/control_extras_sheet.png`（後三張1536×1024），均原生透明PNG，共24個狀態／部件。排列與切片起點見 `source/P1_BUTTONS_SLICE_GUIDE.json`；每顆正式256／384檔、狀態對齊與遊戲驗證尚待完成。詳見 `docs/handoffs/2026-11-14-game02-combat-buttons.md`。
+
 每顆出「一般、按下、不可用（灰）」三態，256×256（普攻 384×384）。
 
 | 檔案 | 內容 |
