@@ -330,16 +330,27 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 .overlay.menu .card button.stage.current{border-color:var(--yellow);outline:0;box-shadow:0 4px 0 #050d08,0 0 16px #f6c21c66}
 .overlay.menu .card button.stage.current i{border-color:var(--yellow);color:var(--yellow)}
 .overlay.menu .card button.stage:disabled{opacity:.4;filter:grayscale(.7)}
-/* 直向手機：主視覺靠上，內容往下排 */
+/* 直向手機：上面 42% 是主視覺（不被任何東西蓋住），Logo 與按鈕排在下面 */
 @media (orientation:portrait){
-  .overlay.menu::before{inset:0;background-position:72% top;background-size:auto 56%}
-  .overlay.menu::after{background:linear-gradient(0deg,#06120bf8 42%,#06120b90 60%,transparent 82%)}
-  .overlay.menu .card{justify-content:flex-end;align-items:center;text-align:center;padding-left:18px;padding-right:18px}
-  .overlay.menu .logo{margin:0;max-width:78vw;max-height:24vh}
-  .overlay.menu #ov-text{max-width:92vw;font-size:11px}
-  .overlay.menu #ov-btn,.overlay.menu #ov-menu{min-width:74vw}
-  .overlay.menu .diff-row{justify-content:center}
-  .overlay.menu.stages .card{justify-content:flex-start;align-items:stretch;text-align:left}
+  .overlay.menu::before{inset:0 0 auto 0;height:44vh;background-position:60% center;background-size:auto 100%;animation:none;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
+  .overlay.menu::after{background:linear-gradient(0deg,#07130c 0%,#07130c 56%,#07130c00 66%)}
+  .overlay.menu .card{justify-content:flex-start;align-items:center;text-align:center;padding:39vh 18px max(10px,var(--safe-b));gap:0}
+  .overlay.menu .logo{margin:0 0 -2px;max-width:78vw;max-height:20vh}
+  .overlay.menu #ov-text,.overlay.menu #ov-load{display:none}
+  .overlay.menu #ov-btn{min-width:78vw;margin-top:2px;padding:12px 20px;font-size:19px}
+  .overlay.menu #ov-menu{min-width:78vw;margin-top:9px;padding:9px 20px}
+  .overlay.menu .diff-row{justify-content:center;margin:10px 0 2px;gap:8px}
+  .overlay.menu .lang-btn{margin-top:6px!important}
+  .overlay.menu .back{margin-top:6px}
+  .overlay.menu.stages::before{opacity:.25}
+  .overlay.menu.stages .card{justify-content:flex-start;align-items:stretch;text-align:left;padding-top:max(12px,var(--safe-t))}
+}
+/* 直向但很矮的螢幕（App 內建瀏覽器上下有工具列）：再壓一點 */
+@media (orientation:portrait) and (max-height:700px){
+  .overlay.menu::before{height:38vh}
+  .overlay.menu .card{padding-top:32vh}
+  .overlay.menu .logo{max-height:19vh}
+  .overlay.menu .diff-row{transform:scale(.86);margin:4px 0 -4px}
 }
 /* 矮螢幕（橫向手機）：壓縮間距 */
 @media (max-height:460px){
