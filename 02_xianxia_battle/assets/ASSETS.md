@@ -290,3 +290,6 @@ panel_sheet左上任務卡、bubble_sheet左上小天使泡泡已透過css/panel
 minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入；保留既有定位與鎖定操作，底圖和熊頭尚未使用。完整剩餘項目見../../../docs/handoffs/2026-11-14-game02-minimap-backlog.md；前段歷史『尚未接入』說明請以最新交接為準。
 <!-- 2026-11-14 latest character batch status -->
 本輪新增11位角色初稿及7張Logo修訂，均原生1536×1024，詳細見 source/P2_P3_BATCH_DELIVERY.json 與 ../../../docs/handoffs/2026-11-14-game02-character-batch-logo.md。尚未通過角色比例、文字、統一版型與Logo一致性驗收，不列為正式成品。使用者確認所有角色設定合輯左上角必須使用已核准 branding/logo_01_review_v1.png 的同一Logo，位置、尺寸、留白一致，不可各自重設。其餘缺件清單仍有效。
+## 2026-11-14 統一頁首交付
+
+使用者已明確核准程式合成。全部16張在 source/pic/sheet/unified/，同一核准Logo原檔固定156×104、座標(48,12)、頁首高128，逐像素一致性通過。畫布1728×1152（3:2），角色圖維持原生像素，沒有插值放大；舊稿保留。查核 source/UNIFIED_SHEET_HEADERS.json，總覽 preview/unified-character-review.html。此項取代前文Logo一致性未通過的歷史狀態，角色內頁比例與文字等問題仍待修。

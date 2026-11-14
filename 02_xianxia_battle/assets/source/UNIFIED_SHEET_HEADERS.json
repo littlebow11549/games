@@ -1,0 +1,408 @@
+{
+  "status": "header_unified_character_art_still_draft",
+  "logo_source": "assets/source/pic/branding/logo_01_review_v1.png",
+  "logo_source_sha256": "117520eb3a2f51502377089a37e15277c18ac96b7f0d9434a363efb17cc6159f",
+  "canvas_note": "Canvas extended; original character artwork not resized. Approved logo downsampled once and reused.",
+  "sheets": [
+    {
+      "id": "student",
+      "path": "assets/source/pic/sheet/unified/sheet_student.png",
+      "source": "assets/source/pic/sheet/sheet_student.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        264,
+        23
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "braveguy",
+      "path": "assets/source/pic/sheet/unified/sheet_braveguy.png",
+      "source": "assets/source/pic/sheet/sheet_braveguy.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        264,
+        23
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "angel",
+      "path": "assets/source/pic/sheet/unified/sheet_angel.png",
+      "source": "assets/source/pic/sheet/sheet_angel.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        264,
+        31
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "nightmare",
+      "path": "assets/source/pic/sheet/unified/sheet_nightmare.png",
+      "source": "assets/source/pic/sheet/sheet_nightmare.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        264,
+        23
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "ganqiao",
+      "path": "assets/source/pic/sheet/unified/sheet_ganqiao.png",
+      "source": "assets/source/pic/sheet/sheet_ganqiao.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        270,
+        23
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "qian",
+      "path": "assets/source/pic/sheet/unified/sheet_qian.png",
+      "source": "assets/source/pic/sheet/sheet_qian_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        265,
+        23
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "lan",
+      "path": "assets/source/pic/sheet/unified/sheet_lan.png",
+      "source": "assets/source/pic/sheet/sheet_lan_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 58,
+      "obsolete_logo_mask": [
+        0,
+        58,
+        259,
+        45
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "zhuangxiong",
+      "path": "assets/source/pic/sheet/unified/sheet_zhuangxiong.png",
+      "source": "assets/source/pic/sheet/sheet_zhuangxiong_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 72,
+      "obsolete_logo_mask": [
+        0,
+        72,
+        280,
+        38
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "laichuang",
+      "path": "assets/source/pic/sheet/unified/sheet_laichuang.png",
+      "source": "assets/source/pic/sheet/sheet_laichuang_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 80,
+      "obsolete_logo_mask": [
+        0,
+        80,
+        0,
+        0
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "junxiong",
+      "path": "assets/source/pic/sheet/unified/sheet_junxiong.png",
+      "source": "assets/source/pic/sheet/sheet_junxiong_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 62,
+      "obsolete_logo_mask": [
+        0,
+        62,
+        260,
+        42
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "hell",
+      "path": "assets/source/pic/sheet/unified/sheet_hell.png",
+      "source": "assets/source/pic/sheet/sheet_hell_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 60,
+      "obsolete_logo_mask": [
+        0,
+        60,
+        330,
+        18
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "worker",
+      "path": "assets/source/pic/sheet/unified/sheet_worker.png",
+      "source": "assets/source/pic/sheet/sheet_worker_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 86,
+      "obsolete_logo_mask": [
+        0,
+        86,
+        350,
+        18
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "incubus",
+      "path": "assets/source/pic/sheet/unified/sheet_incubus.png",
+      "source": "assets/source/pic/sheet/sheet_incubus_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 70,
+      "obsolete_logo_mask": [
+        0,
+        70,
+        0,
+        0
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "guanlaoban",
+      "path": "assets/source/pic/sheet/unified/sheet_guanlaoban.png",
+      "source": "assets/source/pic/sheet/sheet_guanlaoban_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 78,
+      "obsolete_logo_mask": [
+        0,
+        78,
+        0,
+        0
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "xinji",
+      "path": "assets/source/pic/sheet/unified/sheet_xinji.png",
+      "source": "assets/source/pic/sheet/sheet_xinji_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 92,
+      "obsolete_logo_mask": [
+        0,
+        92,
+        0,
+        0
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    },
+    {
+      "id": "baguashe",
+      "path": "assets/source/pic/sheet/unified/sheet_baguashe.png",
+      "source": "assets/source/pic/sheet/sheet_baguashe_draft_v1.png",
+      "size": [
+        1728,
+        1152
+      ],
+      "logo_box": [
+        48,
+        12,
+        156,
+        104
+      ],
+      "header_height": 128,
+      "source_cutoff": 78,
+      "obsolete_logo_mask": [
+        0,
+        78,
+        0,
+        0
+      ],
+      "retained_body_pixel_exact": true,
+      "logo_region_sha256": "862207fc427e0d8aeebf48d94fb1930528efb8e977e042d78480a952b3e2667f"
+    }
+  ]
+}
