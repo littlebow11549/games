@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "id": "bubble_sheet",
+      "path": "pic/ui/bubble_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1188709,
+      "sha256": "482456B30F9B1864B99DC1AD829830F55D40B541665A057D7839A0045ACDD385",
+      "upscaled": false
+    },
+    {
+      "id": "panel_sheet",
+      "path": "pic/ui/panel_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1134682,
+      "sha256": "046754AA02A7131C018E046B25037C852D437DE0E7ACC00F61DEAC04409449EC",
+      "upscaled": false
+    },
+    {
+      "id": "minimap_sheet",
+      "path": "pic/ui/minimap_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1411399,
+      "sha256": "5A9D0281A669FB235934D74ED5DBA661A88378A1C55565ACA98D23666410060F",
+      "upscaled": false
+    },
+    {
+      "id": "function_icons_sheet",
+      "path": "pic/icons/function_icons_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1566675,
+      "sha256": "3084442C98AF9335A873145F34BA9D5B9B151D2B2FB81959CC2C07EF35EB1471",
+      "upscaled": false
+    },
+    {
+      "id": "lock_heal_sheet",
+      "path": "pic/icons/lock_heal_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1465288,
+      "sha256": "F4B4E2E9B85141465E42773F901633F10A5FA15CB09261CB572EFE0517C30A32",
+      "upscaled": false
+    },
+    {
+      "id": "difficulty_sheet",
+      "path": "pic/ui/difficulty_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 2005063,
+      "sha256": "BE3543C9B976F4CF08B838DA8557DFCE355C2C2C4060745A67F56471660E746C",
+      "upscaled": false
+    },
+    {
+      "id": "aux_hud_sheet",
+      "path": "pic/ui/aux_hud_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1132310,
+      "sha256": "6A0D376DA656AD8A31D95F6754B124ED773DD2B3C7DE615FB6C7683E36F72D68",
+      "upscaled": false
+    },
+    {
+      "id": "bingo_card",
+      "path": "pic/ui/bingo_card.png",
+      "width": 1254,
+      "height": 1254,
+      "format": "Format32bppArgb",
+      "corner_alpha": 0,
+      "bytes": 1159164,
+      "sha256": "F1FCD33F488C32453642E6C6E732B3865D666D85B86B4BFAC9C54C6EA16A199D",
+      "upscaled": false
+    }
+  ],
+  "status": "source_art_pending_slicing",
+  "runtime_integrated": false
+}

@@ -267,3 +267,8 @@ jacket yellow, scarf red and orange, no watermark
 - 每批交付附一份 `source/DELIVERY.json` 或報告，列出每張圖的實際尺寸、是否去背、壓縮方式。
 - 在 `docs/handoffs/` 留交接報告並更新 `docs/HANDOFF.md`。
 - 建議第一批只交 P0（兩張合輯），使用者確認造型後再往下做，避免整批重畫。
+
+
+## 2026-11-14 介面大批交付補記
+
+新增八張介面來源 PNG：bubble_sheet、panel_sheet、minimap_sheet、difficulty_sheet、aux_hud_sheet、bingo_card、function_icons_sheet、lock_heal_sheet。七張1536×1024，一張1254×1254，原生RGBA未放大；詳細紀錄見 source/P1_INTERFACE_DELIVERY.json 與 ../../../docs/handoffs/2026-11-14-game02-interface-preview.md。圖集仍待正式切圖及狀態對齊。art-preview.html 可切換新舊頭像、計量條及戰鬥按鍵，Chrome寬／窄介面已目視驗證；其餘素材先供總覽，未宣稱整批正式接入。Claude登入過期，本輪預覽由Codex製作。

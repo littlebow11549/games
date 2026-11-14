@@ -1,0 +1,38 @@
+/* Preview only: loaded by art-preview.html. Original gameplay state classes drive art. */
+.art-preview .portrait{background:#14321b url('../assets/source/pic/ui/portrait_student.png') center/contain no-repeat}
+.art-preview .portrait.brave{background-image:url('../assets/source/pic/ui/portrait_brave.png')}
+.art-preview .bar.hp i{background:url('../assets/source/pic/ui/hud_core_sheet.png') 4.73% 40.77%/222.6% 1113% no-repeat}
+.art-preview .bar.courage i{background:url('../assets/source/pic/ui/hud_core_sheet.png') 95.27% 40.77%/222.6% 1113% no-repeat}
+.art-preview .bar.guilt i{background:url('../assets/source/pic/ui/hud_core_sheet.png') 95.27% 62.5%/222.6% 1113% no-repeat}
+.art-preview .bar.guilt.crack i{background-position:4.73% 92%}
+.art-preview .bar.courage.burst i{background-position:95.27% 62.5%}
+.art-preview .act{background:transparent!important;border-color:transparent;box-shadow:none;isolation:isolate}
+.art-preview .act::before{content:'';position:absolute;inset:-8%;z-index:-1;background-repeat:no-repeat;pointer-events:none}
+.art-preview .act span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.art-preview .act em{z-index:1}
+.art-preview .act::after{z-index:2}
+.art-preview .act.attack::before{background-image:url('../assets/source/pic/icons/btn_attack_sheet.png');background-size:300% 100%;background-position:0 50%}
+.art-preview .act.attack:active::before{background-position:50% 50%}
+.art-preview .act.dodge::before{background-image:url('../assets/source/pic/icons/btn_dodge_transform_sheet.png');background-size:300% 200%;background-position:0 0}
+.art-preview .act.dodge:active::before{background-position:50% 0}
+.art-preview .act.transform::before{inset:-4% -5%;background-image:url('../assets/source/pic/icons/btn_dodge_transform_sheet.png');background-size:300% 390%;background-position:0 85%}
+.art-preview .act.transform:active::before{background-position:50% 85%}
+.art-preview .act.transform.locked::before{background-position:100% 85%}
+.art-preview .act.skill::before,.art-preview .act.ult::before{background-image:url('../assets/source/pic/icons/skill_buttons_sheet.png');background-size:400% 300%;background-position:var(--art-x) 0}
+.art-preview .act.s1{--art-x:0%}.art-preview .act.s2{--art-x:33.3333%}.art-preview .act.s3{--art-x:66.6667%}.art-preview .act.ult{--art-x:100%}
+.art-preview .act.skill:active::before,.art-preview .act.ult:active::before{background-position:var(--art-x) 50%}
+.art-preview .act.skill.locked::before,.art-preview .act.ult.locked::before{background-position:var(--art-x) 100%}
+.art-preview .act.lock{outline:none}
+.art-preview .act.lock::before{background-image:url('../assets/source/pic/icons/lock_heal_sheet.png');background-size:300% 200%;background-position:0 0}
+.art-preview .act.lock.on::before{background-position:50% 0}
+.art-preview .act.lock.on:active::before{background-position:100% 0}
+.art-preview .icon-btn{background-image:url('../assets/source/pic/icons/function_icons_sheet.png');background-size:400% 200%;background-position:0 0;background-repeat:no-repeat}
+.art-preview #btn-mute{background-image:url('../assets/source/pic/icons/function_icons_sheet.png');background-position:33.3333% 0}
+.art-preview #btn-mute.off{background-position:66.6667% 0}
+.art-preview #stick-base{border:0;background:url('../assets/source/pic/ui/control_extras_sheet.png') 10% 2%/300% 200% no-repeat}
+.art-preview #stick-knob{border:0;background:url('../assets/source/pic/ui/control_extras_sheet.png') 87% 18%/600% 400% no-repeat}
+.art-inspect #hud{display:block!important}
+.art-inspect #overlay,.art-inspect #dialog,.art-inspect #pause-menu{display:none!important}
+.art-inspect #scene{opacity:.35}
+.art-inspect .actions{pointer-events:none}
+.art-inspect #stick-zone{display:block;pointer-events:none}
