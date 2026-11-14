@@ -32,3 +32,7 @@
 Claude 登入恢復後：先從此預覽檢查視覺，精準切圖對齊，再正式接入主頁；保留既有 logo、icon、音樂與控制行為。優先完成正常／按下／禁用狀態、變身與冷卻，再接面板及難度。勿將來源圖覆寫成縮小版。
 
 按使用者既有授權提交並推送至 littlebow11549/games 的 claude/fervent-ride-4h0vjm。實際 push 結果另以 Git 回報為準。沒有部署、送 Tripo 或購買服務。
+
+## 遠端同步補記
+
+本輪提交後同步遠端 ddcaec9，保留另一個 Claude 工作階段已完成的主角頭像正式接入與音樂更新（詳見 music-final-portraits 報告）。此處 OAuth 失敗只指本機 CLI 委派，不代表其他 Claude 工作階段未工作。合併僅 HANDOFF 索引衝突，已保留雙方條目。
