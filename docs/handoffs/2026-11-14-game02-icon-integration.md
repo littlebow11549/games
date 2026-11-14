@@ -18,10 +18,13 @@ Codex 當日推到預設分支的 `02_xianxia_battle/assets/source/pic/branding/
 
 ## 沒有動的
 
-- 開始畫面的 Logo 仍是暫代 SVG。核准的 `logo_01_review_v1.png`（1536×1024 透明）已在 repo，使用者這次只說換 icon，未接入。
 - `banner_01.png`、角色合輯、3D 參考圖：僅收進 repo，未接入。首頁橫幅目前仍是第一款遊戲的圖。
 - 舊的暫代 `icon_01.svg` 保留未刪。
 
 ## 測試
 
 `tools/check_hub.cjs` 通過（24 種語系與版面組合）；首頁兩張卡片的圖都載入（512×512）、無 404；目視確認卡片上的 icon 清楚、中英文 Logo 可辨。
+
+## 追加：開始畫面 Logo
+
+使用者同意後，開始畫面改用核准的 `logo_01_review_v1.png`。網頁用衍生檔 `02_xianxia_battle/assets/runtime/pic/branding/logo_01.webp`（768×512 無損 WebP、保留透明，295 KB，由來源縮小）。矮螢幕上限制高度為畫面的 30%，避免把開始鍵擠出畫面。快取版本號 `20261114a`。電腦與手機橫向截圖確認無 404、無錯誤。

@@ -118,7 +118,7 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 .overlay.result{background:radial-gradient(circle at 50% 40%,#8a4fd655,#120c22ee 65%),#120c22}
 .card{text-align:center;padding:22px 26px;border-radius:18px;border:3px solid var(--ink);outline:3px solid var(--yellow);
   background:linear-gradient(#22402a,#12241a);max-width:min(90vw,480px);box-shadow:0 10px 40px #000a}
-.logo{display:block;width:min(100%,360px);margin:0 auto 6px}
+.logo{display:block;width:auto;max-width:min(100%,340px);height:auto;max-height:30vh;margin:-10px auto -4px}
 .card h1{margin:0 0 10px;font-size:clamp(26px,6vw,40px);color:var(--yellow);letter-spacing:.2em;-webkit-text-stroke:1.5px var(--ink);text-shadow:0 4px 0 var(--red)}
 .card p{margin:6px 0;font-size:13px;line-height:1.7}
 .muted{opacity:.8;font-size:12px!important}
