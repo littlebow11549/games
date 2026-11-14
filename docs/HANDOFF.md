@@ -4,7 +4,7 @@
 
 ## 最新交付
 
-- [2026-11-14 勇氣超人：新遊戲 icon 接入（Claude）](handoffs/2026-11-14-game02-icon-integration.md)：首頁第二款卡片與遊戲分頁圖示改用 `icon_01_logo.png` 的無損 WebP 衍生檔（512／256）。開始畫面 Logo、橫幅尚未接入。
+- [2026-11-14 勇氣超人：新遊戲 icon 接入（Claude）](handoffs/2026-11-14-game02-icon-integration.md)：首頁第二款卡片與遊戲分頁圖示改用 `icon_01_logo.png` 的無損 WebP 衍生檔（512／256）。追加：開始畫面改用核准的 Logo。橫幅尚未接入。
 
 - [2026-11-14 新美術素材Git交付（Codex）](handoffs/2026-11-14-game02-art-git-delivery.md)：使用者授權提交並推送本輪32張PNG（含Logo遊戲icon）、提示詞與交接文件；素材驗收限制仍保留，未接runtime。
 
