@@ -276,3 +276,7 @@ jacket yellow, scarf red and orange, no watermark
 ## 2026-11-14 按鍵正式接入補記
 
 一般index已載入css/ui-art.css，使用來源PNG的校準顯示範圍，接入七種操作三態、鎖定、功能圖示及搖桿。UI_RUNTIME_REGIONS.json記錄座標；沒有修改來源或輸出獨立PNG。21態比較頁為assets/preview/p1-runtime-states.html。完整驗證與限制見../../../docs/handoffs/2026-11-14-game02-buttons-runtime.md。
+
+## 2026-11-14 選單整合補記
+
+difficulty_sheet六態及function_icons_sheet四個暫停選單圖示已透過css/menu-art.css接入一般入口；MENU_RUNTIME_REGIONS.json記錄十個範圍。來源PNG未修改，未另輸出切圖。完整驗證與限制見../../../docs/handoffs/2026-11-14-game02-menu-runtime.md。

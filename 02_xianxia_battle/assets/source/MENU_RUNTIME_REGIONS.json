@@ -1,0 +1,146 @@
+{
+  "status": "css_render_windows",
+  "note": "Native raster sources are unchanged. Six difficulty states and four pause menu symbols. Text is live localized HTML.",
+  "regions": [
+    {
+      "selector": ".game-art .card button.diff.easy::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        16,
+        0,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art .card button.diff.easy.on::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        16,
+        504,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art .card button.diff.normal::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        520,
+        0,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art .card button.diff.normal.on::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        520,
+        504,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art .card button.diff.hell::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1024,
+        0,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art .card button.diff.hell.on::before",
+      "path": "ui/difficulty_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1024,
+        504,
+        496,
+        496
+      ]
+    },
+    {
+      "selector": ".game-art #pm-resume::before",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        392,
+        548,
+        380,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #pm-restart::before",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        772,
+        548,
+        380,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #pm-menu::before",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        1152,
+        548,
+        380,
+        380
+      ]
+    },
+    {
+      "selector": ".game-art #pause-menu .lang-btn::before",
+      "path": "icons/function_icons_sheet",
+      "size": [
+        1536,
+        1024
+      ],
+      "rect": [
+        12,
+        548,
+        380,
+        380
+      ]
+    }
+  ]
+}

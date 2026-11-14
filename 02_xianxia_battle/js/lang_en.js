@@ -556,7 +556,7 @@ export default {
  "載入角色模型": "Loading character models",
  "準備角色": "Preparing characters",
  "準備選關畫面": "Preparing stage select",
- "目前全部使用佔位美術": "All art is placeholder for now",
+ "3D 角色目前使用佔位模型": "3D characters currently use placeholder models",
  "完成": "Done",
  "開始": "Start",
  "勇氣": "COURAGE",

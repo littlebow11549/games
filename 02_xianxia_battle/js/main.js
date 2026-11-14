@@ -1960,8 +1960,9 @@ async function boot() {
   camTarget.copy(hero.pos);
   game.phase = 'ready';
   progress(96, '準備選關畫面');
-  $('ov-load').textContent = models.length ? tf('已載入模型 {0}/{1}，其餘使用佔位角色', ok, models.length) : t('目前全部使用佔位美術');
+  $('ov-load').textContent = models.length ? tf('已載入模型 {0}/{1}，其餘使用佔位角色', ok, models.length) : t('3D 角色目前使用佔位模型');
   $('btn-mute').classList.toggle('off', audio.muted);
+  if (!models.length) document.getElementById('ov-load').dataset.i18n = '3D 角色目前使用佔位模型';
   showMenu();
   window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
   progress(100, '完成');
@@ -2001,6 +2002,7 @@ function showMenu() {
     b.className = `diff ${d.id}`;
     b.textContent = t(d.name);
     b.classList.toggle('on', i === diff);
+    b.setAttribute('aria-pressed', String(i === diff));
     b.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); setDiff(i); showMenu(); });
     dbox.append(b);
   });

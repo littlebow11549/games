@@ -1,0 +1,19 @@
+/* Menu art: visible labels stay translated by the existing game. */
+.game-art .card button.diff{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;min-width:0;max-width:110px;padding:8px 6px;font-size:14px;line-height:1.3;opacity:1;background:#203c2a;color:#fff5d7;border:2px solid #47654b;box-shadow:none}
+.game-art .card button.diff::before{content:'';display:block;width:64px;height:64px;flex:none;background-image:url('../assets/source/pic/ui/difficulty_sheet.png');background-repeat:no-repeat}
+.game-art .card button.diff.on{outline:2px solid #ffe45b;outline-offset:1px;background:#344e25;color:#fff5d7}
+.game-art .card button.diff:focus-visible{outline:3px solid white;outline-offset:3px}
+.game-art #pause-menu .card button{position:relative;min-height:48px;padding-left:58px}
+.game-art #pause-menu .card button::before{content:'';position:absolute;left:12px;top:50%;transform:translateY(-50%);width:30px;height:30px;background-image:url('../assets/source/pic/icons/function_icons_sheet.png');background-repeat:no-repeat}
+.game-art #pause-menu .card .lang-btn{padding-left:58px!important}
+@media(max-width:380px){.game-art .card button.diff::before{width:52px;height:52px}.game-art .card button.diff{font-size:12px}}
+.game-art .card button.diff.easy::before{background-size:309.6774193548387% 206.4516129032258%;background-position:1.5384615384615385% 0%}
+.game-art .card button.diff.easy.on::before{background-size:309.6774193548387% 206.4516129032258%;background-position:1.5384615384615385% 95.45454545454545%}
+.game-art .card button.diff.normal::before{background-size:309.6774193548387% 206.4516129032258%;background-position:50% 0%}
+.game-art .card button.diff.normal.on::before{background-size:309.6774193548387% 206.4516129032258%;background-position:50% 95.45454545454545%}
+.game-art .card button.diff.hell::before{background-size:309.6774193548387% 206.4516129032258%;background-position:98.46153846153847% 0%}
+.game-art .card button.diff.hell.on::before{background-size:309.6774193548387% 206.4516129032258%;background-position:98.46153846153847% 95.45454545454545%}
+.game-art #pm-resume::before{background-size:404.2105263157895% 269.4736842105263%;background-position:33.910034602076124% 85.09316770186335%}
+.game-art #pm-restart::before{background-size:404.2105263157895% 269.4736842105263%;background-position:66.78200692041523% 85.09316770186335%}
+.game-art #pm-menu::before{background-size:404.2105263157895% 269.4736842105263%;background-position:99.65397923875433% 85.09316770186335%}
+.game-art #pause-menu .lang-btn::before{background-size:404.2105263157895% 269.4736842105263%;background-position:1.0380622837370241% 85.09316770186335%}
