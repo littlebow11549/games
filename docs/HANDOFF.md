@@ -24,6 +24,10 @@
 
 - [2026-11-14 勇氣超人：新版主 Logo 與 P0 角色審稿（Codex／APHASEN）](handoffs/2026-11-14-game02-art-logo-review.md)：使用者改為先確定新版主 Logo；已做透明 Logo 第一稿與兩張角色暫稿，學生上衣依更正改全黃。均原生1536×1024；Logo尚未達寬2400規格，造型未批准，未接入／提交／推送／部署。Library傳輸不可用，成果留本機。
 
+- [2026-11-14 勇氣超人：接上地圖一各關與 2-1 的戰鬥曲（Claude）](handoffs/2026-11-14-game02-music-stage1-wiring.md)：合併音樂分支 `claude/brave-guy-music` 的五首；地圖一每關都有自己的曲子。**這次收到的只有音樂，沒有美術或模型。**
+
+- [2026-11-12 勇氣超人：關卡戰鬥電音（地圖一全數 + 2-1）（音樂階段）](handoffs/2026-11-12-game02-music-stage1.md)：依 MUSIC.md v1.2 做每關不同電音；交 `bgm_stage_1_0/1_2/1_3/1_4` 與 `bgm_stage_2_1`（各 ogg+mp3、−16 LUFS、無縫循環），地圖一一般戰鬥（1-0～1-4）全到位；六鍵已填 manifest，母帶於 `_archive/`，規格 `assets/source/AUDIO_DELIVERY.json`。分支已對齊主線，未改 `js/`。
+
 - [2026-11-13 勇氣超人：美術製作需求 v2.1（Claude）](handoffs/2026-11-13-game02-art-requirements-v21.md)：對照現況重新核對 [`ASSETS.md`](../02_xianxia_battle/assets/ASSETS.md)，新增小地圖、鎖定、難度、泡泡等介面素材；優先級不變。**需由使用者轉交 GPT，尚無正式美術交付。** 另新增 3D 外包需求 [`MODELS_3D.md`](../02_xianxia_battle/assets/MODELS_3D.md)（21 個角色、8 個道具、動作清單與技術規格）。
 
 - [2026-11-12 勇氣超人：小地圖、三種難度、體型大小、俊熊補血、嗆聲與頂嘴（Claude）](handoffs/2026-11-12-game02-minimap-difficulty.md)：可點擊縮放的小地圖；輕鬆／普通／地獄（地獄同場最多 120 隻、鋪滿地圖）；小怪分大中小；小天使變身結束 10 句嗆聲、主角會回嘴。
