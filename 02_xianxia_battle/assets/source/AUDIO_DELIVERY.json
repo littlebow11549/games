@@ -1,6 +1,6 @@
 {
   "_about": "勇氣超人 Brave Guy — 音樂交付清單(電音方向)。母帶 WAV 於 repo 根 _archive/02_xianxia_battle/music/。",
-  "produced": "2026-11-14",
+  "produced": "2026-11-15",
   "tool": "原創程式合成(Python/numpy 加法合成，ffmpeg loudnorm 母帶處理)",
   "license": "原創，版權歸使用者所有，可商用；未取樣任何第三方素材",
   "items": [
@@ -12,15 +12,15 @@
       "loop": true,
       "loop_length_s": 60.0,
       "duration_s": 60.0,
-      "loudness_LUFS": -16.17,
-      "true_peak_dBTP": -1.1,
+      "loudness_LUFS": -13.4,
+      "true_peak_dBTP": -2.3,
       "ogg": {
         "path": "assets/source/music/bgm_campus.ogg",
         "codec": "vorbis q4",
         "sample_rate": 44100,
         "channels": 2,
-        "bitrate_kbps": 107,
-        "size_bytes": 805688
+        "bitrate_kbps": 109,
+        "size_bytes": 816419
       },
       "mp3": {
         "path": "assets/source/music/bgm_campus.mp3",
@@ -30,7 +30,18 @@
         "bitrate_kbps": 128,
         "size_bytes": 960932
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_campus.wav"
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_campus.wav",
+      "version": "v2.0",
+      "mastering": {
+        "loudness_LUFS": -13.4,
+        "true_peak_dBTP": -2.3,
+        "loudness_range_LU": 1.9,
+        "mid_400_2k_pct": 6.0,
+        "hi_2k_6k_pct": 3.3,
+        "bpm_set": 128,
+        "pass": true
+      },
+      "method": "加厚 numpy 合成 + ffmpeg 母帶鏈（compress/EQ/limit/loudnorm）"
     },
     {
       "file_base": "bgm_boss",
@@ -38,17 +49,17 @@
       "use": "各區守關戰",
       "description": "更重更快電音，174 BPM，A 小調；失真 power chord＋雙踩＋滾動 reese bass＋小調主題 riff",
       "loop": true,
-      "loop_length_s": 60.69,
-      "duration_s": 60.69,
-      "loudness_LUFS": -15.99,
-      "true_peak_dBTP": -1.68,
+      "loop_length_s": 58.18,
+      "duration_s": 58.18,
+      "loudness_LUFS": -13.4,
+      "true_peak_dBTP": -2.5,
       "ogg": {
         "path": "assets/source/music/bgm_boss.ogg",
         "codec": "vorbis q4",
         "sample_rate": 44100,
         "channels": 2,
-        "bitrate_kbps": 99,
-        "size_bytes": 751688
+        "bitrate_kbps": 110,
+        "size_bytes": 797604
       },
       "mp3": {
         "path": "assets/source/music/bgm_boss.mp3",
@@ -56,9 +67,20 @@
         "sample_rate": 44100,
         "channels": 2,
         "bitrate_kbps": 128,
-        "size_bytes": 972217
+        "size_bytes": 932093
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_boss.wav"
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_boss.wav",
+      "version": "v2.0",
+      "mastering": {
+        "loudness_LUFS": -13.4,
+        "true_peak_dBTP": -2.5,
+        "loudness_range_LU": 2.1,
+        "mid_400_2k_pct": 5.6,
+        "hi_2k_6k_pct": 3.4,
+        "bpm_set": 132,
+        "pass": true
+      },
+      "method": "加厚 numpy 合成 + ffmpeg 母帶鏈（compress/EQ/limit/loudnorm）"
     },
     {
       "file_base": "jingle_clear",
@@ -346,17 +368,17 @@
       "use": "變身成勇氣超人期間(取代關卡曲)",
       "description": "英雄爆發版主角主題，176 BPM A大調；開頭即高潮、無前奏、結尾轉調上行；supersaw+合唱pad+雙踩",
       "loop": false,
-      "loop_length_s": null,
-      "duration_s": 32.73,
-      "loudness_LUFS": -16.0,
-      "true_peak_dBTP": -1.25,
+      "loop_length_s": 58.18,
+      "duration_s": 58.18,
+      "loudness_LUFS": -13.4,
+      "true_peak_dBTP": -3.3,
       "ogg": {
         "path": "assets/source/music/bgm_brave.ogg",
         "codec": "vorbis q4",
         "sample_rate": 44100,
         "channels": 2,
         "bitrate_kbps": 109,
-        "size_bytes": 443886
+        "size_bytes": 791070
       },
       "mp3": {
         "path": "assets/source/music/bgm_brave.mp3",
@@ -364,9 +386,20 @@
         "sample_rate": 44100,
         "channels": 2,
         "bitrate_kbps": 128,
-        "size_bytes": 524582
+        "size_bytes": 932093
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_brave.wav"
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_brave.wav",
+      "version": "v2.0",
+      "mastering": {
+        "loudness_LUFS": -13.4,
+        "true_peak_dBTP": -3.3,
+        "loudness_range_LU": 0.5,
+        "mid_400_2k_pct": 5.6,
+        "hi_2k_6k_pct": 3.2,
+        "bpm_set": 132,
+        "pass": true
+      },
+      "method": "加厚 numpy 合成 + ffmpeg 母帶鏈（compress/EQ/limit/loudnorm）"
     },
     {
       "file_base": "bgm_stage_2_2",
@@ -542,17 +575,17 @@
       "use": "開始畫面",
       "description": "主角主題輕鬆版 ~120 BPM；暖 pad+marimba+輕拍",
       "loop": true,
-      "loop_length_s": 60.0,
-      "duration_s": 60.0,
-      "loudness_LUFS": -16.63,
-      "true_peak_dBTP": -1.1,
+      "loop_length_s": 60.95,
+      "duration_s": 60.95,
+      "loudness_LUFS": -13.4,
+      "true_peak_dBTP": -3.2,
       "ogg": {
         "path": "assets/source/music/bgm_title.ogg",
         "codec": "vorbis q4",
         "sample_rate": 44100,
         "channels": 2,
-        "bitrate_kbps": 89,
-        "size_bytes": 666457
+        "bitrate_kbps": 111,
+        "size_bytes": 842348
       },
       "mp3": {
         "path": "assets/source/music/bgm_title.mp3",
@@ -560,9 +593,20 @@
         "sample_rate": 44100,
         "channels": 2,
         "bitrate_kbps": 128,
-        "size_bytes": 960932
+        "size_bytes": 976396
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_title.wav"
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_title.wav",
+      "version": "v2.0",
+      "mastering": {
+        "loudness_LUFS": -13.4,
+        "true_peak_dBTP": -3.2,
+        "loudness_range_LU": 2.0,
+        "mid_400_2k_pct": 6.5,
+        "hi_2k_6k_pct": 3.2,
+        "bpm_set": 126,
+        "pass": true
+      },
+      "method": "加厚 numpy 合成 + ffmpeg 母帶鏈（compress/EQ/limit/loudnorm）"
     },
     {
       "file_base": "bgm_transform",
@@ -732,5 +776,6 @@
       },
       "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_1.wav"
     }
-  ]
+  ],
+  "_v2_note": "v2.0 重製：P0 四首。加厚合成（5+ 層、側鏈 pump）＋ ffmpeg 母帶（壓縮/中高頻 EQ/限幅/loudnorm -13）。驗收數字見各項 mastering 欄。舊 v1 母帶於 _archive/02_xianxia_battle/music/v1/。"
 }

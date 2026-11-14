@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-15 勇氣超人：音樂 v2.0 重製 P0 四首（音樂階段）](handoffs/2026-11-15-game02-music-v2-p0.md)：依 v2.0「全部重新設計」做 `bgm_brave`／`bgm_campus`／`bgm_boss`／`bgm_title`——加厚合成＋ffmpeg 母帶，達 −13 LUFS、LRA≤5、中頻≥3.5%、高頻≥2%（§C 全過）。舊 v1 母帶移至 `_archive/.../music/v1/`。**先交 P0 待使用者確認方向**再重製其餘。未改 `js/`。
+
 - [2026-11-15 勇氣超人：音樂全部重新設計的需求 v2.0（Claude）](handoffs/2026-11-15-game02-music-redesign-brief.md)：依使用者給的參考影片量測後改寫 [`MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)；新增 `tools/audio_features.py`。**音檔尚未重做，待音樂工作階段依 v2.0 製作，先交 P0 四首。**
 
 - [2026-11-15 勇氣超人：隨機迷宮、小天使救援、守關者負面狀態、怪量加碼、主選單重做（Claude）](handoffs/2026-11-15-game02-maze-rescue-debuff-menu.md)：每次進關隨機生成迷宮；每關 2–3 次救援（抓俊熊 +1）；九種負面狀態；每關多一波狂潮；主選單改用主視覺並拆成標題與選關兩頁。
