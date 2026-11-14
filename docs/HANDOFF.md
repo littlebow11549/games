@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-15 勇氣超人：音樂全部重新設計的需求 v2.0（Claude）](handoffs/2026-11-15-game02-music-redesign-brief.md)：依使用者給的參考影片量測後改寫 [`MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)；新增 `tools/audio_features.py`。**音檔尚未重做，待音樂工作階段依 v2.0 製作，先交 P0 四首。**
+
 - [2026-11-15 勇氣超人：隨機迷宮、小天使救援、守關者負面狀態、怪量加碼、主選單重做（Claude）](handoffs/2026-11-15-game02-maze-rescue-debuff-menu.md)：每次進關隨機生成迷宮；每關 2–3 次救援（抓俊熊 +1）；九種負面狀態；每關多一波狂潮；主選單改用主視覺並拆成標題與選關兩頁。
 
 - [2026-11-14 全16張合輯頁首精準統一（Codex）](handoffs/2026-11-14-game02-unified-sheet-headers.md)：使用者核准程式合成，同一Logo原檔、固定座標及尺寸，16張Logo區域逐像素一致；新版在sheet/unified，1728×1152，角色原圖未放大。此紀錄取代上一批「Logo尚未統一」狀態，角色內頁缺陷仍待修。
