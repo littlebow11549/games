@@ -34,5 +34,18 @@
     "bgm_ending": "assets/source/music/bgm_ending.ogg",
     "bgm_credits": "assets/source/music/bgm_credits.ogg",
     "bgm_brave": "assets/source/music/bgm_brave.ogg"
+  },
+  "sfx": {
+    "swing": null,
+    "hit": null,
+    "crit": null,
+    "boom": null,
+    "hurt": null,
+    "skill": null,
+    "dodge": null,
+    "shoot": null,
+    "ui": null,
+    "win": null,
+    "lose": null
   }
 }

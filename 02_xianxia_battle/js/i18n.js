@@ -26,9 +26,17 @@ export function applyStatic() {
   document.documentElement.lang = lang;
   for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
   for (const el of document.querySelectorAll('[data-i18n-key]')) el.dataset.key = t(el.dataset.i18nKey);
+  // 語系鍵：兩種語言並排，目前的那個亮起來；點一下換成另一個
   for (const el of document.querySelectorAll('[data-lang-toggle]')) {
-    const next = LANGS[(LANGS.findIndex(([c]) => c === lang) + 1) % LANGS.length];
-    el.textContent = '🌐 ' + next[1];
+    el.replaceChildren();
+    el.append(document.createElement('i'));
+    for (const [code, label] of LANGS) {
+      const chip = document.createElement('span');
+      chip.textContent = label;
+      chip.classList.toggle('on', code === lang);
+      el.append(chip);
+    }
+    el.setAttribute('aria-label', 'Language / 語言');
   }
 }
 export function setLang(code) {

@@ -363,3 +363,22 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
   .overlay.menu .card button.stage{min-height:60px;padding-top:6px;padding-bottom:6px}
   .overlay.menu .stage-row{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
 }
+
+/* ================= 語系切換鍵：遊戲風格的雙格開關 ================= */
+.card .lang-btn,.overlay.menu .lang-btn{display:inline-flex!important;align-items:center;gap:0;width:auto;margin:10px auto 0!important;padding:4px!important;border-radius:999px!important;
+  background:linear-gradient(#17301f,#0a1a10)!important;border:3px solid var(--ink)!important;outline:2px solid #78d747;box-shadow:0 4px 0 #050d08!important;
+  font-size:13px!important;line-height:1;color:#b7ccb8!important;letter-spacing:.04em;overflow:hidden;transition:transform .12s}
+.card .lang-btn::before{display:none!important}
+.card .lang-btn:hover{transform:translateY(-2px)}
+.card .lang-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #050d08!important}
+.card .lang-btn i{width:26px;height:26px;margin:0 6px 0 4px;flex:none;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#eaffd8,#9be564 45%,#3fb53a 70%,#1f7a2b);border:2px solid var(--ink);position:relative}
+.card .lang-btn i::before,.card .lang-btn i::after{content:"";position:absolute;inset:3px;border:1.5px solid #0a1a10;border-radius:50%}
+.card .lang-btn i::before{inset:3px 8px}
+.card .lang-btn i::after{inset:10px 2px auto 2px;height:0;border-width:1.5px 0 0;border-radius:0}
+.card .lang-btn span{padding:7px 14px;border-radius:999px;font-family:var(--font-display);font-weight:900;-webkit-text-stroke:0;transition:background .15s,color .15s}
+.card .lang-btn span.on{background:linear-gradient(#fff3a8,#f6c21c 60%,#f08a1b);color:var(--ink);box-shadow:inset 0 -2px 0 #b9650f,0 0 0 2px var(--ink)}
+/* 標題畫面：放在右上角 */
+.overlay.menu:not(.stages) .lang-btn{position:absolute;right:max(16px,var(--safe-r));top:max(14px,var(--safe-t));margin:0!important}
+.game-art #pause-menu .card .lang-btn{padding:4px!important;min-height:0}
+@media (max-height:460px){ .card .lang-btn span{padding:5px 11px} .card .lang-btn i{width:22px;height:22px} }
