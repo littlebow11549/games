@@ -1,0 +1,7 @@
+/* Atlas windows preserve the original PNGs and live translated text. */
+.game-art .taunt{width:max-content;min-width:110px;max-width:min(240px,calc(100vw - 24px));padding:10px 18px 24px;min-height:54px;border:0;border-radius:0;box-shadow:none;background: url('../assets/source/pic/ui/bubble_sheet.png') 97.98994974874371% 10.273972602739725%/207.56756756756758% 232.72727272727272% no-repeat;color:#141414;white-space:normal;text-align:center;overflow-wrap:anywhere;text-shadow:none}
+.game-art .taunt::after{display:none}
+.game-art .taunt.scared{background-image:url('../assets/source/pic/ui/bubble_sheet.png');background-position:1.272264631043257% 95.95959595959596%;background-size:204.8% 238.13953488372093%;font-style:normal}
+.game-art .taunt.hero{background-image:url('../assets/source/pic/ui/bubble_sheet.png');background-position:97.98994974874371% 95.95959595959596%;background-size:207.56756756756758% 238.13953488372093%}
+.game-art .combo{min-width:105px;padding:10px 22px 14px;background:url('../assets/source/pic/ui/aux_hud_sheet.png') 93.22033898305085% 51.679586563307495%/216.33802816901408% 409.6% no-repeat;color:#151515;text-shadow:none}
+.game-art .combo b{font-size:clamp(28px,5vw,44px)}
