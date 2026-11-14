@@ -8,6 +8,7 @@ import { Input, lockViewport } from './input.js';
 import { GameAudio } from './audio.js';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js';
 import { t, tf, lang, nextLang, applyStatic } from './i18n.js';
+import { makeMaze } from './maze.js';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
@@ -85,15 +86,31 @@ const BOSS_GROUPS = { duo: ['xinji', 'baguashe'] }; // 一關有兩隻守關者�
 // 難度：怪的數量、同場上限、嘲諷頻率、俊熊出現的次數都跟著變。
 // crowd／cap 是乘在畫質表上的倍率；地獄難度的怪會直接生在整張地圖上，幾乎鋪滿。
 const DIFFS = [
-  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false },
-  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: false },
-  { id: 'hell', name: '地獄', crowd: 2.2, cap: 2.5, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true },
+  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false, rescues: 3, pulse: [12, 16] },
+  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: true, rescues: 3, pulse: [9, 12] },
+  { id: 'hell', name: '地獄', crowd: 2, cap: 2, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true, rescues: 2, pulse: [6, 8] },
 ];
 const DIFF_KEY = 'braveguy.diff';
 let diff = 1;
 try { const d = localStorage.getItem(DIFF_KEY); if (d !== null && DIFFS[+d]) diff = +d; } catch { /* 讀不到就用普通 */ }
 const D = () => DIFFS[diff];
 function setDiff(i) { diff = i; try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
+
+// 負面狀態：每個守關者有自己的招牌狀態，每隔一陣子在主角腳下畫圈，圈爆開時還站在裡面就中。
+// 變身中持續時間減半。效果寫在 updateDebuffs 與各處的 hasDebuff() 判斷。
+const DEBUFFS = {
+  sleepy: { name: '想睡', tip: '走不快', color: 0x8fb4ff, dur: 5 },
+  extort: { name: '被勒索', tip: '勇氣一直掉', color: 0xf4c542, dur: 5 },
+  mute: { name: '禁言', tip: '招式放不出來', color: 0x9aa3b5, dur: 4 },
+  guilty: { name: '內疚', tip: '罪惡感一直漲', color: 0x8a4fd6, dur: 5 },
+  weak: { name: '憋氣', tip: '拳頭變軟', color: 0x7c7f86, dur: 6 },
+  burn: { name: '灼燒', tip: '持續扣血', color: 0xff6a1a, dur: 5 },
+  tired: { name: '爆肝', tip: '不能閃避', color: 0x5c6b84, dur: 5 },
+  confuse: { name: '謠言', tip: '左右顛倒', color: 0x5fe07a, dur: 4 },
+  blind: { name: '畫大餅', tip: '看不到小地圖', color: 0xf2b21c, dur: 6 },
+};
+const BOSS_DEBUFF = { folaidiKing: ['sleepy'], qian: ['extort'], lan: ['mute'], nightmare: ['guilty'], midKing: ['weak'], hell: ['burn', 'guilty'],
+  kabanKing: ['tired', 'sleepy'], xinji: ['mute'], baguashe: ['confuse'], lanMgr: ['weak', 'mute'], ganqiaoFull: ['burn', 'mute'], guan: ['blind', 'extort'], incubus: ['confuse', 'guilty', 'weak'] };
 
 const MAX_ATTACKERS = 4;      // 同時出手的小怪上限，避免被圍毆到無法反應
 const SAVE_KEY = 'braveguy.save.v1';
@@ -108,7 +125,11 @@ const ANGEL = {
     '圍巾還我。你不配戴那麼久。', '喔，變回那個只會說「沒關係」的了。', '電池這麼小顆也敢叫超人。', '剛剛那個很帥的人去哪了？喔，是你。', '喘成這樣。你是變身還是跑馬拉松。'],
   burst: '喔，終於會生氣了。',
   clutch: '……這樣都沒倒。還行。',
-  revive: '起來。我可沒說你可以躺。',
+  // 救援時隨機挑一句。救歸救，嘴不能輸
+  revive: ['起來。我可沒說你可以躺。', '又倒？地板很好睡是不是。', '我是天使，不是你的復活點。', '救你比救一隻倉鼠還累。', '你欠我一條命。利息很高。',
+    '丟臉死了。起來，當我沒看到。', '這次算我的。下次也算我的。煩死了。', '躺著也能輸，你也算是一種人才。', '喂，有人在看。至少倒得帥一點。'],
+  reviveLast: '沒了。再倒我就真的下班。',
+  noRescue: '額度用完了。你自己保重。',
   far: '你要退到哪？退到出生前嗎？',
   perfect: '喔。',
   guilt: '你又在怪自己了。被打的是你耶。',
@@ -139,9 +160,9 @@ if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pa
 const QUALITY_KEY = 'braveguy.quality';
 const QUALITY = [
   // crowd：每波總數的倍率；cap：同時在場的小怪上限（超過的排隊，有怪倒下就補上）
-  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 1.8, cap: 22 },
-  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 3, cap: 36 },
-  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 3.5, cap: 48 },
+  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 2.4, cap: 28 },
+  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 4, cap: 48 },
+  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 5, cap: 60 },
 ];
 const coarse = matchMedia('(pointer: coarse)').matches;
 const forced = new URLSearchParams(location.search).get('q');
@@ -241,9 +262,23 @@ const dist2d = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const alive = (e) => e.state !== 'dead' && e.state !== 'spawn';
 const stats = () => FORM[hero.form === 'brave' ? 'brave' : 'student']; // 上班族沿用大學生的數值
 const stage = () => STAGES[game.stage];
+let maze = null; // 這一關的迷宮（教學關與黑影單挑沒有）
+const navTmp = new THREE.Vector3();
 function clampArena(p, margin = 0) {
+  if (maze) maze.collide(p, Math.max(0.3, margin));
   const r = Math.hypot(p.x, p.z), max = ARENA_RADIUS - margin;
   if (r > max) { p.x *= max / r; p.z *= max / r; }
+}
+// 每張地圖的迷宮長相：格數越多路越窄，open 越小越像迷宮
+const MAZE_STYLE = { 1: { n: 7, open: 0.2, color: 0x5d4f9c, top: 0xc9bfff }, 2: { n: 8, open: 0.12, color: 0x24482f, top: 0x7fcf8a }, 3: { n: 8, open: 0.18, color: 0x77808f, top: 0xe9edf2 }, 4: { n: 7, open: 0.3, color: 0x2b2440, top: 0x9b6cff } };
+function buildMaze(st) {
+  if (maze) { maze.dispose(); maze = null; }
+  if (!st.waves.length || st.rules.tutorial || st.id === '3-0') return;
+  const style = MAZE_STYLE[st.map] || MAZE_STYLE[1];
+  // 同一張地圖越後面的關卡格子越多；地獄難度再多一格
+  const extra = (st.id.endsWith('-3') || st.id.endsWith('-4') || st.id.endsWith('-5') ? 1 : 0) + (D().id === 'hell' ? 1 : 0);
+  maze = makeMaze({ radius: ARENA_RADIUS, ...style, n: style.n + extra, open: style.open + rand(-0.05, 0.05), clear: 7.5 });
+  scene.add(maze.group);
 }
 
 // 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
@@ -280,7 +315,7 @@ function resetHero() {
   Object.assign(hero, {
     hp: hero.maxHp, courage: 0, qi: 0, guilt: 0, guiltMax: GAUGE.guiltBase,
     state: 'free', t: 0, combo: -1, queued: false, comboGap: 0, hitDone: false, invuln: 0, cds: {}, yaw: 0, data: null,
-    mode: null, burstT: 0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, readySaid: false,
+    mode: null, burstT: 0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
   hero.pos.set(0, 0, 5);
@@ -308,13 +343,22 @@ function startStage(index) {
   game.stage = index;
   const st = stage();
   ({ sun } = buildWorld(scene, st.theme, Q()));
+  buildMaze(st);
+  // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
+  game.waves = st.waves.slice();
+  if (st.waves.length && !st.rules.tutorial && st.id !== '3-0') {
+    const rush = {};
+    for (const w of st.waves) for (const [k, n] of Object.entries(w)) rush[k] = Math.max(rush[k] || 0, n);
+    for (const k of Object.keys(rush)) rush[k] = Math.round(rush[k] * 1.3);
+    game.waves.push(rush);
+  }
   game.rules = st.rules || {};
   game.abilities = stageAbilities(index);
   if (game.rules.tutorial) game.abilities.add('transform'); // 序章就是學變身的地方
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, queue: [], queueT: 0 });
+    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -421,6 +465,7 @@ function updateHud() {
   $('portrait').classList.toggle('brave', brave);
   $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
+  $('rescue-n').textContent = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
   $('combo').hidden = game.combo < 5;
   $('combo-n').textContent = game.combo;
 
@@ -632,8 +677,9 @@ function spawnEnemy(kind, at, delay = 0) {
 
 function nextWave() {
   game.wave++;
-  const wave = stage().waves[game.wave];
-  banner(tf('第 {0} 波', game.wave + 1));
+  const wave = game.waves[game.wave];
+  const rush = game.waves.length > stage().waves.length && game.wave === game.waves.length - 1;
+  banner(rush ? t('狂潮來襲') : tf('第 {0} 波', game.wave + 1));
   // 怪的總數是關卡表的 crowd 倍；同時在場有上限，其餘排隊陸續補進來（清不完的感覺，但不會卡）
   const list = [];
   for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * D().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
@@ -707,15 +753,17 @@ function hurtHero(amount, opts = {}) {
       say('clutch', true);
       return;
     }
-    if (!hero.usedRevive) {
-      // 保險二：小天使的鼓勵
-      hero.usedRevive = true;
-      hero.hp = hero.maxHp * GAUGE.reviveHp;
-      hero.invuln = 2;
+    if (game.rescues > 0) {
+      // 保險二：小天使救援。每關有幾次額度，抓到俊熊可以加
+      game.rescues--;
+      hero.hp = hero.maxHp * 0.45;
+      hero.invuln = 2.5;
+      hero.debuff = {};
+      popup(hero.pos, 3.4, tf('小天使救援！剩 {0} 次', game.rescues), 'good');
       fx.ring(hero.pos, 0.5, 7, 0xf48fc6, 0.5);
       fx.pillar(hero.pos, 1.2, 10, 0xffc4e3, 0.6);
       areaStrike(hero.pos, 6, 0.2, { kb: 14, launch: 4 });
-      say('revive', true);
+      say(game.rescues > 0 ? 'revive' : 'reviveLast', true);
       audio.sfx('skill');
       return;
     }
@@ -743,7 +791,7 @@ function damageEnemy(e, mult, o = {}) {
     return { killed: false, crit: false };
   }
   const crit = Math.random() < HERO.critRate;
-  let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1);
+  let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.3) dmg = Math.max(0, e.hp - e.maxHp * 0.3 + 1); // 不會被直接打死，要進入最後一段
   if (guarded) dmg *= 0.35; // 假森：平常打不動，出手後或被打飛時才打得痛
@@ -1175,8 +1223,9 @@ function updateEnemy(e, dt, attackers) {
     }
     if (heroAlive && bossThink(e, d, dx, dz)) return;
     if (d > Math.max(2.2, def.radius + 1.6)) {
-      e.pos.x += (dx / d) * speed * dt;
-      e.pos.z += (dz / d) * speed * dt;
+      const go = maze ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d); // 迷宮裡繞路走
+      e.pos.x += go.x * speed * dt;
+      e.pos.z += go.z * speed * dt;
       e.visual.play('run');
     } else e.visual.play('idle');
     return;
@@ -1204,8 +1253,9 @@ function updateEnemy(e, dt, attackers) {
       e.pos.z += (dz / d) * speed * want * dt;
       e.visual.play(want ? 'run' : 'idle');
     } else if (d > def.reach * 0.8) {
-      e.pos.x += (dx / d) * speed * dt;
-      e.pos.z += (dz / d) * speed * dt;
+      const go = maze ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d); // 迷宮裡繞路走
+      e.pos.x += go.x * speed * dt;
+      e.pos.z += go.z * speed * dt;
       e.visual.play('run');
     } else {
       e.visual.play('idle');
@@ -1285,6 +1335,7 @@ function updateAmbush(dt) {
       // 被抓到（變身中不會被嚇到，等於直接抓到）
       a.done = true; a.t = 0; a.caught = true;
       game.caught++;
+      if (game.rescues < 5) { game.rescues++; popup(hero.pos, 3.8, tf('救援 +1（共 {0} 次）', game.rescues), 'good'); }
       addCourage(15);
       const heal = Math.round(hero.maxHp * 0.1);
       hero.hp = Math.min(hero.maxHp, hero.hp + heal);
@@ -1433,6 +1484,7 @@ function startAttack(index, mv) {
 
 function startDodge(mv) {
   if ((hero.cds.dodge || 0) > 0) return;
+  if (hasDebuff('tired')) { popup(hero.pos, 2.6, '（肝不動了）', 'guard'); hero.cds.dodge = 0.5; return; }
   const f = stats();
   hero.cds.dodge = f.dodgeCd;
   if (mv.len > 0) hero.yaw = Math.atan2(mv.x, mv.y);
@@ -1517,7 +1569,8 @@ function updateHero(dt) {
   const mv = input.move();
   const actions = input.takeActions();
   if (input.held.has('attack') && !actions.includes('attack')) actions.push('attack'); // 按住連打
-  const speed = stats().speed * (hero.slowT > 0 ? 0.55 : 1); // 揹鍋時變慢
+  const speed = stats().speed * (hero.slowT > 0 ? 0.55 : 1) * (hasDebuff('sleepy') ? 0.6 : 1); // 揹鍋、想睡時變慢
+  if (hasDebuff('confuse')) { mv.x = -mv.x; mv.y = -mv.y; } // 謠言：方向顛倒
   hero.movingT = mv.len > 0 ? 0 : hero.movingT + dt;
   const combo = COMBO[hero.form === 'brave' ? 'brave' : 'student'];
 
@@ -1688,6 +1741,7 @@ function updateShots(dt) {
     s.life -= dt;
     s.mesh.position.addScaledVector(s.vel, dt);
     const out = Math.hypot(s.mesh.position.x, s.mesh.position.z) > ARENA_RADIUS + 3;
+    if (s.hostile && maze && maze.blocked(s.mesh.position)) s.life = 0; // 敵人的子彈會被牆擋下
     if (s.hostile) {
       if (dist2d(s.mesh.position, hero.pos) < s.radius + HERO.radius && hero.invuln <= 0 && hero.state !== 'transforming') {
         if (s.pan && hero.form !== 'brave') { hero.slowT = 2.5; popup(hero.pos, 2.9, '（揹鍋）', 'guard'); }
@@ -1723,6 +1777,8 @@ function updateShots(dt) {
 // ---------- 流程 ----------
 
 function showOverlay({ title, text, note, btn, next, easy }) {
+  $('overlay').classList.remove('menu', 'stages');
+  $('ov-menu').textContent = t('選關');
   $('ov-logo').hidden = true;
   $('ov-title').hidden = false;
   $('overlay').classList.add('result');
@@ -1782,6 +1838,8 @@ function update(dt) {
   game.time += dt;
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
+  if (maze) maze.updateFlow(hero.pos);
+  updateDebuffs(dt);
   const attackers = { melee: 0, ranged: 0 };
   for (const e of enemies) if (e.state === 'windup' && !e.def.boss) { if (e.def.ranged) attackers.ranged++; else attackers.melee++; }
   for (const e of enemies) updateEnemy(e, dt, attackers);
@@ -1811,7 +1869,7 @@ function update(dt) {
         hero.readySaid = false;
         popup(hero.pos, 2.8, '可以變身了', 'good');
       });
-    } else if (game.wave < st.waves.length - 1) {
+    } else if (game.wave < game.waves.length - 1) {
       if (game.wave >= 0) say('wave');
       nextWave();
     } else if (st.boss && !game.bossSpawned) {
@@ -1865,6 +1923,7 @@ function updateMinimap() {
   c.strokeStyle = '#ffffff30'; c.lineWidth = 2;
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k, 0, 6.283); c.stroke();
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k * 0.5, 0, 6.283); c.stroke();
+  if (maze) { c.fillStyle = '#e9f2ffb0'; for (const w of maze.walls) c.fillRect(X({ x: w.x0, z: 0 }), R + w.z0 * k, (w.x1 - w.x0) * k, (w.z1 - w.z0) * k); }
   // 危險區
   for (const h of hazards) { c.fillStyle = '#ff3b3040'; c.beginPath(); c.arc(X(h.pos), Y(h.pos), Math.max(3, h.r * k), 0, 6.283); c.fill(); }
   // 瞄準方向：扇形
@@ -1898,6 +1957,53 @@ function updateMinimap() {
   if (useArt && hero.form === 'brave') { c.strokeStyle = '#9be564'; c.beginPath(); c.arc(0, 0, 15, 0, Math.PI * 2); c.stroke(); }
   c.restore();
   c.restore();
+}
+
+// ---------- 負面狀態 ----------
+const hasDebuff = (k) => (hero.debuff[k] || 0) > 0;
+function applyDebuff(k, by) {
+  const def = DEBUFFS[k];
+  hero.debuff[k] = def.dur * (hero.form === 'brave' ? 0.5 : 1);
+  if (k === 'mute') hero.silenceT = Math.max(hero.silenceT, hero.debuff[k]);
+  popup(hero.pos, 3.3, `${t(def.name)}！`, 'hurt');
+  fx.ring(hero.pos, 0.4, 3, def.color, 0.5);
+  audio.sfx('hurt');
+  if (by) bossLine(by);
+}
+function updateDebuffs(dt) {
+  const box = $('debuffs');
+  let html = '';
+  for (const k of Object.keys(hero.debuff)) {
+    if (hero.debuff[k] <= 0) continue;
+    hero.debuff[k] -= dt;
+    html += `<span style="--c:#${DEBUFFS[k].color.toString(16).padStart(6, '0')}"><b>${t(DEBUFFS[k].name)}</b> ${t(DEBUFFS[k].tip)} ${Math.max(0, hero.debuff[k]).toFixed(0)}</span>`;
+  }
+  if (box.dataset.h !== html) { box.dataset.h = html; box.innerHTML = html; }
+  if (hasDebuff('extort')) hero.courage = Math.max(0, hero.courage - 7 * dt);
+  if (hasDebuff('guilty') && hero.form !== 'brave') hero.guilt = Math.min(hero.guiltMax * 0.98, hero.guilt + hero.guiltMax * 0.06 * dt);
+  if (hasDebuff('burn')) hero.hp = Math.max(1, hero.hp - hero.maxHp * 0.02 * dt);
+  mini.cv.style.visibility = hasDebuff('blind') ? 'hidden' : '';
+  document.body.classList.toggle('blind', hasDebuff('blind'));
+
+  // 守關者的狀態圈：先在主角腳下預告，一秒後爆開
+  const boss = enemies.find((e) => e.def.boss && alive(e) && BOSS_DEBUFF[e.kind] && !e.untouchable);
+  if (!boss || game.phase !== 'playing') { game.pulse = null; return; }
+  if (game.pulse) {
+    game.pulse.t -= dt;
+    if (game.pulse.t <= 0) {
+      const p = game.pulse; game.pulse = null;
+      fx.dome(p.pos, p.r, DEBUFFS[p.kind].color, 0.4);
+      if (dist2d(hero.pos, p.pos) < p.r && hero.invuln <= 0 && hero.state !== 'transforming' && hero.state !== 'dead') applyDebuff(p.kind, boss);
+    }
+    return;
+  }
+  game.pulseT -= dt;
+  if (game.pulseT > 0) return;
+  game.pulseT = rand(...D().pulse);
+  const kinds = BOSS_DEBUFF[boss.kind], kind = kinds[Math.floor(Math.random() * kinds.length)];
+  game.pulse = { pos: hero.pos.clone(), r: 4.2, t: 1.1, kind };
+  fx.telegraph(game.pulse.pos, 4.2, 1.1, DEBUFFS[kind].color);
+  popup(game.pulse.pos, 0.6, t(DEBUFFS[kind].name), 'guard');
 }
 
 function updateCamera(dt) {
@@ -1990,6 +2096,7 @@ function firstOpenStage() {
   return STAGES.length - 1;
 }
 
+let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
   game.phase = 'ready';
   game.bgm = null; audio.playBgm(audio.tracks.bgm_title ? 'bgm_title' : null);
@@ -1997,11 +2104,14 @@ function showMenu() {
   $('hud').hidden = true;
   $('dialog').hidden = true;
   $('overlay').classList.remove('result');
+  $('overlay').classList.add('menu');
+  $('overlay').classList.toggle('stages', menuView === 'stages');
   $('ov-logo').hidden = false;
   $('ov-title').hidden = true;
   $('ov-next').hidden = true;
   $('ov-easy').hidden = true;
-  $('ov-menu').hidden = true;
+  $('ov-menu').hidden = false;
+  $('ov-menu').textContent = t(menuView === 'stages' ? '← 返回' : '選關');
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
     : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
@@ -2035,8 +2145,11 @@ function showMenu() {
     }
     const b = document.createElement('button');
     b.className = 'stage';
-    b.textContent = st.id;
-    b.title = `${t(st.name)}: ${t(st.sub)}`;
+    const bossName = st.boss ? (BOSS_GROUPS[st.boss] || [st.boss]).map((k) => t(BOSSES[k].name)).join(t('＋')) : '';
+    b.innerHTML = `<i>${st.id}</i><b></b><small></small>${bossName ? '<em></em>' : ''}`;
+    b.querySelector('b').textContent = t(st.name);
+    b.querySelector('small').textContent = t(st.sub);
+    if (bossName) b.querySelector('em').textContent = `BOSS　${bossName}`;
     b.disabled = !isOpen(i);
     b.classList.toggle('done', save.cleared.includes(st.id));
     b.classList.toggle('current', i === next);
@@ -2049,7 +2162,12 @@ function showMenu() {
 
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
-$('ov-menu').addEventListener('click', () => { audio.sfx('ui'); showMenu(); });
+$('ov-menu').addEventListener('click', () => {
+  audio.sfx('ui');
+  // 在主選單裡是「選關／返回」的切換；在結算畫面是回主選單
+  menuView = game.phase === 'ready' && menuView === 'title' ? 'stages' : 'title';
+  showMenu();
+});
 $('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
 $('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
@@ -2095,7 +2213,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, setDiff, get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   startGame, startStage, spawnEnemy, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
