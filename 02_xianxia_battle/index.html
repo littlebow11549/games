@@ -7,7 +7,7 @@
 <link rel="icon" type="image/webp" href="assets/runtime/pic/branding/favicon.webp">
 <link rel="apple-touch-icon" href="assets/source/pic/branding/icon_01_logo.png">
 <link rel="stylesheet" href="css/game.css?v=20261114d">
-<link rel="stylesheet" href="css/ui-art.css?v=20261115b">
+<link rel="stylesheet" href="css/ui-art.css?v=20261115d">
 <link rel="stylesheet" href="css/menu-art.css?v=20261114f">
 <link rel="stylesheet" href="css/panel-art.css?v=20261114g">
 <link rel="modulepreload" href="js/world.js">
@@ -43,6 +43,7 @@
 
   <div class="quest">
     <h3 id="quest-title" data-i18n="任務">任務</h3>
+    <p id="quest-mini"></p>
     <p id="quest-wave" data-i18n="打倒心魔">打倒心魔</p>
     <p id="quest-count">擊倒 0</p>
     <p id="rescue"><span data-i18n="小天使救援">小天使救援</span> <b id="rescue-n"></b></p>
@@ -96,6 +97,12 @@
 </div>
 
 <div id="overlay" class="overlay">
+  <div id="menu-art" aria-hidden="true">
+    <div class="rays"></div><div class="dots"></div>
+    <div class="frame f1"></div><div class="frame f2"></div><div class="frame art"></div>
+    <div id="menu-bubble"></div>
+    <div id="menu-ticker"><span></span></div>
+  </div>
   <div class="card">
     <img id="ov-logo" class="logo" src="assets/runtime/pic/branding/logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
@@ -136,7 +143,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261115b';
+    s.src = 'js/main.js?v=20261115d';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

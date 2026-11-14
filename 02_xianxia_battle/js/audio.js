@@ -1,9 +1,13 @@
-// 音訊：音效先以 WebAudio 合成佔位；BGM 由 assets/manifest.json 的 audio 欄位提供（需求見 assets/MUSIC.md）。
+// BGM 使用 manifest.audio；正式 SFX 可填 manifest.sfx，缺檔時沿用 WebAudio 合成音效。
 const MUTE_KEY = 'game02.muted';
 
 export class GameAudio {
   constructor(manifest) {
     this.tracks = (manifest && manifest.audio) || {};
+    this.sfxTracks = (manifest && manifest.sfx) || {};
+    this.sfxBuffers = new Map();
+    this.sfxLoading = new Map();
+    this.sfxFailed = new Set();
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
     this.bgm = null;
@@ -119,7 +123,45 @@ export class GameAudio {
     o.stop(t + dur);
   }
 
+  // 正式音效採首次觸發後背景載入，已緩存時以獨立 BufferSource 疊音。
+  // 初次載入、網路錯誤或解碼失敗均維持原合成音，不阻塞戰鬥。
+  loadSfx(name, url) {
+    if (!this.ctx || this.sfxLoading.has(name) || this.sfxFailed.has(name)) return;
+    const promise = (async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('SFX HTTP ' + response.status);
+        const data = await response.arrayBuffer();
+        const buffer = await this.ctx.decodeAudioData(data);
+        this.sfxBuffers.set(name, buffer);
+      } catch (error) {
+        this.sfxFailed.add(name);
+        console.warn('SFX fallback:', name, error);
+      } finally {
+        this.sfxLoading.delete(name);
+      }
+    })();
+    this.sfxLoading.set(name, promise);
+  }
+
   sfx(name) {
+    if (this.muted) return;
+    const source = this.sfxTracks[name];
+    if (source && this.ctx && this.master) {
+      const buffer = this.sfxBuffers.get(name);
+      if (buffer) {
+        const player = this.ctx.createBufferSource();
+        player.buffer = buffer;
+        player.connect(this.master);
+        player.start();
+        return;
+      }
+      this.loadSfx(name, this.resolve(source));
+    }
+    this.syntheticSfx(name);
+  }
+
+  syntheticSfx(name) {
     switch (name) {
       case 'swing': this.noise(0.16, 900, 1.2, 0.5, 3200); break;
       case 'hit': this.tone('square', 220, 70, 0.09, 0.35); this.noise(0.07, 2400, 0.8, 0.4); break;

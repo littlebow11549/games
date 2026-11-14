@@ -4,6 +4,10 @@
 
 ## 最新交付
 
+- [2026-11-15 勇氣超人：主選單第三版、任務欄收合、語系鍵、音效插槽（Claude）](handoffs/2026-11-15-game02-menu-v3-quest-collapse.md)：選單改漫畫分鏡風；任務欄可收成一行；語系改雙格開關；合併 Codex 的音效載入（尚無音效檔）；`ASSETS.md` §5.1 新開兩張選單主視覺的需求。
+
+- [2026-11-14 SFX 正式檔案插槽與容錯接入](handoffs/2026-11-14-game02-sfx-batch.md)：新增11種音效插槽、快取疊音／合成回退與Node測試；尚無正式音效檔，未合併／部署。
+
 - [2026-11-15 勇氣超人：音樂全部重新設計的需求 v2.0（Claude）](handoffs/2026-11-15-game02-music-redesign-brief.md)：依使用者給的參考影片量測後改寫 [`MUSIC.md`](../02_xianxia_battle/assets/MUSIC.md)；新增 `tools/audio_features.py`。**音檔尚未重做，待音樂工作階段依 v2.0 製作，先交 P0 四首。**
 
 - [2026-11-15 勇氣超人：隨機迷宮、小天使救援、守關者負面狀態、怪量加碼、主選單重做（Claude）](handoffs/2026-11-15-game02-maze-rescue-debuff-menu.md)：每次進關隨機生成迷宮；每關 2–3 次救援（抓俊熊 +1）；九種負面狀態；每關多一波狂潮；主選單改用主視覺並拆成標題與選關兩頁。
