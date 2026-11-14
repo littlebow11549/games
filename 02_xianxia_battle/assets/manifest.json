@@ -19,20 +19,20 @@
     "bgm_stage_1_3": "assets/source/music/bgm_stage_1_3.ogg",
     "bgm_stage_1_4": "assets/source/music/bgm_stage_1_4.ogg",
     "bgm_stage_2_1": "assets/source/music/bgm_stage_2_1.ogg",
-    "bgm_stage_2_2": "assets/source/music/bgm_wild.ogg",
+    "bgm_stage_2_2": "assets/source/music/bgm_stage_2_2.ogg",
     "bgm_stage_3_0": "assets/source/music/bgm_office_mute.ogg",
     "bgm_stage_3_1": "assets/source/music/bgm_office.ogg",
-    "bgm_stage_3_2": "assets/source/music/bgm_office.ogg",
-    "bgm_stage_3_3": "assets/source/music/bgm_office.ogg",
-    "bgm_stage_3_4": "assets/source/music/bgm_office.ogg",
-    "bgm_stage_3_5": "assets/source/music/bgm_office.ogg",
-    "bgm_stage_4_1": null,
+    "bgm_stage_3_2": "assets/source/music/bgm_stage_3_2.ogg",
+    "bgm_stage_3_3": "assets/source/music/bgm_stage_3_3.ogg",
+    "bgm_stage_3_4": "assets/source/music/bgm_stage_3_4.ogg",
+    "bgm_stage_3_5": "assets/source/music/bgm_stage_3_5.ogg",
+    "bgm_stage_4_1": "assets/source/music/bgm_stage_4_1.ogg",
     "bgm_title": null,
     "bgm_transform": null,
     "bgm_defeat": null,
     "bgm_talk": null,
     "bgm_ending": null,
     "bgm_credits": null,
-    "bgm_brave": "assets/source/music/theme_braveguy_demo.ogg"
+    "bgm_brave": "assets/source/music/bgm_brave.ogg"
   }
 }

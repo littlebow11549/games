@@ -659,7 +659,9 @@ function spawnBoss() {
   $('boss-name').textContent = names;
   $('quest-wave').textContent = tf('打倒{0}', names);
   const own = `bgm_stage_${stage().id.replace('-', '_')}`;
-  if (!audio.tracks[own] || stage().waves.length) setBgm('bgm_boss');
+  // 黑影戰（惡夢／地獄／夢魘超人）整關用自己的曲子；其他關卡守關者登場後切通用守關曲
+  const shadowFight = ['nightmare', 'hell', 'incubus'].includes(stage().boss);
+  if (!audio.tracks[own] || (stage().waves.length && !shadowFight)) setBgm('bgm_boss');
   if (stage().boss === 'incubus') say('shield', true);
 }
 

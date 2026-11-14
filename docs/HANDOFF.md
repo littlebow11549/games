@@ -4,6 +4,10 @@
 
 ## 最新交付
 
+- [2026-11-14 勇氣超人：接上變身曲與其餘關卡曲（Claude）](handoffs/2026-11-14-game02-music-brave-wiring.md)：合併音樂分支第二批 7 首；變身改播正式的 `bgm_brave`；黑影戰（1-4、2-2、4-1）守關者登場後不再切成通用守關曲。同時收進 Codex 的 HUD 素材（頭像、計量條圖集、罪惡感爆炸序列），**HUD 素材尚未接入**。
+
+- [2026-11-14 勇氣超人：變身曲 `bgm_brave` + 其餘關卡戰鬥曲（音樂階段）](handoffs/2026-11-14-game02-music-brave-batch.md)：交 `bgm_brave`、`bgm_stage_2_2`、`3_2`、`3_3`、`3_4`、`3_5`、`4_1`（各 ogg+mp3、−16 LUFS、無縫循環），已換掉暫代曲。**所有關卡戰鬥曲與變身曲皆有專屬曲**；尚缺非戰鬥曲（title/transform/defeat/talk/ending/credits）。分支 `claude/brave-guy-music`，未改 `js/`。
+
 - [2026-11-14 P1 HUD核心素材（Codex）](handoffs/2026-11-14-game02-hud-core.md)：兩個主角透明頭像、八部件計量圖集、4×2罪惡感爆炸圖已產出，附尺寸／alpha紀錄、切圖建議與本機預覽。正式切圖、512衍生檔、九宮格與遊戲接入尚待驗證。
 
 - [2026-11-14 勇氣超人：新遊戲 icon 接入（Claude）](handoffs/2026-11-14-game02-icon-integration.md)：首頁第二款卡片與遊戲分頁圖示改用 `icon_01_logo.png` 的無損 WebP 衍生檔（512／256）。追加：開始畫面改用核准的 Logo。橫幅尚未接入。
