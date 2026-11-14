@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "requested_size": "3072x2048",
+  "minimum_size": "1536x1024",
+  "scope": "P1 three character sheets; ganqiao three forms on one sheet",
+  "assets": [
+    {
+      "id": "angel",
+      "path": "pic/sheet/sheet_angel.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 2035545,
+      "sha256": "2487A8F287922CEA4F08BD29C608D5FCF2D60860F3F5C3ACCE76D9088D39C602",
+      "status": "design_review_pending",
+      "upscaled": false
+    },
+    {
+      "id": "nightmare",
+      "path": "pic/sheet/sheet_nightmare.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1936835,
+      "sha256": "D354E5AE800B29D2911FFEEA00568B11D85482458D94A39384765041FA45802D",
+      "status": "design_review_pending",
+      "upscaled": false
+    },
+    {
+      "id": "ganqiao",
+      "path": "pic/sheet/sheet_ganqiao.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 2021009,
+      "sha256": "8603781AE7EF210E8BB26364BF5F64BDD252A6934465BF7A53933FC676F35A04",
+      "status": "design_review_pending",
+      "upscaled": false
+    }
+  ],
+  "limitations": [
+    "Height charts illustrative, not calibrated engineering references",
+    "Unseen rear details are proposals",
+    "P1 designs await user review",
+    "No Library file IDs; prior upload helper unavailable",
+    "No Tripo or push"
+  ]
+}

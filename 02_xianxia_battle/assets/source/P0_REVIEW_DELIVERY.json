@@ -1,0 +1,38 @@
+[
+  {
+    "path": "02_xianxia_battle/assets/source/pic/branding/logo_01_review_v1.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1620366,
+    "pixel_format": "Format32bppArgb",
+    "alpha_at_corner": 0,
+    "sha256": "117520EB3A2F51502377089A37E15277C18AC96B7F0D9434A363EFB17CC6159F",
+    "status": "design_approved_native_high_resolution_pending",
+    "resized": false,
+    "compression": "Original generated PNG bytes, no re-encoding"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/sheet/sheet_student.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1867953,
+    "pixel_format": "Format24bppRgb",
+    "alpha_at_corner": 255,
+    "sha256": "A66A3916358B45BB4826BF3CA60F0BC02E652541930BC8A9A02CEEAF13C4273E",
+    "status": "character_design_approved_3d_reference_drafts_created",
+    "resized": false,
+    "compression": "Original generated PNG bytes, no re-encoding"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/sheet/sheet_braveguy.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1984392,
+    "pixel_format": "Format24bppRgb",
+    "alpha_at_corner": 255,
+    "sha256": "87AFBF35B5A60E3169FBDE1D0DFDC4152D8AB7CDF49D94632A88118147743536",
+    "status": "character_design_approved_3d_reference_drafts_created",
+    "resized": false,
+    "compression": "Original generated PNG bytes, no re-encoding"
+  }
+]

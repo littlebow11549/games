@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-14",
+  "path": "pic/branding/icon_01_logo.png",
+  "width": 1254,
+  "height": 1254,
+  "pixel_format": "Format24bppRgb",
+  "bytes": 1924355,
+  "sha256": "C890DC0DD6162C8082B384F025362F57A735C3D5782761D35856DA7101FC013B",
+  "method": "built-in image_gen edit using icon_01.png and approved logo",
+  "upscaled": false,
+  "runtime_integrated": false
+}

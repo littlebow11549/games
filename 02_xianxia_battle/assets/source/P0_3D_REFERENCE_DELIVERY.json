@@ -1,0 +1,116 @@
+[
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/student_front.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1211478,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "253,255,255",
+      "255,255,255",
+      "254,253,253",
+      "253,253,253",
+      "254,253,253",
+      "254,254,254"
+    ],
+    "sha256": "A2FD4B335E81E48288544303E738917655BFBBD27588EA254DEFD2A0748EB778",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/student_side.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1150932,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "253,255,255",
+      "254,255,255",
+      "254,254,254",
+      "254,253,254",
+      "254,253,253",
+      "253,254,254"
+    ],
+    "sha256": "A8425099AED93421D002415B048F010426CF0BF50F5A46C5C9212D594F571089",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/student_back.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1125852,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "253,255,254",
+      "254,255,255",
+      "254,254,253",
+      "254,253,254",
+      "253,253,253",
+      "254,254,254"
+    ],
+    "sha256": "526BAC7D52E8DD559A000F499518F901BF071DA8F572603F5BA1548676445FB3",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_front.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1267407,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "254,255,255",
+      "254,255,255",
+      "254,253,253",
+      "254,253,253",
+      "253,253,253",
+      "253,254,254"
+    ],
+    "sha256": "530CF401D1DB9B1F5635C9AD92A7CEF96E64CA60CBDB6AEEB70CC13CD32430E8",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_side.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1157610,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "253,255,254",
+      "255,255,255",
+      "254,254,253",
+      "254,253,254",
+      "254,253,254",
+      "253,254,254"
+    ],
+    "sha256": "1F993869281BDDE6788F84C6C4854336EC2503B2DE39FBA3BA2E1609049BB2F7",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  },
+  {
+    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_back.png",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1185000,
+    "pixel_format": "Format24bppRgb",
+    "background_samples": [
+      "254,255,255",
+      "254,255,255",
+      "253,253,253",
+      "253,253,253",
+      "253,253,253",
+      "254,254,254"
+    ],
+    "sha256": "03528DEED3084150C2FC87A31FF8A183022047568D150DB545C3642ED7B13CD0",
+    "resized": false,
+    "compression": "Original generated PNG, no re-encoding",
+    "status": "revised_reference_native_resolution_pending"
+  }
+]

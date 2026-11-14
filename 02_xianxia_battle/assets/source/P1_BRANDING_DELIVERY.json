@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "id": "banner_01",
+      "path": "pic/branding/banner_01.png",
+      "width": 2172,
+      "height": 724,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1849785,
+      "sha256": "30E848AAC7ADE6E7C236E067CDDE1CCF72FF47105A3B4FB08E2B5441BB047A0C",
+      "upscaled": false,
+      "status": "design_review_pending"
+    },
+    {
+      "id": "icon_01",
+      "path": "pic/branding/icon_01.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1808368,
+      "sha256": "BBD1F5D5415EDAA1D3C2C9BAC75952110176716CD5C523F6D8F6E388BB38B5DE",
+      "upscaled": false,
+      "status": "design_review_pending"
+    }
+  ],
+  "reference_banner_size": "2172x724",
+  "icon_target_size": "1024x1024",
+  "runtime_integrated": false
+}

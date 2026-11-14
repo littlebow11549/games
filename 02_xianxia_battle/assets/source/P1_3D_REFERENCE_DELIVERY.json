@@ -1,0 +1,536 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "target_size": "2048x2048",
+  "assets": [
+    {
+      "id": "angel_front",
+      "path": "pic/concept/angel_front.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1366056,
+      "sha256": "EB3F157909A246E4E7B358C055FD4635AF9742B28FD8D6FB2B0996B9D964CE51",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            254,
+            254,
+            255
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "angel_side",
+      "path": "pic/concept/angel_side.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1143650,
+      "sha256": "D54160BB2A6ACD589E74551BC6F66DBCC5AD5D6419206CECF9A5912DF4B6C6FA",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            254,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            254,
+            253,
+            254
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "angel_back",
+      "path": "pic/concept/angel_back.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1249027,
+      "sha256": "B6D64A6EBFB9EDEF0413FD28E22C31E33C5844EDFF7E1466086C3E9DE3616070",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "nightmare_front",
+      "path": "pic/concept/nightmare_front.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1684563,
+      "sha256": "4BB11EB547763D89112F736FFDFE7838DA1C374FC293FC2B0289F30EC17F3C7A",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            252,
+            252,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            254,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            252,
+            252,
+            252
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            250,
+            249,
+            249
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "nightmare_side",
+      "path": "pic/concept/nightmare_side.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1181409,
+      "sha256": "D891AB2630C9565706F05A2B654FFD02619071ECE0DEE877C52E214F987782CB",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            253,
+            255,
+            254
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            254,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            254,
+            253,
+            254
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "nightmare_back",
+      "path": "pic/concept/nightmare_back.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1225162,
+      "sha256": "830ED44E43AA9860C77474472E566F158E4C373640D724FA624759FACB519934",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "ganqiao_front",
+      "path": "pic/concept/ganqiao_front.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1361554,
+      "sha256": "3D8440D92BD3CFBE250C30F538368AEF8B28AA312D441851C37CB5BFCB2CC691",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            252,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            252,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "ganqiao_side",
+      "path": "pic/concept/ganqiao_side.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1212599,
+      "sha256": "9CAA0ACD07F516AA430EDF282E9AB5F99D5D2ECEA8870C3385E9320219DCA068",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            254,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            254,
+            254
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    },
+    {
+      "id": "ganqiao_back",
+      "path": "pic/concept/ganqiao_back.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format24bppRgb",
+      "bytes": 1348765,
+      "sha256": "97B9DE634500E0D974C45BFB331961C5BB081CD67FED534198F574D65751A16F",
+      "background_samples": [
+        {
+          "x": 0,
+          "y": 0,
+          "rgb": [
+            253,
+            253,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "rgb": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "rgb": [
+            253,
+            252,
+            253
+          ]
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "rgb": [
+            253,
+            252,
+            253
+          ]
+        },
+        {
+          "x": 10,
+          "y": 600,
+          "rgb": [
+            254,
+            253,
+            253
+          ]
+        }
+      ],
+      "status": "draft_not_accepted_for_3d",
+      "upscaled": false
+    }
+  ],
+  "limitations": [
+    "Native size below2048; no interpolation",
+    "Background samples do not prove strict uniform white",
+    "Independent drawings not geometrically calibrated",
+    "Angel wing orientation and dragon hand/tail projections need modeling review",
+    "No Tripo upload or conversion"
+  ]
+}
