@@ -325,8 +325,10 @@ function startStage(index) {
   $('quest-title').textContent = `${st.id}　${t(st.name)}`;
   $('quest-wave').textContent = t(st.sub);
   $('suanle').hidden = st.map !== 3;
-  setBgm(stageBgm());
-  runDialog(st.intro, () => { if (index === 0) say('start', true); });
+  // 開場對話播對話曲，講完才進該關的戰鬥曲
+  const talk = st.intro && st.intro.length && audio.tracks.bgm_talk;
+  setBgm(talk ? 'bgm_talk' : stageBgm());
+  runDialog(st.intro, () => { if (talk) setBgm(stageBgm()); if (index === 0) say('start', true); });
 }
 const startGame = () => startStage(game.stage);
 
@@ -1742,8 +1744,8 @@ function endGame(win) {
   game.fails++;
   setTimeout(() => {
     game.phase = 'over';
-    game.bgm = null; audio.playBgm(null);
-    audio.sfx('lose');
+    game.bgm = null; audio.playBgm(audio.tracks.bgm_defeat ? 'bgm_defeat' : null);
+    if (!audio.tracks.bgm_defeat) audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
     showOverlay({ title: '倒 下', text: `${stage().id}　${t(stage().name)}`, note: t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
   }, 1200);
@@ -1756,11 +1758,13 @@ function clearStage() {
   if (!save.cleared.includes(st.id)) { save.cleared.push(st.id); writeSave(); }
   if (hero.form === 'brave') revert();
   setTimeout(() => {
-    game.bgm = null; audio.playBgm('bgm_victory');
-    audio.sfx('win');
+    const last = game.stage >= STAGES.length - 1;
+    // 最後一關：結局曲陪著和解的對話，講完後換製作名單的主題曲
+    game.bgm = null; audio.playBgm(last && audio.tracks.bgm_ending ? 'bgm_ending' : 'bgm_victory');
+    if (!last) audio.sfx('win');
     runDialog(st.outro, () => {
       game.phase = 'over';
-      const last = game.stage >= STAGES.length - 1;
+      if (last && audio.tracks.bgm_credits) audio.playBgm('bgm_credits');
       showOverlay({
         title: last ? '醒 來' : '突 破',
         text: last ? t('他知道自己要往哪走了。') : tf('{0}　{1}　用時 {2} 秒　擊倒 {3}', st.id, t(st.name), game.time.toFixed(0), game.kills),
@@ -1973,7 +1977,7 @@ function firstOpenStage() {
 
 function showMenu() {
   game.phase = 'ready';
-  game.bgm = null; audio.playBgm(null);
+  game.bgm = null; audio.playBgm(audio.tracks.bgm_title ? 'bgm_title' : null);
   clearField();
   $('hud').hidden = true;
   $('dialog').hidden = true;
@@ -2056,6 +2060,12 @@ function refreshLang() {
 }
 for (const el of document.querySelectorAll('[data-lang-toggle]')) el.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); nextLang(); refreshLang(); });
 applyStatic();
+// 瀏覽器要等玩家第一次點擊才准播聲音：第一次點擊時啟動音訊，人還在標題畫面就補播標題曲
+addEventListener('pointerdown', () => {
+  if (audio.ctx) return;
+  audio.unlock();
+  if (game.phase === 'ready' && audio.tracks.bgm_title) { audio.stopBgm(); audio.bgmName = null; audio.playBgm('bgm_title'); }
+}, true);
 $('pm-resume').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
 $('pm-restart').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); startStage(game.stage); });
 $('pm-menu').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); showMenu(); });

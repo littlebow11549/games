@@ -24,8 +24,8 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 
 .hud-top-left{position:absolute;left:calc(10px + var(--safe-l));top:calc(8px + var(--safe-t));display:flex;gap:8px;align-items:flex-start}
 .portrait{width:58px;height:58px;border-radius:50%;border:3px solid var(--ink);outline:3px solid var(--yellow);
-  background:#f6c21c url(../assets/source/pic/ui/hud_portrait_hero.svg) center/cover;box-shadow:0 2px 8px #0008;transition:outline-color .2s}
-.portrait.brave{outline-color:var(--red);background-image:url(../assets/source/pic/ui/hud_portrait_brave.svg)}
+  background:radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a) ;background-image:url(../assets/runtime/pic/ui/portrait_student.webp),radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a);background-size:112%,cover;background-position:center 30%,center;background-repeat:no-repeat;box-shadow:0 2px 8px #0008;transition:outline-color .2s}
+.portrait.brave{outline-color:var(--red);background-image:url(../assets/runtime/pic/ui/portrait_brave.webp),radial-gradient(circle at 50% 35%,#fff3b0,#ffb52e)}
 .bars{display:flex;flex-direction:column;gap:4px;padding-top:2px}
 .bar{position:relative;height:15px;width:min(36vw,240px);border-radius:8px;background:#000a;border:2px solid var(--ink);overflow:hidden}
 .bar i{position:absolute;inset:0;transform-origin:left;transition:transform .12s}
@@ -266,3 +266,8 @@ html[lang="en"] .taunt{white-space:normal;width:max-content;max-width:210px;text
   .boss-bar{left:50%;transform:translateX(-50%);text-align:center;top:calc(196px + var(--safe-t))}
   .boss-bar .bar{width:72vw}
 }
+
+/* 計量條上的字：垂直置中，不被條的高度裁掉 */
+.bar b{display:flex;align-items:center;justify-content:center;line-height:1;font-size:9.5px}
+.bar.hp b{font-size:10.5px}
+.bar.courage,.bar.guilt{min-height:14px}
