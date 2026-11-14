@@ -8,6 +8,7 @@ import { Input, lockViewport } from './input.js';
 import { GameAudio } from './audio.js';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js';
 import { t, tf, lang, nextLang, applyStatic } from './i18n.js';
+import { drawMinimapSprite, minimapArtReady } from './minimap-art.js';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -1853,9 +1854,14 @@ mini.cv.addEventListener('pointerdown', (e) => {
 });
 function updateMinimap() {
   if (mini.skip++ % 3) return; // 每三幀畫一次就夠
-  const c = mini.ctx, S = mini.cv.width, R = S / 2, k = (R - 10) / ARENA_RADIUS;
+  const useArt = document.body.classList.contains('game-art') && minimapArtReady();
+  mini.cv.classList.toggle('art-loaded', useArt);
+  const c = mini.ctx, S = mini.cv.width, R = S / 2, k = (R - (useArt ? 28 : 10)) / ARENA_RADIUS;
   const X = (p) => R + p.x * k, Y = (p) => R + p.z * k;
   c.clearRect(0, 0, S, S);
+  if (useArt) drawMinimapSprite(c, 'frame', R, R, S);
+  c.save();
+  c.beginPath(); c.arc(R, R, useArt ? R - 22 : R, 0, Math.PI * 2); c.clip();
   c.strokeStyle = '#ffffff30'; c.lineWidth = 2;
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k, 0, 6.283); c.stroke();
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k * 0.5, 0, 6.283); c.stroke();
@@ -1875,7 +1881,10 @@ function updateMinimap() {
     const boss = !!e.def.boss, r = boss ? 11 : isElite(e) ? 6.5 : 3.6;
     c.fillStyle = boss ? '#c05cff' : isElite(e) ? '#ff9a2e' : '#ff4a3d';
     c.globalAlpha = e.state === 'spawn' ? 0.4 : 1;
-    c.beginPath(); c.arc(X(e.pos), Y(e.pos), r, 0, 6.283); c.fill();
+    if (!useArt || !drawMinimapSprite(c, boss ? 'boss' : isElite(e) ? 'elite' : 'enemy', X(e.pos), Y(e.pos), r * 2.3)) {
+      c.beginPath(); c.arc(X(e.pos), Y(e.pos), r, 0, 6.283); c.fill();
+    }
+    c.beginPath(); c.arc(X(e.pos), Y(e.pos), r + (useArt ? 2 : 0), 0, 6.283);
     if (boss || e === locked) { c.strokeStyle = '#fff'; c.lineWidth = 2.5; c.stroke(); }
   }
   c.globalAlpha = 1;
@@ -1883,7 +1892,11 @@ function updateMinimap() {
   const f = Math.atan2(Math.cos(hero.yaw), Math.sin(hero.yaw));
   c.save(); c.translate(hx, hy); c.rotate(f);
   c.fillStyle = hero.form === 'brave' ? '#9be564' : '#ffd23c'; c.strokeStyle = '#10131a'; c.lineWidth = 2.5;
-  c.beginPath(); c.moveTo(12, 0); c.lineTo(-8, 8); c.lineTo(-4, 0); c.lineTo(-8, -8); c.closePath(); c.fill(); c.stroke();
+  if (!useArt || !drawMinimapSprite(c, 'hero', 0, 0, 26, Math.PI / 2)) {
+    c.beginPath(); c.moveTo(12, 0); c.lineTo(-8, 8); c.lineTo(-4, 0); c.lineTo(-8, -8); c.closePath(); c.fill(); c.stroke();
+  }
+  if (useArt && hero.form === 'brave') { c.strokeStyle = '#9be564'; c.beginPath(); c.arc(0, 0, 15, 0, Math.PI * 2); c.stroke(); }
+  c.restore();
   c.restore();
 }
 

@@ -41,3 +41,4 @@
 .game-art #stick-base{background-image:url('../assets/source/pic/ui/control_extras_sheet.png');background-size:301.1764705882353% 200.7843137254902%;background-position:17.543859649122805% 4.669260700389105%}
 .game-art #stick-knob{background-image:url('../assets/source/pic/ui/control_extras_sheet.png');background-size:560.5839416058394% 373.7226277372263%;background-position:76.8621236133122% 20%}
 .game-art #stick-base,.game-art #stick-knob{border:0;background-repeat:no-repeat}
+.game-art #minimap.art-loaded{border:0;outline:0;background:#0c1611cc;box-shadow:none}
