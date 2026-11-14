@@ -47,7 +47,7 @@
   - 所以**每交一首關卡曲，把路徑填進對應的 `bgm_stage_X_Y`，那一關馬上就會換歌**，不需要改程式。
 - 還沒接上的鍵：`bgm_title`、`bgm_talk`、`bgm_defeat`、`bgm_ending`、`bgm_credits`。先做關卡曲。
 - **變身曲 `bgm_brave`（v1.3 新增，P0）**：程式已接上，變身期間會播這個鍵。目前暫時指向 `theme_braveguy_demo`（只有 9 秒、不是為循環做的），正式曲交付後把路徑換掉即可。原本選做的 `bgm_brave_layer` 取消。
-- 已交付並接上的：`bgm_battle`／`bgm_stage_1_1`（都指向 `bgm_campus`）、`bgm_boss`、`bgm_victory`；`bgm_stage_2_1`／`2_2`（指向 `bgm_wild`）；`bgm_stage_3_0`（指向 `bgm_office_mute`）；`bgm_stage_3_1`–`3_5`（都指向 `bgm_office`）。**同一張地圖目前共用一首，「每關不同」還缺：1-0、1-2、1-3、1-4、2-2、3-2–3-5、4-1。**
+- 已交付並接上的（2026-11-14 更新）：地圖一每關各一首（`bgm_stage_1_0`、`1_1`＝`bgm_campus`、`1_2`、`1_3`、`1_4`）；`bgm_stage_2_1`；`bgm_boss`、`bgm_victory`。暫時共用的：`2_2`（用 `bgm_wild`）、`3_0`（`bgm_office_mute`）、`3_1`–`3_5`（都用 `bgm_office`）。**還缺：變身曲 `bgm_brave`（最優先，目前暫用 9 秒 demo）、2-2、3-2 到 3-5 各自的曲子、4-1。**
 - 音效目前全是程式合成（`js/audio.js`），**還沒有讀檔的功能**。音效檔交付後由 Claude 改程式接入，音樂這邊不用動程式。
 - 瀏覽器規定要玩家點過畫面才能出聲，遊戲已用「開始」按鈕處理。
 
