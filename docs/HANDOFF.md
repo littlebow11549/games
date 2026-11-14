@@ -7,6 +7,9 @@
 - [2026-11-14 P1 介面大批素材與遊戲套用預覽（Codex）](handoffs/2026-11-14-game02-interface-preview.md)：新增八張介面圖集，連同戰鬥按鍵本輪合計十二張／66 項；可切換新舊美術、窄螢幕及介面檢視。Chrome 已目視驗證；正式切圖及完整戰鬥驗收待做。Claude OAuth 過期未執行成功，預覽由 Codex 製作。
 
 - [2026-11-14 P1戰鬥按鍵與搖桿（Codex）](handoffs/2026-11-14-game02-combat-buttons.md)：四張透明圖集，共24個狀態／部件，包含普攻、閃避、變身、四技能三態、變身發光版及搖桿；附切圖起點與本機預覽。正式256／384衍生圖及狀態對齊待完成，未接runtime。
+- [2026-11-14 勇氣超人：非戰鬥曲全數接上、主角頭像接入（Claude）](handoffs/2026-11-14-game02-music-final-portraits.md)：標題、對話、倒下、結局、製作名單曲與 3-1 專屬曲接上，BGM 全數完成（音效仍缺）；HUD 頭像改用正式圖。計量條圖集與罪惡感爆炸序列尚未接入。
+
+- [2026-11-14 勇氣超人：非戰鬥曲 + 3-1，**音樂全數完成**（音樂階段）](handoffs/2026-11-14-game02-music-nonbattle-final.md)：交 `bgm_title`／`bgm_transform`（硬切、非電音）／`bgm_defeat`／`bgm_talk`／`bgm_ending`／`bgm_credits` 與專屬 `bgm_stage_3_1`。`manifest.json` 音訊區**已無 null**，所有 BGM 到位（26 首）。尚缺音效 SFX 與配音。分支 `claude/brave-guy-music`，未改 `js/`。
 
 - [2026-11-14 勇氣超人：接上變身曲與其餘關卡曲（Claude）](handoffs/2026-11-14-game02-music-brave-wiring.md)：合併音樂分支第二批 7 首；變身改播正式的 `bgm_brave`；黑影戰（1-4、2-2、4-1）守關者登場後不再切成通用守關曲。同時收進 Codex 的 HUD 素材（頭像、計量條圖集、罪惡感爆炸序列），**HUD 素材尚未接入**。
 

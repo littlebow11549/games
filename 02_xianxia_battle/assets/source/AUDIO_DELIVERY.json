@@ -535,6 +535,202 @@
         "size_bytes": 1559449
       },
       "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_4_1.wav"
+    },
+    {
+      "file_base": "bgm_title",
+      "manifest_key": "bgm_title",
+      "use": "開始畫面",
+      "description": "主角主題輕鬆版 ~120 BPM；暖 pad+marimba+輕拍",
+      "loop": true,
+      "loop_length_s": 60.0,
+      "duration_s": 60.0,
+      "loudness_LUFS": -16.63,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_title.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 89,
+        "size_bytes": 666457
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_title.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 960932
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_title.wav"
+    },
+    {
+      "file_base": "bgm_transform",
+      "manifest_key": "bgm_transform",
+      "use": "第一次變身完整演出(全遊戲一次)",
+      "description": "極認真管弦+合唱 ~132 BPM；定音鼓滾奏推到最高點後戛然而止(硬切)；刻意不用電音",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 14.97,
+      "loudness_LUFS": -17.89,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_transform.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 71,
+        "size_bytes": 132775
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_transform.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 240370
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_transform.wav"
+    },
+    {
+      "file_base": "bgm_defeat",
+      "manifest_key": "bgm_defeat",
+      "use": "倒下",
+      "description": "洩氣下行 brass + 唱盤煞停，約 3 秒，好啦再來的喜感",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 2.85,
+      "loudness_LUFS": -16.02,
+      "true_peak_dBTP": -4.37,
+      "ogg": {
+        "path": "assets/source/music/bgm_defeat.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 63,
+        "size_bytes": 22601
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_defeat.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 129,
+        "size_bytes": 46855
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_defeat.wav"
+    },
+    {
+      "file_base": "bgm_talk",
+      "manifest_key": "bgm_talk",
+      "use": "劇情對話/鬥嘴",
+      "description": "輕空有節奏 ~112 BPM；marimba+沙鈴+小天使鈴鐺動機，留白給台詞",
+      "loop": true,
+      "loop_length_s": 60.0,
+      "duration_s": 60.0,
+      "loudness_LUFS": -16.59,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_talk.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 61,
+        "size_bytes": 459966
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_talk.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 960932
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_talk.wav"
+    },
+    {
+      "file_base": "bgm_ending",
+      "manifest_key": "bgm_ending",
+      "use": "終章和解與醒來",
+      "description": "鋼琴+弦樂 ~80 BPM；主角主題與鏡像首次合一，乾淨不煽情，停在早晨",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 72.05,
+      "loudness_LUFS": -16.0,
+      "true_peak_dBTP": -2.55,
+      "ogg": {
+        "path": "assets/source/music/bgm_ending.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 62,
+        "size_bytes": 560377
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_ending.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 1154029
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_ending.wav"
+    },
+    {
+      "file_base": "bgm_credits",
+      "manifest_key": "bgm_credits",
+      "use": "製作名單",
+      "description": "主題曲完整電音版 ~150 BPM；串接各關招牌取樣(鬧鐘/哨子/收銀機/電話/空氣號角)",
+      "loop": false,
+      "loop_length_s": null,
+      "duration_s": 76.82,
+      "loudness_LUFS": -16.04,
+      "true_peak_dBTP": -1.15,
+      "ogg": {
+        "path": "assets/source/music/bgm_credits.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 100,
+        "size_bytes": 956966
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_credits.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 1230097
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_credits.wav"
+    },
+    {
+      "file_base": "bgm_stage_3_1",
+      "manifest_key": "bgm_stage_3_1",
+      "use": "3-1 一樓大廳與打卡機",
+      "description": "Tech house ~126 BPM；打卡機嗶當節拍器，找回變身才第一次真的 drop",
+      "loop": true,
+      "loop_length_s": 64.76,
+      "duration_s": 64.76,
+      "loudness_LUFS": -16.13,
+      "true_peak_dBTP": -1.1,
+      "ogg": {
+        "path": "assets/source/music/bgm_stage_3_1.ogg",
+        "codec": "vorbis q4",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 85,
+        "size_bytes": 688986
+      },
+      "mp3": {
+        "path": "assets/source/music/bgm_stage_3_1.mp3",
+        "codec": "mp3 128k",
+        "sample_rate": 44100,
+        "channels": 2,
+        "bitrate_kbps": 128,
+        "size_bytes": 1037418
+      },
+      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_1.wav"
     }
   ]
 }
