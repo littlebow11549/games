@@ -2112,6 +2112,7 @@ function showMenu() {
   $('ov-easy').hidden = true;
   $('ov-menu').hidden = false;
   $('ov-menu').textContent = t(menuView === 'stages' ? '← 返回' : '選關');
+  $('ov-load').textContent = ''; // 清掉上一個結算畫面留下的說明
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
     : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
