@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>勇氣超人 Brave Guy</title>
-<link rel="icon" href="assets/source/pic/branding/icon_01.svg">
-<link rel="stylesheet" href="css/game.css?v=20261112m">
+<link rel="icon" type="image/webp" href="assets/runtime/pic/branding/favicon.webp">
+<link rel="apple-touch-icon" href="assets/source/pic/branding/icon_01_logo.png">
+<link rel="stylesheet" href="css/game.css?v=20261114a">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -90,7 +91,7 @@
 
 <div id="overlay" class="overlay">
   <div class="card">
-    <img id="ov-logo" class="logo" src="assets/source/pic/branding/logo_01.svg" alt="勇氣超人 Brave Guy">
+    <img id="ov-logo" class="logo" src="assets/runtime/pic/branding/logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
     <p id="ov-text"></p>
     <div class="loadbar" id="loadbar"><i id="loadbar-fill"></i></div>
@@ -129,7 +130,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261112m';
+    s.src = 'js/main.js?v=20261114a';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

@@ -6,6 +6,8 @@
 
 - [2026-11-14 P1 HUD核心素材（Codex）](handoffs/2026-11-14-game02-hud-core.md)：兩個主角透明頭像、八部件計量圖集、4×2罪惡感爆炸圖已產出，附尺寸／alpha紀錄、切圖建議與本機預覽。正式切圖、512衍生檔、九宮格與遊戲接入尚待驗證。
 
+- [2026-11-14 勇氣超人：新遊戲 icon 接入（Claude）](handoffs/2026-11-14-game02-icon-integration.md)：首頁第二款卡片與遊戲分頁圖示改用 `icon_01_logo.png` 的無損 WebP 衍生檔（512／256）。追加：開始畫面改用核准的 Logo。橫幅尚未接入。
+
 - [2026-11-14 新美術素材Git交付（Codex）](handoffs/2026-11-14-game02-art-git-delivery.md)：使用者授權提交並推送本輪32張PNG（含Logo遊戲icon）、提示詞與交接文件；素材驗收限制仍保留，未接runtime。
 
 - [2026-11-14 遊戲Icon加入Logo（Codex）](handoffs/2026-11-14-game02-icon-logo.md)：依使用者要求新增 `icon_01_logo.png`，主角出拳封面加雙語Logo，原生1254×1254；無字版保留，未接runtime或推送。
