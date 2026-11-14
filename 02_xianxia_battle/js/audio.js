@@ -59,7 +59,7 @@ export class GameAudio {
     const raw = this.tracks[name];
     if (!raw) return;
     const url = this.resolve(raw);
-    const loop = name !== 'bgm_victory' && name !== 'bgm_defeat' && name !== 'bgm_transform';
+    const loop = !['bgm_victory', 'bgm_defeat', 'bgm_transform', 'bgm_ending', 'bgm_credits'].includes(name);
     try {
       if (!this.ctx) throw new Error('no audio context');
       if (!this.buffers[url]) {

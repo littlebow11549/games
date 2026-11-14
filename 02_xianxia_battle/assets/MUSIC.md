@@ -45,9 +45,9 @@
   - 守關者登場後切到 `bgm_boss`。例外：1-4、2-2、4-1 這三關是黑影戰、沒有小怪波次，如果該關自己的曲子已經填了，就整關播它，不切 `bgm_boss`。
   - 過關播 `bgm_victory`；第一次變身的完整演出播 `bgm_transform`（還是 `null` 就靜音）。
   - 所以**每交一首關卡曲，把路徑填進對應的 `bgm_stage_X_Y`，那一關馬上就會換歌**，不需要改程式。
-- 還沒接上的鍵：`bgm_title`、`bgm_talk`、`bgm_defeat`、`bgm_ending`、`bgm_credits`。先做關卡曲。
+- 還沒接上的鍵：無。
 - **變身曲 `bgm_brave`**：正式版已交付並接上（2026-11-14）。
-- 已交付並接上的（2026-11-14 第二批後）：**14 關都有曲子**（3-1 仍借用 `bgm_office`）、`bgm_boss`、`bgm_victory`、變身曲 `bgm_brave`（正式版）。黑影戰 1-4、2-2、4-1 整關播自己的曲子，其他關卡守關者登場後切 `bgm_boss`。**還缺：`bgm_title`、`bgm_transform`、`bgm_defeat`、`bgm_talk`、`bgm_ending`、`bgm_credits`、3-1 專屬曲，以及全部音效。**
+- 已交付並接上的（2026-11-14 第三批後）：**全部 BGM 鍵都有曲子並已接上**：14 關各一首、`bgm_boss`、`bgm_victory`、`bgm_brave`、`bgm_title`（選關畫面）、`bgm_talk`（各關開場對話）、`bgm_transform`（第一次變身演出）、`bgm_defeat`（倒下）、`bgm_ending`（4-1 過關對話）、`bgm_credits`（結局畫面）。**還缺：全部音效（§4）。**
 - 音效目前全是程式合成（`js/audio.js`），**還沒有讀檔的功能**。音效檔交付後由 Claude 改程式接入，音樂這邊不用動程式。
 - 瀏覽器規定要玩家點過畫面才能出聲，遊戲已用「開始」按鈕處理。
 
