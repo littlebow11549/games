@@ -112,6 +112,8 @@ jacket yellow, scarf red and orange, no watermark
 
 ### 4.1 左上角：頭像與計量條
 
+**製作進度（2026-11-14）**：`portrait_student.png`、`portrait_brave.png` 已產出原生1254×1254透明來源；八個外框／計量部件合併於 `hud_core_sheet.png`（1536×1024透明圖集）；`guilt_explode_sheet.png` 為1536×1024、4×2格透明序列。依本節允許圖集交付，正式切圖與512頭像衍生檔尚待完成；切片建議與alpha驗證見 `source/P1_HUD_SLICE_GUIDE.json`、`source/P1_HUD_DELIVERY.json`。尚未接runtime或驗證九宮格，`portrait_worker`未製作。
+
 | 檔案 | 內容 |
 |------|------|
 | `ui/portrait_student.png`、`portrait_brave.png`、`portrait_worker.png` | 主角三種型態的頭像，512×512，圓形構圖 |

@@ -1,0 +1,81 @@
+{
+  "status": "proposed_crop_regions_not_runtime_verified",
+  "sheet": "pic/ui/hud_core_sheet.png",
+  "width": 1536,
+  "height": 1024,
+  "regions": [
+    {
+      "id": "portrait_frame",
+      "x": 220,
+      "y": 0,
+      "w": 330,
+      "h": 330
+    },
+    {
+      "id": "bar_frame",
+      "x": 770,
+      "y": 65,
+      "w": 766,
+      "h": 205
+    },
+    {
+      "id": "bar_hp",
+      "x": 10,
+      "y": 340,
+      "w": 748,
+      "h": 170
+    },
+    {
+      "id": "bar_courage",
+      "x": 780,
+      "y": 340,
+      "w": 756,
+      "h": 170
+    },
+    {
+      "id": "bar_courage_full",
+      "x": 0,
+      "y": 510,
+      "w": 768,
+      "h": 220
+    },
+    {
+      "id": "bar_guilt",
+      "x": 780,
+      "y": 535,
+      "w": 756,
+      "h": 195
+    },
+    {
+      "id": "bar_guilt_crack",
+      "x": 0,
+      "y": 770,
+      "w": 768,
+      "h": 250
+    },
+    {
+      "id": "bar_qi",
+      "x": 975,
+      "y": 710,
+      "w": 370,
+      "h": 314
+    }
+  ],
+  "animation": {
+    "sheet": "pic/ui/guilt_explode_sheet.png",
+    "columns": 4,
+    "rows": 2,
+    "frame_width": 384,
+    "frame_height": 512,
+    "order": "row-major",
+    "preview_fps": 10,
+    "loop": false
+  },
+  "notes": [
+    "Crop proposals include glow; check alpha bleed and tight bounds before runtime extraction",
+    "Portrait PNGs are native1254 square; target512 derivative not yet exported",
+    "Align fill variants to same content bounds, not crop rectangle",
+    "Nine-slice insets must be measured after extraction, not assumed",
+    "Keep original PNGs intact"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-14",
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "id": "portrait_student",
+      "path": "pic/ui/portrait_student.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1028299,
+      "sha256": "923AEFF59C4D0EACCA1EADB62E8EAC79A457F8A9269A0B9D5D87322206363483",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "alpha": 0
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "art_source_pending_runtime_validation"
+    },
+    {
+      "id": "portrait_brave",
+      "path": "pic/ui/portrait_brave.png",
+      "width": 1254,
+      "height": 1254,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1110602,
+      "sha256": "BBB5B3596D8F82327237EAE6C75EAD0E999EB33437682991571D92DAE9E4B03B",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1253,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1253,
+          "alpha": 1
+        },
+        {
+          "x": 1253,
+          "y": 1253,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "art_source_pending_runtime_validation"
+    },
+    {
+      "id": "hud_core_sheet",
+      "path": "pic/ui/hud_core_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1332630,
+      "sha256": "6BDA61F6AA7D5191FAC0AE06D9C3088946F32CF3108A497D916C9D2ADEC97C14",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1023,
+          "alpha": 1
+        },
+        {
+          "x": 1535,
+          "y": 1023,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "art_source_pending_runtime_validation"
+    },
+    {
+      "id": "guilt_explode_sheet",
+      "path": "pic/ui/guilt_explode_sheet.png",
+      "width": 1536,
+      "height": 1024,
+      "pixel_format": "Format32bppArgb",
+      "bytes": 1245869,
+      "sha256": "B4B60D977EE377E62B9A7DEB0FF2F3286B7836DBCEEE0E8281A7B7B2EE1B4488",
+      "corner_alpha": [
+        {
+          "x": 0,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 0,
+          "alpha": 0
+        },
+        {
+          "x": 0,
+          "y": 1023,
+          "alpha": 0
+        },
+        {
+          "x": 1535,
+          "y": 1023,
+          "alpha": 0
+        }
+      ],
+      "upscaled": false,
+      "status": "art_source_pending_runtime_validation"
+    }
+  ],
+  "runtime_integrated": false
+}
