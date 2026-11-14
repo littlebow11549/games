@@ -46,8 +46,8 @@
   - 過關播 `bgm_victory`；第一次變身的完整演出播 `bgm_transform`（還是 `null` 就靜音）。
   - 所以**每交一首關卡曲，把路徑填進對應的 `bgm_stage_X_Y`，那一關馬上就會換歌**，不需要改程式。
 - 還沒接上的鍵：`bgm_title`、`bgm_talk`、`bgm_defeat`、`bgm_ending`、`bgm_credits`。先做關卡曲。
-- **變身曲 `bgm_brave`（v1.3 新增，P0）**：程式已接上，變身期間會播這個鍵。目前暫時指向 `theme_braveguy_demo`（只有 9 秒、不是為循環做的），正式曲交付後把路徑換掉即可。原本選做的 `bgm_brave_layer` 取消。
-- 已交付並接上的（2026-11-14 更新）：地圖一每關各一首（`bgm_stage_1_0`、`1_1`＝`bgm_campus`、`1_2`、`1_3`、`1_4`）；`bgm_stage_2_1`；`bgm_boss`、`bgm_victory`。暫時共用的：`2_2`（用 `bgm_wild`）、`3_0`（`bgm_office_mute`）、`3_1`–`3_5`（都用 `bgm_office`）。**還缺：變身曲 `bgm_brave`（最優先，目前暫用 9 秒 demo）、2-2、3-2 到 3-5 各自的曲子、4-1。**
+- **變身曲 `bgm_brave`**：正式版已交付並接上（2026-11-14）。
+- 已交付並接上的（2026-11-14 第二批後）：**14 關都有曲子**（3-1 仍借用 `bgm_office`）、`bgm_boss`、`bgm_victory`、變身曲 `bgm_brave`（正式版）。黑影戰 1-4、2-2、4-1 整關播自己的曲子，其他關卡守關者登場後切 `bgm_boss`。**還缺：`bgm_title`、`bgm_transform`、`bgm_defeat`、`bgm_talk`、`bgm_ending`、`bgm_credits`、3-1 專屬曲，以及全部音效。**
 - 音效目前全是程式合成（`js/audio.js`），**還沒有讀檔的功能**。音效檔交付後由 Claude 改程式接入，音樂這邊不用動程式。
 - 瀏覽器規定要玩家點過畫面才能出聲，遊戲已用「開始」按鈕處理。
 
