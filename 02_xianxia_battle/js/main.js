@@ -236,7 +236,7 @@ resize();
 // ---------- 狀態 ----------
 
 const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0, fails: 0, easy: false,
-  stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0 };
+  stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0, bossFodderT: 0 };
 let save = { cleared: [], seenTransform: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
 // 開發期間：所有關卡預設全開，方便隨時試玩任何一關。正式完成時把 DEV_UNLOCK 改成 false。
@@ -358,7 +358,7 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0 });
+    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -687,6 +687,21 @@ function nextWave() {
   for (let i = list.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [list[i], list[j]] = [list[j], list[i]]; }
   game.queue = list;
   game.queueT = 0;
+}
+
+// 打王時持續補一點小怪，讓玩家有東西打來集氣／集大招
+const BOSS_FODDER_KIND = { 1: 'ganqiao', 2: 'ganqiao_mid', 3: 'kaban', 4: 'kaban' };
+function feedBossFodder(dt) {
+  if (!game.bossSpawned || game.phase !== 'playing') return;
+  const boss = enemies.find((e) => e.def.boss && alive(e));
+  if (!boss) return; // 王倒了就不再補，好讓關卡結算
+  const target = { easy: 6, normal: 10, hell: 16 }[D().id] || 10;   // 同時在場的小怪數，遠少於一般波次，不會蓋過王
+  const fodder = enemies.filter((e) => !e.def.boss && e.state !== 'dead').length;
+  game.bossFodderT -= dt;
+  if (game.bossFodderT > 0 || fodder >= target) return;
+  game.bossFodderT = rand(0.7, 1.4);
+  const kind = boss.def.minion || BOSS_FODDER_KIND[stage().map] || 'ganqiao';
+  spawnEnemy(kind);
 }
 
 function feedQueue(dt) {
@@ -1250,13 +1265,13 @@ function updateEnemy(e, dt, attackers) {
       e.pos.x += (dx / d) * speed * want * dt;
       e.pos.z += (dz / d) * speed * want * dt;
       e.visual.play(want ? 'run' : 'idle');
-    } else if (d > def.reach * 0.8) {
-      const go = maze ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d); // 迷宮裡繞路走
-      e.pos.x += go.x * speed * dt;
-      e.pos.z += go.z * speed * dt;
-      e.visual.play('run');
     } else {
-      e.visual.play('idle');
+      // 近戰：還沒輪到出手的也一直往主角擠（被 separate() 推開 → 整團不停湧動，不會定在原地）
+      const go = (maze && d > def.reach) ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d);
+      const press = d > def.reach * 0.8 ? 1 : 0.55; // 已經貼到就慢慢頂
+      e.pos.x += go.x * speed * press * dt;
+      e.pos.z += go.z * speed * press * dt;
+      e.visual.play('run');
     }
   } else if (e.state === 'windup') {
     if (!e.struck && e.t >= def.windup) {
@@ -1853,6 +1868,7 @@ function update(dt) {
 
   // 關卡流程：一波一波 →（中途事件）→ 守關者 → 過關
   feedQueue(dt);
+  feedBossFodder(dt);
   if (game.phase === 'playing' && !game.queue.length && enemies.every((e) => e.state === 'dead')) {
     const st = stage();
     game.waveTimer -= dt;
