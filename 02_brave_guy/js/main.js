@@ -9,7 +9,7 @@ import { createCinematics } from './cinematics.js?v=20261115allboss';
 import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
-import { createTransformArt } from './transform-art.js?v=20261115a';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115sound';
 import { GameAudio } from './audio.js?v=20261115hot';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
@@ -404,7 +404,7 @@ const startGame = () => startStage(game.stage);
 // ---------- 對話 ----------
 
 // 播放一段對話，播完呼叫 done。對話期間遊戲暫停。
-const transformArt = createTransformArt($('tf-art'));
+const transformArt = createTransformArt($('tf-art'), id => { for (const sound of TRANSFORM_SFX[id] || []) audio.sfx(sound); });
 function runDialog(lines, done, cls = '') {
   if (!lines || !lines.length) { if (done) done(); return; }
   dialog = { lines, i: 0, done, prev: game.phase };
@@ -415,7 +415,6 @@ function runDialog(lines, done, cls = '') {
 }
 function showLine() {
   const [who, text, art] = dialog.lines[dialog.i];
-  if(dialog.lines===FIRST_TRANSFORM && art==='waiting_2')audio.sfx('chips');
   transformArt.show(dialog.lines === FIRST_TRANSFORM ? art : null);
   $('dialog').classList.toggle('has-transform-art', dialog.lines === FIRST_TRANSFORM && Boolean(art));
   $('dlg-name').textContent = t(who);
@@ -428,7 +427,7 @@ function showLine() {
 function advanceDialog(skip = false) {
   if (!dialog) return;
   dialog.i = skip ? dialog.lines.length : dialog.i + 1;
-  if (dialog.i < dialog.lines.length) { showLine(); audio.sfx('ui'); return; }
+  if (dialog.i < dialog.lines.length) { showLine(); if(dialog.lines!==FIRST_TRANSFORM)audio.sfx('ui'); return; }
   const d = dialog;
   dialog = null;
   $('dialog').hidden = true;
