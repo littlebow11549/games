@@ -3,9 +3,9 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  try{
   const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.setDefaultTimeout(120000);page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url())});
-  await page.goto(process.env.GAME_INDEX||'http://127.0.0.1:8000/02_brave_guy/?v=20261116films');
+  await page.goto(process.env.GAME_INDEX||'http://127.0.0.1:8000/02_brave_guy/?v=20261116numbers');
   const iframe=await page.locator('#game-frame').elementHandle(),frame=await iframe.contentFrame();await frame.waitForFunction(()=>window.__booted);
-  assert(frame.url().includes('v=20261116films'));const bounds=await page.locator('#viewport').boundingBox();assert(Math.abs(bounds.width/bounds.height-9/16)<.001);
+  assert(frame.url().includes('v=20261116numbers'));const bounds=await page.locator('#viewport').boundingBox();assert(Math.abs(bounds.width/bounds.height-9/16)<.001);
   await frame.locator('.opening-skip').click();await frame.evaluate(()=>__game.prepareGameplay());await frame.evaluate(()=>{__game.startStage(13);__game.advanceDialog(true)});
   await frame.locator('#btn-quick-clear').click();await frame.evaluate(()=>__game.advanceDialog(true));await frame.waitForFunction(()=>__game.cinematics.state?.mode==='boss');await frame.locator('.cinema-skip').click();
   // Hold the freshly spawned boss in its hidden spawn state to cover immediate clicks.

@@ -9,12 +9,6 @@
 }
 .game-art #pause-menu .card>button.ghost:not(.lang-btn),.game-art #overlay.result .card>button.ghost:not(.lang-btn){background:linear-gradient(145deg,#fffdf0,#e4efbe 65%,#a6d169);border-color:#e0f5ac;box-shadow:inset 0 2px #fff,inset 0 -3px #84ae48,3px 5px #386326,5px 8px #0b2414;color:#18341d}
 .game-art #pause-menu .card>button:not(.lang-btn):active,.game-art #overlay.result .card>button:not(.lang-btn):active{transform:translate(2px,3px);filter:brightness(1.08);box-shadow:inset 0 2px #fff6ae,1px 2px #8d320c}
-.art-number,.game-art .dmg.crit{
- color:#ffdc6b;-webkit-text-stroke:1.4px #5e2b0b;paint-order:stroke fill;
- text-shadow:-1px -2px 0 #fff7c1,1px 2px 0 #e79a20,2px 3px 0 #b96a15,3px 4px 0 #79320c,4px 6px 0 #30140b;
- font-style:italic;font-weight:900;letter-spacing:-.04em;
-}
-.game-art .dmg.hurt{font-size:27px;color:#fff4c2;-webkit-text-stroke:2px #9c211c;paint-order:stroke fill;text-shadow:2px 3px #5a090c,0 0 7px #ff391c}
 #cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{--burst:polygon(0% 26%,12% 25%,6% 6%,27% 15%,32% 0%,44% 13%,59% 2%,65% 14%,85% 4%,82% 23%,100% 16%,92% 38%,100% 52%,91% 64%,99% 84%,80% 81%,81% 100%,63% 89%,50% 100%,39% 88%,19% 100%,20% 82%,1% 90%,8% 66%,0% 55%,8% 42%);filter:drop-shadow(3px 6px 0 #42160f);bottom:5%}
 #cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption p{
  clip-path:var(--burst);border:0;border-radius:0;min-height:152px;padding:28px 36px;
