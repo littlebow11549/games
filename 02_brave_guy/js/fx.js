@@ -1,6 +1,6 @@
 // 3D 特效：全部是場景內的網格與粒子（不是 2D 貼片疊圖）。
 // 刀光 slash 在這版改當拳風使用。
-import { disposeOwned } from './dispose-owned.js';
+import { disposeOwned } from './dispose-owned.js?v=20261115fast';
 import * as THREE from '../vendor/three/three.module.min.js';
 
 const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
@@ -42,15 +42,18 @@ export class Fx {
     const g = new THREE.Group();
     g.position.set(pos.x, y, pos.z);
     g.rotation.y = yaw;
-    const m = new THREE.Mesh(new THREE.RingGeometry(radius * 0.45, radius, 28, 1, -Math.PI / 2 - arc / 2, arc), additive(color, 0.5));
-    m.rotation.x = -Math.PI / 2;
-    g.add(m);
-    const sweep = arc >= Math.PI * 1.9 ? 0 : 0.5;
-    return this.add(g, 0.22, (k) => {
-      m.material.opacity = 0.5 * (1 - k);
-      g.rotation.y = yaw + dir * sweep * (0.5 - k);
-      g.scale.setScalar(0.8 + 0.3 * k);
-    });
+    const positions=[],colors=[],indices=[],segments=32,bands=3;
+    const palette=[new THREE.Color(0xf0440d),new THREE.Color(0xffaf2c),new THREE.Color(color),new THREE.Color(0xff7a16)];
+    for(let i=0;i<=segments;i++){
+      const t=i/segments,angle=-Math.PI/2-arc/2+t*arc,flame=Math.sin(Math.PI*t);
+      const outer=radius*(1+.09*Math.sin(t*Math.PI*9)*flame),width=radius*.36*Math.pow(Math.max(0,flame),.55);
+      for(let j=0;j<=bands;j++){const r=outer-width*(1-j/bands);positions.push(Math.cos(angle)*r,Math.sin(angle)*r,0);colors.push(palette[j].r,palette[j].g,palette[j].b);}
+      if(i<segments)for(let j=0;j<bands;j++){const n=i*4+j;indices.push(n,n+4,n+1,n+1,n+4,n+5);}
+    }
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.setIndex(indices);
+    const material=additive(0xffffff,.85);material.vertexColors=true;
+    const m=new THREE.Mesh(geometry,material);m.rotation.x=-Math.PI/2;g.add(m);
+    return this.add(g,arc>5?.36:.25,k=>{m.material.opacity=.85*(1-k);g.rotation.y=yaw+dir*(arc>5?1.4:.6)*k;g.scale.setScalar(.85+.35*k);});
   }
 
   // 地面衝擊環

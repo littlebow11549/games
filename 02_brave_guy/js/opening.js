@@ -1,5 +1,5 @@
 // HTML/CSS prologue. Existing portraits remain unmodified; no WebGL dependency.
-import { lang, setLang } from './i18n.js?v=20261115cinema';
+import { lang, setLang } from './i18n.js?v=20261115fast';
 export const OPENING_SHOTS = [
  ['noise', ['總是說「沒關係」','Always saying “It’s fine”','いつも「大丈夫」'], ['被嘲笑、被責怪時，他總把想說的話吞回去。','When people mocked or blamed him, he swallowed every reply.','笑われても、責められても、言いたいことを飲み込んだ。']],
  ['sleep', ['期中考前夜','The night before midterms','中間試験の前夜'], ['宿舍的燈還亮著。他趴在課本上睡著了，連夢裡都在說：「再五分鐘……」','His dorm light stayed on. He fell asleep over his books. “Five more minutes…”','寮の明かりはついたまま。教科書に突っ伏して眠った。「あと五分……」']],
@@ -11,7 +11,7 @@ export const OPENING_SHOTS = [
 ];
 export function createOpening(audioProvider) {
  const root=document.createElement('section');root.id='opening';root.className='overlay';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
- root.innerHTML='<header><b>BRAVE GUY</b><select aria-label="Language"><option value="zh-Hant">中文</option><option value="en">English</option><option value="ja">日本語</option></select><button class="opening-skip"></button></header><div class="opening-art" aria-hidden="true"><div class="opening-window"></div><div class="opening-desk"></div><div class="opening-door"></div><div class="opening-words"></div><img class="opening-student" src="assets/source/pic/ui/portrait_student.png" alt=""><div class="opening-angel"></div><div class="opening-monster"></div><div class="opening-rings"></div></div><article><small></small><h1></h1><p></p></article><footer><div class="opening-progress"></div><button class="opening-next"></button></footer>';
+ root.innerHTML='<header><b>BRAVE GUY</b><select aria-label="Language"><option value="zh-Hant">中文</option><option value="en">English</option><option value="ja">日本語</option></select><button class="opening-skip"></button></header><div class="opening-art" aria-hidden="true"><div class="opening-window"></div><div class="opening-desk"></div><div class="opening-door"></div><div class="opening-words"></div><img class="opening-student" src="assets/runtime/lossless/pic/ui/portrait_student.webp" alt=""><div class="opening-angel"></div><div class="opening-monster"></div><div class="opening-rings"></div></div><article><small></small><h1></h1><p></p></article><footer><div class="opening-progress"></div><button class="opening-next"></button></footer>';
  document.body.append(root);let index=0,elapsed=0,running=false,done=null,last=0,raf=0,previousFocus;
  const $=s=>root.querySelector(s),pick=a=>a[lang==='en'?1:lang==='ja'?2:0];
  const cues=['guilt_tick','ui_back','folaidi_rise','beam_start','notify','boss_warn','courage_full'];

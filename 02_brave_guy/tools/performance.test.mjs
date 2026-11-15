@@ -7,7 +7,7 @@ import { GameAudio } from '../js/audio.js';
 globalThis.localStorage={getItem:()=>null};
 test('clearing unfinished effects disposes each owned GPU resource exactly once',()=>{
  const scene=new THREE.Scene(),fx=new Fx(scene);fx.ring(new THREE.Vector3(),1,3,0xffffff,2);fx.burst(new THREE.Vector3(),0xffffff,5,2);fx.dome(new THREE.Vector3(),3,0xffffff,2);
- const resources=new Set();scene.traverse(o=>{if(o.geometry)resources.add(o.geometry);for(const m of [].concat(o.material||[]))resources.add(m)});let count=0;for(const r of resources)r.addEventListener('dispose',()=>count++);assert(resources.size>0);fx.clear();assert.equal(count,resources.size);assert.equal(scene.children.length,0);fx.clear();assert.equal(count,resources.size);
+ fx.slash(new THREE.Vector3(),0,4,Math.PI*1.8);const resources=new Set();scene.traverse(o=>{if(o.geometry)resources.add(o.geometry);for(const m of [].concat(o.material||[]))resources.add(m)});let count=0;for(const r of resources)r.addEventListener('dispose',()=>count++);assert(resources.size>0);fx.clear();assert.equal(count,resources.size);assert.equal(scene.children.length,0);fx.clear();assert.equal(count,resources.size);
  const shared=new THREE.Group(),g=new THREE.BoxGeometry(),m=new THREE.MeshBasicMaterial();shared.add(new THREE.Mesh(g,m),new THREE.Mesh(g,m));let disposed=0;g.addEventListener('dispose',()=>disposed++);m.addEventListener('dispose',()=>disposed++);disposeOwned(shared);assert.equal(disposed,2);
 });
 test('BGM races reuse downloads and cannot resurrect stopped music; decoded cache bounded',async()=>{
