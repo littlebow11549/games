@@ -330,3 +330,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-15 主選單專用圖交付補記
 
 `menu_keyart_01.png` 與 `menu_keyart_portrait_01.png` 已生成並放入 `source/pic/branding/`。原生 1330×1182／1448×1086，RGB PNG 無字，未放大；尚未達指定尺寸或實際裁切驗收。game.css 目前仍引用舊 banner，需要 Claude 接入。詳見 `../../../docs/handoffs/2026-11-15-game02-menu-keyart.md`。
+
+## 2026-11-15 選關／暫停／結算接入
+
+既有panel_sheet用於選關；新panel_popup、panel_title_plate、btn_text用於暫停及結算。操作按鈕與語系等寬，標題文字不描邊，結算成績分欄。詳見 `../../../docs/handoffs/2026-11-15-game02-overlay-art-integration.md`。舊文「所有畫面均佔位」「未收到任何面板」不可作為重新生成依據；先查 `../../../docs/reports/2026-11-15-art-inventory.md`。

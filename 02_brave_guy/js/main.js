@@ -1800,15 +1800,34 @@ function updateShots(dt) {
 
 // ---------- 流程 ----------
 
-function showOverlay({ title, text, note, btn, next, easy }) {
+let lastOverlay = null;
+function showOverlay(config) {
+  lastOverlay = config;
+  const { title, text, note, btn, next, easy, outcome = 'clear', stats } = config;
+  $('overlay').dataset.outcome = outcome;
   $('overlay').classList.remove('menu', 'stages');
   $('ov-menu').textContent = t('選關');
   $('ov-logo').hidden = true;
   $('ov-title').hidden = false;
   $('overlay').classList.add('result');
   $('ov-title').textContent = t(title);
-  $('ov-text').textContent = text;
-  $('ov-load').textContent = note || '';
+  $('ov-text').textContent = typeof text === 'function' ? text() : text;
+  $('ov-text').classList.toggle('result-stats', Boolean(stats));
+  if (stats) {
+    const heading = document.createElement('strong');
+    heading.className = 'result-stage';
+    heading.textContent = `${stats.id}　${t(stats.name)}`;
+    const time = document.createElement('span');
+    const kills = document.createElement('span');
+    time.className = kills.className = 'result-metric';
+    for (const [node, label, value] of [[time, lang === 'en' ? 'Time · sec' : '用時・秒', stats.time], [kills, lang === 'en' ? 'Defeated' : '擊倒', stats.kills]]) {
+      const caption = document.createElement('small'); caption.textContent = label;
+      const number = document.createElement('b'); number.textContent = value;
+      node.append(caption, number);
+    }
+    $('ov-text').replaceChildren(heading, time, kills);
+  }
+  $('ov-load').textContent = (typeof note === 'function' ? note() : note) || '';
   $('ov-btn').textContent = t(btn);
   $('ov-btn').disabled = false;
   $('ov-next').hidden = !next;
@@ -1829,7 +1848,7 @@ function endGame(win) {
     game.bgm = null; audio.playBgm(audio.tracks.bgm_defeat ? 'bgm_defeat' : null);
     if (!audio.tracks.bgm_defeat) audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
-    showOverlay({ title: '倒 下', text: `${stage().id}　${t(stage().name)}`, note: t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
+    showOverlay({ outcome: 'defeat', title: '倒 下', text: () => `${stage().id}　${t(stage().name)}`, note: () => t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
   }, 1200);
 }
 
@@ -1848,9 +1867,11 @@ function clearStage() {
       game.phase = 'over';
       if (last && audio.tracks.bgm_credits) audio.playBgm('bgm_credits');
       showOverlay({
+        outcome: last ? 'ending' : 'clear',
+        stats: last ? null : { id: st.id, name: st.name, time: game.time.toFixed(0), kills: game.kills },
         title: last ? '醒 來' : '突 破',
-        text: last ? t('他知道自己要往哪走了。') : tf('{0}　{1}　用時 {2} 秒　擊倒 {3}', st.id, t(st.name), game.time.toFixed(0), game.kills),
-        note: last ? t('小天使留下的便利貼：「還行。」') : st.grantName ? tf('得到：{0}', st.grantName.split('、').map(t).join(lang === 'en' ? ', ' : '、')) : t('小天使：「還行。」'),
+        text: () => last ? t('他知道自己要往哪走了。') : tf('{0}　{1}　用時 {2} 秒　擊倒 {3}', st.id, t(st.name), game.time.toFixed(0), game.kills),
+        note: () => last ? t('小天使留下的便利貼：「還行。」') : st.grantName ? tf('得到：{0}', st.grantName.split('、').map(t).join(lang === 'en' ? ', ' : '、')) : t('小天使：「還行。」'),
         btn: '再打一次', next: !last,
       });
     });
@@ -2215,6 +2236,7 @@ $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!gam
 function refreshLang() {
   applyStatic();
   if (game.phase === 'ready') showMenu();
+  else if (game.phase === 'over' && lastOverlay) showOverlay(lastOverlay);
   else if (game.phase === 'playing' || game.phase === 'dialog') {
     const st = stage();
     $('quest-title').textContent = `${st.id}　${t(st.name)}`;
