@@ -326,3 +326,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-14 統一頁首交付
 
 使用者已明確核准程式合成。全部16張在 source/pic/sheet/unified/，同一核准Logo原檔固定156×104、座標(48,12)、頁首高128，逐像素一致性通過。畫布1728×1152（3:2），角色圖維持原生像素，沒有插值放大；舊稿保留。查核 source/UNIFIED_SHEET_HEADERS.json，總覽 preview/unified-character-review.html。此項取代前文Logo一致性未通過的歷史狀態，角色內頁比例與文字等問題仍待修。
+
+## 2026-11-15 主選單專用圖交付補記
+
+`menu_keyart_01.png` 與 `menu_keyart_portrait_01.png` 已生成並放入 `source/pic/branding/`。原生 1330×1182／1448×1086，RGB PNG 無字，未放大；尚未達指定尺寸或實際裁切驗收。game.css 目前仍引用舊 banner，需要 Claude 接入。詳見 `../../../docs/handoffs/2026-11-15-game02-menu-keyart.md`。
