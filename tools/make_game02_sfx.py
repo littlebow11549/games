@@ -81,13 +81,42 @@ add('folaidi_tick',mix(.24,(bell(.18,760),0,.4),(noise(.04,1500,6000),0,.2)),-12
 add('folaidi_flicker',mix(.55,*[(noise(.07,200,7500),at,.4) for at in [0,.12,.16,.33]],(tone(.5,60,decay=4),0,.25)),-12)
 add('folaidi_rise',mix(1.6,(tone(1.6,65,520,.2,True),0,.35),(whoosh(1.6,900),0,.6)),-10)
 add('folaidi_reveal',mix(1.1,(tone(.9,110,30,7),0,1),(noise(.7,100,4500),0,.75),(bell(.8,440),.04,.2),(bell(.7,466),.04,.2)),-5)
+# Combat v2: voiced midrange body, short punch transients and staged power releases.
+# UI/comedy/ambient assets remain bit-identical; previous WAV masters stay archived.
+enhanced=set()
+def impact(d=.32,weight=1):
+ body=tone(d,210,68,5)+.48*tone(d,420,136,6)
+ return mix(d,(np.tanh(body*1.9),0,.65*weight),(noise(.055,1200,7500,9),0,.65),(noise(d*.8,150,1800,5),.012,.28))
+def power_chord(d,root=147):
+ t=np.arange(round(d*SR))/SR
+ chord=sum(np.sin(2*np.pi*f*t)+.3*np.sin(2*np.pi*f*3*t) for f in [root,root*1.5,root*2])
+ return np.tanh(chord*1.1)*np.exp(-3*t/d)
+def upgrade(name,x,level=-4):
+ enhanced.add(name);old=sounds[name][0];sounds[name]=(x,level,False)
+for i in range(1,4):
+ name=f'hit_{i}';upgrade(name,mix(.31,(impact(.29,1+i*.08),0,1),(whoosh(.14,2100+i*170),0,.28)),-5)
+ name=f'punch_{i}';upgrade(name,mix(.23,(sounds[name][0],0,.9),(noise(.17,450,3200,0)*np.sin(np.linspace(0,np.pi,round(.17*SR)))**2,0,.32)),-8)
+for name,d,at in [('hit_heavy',.58,0),('kick_spin',.58,.24),('dash',.75,.26),('ki_blast',.75,0),('quake',1.05,0),('boss_slam',1.05,0)]:
+ upgrade(name,mix(d,(sounds[name][0],0,.65),(impact(.38,1.25),at,1),(power_chord(d-at,98),at,.24),(noise(.16,400,2600),at+.13,.22)))
+for name,d,root in [('transform_done',1.2,147),('guilt_burst',1.25,110),('beam_end',1.15,98),('folaidi_reveal',1.2,110)]:
+ upgrade(name,mix(d,(sounds[name][0],.025,.7),(impact(.5,1.4),.025,1),(power_chord(d-.04,root),.04,.38),(whoosh(.3,3200),.015,.22),(impact(.25,.5),.18,.25)))
+for name,d in [('ki_shot',.5),('beam_start',.8)]:
+ upgrade(name,mix(d,(sounds[name][0],0,.75),(power_chord(d,196),0,.22),(whoosh(d*.8,3000),0,.35)),-6)
+t=np.arange(3*SR)/SR
+charge=(np.sin(2*np.pi*np.cumsum(np.geomspace(95,1500,len(t)))/SR)+.35*np.sin(2*np.pi*196*t))
+charge=np.tanh(charge*1.4)*np.linspace(.06,1,len(t))*(.76+.24*np.sin(2*np.pi*(3*t+2*t*t)))
+upgrade('transform_charge',mix(3,(charge,0,.65),(noise(3,350,5500,0)*np.linspace(.01,.6,len(t)),0,.22)),-8)
+for name,root,d in [('combo_10',196,.4),('combo_50',247,.55),('combo_100',294,.8),('courage_full',196,.75),('qi_full',294,.65),('win',196,1.2)]:
+ upgrade(name,mix(d,(sounds[name][0],0,.5),(power_chord(d,root),0,.4),(impact(.18,.5),0,.24)),-7)
+# Periodic saturation adds audible harmonics on phone speakers without breaking the loop.
+x,_,_=sounds['beam_loop'];sounds['beam_loop']=(np.tanh(x*2.2),-10,True);enhanced.add('beam_loop')
 rows=[]
 for name,(x,level,loop) in sounds.items():
  x=x-np.mean(x)
  if not loop:
   fade=min(len(x)//4,round(.008*SR));x[:80]*=np.linspace(0,1,80);x[-fade:]*=np.linspace(1,0,fade)
  x=x/max(abs(x))*10**(level/20)
- filename='sfx_'+name;wav=MASTER/(filename+'.wav');wavfile.write(wav,SR,(x*32767).astype(np.int16))
+ filename='sfx_'+name;master_dir=MASTER/'combat-v2' if name in enhanced else MASTER;master_dir.mkdir(parents=True,exist_ok=True);wav=master_dir/(filename+'.wav');wavfile.write(wav,SR,(x*32767).astype(np.int16))
  rows.append({'name':name,'file':filename,'duration':len(x)/SR,'sampleRate':SR,'channels':1,'peakDbFS':round(20*np.log10(max(abs(x))),2),'rmsDbFS':round(20*np.log10(np.sqrt(np.mean(x*x))),2),'loop':loop,'loopSeconds':len(x)/SR if loop else None,'master':str(wav.relative_to(ROOT))})
 def encode(r):
  src=ROOT/r['master'];target=OUT/(r['file']+'.mp3');subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-c:a','libmp3lame','-b:a','96k',str(target)],check=True)
@@ -97,5 +126,5 @@ def encode(r):
  r['bytes']=target.stat().st_size;r['sha256']=hashlib.sha256(target.read_bytes()).hexdigest()
  return r
 with concurrent.futures.ThreadPoolExecutor(4) as ex:rows=list(ex.map(encode,rows))
-report={'date':'2026-11-15','tool':'Original layered DSP: Python/numpy/scipy + ffmpeg; reproducible tools/make_game02_sfx.py','rights':'Original synthesis; no recordings, third-party samples, cloned voices or commercial sound packs.','encoding':'MP3 96kbps mono 44.1kHz; seamless beam also OGG q4','files':rows,'runtimeBytes':sum(p.stat().st_size for p in OUT.iterdir())}
+report={'date':'2026-11-15','combatRevision':2,'enhanced':sorted(enhanced),'tool':'Original layered DSP: Python/numpy/scipy + ffmpeg; reproducible tools/make_game02_sfx.py','rights':'Original synthesis; no recordings, third-party samples, cloned voices or commercial sound packs.','encoding':'MP3 96kbps mono 44.1kHz; seamless beam also OGG q4','files':rows,'runtimeBytes':sum(p.stat().st_size for p in OUT.iterdir())}
 (ROOT/'02_brave_guy/assets/source/SFX_DELIVERY.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(len(rows),'SFX;',report['runtimeBytes'],'runtime bytes')

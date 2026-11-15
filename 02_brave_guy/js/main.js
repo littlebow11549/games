@@ -10,7 +10,7 @@ import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
 import { createTransformArt } from './transform-art.js?v=20261115a';
-import { GameAudio } from './audio.js?v=20261115sfx';
+import { GameAudio } from './audio.js?v=20261115hot';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
 import { makeMaze } from './maze.js';
