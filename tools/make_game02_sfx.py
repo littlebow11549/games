@@ -110,13 +110,38 @@ for name,root,d in [('combo_10',196,.4),('combo_50',247,.55),('combo_100',294,.8
  upgrade(name,mix(d,(sounds[name][0],0,.5),(power_chord(d,root),0,.4),(impact(.18,.5),0,.24)),-7)
 # Periodic saturation adds audible harmonics on phone speakers without breaking the loop.
 x,_,_=sounds['beam_loop'];sounds['beam_loop']=(np.tanh(x*2.2),-10,True);enhanced.add('beam_loop')
+# v3: fast, bright hit transients and dedicated ornate transformation cues.
+revision3=set()
+def v3(name,x,level=-5):
+ revision3.add(name);sounds[name]=(x,level,False)
+def crystal(d,f):
+ t=np.arange(round(d*SR))/SR
+ return (np.sin(2*np.pi*f*t)+.32*np.sin(2*np.pi*f*2*t)+.13*np.sin(2*np.pi*f*4*t))*np.exp(-5*t/d)
+def glitter(d,notes,step=.045):
+ return mix(d,*[(crystal(max(.08,d-i*step),f),i*step,.6) for i,f in enumerate(notes) if i*step<d])
+for i in range(1,4):
+ # Dry crack + tiny double strike; bass supports the hit instead of swallowing it.
+ v3(f'hit_{i}',mix(.18,(noise(.035,2200,10500,7),0,1),(noise(.025,3700,12000,8),.007+i*.001,.45),(tone(.12,260+i*20,95,8),.004,.28),(noise(.08,700,3500,8),.008,.18)))
+v3('hit_heavy',mix(.32,(noise(.045,1800,10000,7),0,1),(noise(.03,4000,12000,8),.009,.5),(tone(.24,190,48,7),.006,.5),(noise(.1,800,4200,7),.055,.2)),-4)
+scale=[784,988,1175,1568,1976,2350,3136]
+v3('tf_stars',glitter(.75,scale,.065),-9)
+v3('tf_silhouette',mix(.9,(whoosh(.6,2600),0,.35),(glitter(.85,scale,.075),.03,.65)),-7)
+v3('tf_glove',mix(.42,(noise(.025,2500,10000,8),0,.32),(crystal(.38,1175),0,.8),(crystal(.27,2350),.018,.35),(tone(.12,290,110,8),0,.14)),-6)
+v3('tf_knee',mix(.46,(noise(.028,1800,8500,8),0,.3),(crystal(.42,988),0,.8),(crystal(.3,1976),.025,.4),(tone(.15,230,90,8),0,.18)),-6)
+v3('tf_jacket',mix(.55,(whoosh(.38,2300),0,.5),(glitter(.42,[988,1175,1568],.065),.08,.55)),-7)
+v3('tf_hair',glitter(.68,[988,1175,1568,1976,2350,3136],.065),-7)
+v3('tf_scarf',mix(.65,(whoosh(.46,3200),0,.45),(glitter(.55,[1175,1568,1976,2350,3136],.055),.04,.5)),-7)
+reveal=mix(1.35,(impact(.3,.65),.015,.25),(glitter(1.3,[784,988,1175,1568,1976,2350,3136,3952],.045),.01,.8),(crystal(1.25,784),.12,.3),(crystal(1.25,1175),.12,.23),(whoosh(.45,3000),0,.25))
+v3('tf_pose',reveal,-5);v3('transform_done',reveal.copy(),-5)
+t=np.arange(3*SR)/SR
+v3('transform_charge',mix(3,(charge,0,.22),(glitter(3,([392,494,587,784,988,1175,1568,1976]*3),.115)*np.linspace(.15,1,len(t)),0,.65),(noise(3,1200,6500,0)*np.linspace(.005,.18,len(t)),0,.18)),-9)
 rows=[]
 for name,(x,level,loop) in sounds.items():
  x=x-np.mean(x)
  if not loop:
   fade=min(len(x)//4,round(.008*SR));x[:80]*=np.linspace(0,1,80);x[-fade:]*=np.linspace(1,0,fade)
  x=x/max(abs(x))*10**(level/20)
- filename='sfx_'+name;master_dir=MASTER/'combat-v2' if name in enhanced else MASTER;master_dir.mkdir(parents=True,exist_ok=True);wav=master_dir/(filename+'.wav');wavfile.write(wav,SR,(x*32767).astype(np.int16))
+ filename='sfx_'+name;master_dir=MASTER/'combat-v3' if name in revision3 else MASTER/'combat-v2' if name in enhanced else MASTER;master_dir.mkdir(parents=True,exist_ok=True);wav=master_dir/(filename+'.wav');wavfile.write(wav,SR,(x*32767).astype(np.int16))
  rows.append({'name':name,'file':filename,'duration':len(x)/SR,'sampleRate':SR,'channels':1,'peakDbFS':round(20*np.log10(max(abs(x))),2),'rmsDbFS':round(20*np.log10(np.sqrt(np.mean(x*x))),2),'loop':loop,'loopSeconds':len(x)/SR if loop else None,'master':str(wav.relative_to(ROOT))})
 def encode(r):
  src=ROOT/r['master'];target=OUT/(r['file']+'.mp3');subprocess.run(['ffmpeg','-v','error','-y','-i',str(src),'-c:a','libmp3lame','-b:a','96k',str(target)],check=True)
@@ -126,5 +151,5 @@ def encode(r):
  r['bytes']=target.stat().st_size;r['sha256']=hashlib.sha256(target.read_bytes()).hexdigest()
  return r
 with concurrent.futures.ThreadPoolExecutor(4) as ex:rows=list(ex.map(encode,rows))
-report={'date':'2026-11-15','combatRevision':2,'enhanced':sorted(enhanced),'tool':'Original layered DSP: Python/numpy/scipy + ffmpeg; reproducible tools/make_game02_sfx.py','rights':'Original synthesis; no recordings, third-party samples, cloned voices or commercial sound packs.','encoding':'MP3 96kbps mono 44.1kHz; seamless beam also OGG q4','files':rows,'runtimeBytes':sum(p.stat().st_size for p in OUT.iterdir())}
+report={'date':'2026-11-15','combatRevision':3,'enhanced':sorted(enhanced),'revision3':sorted(revision3),'tool':'Original layered DSP: Python/numpy/scipy + ffmpeg; reproducible tools/make_game02_sfx.py','rights':'Original synthesis; no recordings, third-party samples, cloned voices or commercial sound packs.','encoding':'MP3 96kbps mono 44.1kHz; seamless beam also OGG q4','files':rows,'runtimeBytes':sum(p.stat().st_size for p in OUT.iterdir())}
 (ROOT/'02_brave_guy/assets/source/SFX_DELIVERY.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(len(rows),'SFX;',report['runtimeBytes'],'runtime bytes')

@@ -9,8 +9,8 @@ import { createCinematics } from './cinematics.js?v=20261115allboss';
 import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115sound';
-import { GameAudio } from './audio.js?v=20261115hot';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115glam';
+import { GameAudio } from './audio.js?v=20261115crisp';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
 import { makeMaze } from './maze.js';
@@ -359,6 +359,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index) {
+  pendingVictory = null;
   audio.stopLoops();
   cinematics.cancel();
   transformArt.hide();
@@ -1887,12 +1888,14 @@ function updateShots(dt) {
 // ---------- 流程 ----------
 
 let lastOverlay = null;
+let pendingVictory = null;
 function showOverlay(config) {
   lastOverlay = config;
   $('ov-replay').hidden = config.outcome !== 'ending';
   if(config.outcome === 'ending') $('ov-replay').textContent = t('重播結局');
-  const { title, text, note, btn, next, easy, outcome = 'clear', stats } = config;
+  const { title, text, note, btn, next, easy, outcome = 'clear', stats, nextLabel = '下一關' } = config;
   $('overlay').dataset.outcome = outcome;
+  if(outcome!=='clear')$('overlay').classList.remove('victory-arrive');
   $('overlay').classList.remove('menu', 'stages');
   $('ov-menu').textContent = t('選關');
   $('ov-logo').hidden = true;
@@ -1920,6 +1923,7 @@ function showOverlay(config) {
   $('ov-btn').textContent = t(btn);
   $('ov-btn').disabled = false;
   $('ov-next').hidden = !next;
+  $('ov-next').textContent = t(nextLabel);
   $('ov-easy').hidden = !easy;
   $('ov-menu').hidden = false;
   $('ov-stages').hidden = true;
@@ -1942,32 +1946,38 @@ function endGame(win) {
 }
 
 function clearStage() {
-  game.phase = 'ending';
-  game.fails = 0;
-  const st = stage();
+  if (game.phase !== 'playing') return; // One award / one victory screen per clear.
+  const st = stage(), index = game.stage, last = index === STAGES.length - 1;
+  const stats = { id: st.id, name: st.name, time: game.time.toFixed(0), kills: game.kills };
+  game.phase = 'over'; game.fails = 0; game.paused = false;
+  audio.stopLoops(); input.takeActions();
   if (!save.cleared.includes(st.id)) { save.cleared.push(st.id); writeSave(); }
   if (hero.form === 'brave') revert();
-  setTimeout(() => {
-    const last = game.stage >= STAGES.length - 1;
-    // 最後一關：結局曲陪著和解的對話，講完後換製作名單的主題曲
-    game.bgm = null; audio.playBgm(last && audio.tracks.bgm_ending ? 'bgm_ending' : 'bgm_victory');
-    if (!last) audio.sfx('win');
-    const finish = () => {
+  game.bgm = null; audio.playBgm('bgm_victory'); audio.sfx('win');
+  pendingVictory = { index, st, last, stats };
+  showOverlay({outcome:'clear', title:'突 破', stats,
+    note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
+    btn:'再打一次', next:true, nextLabel:last?'繼續':'下一關'});
+  $('overlay').classList.remove('victory-arrive');void $('overlay').offsetWidth;
+  $('overlay').classList.add('victory-arrive');
+  $('ov-next').focus({preventScroll:true});
+}
+
+function continueVictory() {
+  const result = pendingVictory;
+  if (!result || game.phase !== 'over') return;
+  pendingVictory = null; // Repeated taps cannot advance twice.
+  $('overlay').hidden = true;
+  if (result.last) {
+    playEnding(() => {
       game.phase = 'over';
-      if (last && audio.tracks.bgm_credits) audio.playBgm('bgm_credits');
-      showOverlay({
-        outcome: last ? 'ending' : 'clear',
-        stats: last ? null : { id: st.id, name: st.name, time: game.time.toFixed(0), kills: game.kills },
-        title: last ? '醒 來' : '突 破',
-        text: () => last ? t('他知道自己要往哪走了。') : tf('{0}　{1}　用時 {2} 秒　擊倒 {3}', st.id, t(st.name), game.time.toFixed(0), game.kills),
-        note: () => last ? t('小天使留下的便利貼：「還行。」') : st.grantName ? tf('得到：{0}', st.grantName.split('、').map(t).join(lang === 'en' ? ', ' : '、')) : t('小天使：「還行。」'),
-        btn: '再打一次', next: !last,
-      });
-      if (last) { $('ov-replay').hidden = false; $('ov-replay').textContent = t('重播結局'); }
-    };
-    if (last) playEnding(finish);
-    else runDialog(st.outro, finish);
-  }, 1400);
+      showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
+        text:()=>t('他知道自己要往哪走了。'),note:()=>t('小天使留下的便利貼：「還行。」'),btn:'再打一次'});
+    });
+  } else {
+    if (result.st.outro?.length) setBgm('bgm_talk');
+    runDialog(result.st.outro, () => startStage(result.index + 1));
+  }
 }
 
 function playEnding(done) {
@@ -2251,9 +2261,11 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  pendingVictory = null;
   audio.stopLoops();
   cinematics.cancel();
   $('ov-replay').textContent = t('重播變身');
+  $('overlay').classList.remove('victory-arrive');
   transformArt.hide();
   dialog = null;
   $('ov-replay').hidden = menuView !== 'title';
@@ -2336,7 +2348,7 @@ $('ov-replay').addEventListener('click', () => {
   setBgm('bgm_transform');
   runDialog(FIRST_TRANSFORM, showMenu, 'stars');
 });
-$('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
+$('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); if(pendingVictory)continueVictory(); });
 $('ov-menu').addEventListener('click', () => {
   audio.sfx('ui');
   // 在主選單裡是「選關／返回」的切換；在結算畫面是回主選單

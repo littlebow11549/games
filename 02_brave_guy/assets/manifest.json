@@ -118,6 +118,14 @@
     "boom": "assets/source/sfx/sfx_quake.mp3",
     "skill": "assets/source/sfx/sfx_transform_done.mp3",
     "shoot": "assets/source/sfx/sfx_enemy_shot.mp3",
-    "ui": "assets/source/sfx/sfx_ui_tap.mp3"
+    "ui": "assets/source/sfx/sfx_ui_tap.mp3",
+    "tf_stars": "assets/source/sfx/sfx_tf_stars.mp3",
+    "tf_silhouette": "assets/source/sfx/sfx_tf_silhouette.mp3",
+    "tf_glove": "assets/source/sfx/sfx_tf_glove.mp3",
+    "tf_knee": "assets/source/sfx/sfx_tf_knee.mp3",
+    "tf_jacket": "assets/source/sfx/sfx_tf_jacket.mp3",
+    "tf_hair": "assets/source/sfx/sfx_tf_hair.mp3",
+    "tf_scarf": "assets/source/sfx/sfx_tf_scarf.mp3",
+    "tf_pose": "assets/source/sfx/sfx_tf_pose.mp3"
   }
 }

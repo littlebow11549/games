@@ -100,3 +100,11 @@
 @media(orientation:portrait){
  .game-art #menu-art .art{background-image:url('../assets/source/pic/branding/menu_keyart_portrait_01.png');background-position:center top;background-size:100% auto;background-color:#07301d}
 }
+
+/* Every clear lands on the existing illustrated result card before any outro. */
+.game-art #overlay.result.victory-arrive{background:radial-gradient(ellipse at 50% 30%,#83ac3870,#07110fee 75%)}
+.game-art #overlay.result.victory-arrive .card{animation:victory-card-in .55s cubic-bezier(.16,1,.3,1) both;box-shadow:0 0 35px #d2ed5570,0 20px 65px #000a}
+.game-art #overlay.result.victory-arrive #ov-title{animation:victory-title-in .65s cubic-bezier(.16,1,.3,1) both}
+@keyframes victory-card-in{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes victory-title-in{from{filter:brightness(1.8);transform:scale(1.12)}to{filter:brightness(1);transform:none}}
+@media(prefers-reduced-motion:reduce){.game-art #overlay.result.victory-arrive .card,.game-art #overlay.result.victory-arrive #ov-title{animation:none}}
