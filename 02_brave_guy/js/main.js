@@ -269,6 +269,18 @@ function clampArena(p, margin = 0) {
   const r = Math.hypot(p.x, p.z), max = ARENA_RADIUS - margin;
   if (r > max) { p.x *= max / r; p.z *= max / r; }
 }
+// 分段推進主角：高速位移（衝刺、閃避、擊退）一次跨太多格會「穿牆」——
+// maze.collide 是靜態推出，單幀位移若大於牆厚就整個跳過去。切成每段 ≤0.35（小於牆半厚 0.4）
+// 逐段推進並碰撞，確保每段都被牆擋下。
+function moveHeroBy(dx, dz) {
+  const dist = Math.hypot(dx, dz);
+  const steps = Math.max(1, Math.ceil(dist / 0.35));
+  const sx = dx / steps, sz = dz / steps;
+  for (let i = 0; i < steps; i++) {
+    hero.pos.x += sx; hero.pos.z += sz;
+    clampArena(hero.pos, HERO.radius);
+  }
+}
 // 每張地圖的迷宮長相：格數越多路越窄，open 越小越像迷宮
 const MAZE_STYLE = { 1: { n: 7, open: 0.2, color: 0x5d4f9c, top: 0xc9bfff }, 2: { n: 8, open: 0.12, color: 0x24482f, top: 0x7fcf8a }, 3: { n: 8, open: 0.18, color: 0x77808f, top: 0xe9edf2 }, 4: { n: 7, open: 0.3, color: 0x2b2440, top: 0x9b6cff } };
 function buildMaze(st) {
@@ -1557,7 +1569,7 @@ function updateHero(dt) {
   if (hero.state === 'dead') return;
 
   // 擊退、定身、緩速、封招
-  hero.pos.addScaledVector(hero.kb, dt);
+  moveHeroBy(hero.kb.x * dt, hero.kb.z * dt);
   hero.kb.multiplyScalar(Math.max(0, 1 - 7 * dt));
   hero.slowT = Math.max(0, hero.slowT - dt);
   hero.silenceT = Math.max(0, hero.silenceT - dt);
@@ -1614,8 +1626,7 @@ function updateHero(dt) {
     hero.comboGap += dt;
     if (hero.comboGap > 0.6) hero.combo = -1;
     if (mv.len > 0) {
-      hero.pos.x += mv.x * speed * dt;
-      hero.pos.z += mv.y * speed * dt;
+      moveHeroBy(mv.x * speed * dt, mv.y * speed * dt);
       hero.yaw = Math.atan2(mv.x, mv.y);
       hero.visual.play('run');
     } else {
@@ -1647,14 +1658,14 @@ function updateHero(dt) {
       else { hero.state = 'free'; hero.comboGap = 0; if (hero.combo === combo.length - 1) hero.combo = -1; }
     }
   } else if (hero.state === 'dodge') {
-    hero.pos.addScaledVector(forward(hero.yaw), 17 * dt);
+    const f = forward(hero.yaw);
+    moveHeroBy(f.x * 17 * dt, f.z * 17 * dt);
     if (hero.t >= 0.28) hero.state = 'free';
   } else if (hero.state === 'skill1') {
     // 勇氣衝拳：長距離突進，路徑上的怪全部打飛
     const s = SKILLS.skill1;
     const before = hero.pos.clone();
-    if (hero.t < 0.24) hero.pos.addScaledVector(forward(hero.yaw), (s.dash / 0.24) * dt);
-    clampArena(hero.pos, HERO.radius);
+    if (hero.t < 0.24) { const f = forward(hero.yaw); moveHeroBy(f.x * (s.dash / 0.24) * dt, f.z * (s.dash / 0.24) * dt); }
     lineStrike(before, hero.pos, s.width, s.mult, { kb: s.kb, launch: s.launch, heavy: true, src: 'skill1' }, hero.data.hitSet);
     if (hero.data.step === 0 && hero.t >= 0.24) {
       hero.data.step = 1;

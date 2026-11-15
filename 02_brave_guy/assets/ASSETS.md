@@ -174,6 +174,28 @@ jacket yellow, scarf red and orange, no watermark
 | `icons/fn_resume.png`、`fn_restart.png`、`fn_home.png` | 暫停選單的三個選項圖示：繼續、重打、回標題 |
 | `icons/heal.png` | 抓到俊熊回血時跳出的愛心或加號 |
 
+### 4.5 暫停／彈窗面板主視覺（2026-11-15 展開，P2）— 交 GPT
+
+這是把 §4.3 的 `ui/panel_popup.png` 一行展開成可直接製作的細規格。**原因**：暫停選單（還有開場、結算）目前的面板是程式用 CSS 拼的——深綠漸層底 `#22402A→#12241A`、3px 黑框＋3px 黃外框、圓角、標題用黃字紅陰影。按鈕上的三個功能圖示（繼續／重打／回標題）已經是正式美術，但**面板框本身、標題牌、按鈕底都還是純 CSS，沒有一張正式圖**，所以整頁看起來「沒做美術」。這裡要補的就是把這塊換成正式插畫質感。
+
+畫風、比例、配色一律照 §0 全域設定（粗黑描邊日系卡通、高彩平塗、勇氣綠／外套黃／圍巾紅／描邊黑）。**所有面板一律不要畫任何文字**，中文字 AI 容易出錯，標題與按鈕字都由程式疊上。
+
+| 檔案 | 內容 | 尺寸／格式 |
+|------|------|-----------|
+| `ui/panel_popup.png` | **通用九宮格彈窗框**（暫停／結算／開場共用）。圓角矩形面板，深綠面板底（勇氣綠深階，約 `#1E4A2A`～`#12241A` 的縱向漸層），外緣**粗黑描邊＋亮綠／外套黃雙層高光邊**，四角可加小鉚釘或漫畫星點裝飾。**正中央大面積保持乾淨平整**（文字、按鈕都疊在這上面，不可有雜紋干擾）；裝飾只放在邊框與四角。底邊可有一抹能量亮綠微光。**去背透明**。 | 建議 1024×1024，四角圓角半徑約 72px；九宮格安全邊：四邊各留約 160px 不被拉伸的邊框區，中央為可平鋪的純色區。RGBA PNG，去背 |
+| `ui/panel_title_plate.png` | **標題牌**：掛在面板頂端中央、放「暫　停／結　算」字的底牌（字由程式疊）。短橫幅狀，兩端可做成緞帶或漫畫爆炸框，外套黃為主、黑描邊、紅內影。**無字**。 | 建議 720×220，橫幅去背 RGBA PNG |
+| `ui/btn_text.png` | **通用文字按鈕底**，三態橫排一張圖集（正常／按下／禁用）。主要鈕＝黃金漸層（`#FFF6B0→#F6C21C→#F28A1B`）、粗黑框、下緣紅色厚邊（立體感）；另出一版白底綠邊的次要鈕。圓角膠囊形。**無字**。 | 每態建議 480×150，三態直排或橫排並附座標；RGBA PNG，去背 |
+
+**切圖與接法**：出原生大圖、RGBA 去背、不插值放大即可；檔名放進 `source/pic/ui/`，Claude 負責九宮格切法、三態切圖與網頁衍生檔，並把 CSS 面板換成這些圖。若面板與標題牌想合成一張也可以，但請分圖層／另標註安全邊。
+
+**提示詞（附概念圖＋§0 統一提示詞一起貼）**
+```
+a rounded-rectangle UI panel frame for a cute Japanese cartoon game menu,
+thick black outline, dark green panel with glowing green and yellow trim,
+small rivets/decorations only on the border and corners, clean empty center,
+9-slice stretchable, no text, no logo, transparent background
+```
+
 ## 5. 品牌　`source/pic/branding/`
 
 **含Logo遊戲Icon（2026-11-14）**：依使用者要求，新增 `icon_01_logo.png`，以方形出拳封面加入已核准雙語Logo，原生1254×1254 RGB PNG；原無字版保留。此為生成式合成，並非Logo原檔逐像素貼入。詳見 `docs/handoffs/2026-11-14-game02-icon-logo.md`，尚未接入網站runtime。
