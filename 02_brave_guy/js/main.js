@@ -5,9 +5,10 @@ import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
 import { Input, lockViewport } from './input.js';
+import { createTransformArt } from './transform-art.js?v=20261115a';
 import { GameAudio } from './audio.js';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js';
-import { t, tf, lang, nextLang, applyStatic } from './i18n.js';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
+import { t, tf, lang, nextLang, applyStatic } from './i18n.js?v=20261115tf';
 import { makeMaze } from './maze.js';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115g';
 
@@ -352,6 +353,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index) {
+  transformArt.hide();
   game.stage = index;
   const st = stage();
   ({ sun } = buildWorld(scene, st.theme, Q()));
@@ -392,6 +394,7 @@ const startGame = () => startStage(game.stage);
 // ---------- 對話 ----------
 
 // 播放一段對話，播完呼叫 done。對話期間遊戲暫停。
+const transformArt = createTransformArt($('tf-art'));
 function runDialog(lines, done, cls = '') {
   if (!lines || !lines.length) { if (done) done(); return; }
   dialog = { lines, i: 0, done, prev: game.phase };
@@ -401,7 +404,9 @@ function runDialog(lines, done, cls = '') {
   showLine();
 }
 function showLine() {
-  const [who, text] = dialog.lines[dialog.i];
+  const [who, text, art] = dialog.lines[dialog.i];
+  transformArt.show(dialog.lines === FIRST_TRANSFORM ? art : null);
+  $('dialog').classList.toggle('has-transform-art', dialog.lines === FIRST_TRANSFORM && Boolean(art));
   $('dlg-name').textContent = t(who);
   $('dlg-name').hidden = !who;
   $('dlg-text').textContent = t(text);
@@ -416,6 +421,7 @@ function advanceDialog(skip = false) {
   const d = dialog;
   dialog = null;
   $('dialog').hidden = true;
+  transformArt.hide();
   game.phase = d.prev === 'dialog' ? 'playing' : d.prev;
   input.takeActions(); // 對話時按的鍵不要帶進戰鬥
   if (d.done) d.done();
@@ -1831,6 +1837,7 @@ function updateShots(dt) {
 let lastOverlay = null;
 function showOverlay(config) {
   lastOverlay = config;
+  $('ov-replay').hidden = true;
   const { title, text, note, btn, next, easy, outcome = 'clear', stats } = config;
   $('overlay').dataset.outcome = outcome;
   $('overlay').classList.remove('menu', 'stages');
@@ -2178,6 +2185,9 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  transformArt.hide();
+  dialog = null;
+  $('ov-replay').hidden = menuView !== 'title';
   game.phase = 'ready';
   game.bgm = null; audio.playBgm(audio.tracks.bgm_title ? 'bgm_title' : null);
   clearField();
@@ -2246,6 +2256,12 @@ function showMenu() {
 }
 
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
+$('ov-replay').addEventListener('click', () => {
+  audio.unlock();
+  $('overlay').hidden = true;
+  setBgm('bgm_transform');
+  runDialog(FIRST_TRANSFORM, showMenu, 'stars');
+});
 $('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
 $('ov-menu').addEventListener('click', () => {
   audio.sfx('ui');

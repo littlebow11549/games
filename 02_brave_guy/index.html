@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/overlay-art.css?v=20261115a">
 <link rel="stylesheet" href="css/feedback-art.css?v=20261115b">
 <link rel="stylesheet" href="css/hud-art.css?v=20261115b">
+<link rel="stylesheet" href="css/transform-art.css?v=20261115a">
 <link rel="preload" as="image" href="assets/source/pic/ui/guilt_explode_sheet.png">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
@@ -82,6 +83,10 @@
 </div>
 
 <div id="dialog" class="dialog" hidden>
+  <div id="tf-art" class="tf-art" hidden aria-hidden="true">
+    <div class="tf-picture"></div>
+    <div class="tf-sign-card" hidden><img alt=""><b data-i18n="請稍候">請稍候</b></div>
+  </div>
   <div class="dlg-box">
     <b id="dlg-name"></b>
     <img id="dlg-bingo" src="assets/source/pic/ui/bingo_card.png" alt="" aria-hidden="true" hidden>
@@ -116,6 +121,7 @@
     <p id="loadbar-text" class="muted">讀取中　0%</p>
     <p id="ov-load" class="muted"></p>
     <button id="ov-btn" disabled>開始</button>
+    <button id="ov-replay" class="ghost" hidden data-i18n="重播變身">重播變身</button>
     <button id="ov-next" hidden data-i18n="下一關">下一關</button>
     <button id="ov-menu" class="ghost" hidden data-i18n="選關">選關</button>
     <div id="ov-diff" class="diff-row" hidden></div>
@@ -148,7 +154,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261115g';
+    s.src = 'js/main.js?v=20261115h';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

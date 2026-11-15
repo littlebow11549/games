@@ -271,9 +271,9 @@
         "transform/tf_waiting_3.png",
         "transform/tf_waiting_4.png"
       ],
-      "status": "本聊天已生成13張但使用者指出重複；未提交、未接入",
-      "next_action": "停用生成佇列；核對原稿及程式演出",
-      "evidence": "本聊天工具產出；使用者明確更正",
+      "status": "13張先前生成檔已核對原SHA256並沿用接入；不是本輪重生",
+      "next_action": "驗證首次變身與重播；保留原生尺寸及構圖限制",
+      "evidence": "docs/handoffs/2026-11-15-game02-transform-storyboard.md",
       "generation_allowed": false
     },
     {
@@ -407,136 +407,6 @@
       "status": "本聊天生成，未提交，待比對；不可重生"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_bg_stars.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "866873c7de07dcdbd80ff20e2badc669cecb8b40cab3f2dd705a1fc229e27a59",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_glove.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "6404358c3481590b80920f3243376102aaeb3dffa49f7756f8a6fa4de65c24c9",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_hair.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "c47f1f2282d25c7bdff8b2a56e8bb91e34db13c45d46738ed25b560e24136444",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_jacket.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "d975d70299097bb4c1792abf72003d7ba4265b11b74aacbe0fb4cb4723753488",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_knee.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "1ba89e338136fc2db8c4fd19204cf50ef7cd1ae59c3d9c9238f3119dd8a361aa",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_pose.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "ca320f659b0ff9024b4e8dc5f7dfd9e19bff877d2dad446f1b7216651e0de383",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_scarf.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "b56009536f59685fd42d0d45b6ea8e03eaea10a00b8b31648beed499b2adad71",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_sign.png",
-      "size": [
-        1024,
-        1536
-      ],
-      "mode": "RGBA",
-      "sha256": "2a64ca219d559dbe801174cd04805463fbc892256ad1b46fd7e3081c79d1f2dd",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_silhouette.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGBA",
-      "sha256": "980c10e8828fdee8acc653b1e139c16279dcfe8542bd5396b24b375deedc847e",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_1.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "0e351cdad38a86276435b3cf8f851baa5762aa0495091bb43c297189676f5daa",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_2.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "9481a0076d7390d17748d3220ab28f562a512c6b52a71220b248ca791ff8fe2e",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_3.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "635812bdf954b7f2c0531da31199ecf61dd747674f99b93d7e7993080f5bd801",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_4.png",
-      "size": [
-        1672,
-        941
-      ],
-      "mode": "RGB",
-      "sha256": "06bce845267128d0a69cf8a71912d913ecc496427441ada5e2731573a4a33c4e",
-      "status": "本聊天生成，未提交，待比對；不可重生"
-    },
-    {
       "path": "02_brave_guy/assets/source/pic/ui/counter_suanle.png",
       "size": [
         1536,
@@ -555,6 +425,138 @@
       "mode": "RGBA",
       "sha256": "ed0fe87920c11ebdc24c1502d5cadf43d2e348b702354f9326a911ebf1a4c6f6",
       "status": "本聊天生成，未提交，待比對；不可重生"
+    }
+  ],
+  "integrated_transform_images": [
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_bg_stars.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "866873c7de07dcdbd80ff20e2badc669cecb8b40cab3f2dd705a1fc229e27a59",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_glove.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "6404358c3481590b80920f3243376102aaeb3dffa49f7756f8a6fa4de65c24c9",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_hair.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "c47f1f2282d25c7bdff8b2a56e8bb91e34db13c45d46738ed25b560e24136444",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_jacket.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "d975d70299097bb4c1792abf72003d7ba4265b11b74aacbe0fb4cb4723753488",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_knee.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "1ba89e338136fc2db8c4fd19204cf50ef7cd1ae59c3d9c9238f3119dd8a361aa",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_pose.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "ca320f659b0ff9024b4e8dc5f7dfd9e19bff877d2dad446f1b7216651e0de383",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_scarf.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "b56009536f59685fd42d0d45b6ea8e03eaea10a00b8b31648beed499b2adad71",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_sign.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "2a64ca219d559dbe801174cd04805463fbc892256ad1b46fd7e3081c79d1f2dd",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_silhouette.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGBA",
+      "sha256": "980c10e8828fdee8acc653b1e139c16279dcfe8542bd5396b24b375deedc847e",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_1.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "0e351cdad38a86276435b3cf8f851baa5762aa0495091bb43c297189676f5daa",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_2.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "9481a0076d7390d17748d3220ab28f562a512c6b52a71220b248ca791ff8fe2e",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_3.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "635812bdf954b7f2c0531da31199ecf61dd747674f99b93d7e7993080f5bd801",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_4.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "06bce845267128d0a69cf8a71912d913ecc496427441ada5e2731573a4a33c4e",
+      "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     }
   ]
 }

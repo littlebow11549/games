@@ -1,6 +1,8 @@
 // 英文語系。鍵是遊戲裡的中文原文，值是英文。找不到的句子會顯示中文原文。
 // 新增或修改中文文字後，請在這裡補上對應的英文。{0}、{1} 是會被代入的數字或名稱。
 export default {
+ "請稍候": "Please wait",
+ "重播變身": "Replay transformation",
  "主角": "Hero",
  "呃……我要喊什麼？": "Uh... what do I shout?",
  "小天使": "Angel",

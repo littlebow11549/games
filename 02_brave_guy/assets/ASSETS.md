@@ -235,6 +235,8 @@ small rivets/decorations only on the border and corners, clean empty center,
 | `tf_waiting_1.png`–`tf_waiting_4.png` | 插入鏡頭：四隻小幹譙在旁邊等（問能不能打、吃洋芋片嫌棄、躺下睡著、做伏地挺身） |
 | `tf_sign.png` | 小天使舉的「請稍候」牌子 |
 
+> 2026-11-15 接入更新：以上13檔已沿用本聊天先前生成的原檔，非重生。一般畫面原生1672×941；舉牌1024×1536，低於部分原需求且未插值放大。首次變身按原對話順序顯示，著裝五圖每800ms切換，其他對話由玩家點按；新增主選單重播，不改存檔。等待插鏡沿用既有校園走廊構圖，並非宿舍。完整來源及測試見 docs/handoffs/2026-11-15-game02-transform-storyboard.md。
+
 ## 7. 場景　`source/pic/background/`、`source/pic/scene/`
 
 場景會做成 3D。這裡要的是**概念圖**（定氣氛與配色）和**貼圖**。每張地圖一張概念圖 1920×1080，另依需要出貼圖 1024×1024 可無縫拼接。

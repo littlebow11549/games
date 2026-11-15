@@ -1,0 +1,33 @@
+/* Storyboard artwork remains separate from readable, translated dialog. */
+.game-art .dialog.stars{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;background:#100f21;padding:16px 12px calc(14px + var(--safe-b))}
+.game-art .dialog.stars[hidden]{display:none}
+.tf-art{position:relative;flex:1;min-height:0;width:min(100%,1100px);overflow:hidden;background:#171332 center/cover no-repeat;border:2px solid #c5a641;border-radius:16px;box-shadow:0 8px 30px #0008;pointer-events:none}
+.tf-art[hidden]{display:none}
+.tf-picture{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.tf-picture img{width:100%;height:100%;object-fit:contain;animation:tf-reveal .24s ease-out}
+.tf-art[data-shot="silhouette"] .tf-picture img{animation:tf-float 2.4s ease-in-out infinite alternate}
+.tf-sign-card{position:relative;height:100%;width:auto;aspect-ratio:2/3;margin:auto;max-width:100%}
+.tf-sign-card[hidden]{display:none}
+.tf-sign-card img{display:block;width:100%;height:100%;object-fit:contain}
+.tf-sign-card b{position:absolute;left:19%;top:46%;width:62%;height:12%;display:grid;place-items:center;color:#183019;font-size:clamp(18px,3.5vh,34px);text-shadow:none;-webkit-text-stroke:0}
+.game-art .dialog.stars .dlg-box{flex:0 0 auto;width:min(100%,900px);min-height:110px;max-height:45dvh;margin:0}
+.game-art .dialog.stars .dlg-next{font-size:12px;animation:none}
+@keyframes tf-reveal{from{opacity:.4;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+@keyframes tf-float{from{transform:translateY(1%) rotate(-2deg)}to{transform:translateY(-1%) rotate(2deg)}}
+@media(orientation:landscape) and (max-height:500px){
+ .game-art .dialog.stars{flex-direction:row;align-items:stretch;gap:10px;padding:10px}
+ .game-art .dialog.stars .tf-art{width:62%;flex:1;min-width:0}
+ .game-art .dialog.stars .dlg-box{width:35%;max-height:100%;align-self:flex-end;padding:22px 14px 28px;font-size:14px}
+ .game-art .dialog.stars #dlg-text{font-size:14px;line-height:1.5}
+}
+@media(prefers-reduced-motion:reduce){.tf-art img{animation:none!important}}
+.game-art .dialog.stars:not(.has-transform-art){background:linear-gradient(transparent 55%,#000a)}
+.game-art #ov-replay{position:absolute;top:calc(60px + var(--safe-t));z-index:2;left:calc(12px + var(--safe-l));margin:0;min-height:44px;max-width:calc(100vw - 180px);padding:8px 14px;border:2px solid #a5dc61;border-radius:22px;background:#173522;color:#fff3b3;font-size:14px;line-height:1.3;box-shadow:0 3px 0 #09170e;text-shadow:none;-webkit-text-stroke:0}
+.game-art #ov-replay[hidden]{display:none}
+.game-art #ov-replay:focus-visible{outline:3px solid #fff;outline-offset:3px}
+/* Widescreen drawings keep their own frame, rather than floating small inside a tall star field. */
+@media(orientation:portrait){
+ .game-art .dialog.stars.has-transform-art{justify-content:center}
+ .tf-art:not([data-shot="sign"]):not([data-shot="silhouette"]){flex:0 1 auto;aspect-ratio:1672/941;max-height:calc(100dvh - 240px)}
+ .tf-art[data-shot="silhouette"] .tf-picture img{object-fit:cover}
+}
