@@ -1,3 +1,4 @@
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115allboss';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { createVisual } from './visuals.js';
 import { t, lang } from './i18n.js?v=20261115cinema';
@@ -38,13 +39,14 @@ export function createCinematics(renderer, audioProvider) {
  const root=document.createElement('section'); root.id='cinema';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
  root.innerHTML='<div class="cinema-lines" aria-hidden="true"></div><div class="cinema-portrait" aria-hidden="true"></div><div class="cinema-top"><span class="cinema-kicker"></span><button class="cinema-skip"></button></div><div class="cinema-caption"><h2></h2><p></p></div><div class="cinema-progress"><i></i></div><div class="cinema-credits" hidden></div>';
  document.body.append(root);
+ const storyboard=createBossStoryboard(root,audioProvider);
  const $=q=>root.querySelector(q), skip=$('.cinema-skip'), title=$('h2'), subtitle=$('p'), credits=$('.cinema-credits');
  let active=null, scene=null, camera=null, actors=[], elapsed=0, shot=-1, previousFocus=null;
  let endingTexture=null;
  new THREE.TextureLoader().load('assets/source/pic/cinematics/ending_applause.png', texture=>{endingTexture=texture;});
  let artScene=null, artMaterial=null;
  function clearScene(){if(artScene){artScene.children[0].geometry.dispose();artMaterial.dispose();artScene=null;artMaterial=null;}for(const a of actors){scene?.remove(a.root);a.dispose?.();} actors=[];scene?.traverse(o=>{if(o.isMesh){o.geometry.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
- function cancel(){if(!active)return;active=null;root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
+ function cancel(){if(!active)return;active=null;storyboard.stop();root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
  function finish(){const done=active?.done;cancel();done?.();}
  function base(mode,done){cancel();previousFocus=document.activeElement;active={mode,done};elapsed=0;shot=-1;root.hidden=false;document.body.classList.add('in-cinematic');root.dataset.mode=mode;credits.hidden=true;title.hidden=false;subtitle.hidden=false;skip.textContent=t('跳過');skip.focus({preventScroll:true});root.setAttribute('aria-label',t(mode==='boss'?'心魔來襲':'找回自己'));
   scene=new THREE.Scene();scene.background=new THREE.Color(mode==='boss'?0x07121b:0x0c1b19);scene.fog=new THREE.Fog(scene.background,20,55);
@@ -54,16 +56,16 @@ export function createCinematics(renderer, audioProvider) {
   for(let i=0;i<5;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(3+i*2,.018,5,80),new THREE.MeshBasicMaterial({color:0xc6dd8f,transparent:true,opacity:.2}));ring.rotation.x=Math.PI/2;ring.position.y=.01;scene.add(ring);}
  }
  function actor(kind,x,z,height=3.2){const v=createVisual(kind,false);v.root.position.set(x,0,z);scene.add(v.root);const bounds=new THREE.Box3().setFromObject(v.root),size=bounds.getSize(new THREE.Vector3());v.root.scale.multiplyScalar(height/Math.max(size.y,.1));v.play('idle');actors.push(v);return v;}
- function boss(kinds,done){base('boss',done);active.kinds=kinds;active.duration=kinds.length*4.2;showBoss(0);}
+ function boss(kinds,done){base('boss',done);active.kinds=kinds;active.starts=[];active.duration=0;for(const key of kinds){active.starts.push(active.duration);active.duration+=BOSS_STORYBOARDS[key].duration;}storyboard.prepare(kinds);showBoss(0);}
  function showBoss(index){shot=index;for(const a of actors){scene.remove(a.root);a.dispose?.();}actors=[];
-  const key=active.kinds[index], p=BOSS_PROFILES[key];active.profile=p;
+  const key=active.kinds[index], p=BOSS_PROFILES[key];active.profile=p;active.loadWait=0;
   root.dataset.motif=p[3];root.style.setProperty('--cinema-color',p[2]);
   $('.cinema-kicker').textContent=t('心魔來襲');title.className='cinema-name system-lettering';title.textContent=t(p[0]);subtitle.textContent=t(p[4]);
   // Existing full-body front view: source sheet is neither edited nor regenerated.
   const portrait=$('.cinema-portrait');portrait.style.backgroundImage=`url(assets/source/pic/sheet/unified/sheet_${p[5]}.png)`;
   const [x,y,w,h]=CROPS[key];portrait.style.aspectRatio=`${w}/${h}`;portrait.style.backgroundSize=`${1728/w*100}% ${1152/h*100}%`;portrait.style.backgroundPosition=`${x/(1728-w)*100}% ${y/(1152-h)*100}%`;
   portrait.style.animation='none';void portrait.offsetWidth;portrait.style.animation='';
-  actor(p[1],0,0,3.4).root.visible=false;audioProvider()?.sfx('ui');
+  actor(p[1],0,0,3.4).root.visible=false;storyboard.start(key);
  }
  function ending(done){base('ending',done);root.dataset.motif='dawn';root.style.setProperty('--cinema-color','#ffdf79');active.duration=7*4.5+8;active.clapBeat=-1;
   actor('brave',0,1.5,3.6);
@@ -84,18 +86,22 @@ export function createCinematics(renderer, audioProvider) {
  }
  skip.addEventListener('click',()=>{if(active?.mode==='ending'&&elapsed<31.5){elapsed=31.5;shot=-1;}else finish();});
  addEventListener('keydown',e=>{if(!active)return;if(['Escape','Space','Enter'].includes(e.code)){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat)skip.click();}else if(e.code==='Tab'){e.preventDefault();skip.focus();}},true);
- function update(dt){if(!active)return false;if(!document.hidden)elapsed+=dt;
+ function update(dt){if(!active)return false;
+  const waiting=active.mode==='boss'&&!storyboard.ready()&&(active.loadWait||0)<5;
+  if(waiting)active.loadWait=(active.loadWait||0)+dt;
+  if(!document.hidden&&!waiting)elapsed+=dt;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
   if(active.mode==='boss'){
-   const index=Math.min(active.kinds.length-1,Math.floor(elapsed/4.2));if(index!==shot)showBoss(index);
-   const local=elapsed-index*4.2, a=actors[0], motif=active.profile[3];
+   const index=Math.max(0,active.starts.findLastIndex(start=>elapsed>=start));if(index!==shot)showBoss(index);
+   const local=elapsed-active.starts[index], a=actors[0], motif=active.profile[3];
    root.dataset.shot=local<.7?'reveal':local<3.2?'hold':'exit';
    const entrance=Math.min(1,local/.85), ease=1-Math.pow(1-entrance,3);
    a.update(dt);a.root.position.x=reduced?0:(1-ease)*(motif==='slash'?-7:motif==='coil'?7:0);
    a.root.position.y=reduced?0:(1-ease)*(motif==='impact'||motif==='quake'?6:motif==='mist'?1.5:0);
    a.root.rotation.y=reduced?0:(motif==='coins'||motif==='crown'?(1-ease)*Math.PI*2:Math.sin(local*.55)*.18);
    const narrow=camera.aspect<1;camera.position.set(reduced?0:Math.sin(local*.4)*.5,2.3,(narrow?11:8.3)-Math.min(local,3)*.25);camera.lookAt(0,1.7,0);
+   storyboard.render(local,reduced,active.profile[2]);
    if(['mirror','fracture'].includes(motif))a.root.position.x=Math.sin(local*23)*Math.max(0,.55-local)*.2;
   }else{
    const index=Math.floor(elapsed/4.5), isCredits=elapsed>=31.5;
@@ -120,5 +126,5 @@ export function createCinematics(renderer, audioProvider) {
   if(elapsed>=active.duration)finish();
   return true;
  }
- return {boss,ending,cancel,update,get active(){return Boolean(active);},get state(){return active?{mode:active.mode,elapsed,duration:active.duration,cast:actors.length}:null;}};
+ return {boss,ending,cancel,update,prepareBoss:storyboard.prepare,get active(){return Boolean(active);},get state(){return active?{mode:active.mode,elapsed,duration:active.duration,cast:actors.length}:null;}};
 }

@@ -38,3 +38,15 @@ body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{vis
 @media(prefers-reduced-motion:reduce){#cinema[data-mode=boss] .cinema-portrait{animation:none!important;transform:translateX(-50%)}#cinema[data-mode=boss] .cinema-name{transition:none}}
 #cinema[data-mode=ending] .cinema-name{font-size:clamp(18px,3vw,34px)}
 #cinema[data-mode=ending] .cinema-caption{bottom:8%}
+
+/* Full-scene narrative films replace the setting-sheet card for every boss. */
+.cinema-storyboard{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cinema-storyboard[hidden]{display:none}
+.cinema-top,.cinema-progress{z-index:5}
+#cinema[data-storyboard][data-art-ready=true] .cinema-portrait,#cinema[data-storyboard] .cinema-lines{display:none}
+#cinema[data-storyboard] .cinema-caption{left:6%;right:6%;bottom:9%;text-align:center}
+#cinema[data-storyboard][data-beat="0"] .cinema-caption{opacity:0}
+#cinema[data-storyboard][data-beat="1"] .cinema-name{visibility:hidden}
+#cinema[data-storyboard][data-beat="2"] .cinema-name{animation:cinema-title-hit .45s cubic-bezier(.2,.9,.3,1.15) both}
+@keyframes cinema-title-hit{from{transform:scale(1.35) translateY(12px);filter:blur(3px)}to{transform:scale(1) translateY(0);filter:none}}
+@media(max-height:450px){#cinema[data-storyboard] .cinema-caption{bottom:6%;left:20%;right:20%}#cinema[data-storyboard] .cinema-caption p{font-size:13px}#cinema[data-storyboard] .cinema-name{font-size:24px}}

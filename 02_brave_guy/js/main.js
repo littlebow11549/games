@@ -4,13 +4,13 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115cinema';
-import { createCinematics } from './cinematics.js?v=20261115cinema';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115allboss';
+import { createCinematics } from './cinematics.js?v=20261115allboss';
 import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
 import { createTransformArt } from './transform-art.js?v=20261115a';
-import { GameAudio } from './audio.js';
+import { GameAudio } from './audio.js?v=20261115sfx';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
 import { makeMaze } from './maze.js';
@@ -359,10 +359,13 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index) {
+  audio.stopLoops();
   cinematics.cancel();
   transformArt.hide();
   game.stage = index;
   const st = stage();
+  if(st.id==='3-0')audio.sfx('punch_clock');
+  if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]);
   ({ sun } = buildWorld(scene, st.theme, Q()));
   buildMaze(st);
   // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
@@ -412,6 +415,7 @@ function runDialog(lines, done, cls = '') {
 }
 function showLine() {
   const [who, text, art] = dialog.lines[dialog.i];
+  if(dialog.lines===FIRST_TRANSFORM && art==='waiting_2')audio.sfx('chips');
   transformArt.show(dialog.lines === FIRST_TRANSFORM ? art : null);
   $('dialog').classList.toggle('has-transform-art', dialog.lines === FIRST_TRANSFORM && Boolean(art));
   $('dlg-name').textContent = t(who);
@@ -484,6 +488,7 @@ function say(key, force = false) {
   const line = ANGEL[key];
   b.textContent = t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
   b.hidden = false;
+  audio.sfx('bubble');
 }
 
 const ACT_BUTTONS = [...document.querySelectorAll('.act[data-action]')]; // 每幀都要用，先查好
@@ -497,6 +502,8 @@ function updateHud() {
   $('courage').classList.toggle('full', !brave && hero.courage >= GAUGE.courageMax);
   $('courage').classList.toggle('burst', hero.mode === 'burst');
   const g = hero.guilt / hero.guiltMax;
+  if(game.phase==='playing'&&!game.paused){const old=hero.guiltSoundRatio||0;if(g>=.9&&old<.9)audio.sfx('guilt_crack');else if(g>old+.001)audio.sfx('guilt_tick');}
+  hero.guiltSoundRatio=g;
   $('guilt-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, g))})`;
   $('guilt').classList.toggle('crack', g >= 0.9);
   $('guilt').classList.toggle('full', g >= 1);
@@ -573,15 +580,17 @@ function addCourage(x) {
     x *= game.rules.courageBoost || 1;
   }
   hero.courage = Math.max(0, Math.min(GAUGE.courageMax, hero.courage + x));
-  if (hero.form !== 'brave' && canTransform() && hero.courage >= GAUGE.courageMax && !hero.readySaid) { hero.readySaid = true; say(game.final ? 'walk' : 'ready', true); audio.sfx('skill'); }
+  if (hero.form !== 'brave' && canTransform() && hero.courage >= GAUGE.courageMax && !hero.readySaid) { hero.readySaid = true; say(game.final ? 'walk' : 'ready', true); audio.sfx('courage_full'); }
 }
-function addQi(x) { if (hero.form === 'brave' && hero.state !== 'ult') hero.qi = Math.min(GAUGE.qiMax, hero.qi + x * (game.abilities.has('qi') ? 1.3 : 1)); } // 放大招期間不回氣
+function addQi(x) { if (hero.form === 'brave' && hero.state !== 'ult') {const old=hero.qi;hero.qi = Math.min(GAUGE.qiMax, hero.qi + x * (game.abilities.has('qi') ? 1.3 : 1));if(old<GAUGE.qiMax&&hero.qi>=GAUGE.qiMax)audio.sfx('qi_full');} } // 大招期間不回氣
 // 終章最後一段與地圖三找回變身之前不能變身
 const canTransform = () => game.abilities.has('transform') && !game.final;
 
 function onHit(count, killed) {
   if (!count) return;
+  const oldCombo=game.combo;
   game.combo += count;
+  for(const milestone of [100,50,10])if(oldCombo<milestone&&game.combo>=milestone){audio.sfx('combo_'+milestone);break;}
   game.comboT = 2.2;
   if (hero.form === 'brave') { addCourage(GAUGE.courageHitBrave * count); addQi(GAUGE.qiHit * count + GAUGE.qiKill * killed); }
   else addCourage(GAUGE.courageHitStudent * count);
@@ -590,12 +599,12 @@ function onHit(count, killed) {
 
 // ---------- 變身 ----------
 
-function shockwave(center, radius, mult, color) {
+function shockwave(center, radius, mult, color, sound='quake') {
   fx.dome(center, radius, color, 0.55);
   fx.ring(center, 1, radius, 0xffffff, 0.45);
   fx.burst(center, color, 36, 13, 0.6, 0.32);
   game.shake = Math.max(game.shake, 0.7);
-  audio.sfx('boom');
+  audio.sfx(sound);
   areaStrike(center, radius, mult, { kb: 12, launch: 9, stun: 0.8, heavy: true });
 }
 
@@ -608,7 +617,7 @@ function finishTransform() {
   hero.state = 'free';
   hero.invuln = Math.max(hero.invuln, 0.4);
   hero.guilt *= 0.5;
-  shockwave(hero.pos, 6 + 5 * extra, 1.6 + 1.6 * extra, 0x9be564);
+  shockwave(hero.pos, 6 + 5 * extra, 1.6 + 1.6 * extra, 0x9be564, 'transform_done');
   popup(hero.pos, 2.6, '勇氣超人！', 'shout');
   for (const e of enemies) if (e.sayEl) { e.sayEl.remove(); e.sayEl = null; } // 囂張的話收回去
   setTimeout(() => tauntFrom(TAUNTS_SCARED), 350);
@@ -619,6 +628,7 @@ function finishTransform() {
 function guiltBurst() {
   burstMeter();
   if (!canTransform()) {
+    audio.sfx('guilt_crack');
     // 悶爆：爆不起來，只說「……算了」
     hero.guilt = 0;
     hero.invuln = Math.max(hero.invuln, 0.8);
@@ -644,7 +654,7 @@ function guiltBurst() {
     hero.courage = Math.min(GAUGE.courageMax, hero.courage + GAUGE.burstExtend * GAUGE.courageDrain); // 不受命中延長上限限制
   }
   hero.state = 'free';
-  shockwave(hero.pos, 9, 3, 0xb06cff);
+  shockwave(hero.pos, 9, 3, 0xb06cff, 'guilt_burst');
   fx.pillar(hero.pos, 2, 14, 0xd9b0ff, 0.6);
   popup(hero.pos, 2.6, '夠了！！', 'shout');
   game.hitstop = 0.12;
@@ -652,6 +662,7 @@ function guiltBurst() {
 }
 
 function revert() {
+  audio.sfx('revert');
   setForm(hero.base);
   hero.mode = null;
   hero.courage = 0;
@@ -724,6 +735,7 @@ function spawnEnemy(kind, at, delay = 0) {
 }
 
 function nextWave() {
+  audio.sfx('wave');
   game.wave++;
   const wave = game.waves[game.wave];
   const rush = game.waves.length > stage().waves.length && game.wave === game.waves.length - 1;
@@ -836,7 +848,7 @@ function hurtHero(amount, opts = {}) {
       fx.pillar(hero.pos, 1.2, 10, 0xffc4e3, 0.6);
       areaStrike(hero.pos, 6, 0.2, { kb: 14, launch: 4 });
       say(game.rescues > 0 ? 'revive' : 'reviveLast', true);
-      audio.sfx('skill');
+      audio.sfx('revive');
       return;
     }
     hero.state = 'dead';
@@ -853,9 +865,10 @@ function damageEnemy(e, mult, o = {}) {
   if (!alive(e) || e.fly) return null;
   if (e.untouchable) return { killed: false, crit: false }; // 終章最後一段：打不到，但出手仍然算數
   if (e.shield) {
+    audio.sfx('guard');
     // 夢魘超人只會擋：要用三個小招各破一次
     if (['skill1', 'skill2', 'skill3'].includes(o.src) && !e.broken.has(o.src)) {
-      e.broken.add(o.src);
+      e.broken.add(o.src); audio.sfx('mask_off');
       popup(e.pos, e.def.height + 0.6, tf('破防 {0}/3', e.broken.size), 'good');
       fx.ring(e.pos, 0.5, 4, 0x9be564, 0.4);
       if (e.broken.size >= 3) { e.shield = false; popup(e.pos, e.def.height + 1.2, '……有點痛。', 'shout'); game.shake = 0.6; }
@@ -866,7 +879,7 @@ function damageEnemy(e, mult, o = {}) {
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.3) dmg = Math.max(0, e.hp - e.maxHp * 0.3 + 1); // 不會被直接打死，要進入最後一段
-  if (guarded) dmg *= 0.35; // 假森：平常打不動，出手後或被打飛時才打得痛
+  if (guarded) {dmg *= 0.35;audio.sfx('guard');} // 假森：平常打不動，出手後或被打飛時才打得痛
   dmg = Math.round(dmg);
   e.hp -= dmg;
   e.visual.flash();
@@ -877,12 +890,13 @@ function damageEnemy(e, mult, o = {}) {
   tmp.normalize();
   if (!e.def.boss) {
     e.vel.addScaledVector(tmp, o.kb || 0);
-    if (o.launch && !guarded) e.vy = Math.max(e.vy, o.launch);
+    if (o.launch && !guarded) {e.vy = Math.max(e.vy, o.launch);audio.sfx(e.def.armored?'mask_off':'enemy_fly');}
     if (o.stun) e.stun = Math.max(e.stun, o.stun);
   }
   const killed = e.hp <= 0;
   if (killed) {
     e.state = 'dead';
+    if(!e.def.boss)audio.sfx('enemy_down');
     e.t = 0;
     e.visual.play('die', 0.8);
     if (e.bar) e.bar.remove();
@@ -1062,12 +1076,13 @@ function stunHero(sec, text) {
 }
 const bossLine = (e, i) => popup(e.pos, e.def.height + 0.5, e.def.lines[i === undefined ? Math.floor(Math.random() * e.def.lines.length) : i % e.def.lines.length], 'shout');
 function boomAt(pos, r) {
+  audio.sfx('boss_slam');
   fx.ring(pos, 1, r, 0xff8a3d, 0.5);
   fx.burst(pos, 0xffb347, 26, 10, 0.4, 0.3);
   game.shake = Math.max(game.shake, 0.6);
-  audio.sfx('boom');
 }
 function hostileShot(from, yaw, o = {}) {
+  if(o.pan)audio.sfx('pan_fly');
   const r = o.radius || 0.3;
   const mesh = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), new THREE.MeshBasicMaterial({ color: o.color || 0xff5a4f }));
   mesh.position.set(from.x, 1.2, from.z);
@@ -1107,12 +1122,13 @@ const MOVES = {
     start(e) { e.visual.play('attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
     update(e, dt, d) {
       if (e.cast.t < 0.6) return false;
+      audio.sfx('fan');
       fx.slash(e.pos, e.yaw, 7.5, 2.4, 0xffffff, 1, 1.2);
       if (d < 7.5 && hero.invuln <= 0) { hurtHero(70); knockHero(e.pos, 22); }
       return true;
     } },
   whistle: { cd: 6,           // 藍教頭吹哨：站著不動就是罰站
-    start(e) { bossLine(e); fx.telegraph(e.pos, 10, 1.0, 0x3a6fd0); audio.sfx('skill'); },
+    start(e) { bossLine(e); fx.telegraph(e.pos, 10, 1.0, 0x3a6fd0); audio.sfx('whistle'); },
     update(e, dt, d) {
       if (e.cast.t < 1.0) return false;
       fx.ring(e.pos, 1, 10, 0x9fd4ff, 0.4);
@@ -1193,7 +1209,7 @@ const MOVES = {
     start(e) { bossLine(e, 0); e.visual.play('attack', 0.8); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 90, speed: 14, radius: 0.9, color: 0x9be564 }); audio.sfx('shoot'); return true; } },
   gossip: { cd: 8,             // 八卦蛇咬耳朵：其他敵人加速
-    start(e) { bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play('attack', 0.6); },
+    start(e) { audio.sfx('notify');bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play('attack', 0.6); },
     update: (e) => e.cast.t > 0.6 },
 };
 
@@ -1212,6 +1228,7 @@ function bossThink(e, d, dx, dz) {
   e.cds[name] = MOVES[name].cd * (e.untouchable ? 1.6 : 1);
   e.state = 'cast';
   e.cast = { name, t: 0 };
+  audio.sfx('boss_warn');
   MOVES[name].start(e, dx, dz, d);
   return true;
 }
@@ -1240,7 +1257,7 @@ function updateEnemy(e, dt, attackers) {
 
   if (e.state === 'spawn') {
     if (e.t < 0) return;
-    if (!e.shown) { e.shown = true; e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4); }
+    if (!e.shown) { e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4); }
     e.visual.root.scale.setScalar(Math.min(1, e.t / 0.35) * e.size);
     if (e.t > 0.45) { e.state = 'chase'; e.t = 0; }
     return;
@@ -1362,6 +1379,7 @@ function updateHazards(dt) {
         h.tick -= dt;
         if (h.tick <= 0) { h.tick = 1.2; popup(hero.pos, 2.8, '（會議中）', 'guard'); }
       } else if (h.type === 'pie') {
+        audio.sfx('pie');
         popup(h.pos, 1.5, '「明年一定調薪」', 'guard');
         popup(hero.pos, 2.8, '……空的。', 'hurt');
         hero.courage = Math.max(0, hero.courage - 10);
@@ -1400,7 +1418,7 @@ function updateAmbush(dt) {
     const striking = ['attack', 'skill1', 'skill3'].includes(hero.state) || hero.state === 'dodge';
     if ((striking && d < 3.4) || (a.t >= a.warn && hero.form === 'brave' && d < 4.5)) {
       // 被抓到（變身中不會被嚇到，等於直接抓到）
-      a.done = true; a.t = 0; a.caught = true;
+      a.done = true; a.t = 0; a.caught = true; audio.sfx('revive');
       game.caught++;
       if (game.rescues < 5) { game.rescues++; popup(hero.pos, 3.8, tf('救援 +1（共 {0} 次）', game.rescues), 'good'); }
       addCourage(15);
@@ -1412,7 +1430,7 @@ function updateAmbush(dt) {
       say('caught');
     } else if (a.t >= a.warn) {
       a.done = true; a.t = 0;
-      a.visual.root.position.y = 0;
+      a.visual.root.position.y = 0; audio.sfx('junxiong_pop');
       popup(a.pos, 2.2, '蛤～～～', 'shout');
       fx.ring(a.pos, 0.5, 4.5, 0x4a4458, 0.5);
       if (d < 4.5 && stunHero(0.8, '嚇！')) { hero.courage = Math.max(0, hero.courage - 10); hero.guilt += 6; say('scared'); }
@@ -1528,7 +1546,7 @@ function cycleLockTarget(direction = 1) {
   if (!lockOn) setLock(true);
   lockTargetEnemy = next;
   popup(next.pos, next.def.height + 0.7, '目標切換', 'good');
-  audio.sfx('ui');
+  audio.sfx('lock_switch');
 }
 
 function updateLockMarker(dt) {
@@ -1569,7 +1587,7 @@ function startAttack(index, mv) {
   const c = COMBO[hero.form === 'brave' ? 'brave' : 'student'][index];
   hero.state = 'attack'; hero.t = 0; hero.combo = index; hero.queued = false; hero.hitDone = false;
   hero.visual.play(c.anim, c.dur);
-  audio.sfx('swing');
+  audio.sfx(hero.form!=='brave'?'student_punch':index===2?'kick_spin':'swing');
 }
 
 function startDodge(mv) {
@@ -1582,7 +1600,7 @@ function startDodge(mv) {
   hero.state = 'dodge'; hero.t = 0;
   hero.invuln = Math.max(hero.invuln, f.dodgeInvuln);
   hero.visual.play('dodge', 0.28);
-  audio.sfx('dodge');
+  audio.sfx(perfect?'dodge_perfect':'dodge');
   if (perfect) {
     addCourage(GAUGE.couragePerfect);
     addQi(GAUGE.qiPerfect);
@@ -1604,7 +1622,7 @@ function startSkill(name, mv) {
   faceForAction(mv, 12);
   hero.state = name; hero.t = 0; hero.data = { step: 0, hitSet: new Set(), from: hero.pos.clone(), tick: 0 };
   hero.visual.play(name, def.dur);
-  audio.sfx('skill');
+  if(name==='ult')audio.sfx('beam_start');else if(name==='skill1')audio.sfx('dash');
   if (name === 'skill1') hero.invuln = Math.max(hero.invuln, def.dur);
   if (name === 'ult') {
     hero.invuln = Math.max(hero.invuln, def.dur + 0.3);
@@ -1622,6 +1640,8 @@ function startSkill(name, mv) {
 }
 
 function endUlt() {
+  audio.stopLoop('beam_loop');
+  if(beam)audio.sfx('beam_end');
   if (beam) { scene.remove(beam); beam.traverse((o) => { if (o.geometry) o.geometry.dispose(); }); beam = null; }
 }
 
@@ -1672,7 +1692,7 @@ function updateHero(dt) {
         hero.state = 'transforming'; hero.t = 0;
         hero.visual.play('transform');
         hero.visual.glow(true, 0xfff7c2);
-        audio.sfx('skill');
+        audio.startLoop('transform_charge',false);
         if (!save.seenTransform) {
           // 全遊戲只播一次的完整變身演出（企劃書 4.6）
           save.seenTransform = true; writeSave();
@@ -1754,7 +1774,7 @@ function updateHero(dt) {
       scene.add(g);
       shots.push({ mesh: g, vel: forward(hero.yaw).multiplyScalar(s.speed), life: s.life, radius: s.radius, mult: s.mult, hostile: false, hitSet: new Set(), blast: s.blast, blastMult: s.blastMult, src: 'skill2' });
       fx.ring(hero.pos, 0.5, 3, 0x9be564, 0.25);
-      audio.sfx('swing');
+      audio.sfx('ki_shot');
     }
     if (hero.t >= s.dur) hero.state = 'free';
   } else if (hero.state === 'skill3') {
@@ -1833,6 +1853,7 @@ function updateShots(dt) {
     if (s.hostile && maze && maze.blocked(s.mesh.position)) s.life = 0; // 敵人的子彈會被牆擋下
     if (s.hostile) {
       if (dist2d(s.mesh.position, hero.pos) < s.radius + HERO.radius && hero.invuln <= 0 && hero.state !== 'transforming') {
+        if(s.pan)audio.sfx('pan_hit');
         if (s.pan && hero.form !== 'brave') { hero.slowT = 2.5; popup(hero.pos, 2.9, '（揹鍋）', 'guard'); }
         if (s.silence) hero.silenceT = s.silence;
         hurtHero(s.dmg); s.life = 0;
@@ -1848,6 +1869,7 @@ function updateShots(dt) {
       tally(res, false);
       s.mesh.rotation.y += dt * 6;
       if (s.life <= 0 || out) {
+        audio.sfx('ki_blast');
         fx.dome(s.mesh.position, s.blast, 0x9be564, 0.4);
         fx.burst(s.mesh.position, 0x9be564, 24, 10, 1, 0.3);
         areaStrike(s.mesh.position, s.blast, s.blastMult, { kb: 10, launch: 8, heavy: true });
@@ -1914,7 +1936,7 @@ function endGame(win) {
   setTimeout(() => {
     game.phase = 'over';
     game.bgm = null; audio.playBgm(audio.tracks.bgm_defeat ? 'bgm_defeat' : null);
-    if (!audio.tracks.bgm_defeat) audio.sfx('lose');
+    audio.sfx('lose');
     // 同一關連續失敗三次，小天使提議調簡單
     showOverlay({ outcome: 'defeat', title: '倒 下', text: () => `${stage().id}　${t(stage().name)}`, note: () => t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
   }, 1200);
@@ -2173,6 +2195,7 @@ function frame(now) {
   const rawDt = (now - last) / 1000;
   const dt = Math.min(0.05, rawDt);
   last = now;
+  audio.syncCombatLoops(game.phase==='playing'&&!game.paused&&!cinematics.active?hero.state:null);
   if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
   menuMotion.update(now, game.phase === 'ready');
   watchPerformance(rawDt);
@@ -2229,6 +2252,7 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  audio.stopLoops();
   cinematics.cancel();
   $('ov-replay').textContent = t('重播變身');
   transformArt.hide();
@@ -2303,7 +2327,7 @@ function showMenu() {
   $('overlay').hidden = false;
 }
 
-$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
+$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); startStage(game.stage); });
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();
   if (game.phase === 'over' && lastOverlay?.outcome === 'ending') {
@@ -2313,7 +2337,7 @@ $('ov-replay').addEventListener('click', () => {
   setBgm('bgm_transform');
   runDialog(FIRST_TRANSFORM, showMenu, 'stars');
 });
-$('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
+$('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); startStage(Math.min(STAGES.length - 1, game.stage + 1)); });
 $('ov-menu').addEventListener('click', () => {
   audio.sfx('ui');
   // 在主選單裡是「選關／返回」的切換；在結算畫面是回主選單
@@ -2331,6 +2355,7 @@ $('btn-lock').classList.toggle('on', lockOn);
 function setPaused(on) {
   if (on && (game.phase !== 'playing' || dialog)) return;
   game.paused = on;
+  if(on)audio.stopLoops();
   $('btn-pause').classList.toggle('on', on);
   $('pause-menu').hidden = !on;
 }
@@ -2370,9 +2395,9 @@ const QUEST_KEY = 'braveguy.quest';
     try { localStorage.setItem(QUEST_KEY, now ? 'mini' : 'full'); } catch { /* 存不了也沒關係 */ }
   });
 }
-$('pm-resume').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
-$('pm-restart').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); startStage(game.stage); });
-$('pm-menu').addEventListener('click', () => { audio.sfx('ui'); setPaused(false); showMenu(); });
+$('pm-resume').addEventListener('click', () => { audio.sfx('ui_confirm'); setPaused(false); });
+$('pm-restart').addEventListener('click', () => { audio.sfx('ui_confirm'); setPaused(false); startStage(game.stage); });
+$('pm-menu').addEventListener('click', () => { audio.sfx('ui_back'); setPaused(false); showMenu(); });
 addEventListener('keydown', (e) => { if ((e.code === 'Escape' || e.code === 'KeyP') && !e.repeat && !dialog && (game.phase === 'playing')) setPaused(!game.paused); });
 $('dialog').addEventListener('pointerdown', (e) => { e.preventDefault(); advanceDialog(e.target.id === 'dlg-skip'); });
 addEventListener('keydown', (e) => {

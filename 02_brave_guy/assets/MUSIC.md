@@ -1,5 +1,7 @@
 # 🎵 勇氣超人 Brave Guy — 音樂與音效製作需求（v3.0，2026-11-15：改走吉他搖滾／金屬路線）
 
+> 2026-11-15 音效交付更新：§4 的54個指定名稱已全數製作並接入，共63原創分層DSP音效；規格、母帶及SHA見 `source/SFX_DELIVERY.json`，製作及驗證見 `../../docs/handoffs/2026-11-15-game02-boss-films-sfx-ja-logo.md`。下文原需求與BGM規格保留。
+
 這份文件是給**負責製作音樂的另一個工作階段**看的，可以單獨讀懂。
 遊戲背景看 [`../DESIGN.md`](../DESIGN.md)（企劃書），劇情與台詞看 [`../SCRIPT.md`](../SCRIPT.md)。
 

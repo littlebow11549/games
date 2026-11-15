@@ -8,6 +8,8 @@ export class GameAudio {
     this.sfxBuffers = new Map();
     this.sfxLoading = new Map();
     this.sfxFailed = new Set();
+    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set();
+    this.loops = new Map(); this.loopRequests = new Map(); this.duck = 1;
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
     this.bgm = null;
@@ -18,41 +20,60 @@ export class GameAudio {
 
   // 必須在使用者手勢內呼叫（瀏覽器的自動播放限制）
   unlock() {
-    if (this.ctx) return;
+    if (this.ctx) { if(this.ctx.state === 'suspended') this.ctx.resume().catch(()=>{}); return; }
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     this.ctx = new AC();
     this.master = this.ctx.createGain();
     this.master.gain.value = this.muted ? 0 : 0.5;
-    this.master.connect(this.ctx.destination);
+    const limiter=this.ctx.createDynamicsCompressor();limiter.threshold.value=-8;limiter.knee.value=12;limiter.ratio.value=8;limiter.attack.value=.003;limiter.release.value=.15;
+    this.master.connect(limiter).connect(this.ctx.destination);
     // BGM 走另一條音量，不受音效主音量影響
     this.bgmGain = this.ctx.createGain();
-    this.bgmGain.gain.value = this.muted ? 0 : 0.55;
+    this.bgmGain.gain.value = this.muted ? 0 : 0.55 * this.duck;
     this.bgmGain.connect(this.ctx.destination);
     const len = this.ctx.sampleRate * 0.5;
     this.noiseBuf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
     const d = this.noiseBuf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    this.preloadSfx();
   }
 
-  // Short filtered-noise handclaps, routed through the user's existing mute control.
-  applause() {
-    if (!this.ctx || this.muted || this.ctx.state !== 'running') return;
-    const now = this.ctx.currentTime;
-    for (let i=0;i<3;i++) {
-      const src=this.ctx.createBufferSource(), filter=this.ctx.createBiquadFilter(), gain=this.ctx.createGain();
-      src.buffer=this.noiseBuf; filter.type='bandpass'; filter.frequency.value=1100+i*430; filter.Q.value=.7;
-      const at=now+i*.026; gain.gain.setValueAtTime(.12,at); gain.gain.exponentialRampToValueAtTime(.001,at+.09);
-      src.connect(filter).connect(gain).connect(this.master); src.start(at); src.stop(at+.1);
-      src.onended=()=>{src.disconnect();filter.disconnect();gain.disconnect();};
+  applause() { this.sfx('applause'); }
+
+  preloadSfx() {
+    for(const [name,source] of Object.entries(this.sfxTracks)) {
+      if(Array.isArray(source)) source.forEach((url,i)=>this.loadSfx(`${name}:${i}`,this.resolve(url)));
+      else if(source) this.loadSfx(name,this.resolve(source));
+    }
+  }
+  duckBgm(factor) { this.duck=factor; if(this.bgmGain)this.bgmGain.gain.value=this.muted?0:.55*factor; if(this.bgm)this.bgm.volume=.5*factor; }
+  startLoop(name, repeat=true) {
+    if(this.muted || !this.ctx || this.loopRequests.has(name))return;
+    const source=this.sfxTracks[name];if(!source)return;
+    const token={};this.loopRequests.set(name,token);
+    const begin=()=>{
+      if(this.loopRequests.get(name)!==token || this.muted)return;
+      const buffer=this.sfxBuffers.get(name);if(!buffer){this.loopRequests.delete(name);return;}
+      const player=this.ctx.createBufferSource();player.buffer=buffer;player.loop=repeat;player.connect(this.master);this.loops.set(name,player);
+      player.onended=()=>{player.disconnect();if(this.loops.get(name)===player){this.loops.delete(name);if(repeat)this.loopRequests.delete(name);}};player.start();
+    };
+    if(this.sfxBuffers.has(name))begin();else Promise.resolve(this.loadSfx(name,this.resolve(source))).then(begin);
+  }
+  stopLoop(name) { this.loopRequests.delete(name);const player=this.loops.get(name);this.loops.delete(name);if(player){try{player.stop();}catch{} player.disconnect();} }
+  stopLoops() { for(const name of [...this.loopRequests.keys()])this.stopLoop(name); }
+  syncCombatLoops(state) {
+    for(const [name,wanted] of [['beam_loop',state==='ult'],['transform_charge',state==='transforming']]) {
+      if(wanted)this.startLoop(name,name==='beam_loop');else this.stopLoop(name);
     }
   }
 
   setMuted(m) {
     this.muted = m;
+    if(m)this.stopLoops();
     localStorage.setItem(MUTE_KEY, m ? '1' : '0');
     if (this.master) this.master.gain.value = m ? 0 : 0.5;
-    if (this.bgmGain) this.bgmGain.gain.value = m ? 0 : 0.55;
+    if (this.bgmGain) this.bgmGain.gain.value = m ? 0 : 0.55 * this.duck;
     if (this.bgm) this.bgm.muted = m;
   }
 
@@ -97,7 +118,7 @@ export class GameAudio {
       if (this.bgmName !== name) return;
       this.bgm = new Audio(url);
       this.bgm.loop = loop;
-      this.bgm.volume = 0.5;
+      this.bgm.volume = 0.5 * this.duck;
       this.bgm.muted = this.muted;
       this.bgm.play().catch(() => {});
     }
@@ -139,7 +160,9 @@ export class GameAudio {
   // 正式音效採首次觸發後背景載入，已緩存時以獨立 BufferSource 疊音。
   // 初次載入、網路錯誤或解碼失敗均維持原合成音，不阻塞戰鬥。
   loadSfx(name, url) {
-    if (!this.ctx || this.sfxLoading.has(name) || this.sfxFailed.has(name)) return;
+    if (!this.ctx || this.sfxFailed.has(name)) return Promise.resolve();
+    if(this.sfxLoading.has(name))return this.sfxLoading.get(name);
+    if(this.sfxBuffers.has(name))return Promise.resolve();
     const promise = (async () => {
       try {
         const response = await fetch(url);
@@ -155,23 +178,28 @@ export class GameAudio {
       }
     })();
     this.sfxLoading.set(name, promise);
+    return promise;
   }
 
   sfx(name) {
     if (this.muted) return;
-    const source = this.sfxTracks[name];
+    const now=this.ctx?.currentTime;
+    const gap={spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:.35}[name] ?? .025;
+    if(Number.isFinite(now)){if(now-(this.sfxLast.get(name)??-Infinity)<gap)return;this.sfxLast.set(name,now);}
+    let source=this.sfxTracks[name],cacheKey=name;
+    if(Array.isArray(source)){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%source.length);cacheKey=`${name}:${i}`;source=source[i];}
     if (source && this.ctx && this.master) {
-      const buffer = this.sfxBuffers.get(name);
+      const buffer = this.sfxBuffers.get(cacheKey);
       if (buffer) {
-        const player = this.ctx.createBufferSource();
-        player.buffer = buffer;
-        player.connect(this.master);
-        player.start();
-        return;
+        if(this.voices.size>=16){const oldest=this.voices.values().next().value;oldest.stop?.();this.voices.delete(oldest);}
+        const player=this.ctx.createBufferSource();player.buffer=buffer;player.connect(this.master);this.voices.add(player);
+        player.onended=()=>{player.disconnect?.();this.voices.delete(player);};player.start();return;
       }
-      this.loadSfx(name, this.resolve(source));
+      this.loadSfx(cacheKey,this.resolve(source));
     }
-    this.syntheticSfx(name);
+    const basic=['swing','hit','crit','boom','hurt','skill','dodge','shoot','ui','win','lose'];
+    const fallback=basic.includes(name)?name:/burst|slam|quake|blast|done|reveal|beam_end/.test(name)?'boom':/punch|kick|fly|fan/.test(name)?'swing':/hurt|guilt/.test(name)?'hurt':/full|beam|charge|revive|combo/.test(name)?'skill':'ui';
+    this.syntheticSfx(fallback);
   }
 
   syntheticSfx(name) {
