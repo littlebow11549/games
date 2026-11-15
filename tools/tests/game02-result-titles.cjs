@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/js/main.js*',async route=>{const response=await route.fetch();await route.fulfill({response,body:(await response.text())+'\nwindow.__titleReview={showOverlay,setLang,refreshLang};'});});
- await page.goto('http://127.0.0.1:8000/02_brave_guy/?lang=ja');await page.waitForFunction(()=>window.__game?.game.phase==='ready');
+ await page.goto('http://127.0.0.1:8000/02_brave_guy/play.html?lang=ja');await page.locator('.opening-skip').click();await page.waitForFunction(()=>window.__game?.game.phase==='ready');
  let checks=0;
  for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390}]){
   await page.setViewportSize(size);

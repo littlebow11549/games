@@ -5,10 +5,11 @@ import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115allboss';
-import { createCinematics } from './cinematics.js?v=20261115canon';
+import { createCinematics } from './cinematics.js?v=20261115portrait';
+import { createOpening } from './opening.js?v=20261115portrait';
 import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
-import { Input, lockViewport } from './input.js';
+import { Input, lockViewport } from './input.js?v=20261115portrait';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115glam';
 import { GameAudio } from './audio.js?v=20261115crisp';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
@@ -227,6 +228,7 @@ const input = new Input();
 let audio = new GameAudio(null);
 const cinematics = createCinematics(renderer, () => audio);
 const menuMotion = createMenuMotion();
+const opening = createOpening(() => audio);
 progress(76, '讀取設定');
 
 function resize() {
@@ -244,7 +246,7 @@ resize();
 
 const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0, fails: 0, easy: false,
   stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0, bossFodderT: 0 };
-let save = { cleared: [], seenTransform: false };
+let save = { cleared: [], seenTransform: false, seenOpening: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
 // 開發期間：所有關卡預設全開，方便隨時試玩任何一關。正式完成時把 DEV_UNLOCK 改成 false。
 // 想看正式的逐關解鎖流程，網址加 ?unlock=off。
@@ -360,6 +362,7 @@ function clearField() {
 // 開始（或重來）指定的關卡
 function startStage(index) {
   pendingVictory = null;
+  opening.cancel();
   audio.stopLoops();
   cinematics.cancel();
   transformArt.hide();
@@ -1896,6 +1899,7 @@ let lastOverlay = null;
 let pendingVictory = null;
 function showOverlay(config) {
   lastOverlay = config;
+  $('ov-opening').hidden = true;
   $('ov-replay').hidden = config.outcome !== 'ending';
   if(config.outcome === 'ending') $('ov-replay').textContent = t('重播結局');
   const { title, text, note, btn, next, easy, outcome = 'clear', stats, nextLabel = '下一關' } = config;
@@ -2209,6 +2213,7 @@ function frame(now) {
   const rawDt = (now - last) / 1000;
   const dt = Math.min(0.05, rawDt);
   last = now;
+  if (opening.active) { requestAnimationFrame(frame); return; }
   audio.syncCombatLoops(game.phase==='playing'&&!game.paused&&!cinematics.active?hero.state:null);
   if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
   menuMotion.update(now, game.phase === 'ready');
@@ -2254,6 +2259,7 @@ async function boot() {
   showMenu();
   window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
   progress(100, '完成');
+  if (!save.seenOpening) playOpening();
 }
 
 // ---------- 選關 ----------
@@ -2267,6 +2273,7 @@ function firstOpenStage() {
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
   pendingVictory = null;
+  opening.cancel();
   audio.stopLoops();
   cinematics.cancel();
   $('ov-replay').textContent = t('重播變身');
@@ -2274,6 +2281,8 @@ function showMenu() {
   transformArt.hide();
   dialog = null;
   $('ov-replay').hidden = menuView !== 'title';
+  $('ov-opening').hidden = menuView !== 'title';
+  $('ov-opening').textContent = lang === 'en' ? 'Replay prologue' : lang === 'ja' ? 'プロローグ再生' : '重播開場';
   game.phase = 'ready';
   game.bgm = null; audio.playBgm(audio.tracks.bgm_title ? 'bgm_title' : null);
   clearField();
@@ -2343,6 +2352,13 @@ function showMenu() {
   $('overlay').hidden = false;
 }
 
+function playOpening() {
+  audio.stopLoops(); cinematics.cancel(); transformArt.hide(); input.takeActions();
+  $('overlay').hidden = true; $('hud').hidden = true; $('dialog').hidden = true;
+  game.phase = 'opening';
+  opening.play(() => { input.takeActions(); save.seenOpening = true; writeSave(); menuView = 'title'; showMenu(); });
+}
+$('ov-opening').addEventListener('click', playOpening);
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); startStage(game.stage); });
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();

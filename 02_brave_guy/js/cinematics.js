@@ -1,4 +1,5 @@
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115allboss';
+import { BOSS_BANTER } from './boss-banter.js?v=20261115portrait';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115portrait';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { createVisual } from './visuals.js';
 import { t, lang } from './i18n.js?v=20261115cinema';
@@ -46,7 +47,7 @@ export function createCinematics(renderer, audioProvider) {
  new THREE.TextureLoader().load('assets/source/pic/cinematics/ending_applause.png?v=20261115canon', texture=>{endingTexture=texture;});
  let artScene=null, artMaterial=null;
  function clearScene(){if(artScene){artScene.children[0].geometry.dispose();artMaterial.dispose();artScene=null;artMaterial=null;}for(const a of actors){scene?.remove(a.root);a.dispose?.();} actors=[];scene?.traverse(o=>{if(o.isMesh){o.geometry.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
- function cancel(){if(!active)return;active=null;storyboard.stop();root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
+ function cancel(){if(!active)return;active=null;storyboard.stop();root.classList.remove('banter-hit');delete root.dataset.speaker;root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
  function finish(){const done=active?.done;cancel();done?.();}
  function base(mode,done){cancel();previousFocus=document.activeElement;active={mode,done};elapsed=0;shot=-1;root.hidden=false;document.body.classList.add('in-cinematic');root.dataset.mode=mode;credits.hidden=true;title.hidden=false;subtitle.hidden=false;skip.textContent=t('跳過');skip.focus({preventScroll:true});root.setAttribute('aria-label',t(mode==='boss'?'心魔來襲':'找回自己'));
   scene=new THREE.Scene();scene.background=new THREE.Color(mode==='boss'?0x07121b:0x0c1b19);scene.fog=new THREE.Fog(scene.background,20,55);
@@ -58,7 +59,7 @@ export function createCinematics(renderer, audioProvider) {
  function actor(kind,x,z,height=3.2){const v=createVisual(kind,false);v.root.position.set(x,0,z);scene.add(v.root);const bounds=new THREE.Box3().setFromObject(v.root),size=bounds.getSize(new THREE.Vector3());v.root.scale.multiplyScalar(height/Math.max(size.y,.1));v.play('idle');actors.push(v);return v;}
  function boss(kinds,done){base('boss',done);active.kinds=kinds;active.starts=[];active.duration=0;for(const key of kinds){active.starts.push(active.duration);active.duration+=BOSS_STORYBOARDS[key].duration;}storyboard.prepare(kinds);showBoss(0);}
  function showBoss(index){shot=index;for(const a of actors){scene.remove(a.root);a.dispose?.();}actors=[];
-  const key=active.kinds[index], p=BOSS_PROFILES[key];active.profile=p;active.loadWait=0;
+  const key=active.kinds[index], p=BOSS_PROFILES[key];active.profile=p;active.loadWait=0;active.banterBeat=-1;
   root.dataset.motif=p[3];root.style.setProperty('--cinema-color',p[2]);
   $('.cinema-kicker').textContent=t('心魔來襲');title.className='cinema-name system-lettering';title.textContent=t(p[0]);subtitle.textContent=t(p[4]);
   // Existing full-body front view: source sheet is neither edited nor regenerated.
@@ -102,6 +103,15 @@ export function createCinematics(renderer, audioProvider) {
    a.root.rotation.y=reduced?0:(motif==='coins'||motif==='crown'?(1-ease)*Math.PI*2:Math.sin(local*.55)*.18);
    const narrow=camera.aspect<1;camera.position.set(reduced?0:Math.sin(local*.4)*.5,2.3,(narrow?11:8.3)-Math.min(local,3)*.25);camera.lookAt(0,1.7,0);
    storyboard.render(local,reduced,active.profile[2]);
+   const key=active.kinds[index], beat=Number(root.dataset.beat), line=BOSS_BANTER[key][beat];
+   root.dataset.speaker=beat===1?'hero':'boss';
+   title.textContent=beat===1?t('主角'):t(active.profile[0]);
+   subtitle.textContent=line[lang==='en'?1:lang==='ja'?2:0];
+   if(active.banterBeat!==beat){
+    active.banterBeat=beat;
+    root.classList.remove('banter-hit');void root.offsetWidth;root.classList.add('banter-hit');
+    audioProvider()?.sfx(beat===1?'hit_2':'hit_heavy');
+   }
    if(['mirror','fracture'].includes(motif))a.root.position.x=Math.sin(local*23)*Math.max(0,.55-local)*.2;
   }else{
    const index=Math.floor(elapsed/4.5), isCredits=elapsed>=31.5;

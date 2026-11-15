@@ -1,0 +1,25 @@
+{
+  "bosses": 13,
+  "shots": 117,
+  "locales": 3,
+  "duration": 12,
+  "cuts": [
+    4,
+    8
+  ],
+  "logo": {
+    "tag": "IMG",
+    "src": "http://127.0.0.1:8000/02_brave_guy/assets/source/pic/branding/logo_ja.png",
+    "w": 235.49725341796875,
+    "h": 163.623291015625,
+    "nw": 1536,
+    "nh": 1024
+  },
+  "decodedSfx": 72,
+  "maxDecodedPeak": 0.6196577548980713,
+  "cancel": true,
+  "duo": true,
+  "reducedMotion": true,
+  "errors": [],
+  "missing": []
+}

@@ -1,6 +1,6 @@
 // Dedicated narrative shots. Atlas rows are selected at draw time; original pixels stay intact.
 const ROOT='assets/source/pic/cinematics/';
-export const BOSS_INTRO_TIMING=Object.freeze({cuts:Object.freeze([2.4,4.2]),duration:8.2});
+export const BOSS_INTRO_TIMING=Object.freeze({cuts:Object.freeze([4,8]),duration:12});
 export const BOSS_STORYBOARDS={
  folaidiKing:{files:['folaidi_corridor','folaidi_eyes','folaidi_reveal'],...BOSS_INTRO_TIMING,fx:'mist',cues:[[0.0,'folaidi_flicker'],[0.323,'folaidi_tick'],[0.969,'folaidi_tick'],[1.615,'folaidi_tick'],[2.4,'folaidi_rise'],[4.2,'folaidi_reveal']]},
  qian:{...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
@@ -16,6 +16,8 @@ export const BOSS_STORYBOARDS={
  guan:{...BOSS_INTRO_TIMING,fx:'crown',cues:[[0.0,'boss_warn'],[2.4,'ui_confirm'],[4.2,'beam_end']]},
  incubus:{...BOSS_INTRO_TIMING,fx:'glass',cues:[[0.0,'folaidi_tick'],[1.076,'folaidi_tick'],[2.4,'guilt_crack'],[4.2,'guilt_burst']]},
 };
+// Retime existing sound accents to the readable 4-second dialogue beats.
+for (const board of Object.values(BOSS_STORYBOARDS)) board.cues = board.cues.map(([at,sound]) => [at < 2.4 ? at*4/2.4 : at < 4.2 ? 4+(at-2.4)*4/1.8 : 8+(at-4.2), sound]);
 export function createBossStoryboard(root,audioProvider){
  const canvas=document.createElement('canvas');canvas.className='cinema-storyboard';canvas.setAttribute('aria-hidden','true');root.prepend(canvas);
  const ctx=canvas.getContext('2d'),cache=new Map(),backdrop=document.createElement('canvas');let backKey=null;let key=null,definition=null,fired=new Set(),previous=-1;
@@ -44,7 +46,7 @@ export function createBossStoryboard(root,audioProvider){
   const tall=w/h<1,areaH=tall?Math.min(h*.63,w/.95):h*.82;
   const scale=(tall?Math.max(w/sw,areaH/sh):Math.min(w/sw,areaH/sh)),zoom=reduced?1:beat===0?1+local/length*.075:beat===1?1.06-local/length*.035:1.055-Math.min(local/.4,1)*.055;
   const dw=sw*scale*zoom,dh=sh*scale*zoom,cy=tall?h*.42:h*.43;
-  const shake=!reduced&&beat===2&&['rubble','stamp','rings'].includes(d.fx)?Math.sin(local*48)*Math.max(0,1-local/.4)*8:0;
+  const shake=!reduced?Math.sin(local*65)*Math.max(0,1-local/.4)*(beat===1?7:11):0;
   const pan=reduced?0:Math.sin(local/length*Math.PI)*Math.min(12,(dw-w)*.08)*(beat===1?-1:1);
   ctx.save();ctx.beginPath();ctx.rect(0,cy-areaH/2,w,areaH);ctx.clip();ctx.drawImage(im,0,sy,sw,sh,(w-dw)/2+pan+shake,cy-dh/2,dw,dh);ctx.restore();
   const edge=ctx.createLinearGradient(0,0,0,h);edge.addColorStop(0,'#02080fcc');edge.addColorStop(.18,'#02080f00');edge.addColorStop(.55,'#02080f00');edge.addColorStop(1,'#02080ff5');ctx.fillStyle=edge;ctx.fillRect(0,0,w,h);

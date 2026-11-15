@@ -1,0 +1,26 @@
+// HTML/CSS prologue. Existing portraits remain unmodified; no WebGL dependency.
+import { lang, setLang } from './i18n.js?v=20261115cinema';
+export const OPENING_SHOTS = [
+ ['noise', ['總是說「沒關係」','Always saying “It’s fine”','いつも「大丈夫」'], ['被嘲笑、被責怪時，他總把想說的話吞回去。','When people mocked or blamed him, he swallowed every reply.','笑われても、責められても、言いたいことを飲み込んだ。']],
+ ['sleep', ['期中考前夜','The night before midterms','中間試験の前夜'], ['宿舍的燈還亮著。他趴在課本上睡著了，連夢裡都在說：「再五分鐘……」','His dorm light stayed on. He fell asleep over his books. “Five more minutes…”','寮の明かりはついたまま。教科書に突っ伏して眠った。「あと五分……」']],
+ ['door', ['門後，不是走廊','Beyond the door','扉の向こう'], ['醒來時，房門後是一座扭曲的校園。那些熟悉的聲音，正在黑暗裡叫他。','He woke to a twisted campus beyond his door. Familiar voices called from the dark.','目覚めると、扉の先には歪んだ学校があった。暗闇から聞き慣れた声が呼ぶ。']],
+ ['fall', ['走進自己的內心','Inside his own mind','自分の心の中へ'], ['他踏出一步，腳下的世界碎開。一直壓住的恐懼，在這裡都有了形狀。','One step, and the world cracked open. Every buried fear had taken a shape.','一歩踏み出すと、足元の世界が割れた。押し込めた恐怖が、ここでは姿を持っていた。']],
+ ['angel', ['「這裡是你的內心。」','“This is your inner world.”','「ここは、あんたの心の中。」'], ['小天使：「恭喜，比我想的還亂。我可以給你力量，路要你自己走。」','Little Angel: “Messier than I expected. I can give you power. You have to walk the path.”','小天使：「思った以上に散らかってるね。力はあげる。でも歩くのは、あんた。」']],
+ ['fear', ['惡言，長出了爪子','Cruel words grew claws','悪口に、爪が生えた'], ['那些「你不行」和「都是你的錯」，變成了心魔。要離開，就得面對牠們。','“You can’t.” “It’s your fault.” Those voices became monsters. To leave, he must face them.','「お前には無理」「全部お前のせい」。その声が心の魔物になった。帰るには、向き合うしかない。']],
+ ['resolve', ['這次，不再退後','This time, no retreat','今度は、逃げない'], ['主角：「我還是會怕。但這一次，我想自己往前走。」他的第一場戰鬥，從這裡開始。','“I’m still scared. But this time, I choose to move forward.” His first battle begins here.','「まだ怖い。でも今度は、自分で前に進みたい。」最初の戦いが、ここから始まる。']],
+];
+export function createOpening(audioProvider) {
+ const root=document.createElement('section');root.id='opening';root.className='overlay';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
+ root.innerHTML='<header><b>BRAVE GUY</b><select aria-label="Language"><option value="zh-Hant">中文</option><option value="en">English</option><option value="ja">日本語</option></select><button class="opening-skip"></button></header><div class="opening-art" aria-hidden="true"><div class="opening-window"></div><div class="opening-desk"></div><div class="opening-door"></div><div class="opening-words"></div><img class="opening-student" src="assets/source/pic/ui/portrait_student.png" alt=""><div class="opening-angel"></div><div class="opening-monster"></div><div class="opening-rings"></div></div><article><small></small><h1></h1><p></p></article><footer><div class="opening-progress"></div><button class="opening-next"></button></footer>';
+ document.body.append(root);let index=0,elapsed=0,running=false,done=null,last=0,raf=0,previousFocus;
+ const $=s=>root.querySelector(s),pick=a=>a[lang==='en'?1:lang==='ja'?2:0];
+ const cues=['guilt_tick','ui_back','folaidi_rise','beam_start','notify','boss_warn','courage_full'];
+ function draw(sound=false){const shot=OPENING_SHOTS[index];root.dataset.scene=shot[0];root.dataset.running=String(running);$('select').value=lang;root.setAttribute('aria-label',pick(['故事開場','Prologue','プロローグ']));$('small').textContent=`${pick(['序章','PROLOGUE','序章'])} · ${index+1} / ${OPENING_SHOTS.length}`;$('h1').textContent=shot[1][lang==='en'?1:lang==='ja'?2:0];$('article p').textContent=pick(shot[2]);$('.opening-skip').textContent=pick(['跳過','Skip','スキップ']);$('.opening-next').textContent=!running?pick(['開始故事','Play story','物語を始める']):index===6?pick(['進入遊戲','Enter game','ゲームへ']):pick(['下一幕','Next','次へ']);$('.opening-words').textContent=pick(['你不行　都是你的錯　沒關係','You can’t.　Your fault.　It’s fine.','お前には無理　お前のせい　大丈夫']);$('.opening-progress').style.setProperty('--progress',`${(index+elapsed/6)/7*100}%`);if(sound)audioProvider()?.sfx(cues[index]);}
+ function cancel(){cancelAnimationFrame(raf);root.hidden=true;done=null;running=false;document.body.classList.remove('in-opening');}
+ function finish(){if(root.hidden)return;const callback=done;cancel();previousFocus?.focus?.();callback?.();}
+ function next(){if(!running){running=true;audioProvider()?.unlock();audioProvider()?.playBgm('bgm_talk');draw(true);return;}if(index===6){finish();return;}index++;elapsed=0;draw(true);}
+ function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(!document.hidden&&running){elapsed+=dt;if(elapsed>=6)next();else $('.opening-progress').style.setProperty('--progress',`${(index+elapsed/6)/7*100}%`);}if(!root.hidden)raf=requestAnimationFrame(tick);}
+ $('.opening-next').addEventListener('click',next);$('.opening-skip').addEventListener('click',finish);$('select').addEventListener('change',e=>{setLang(e.target.value);draw();});
+ root.addEventListener('keydown',e=>{if(e.code==='Escape'){e.preventDefault();e.stopPropagation();finish();}else if(e.code==='Tab'){const controls=[...root.querySelectorAll('button,select')],i=controls.indexOf(document.activeElement);e.preventDefault();controls[(i+(e.shiftKey?-1:1)+controls.length)%controls.length].focus();}});
+ return {play(callback){cancel();previousFocus=document.activeElement;done=callback;index=0;elapsed=0;running=false;root.hidden=false;document.body.classList.add('in-opening');draw();$('.opening-next').focus();last=performance.now();raf=requestAnimationFrame(tick);},cancel,get active(){return !root.hidden;}};
+}

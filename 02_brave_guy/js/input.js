@@ -20,7 +20,7 @@ export function lockViewport() {
   let lastEnd = 0;
   document.addEventListener('touchend', (e) => {
     const now = Date.now();
-    if (now - lastEnd < 350 && !e.target.closest('.overlay')) e.preventDefault();
+    if (now - lastEnd < 350 && !e.target.closest('.overlay, #cinema, button, select')) e.preventDefault();
     lastEnd = now;
   }, opts);
   document.addEventListener('dblclick', stop, opts);

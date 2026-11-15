@@ -13,7 +13,7 @@ const path=require('node:path');
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],missing=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()===404)missing.push(r.url());});
- await page.goto('http://127.0.0.1:8000/02_brave_guy/');await page.waitForFunction(()=>window.__game?.game.phase==='ready');
+ await page.goto('http://127.0.0.1:8000/02_brave_guy/play.html');await page.locator('.opening-skip').click();await page.waitForFunction(()=>window.__game?.game.phase==='ready');
  const profiles=await page.evaluate(async()=>Object.keys((await import('./js/cinematics.js?v=20261115cinema')).BOSS_PROFILES));assert.equal(profiles.length,13);
  for(const key of profiles){await page.evaluate(k=>{__game.startStage(0);__game.advanceDialog(true);__game.game.phase='cinematic';__game.cinematics.boss([k],()=>{__game.game.phase='playing';});__game.cinematics.update(1.2);},key);await page.waitForTimeout(100);await page.screenshot({path:path.join(out,`boss-${key}.png`)});await page.locator('.cinema-skip').click();assert.equal(await page.evaluate(()=>__game.game.phase),'playing');}
  const stages=await page.evaluate(()=>__game.STAGES.map((s,i)=>({i,boss:s.boss})).filter(s=>s.boss));
