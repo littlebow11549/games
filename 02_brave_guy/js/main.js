@@ -515,7 +515,10 @@ function updateHud() {
   $('portrait').classList.toggle('brave', brave);
   $('portrait').classList.toggle('worker', hero.form === 'worker');
   $('btn-quick-clear').hidden = game.phase !== 'playing' || game.paused || !!dialog || cinematics.active;
-  $('btn-quick-clear').textContent = lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關';
+  const jumpToBoss = stage().boss && !game.bossSpawned;
+  $('btn-quick-clear').textContent = jumpToBoss
+    ? (lang === 'ja' ? 'ボスへ' : lang === 'en' ? 'Jump to boss' : '跳到魔王')
+    : (lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關');
   $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !enemies.some(e => alive(e) && !e.gone && dist2d(e.pos, hero.pos) - e.def.radius < LOCK_RANGE);
   $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
@@ -2376,8 +2379,23 @@ $('btn-quick-clear').addEventListener('click', () => {
   if (game.phase !== 'playing' || game.paused || dialog || cinematics.active) return;
   audio.unlock();
   if (beam) endUlt();
-  clearStage();
   $('btn-quick-clear').hidden = true;
+  const st = stage();
+  if (st.boss && !game.bossSpawned) {
+    audio.stopLoops(); input.takeActions();
+    clearField();
+    game.queue = []; game.queueT = 0;
+    game.wave = game.waves.length - 1; game.waveTimer = 1.4;
+    // Preserve abilities normally restored by the skipped mid-stage event.
+    if (st.mid && !game.midDone) {
+      st.mid.grant.split('+').forEach(g => game.abilities.add(g));
+      angel.visual.root.scale.setScalar(1); hero.readySaid = false;
+    }
+    game.midDone = true;
+    runDialog(st.bossIntro, spawnBoss);
+  } else {
+    clearStage();
+  }
 });
 $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!game.paused); });
 // 語系切換：標題畫面與暫停選單各有一顆。切換後立刻重畫目前看得到的文字
