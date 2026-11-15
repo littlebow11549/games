@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/feedback-art.css?v=20261115b">
 <link rel="stylesheet" href="css/hud-art.css?v=20261115b">
 <link rel="stylesheet" href="css/transform-art.css?v=20261115a">
+<link rel="stylesheet" href="css/menu-layout.css?v=20261115a">
 <link rel="preload" as="image" href="assets/source/pic/ui/guilt_explode_sheet.png">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
@@ -107,13 +108,13 @@
 </div>
 
 <div id="overlay" class="overlay">
+  <div id="menu-ticker"><span></span></div>
+  <div class="card">
   <div id="menu-art" aria-hidden="true">
     <div class="rays"></div><div class="dots"></div>
     <div class="frame f1"></div><div class="frame f2"></div><div class="frame art"></div>
-    <div id="menu-bubble"></div>
-    <div id="menu-ticker"><span></span></div>
   </div>
-  <div class="card">
+
     <img id="ov-logo" class="logo" src="assets/runtime/pic/branding/logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy">
     <h1 id="ov-title" hidden></h1>
     <p id="ov-text"></p>
@@ -124,6 +125,7 @@
     <button id="ov-replay" class="ghost" hidden data-i18n="重播變身">重播變身</button>
     <button id="ov-next" hidden data-i18n="下一關">下一關</button>
     <button id="ov-menu" class="ghost" hidden data-i18n="選關">選關</button>
+    <div id="menu-bubble"></div>
     <div id="ov-diff" class="diff-row" hidden></div>
     <div id="ov-stages" hidden></div>
     <button id="ov-easy" class="ghost" hidden data-i18n="調簡單一點（不丟臉，她只會笑你三天）">調簡單一點（不丟臉，她只會笑你三天）</button>

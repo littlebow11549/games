@@ -1,0 +1,25 @@
+/* Keep text and controls in the menu column, outside the character artwork. */
+.game-art .overlay.menu:not(.stages) .card{justify-content:flex-start;padding-top:72px;overflow-y:auto;overflow-x:hidden}
+.game-art .overlay.menu:not(.stages) #menu-bubble{position:static;flex-shrink:0;align-self:flex-start;width:min(34vw,300px);max-width:none;margin:16px 0 0;padding:10px 14px;transform:none;animation:none;box-sizing:border-box;box-shadow:3px 3px 0 var(--pink);font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.game-art #menu-bubble::after{display:none}
+.game-art .overlay:not(.menu) #menu-bubble,.game-art .overlay.stages #menu-bubble{display:none}
+.game-art .overlay.menu:not(.stages) #ov-replay{position:static;flex-shrink:0;width:min(34vw,300px);max-width:none;margin:12px 0 0;align-self:flex-start}
+.game-art .overlay.menu:not(.stages) .card>.logo{flex-shrink:0;max-height:28vh}
+.game-art .overlay.menu:not(.stages) .card>#ov-btn,.game-art .overlay.menu:not(.stages) .card>#ov-menu{flex-shrink:0}
+/* Reserve a header above the art for language/back controls. */
+.game-art .overlay.menu:not(.stages) #menu-art .frame{top:72px}
+@media(orientation:portrait){
+ .game-art .overlay.menu:not(.stages) #menu-art .frame{height:36vh}
+ .game-art .overlay.menu:not(.stages) .card{padding-top:calc(72px + 32vh)}
+ .game-art .overlay.menu:not(.stages) .card>.logo{max-height:18vh}
+ .game-art .overlay.menu:not(.stages) #menu-bubble,.game-art .overlay.menu:not(.stages) #ov-replay{width:74vw;align-self:center}
+}
+@media(max-width:380px){
+ .game-art .overlay.menu:not(.stages) .lang-btn i{display:none}
+ .game-art .overlay.menu:not(.stages) .lang-btn span{padding:7px 9px;font-size:12px}
+ .game-art .overlay.menu:not(.stages) .back{padding:7px 8px;font-size:11px}
+}
+/* Artwork and controls share the scroll container, so scrolling cannot move text over a face. */
+.game-art .overlay.menu .card>#menu-art{z-index:-1;pointer-events:none}
+.game-art .overlay>#menu-ticker{z-index:2;pointer-events:none}
+.game-art .overlay:not(.menu)>#menu-ticker{display:none}
