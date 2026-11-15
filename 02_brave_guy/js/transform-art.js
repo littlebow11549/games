@@ -13,9 +13,9 @@ function load(id) {
 }
 // Reuse delivered SFX; fire at the committed visual frame, not at dialog input time.
 export const TRANSFORM_SFX = Object.freeze({
- bg_stars:['courage_full'], silhouette:['beam_start'],
- glove:['dodge','guard'], knee:['dodge','pan_hit'], jacket:['fan'],
- hair:['qi_full'], scarf:['dash'], pose:['transform_done'],
+ bg_stars:['tf_stars'], silhouette:['tf_silhouette'],
+ glove:['tf_glove'], knee:['tf_knee'], jacket:['tf_jacket'],
+ hair:['tf_hair'], scarf:['tf_scarf'], pose:['tf_pose'],
  waiting_1:['ui_back'], waiting_2:['chips'], waiting_3:['revert'],
  waiting_4:['student_punch'], sign:['ui_confirm'],
 });

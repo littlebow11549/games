@@ -27,7 +27,7 @@ const path=require('node:path');
  await page.screenshot({path:path.join(out,'guilt-burst.png')});await page.waitForTimeout(850);assert.equal(await page.locator('.meter-shards').count(),0);
  await page.evaluate(()=>{__game.game.combo=10;__game.game.comboT=99;});await page.waitForTimeout(50);assert(await page.locator('#combo-n').evaluate(el=>el.getAnimations().length>0));
 
- await page.evaluate(()=>{__game.game.stage=13;__game.clearStage();});await page.waitForFunction(()=>__game.cinematics.state?.mode==='ending');assert.equal(await page.evaluate(()=>__game.cinematics.state.cast),14);
+ await page.evaluate(()=>{__game.game.stage=13;__game.clearStage();});await page.locator('#ov-next').click();await page.waitForFunction(()=>__game.cinematics.state?.mode==='ending');assert.equal(await page.evaluate(()=>__game.cinematics.state.cast),14);
  await page.evaluate(()=>__game.cinematics.update(6));await page.screenshot({path:path.join(out,'ending-ja.png')});await page.locator('.cinema-skip').click();await page.waitForTimeout(200);
  assert.equal(await page.locator('.cinema-credits strong').count(),6);assert((await page.locator('.cinema-credits strong').allTextContents()).every(x=>x==='LilinS'));await page.screenshot({path:path.join(out,'staff-ja.png')});
  await page.evaluate(()=>__game.cinematics.update(8.1));assert.equal(await page.evaluate(()=>__game.game.phase),'over');assert(await page.locator('#ov-replay').isVisible());await page.locator('#ov-replay').click();assert.equal(await page.evaluate(()=>__game.cinematics.state.mode),'ending');await page.keyboard.press('Escape');await page.keyboard.press('Escape');assert.equal(await page.evaluate(()=>__game.game.phase),'over');
