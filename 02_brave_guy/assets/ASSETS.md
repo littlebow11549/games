@@ -341,7 +341,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 - `source/pic/titles/system_{combat,outcomes,labels}_{zh,en,ja}.png`：9 張原生 1536×1024 RGBA 圖集，每張 2×3 字藝。以 `js/system-art.js` 定義視窗，來源不裁切、不放大；單格約 768×341，因此並非每個詞獨立 1200px 寬的版本。
 - `source/pic/icons/language_globe.png`：原生 1254×1254 RGBA 地球，替換舊 CSS 經線圖示。
-- `source/pic/cinematics/ending_applause.png`：原生 1536×1024，結局專用群像：主角＋13 位反派；本輪新增情境，並非重畫既有場景。首稿缺一位，修訂補齊地獄超人後才接入。首稿保留在生成工作區，正式庫只採修訂版。
+- `source/pic/cinematics/ending_applause.png`：原生 1536×1024，主角＋13 位 Boss＋小天使。2026-11-15 依使用者指出的造型錯誤，對照 CHARACTERS.md 與 unified 設定合輯定向修訂；新雞／冠老闆／八卦蛇／幹譙龍等回歸角色設定，主角補終章紅綠雙圍巾。被退回的舊圖保存在 `_archive/game02/cinematics/2026-11-15/ending-correction/`。
 - Boss 登場：13 種／12 個守關關卡，以既有角色合輯前視圖 + 動態漫畫式揭幕、主題特效、字幕整合；佛賴弟王/加班鬼王及藍教頭/藍經理沿用同角色家族圖，配置各自色調與台詞。非新增逐格角色動畫或新 3D 模型。
 - 結局：7 鏡、約 31.5 秒的動態插畫（推拉、取景、局部鼓掌律動）；接 8 秒 Staff。模型版為插畫載入失敗回退。Staff 所有職務 LilinS。
 - 主選單：原主視覺 UV 局部呼吸形變、能量光流與粒子；WebGL 不可用時保留原靜態圖。血量/勇氣/罪惡感持續螢光、滿格脈衝掃光、氣量大招待發光；爆表使用原爆炸圖集與新增程式化表身碎片。

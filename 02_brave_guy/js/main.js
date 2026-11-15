@@ -5,7 +5,7 @@ import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115allboss';
-import { createCinematics } from './cinematics.js?v=20261115allboss';
+import { createCinematics } from './cinematics.js?v=20261115canon';
 import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
