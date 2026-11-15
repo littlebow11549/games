@@ -1,6 +1,6 @@
 {
   "purpose": "防重工需求來源對照；獨立檔缺失不等於缺素材",
-  "scope": "Brave Guy；此輪不生成圖片、不修改遊戲",
+  "scope": "Brave Guy；原圖復用整合，生圖佇列維持空白",
   "generation_queue": [],
   "requirements": [
     {
@@ -62,9 +62,9 @@
       "sources": [
         "sheet/unified/sheet_worker.png"
       ],
-      "status": "合輯已有半身頭像及6表情",
-      "next_action": "優先沿用，不重生portrait_worker",
-      "evidence": "CHARACTERS.md；已目視合輯",
+      "status": "合輯已有半身頭像及6表情；HUD已接左側頭像窗口",
+      "next_action": "表情沿用合輯，未新增獨立圖",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -82,9 +82,9 @@
       "sources": [
         "ui/hud_core_sheet.png"
       ],
-      "status": "8部件已有",
-      "next_action": "按P1_HUD_SLICE_GUIDE逐個接入",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "8部件已接入；滿勇氣、罪惡裂紋、氣環隨數值切換",
+      "next_action": "驗收原圖顯示，不重生",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -92,9 +92,9 @@
       "sources": [
         "ui/guilt_explode_sheet.png"
       ],
-      "status": "8格序列已有",
-      "next_action": "驗證序列接入",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "8格序列已接guiltBurst，10fps單次播放，結束清理",
+      "next_action": "已驗證播放與清理",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -114,9 +114,9 @@
       "sources": [
         "ui/control_extras_sheet.png"
       ],
-      "status": "已有；搖桿接入",
-      "next_action": "核對發光態接法",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "搖桿及變身ready發光態已接入",
+      "next_action": "保留按下與鎖定態",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -124,9 +124,9 @@
       "sources": [
         "ui/panel_sheet.png"
       ],
-      "status": "三框已有",
-      "next_action": "任務已接；核對其餘接入",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "任務已接；劇情沿用底部框中央區；彈窗沿用PR35已接版本",
+      "next_action": "舊圖集彈窗為備用，毋須同時疊加",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -134,9 +134,9 @@
       "sources": [
         "ui/bubble_sheet.png"
       ],
-      "status": "四種已有",
-      "next_action": "只處理未接樣式與長句排版",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "小天使與其餘三種泡泡均已接入",
+      "next_action": "長句換行；保留翻譯文字",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -144,9 +144,9 @@
       "sources": [
         "ui/aux_hud_sheet.png"
       ],
-      "status": "8部件已有",
-      "next_action": "接入及狀態驗收，不重畫",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "Boss框/名稱/血量、敵人血量、連擊已接；舊按鈕備用",
+      "next_action": "連擊去除描邊並避開直向任務欄",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -154,9 +154,9 @@
       "sources": [
         "ui/minimap_sheet.png"
       ],
-      "status": "已有，部分已接",
-      "next_action": "核對底圖與俊熊標記",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "框、底圖、敵人/菁英/Boss/主角/俊熊五種標記均已接入",
+      "next_action": "俊熊只在出現且未結束時標示",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -174,9 +174,9 @@
       "sources": [
         "icons/lock_heal_sheet.png"
       ],
-      "status": "已有",
-      "next_action": "核對地面圈/回血接入",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "三態按鈕、地面鎖定圈、俊熊獎勵回血圖示均已接入",
+      "next_action": "地面圖集載入失敗保留原幾何圈",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {
@@ -194,9 +194,9 @@
       "sources": [
         "ui/bingo_card.png"
       ],
-      "status": "已有",
-      "next_action": "核對遊戲使用位置",
-      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "status": "已於既有賓果台詞顯示原卡；其他台詞隱藏",
+      "next_action": "未新增賓果玩法或改寫故事",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
       "generation_allowed": false
     },
     {

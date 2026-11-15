@@ -1,0 +1,41 @@
+/* Native atlas windows only. Source images stay unchanged. Coordinates: HUD_RUNTIME_REGIONS.json. */
+.game-art .bars .bar{border:0;overflow:hidden;border-radius:9px;height:18px;padding:3px;background-color:#081c0e}
+.game-art .bars .bar i{inset:3px 7px;border-radius:6px}
+.game-art .bars .bar b{z-index:1;font-size:10px;color:#fff;text-shadow:0 1px 2px #000,0 0 3px #000}
+.game-art .bars .bar.guilt,.game-art .bars .bar.courage{height:17px}
+.game-art .portrait{position:relative;border:0;outline:0;box-shadow:none}
+.game-art .portrait::after{content:'';position:absolute;inset:-5px;pointer-events:none;border-radius:50%}
+.game-art .portrait.worker:not(.brave){background-color:#204d2c}
+.game-art .boss-bar .bar{border:0;border-radius:0;overflow:hidden;height:22px;background-color:#190820}
+.game-art .boss-bar .bar i{inset:6px 14px}
+.game-art #boss-name{display:inline-block;max-width:min(70vw,330px);padding:5px 20px;overflow-wrap:anywhere}
+.game-art .ebar{border:1px solid #100b10;background:#200b16}
+.game-art .act.ult em::after{content:'';position:absolute;inset:-4px;border:0;border-radius:50%;pointer-events:none;background-color:transparent;mask-image:conic-gradient(#000 var(--qi,0turn),transparent 0)}
+.game-art .dmg.heal::before{content:'';display:inline-block;width:28px;height:28px;vertical-align:middle;margin-right:5px}
+.game-art .guilt-burst-art{position:absolute;pointer-events:none;width:144px;height:192px;transform:translate(-50%,-50%);background:url('../assets/source/pic/ui/guilt_explode_sheet.png') 0 0/400% 200% no-repeat;animation:guilt-atlas .8s steps(1,end) forwards}
+@keyframes guilt-atlas{0%{background-position:0 0}12.5%{background-position:33.333333% 0}25%{background-position:66.666667% 0}37.5%{background-position:100% 0}50%{background-position:0 100%}62.5%{background-position:33.333333% 100%}75%{background-position:66.666667% 100%}87.5%,100%{background-position:100% 100%}}
+@media(prefers-reduced-motion:reduce){.game-art .guilt-burst-art{animation:guilt-atlas .01s steps(1,end) forwards}.game-art .bars .bar{animation:none}}
+.game-art .bars .bar{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:206.451613% 682.666667%;background-position:98.484848% 10.068650%;background-repeat:no-repeat}
+.game-art .bar.hp i{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:221.007194% 1089.361702%;background-position:4.518430% 40.752688%;background-repeat:no-repeat}
+.game-art .bar.courage i{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:220.689655% 1089.361702%;background-position:95.714286% 40.752688%;background-repeat:no-repeat}
+.game-art .bar.courage.full i,.game-art .bar.courage.burst i{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:218.181818% 948.148148%;background-position:3.966346% 62.445415%;background-repeat:no-repeat}
+.game-art .bar.guilt i{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:218.181818% 1024.000000%;background-position:96.274038% 62.445887%;background-repeat:no-repeat}
+.game-art .bar.guilt.crack i{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:219.115549% 696.598639%;background-position:4.071856% 92.246294%;background-repeat:no-repeat}
+.game-art .portrait::after{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:515.436242% 343.624161%;background-position:18.901454% 1.652893%;background-repeat:no-repeat}
+.game-art .portrait.worker:not(.brave){background-image:url('../assets/source/pic/sheet/unified/sheet_worker.png');background-size:754.585153% 503.056769%;background-position:7.605070% 18.851571%;background-repeat:no-repeat}
+.game-art .act.ult em::after{background-image:url('../assets/source/pic/ui/hud_core_sheet.png');background-size:522.448980% 348.299320%;background-position:80.917874% 100.000000%;background-repeat:no-repeat}
+.game-art .act.transform.ready:not(:active):not(.art-pressed)::before{background-image:url('../assets/source/pic/ui/control_extras_sheet.png');background-size:198.963731% 259.898477%;background-position:50.000000% 92.063492%;background-repeat:no-repeat}
+.game-art .boss-bar .bar{background-image:url('../assets/source/pic/ui/aux_hud_sheet.png');background-size:313.469388% 624.390244%;background-position:2.294455% 13.255814%;background-repeat:no-repeat}
+.game-art .bar.boss i{background-image:url('../assets/source/pic/ui/aux_hud_sheet.png');background-size:372.815534% 2327.272727%;background-position:51.334520% 17.857143%;background-repeat:no-repeat}
+.game-art #boss-name{background-image:url('../assets/source/pic/ui/aux_hud_sheet.png');background-size:343.624161% 624.390244%;background-position:96.969697% 13.255814%;background-repeat:no-repeat}
+.game-art .ebar i{background-image:url('../assets/source/pic/ui/aux_hud_sheet.png');background-size:286.033520% 2497.560976%;background-position:10.610611% 50.966429%;background-repeat:no-repeat}
+.game-art .dmg.heal::before{background-image:url('../assets/source/pic/icons/lock_heal_sheet.png');background-size:468.292683% 341.333333%;background-position:89.983444% 89.779006%;background-repeat:no-repeat}
+
+/* Center of the existing dialog frame; side borders avoid squeezing text between portrait wells. */
+.game-art .dialog .dlg-box{background:#fff3da url('../assets/source/pic/ui/panel_sheet.png') 50% 93.215%/177.367% 295.954% no-repeat;border:4px solid #274c10;border-radius:14px;box-shadow:0 0 0 2px #0c1608;padding:22px 20px 30px;min-height:120px;max-height:calc(100dvh - 60px);overflow:auto}
+.game-art .dialog.narration #dlg-text{color:#38432c}
+.game-art #dlg-name{position:relative;display:table;top:auto;left:auto;margin:-12px 0 6px;padding:3px 12px;background:#164c08;color:#fff4b3}
+.game-art #dlg-name[hidden]{display:none}
+.game-art #dlg-skip{top:3px;right:7px}
+.game-art #dlg-bingo{float:right;width:min(24vw,125px);max-height:155px;object-fit:contain;margin:8px 0 10px 12px}
+.game-art #dlg-bingo[hidden]{display:none}

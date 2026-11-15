@@ -5,3 +5,13 @@
 .game-art .taunt.hero{background-image:url('../assets/source/pic/ui/bubble_sheet.png');background-position:97.98994974874371% 95.95959595959596%;background-size:207.56756756756758% 238.13953488372093%}
 .game-art .combo{min-width:105px;padding:10px 22px 14px;background:url('../assets/source/pic/ui/aux_hud_sheet.png') 93.22033898305085% 51.679586563307495%/216.33802816901408% 409.6% no-repeat;color:#151515;text-shadow:none}
 .game-art .combo b{font-size:clamp(28px,5vw,44px)}
+.game-art .combo,.game-art .combo *{-webkit-text-stroke:0}
+@media(max-width:600px) and (orientation:portrait){
+  .game-art .combo{right:calc(12px + var(--safe-r));top:calc(268px + var(--safe-t));min-width:92px;padding:8px 18px 12px}
+  .game-art .combo b{font-size:28px}
+}
+@media(max-height:650px) and (orientation:portrait){
+  .game-art .combo{top:calc(252px + var(--safe-t));min-width:82px;padding:6px 16px 10px}
+  .game-art .combo b{font-size:24px}
+  .game-art .combo span{font-size:13px}
+}

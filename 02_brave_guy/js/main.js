@@ -9,7 +9,7 @@ import { GameAudio } from './audio.js';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js';
 import { t, tf, lang, nextLang, applyStatic } from './i18n.js';
 import { makeMaze } from './maze.js';
-import { drawMinimapSprite, minimapArtReady } from './minimap-art.js';
+import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115g';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -405,6 +405,7 @@ function showLine() {
   $('dlg-name').textContent = t(who);
   $('dlg-name').hidden = !who;
   $('dlg-text').textContent = t(text);
+  $('dlg-bingo').hidden = !text.includes('賓果');
   $('dialog').classList.toggle('narration', !who);
   $('dialog').dataset.who = who === '小天使' ? 'angel' : who === '主角' ? 'hero' : who ? 'other' : '';
 }
@@ -448,6 +449,18 @@ function popup(world, height, text, cls = '') {
   el.addEventListener('animationend', () => el.remove());
 }
 
+// Existing 4 × 2 atlas; one non-looping burst, removed on completion.
+function showGuiltBurstArt() {
+  if (!document.body.classList.contains('game-art')) return;
+  const p = screenPos(hero.pos, 2.4);
+  const el = document.createElement('div');
+  el.className = 'guilt-burst-art';
+  el.setAttribute('aria-hidden', 'true');
+  el.style.left = `${p.x}px`; el.style.top = `${p.y}px`;
+  $('world-ui').append(el);
+  el.addEventListener('animationend', () => el.remove(), { once: true });
+}
+
 // 小天使講話。force 可插隊；一般吐槽之間至少隔幾秒，同一句不連講
 function say(key, force = false) {
   if (!force && (angel.quiet > 0 || angel.lastKey === key)) return;
@@ -475,6 +488,7 @@ function updateHud() {
   $('guilt').classList.toggle('crack', g >= 0.9);
   $('guilt').classList.toggle('heavy', g >= GAUGE.guiltHesitate);
   $('portrait').classList.toggle('brave', brave);
+  $('portrait').classList.toggle('worker', hero.form === 'worker');
   $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
@@ -595,6 +609,7 @@ function guiltBurst() {
     return;
   }
   hero.guilt = 0;
+  showGuiltBurstArt();
   hero.guiltMax = Math.min(GAUGE.guiltCap, hero.guiltMax + GAUGE.guiltStep);
   hero.hp = Math.min(hero.maxHp, hero.hp + hero.maxHp * GAUGE.burstHeal);
   hero.invuln = Math.max(hero.invuln, GAUGE.burstInvuln);
@@ -1364,7 +1379,7 @@ function updateAmbush(dt) {
       addCourage(15);
       const heal = Math.round(hero.maxHp * 0.1);
       hero.hp = Math.min(hero.maxHp, hero.hp + heal);
-      popup(hero.pos, 3.2, `+${heal} HP`, 'good');
+      popup(hero.pos, 3.2, `+${heal} HP`, 'good heal');
       fx.ring(hero.pos, 0.4, 2.4, 0x7dff9a, 0.45);
       popup(a.pos, 1.8, '你怎麼知道我在這裡啦～～', 'good');
       say('caught');
@@ -1444,6 +1459,19 @@ let lockOn = false;
 try { lockOn = localStorage.getItem(LOCK_KEY) === '1'; } catch { /* 讀不到就預設關閉 */ }
 let lockTargetEnemy = null;
 const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
+// Reuse the ground-lock window from the existing atlas; retain the vector fallback.
+if (document.body.classList.contains('game-art')) {
+  new THREE.TextureLoader().load('assets/source/pic/icons/lock_heal_sheet.png', texture => {
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.repeat.set(884 / 1536, 368 / 1024);
+    texture.offset.set(54 / 1536, 1 - (610 + 368) / 1024);
+    lockMarker.geometry.dispose();
+    lockMarker.geometry = new THREE.PlaneGeometry(2, 2);
+    lockMarker.material.map = texture;
+    lockMarker.material.color.set(0xffffff);
+    lockMarker.material.needsUpdate = true;
+  }, undefined, () => { /* Keep the original marker when art is unavailable. */ });
+}
 lockMarker.rotation.x = -Math.PI / 2;
 lockMarker.visible = false;
 scene.add(lockMarker);
@@ -1966,6 +1994,7 @@ function updateMinimap() {
   if (useArt) drawMinimapSprite(c, 'frame', R, R, S);
   c.save();
   c.beginPath(); c.arc(R, R, useArt ? R - 22 : R, 0, Math.PI * 2); c.clip();
+  if (useArt) drawMinimapSprite(c, 'ground', R, R, S - 44);
   c.strokeStyle = '#ffffff30'; c.lineWidth = 2;
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k, 0, 6.283); c.stroke();
   c.beginPath(); c.arc(R, R, ARENA_RADIUS * k * 0.5, 0, 6.283); c.stroke();
@@ -1993,6 +2022,11 @@ function updateMinimap() {
     if (boss || e === locked) { c.strokeStyle = '#fff'; c.lineWidth = 2.5; c.stroke(); }
   }
   c.globalAlpha = 1;
+  if (ambush && !ambush.done) {
+    if (!useArt || !drawMinimapSprite(c, 'bear', X(ambush.pos), Y(ambush.pos), 22)) {
+      c.fillStyle = '#b58048'; c.fillRect(X(ambush.pos) - 5, Y(ambush.pos) - 5, 10, 10);
+    }
+  }
   // 主角：朝向的小箭頭
   const f = Math.atan2(Math.cos(hero.yaw), Math.sin(hero.yaw));
   c.save(); c.translate(hx, hy); c.rotate(f);

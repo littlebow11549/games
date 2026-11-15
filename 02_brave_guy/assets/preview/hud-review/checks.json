@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "width": 390,
+      "worker": true,
+      "bar": "url(\"http://127.0.0.1:8000/02_brave_guy/assets/source/pic/ui/hud_core_sheet.png\")",
+      "lockAtlas": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "worker": true,
+      "bar": "url(\"http://127.0.0.1:8000/02_brave_guy/assets/source/pic/ui/hud_core_sheet.png\")",
+      "lockAtlas": true,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "worker": true,
+      "bar": "url(\"http://127.0.0.1:8000/02_brave_guy/assets/source/pic/ui/hud_core_sheet.png\")",
+      "lockAtlas": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "worker": true,
+      "bar": "url(\"http://127.0.0.1:8000/02_brave_guy/assets/source/pic/ui/hud_core_sheet.png\")",
+      "lockAtlas": true,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "burstCleanup": true,
+  "bingoDialog": true
+}

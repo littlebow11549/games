@@ -8,20 +8,20 @@
 |主角與P1三視角|`concept/student_front.png`、`concept/student_side.png`、`concept/student_back.png`、`concept/braveguy_front.png`、`concept/braveguy_side.png`、`concept/braveguy_back.png`、`concept/angel_front.png`、`concept/angel_side.png`、`concept/angel_back.png`、`concept/nightmare_front.png`、`concept/nightmare_side.png`、`concept/nightmare_back.png`、`concept/ganqiao_front.png`、`concept/ganqiao_side.png`、`concept/ganqiao_back.png`|15張已生成暫稿；尺寸/背景待驗收|核對原稿規格，不重新排入生圖|
 |學生五種表情|`sheet/unified/sheet_student.png`|EXPRESSIONS列已有對應表情|優先沿用合輯；核對裁切與顯示方式|
 |勇氣超人五種表情|`sheet/unified/sheet_braveguy.png`|合輯有6表情，與需求表情逐格對照尚未完成|先對照，不把缺獨立檔當缺圖|
-|上班族五種表情及HUD頭像|`sheet/unified/sheet_worker.png`|合輯已有半身頭像及6表情|優先沿用，不重生portrait_worker|
+|上班族五種表情及HUD頭像|`sheet/unified/sheet_worker.png`|合輯已有半身頭像及6表情；HUD已接左側頭像窗口|表情沿用合輯，未新增獨立圖|
 |小天使八種表情|`sheet/unified/sheet_angel.png`|合輯有6種；生氣/無言獨立來源尚待核對|先核對原生成稿與其他交付；不直接新增|
-|HUD框/計量/氣環|`ui/hud_core_sheet.png`|8部件已有|按P1_HUD_SLICE_GUIDE逐個接入|
-|罪惡感爆炸|`ui/guilt_explode_sheet.png`|8格序列已有|驗證序列接入|
+|HUD框/計量/氣環|`ui/hud_core_sheet.png`|8部件已接入；滿勇氣、罪惡裂紋、氣環隨數值切換|驗收原圖顯示，不重生|
+|罪惡感爆炸|`ui/guilt_explode_sheet.png`|8格序列已接guiltBurst，10fps單次播放，結束清理|已驗證播放與清理|
 |攻擊/閃避/變身/技能|`icons/btn_attack_sheet.png`、`icons/btn_dodge_transform_sheet.png`、`icons/skill_buttons_sheet.png`|已有且接入|只驗收三態與對齊|
-|搖桿與變身發光|`ui/control_extras_sheet.png`|已有；搖桿接入|核對發光態接法|
-|任務/彈窗/劇情框|`ui/panel_sheet.png`|三框已有|任務已接；核對其餘接入|
-|四種泡泡|`ui/bubble_sheet.png`|四種已有|只處理未接樣式與長句排版|
-|Boss/敵人血條/連擊/舊文字按鈕|`ui/aux_hud_sheet.png`|8部件已有|接入及狀態驗收，不重畫|
-|小地圖框/底/5標記|`ui/minimap_sheet.png`|已有，部分已接|核對底圖與俊熊標記|
+|搖桿與變身發光|`ui/control_extras_sheet.png`|搖桿及變身ready發光態已接入|保留按下與鎖定態|
+|任務/彈窗/劇情框|`ui/panel_sheet.png`|任務已接；劇情沿用底部框中央區；彈窗沿用PR35已接版本|舊圖集彈窗為備用，毋須同時疊加|
+|四種泡泡|`ui/bubble_sheet.png`|小天使與其餘三種泡泡均已接入|長句換行；保留翻譯文字|
+|Boss/敵人血條/連擊/舊文字按鈕|`ui/aux_hud_sheet.png`|Boss框/名稱/血量、敵人血量、連擊已接；舊按鈕備用|連擊去除描邊並避開直向任務欄|
+|小地圖框/底/5標記|`ui/minimap_sheet.png`|框、底圖、敵人/菁英/Boss/主角/俊熊五種標記均已接入|俊熊只在出現且未結束時標示|
 |功能鍵|`icons/function_icons_sheet.png`|8圖示已有|保留現有接入|
-|鎖定/回血|`icons/lock_heal_sheet.png`|已有|核對地面圈/回血接入|
+|鎖定/回血|`icons/lock_heal_sheet.png`|三態按鈕、地面鎖定圈、俊熊獎勵回血圖示均已接入|地面圖集載入失敗保留原幾何圈|
 |難度|`ui/difficulty_sheet.png`|6態已有且已接|驗收，不生圖|
-|賓果卡|`ui/bingo_card.png`|已有|核對遊戲使用位置|
+|賓果卡|`ui/bingo_card.png`|已於既有賓果台詞顯示原卡；其他台詞隱藏|未新增賓果玩法或改寫故事|
 |Logo/封面/橫幅|`branding/logo_01_review_v1.png`、`branding/icon_01.png`、`branding/icon_01_logo.png`、`branding/banner_01.png`|已有，Logo寬度限制另列|既有核准設計不重畫；衍生規格與使用位置核對|
 |主選單雙版|`branding/menu_keyart_01.png`、`branding/menu_keyart_portrait_01.png`|本聊天已生成且PR35接入|只驗收橫直裁切，不重生|
 |暫停/結算新框/標題/按鈕|`ui/panel_popup.png`、`ui/panel_title_plate.png`、`ui/btn_text.png`|本聊天已生成，PR35實作及測試通過|等待合併/視覺驗收，不重生|
@@ -37,8 +37,8 @@
 ## 可以執行的下一步
 
 1. 核對PR35選關、暫停、結算與等寬按鈕的交付／接入狀態，不再生圖。
-2. 按既有圖集完成尚未接入項目的來源座標及畫面對照。
-3. 角色表情與上班族頭像優先取自合輯，不重畫。
+2. 既有HUD圖集本輪已接入，座標見 `02_brave_guy/assets/source/HUD_RUNTIME_REGIONS.json`；驗證及例外見最新交接。
+3. 上班族HUD頭像已取自合輯；角色其他表情仍沿用合輯，不重畫。
 4. 場景、變身與其餘來源有爭議的項目維持「待追溯」，不得因ASSETS/manifest缺檔而生圖。
 
 **本輪沒有已確認需要新生成的項目，生圖佇列為空。**
