@@ -2288,7 +2288,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261115finish';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
