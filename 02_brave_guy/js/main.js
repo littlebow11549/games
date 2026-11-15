@@ -308,7 +308,8 @@ function buildMaze(st) {
 }
 
 // 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
-const stageAbilities = index => abilitiesFor(index,save.cleared);
+const ALL_ABILITIES=['transform','skill1','skill2','skill3','ult','hp','qi'];
+const stageAbilities=index=>save.cleared.includes(STAGES.at(-1).id)?new Set(ALL_ABILITIES):abilitiesFor(index,save.cleared);
 const unlockRequirement = ability => STAGES.find(s=>(stage().map===3?s.map===3:s.map!==3)&&s.grant?.split('+').includes(ability));
 const unlockHint = ability => {const required=unlockRequirement(ability);return required?tr(`通過 ${required.id} 解鎖`,`Clear ${required.id} to unlock`,`${required.id} クリアで解放`):t('未解鎖');};
 
@@ -1957,7 +1958,7 @@ function showOverlay(config) {
     $('ov-text').replaceChildren(heading, time, kills);
   }
   $('ov-load').textContent = (typeof note === 'function' ? note() : note) || '';
-  $('ov-btn').textContent = t(btn);
+  $('ov-btn').textContent = typeof btn==='function'?btn():t(btn);
   $('ov-btn').disabled = false;
   $('ov-next').hidden = !next;
   $('ov-next').textContent = t(nextLabel);
@@ -1971,22 +1972,22 @@ function showOverlay(config) {
 }
 
 function renderRunResult(outcome){
-  document.getElementById('run-result')?.remove();if(outcome!=='ending')return;
-  const result=runs.result,box=document.createElement('section');box.id='run-result';
-  const title=document.createElement('h3');title.textContent=tr('本次通關時間','RUN TIME','今回のクリアタイム');box.append(title);
-  const time=document.createElement('strong');time.textContent=result?formatTime(result.seconds):tr('選關體驗・不列榜','Stage preview · unranked','ステージ体験・ランキング対象外');box.append(time);
-  const heading=document.createElement('p');heading.textContent=tr('本機・同難度 TOP 5','LOCAL · SAME DIFFICULTY · TOP 5','この端末・同難易度 TOP 5');box.append(heading);
+  document.getElementById('run-result')?.remove();if(!['ending','clear'].includes(outcome))return;
+  const total=outcome==='ending',result=total?runs.result:runs.stageResult,box=document.createElement('section');box.id='run-result';
+  const title=document.createElement('h3');title.textContent=total?tr('全關通關時間總和','TOTAL OF ALL STAGES','全ステージ合計タイム'):tr('本關最快 3 次','STAGE BEST 3','このステージのベスト3');box.append(title);
+  const time=document.createElement('strong');time.textContent=result?formatTime(result.seconds):tr('選關體驗・不列榜','Stage preview · unranked','ステージ体験・ランキング対象外');if(total)box.append(time);
+  const heading=document.createElement('p');heading.textContent=tr('本機・同難度 TOP 3','LOCAL · SAME DIFFICULTY · TOP 3','この端末・同難易度 TOP 3');box.append(heading);
   const list=document.createElement('ol');for(const row of result?.rows||[]){const li=document.createElement('li');li.textContent=`${formatTime(row.seconds)}  ·  ${row.date||''}`;list.append(li);}box.append(list);
-  const note=document.createElement('p');note.textContent=!result?.ranked?tr('完整從序章挑戰，不使用跳關，才能列入排行。','Play from the prologue without shortcuts to rank.','序章からスキップなしで挑戦すると記録対象になります。'):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
+  const note=document.createElement('p');note.textContent=!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
   if(result&&!result.saved){const warning=document.createElement('p');warning.textContent=tr('無法保存紀錄，本次仍可查看。','Record could not be saved.','記録を保存できませんでした。');box.append(warning);}
-  $('ov-text').after(box);$('ov-btn').textContent=tr('再挑戰一次・從序章開始','TRY AGAIN · FROM THE START','もう一度・序章から挑戦');
+  $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('再挑戰一次・從序章開始','TRY AGAIN · FROM THE START','もう一度・序章から挑戦');
 }
 function endGame(win) {
   if(win)return clearStage();
   if(game.phase!=='playing')return;
   audio.stopCelebration();game.fails++;game.phase='cinematic';game.paused=false;audio.stopLoops();input.takeActions();$('hud').hidden=true;
   cinematics.defeat(()=>{game.phase='over';game.bgm=null;audio.playBgm(audio.tracks.bgm_defeat?'bgm_defeat':null);
-    showOverlay({outcome:'defeat',title:'倒 下',text:()=>`${stage().id}　${t(stage().name)}`,note:()=>tr('只要還願意站起來，這就不是結局。','If you stand up again, this is not the end.','もう一度立ち上がれば、これで終わりじゃない。'),btn:tr('我不甘心，我還要再試一次','I WILL NOT GIVE UP. LET ME TRY AGAIN.','諦めたくない。もう一度挑戦する！'),easy:game.fails>=3&&diff>0});
+    showOverlay({outcome:'defeat',title:'倒 下',text:()=>`${stage().id}　${t(stage().name)}`,note:()=>tr('只要還願意站起來，這就不是結局。','If you stand up again, this is not the end.','もう一度立ち上がれば、これで終わりじゃない。'),btn:()=>tr('我不甘心，我還要再試一次','I WILL NOT GIVE UP. LET ME TRY AGAIN.','諦めたくない。もう一度挑戦する！'),easy:game.fails>=3&&diff>0});
   });
 }
 
@@ -1995,7 +1996,7 @@ function clearStage() {
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
   if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
   runs.clear(index,last);
-  const stats = { id: st.id, name: st.name, time: game.time.toFixed(0), kills: game.kills };
+  const stats = { id: st.id, name: st.name, time: (runs.stageResult?.seconds??game.time).toFixed(0), kills: game.kills };
   game.phase = 'over'; game.fails = 0; game.paused = false;
   audio.stopLoops(); input.takeActions();
   const newlyCleared=!save.cleared.includes(st.id);
@@ -2320,7 +2321,7 @@ async function boot() {
 
 // ---------- 選關 ----------
 
-const isOpen = (i) => unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
+const isOpen = (i) => save.cleared.includes(STAGES.at(-1).id) || unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
 function firstOpenStage() {
   for (let i = 0; i < STAGES.length; i++) if (!save.cleared.includes(STAGES[i].id)) return isOpen(i) ? i : Math.max(0, i - 1);
   return STAGES.length - 1;

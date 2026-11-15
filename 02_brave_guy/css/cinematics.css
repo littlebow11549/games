@@ -71,3 +71,14 @@ body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{vis
 .game-art .act.unlearned::after{content:'🔒';display:block;position:absolute;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);font-size:22px;background:#061911c9;border:1px solid #86a170;border-radius:50%;padding:4px;pointer-events:none}
 
 .game-art #overlay.menu:not(.stages) #ov-run{flex-shrink:0;width:74vw;max-width:640px;align-self:center;padding:12px 14px;color:#ffe987;background:#153b27;border:2px solid #9cda62;font-size:clamp(14px,3.5vw,20px)}
+@media(max-height:760px){
+ .game-art #overlay.result .card{gap:8px;padding:12px 18px 18px}
+ .game-art #overlay.result .card #ov-title.has-word-art{height:72px;min-height:72px}
+ .game-art #overlay.result #ov-title .word-art{width:min(100%,230px)}
+ .game-art #overlay.result .result-metric{padding:4px 6px}
+ .game-art #overlay.result .result-metric b{font-size:22px}
+ .game-art #overlay.result #run-result{margin:0;padding:8px;font-size:12px;flex-shrink:0}
+ .game-art #overlay.result #run-result p{font-size:11px;margin:4px 0}
+ .game-art #overlay.result #run-result h3{font-size:14px;margin-bottom:3px}
+ .game-art #overlay.result #run-result ol{margin:4px auto}
+}
