@@ -43,7 +43,7 @@
   <canvas id="minimap" width="240" height="240" aria-hidden="true"></canvas>
 
   <div class="hud-top-right">
-    <button id="btn-quick-clear" hidden>一鍵過關</button>
+    <button id="btn-quick-clear" hidden>跳到魔王</button>
     <button class="icon-btn" id="btn-mute" aria-label="靜音" data-i18n-aria="靜音"></button>
     <button class="icon-btn" id="btn-pause" aria-label="暫停" data-i18n-aria="暫停"></button>
   </div>
@@ -161,7 +161,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261115quickclear';
+    s.src = 'js/main.js?v=20261115bosspreview';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');
