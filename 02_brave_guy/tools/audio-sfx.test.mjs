@@ -99,3 +99,9 @@ test('variants rotate and swarm sounds throttle while polyphony remains bounded'
  for(let i=0;i<100;i++)g.sfx('spawn');assert.equal(played.filter(x=>x==='spawn').length,1);
  for(let i=0;i<30;i++){g.ctx.currentTime+=.05;g.sfx('hit');}assert.equal(g.voices.size,16);assert(stopped>0);
 });
+
+test('real applause and cheers layer once, throttle overlap, and stop when leaving victory',()=>{
+ const {g}=harness({applause:'claps.mp3',crowd_cheer:'cheers.mp3'});let starts=0,stops=0;
+ g.ctx.currentTime=0;g.ctx.createBufferSource=()=>({connect(){},start(){starts++},stop(){stops++},disconnect(){}});
+ g.sfxBuffers.set('applause',{});g.sfxBuffers.set('crowd_cheer',{});g.applause();g.ctx.currentTime=.5;g.applause();assert.equal(starts,2);assert.equal(g.crowdVoices.size,2);g.stopCelebration();assert.equal(stops,2);assert.equal(g.crowdVoices.size,0);g.applause();assert.equal(starts,4);
+});

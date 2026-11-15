@@ -22,20 +22,20 @@ export function createBossStoryboard(root,audioProvider){
  const canvas=document.createElement('canvas');canvas.className='cinema-storyboard';canvas.setAttribute('aria-hidden','true');root.prepend(canvas);
  const ctx=canvas.getContext('2d'),cache=new Map(),backdrop=document.createElement('canvas');let backKey=null;let key=null,definition=null,fired=new Set(),previous=-1;
  function images(k){const d=BOSS_STORYBOARDS[k];const files=d.files||[`boss_${k}_storyboard`];return files.map(file=>{if(!cache.has(file)){const im=new Image();im.src=ROOT+file+'.png';cache.set(file,im);}return cache.get(file);});}
- function prepare(kinds){return Promise.all(kinds.filter(k=>BOSS_STORYBOARDS[k]).flatMap(k=>images(k).map(im=>im.decode().catch(()=>null))));}
- function ready(){return key&&images(key).every(im=>im.complete);}
+ function prepare(kinds){return Promise.all(kinds.filter(k=>BOSS_STORYBOARDS[k]).flatMap(k=>images(k).map(im=>im.decode().catch(error=>{for(const [file,image] of cache)if(image===im)cache.delete(file);throw error;}))));}
+ function ready(){return key&&images(key).every(im=>im.complete&&im.naturalWidth>0);}
  function start(k){key=k;definition=BOSS_STORYBOARDS[k];fired=new Set();previous=-1;images(k);root.dataset.storyboard=k;root.dataset.artReady='false';root.dataset.beat='0';audioProvider()?.stopLoops?.();audioProvider()?.duckBgm?.(.38);}
  function stop(){key=null;definition=null;delete root.dataset.storyboard;delete root.dataset.beat;canvas.hidden=true;audioProvider()?.duckBgm?.(1);}
  function render(time,reduced,color){
   if(!definition)return;
   const d=definition,beat=time<d.cuts[0]?0:time<d.cuts[1]?1:2,local=time-(beat===0?0:d.cuts[beat-1]),length=(beat===2?d.duration:d.cuts[beat])-(beat===0?0:d.cuts[beat-1]);
-  root.dataset.beat=String(beat);root.dataset.shot=beat===2?'hold':'reveal';
+  if(root.dataset.beat!==String(beat))root.dataset.beat=String(beat);const shot=beat===2?'hold':'reveal';if(root.dataset.shot!==shot)root.dataset.shot=shot;
   // Fire only cues crossed this frame. A skip/large seek never dumps old cues together.
   const due=d.cues.filter(([at],i)=>!fired.has(i)&&at<=time&&at>previous);
   for(const [at,sound] of due){const i=d.cues.findIndex(c=>c[0]===at&&c[1]===sound);fired.add(i);if(time-at<.2||previous<0&&at===0)audioProvider()?.sfx(sound);}
   previous=time;
   const list=images(key),im=list[list.length===1?0:beat];if(!im.complete||!im.naturalWidth){canvas.hidden=true;root.dataset.artReady='false';return;}
-  canvas.hidden=false;root.dataset.artReady='true';
+  canvas.hidden=false;if(root.dataset.artReady!=='true')root.dataset.artReady='true';
   const w=innerWidth,h=innerHeight,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}
   ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
   const sw=im.naturalWidth,sh=im.naturalHeight/(list.length===1?3:1),sy=list.length===1?beat*sh:0;

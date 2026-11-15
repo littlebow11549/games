@@ -1,18 +1,21 @@
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
+import { RunRecords, formatTime, words } from './run-records.js';
+import { disposeOwned } from './dispose-owned.js';
 import * as THREE from '../vendor/three/three.module.min.js';
-import { buildWorld, ARENA_RADIUS } from './world.js';
+import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115perf';
 import { createVisual, loadModel } from './visuals.js';
-import { Fx } from './fx.js';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115allboss';
-import { createCinematics } from './cinematics.js?v=20261115portrait';
+import { Fx } from './fx.js?v=20261115perf';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115finish';
+import { createCinematics } from './cinematics.js?v=20261115perf';
 import { createOpening } from './opening.js?v=20261115portrait';
-import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
+import { createMenuMotion } from './menu-motion.js?v=20261115perf';
 import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js?v=20261115portrait';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115glam';
-import { GameAudio } from './audio.js?v=20261115crisp';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
+import { GameAudio } from './audio.js?v=20261115perf';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115finish';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
 import { makeMaze } from './maze.js';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115g';
@@ -100,7 +103,7 @@ const DIFF_KEY = 'braveguy.diff';
 let diff = 1;
 try { const d = localStorage.getItem(DIFF_KEY); if (d !== null && DIFFS[+d]) diff = +d; } catch { /* 讀不到就用普通 */ }
 const D = () => DIFFS[diff];
-function setDiff(i) { diff = i; try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
+function setDiff(i) { if(i!==diff)runs.invalidate();diff = i; try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
 
 // 負面狀態：每個守關者有自己的招牌狀態，每隔一陣子在主角腳下畫圈，圈爆開時還站在裡面就中。
 // 變身中持續時間減半。效果寫在 updateDebuffs 與各處的 hasDebuff() 判斷。
@@ -248,11 +251,13 @@ const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hits
   stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0, bossFodderT: 0 };
 let save = { cleared: [], seenTransform: false, seenOpening: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
-// 開發期間：所有關卡預設全開，方便隨時試玩任何一關。正式完成時把 DEV_UNLOCK 改成 false。
-// 想看正式的逐關解鎖流程，網址加 ?unlock=off。
-const DEV_UNLOCK = true;
+// 正式逐關解鎖；?unlock=all 僅供選關預覽，不贈送招式。
+const DEV_UNLOCK = false;
 const unlockParam = new URLSearchParams(location.search).get('unlock');
 const unlockAll = unlockParam === 'all' || (DEV_UNLOCK && unlockParam !== 'off');
+save.cleared=Array.isArray(save.cleared)?save.cleared.filter(id=>STAGES.some(s=>s.id===id)):[];
+const runs = new RunRecords({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
+const tr=(zh,en,ja)=>words(lang,zh,en,ja);
 const writeSave = () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch { /* 無法存檔時本次仍可玩 */ } };
 const hero = { pos: new THREE.Vector3(), yaw: 0, vis: {}, visual: null, cds: {} };
 const angel = { visual: null, pos: new THREE.Vector3(), sayT: 0, lastKey: '', quiet: 0 };
@@ -303,8 +308,10 @@ function buildMaze(st) {
 }
 
 // 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
-const ALL_ABILITIES = ['transform', 'skill1', 'skill2', 'skill3', 'ult', 'hp', 'qi'];
-const stageAbilities = (index) => (unlockAll ? new Set(ALL_ABILITIES) : abilitiesFor(index));
+const ALL_ABILITIES=['transform','skill1','skill2','skill3','ult','hp','qi'];
+const stageAbilities=index=>save.cleared.includes(STAGES.at(-1).id)?new Set(ALL_ABILITIES):abilitiesFor(index,save.cleared);
+const unlockRequirement = ability => STAGES.find(s=>(stage().map===3?s.map===3:s.map!==3)&&s.grant?.split('+').includes(ability));
+const unlockHint = ability => {const required=unlockRequirement(ability);return required?tr(`通過 ${required.id} 解鎖`,`Clear ${required.id} to unlock`,`${required.id} クリアで解放`):t('未解鎖');};
 
 // ---------- 背景音樂 ----------
 // game.bgm 是「現在這個場面該播的曲子」。變身成勇氣超人的期間改播變身專用曲，變回來再接回去。
@@ -348,10 +355,10 @@ function resetHero() {
 
 function clearField() {
   for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove(); }
-  for (const s of shots) scene.remove(s.mesh);
-  for (const h of hazards) scene.remove(h.mesh);
-  if (ambush) { scene.remove(ambush.visual.root); ambush = null; }
-  if (beam) { scene.remove(beam); beam = null; }
+  for (const s of shots) disposeOwned(s.mesh);
+  for (const h of hazards) disposeOwned(h.mesh);
+  if (ambush) { scene.remove(ambush.visual.root); ambush.visual.dispose(); ambush = null; }
+  if (beam) { disposeOwned(beam); beam = null; }
   enemies = [];
   shots = [];
   hazards = [];
@@ -361,6 +368,10 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index) {
+  if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index));return;}
+  audio.stopCelebration();input.takeActions();
+  runs.start(index,diff);
+  if(unlockAll)runs.invalidate();
   pendingVictory = null;
   opening.cancel();
   audio.stopLoops();
@@ -368,8 +379,9 @@ function startStage(index) {
   transformArt.hide();
   game.stage = index;
   const st = stage();
+  if(index===STAGES.length-1)cinematics.prepareEnding().catch(()=>{});
   if(st.id==='3-0')audio.sfx('punch_clock');
-  if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]);
+  if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]).catch(()=>{});
   ({ sun } = buildWorld(scene, st.theme, Q()));
   buildMaze(st);
   // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
@@ -386,7 +398,7 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
+    bossFightTime:0, bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -496,10 +508,11 @@ function say(key, force = false) {
 
 const ACT_BUTTONS = [...document.querySelectorAll('.act[data-action]')]; // 每幀都要用，先查好
 
+function textIfChanged(id, value) { const el=$(id), text=String(value); if(el.textContent!==text)el.textContent=text; }
 function updateHud() {
   const brave = hero.form === 'brave';
   $('hp-fill').style.transform = `scaleX(${Math.max(0, hero.hp / hero.maxHp)})`;
-  $('hp-text').textContent = `${Math.max(0, Math.ceil(hero.hp))} / ${hero.maxHp}`;
+  textIfChanged('hp-text', `${Math.max(0, Math.ceil(hero.hp))} / ${hero.maxHp}`);
   const courageShown = hero.mode === 'burst' ? hero.burstT / GAUGE.burstTime : hero.courage / GAUGE.courageMax;
   $('courage-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, courageShown))})`;
   $('courage').classList.toggle('full', !brave && hero.courage >= GAUGE.courageMax);
@@ -519,20 +532,23 @@ function updateHud() {
   $('portrait').classList.toggle('worker', hero.form === 'worker');
   $('btn-quick-clear').hidden = game.phase !== 'playing' || game.paused || !!dialog || cinematics.active;
   const jumpToBoss = stage().boss && !game.bossSpawned;
-  $('btn-quick-clear').textContent = jumpToBoss
+  textIfChanged('btn-quick-clear', jumpToBoss
     ? (lang === 'ja' ? 'ボスへ' : lang === 'en' ? 'Jump to boss' : '跳到魔王')
-    : (lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關');
+    : stage().boss==='incubus'&&!game.awakened?tr('第二形態','Second form','第二形態')
+    : (lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關'));
   $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !enemies.some(e => alive(e) && !e.gone && dist2d(e.pos, hero.pos) - e.def.radius < LOCK_RANGE);
-  $('quest-count').textContent = tf('擊倒 {0}', game.kills);
-  $('suanle-n').textContent = game.suanle;
+  textIfChanged('quest-count', tf('擊倒 {0}', game.kills));
+  textIfChanged('suanle-n', game.suanle);
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
-  $('rescue-n').textContent = hearts;
-  $('quest-mini').innerHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`; // 收合時只顯示這一行
+  textIfChanged('rescue-n', hearts);
+  const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
+  if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
   $('combo').hidden = game.combo < 5;
   updateCombo(game.combo);
 
   for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
+    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):t(SKILLS[a].name);if(btn.title!==hint)btn.title=hint;}
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / SKILLS[a].cd}turn`);
       btn.classList.toggle('locked', !brave || !game.abilities.has(a) || hero.silenceT > 0);
@@ -553,6 +569,7 @@ function updateHud() {
   for (const e of enemies) {
     if (e.def.boss) { bossHp += Math.max(0, e.hp); bossMax += e.def.hp; continue; }
     if (!e.bar) continue;
+    if(e.state==='dead'||e.hp>=e.maxHp){if(e.bar.style.display!=='none')e.bar.style.display='none';continue;}
     const p = screenPos(e.pos, e.def.height + 0.3 + e.y);
     const show = p.visible && e.state !== 'dead' && e.hp < e.maxHp;
     e.bar.style.display = show ? '' : 'none';
@@ -888,6 +905,8 @@ function damageEnemy(e, mult, o = {}) {
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.3) dmg = Math.max(0, e.hp - e.maxHp * 0.3 + 1); // 不會被直接打死，要進入最後一段
   if (guarded) {dmg *= 0.35;audio.sfx('guard');} // 假森：平常打不動，出手後或被打飛時才打得痛
+  dmg *= game.counterT>0?1.5:game.combo>=20?1.25:1;
+  if(e.def.incubus&&!game.awakened&&!e.shield)dmg=Math.min(dmg,Math.max(0,e.hp-e.maxHp*.6));
   dmg = Math.round(dmg);
   e.hp -= dmg;
   e.visual.flash();
@@ -1242,6 +1261,12 @@ function bossThink(e, d, dx, dz) {
 }
 
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
+function startAwakening(e) {
+  game.awakened=true;game.phase='cinematic';audio.stopLoops();input.takeActions();
+  if(beam)endUlt();e.cast=null;e.state='chase';e.cool=2.5;
+  hazards.forEach(h=>h.life=0);$('hud').hidden=true;
+  cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());});
+}
 function startFinalPhase(e) {
   game.final = true;
   e.untouchable = true;
@@ -1261,7 +1286,7 @@ function updateEnemy(e, dt, attackers) {
   e.visual.update(dt);
   const def = e.def;
   if (e.lineT > 0) e.lineT -= dt;
-  for (const k of Object.keys(e.cds)) e.cds[k] -= dt;
+  for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.25:1)*(def.incubus&&game.awakened?1.2:1);
 
   if (e.state === 'spawn') {
     if (e.t < 0) return;
@@ -1302,6 +1327,7 @@ function updateEnemy(e, dt, attackers) {
   }
 
   if (def.boss) {
+    if(def.incubus&&!game.awakened&&!e.shield&&e.hp<=e.maxHp*.6+2){startAwakening(e);return;}
     if (def.incubus && !game.final && !e.shield && e.hp <= e.maxHp * 0.3 + 2) startFinalPhase(e);
     if (e.state === 'cast') {
       e.cast.t += dt;
@@ -1310,7 +1336,7 @@ function updateEnemy(e, dt, attackers) {
     }
     if (e.state === 'recover') { if (e.t >= def.recover * (def.enrage ? 0.4 + 0.6 * e.hp / e.maxHp : 1)) { e.state = 'chase'; e.t = 0; e.cool = rand(0.3, 0.9); } return; }
     e.state = 'chase';
-    e.cool -= dt;
+    e.cool -= dt*(game.pressure?1.25:1)*(e.def.incubus&&game.awakened?1.2:1);
     e.yaw = Math.atan2(dx, dz);
     if (e.untouchable && hero.courage >= GAUGE.courageMax) {
       // 等主角走上前
@@ -1331,7 +1357,7 @@ function updateEnemy(e, dt, attackers) {
   if (e.state === 'stagger') {
     if (e.t > 0.3) { e.state = 'chase'; e.t = 0; }
   } else if (e.state === 'chase') {
-    e.cool -= dt;
+    e.cool -= dt*(game.pressure?1.25:1)*(e.def.incubus&&game.awakened?1.2:1);
     e.yaw = Math.atan2(dx, dz);
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
     if (heroAlive && d <= def.reach && e.cool <= 0 && canAttack) {
@@ -1610,6 +1636,8 @@ function startDodge(mv) {
   hero.visual.play('dodge', 0.28);
   audio.sfx(perfect?'dodge_perfect':'dodge');
   if (perfect) {
+    game.counterT=3;
+    popup(hero.pos,3.1,tr('反擊窗口 ×1.5','COUNTER ×1.5','反撃チャンス ×1.5'),'good');
     addCourage(GAUGE.couragePerfect);
     addQi(GAUGE.qiPerfect);
     popup(hero.pos, 2.4, '完美閃避', 'good');
@@ -1621,7 +1649,7 @@ function startDodge(mv) {
 }
 
 function startSkill(name, mv) {
-  if (!game.abilities.has(name)) { say('locked'); return; }
+  if (!game.abilities.has(name)) { popup(hero.pos,2.8,unlockHint(name),'guard');say('locked');return; }
   if (hero.form !== 'brave') { say('noSkill'); return; }
   if (hero.silenceT > 0) { popup(hero.pos, 2.6, '（被噴到說不出話）', 'guard'); return; }
   const def = SKILLS[name];
@@ -1650,7 +1678,7 @@ function startSkill(name, mv) {
 function endUlt() {
   audio.stopLoop('beam_loop');
   if(beam)audio.sfx('beam_end');
-  if (beam) { scene.remove(beam); beam.traverse((o) => { if (o.geometry) o.geometry.dispose(); }); beam = null; }
+  if (beam) { disposeOwned(beam); beam = null; }
 }
 
 function updateHero(dt) {
@@ -1885,7 +1913,7 @@ function updateShots(dt) {
       }
     }
     if (s.life <= 0 || out) {
-      scene.remove(s.mesh);
+      disposeOwned(s.mesh);
       if (s.hostile) fx.burst(s.mesh.position, 0xff5a4f, 6, 3, s.mesh.position.y);
       s.gone = true;
     }
@@ -1899,6 +1927,7 @@ let lastOverlay = null;
 let pendingVictory = null;
 function showOverlay(config) {
   lastOverlay = config;
+  $('ov-run').hidden=true;
   $('ov-opening').hidden = true;
   $('ov-replay').hidden = config.outcome !== 'ending';
   if(config.outcome === 'ending') $('ov-replay').textContent = t('重播結局');
@@ -1929,7 +1958,7 @@ function showOverlay(config) {
     $('ov-text').replaceChildren(heading, time, kills);
   }
   $('ov-load').textContent = (typeof note === 'function' ? note() : note) || '';
-  $('ov-btn').textContent = t(btn);
+  $('ov-btn').textContent = typeof btn==='function'?btn():t(btn);
   $('ov-btn').disabled = false;
   $('ov-next').hidden = !next;
   $('ov-next').textContent = t(nextLabel);
@@ -1939,30 +1968,43 @@ function showOverlay(config) {
   $('ov-diff').hidden = true;
   $('hud').hidden = true;
   $('overlay').hidden = false;
+  renderRunResult(outcome);
 }
 
+function renderRunResult(outcome){
+  document.getElementById('run-result')?.remove();if(!['ending','clear'].includes(outcome))return;
+  const total=outcome==='ending',result=total?runs.result:runs.stageResult,box=document.createElement('section');box.id='run-result';
+  const title=document.createElement('h3');title.textContent=total?tr('全關通關時間總和','TOTAL OF ALL STAGES','全ステージ合計タイム'):tr('本關最快 3 次','STAGE BEST 3','このステージのベスト3');box.append(title);
+  const time=document.createElement('strong');time.textContent=result?formatTime(result.seconds):tr('選關體驗・不列榜','Stage preview · unranked','ステージ体験・ランキング対象外');if(total)box.append(time);
+  const heading=document.createElement('p');heading.textContent=tr('本機・同難度 TOP 3','LOCAL · SAME DIFFICULTY · TOP 3','この端末・同難易度 TOP 3');box.append(heading);
+  const list=document.createElement('ol');for(const row of result?.rows||[]){const li=document.createElement('li');li.textContent=`${formatTime(row.seconds)}  ·  ${row.date||''}`;list.append(li);}box.append(list);
+  const note=document.createElement('p');note.textContent=!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
+  if(result&&!result.saved){const warning=document.createElement('p');warning.textContent=tr('無法保存紀錄，本次仍可查看。','Record could not be saved.','記録を保存できませんでした。');box.append(warning);}
+  $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('再挑戰一次・從序章開始','TRY AGAIN · FROM THE START','もう一度・序章から挑戦');
+}
 function endGame(win) {
-  if (win) return clearStage();
-  game.phase = 'ending';
-  game.fails++;
-  setTimeout(() => {
-    game.phase = 'over';
-    game.bgm = null; audio.playBgm(audio.tracks.bgm_defeat ? 'bgm_defeat' : null);
-    audio.sfx('lose');
-    // 同一關連續失敗三次，小天使提議調簡單
-    showOverlay({ outcome: 'defeat', title: '倒 下', text: () => `${stage().id}　${t(stage().name)}`, note: () => t('小天使：「起來。再一次。」'), btn: '再來一次', easy: game.fails >= 3 && diff > 0 });
-  }, 1200);
+  if(win)return clearStage();
+  if(game.phase!=='playing')return;
+  audio.stopCelebration();game.fails++;game.phase='cinematic';game.paused=false;audio.stopLoops();input.takeActions();$('hud').hidden=true;
+  cinematics.defeat(()=>{game.phase='over';game.bgm=null;audio.playBgm(audio.tracks.bgm_defeat?'bgm_defeat':null);
+    showOverlay({outcome:'defeat',title:'倒 下',text:()=>`${stage().id}　${t(stage().name)}`,note:()=>tr('只要還願意站起來，這就不是結局。','If you stand up again, this is not the end.','もう一度立ち上がれば、これで終わりじゃない。'),btn:()=>tr('我不甘心，我還要再試一次','I WILL NOT GIVE UP. LET ME TRY AGAIN.','諦めたくない。もう一度挑戦する！'),easy:game.fails>=3&&diff>0});
+  });
 }
 
 function clearStage() {
   if (game.phase !== 'playing') return; // One award / one victory screen per clear.
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
-  const stats = { id: st.id, name: st.name, time: game.time.toFixed(0), kills: game.kills };
+  if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
+  runs.clear(index,last);
+  const stats = { id: st.id, name: st.name, time: (runs.stageResult?.seconds??game.time).toFixed(0), kills: game.kills };
   game.phase = 'over'; game.fails = 0; game.paused = false;
   audio.stopLoops(); input.takeActions();
-  if (!save.cleared.includes(st.id)) { save.cleared.push(st.id); writeSave(); }
+  const newlyCleared=!save.cleared.includes(st.id);
+  if(newlyCleared){save.cleared.push(st.id);writeSave();}
+  if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
+  if(newlyCleared&&st.grant)audio.sfx('courage_full');
   if (hero.form === 'brave') revert();
-  game.bgm = null; audio.playBgm('bgm_victory'); audio.sfx('win');
+  game.bgm = null; audio.playBgm('bgm_victory'); audio.sfx('win');audio.applause();
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
     note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
@@ -1998,13 +2040,16 @@ function playEnding(done) {
 function update(dt) {
   if (game.hitstop > 0) { game.hitstop -= dt; fx.update(dt * 0.2); return; } // 命中頓幀
   game.time += dt;
+  game.counterT=Math.max(0,game.counterT-dt);
+  if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));}
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
+  if(game.phase!=='playing'&&game.phase!=='ending')return;
   if (maze) maze.updateFlow(hero.pos);
   updateDebuffs(dt);
   const attackers = { melee: 0, ranged: 0 };
   for (const e of enemies) if (e.state === 'windup' && !e.def.boss) { if (e.def.ranged) attackers.ranged++; else attackers.melee++; }
-  for (const e of enemies) updateEnemy(e, dt, attackers);
+  for (const e of enemies){updateEnemy(e, dt, attackers);if(game.phase!=='playing'&&game.phase!=='ending')return;}
   enemies = enemies.filter((e) => !e.gone);
   separate();
   updateShots(dt);
@@ -2208,22 +2253,31 @@ function watchPerformance(rawDt) {
   console.info(`[效能] 畫質自動降為「${Q().name}」`);
 }
 
-let last = performance.now();
+let last = performance.now(), lastHud=0, staticFrame=null;
+addEventListener('resize',()=>{staticFrame=null;});
+document.addEventListener('visibilitychange',()=>{last=performance.now();});
 function frame(now) {
   const rawDt = (now - last) / 1000;
   const dt = Math.min(0.05, rawDt);
   last = now;
+  if (document.hidden||game.phase==='loading'||game.phase==='loading-assets') { requestAnimationFrame(frame); return; }
   if (opening.active) { requestAnimationFrame(frame); return; }
   audio.syncCombatLoops(game.phase==='playing'&&!game.paused&&!cinematics.active?hero.state:null);
   if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
   menuMotion.update(now, game.phase === 'ready');
+  if(game.phase==='ready'){staticFrame=null;requestAnimationFrame(frame);return;}
+  const frozen=game.paused||game.phase==='over';
+  const frameKey=frozen?`${game.phase}:${game.stage}:${game.paused}`:null;
+  if(frozen&&staticFrame===frameKey){requestAnimationFrame(frame);return;}
+  staticFrame=frameKey;
   watchPerformance(rawDt);
+  if(game.phase==='playing'&&!game.paused)runs.tick(rawDt);
   if (!game.paused && (game.phase === 'playing' || game.phase === 'ending')) { update(dt); updateAngel(dt); }
   else if (game.phase === 'dialog' && hero.visual) { hero.visual.update(dt); updateAngel(dt); fx.update(dt); }
   else if (hero.visual) { hero.visual.update(dt); updateAngel(dt); }
   updateCamera(dt);
   updateLockMarker(dt);
-  if (game.phase !== 'loading') updateHud();
+  if (game.phase !== 'loading' && (frozen || now-lastHud>=1000/30)) {updateHud();lastHud=now;}
   if (game.phase === 'playing' || game.phase === 'dialog') updateMinimap();
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
@@ -2242,11 +2296,13 @@ async function boot() {
   audio = new GameAudio(manifest);
   audio.onLoading = (on) => { $('music-loading').hidden = !on; }; // 音樂進關後才下載，載的時候在任務欄提示
   const models = Object.entries(manifest.models || {}).filter(([, cfg]) => cfg && cfg.url);
-  progress(82, models.length ? '載入角色模型' : '準備角色');
+  await preloadImages((done,total)=>progress(76+done/total*15,tr(`準備畫面 ${done}/${total}`,`Preparing artwork ${done}/${total}`,`画像を準備 ${done}/${total}`)));
+  progress(91, models.length ? '載入角色模型' : '準備角色');
   let got = 0;
-  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(82 + (++got / models.length) * 13, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));
+  const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(91 + (++got / models.length) * 4, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));
   const ok = loaded.filter(Boolean).length;
 
+  await document.fonts.ready;
   game.stage = firstOpenStage();
   game.abilities = stageAbilities(game.stage);
   resetHero();
@@ -2259,12 +2315,13 @@ async function boot() {
   showMenu();
   window.__booted = true; // 讓 index.html 的載入逾時提示知道已經開好了
   progress(100, '完成');
+  document.getElementById('boot-scene').hidden=true;
   if (!save.seenOpening) playOpening();
 }
 
 // ---------- 選關 ----------
 
-const isOpen = (i) => unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
+const isOpen = (i) => save.cleared.includes(STAGES.at(-1).id) || unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
 function firstOpenStage() {
   for (let i = 0; i < STAGES.length; i++) if (!save.cleared.includes(STAGES[i].id)) return isOpen(i) ? i : Math.max(0, i - 1);
   return STAGES.length - 1;
@@ -2272,6 +2329,10 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  audio.stopCelebration();
+  document.getElementById('run-result')?.remove();
+  $('ov-run').hidden=menuView!=='title';
+  $('ov-run').textContent=tr('完整通關計時挑戰','FULL RUN · TIME ATTACK','全ステージ・タイムアタック');
   pendingVictory = null;
   opening.cancel();
   audio.stopLoops();
@@ -2358,13 +2419,15 @@ function playOpening() {
   game.phase = 'opening';
   opening.play(() => { input.takeActions(); save.seenOpening = true; writeSave(); menuView = 'title'; showMenu(); });
 }
+$('ov-run').addEventListener('click',()=>{audio.unlock();runs.reset();startStage(0);});
 $('ov-opening').addEventListener('click', playOpening);
-$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); startStage(game.stage); });
+$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); if(lastOverlay?.outcome==='ending'&&game.phase==='over'){runs.reset();startStage(0);}else startStage(game.stage); });
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();
   if (game.phase === 'over' && lastOverlay?.outcome === 'ending') {
     playEnding(() => { game.phase = 'over'; showOverlay(lastOverlay); $('ov-replay').hidden = false; $('ov-replay').textContent = t('重播結局'); }); return;
   }
+  if(!gameplayIsReady()){game.phase='loading-assets';waitForArtwork(prepareGameplay,()=>{$('ov-replay').click();});return;}
   $('overlay').hidden = true;
   setBgm('bgm_transform');
   runDialog(FIRST_TRANSFORM, showMenu, 'stars');
@@ -2394,6 +2457,7 @@ function setPaused(on) {
 $('btn-quick-clear').addEventListener('click', () => {
   if (game.phase !== 'playing' || game.paused || dialog || cinematics.active) return;
   audio.unlock();
+  runs.invalidate();
   if (beam) endUlt();
   $('btn-quick-clear').hidden = true;
   const st = stage();
@@ -2409,6 +2473,8 @@ $('btn-quick-clear').addEventListener('click', () => {
     }
     game.midDone = true;
     runDialog(st.bossIntro, spawnBoss);
+  } else if(st.boss==='incubus'&&!game.awakened){
+    const boss=enemies.find(e=>e.def.incubus&&alive(e));if(boss){boss.shield=false;boss.hp=boss.maxHp*.6;startAwakening(boss);}
   } else {
     clearStage();
   }
@@ -2463,9 +2529,9 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && gam
 
 // 供自動化測試與除錯讀取狀態
 window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
-  startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
+  runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
 
 requestAnimationFrame(frame);
-boot();
+boot().catch(err=>window.__fail?.(err.message));

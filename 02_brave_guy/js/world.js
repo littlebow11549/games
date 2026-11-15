@@ -227,6 +227,8 @@ export function buildWorld(scene, themeName = 'corridor', quality = { shadows: t
   if (current) {
     scene.remove(current);
     current.traverse((o) => {
+      o.shadow?.dispose?.();
+      if(o.isInstancedMesh)o.dispose();
       if (o.geometry) o.geometry.dispose();
       if (o.material) { if (o.material.map) o.material.map.dispose(); o.material.dispose(); }
     });

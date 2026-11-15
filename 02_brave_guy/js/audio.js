@@ -6,9 +6,11 @@ export class GameAudio {
     this.tracks = (manifest && manifest.audio) || {};
     this.sfxTracks = (manifest && manifest.sfx) || {};
     this.sfxBuffers = new Map();
+    this.sfxByUrl = new Map();
+    this.bgmLoads = new Map();
     this.sfxLoading = new Map();
     this.sfxFailed = new Set();
-    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set();
+    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.crowdVoices=new Set();
     this.loops = new Map(); this.loopRequests = new Map(); this.duck = 1;
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
@@ -39,7 +41,8 @@ export class GameAudio {
     this.preloadSfx();
   }
 
-  applause() { this.sfx('applause'); }
+  applause() { this.sfx('applause'); this.sfx('crowd_cheer'); }
+  stopCelebration(){for(const voice of this.crowdVoices){try{voice.stop();}catch{}}this.crowdVoices.clear();this.sfxLast.delete('applause');this.sfxLast.delete('crowd_cheer');}
 
   preloadSfx() {
     for(const [name,source] of Object.entries(this.sfxTracks)) {
@@ -85,7 +88,8 @@ export class GameAudio {
   }
 
   stopBgm() {
-    if (this.bgmSrc) { try { this.bgmSrc.stop(); } catch { /* 已停止 */ } this.bgmSrc = null; }
+    this.bgmGeneration=(this.bgmGeneration||0)+1;
+    if (this.bgmSrc) { try { this.bgmSrc.stop(); } catch { /* 已停止 */ } this.bgmSrc.disconnect?.(); this.bgmSrc = null; }
     if (this.bgm) { this.bgm.pause(); this.bgm = null; }
   }
 
@@ -94,6 +98,7 @@ export class GameAudio {
     if (this.bgmName === name) return;
     this.stopBgm();
     this.bgmName = name;
+    const generation=this.bgmGeneration;
     const raw = this.tracks[name];
     if (!raw) return;
     const url = this.resolve(raw);
@@ -102,11 +107,16 @@ export class GameAudio {
       if (!this.ctx) throw new Error('no audio context');
       if (!this.buffers[url]) {
         if (this.onLoading) this.onLoading(true);
-        const data = await (await fetch(url)).arrayBuffer();
-        this.buffers[url] = await this.ctx.decodeAudioData(data);
+        if(!this.bgmLoads.has(url)){
+          const request=(async()=>{const response=await fetch(url);if(!response.ok)throw new Error('BGM HTTP '+response.status);return this.ctx.decodeAudioData(await response.arrayBuffer());})();
+          this.bgmLoads.set(url,request);
+          request.finally(()=>this.bgmLoads.delete(url)).catch(()=>{});
+        }
+        this.buffers[url] = await this.bgmLoads.get(url);
       }
       if (this.onLoading) this.onLoading(false);
-      if (this.bgmName !== name) return; // 載入期間已經換曲
+      this.trimBgmCache(url);
+      if (this.bgmName !== name || generation!==this.bgmGeneration) return; // 載入期間已經換曲
       const src = this.ctx.createBufferSource();
       src.buffer = this.buffers[url];
       src.loop = loop;
@@ -115,12 +125,23 @@ export class GameAudio {
       this.bgmSrc = src;
     } catch (err) {
       if (this.onLoading) this.onLoading(false);
-      if (this.bgmName !== name) return;
+      if (this.bgmName !== name || generation!==this.bgmGeneration) return;
       this.bgm = new Audio(url);
       this.bgm.loop = loop;
       this.bgm.volume = 0.5 * this.duck;
       this.bgm.muted = this.muted;
       this.bgm.play().catch(() => {});
+    }
+  }
+
+  trimBgmCache(recent) {
+    // Preserve the active track; retain at most 3 decoded tracks / 64 MiB otherwise.
+    const buffer=this.buffers[recent];delete this.buffers[recent];if(buffer)this.buffers[recent]=buffer;
+    const bytes=()=>Object.values(this.buffers).reduce((n,b)=>n+(b.length||0)*(b.numberOfChannels||1)*4,0);
+    const active=this.tracks[this.bgmName]&&this.resolve(this.tracks[this.bgmName]);
+    for(const key of Object.keys(this.buffers)){
+      if(Object.keys(this.buffers).length<=3&&bytes()<=64*1024*1024)break;
+      if(key!==active)delete this.buffers[key];
     }
   }
 
@@ -165,10 +186,12 @@ export class GameAudio {
     if(this.sfxBuffers.has(name))return Promise.resolve();
     const promise = (async () => {
       try {
-        const response = await fetch(url + (url.includes('?') ? '&' : '?') + 'v=20261115crisp');
-        if (!response.ok) throw new Error('SFX HTTP ' + response.status);
-        const data = await response.arrayBuffer();
-        const buffer = await this.ctx.decodeAudioData(data);
+        if(!this.sfxByUrl.has(url))this.sfxByUrl.set(url,(async()=>{
+          const response=await fetch(url+(url.includes('?')?'&':'?')+'v=20261115crisp');
+          if(!response.ok)throw new Error('SFX HTTP '+response.status);
+          return this.ctx.decodeAudioData(await response.arrayBuffer());
+        })());
+        const buffer=await this.sfxByUrl.get(url);
         this.sfxBuffers.set(name, buffer);
       } catch (error) {
         this.sfxFailed.add(name);
@@ -184,7 +207,7 @@ export class GameAudio {
   sfx(name) {
     if (this.muted) return;
     const now=this.ctx?.currentTime;
-    const gap={spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:.35}[name] ?? .025;
+    const gap={spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
     if(Number.isFinite(now)){if(now-(this.sfxLast.get(name)??-Infinity)<gap)return;this.sfxLast.set(name,now);}
     let source=this.sfxTracks[name],cacheKey=name;
     if(Array.isArray(source)){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%source.length);cacheKey=`${name}:${i}`;source=source[i];}
@@ -193,7 +216,8 @@ export class GameAudio {
       if (buffer) {
         if(this.voices.size>=16){const oldest=this.voices.values().next().value;oldest.stop?.();this.voices.delete(oldest);}
         const player=this.ctx.createBufferSource();player.buffer=buffer;player.connect(this.master);this.voices.add(player);
-        player.onended=()=>{player.disconnect?.();this.voices.delete(player);};player.start();return;
+        if(name==='applause'||name==='crowd_cheer')this.crowdVoices.add(player);
+        player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);};player.start();return;
       }
       this.loadSfx(cacheKey,this.resolve(source));
     }

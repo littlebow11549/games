@@ -24,17 +24,17 @@
 @media(max-height:450px){.cinema-caption{bottom:7%}.cinema-name{font-size:26px;margin-bottom:5px}.cinema-caption p{font-size:14px;padding:4px 12px}.cinema-portrait{width:110px;top:15%}.cinema-credits{top:15%;padding:12px 24px;display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:680px}.cinema-credits[hidden]{display:none}.cinema-credits h2,.cinema-credits .credits-thanks{grid-column:1/-1}.cinema-credits p{margin:3px 0;font-size:11px}.cinema-credits strong{font-size:16px}.cinema-credits h2{margin:0;font-size:20px}}
 @media(prefers-reduced-motion:reduce){#cinema *{animation:none!important}.cinema-portrait{transform:none}}
 body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{visibility:hidden!important}
-#cinema[data-mode=boss] .cinema-portrait{left:50%;top:15%;width:auto;height:55%;max-width:80%;border-radius:12px;transform:translateX(-50%) skewY(-2deg);animation:boss-art-reveal 4.2s cubic-bezier(.16,.9,.25,1) both;border-width:3px;box-shadow:12px 12px 0 #0008,0 0 65px color-mix(in srgb,var(--cinema-color) 25%,transparent)}
-#cinema[data-mode=boss] .cinema-caption{bottom:8%}
-#cinema[data-mode=boss][data-motif=impact] .cinema-portrait,#cinema[data-mode=boss][data-motif=quake] .cinema-portrait{height:auto;width:min(60vw,390px);top:27%}
-#cinema[data-mode=boss][data-motif=slash] .cinema-portrait{animation-name:boss-art-slash}
-#cinema[data-mode=boss][data-motif=coil] .cinema-portrait{animation-name:boss-art-coil}
-#cinema[data-mode=boss] .cinema-name{transition:opacity .2s}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-portrait{left:50%;top:15%;width:auto;height:55%;max-width:80%;border-radius:12px;transform:translateX(-50%) skewY(-2deg);animation:boss-art-reveal 4.2s cubic-bezier(.16,.9,.25,1) both;border-width:3px;box-shadow:12px 12px 0 #0008,0 0 65px color-mix(in srgb,var(--cinema-color) 25%,transparent)}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{bottom:8%}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat])[data-motif=impact] .cinema-portrait,#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat])[data-motif=quake] .cinema-portrait{height:auto;width:min(60vw,390px);top:27%}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat])[data-motif=slash] .cinema-portrait{animation-name:boss-art-slash}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat])[data-motif=coil] .cinema-portrait{animation-name:boss-art-coil}
+#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-name{transition:opacity .2s}
 @keyframes boss-art-reveal{0%{opacity:0;filter:brightness(.1);transform:translateX(-50%) scale(.82) skewY(-2deg)}18%{opacity:1;filter:brightness(1.4)}30%,85%{filter:brightness(1);opacity:1;transform:translateX(-50%) scale(1) skewY(-2deg)}100%{opacity:0;transform:translateX(-50%) scale(1.04) skewY(-2deg)}}
 @keyframes boss-art-slash{0%{opacity:0;transform:translateX(-180%) skewX(-12deg)}20%,85%{opacity:1;transform:translateX(-50%) skewX(0)}100%{opacity:0;transform:translateX(-40%)}}
 @keyframes boss-art-coil{0%{opacity:0;transform:translateX(80%) rotate(20deg)}20%,85%{opacity:1;transform:translateX(-50%) rotate(-2deg)}100%{opacity:0;transform:translateX(-60%)}}
-@media(max-height:450px){#cinema[data-mode=boss] .cinema-portrait{height:65%;left:28%;top:15%}#cinema[data-mode=boss] .cinema-caption{left:48%;right:5%;bottom:27%}}
-@media(prefers-reduced-motion:reduce){#cinema[data-mode=boss] .cinema-portrait{animation:none!important;transform:translateX(-50%)}#cinema[data-mode=boss] .cinema-name{transition:none}}
+@media(max-height:450px){#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-portrait{height:65%;left:28%;top:15%}#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{left:48%;right:5%;bottom:27%}}
+@media(prefers-reduced-motion:reduce){#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-portrait{animation:none!important;transform:translateX(-50%)}#cinema:is([data-mode=boss],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-name{transition:none}}
 #cinema[data-mode=ending] .cinema-name{font-size:clamp(18px,3vw,34px)}
 #cinema[data-mode=ending] .cinema-caption{bottom:8%}
 
@@ -43,17 +43,42 @@ body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{vis
 .cinema-storyboard[hidden]{display:none}
 .cinema-top,.cinema-progress{z-index:5}
 #cinema[data-storyboard][data-art-ready=true] .cinema-portrait,#cinema[data-storyboard] .cinema-lines{display:none}
-#cinema[data-storyboard] .cinema-caption{left:6%;right:6%;bottom:9%;text-align:center}
+#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{left:6%;right:6%;bottom:9%;text-align:center}
 @keyframes cinema-title-hit{from{transform:scale(1.35) translateY(12px);filter:blur(3px)}to{transform:scale(1) translateY(0);filter:none}}
-@media(max-height:450px){#cinema[data-storyboard] .cinema-caption{bottom:6%;left:20%;right:20%}#cinema[data-storyboard] .cinema-caption p{font-size:13px}#cinema[data-storyboard] .cinema-name{font-size:24px}}
-/* Portrait comic exchanges: every boss / hero / boss line lands with one hit. */
-#cinema[data-storyboard] .cinema-caption{bottom:8%;left:5%;right:5%;opacity:1!important;text-align:left;filter:drop-shadow(3px 5px 0 #080d10)}
-#cinema[data-storyboard] .cinema-name{visibility:visible!important;font-size:clamp(20px,6vw,30px);margin:0 0 8px 16px;animation:none;line-height:1.3}
-#cinema[data-storyboard] .cinema-caption p{position:relative;max-width:none;min-height:108px;display:flex;align-items:center;justify-content:center;padding:26px 27px;background:#fff4d8;color:#171c24;border:0;border-radius:0;font:900 clamp(17px,5.1vw,25px)/1.5 var(--font-display);text-align:center;clip-path:polygon(0 12%,9% 14%,7% 0,24% 8%,36% 0,48% 7%,64% 0,73% 9%,92% 2%,90% 15%,100% 12%,94% 38%,100% 52%,94% 65%,100% 88%,88% 84%,91% 100%,70% 93%,55% 100%,42% 93%,26% 100%,18% 90%,0 96%,6% 70%,0 54%,5% 37%);box-shadow:inset 0 0 0 5px var(--cinema-color)}
-#cinema[data-speaker=hero] .cinema-caption{--cinema-color:#b6f06a;filter:drop-shadow(-3px 5px 0 #224a19)}
-#cinema[data-speaker=hero] .cinema-name{color:#cbff8c;text-align:right;margin-right:15px}#cinema[data-speaker=hero] .cinema-caption p{background:#e7ffce}
-#cinema.banter-hit .cinema-caption{animation:banter-pop .38s cubic-bezier(.16,.9,.2,1.2) both}
-#cinema.banter-hit .cinema-storyboard{animation:banter-screen-shake .38s linear both}
-@keyframes banter-pop{0%{transform:translateY(18px) scale(.8) rotate(-4deg)}35%{transform:translate(-7px,-3px) scale(1.05) rotate(2deg)}60%{transform:translate(5px,2px) scale(.99) rotate(-1deg)}100%{transform:none}}
-@keyframes banter-screen-shake{0%,100%{transform:translate(0) scale(1.025)}12%{transform:translate(-8px,5px) scale(1.025)}27%{transform:translate(7px,-5px) scale(1.025)}43%{transform:translate(-6px,-3px) scale(1.025)}60%{transform:translate(4px,3px) scale(1.025)}80%{transform:translate(-2px,1px) scale(1.025)}}
+@media(max-height:450px){#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{bottom:6%;left:20%;right:20%}#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption p{font-size:13px}#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-name{font-size:24px}}
+/* Hand-drawn speech plates, with a readable speaker badge and a soft landing. */
+#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption{bottom:8%;left:6%;right:6%;opacity:1;text-align:left;--bubble-accent:#f29b58}
+#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-name{position:relative;z-index:2;display:table;visibility:visible;opacity:1;margin:0 18px -8px 12px;padding:7px 16px;border:2px solid #171e22;border-radius:14px 14px 6px 6px;background:#173127;color:#ffe68d;font:900 clamp(17px,5vw,25px)/1.3 var(--font-display);-webkit-text-stroke:0;text-shadow:1px 2px #0b1412;box-shadow:2px 2px 0 var(--bubble-accent);animation:none;transform:rotate(-1deg)}
+#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption p{position:relative;display:flex;align-items:center;justify-content:center;min-height:116px;max-width:none;margin:0;padding:27px 22px 23px;background:linear-gradient(155deg,#fffdf2,#fff0d4);color:#212c29;border:3px solid #18231f;border-radius:26px 22px 24px 9px;font:900 clamp(17px,5.1vw,25px)/1.55 var(--font-display);text-align:center;text-wrap:balance;box-shadow:4px 6px 0 var(--bubble-accent),0 12px 22px #0008;clip-path:none}
+#cinema:is([data-storyboard],[data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-caption p::after{content:'';position:absolute;left:24px;bottom:-12px;width:18px;height:18px;background:#fff0d4;border-right:3px solid #18231f;border-bottom:3px solid #18231f;transform:skewY(-12deg) rotate(42deg);border-bottom-right-radius:4px;box-shadow:3px 3px 0 var(--bubble-accent)}
+#cinema[data-speaker=hero] .cinema-caption{--bubble-accent:#7bc552}
+#cinema[data-speaker=hero] .cinema-name{margin-left:auto;margin-right:12px;transform:rotate(1deg);color:#e2ffc3}
+#cinema[data-speaker=hero] .cinema-caption p{background:linear-gradient(155deg,#f8fff0,#e3f6d3);border-radius:22px 26px 9px 24px}
+#cinema[data-speaker=hero] .cinema-caption p::after{left:auto;right:24px;background:#e3f6d3;transform:skewY(12deg) rotate(42deg)}
+#cinema.banter-hit .cinema-caption{animation:banter-pop .42s cubic-bezier(.18,.85,.25,1) both}
+#cinema.banter-hit .cinema-storyboard{animation:banter-screen-shake .34s linear both}
+@keyframes banter-pop{0%{opacity:0;transform:translateY(16px) scale(.92) rotate(-1.5deg)}58%{opacity:1;transform:translateY(-3px) scale(1.025) rotate(.5deg)}82%{transform:translateY(1px) scale(.995)}100%{opacity:1;transform:none}}
+@keyframes banter-screen-shake{0%,100%{transform:translate(0) scale(1.025)}16%{transform:translate(-7px,4px) scale(1.025)}36%{transform:translate(6px,-4px) scale(1.025)}58%{transform:translate(-4px,-2px) scale(1.025)}80%{transform:translate(2px,1px) scale(1.025)}}
 @media(prefers-reduced-motion:reduce){#cinema.banter-hit .cinema-caption,#cinema.banter-hit .cinema-storyboard{animation:none!important}}
+
+#cinema:is([data-mode=victory],[data-mode=awakening],[data-mode=defeat]) .cinema-portrait{display:none}
+#run-result{margin:12px auto;padding:12px;border:1px solid #c4e875;border-radius:14px;background:#061c16;color:#eaffc5;font-size:13px}#run-result h3{margin:0 0 6px;color:#ffde58}#run-result strong{font-size:24px;font-variant-numeric:tabular-nums}#run-result ol{text-align:left;margin:8px auto;max-width:240px}#run-result p{margin:7px 0}
+
+#cinema:not([data-mode=boss]) .cinema-storyboard{display:none}
+
+.game-art #overlay[data-outcome=defeat] #ov-btn{font-size:clamp(12px,3.5vw,18px);white-space:normal;line-height:1.25;padding-inline:22px}
+
+.game-art .act.unlearned::after{content:'🔒';display:block;position:absolute;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);font-size:22px;background:#061911c9;border:1px solid #86a170;border-radius:50%;padding:4px;pointer-events:none}
+
+.game-art #overlay.menu:not(.stages) #ov-run{flex-shrink:0;width:74vw;max-width:640px;align-self:center;padding:12px 14px;color:#ffe987;background:#153b27;border:2px solid #9cda62;font-size:clamp(14px,3.5vw,20px)}
+@media(max-height:760px){
+ .game-art #overlay.result .card{gap:8px;padding:12px 18px 18px}
+ .game-art #overlay.result .card #ov-title.has-word-art{height:72px;min-height:72px}
+ .game-art #overlay.result #ov-title .word-art{width:min(100%,230px)}
+ .game-art #overlay.result .result-metric{padding:4px 6px}
+ .game-art #overlay.result .result-metric b{font-size:22px}
+ .game-art #overlay.result #run-result{margin:0;padding:8px;font-size:12px;flex-shrink:0}
+ .game-art #overlay.result #run-result p{font-size:11px;margin:4px 0}
+ .game-art #overlay.result #run-result h3{font-size:14px;margin-bottom:3px}
+ .game-art #overlay.result #run-result ol{margin:4px auto}
+}
