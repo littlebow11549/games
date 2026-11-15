@@ -1,0 +1,560 @@
+{
+  "purpose": "防重工需求來源對照；獨立檔缺失不等於缺素材",
+  "scope": "Brave Guy；原圖復用整合，生圖佇列維持空白",
+  "generation_queue": [],
+  "requirements": [
+    {
+      "requirement": "角色設定合輯",
+      "sources": [
+        "sheet/unified/"
+      ],
+      "status": "16張已有來源；歷史審稿限制保留",
+      "next_action": "沿用；逐角色核對指定版本",
+      "evidence": "docs/handoffs/2026-11-14-game02-unified-sheet-headers.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "主角與P1三視角",
+      "sources": [
+        "concept/student_front.png",
+        "concept/student_side.png",
+        "concept/student_back.png",
+        "concept/braveguy_front.png",
+        "concept/braveguy_side.png",
+        "concept/braveguy_back.png",
+        "concept/angel_front.png",
+        "concept/angel_side.png",
+        "concept/angel_back.png",
+        "concept/nightmare_front.png",
+        "concept/nightmare_side.png",
+        "concept/nightmare_back.png",
+        "concept/ganqiao_front.png",
+        "concept/ganqiao_side.png",
+        "concept/ganqiao_back.png"
+      ],
+      "status": "15張已生成暫稿；尺寸/背景待驗收",
+      "next_action": "核對原稿規格，不重新排入生圖",
+      "evidence": "docs/handoffs/2026-11-14-game02-p1-reference-drafts.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "學生五種表情",
+      "sources": [
+        "sheet/unified/sheet_student.png"
+      ],
+      "status": "EXPRESSIONS列已有對應表情",
+      "next_action": "優先沿用合輯；核對裁切與顯示方式",
+      "evidence": "CHARACTERS.md；已目視合輯",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "勇氣超人五種表情",
+      "sources": [
+        "sheet/unified/sheet_braveguy.png"
+      ],
+      "status": "合輯有6表情，與需求表情逐格對照尚未完成",
+      "next_action": "先對照，不把缺獨立檔當缺圖",
+      "evidence": "CHARACTERS.md；已目視合輯",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "上班族五種表情及HUD頭像",
+      "sources": [
+        "sheet/unified/sheet_worker.png"
+      ],
+      "status": "合輯已有半身頭像及6表情；HUD已接左側頭像窗口",
+      "next_action": "表情沿用合輯，未新增獨立圖",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "小天使八種表情",
+      "sources": [
+        "sheet/unified/sheet_angel.png"
+      ],
+      "status": "合輯有6種；生氣/無言獨立來源尚待核對",
+      "next_action": "先核對原生成稿與其他交付；不直接新增",
+      "evidence": "CHARACTERS.md；已目視合輯",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "HUD框/計量/氣環",
+      "sources": [
+        "ui/hud_core_sheet.png"
+      ],
+      "status": "8部件已接入；滿勇氣、罪惡裂紋、氣環隨數值切換",
+      "next_action": "驗收原圖顯示，不重生",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "罪惡感爆炸",
+      "sources": [
+        "ui/guilt_explode_sheet.png"
+      ],
+      "status": "8格序列已接guiltBurst，10fps單次播放，結束清理",
+      "next_action": "已驗證播放與清理",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "攻擊/閃避/變身/技能",
+      "sources": [
+        "icons/btn_attack_sheet.png",
+        "icons/btn_dodge_transform_sheet.png",
+        "icons/skill_buttons_sheet.png"
+      ],
+      "status": "已有且接入",
+      "next_action": "只驗收三態與對齊",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "搖桿與變身發光",
+      "sources": [
+        "ui/control_extras_sheet.png"
+      ],
+      "status": "搖桿及變身ready發光態已接入",
+      "next_action": "保留按下與鎖定態",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "任務/彈窗/劇情框",
+      "sources": [
+        "ui/panel_sheet.png"
+      ],
+      "status": "任務已接；劇情沿用底部框中央區；彈窗沿用PR35已接版本",
+      "next_action": "舊圖集彈窗為備用，毋須同時疊加",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "四種泡泡",
+      "sources": [
+        "ui/bubble_sheet.png"
+      ],
+      "status": "小天使與其餘三種泡泡均已接入",
+      "next_action": "長句換行；保留翻譯文字",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "Boss/敵人血條/連擊/舊文字按鈕",
+      "sources": [
+        "ui/aux_hud_sheet.png"
+      ],
+      "status": "Boss框/名稱/血量、敵人血量、連擊已接；舊按鈕備用",
+      "next_action": "連擊去除描邊並避開直向任務欄",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "小地圖框/底/5標記",
+      "sources": [
+        "ui/minimap_sheet.png"
+      ],
+      "status": "框、底圖、敵人/菁英/Boss/主角/俊熊五種標記均已接入",
+      "next_action": "俊熊只在出現且未結束時標示",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "功能鍵",
+      "sources": [
+        "icons/function_icons_sheet.png"
+      ],
+      "status": "8圖示已有",
+      "next_action": "保留現有接入",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "鎖定/回血",
+      "sources": [
+        "icons/lock_heal_sheet.png"
+      ],
+      "status": "三態按鈕、地面鎖定圈、俊熊獎勵回血圖示均已接入",
+      "next_action": "地面圖集載入失敗保留原幾何圈",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "難度",
+      "sources": [
+        "ui/difficulty_sheet.png"
+      ],
+      "status": "6態已有且已接",
+      "next_action": "驗收，不生圖",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "賓果卡",
+      "sources": [
+        "ui/bingo_card.png"
+      ],
+      "status": "已於既有賓果台詞顯示原卡；其他台詞隱藏",
+      "next_action": "未新增賓果玩法或改寫故事",
+      "evidence": "docs/handoffs/2026-11-15-game02-existing-atlas-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "Logo/封面/橫幅",
+      "sources": [
+        "branding/logo_01_review_v1.png",
+        "branding/icon_01.png",
+        "branding/icon_01_logo.png",
+        "branding/banner_01.png"
+      ],
+      "status": "已有，Logo寬度限制另列",
+      "next_action": "既有核准設計不重畫；衍生規格與使用位置核對",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "主選單雙版",
+      "sources": [
+        "branding/menu_keyart_01.png",
+        "branding/menu_keyart_portrait_01.png"
+      ],
+      "status": "本聊天已生成且PR35接入",
+      "next_action": "只驗收橫直裁切，不重生",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "暫停/結算新框/標題/按鈕",
+      "sources": [
+        "ui/panel_popup.png",
+        "ui/panel_title_plate.png",
+        "ui/btn_text.png"
+      ],
+      "status": "本聊天已生成，PR35實作及測試通過",
+      "next_action": "等待合併/視覺驗收，不重生",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "履歷/算了計數器",
+      "sources": [
+        "ui/resume.png",
+        "ui/counter_suanle.png"
+      ],
+      "status": "本聊天已生成未提交，履歷欄數不合規",
+      "next_action": "保留，先核對既有稿再決定修改",
+      "evidence": "P1_*_DELIVERY/SLICE_GUIDE與最新交接；PR35項目見2026-11-15-game02-overlay-art-integration.md",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "14個場景",
+      "sources": [],
+      "status": "world.js已有14主題；使用者指出美術已做；10張本聊天新稿另列",
+      "next_action": "查原交付來源；不再生成場景",
+      "evidence": "js/world.js；使用者明確更正",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "首次變身13件",
+      "sources": [
+        "transform/tf_bg_stars.png",
+        "transform/tf_glove.png",
+        "transform/tf_hair.png",
+        "transform/tf_jacket.png",
+        "transform/tf_knee.png",
+        "transform/tf_pose.png",
+        "transform/tf_scarf.png",
+        "transform/tf_sign.png",
+        "transform/tf_silhouette.png",
+        "transform/tf_waiting_1.png",
+        "transform/tf_waiting_2.png",
+        "transform/tf_waiting_3.png",
+        "transform/tf_waiting_4.png"
+      ],
+      "status": "本聊天已生成13張但使用者指出重複；未提交、未接入",
+      "next_action": "停用生成佇列；核對原稿及程式演出",
+      "evidence": "本聊天工具產出；使用者明確更正",
+      "generation_allowed": false
+    },
+    {
+      "requirement": "其他三視角/道具/教學/貼圖/GLB",
+      "sources": [],
+      "status": "獨立正式檔未定位，不等於從未製作",
+      "next_action": "追溯交付紀錄與合輯/程式內容；無確認不進製作佇列",
+      "evidence": "ASSETS.md；MODELS_3D.md；ART_OUTSTANDING為待收到清單，不能單獨證明未做",
+      "generation_allowed": false
+    }
+  ],
+  "local_unsubmitted_images": [
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_corridor.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "544fe421ba880602048eb8870fb50744083ccccd191c600b997a66956b64b64a",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_court.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "f35e66a762004badf662ae220c564ec0c678eb1857c8b3e2bbd239d0f409c85d",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_desk.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "0c902dea3dc8577fc2b1ed58a1110172b845862b33895a8a47156607dbd8cc09",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_dorm.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "d12a4e6052ce0df9f91f2265e67d41cfaeb681c733e3d14cb4afbf904b1f523b",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_forest.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "22289c4f69da895fe81ad6c4a2f0704ba7c8eaf8ed8e17a699754f978a38004a",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_gate.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "70c372cb2b747d045deae4b53da7794b4f1afe5438ca3f15547175d26346a479",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_lobby.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "02182c67634a800355d522db8117410b4ed180476756633825ce33851717c506",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_office.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "cbd1b79ade32a046389388dd8dcbebc20ab87fa0fa454dc5d938b70f6edb60d7",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_openoffice.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "2a4e117d324b603aecd0f38ee403932c93cfcf74488d27464b09e23a2e0ec766",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_village.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "2f6a9c51ee175edc2fd134110ddc89b7133a35a53da9569d65cde226aa0bcc2d",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/character/hero_face_student_blank.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "9159c6795c20300769f1e14d16a2037e080a40028639a63857fdf5c4116ee781",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/character/hero_face_student_bluff.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "a14116ec68d4bc145fd90ded969de13dda481b80233c5948f9fd710b0ee49b3b",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_bg_stars.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "866873c7de07dcdbd80ff20e2badc669cecb8b40cab3f2dd705a1fc229e27a59",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_glove.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "6404358c3481590b80920f3243376102aaeb3dffa49f7756f8a6fa4de65c24c9",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_hair.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "c47f1f2282d25c7bdff8b2a56e8bb91e34db13c45d46738ed25b560e24136444",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_jacket.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "d975d70299097bb4c1792abf72003d7ba4265b11b74aacbe0fb4cb4723753488",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_knee.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "1ba89e338136fc2db8c4fd19204cf50ef7cd1ae59c3d9c9238f3119dd8a361aa",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_pose.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "ca320f659b0ff9024b4e8dc5f7dfd9e19bff877d2dad446f1b7216651e0de383",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_scarf.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "b56009536f59685fd42d0d45b6ea8e03eaea10a00b8b31648beed499b2adad71",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_sign.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "sha256": "2a64ca219d559dbe801174cd04805463fbc892256ad1b46fd7e3081c79d1f2dd",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_silhouette.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGBA",
+      "sha256": "980c10e8828fdee8acc653b1e139c16279dcfe8542bd5396b24b375deedc847e",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_1.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "0e351cdad38a86276435b3cf8f851baa5762aa0495091bb43c297189676f5daa",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_2.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "9481a0076d7390d17748d3220ab28f562a512c6b52a71220b248ca791ff8fe2e",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_3.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "635812bdf954b7f2c0531da31199ecf61dd747674f99b93d7e7993080f5bd801",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_4.png",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "06bce845267128d0a69cf8a71912d913ecc496427441ada5e2731573a4a33c4e",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/counter_suanle.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "1b24fb87d1f4399bfe56c40652edf8971c56f398326953ba5a92b5e5f79bd42f",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/resume.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ed0fe87920c11ebdc24c1502d5cadf43d2e348b702354f9326a911ebf1a4c6f6",
+      "status": "本聊天生成，未提交，待比對；不可重生"
+    }
+  ]
+}

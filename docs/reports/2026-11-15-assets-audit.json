@@ -1,0 +1,4502 @@
+{
+  "baseline": "3228adf",
+  "remote_scans": [
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "sha": "3228adf02e013f0bc46ece57417812d1d437f57a",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/brave-einstein-tqlm5u",
+      "sha": "3228adf02e013f0bc46ece57417812d1d437f57a",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/brave-guy-audio",
+      "sha": "a6ab30079f330d1a13454aa40011976933556306",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/brave-guy-music",
+      "sha": "14324352358741b82ef2a493c93bde175af6e6ce",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/dreamy-thompson-b0w9m6",
+      "sha": "e2cf496ffeefce63d7c4d5fced9768b9b4c99fb0",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/fervent-ride-4h0vjm",
+      "sha": "3228adf02e013f0bc46ece57417812d1d437f57a",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/claude/sleepy-pasteur-c8wvjf",
+      "sha": "c3fa514bc066600349b20a2562a1128d71651eab",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/codex/batch3-hero-art",
+      "sha": "645aa51bcc494f9307724bbc10046fba31d02c09",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/codex/braveguy-sfx-batch-20261114",
+      "sha": "3271206a88cc4b6cc596d531cee48c2e4e041341",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/codex/full-body-chibi-pug",
+      "sha": "749a71907a39195b8aad67e65ec58dca61dbdd7b",
+      "scene_files": []
+    },
+    {
+      "ref": "refs/remotes/origin/codex/hero-game-icon",
+      "sha": "55adf8c61835bf5e79fe061e80cf547c762165e8",
+      "scene_files": []
+    }
+  ],
+  "files": [
+    {
+      "path": "01_memory_crash/assets/preview/01_title.png",
+      "category": "既有來源",
+      "bytes": 706665,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "449d9ff13713be6b967a5001b8a7ecf1dc244cb2a5b6abc331e6efa84e3c90e7"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/02_option.png",
+      "category": "既有來源",
+      "bytes": 633025,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "e576833f23a3ac635f5e57e6c2ac15ca90dae0b2d29304526b2d4335cbc17414"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/03_game.png",
+      "category": "既有來源",
+      "bytes": 785822,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "01d49ad2e7d6e8acdea8fa781bcc950edc520e8456a6ff6d0128a37471752402"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/04_howto.png",
+      "category": "既有來源",
+      "bytes": 396426,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "518fdff8d201403c9e1c39e1affce1c7ffe3649dc5a9574cde537e19007b29e0"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/05_option_music.png",
+      "category": "既有來源",
+      "bytes": 636935,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "09ac0c629992a6bc8053582110f8c269cf12c25c46446142fcf252beaa6cfe92"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/06_hub.png",
+      "category": "既有來源",
+      "bytes": 843187,
+      "dimensions": "1800x1640",
+      "mode": "RGB",
+      "sha256": "055fa967e2aadb1d6089d7ae6983595484dfb5ef6b3b41e5d45accf739549acf"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/07_icon.png",
+      "category": "既有來源",
+      "bytes": 135373,
+      "dimensions": "600x600",
+      "mode": "RGB",
+      "sha256": "eab12df7185d2d644e4b92f1e90a919596db0f2504a8022e5d33a01526d161db"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/08_animated_gems.png",
+      "category": "既有來源",
+      "bytes": 291822,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "9a3072ed3c7a713b62479cabf041ddc4bbba1f81e6ca405ec566a802d236ea83"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/10_title_real.png",
+      "category": "既有來源",
+      "bytes": 1221445,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "fe9b78d617de1145340a7102f78521e53473cc0788e7bdb4d8c0abdf56e5b826"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/11_game_real.png",
+      "category": "既有來源",
+      "bytes": 1291055,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "7d755eab082343c4d11dee487fc2db0eb3935aa65157d9304e1d083c4f8c305a"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/12_option_ui.png",
+      "category": "既有來源",
+      "bytes": 1184272,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "0d872182b04af28fb95133ca723d0dbb518f28cac434f39a4e0af13db5b97173"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/13_game_ui.png",
+      "category": "既有來源",
+      "bytes": 1305965,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "9fee0ec848178dabe859607f0049369c83da4d60ecc4da0a8cba9e7374ceb072"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/20_title.png",
+      "category": "既有來源",
+      "bytes": 1252934,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "6aab85ffff4e1b8d5be69d113d13a1eef9728efccb746cf36fe6b730b75db1ba"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/21_option.png",
+      "category": "既有來源",
+      "bytes": 1279070,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "d5b890c9896f2c0680cfcfa69b7c6cb25159ac3a98c42d864dfe973e8d669644"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/22_howto.png",
+      "category": "既有來源",
+      "bytes": 609595,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "b3b8155b7077768096b9f97927fed34250c49aa9e839af4064895e5dc5986529"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/23_game_banner.png",
+      "category": "既有來源",
+      "bytes": 1264665,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "657097ae35514d1de5ef07595a208f0cbb66b54a35f0fd48cb5dcb81b90c40bb"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/23_game_ready.png",
+      "category": "既有來源",
+      "bytes": 1339969,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "f66aa2a41a2aa3ac545beb1385004f1aa93969dfb21da961709f42658aa0c7e9"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/24_game_yourturn.png",
+      "category": "既有來源",
+      "bytes": 1315650,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "02a7f1c145c65081e396a0fbef745a5ccc66b92dad171cc8602ea4b88f7b1bd7"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/25_howto.png",
+      "category": "既有來源",
+      "bytes": 798517,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "54d70cdd7dc6119f24fb3769a22ae83817f80b5b13784761c13f0094444276e3"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/30_title_warp.png",
+      "category": "既有來源",
+      "bytes": 1254083,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "d5bf406f7a010145b5d801121200ac077cd8249aad60eb4d84bed6f59d5491a0"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/31_menu.png",
+      "category": "既有來源",
+      "bytes": 1244106,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "b89d5602e7e521d63b5d9907917fc3cbeacb2e42e4912874fcd335c442d6e437"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/40_hub_desktop.png",
+      "category": "既有來源",
+      "bytes": 545981,
+      "dimensions": "1280x860",
+      "mode": "RGB",
+      "sha256": "511d2bdc61a79526b3f332b06f64bd335bce1f5fd8e665a9f31aba8079231a45"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/41_hub_mobile.png",
+      "category": "既有來源",
+      "bytes": 588323,
+      "dimensions": "860x2140",
+      "mode": "RGB",
+      "sha256": "62d4320b83ba7463c06e448269881c667ffdb29f221325baf7de6a81d211137b"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/50_combo.png",
+      "category": "既有來源",
+      "bytes": 1264793,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "75ac91a70494dd86e6b31c4c550ebb77c1038a4c8fe91bb6f1f06555ac75af04"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/51_perfect.png",
+      "category": "既有來源",
+      "bytes": 1279697,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "8dcdec5ac99ee5866a7a8b5dd62d028b6e38632b14bc636fa290029f8d4f6012"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/60_game_en.png",
+      "category": "既有來源",
+      "bytes": 1316891,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "e8bc90a2250545234b5bd71af6011d097984ecd4b76a46e552f2b6c4bac0c560"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/61_hud.png",
+      "category": "既有來源",
+      "bytes": 1264793,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "75ac91a70494dd86e6b31c4c550ebb77c1038a4c8fe91bb6f1f06555ac75af04"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/62_timer.png",
+      "category": "既有來源",
+      "bytes": 1258134,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "3978cb04eb1070603158ebac11db70e421ce841a37f999a1d7f58edc1493f8c8"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/70_title.png",
+      "category": "既有來源",
+      "bytes": 1461586,
+      "dimensions": "860x1720",
+      "mode": "RGB",
+      "sha256": "3b4480a0b39f9772f8e6e15b4dccd54efb390728b34a3313ae744cd1b0872b90"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/71_title.png",
+      "category": "既有來源",
+      "bytes": 1432790,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "a6cc5ed4296f93e602c8e7b05e3efb9f78a57216312e5fea95f94b77a37ed0b8"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/72_menu.png",
+      "category": "既有來源",
+      "bytes": 1370341,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "24cb7cd4e9b7bcd933172dcc99772a8ec018ec44fa0aa19c815fc51a74dba61c"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/73_game_banner.png",
+      "category": "既有來源",
+      "bytes": 1404597,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "a7a4c22dd6de9371f591e63b271ecb2de83c5609627f18482a84c13605e91b97"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/74_title_big.png",
+      "category": "既有來源",
+      "bytes": 1458168,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "1d12974a8aebfb6dbfd371248b54c21ad49b7d8d8a77e680319c43d929a62b49"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/80_title.png",
+      "category": "既有來源",
+      "bytes": 1612018,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "ad2cf6e49c0affc9625f7d0a46bd0ebb51f6c25b74d65c9e22e89e6a91a95087"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/81_banner.png",
+      "category": "既有來源",
+      "bytes": 1493354,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "0641ea9aff1118e48c62e6cdfe115b42c21c0fe81131f83b277a2c911dc67805"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/82_game.png",
+      "category": "既有來源",
+      "bytes": 1514981,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "684c05a0d722710413273800214e546c8e40205394769c8269aa1fb2167fe653"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/83_banner_big.png",
+      "category": "既有來源",
+      "bytes": 1479498,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "c33fc44010433dea9391d0672ea3ddb8154918b28eaedbdb41f6aeeb59fbcee1"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/84_ready_big.png",
+      "category": "既有來源",
+      "bytes": 1498409,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "8aed5af46ae60557bf5c7f14d76b94dbc6cc88f6f0e2a9069d91da0774357600"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/85_gameover.png",
+      "category": "既有來源",
+      "bytes": 1356409,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "dd071e1a0f85f46ad77d36eb314af1158516e6f8f047083195ce50de58e4c061"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/90_title.png",
+      "category": "既有來源",
+      "bytes": 1595732,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "57595490bc1a38b2a0ef7101f9d83fbe7c50e5dbdf2ed8db4d08230b2414a430"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/91_gameover.png",
+      "category": "既有來源",
+      "bytes": 1298292,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "664862439cf7b7c016c5756f0e8d963c7e857978a0e74c6a816b01d994bd8d1e"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/92_title.png",
+      "category": "既有來源",
+      "bytes": 1604904,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "6a05180bbc8da398946149fb3ca7964c4f6353df3afb3edbf401c9ff1c19d44d"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/93_menu.png",
+      "category": "既有來源",
+      "bytes": 1559803,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "ab6b75128aa8939cff122739855e55e753c5a89ff37c8dfa5e6b0dc17c4bd8fe"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/94_banner_fx.png",
+      "category": "既有來源",
+      "bytes": 1530236,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "d4df41829921247af1de55c5657d4157920fadbfe258907e5483552b5a064c64"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/95_gauge.png",
+      "category": "既有來源",
+      "bytes": 1707151,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "7723c82ca4451d8bf000627d46fd91073de7a7270afcc4a317ffaa04d2e18666"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/96_menu.png",
+      "category": "既有來源",
+      "bytes": 1516409,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "3cafabdd054ce1537e5319511c1d0ff514680f708e832a481347f3aee907b6b8"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/97_title.png",
+      "category": "既有來源",
+      "bytes": 1609261,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "e5f615f6ba46721846c6b14d71a51276f1f8ed413b63821899a025e5d306c369"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/A0_short_title.png",
+      "category": "既有來源",
+      "bytes": 1043770,
+      "dimensions": "824x1280",
+      "mode": "RGB",
+      "sha256": "d22b6022a0883482965400bd4412d74a583964f36494b62c69a37ec2386f9c20"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/A1_short_menu.png",
+      "category": "既有來源",
+      "bytes": 961435,
+      "dimensions": "824x1280",
+      "mode": "RGB",
+      "sha256": "207b08147e4c47897749eb7d5fa3146975ca88ab793e551b65487b5fdac4966d"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/B0_hint.png",
+      "category": "既有來源",
+      "bytes": 1554210,
+      "dimensions": "860x1640",
+      "mode": "RGB",
+      "sha256": "132bcccd9035bdba24607e941ed9fe048b84db5a7883a06c4f12f4f718c1fddb"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/batch2_desktop.png",
+      "category": "既有來源",
+      "bytes": 1470204,
+      "dimensions": "1100x2744",
+      "mode": "RGB",
+      "sha256": "658fc467a42db748d37ddcc544e36737011165e28fce459109c2a9254df85eff"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/batch2_mobile.png",
+      "category": "既有來源",
+      "bytes": 838329,
+      "dimensions": "390x2875",
+      "mode": "RGB",
+      "sha256": "6500b8f5ee4aeca05a4c487204981bd159fd03eaeeb47df81dad6f3967f42a96"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/batch3_desktop.png",
+      "category": "既有來源",
+      "bytes": 2692827,
+      "dimensions": "1440x3204",
+      "mode": "RGB",
+      "sha256": "6558c71149d070ca65d254a90eae1a9aadbf5f475411c8154ef2426ff3bdc8dd"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/batch3_mobile.png",
+      "category": "既有來源",
+      "bytes": 1123725,
+      "dimensions": "390x3693",
+      "mode": "RGB",
+      "sha256": "80d23b65828d69475424ccca2a551628bc69e26942ebbc563e8a65a779266787"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_all.gif",
+      "category": "既有來源",
+      "bytes": 9339315,
+      "dimensions": "640x720",
+      "mode": "P",
+      "sha256": "5b105e86a261a3fd704ad098101af646097d873d88562b9ee201626124b5d06a"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_celebrate.gif",
+      "category": "既有來源",
+      "bytes": 229178,
+      "dimensions": "320x360",
+      "mode": "P",
+      "sha256": "011c9f59354654c758956d8eefedb56244202d51e5b5d4380564161d3be6b4ca"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_celebrate.png",
+      "category": "既有來源",
+      "bytes": 407197,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "4161633684d9a14d2e78aa743323e6778a69326640d95f86de44a97b2f1b6b64"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_happy.gif",
+      "category": "既有來源",
+      "bytes": 251561,
+      "dimensions": "320x360",
+      "mode": "P",
+      "sha256": "3f5a647fb49209b0fff24db9297f1a89efc8dd47b9b9eb84470c3c9d77742ba0"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_happy.png",
+      "category": "既有來源",
+      "bytes": 380153,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "e954f7421653bf75ff2641d0bdba9c8210ce028968f2df4f3836b60d0b38e8e6"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_idle.gif",
+      "category": "既有來源",
+      "bytes": 254480,
+      "dimensions": "320x360",
+      "mode": "P",
+      "sha256": "b6d2cfea6a72688f775197d3b94fa66a3c156bacb7c550fb79b22ebb9a37b8a9"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_idle.png",
+      "category": "既有來源",
+      "bytes": 373985,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "a1470656615811a3d2860d2878cf0f205a585bede2113d77ae39655ca11c8d52"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_sad.gif",
+      "category": "既有來源",
+      "bytes": 240341,
+      "dimensions": "320x360",
+      "mode": "P",
+      "sha256": "0d84432579a75ed5e73ece3a0a9bb85ed391bc319adaa103d81fe0b50dba88fd"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/character_sad.png",
+      "category": "既有來源",
+      "bytes": 375774,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "3818c9eb82f12bdb7de27ab1115c704ef57e5e231792f5798a24982e3ceb78d8"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_bitmap_options.png",
+      "category": "既有來源",
+      "bytes": 358171,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "8733b45a850948c2cf302c1a5d9cc79ddc6b5bc25f75ce03e0d3324a06ea1fa1"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_font_proof.png",
+      "category": "既有來源",
+      "bytes": 146982,
+      "dimensions": "1100x600",
+      "mode": "RGB",
+      "sha256": "c1a5c14f93527264080b7af3a401824acada5523db75bf6a68dc37cdd55068bd"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_intro.png",
+      "category": "既有來源",
+      "bytes": 103545,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "5aea85a862e6e43999528bdfebea88662d1ba3e85175385aba459a5f5605b64b"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_options_small.png",
+      "category": "既有來源",
+      "bytes": 237385,
+      "dimensions": "320x568",
+      "mode": "RGB",
+      "sha256": "4f2bd74e748284ffbead3f2d3509e15a8f7576e11ef9088020b2aab09d8fe9e3"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_over_fx.png",
+      "category": "既有來源",
+      "bytes": 380046,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "2f17edda5f2b8b214fe321476469f500e8f785fe4a4a1678d1758f6611eb0905"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_perfect_fx.png",
+      "category": "既有來源",
+      "bytes": 410852,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "0bb6d80d338b4df7baf40b6b9e49c206eb718d6545df88b0be0c0c57881a8bfe"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/final_title.png",
+      "category": "既有來源",
+      "bytes": 356260,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "fa2ca7167f9f26dcffb699f2c866734d0a9c2410fac7de896660a424b22af81e"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/fx_all.gif",
+      "category": "既有來源",
+      "bytes": 7060238,
+      "dimensions": "390x836",
+      "mode": "P",
+      "sha256": "ed0cef17d3bb33736749ddb121bb1c2af2adab2a8a22fb118097287c8dcbcf90"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/fx_burst.gif",
+      "category": "既有來源",
+      "bytes": 2301488,
+      "dimensions": "390x836",
+      "mode": "P",
+      "sha256": "ff00509d7b904adca36f7bbef9371ecf4ad8d3cb464356deee49d21606d1b319"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/fx_crack.gif",
+      "category": "既有來源",
+      "bytes": 3083117,
+      "dimensions": "390x836",
+      "mode": "P",
+      "sha256": "705c6eed49a99c1257980b1e0294bf8266a7ab49593230bf6f5be5856ba6130d"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/fx_shatter.gif",
+      "category": "既有來源",
+      "bytes": 1530603,
+      "dimensions": "390x836",
+      "mode": "P",
+      "sha256": "9f5301320c6b0226d689b66fdf1336e3210c566a0be8e48fe2ba4ca8ba72a48d"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/hub_desktop.png",
+      "category": "既有來源",
+      "bytes": 496304,
+      "dimensions": "1440x1142",
+      "mode": "RGB",
+      "sha256": "cf386ebf01c66946c82a540ecf389f22205c8fd022660ebad773e3c244698092"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/hub_mobile.png",
+      "category": "既有來源",
+      "bytes": 300251,
+      "dimensions": "390x1465",
+      "mode": "RGB",
+      "sha256": "12458f0ad0234a55a9e7205b78e84bbbba25865ea62a1fe40b3cafd5fd8bd34c"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/pug_fullbody_menu.png",
+      "category": "既有來源",
+      "bytes": 357714,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "f67c7ae8f6985c40ad2cc7f7480215c0af7f235cab9a28474d510178b416bb1e"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/pug_fullbody_title.png",
+      "category": "既有來源",
+      "bytes": 403659,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "7cfe3b5ceaa5780b81a98f725d4687c1acb9f8ab4f71c033c45bfe72f5329ba7"
+    },
+    {
+      "path": "01_memory_crash/assets/preview/warp_video.png",
+      "category": "既有來源",
+      "bytes": 49730,
+      "dimensions": "360x640",
+      "mode": "RGB",
+      "sha256": "5dc4f2898af9c983fd9acada90d43d6e9b2c676521ca3f8d7ea37e69e8343fe5"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/ambient_plate.webp",
+      "category": "網頁衍生檔",
+      "bytes": 907430,
+      "dimensions": "941x1672",
+      "mode": "RGB",
+      "sha256": "cf835ec7b28588b3787a5c779bbcf83a99968c7b64475c509837e3833ff9ae76"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_fill.webp",
+      "category": "網頁衍生檔",
+      "bytes": 228902,
+      "dimensions": "1672x290",
+      "mode": "RGBA",
+      "sha256": "d653fe27e20cca9554d236456808abcd3ff0212ed50d1399c6bd366194a68b2f"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_fill_low.webp",
+      "category": "網頁衍生檔",
+      "bytes": 220902,
+      "dimensions": "1672x311",
+      "mode": "RGBA",
+      "sha256": "036191686e24b7d842f6f4921f2abd0d7c1d44ed6bfbc05dd7ebfa67dba7991c"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_frame.webp",
+      "category": "網頁衍生檔",
+      "bytes": 198344,
+      "dimensions": "1672x340",
+      "mode": "RGBA",
+      "sha256": "4910b24d4e2c45b1cc3f137172c45a891d9dd401317abeac5cd364d545fb1dbe"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/logo_shine.webp",
+      "category": "網頁衍生檔",
+      "bytes": 659426,
+      "dimensions": "1024x1536",
+      "mode": "RGBA",
+      "sha256": "a3d8dfa60e65e5b82d4440a098c0bf12c9cf8c194d95fb814554eeda70ccee9d"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_again.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1579900,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "f6417e536e7d58c5821a442e83677c88af171751fe35f4b62bf6a51cf0855016"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_combo.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1626602,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "8e0fa28343f913e434d25605b16bfae0280a816a16e335fcab3cd6b8859c4aca"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_miss.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1536804,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "5ab263b2e4590bed1270a088f4e3ada17f10e6bad2e757457943d5367fd7048f"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_perfect.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1728838,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "7c37519468921bf1cea48a746ffd37a268da3d4c43b77c6abb199efcc70f2778"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_ready.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1520128,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "64c86128a220b1563ff7897458e30d860136b1c20391f0ecb232abd96d614b9a"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_your_turn.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1561368,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "6a453cdf4bab0163bb8f98eccac43fa83cb6d2643def3ac412632ceae3573756"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/gameover_hero.webp",
+      "category": "網頁衍生檔",
+      "bytes": 68104,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "b73fd6e660700375e8a5b3340ad7d960c7d51edbc31585573314a446db41c979"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/howto_hero.webp",
+      "category": "網頁衍生檔",
+      "bytes": 64770,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "3c13a695979577ff5362b95026511df199253c924a2f401f9db037a1084ec843"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/option_hero.webp",
+      "category": "網頁衍生檔",
+      "bytes": 67766,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "4201b8d32ef4c409cb9cfc2a457f834a3560feb0e785b8ac1eed036904d92567"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/pug_idle_full.webp",
+      "category": "網頁衍生檔",
+      "bytes": 433474,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "5e8a0b0873ed4b8511922444f9ad5d162f3c3af11d2b4f50a107c7ac563088d7"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/start_hero.webp",
+      "category": "網頁衍生檔",
+      "bytes": 53562,
+      "dimensions": "760x380",
+      "mode": "RGBA",
+      "sha256": "888844a3b9ebd849048df043e6cbeab4ad3e7a4f59cfa8975db253069946dd0c"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_again_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 101858,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "131b5da3c8be14404489cac952ea1ba35c9ef201869d37ad9fdfd408085b9edc"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_miss_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 115768,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "71b54311fcdd7d0429bcfc1addf3bb58b3db30de05cae052e9b43920b43996c1"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_perfect_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 87960,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "f83e134196b14f7ee35335a0fd73098c0c7a445f15f7b9bae2c266d793da56f2"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_ready_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 96600,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "1b6b8deff3df8488725f175d01afca5a3aa7dcaa8dd7ae89607b673571faf455"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_your_turn_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 89600,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "5f7432ba5573eb4aaf294f7c878d0f78f53cea1902c0ce5b507aa5bf1ce50f46"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/branding/icon_02.webp",
+      "category": "網頁衍生檔",
+      "bytes": 78104,
+      "dimensions": "512x512",
+      "mode": "RGB",
+      "sha256": "6b8a9f67e04ef731a24f93a92ea7d64704e9f96ad5ce83393c535b9aa077a18a"
+    },
+    {
+      "path": "01_memory_crash/assets/runtime/pic/fx_01.webp",
+      "category": "網頁衍生檔",
+      "bytes": 225504,
+      "dimensions": "1200x400",
+      "mode": "RGBA",
+      "sha256": "5afddaabab0b2377d21f47d82994a40b00c6b4c986655ccf6b867dad598b0fdf"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_01.mp3",
+      "category": "既有來源",
+      "bytes": 411315,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "31e4b738bc0bc7d7dbd5e3fdf62f9a8b018d816cc6b13cd1ef8cbd822a8a8abe"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_01.ogg",
+      "category": "既有來源",
+      "bytes": 347962,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "95077a806906f81e0e2e38dd4f28b1befe686c2c2c473e3fb8e674b59eb979b8"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_02.mp3",
+      "category": "既有來源",
+      "bytes": 1182450,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "2b29a296e9e68d6a64f2c4507bef1ff3512c5a6e4bba9cc972417cbdd0596e54"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_02.ogg",
+      "category": "既有來源",
+      "bytes": 968470,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "17bb6502b858d7c833fd98afa49adc1f3ad9651cb7106ed3f0ab00e01c54dc81"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_entry.mp3",
+      "category": "既有來源",
+      "bytes": 411315,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1a10b52d992a7d8986c8e6eec1adc89b65a331f4ce1a6dde2650f3bd04e06f7d"
+    },
+    {
+      "path": "01_memory_crash/assets/source/music/bgm_entry.ogg",
+      "category": "既有來源",
+      "bytes": 342263,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "03a81a52815dd28c2acb5183af8b4bad0201f2876d252b2c82fae203f0c7484f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/background/bg_01.png",
+      "category": "既有來源",
+      "bytes": 1315646,
+      "dimensions": "941x1672",
+      "mode": "RGB",
+      "sha256": "e56390107d1de659a7104c4621efe0b2146a53504ba93abd28270aedc5dcd1ff"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/background/bg_01.webp",
+      "category": "既有來源",
+      "bytes": 87540,
+      "dimensions": "941x1672",
+      "mode": "RGB",
+      "sha256": "4f2b8875a6cbbab79aa62e5b7c4202b6fb8445a9ec922159705f73e2e9e94a40"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/blade_01.png",
+      "category": "既有來源",
+      "bytes": 703931,
+      "dimensions": "845x1862",
+      "mode": "RGBA",
+      "sha256": "27f87f001c625e85511a0d970981767fc129ab67d3817c8eb096267949fc97c0"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/favicon.webp",
+      "category": "既有來源",
+      "bytes": 11612,
+      "dimensions": "256x256",
+      "mode": "RGB",
+      "sha256": "3d43eade78aae995c5f254cee13ce1ac093c2820302ef92d87d9d6fd9a1277c5"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/icon_01.png",
+      "category": "既有來源",
+      "bytes": 1299646,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "bc412947cf2c99b9e29c2c88391c4cf8ecbb63dba6eac9d2bf31b9347d8f154f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/icon_01.svg",
+      "category": "既有來源",
+      "bytes": 2164,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c50690d77e646afd6959f7601fde914e41a6566b410ef6dfe6cf89e7c29e6393"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/icon_02.png",
+      "category": "既有來源",
+      "bytes": 2456311,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "ccea1c27bd6d7b23a1f55a8657f8c054a91eb39b265f7aedd77a0dfdf2996127"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/logo_01.png",
+      "category": "既有來源",
+      "bytes": 1284111,
+      "dimensions": "1422x1106",
+      "mode": "RGBA",
+      "sha256": "ee239f00239318a0c1d48f0da23c6e8662e1544487c2daeb4d1501f339ae8194"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/logo_01.webp",
+      "category": "既有來源",
+      "bytes": 222152,
+      "dimensions": "1422x1106",
+      "mode": "RGBA",
+      "sha256": "bc8ca219d58b0350e930926a4df2f68c9318df4041be3e022d4fa8524d7ad6d2"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/logo_02.png",
+      "category": "既有來源",
+      "bytes": 1856327,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "277290b3bf089b88115f6f2eda89b098fd87bdaeb246067a117e02b3fd12e038"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/branding/logo_shine.png",
+      "category": "既有來源",
+      "bytes": 993827,
+      "dimensions": "1024x1536",
+      "mode": "RGBA",
+      "sha256": "aadf3eee63267a5c2fdd7d5ad62c6c6a5d89c8253e015ce60ccfb1ab65d48ebb"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_celebrate.png",
+      "category": "既有來源",
+      "bytes": 1276872,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "be10973ee0674bb6660f2271dccb156e2fb1cc6ab09734f179946cb9b3257012"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_celebrate.webp",
+      "category": "既有來源",
+      "bytes": 312840,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "817353e1a09538be4fdc8ec25d8d1e1723aae274fb84133aa41b96359429a093"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_happy.png",
+      "category": "既有來源",
+      "bytes": 1444753,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "2878b2b834f76b42125a48dcd3352328660d76db3365a77336aef3d3f62e146c"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_happy.webp",
+      "category": "既有來源",
+      "bytes": 303684,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "3182534e23ba1d2911adc88d218eb538d323204f50c4cb6fa5de382b908d15e9"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_idle.png",
+      "category": "既有來源",
+      "bytes": 1431490,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "518046de379018eac46bce1ad1ce9f4c16e408ea855c6f61707eccd65b16c9f8"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_idle.webp",
+      "category": "既有來源",
+      "bytes": 334090,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "9370a6baf9d67000360241d2b69bc74e95a1d2d1f0bb564ba741643fd2e17e98"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_sad.png",
+      "category": "既有來源",
+      "bytes": 1369431,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "deeeac64a4867ff24526c94b09666d2e155b0dd1625dfc6531bd0cc0ca7c6a9e"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/char_anim_sad.webp",
+      "category": "既有來源",
+      "bytes": 279278,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "b8bb015a6e2fd6510d7127193ffbf86956ce1263382dde73d9c313c9168a3d60"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/character/pug_idle_full.png",
+      "category": "既有來源",
+      "bytes": 2359139,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "3a49e180a333e4f43b8026e9a4d1ea2bfb08b49386282e4573ed15a96791eafa"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/font/font_01.png",
+      "category": "既有來源",
+      "bytes": 1228488,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "be585b301bdb239afb8bc198cf9f6c3fa7f22163fdd69429e914ba2825976c99"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/font/font_01.webp",
+      "category": "既有來源",
+      "bytes": 1017772,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "72fd0bb36b80ad0e2248ab8b8181d3d06d651324e1891ee27ac5bf72be0ac44a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/fx/ambient_plate.png",
+      "category": "既有來源",
+      "bytes": 1330072,
+      "dimensions": "941x1672",
+      "mode": "RGBA",
+      "sha256": "6eefbb9a42a069b6aaea949e3acfc1623fbde5f38c2787803c91d4e21cd93cd9"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/fx/fx_01.png",
+      "category": "既有來源",
+      "bytes": 1584568,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "5a0c2406b806e25c269cc988b750fe98b8ff64663d9102b9f6cb1ab34775e088"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/gems/gems_01.png",
+      "category": "既有來源",
+      "bytes": 1272561,
+      "dimensions": "1448x1086",
+      "mode": "RGBA",
+      "sha256": "10549b71c251d493a87e3b5de820dabe690c81811af4e88c70eeb3f09e7e3e1b"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/gems/gems_01.webp",
+      "category": "既有來源",
+      "bytes": 315698,
+      "dimensions": "1448x1086",
+      "mode": "RGBA",
+      "sha256": "46fe7e31b0417213598cd71b868181c3efdfbf47eaf813f5e20a24e76c05881c"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/gems/gems_02.png",
+      "category": "既有來源",
+      "bytes": 1301385,
+      "dimensions": "1448x1086",
+      "mode": "RGBA",
+      "sha256": "2426f7ae12d4f5d212f9193e1c6fa422d7ef938b6227ade8c9c49cd91c5ac805"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/howto_01.png",
+      "category": "既有來源",
+      "bytes": 989994,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "55d4691e2132d104db15d677c6accb1abd798fe566e5cf005de1e04dece2106b"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step1.png",
+      "category": "既有來源",
+      "bytes": 247975,
+      "dimensions": "435x440",
+      "mode": "RGBA",
+      "sha256": "93329089f3a63f48c27bb143967871a1bb5721b14df3fbacc92902e67d87b4a0"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step1.webp",
+      "category": "既有來源",
+      "bytes": 34714,
+      "dimensions": "435x440",
+      "mode": "RGBA",
+      "sha256": "979d43e38527ad10c1ccfacdb66208e7d64ed2a89391d9f41a198ec6b4b2d8b2"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step2.png",
+      "category": "既有來源",
+      "bytes": 278699,
+      "dimensions": "487x544",
+      "mode": "RGBA",
+      "sha256": "106062a92d105c8749a13b8f0425e6cc374d134755f13189c606ab635bd09f5c"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step2.webp",
+      "category": "既有來源",
+      "bytes": 39354,
+      "dimensions": "487x544",
+      "mode": "RGBA",
+      "sha256": "9b7d6b8602a5cb2c1492295423d961d486f6d6de353788c60261d952bd544b8e"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step3.png",
+      "category": "既有來源",
+      "bytes": 280048,
+      "dimensions": "462x467",
+      "mode": "RGBA",
+      "sha256": "5cf3a79b116f086fab86bf1a5a89dffef0b0fa9f34c413d5fb3aefdbbafdad53"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step3.webp",
+      "category": "既有來源",
+      "bytes": 53192,
+      "dimensions": "462x467",
+      "mode": "RGBA",
+      "sha256": "e85fd0034b9b5f0c34636af9753ed7bbfa6a4e32f16588b1f6d316c4f8a99a4f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step4.png",
+      "category": "既有來源",
+      "bytes": 134721,
+      "dimensions": "510x241",
+      "mode": "RGBA",
+      "sha256": "4d9ba8f812a2e962ef4d3ade55fdbc34670e0db4f846942b53114a0d3fe822e8"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/howto/step4.webp",
+      "category": "既有來源",
+      "bytes": 26944,
+      "dimensions": "510x241",
+      "mode": "RGBA",
+      "sha256": "141863e565d59e76484be5b5e531271dcfbc38816e605a227462453d50ef348e"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/colon.png",
+      "category": "既有來源",
+      "bytes": 64366,
+      "dimensions": "156x279",
+      "mode": "RGBA",
+      "sha256": "1a6ff736a51dfc707decc9ac66c888a4df189a7f2ce25e335821e4a27e8aebc6"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/colon.webp",
+      "category": "既有來源",
+      "bytes": 11924,
+      "dimensions": "156x279",
+      "mode": "RGBA",
+      "sha256": "6cd6cabf9833d10461442ecb4e182cb201bae600050bd95569b3512444cad6fd"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/lv.png",
+      "category": "既有來源",
+      "bytes": 123427,
+      "dimensions": "333x262",
+      "mode": "RGBA",
+      "sha256": "01ae0de1473c3417a938e7c191eb4c0e997342cb5051a17639c81a69b5890562"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/lv.webp",
+      "category": "既有來源",
+      "bytes": 21678,
+      "dimensions": "333x262",
+      "mode": "RGBA",
+      "sha256": "3f4f936adee284f34755cc4a6d51c8f6edbae45fb34660e336c0e3e9f49e9c8e"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n0.png",
+      "category": "既有來源",
+      "bytes": 132405,
+      "dimensions": "310x322",
+      "mode": "RGBA",
+      "sha256": "3050d7fcea0800eb74579f2f76ae4093050ac49d0eacd9a9ffe5de5eed279ee7"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n0.webp",
+      "category": "既有來源",
+      "bytes": 20712,
+      "dimensions": "310x322",
+      "mode": "RGBA",
+      "sha256": "3fd9b073feb964df24528712c87e8fb8b5e4c7130ec73acc4aabf19501677a1d"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n1.png",
+      "category": "既有來源",
+      "bytes": 97587,
+      "dimensions": "231x324",
+      "mode": "RGBA",
+      "sha256": "34357404035ac39de976dd645f48bd132eff653a6a4d576bf37095b76e2583e6"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n1.webp",
+      "category": "既有來源",
+      "bytes": 16618,
+      "dimensions": "231x324",
+      "mode": "RGBA",
+      "sha256": "44abd320108a214fb5123092af27a571afcf70a2b05fc50e260912bad94cd529"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n2.png",
+      "category": "既有來源",
+      "bytes": 132818,
+      "dimensions": "290x322",
+      "mode": "RGBA",
+      "sha256": "ee7367876f472910f227f0e7ddf4927e5c04cf17f71ad014f00bdc4557aefe35"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n2.webp",
+      "category": "既有來源",
+      "bytes": 21598,
+      "dimensions": "290x322",
+      "mode": "RGBA",
+      "sha256": "32e7c78ab9f321b325b2e7f8562a869e04a3e6050cfc88a374b0e102c84933b3"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n3.png",
+      "category": "既有來源",
+      "bytes": 135117,
+      "dimensions": "293x324",
+      "mode": "RGBA",
+      "sha256": "c5b0afbacbfae94e4967efaed30b7128866bc6fdb36b9e7f2097410807f668b2"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n3.webp",
+      "category": "既有來源",
+      "bytes": 21316,
+      "dimensions": "293x324",
+      "mode": "RGBA",
+      "sha256": "915068059d020baff3cc56d37288541eb5fcc8f736492909d12db56ba719800a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n4.png",
+      "category": "既有來源",
+      "bytes": 120440,
+      "dimensions": "316x321",
+      "mode": "RGBA",
+      "sha256": "1e544ac38f799210751a5245fc5c445f6f84641fd3a386858585242bb4476e31"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n4.webp",
+      "category": "既有來源",
+      "bytes": 18990,
+      "dimensions": "316x321",
+      "mode": "RGBA",
+      "sha256": "481a8f0616196ce22d2aadf577e7dd95d4237d6d8a90e6192a1f0fbe637f6432"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n5.png",
+      "category": "既有來源",
+      "bytes": 130248,
+      "dimensions": "294x322",
+      "mode": "RGBA",
+      "sha256": "f4476da3942a6fb1fb76624eee3f95ca58f90dfa498f69b6ddaf42a3f34a14b5"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n5.webp",
+      "category": "既有來源",
+      "bytes": 20956,
+      "dimensions": "294x322",
+      "mode": "RGBA",
+      "sha256": "c060c67a1b608a347d428ceee692fd759a9c0bc36cf120fb7f20288eb230002a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n6.png",
+      "category": "既有來源",
+      "bytes": 132137,
+      "dimensions": "303x323",
+      "mode": "RGBA",
+      "sha256": "5a8486bccbea2a88baedb81a669e62e0cf56c0ae049f8e5bd7e92e6c86e80879"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n6.webp",
+      "category": "既有來源",
+      "bytes": 21216,
+      "dimensions": "303x323",
+      "mode": "RGBA",
+      "sha256": "dd02cdf8535179b66e55c052cab04fac929bc18719c489cde0b0a145172c2519"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n7.png",
+      "category": "既有來源",
+      "bytes": 108853,
+      "dimensions": "294x320",
+      "mode": "RGBA",
+      "sha256": "e53adae21b18f58e5e63aa7b905e5f8d4d7919db41a4777bb0986ceae8a68c8c"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n7.webp",
+      "category": "既有來源",
+      "bytes": 17774,
+      "dimensions": "294x320",
+      "mode": "RGBA",
+      "sha256": "5ca13a0bb94acf659aa60794c2c6851ab08fef552cd1915af18c40f239ef3c3a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n8.png",
+      "category": "既有來源",
+      "bytes": 138781,
+      "dimensions": "308x322",
+      "mode": "RGBA",
+      "sha256": "2b530a6d7a1c099f0a663d44d03c9957f8a808b6a603ed2ea5277576e33af5e8"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n8.webp",
+      "category": "既有來源",
+      "bytes": 21750,
+      "dimensions": "308x322",
+      "mode": "RGBA",
+      "sha256": "0c1306ef99258dc636bbca2d7c03c230783de95fcba929d1e0ae0739c71c5385"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n9.png",
+      "category": "既有來源",
+      "bytes": 131671,
+      "dimensions": "297x323",
+      "mode": "RGBA",
+      "sha256": "8d3aa45dba98d26ba6947f4c69dd56123cbd4ef8dcc4b183d882d4bce863d6c1"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/n9.webp",
+      "category": "既有來源",
+      "bytes": 20734,
+      "dimensions": "297x323",
+      "mode": "RGBA",
+      "sha256": "3a8b10890b0449af1b45a701e7998bcb288ce962eec62f016d690fbfbf967fad"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/numbers/numbers_01.png",
+      "category": "既有來源",
+      "bytes": 1514559,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "65f047dc38620c1217a8aee649857de4f5aee2c3f31be4f9356b637a61e93a28"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/gameover_hero.png",
+      "category": "既有來源",
+      "bytes": 987412,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "86b9bb54043b5fb2437a204147d9ae5214861c0c50af52e18771586525f85d71"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/howto_hero.png",
+      "category": "既有來源",
+      "bytes": 897317,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "469a579f543c9766d80aaa22774646a21d5a33218bd207f133d63d8c0967e8d4"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/option_hero.png",
+      "category": "既有來源",
+      "bytes": 1037190,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "7121e0e8518a4a86fa9129e3a34d47f7d6bea3244f0d9704a553a1753dcdd1ca"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/start_hero.png",
+      "category": "既有來源",
+      "bytes": 1251284,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "a875f02091f62c5b5c65ae23a930da013b6de772fc6d38a26fbe5157ba79754e"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_02.png",
+      "category": "既有來源",
+      "bytes": 905479,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "5dad4959c2677565f6f612c0863b1a0a5763ba7e19ae1132290fbf7eea5ea85f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_02.webp",
+      "category": "既有來源",
+      "bytes": 224496,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "feceb0019b824fd8419e8d539dc19604d0209d744aba4fe235259188c2d0c084"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_again_v3.png",
+      "category": "既有來源",
+      "bytes": 1360769,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "521f95fa7c8faf46f0a2c0ea49143c5029d2e0022af1d8bf4c5bb2528d8cb2d3"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_miss_v3.png",
+      "category": "既有來源",
+      "bytes": 1402859,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "065015429756148a7cd71b923b004f0b5fb2b20995d8f22ef73e075acc8dbefa"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_perfect_v3.png",
+      "category": "既有來源",
+      "bytes": 1513497,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "e5a2bd9a8769cbf7072053d75b24c3bc0d38d7bd88eec96d031875a3c04d61c1"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_ready_v3.png",
+      "category": "既有來源",
+      "bytes": 1390793,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "0334afa593a8a6d60e8edd37b9bf183248148d97cb2c8cc11fdca7471062872b"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_your_turn_v3.png",
+      "category": "既有來源",
+      "bytes": 1229818,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "599310fc1e79c457f75e4da024c9a34108febafa3a74e308d13669874aa3769f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_disabled.png",
+      "category": "既有來源",
+      "bytes": 88467,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "ad6b5fddd0fe41dd32c18b6c9aff6a4cafb2fdda310c329e4430801222f24eb4"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_disabled.webp",
+      "category": "既有來源",
+      "bytes": 12886,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "0e72631fb82daa1dd239cc67418586551b9a8d337949f36eb6e6df3414dbe951"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_normal.png",
+      "category": "既有來源",
+      "bytes": 87997,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "d1089091a96c80f7b40ca8cf34203d3ce7ab111feedeac6600fd3a3c61f987df"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_normal.webp",
+      "category": "既有來源",
+      "bytes": 13578,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "96eb618dba4313e36e1a4eebf7c36df8c3e312d0fadf6cc78be528e46c744d5a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_pressed.png",
+      "category": "既有來源",
+      "bytes": 87455,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "4a9905626acaa0aa133e39798c32b6382af1fc81d494b6f2ae740d5d7edb2860"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/btn_pressed.webp",
+      "category": "既有來源",
+      "bytes": 13600,
+      "dimensions": "377x207",
+      "mode": "RGBA",
+      "sha256": "d4d224a787049e8957f1dc05dd99fdae5a2b5c74fe476a3b6aca7ccecc2362ad"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_atlas.png",
+      "category": "既有來源",
+      "bytes": 853036,
+      "dimensions": "1672x941",
+      "mode": "RGBA",
+      "sha256": "6a83e9973052ab8f330311a1b7b4b6de00faa4c958a56b5e75669c921440559a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill.png",
+      "category": "既有來源",
+      "bytes": 301010,
+      "dimensions": "1672x290",
+      "mode": "RGBA",
+      "sha256": "c232b01914092db9c792423852fe53b5950e63866470910ff8778bc2deabf7a3"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill.webp",
+      "category": "既有來源",
+      "bytes": 53906,
+      "dimensions": "1672x290",
+      "mode": "RGBA",
+      "sha256": "5e4492d435a1150da9c91c6c8dbe9248e4b315fa7b7f643a6d96d4d4a01a53db"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill_low.png",
+      "category": "既有來源",
+      "bytes": 293873,
+      "dimensions": "1672x311",
+      "mode": "RGBA",
+      "sha256": "3f7844b21f76032084ea1e16fc88662e4870d8411059713cef03970eb7d55a44"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill_low.webp",
+      "category": "既有來源",
+      "bytes": 51710,
+      "dimensions": "1672x311",
+      "mode": "RGBA",
+      "sha256": "8d5215a6f3f6d35aebb8f9da61cec3e7647ef1c34ad3cbbd5a876c4ffec28907"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_frame.png",
+      "category": "既有來源",
+      "bytes": 257987,
+      "dimensions": "1672x340",
+      "mode": "RGBA",
+      "sha256": "627579e3094213ab162ff5aac27a086049a60a7346bd80345c5e084cd6424347"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gauge_frame.webp",
+      "category": "既有來源",
+      "bytes": 73588,
+      "dimensions": "1672x340",
+      "mode": "RGBA",
+      "sha256": "2901b79e551518796ce485b07e0fdf2f0d21c56034244c734f5e349e3d197aad"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gear.png",
+      "category": "既有來源",
+      "bytes": 165991,
+      "dimensions": "349x351",
+      "mode": "RGBA",
+      "sha256": "723c98073faf6d892a3774f98369d66441351a76cc5de4a8f2200cd956dcc2ce"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/gear.webp",
+      "category": "既有來源",
+      "bytes": 29772,
+      "dimensions": "349x351",
+      "mode": "RGBA",
+      "sha256": "44bcd4236dac61a2456c480963de9f6ef85ba4ed484bf9dcebd7ecdf8dd26345"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/heart_empty.png",
+      "category": "既有來源",
+      "bytes": 142905,
+      "dimensions": "364x318",
+      "mode": "RGBA",
+      "sha256": "bc447615c7a0010dc4739ee6b399a8d0d734e0f050aeef73d020a681f4453882"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/heart_empty.webp",
+      "category": "既有來源",
+      "bytes": 20744,
+      "dimensions": "364x318",
+      "mode": "RGBA",
+      "sha256": "9cecb64492eda7164149f19e22f7cc6af6f49b88460eb9e6ca6b4fc84e59d7a0"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/heart_full.png",
+      "category": "既有來源",
+      "bytes": 149896,
+      "dimensions": "363x318",
+      "mode": "RGBA",
+      "sha256": "f8a178fdf908ba994ed28c39e2830345969ece4630497089a8f38504fec919fb"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/heart_full.webp",
+      "category": "既有來源",
+      "bytes": 25180,
+      "dimensions": "363x318",
+      "mode": "RGBA",
+      "sha256": "363bf67a2676af602bc083a80cd6657c706905aa7c9a8691ed33faefa1e7f945"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/panel.png",
+      "category": "既有來源",
+      "bytes": 84202,
+      "dimensions": "377x250",
+      "mode": "RGBA",
+      "sha256": "bbc2a63eb7f473465376aae026c83f0ac29e1d13d42939517b946718df12d90b"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/panel.webp",
+      "category": "既有來源",
+      "bytes": 18754,
+      "dimensions": "377x250",
+      "mode": "RGBA",
+      "sha256": "2d8a7e1a7e112ea6db57a3a4564df07873e39a0c3a0b46acdf8d058019d6deda"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/slot.png",
+      "category": "既有來源",
+      "bytes": 66279,
+      "dimensions": "338x335",
+      "mode": "RGBA",
+      "sha256": "3416c6e5720caeee8a87c217ff73792b67133a7a7139b06587eb05ae6114d920"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/slot.webp",
+      "category": "既有來源",
+      "bytes": 15762,
+      "dimensions": "338x335",
+      "mode": "RGBA",
+      "sha256": "d8e9dac51cec0b3b50a74890e7f8a546838b75551ef6fb89b727fe7cbfccdd16"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/slot_lit.png",
+      "category": "既有來源",
+      "bytes": 129006,
+      "dimensions": "365x360",
+      "mode": "RGBA",
+      "sha256": "4fa14bd1add79ac653a8dfd14b45fe37161cc51cb0d37b101d822cb74812ca9f"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/slot_lit.webp",
+      "category": "既有來源",
+      "bytes": 17392,
+      "dimensions": "365x360",
+      "mode": "RGBA",
+      "sha256": "b493847bd0c0c20082f5841977a43eecb7c597418d6f5c57e6a54f79ba148d1a"
+    },
+    {
+      "path": "01_memory_crash/assets/source/pic/ui/ui_01.png",
+      "category": "既有來源",
+      "bytes": 1073866,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "4416912df24710cfee7fa420bd2f3237bd6a6d5f4ae7e93c8ee245ca3532a448"
+    },
+    {
+      "path": "01_memory_crash/assets/source/sfx/sfx_01.mp3",
+      "category": "既有來源",
+      "bytes": 9447,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "7df0b5b6677b7e1dafa42ce305aa07db098b24362bccbfedfc2c86abf15b0bec"
+    },
+    {
+      "path": "01_memory_crash/assets/source/sfx/sfx_02.mp3",
+      "category": "既有來源",
+      "bytes": 13835,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "cfed5d07b6bf66830b4815b2d1b5e6f232c73c4d9865743aaf5387731c956f96"
+    },
+    {
+      "path": "01_memory_crash/assets/source/sfx/sfx_03.mp3",
+      "category": "既有來源",
+      "bytes": 12581,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1caea375683b75c10258b4a7e0c23ff827d141a94eb6e5268fbfa7ca0f0e0b36"
+    },
+    {
+      "path": "01_memory_crash/assets/source/sfx/sfx_04.mp3",
+      "category": "既有來源",
+      "bytes": 37659,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "b47df82683df65a7b03b5e0d45d6ea0eda4b6a3fd4425cfebc809f1424691793"
+    },
+    {
+      "path": "01_memory_crash/assets/source/sfx/sfx_05.mp3",
+      "category": "既有來源",
+      "bytes": 40167,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "8bacc097f1c2aeb07a65f6a100ea8cb50dbc17e9abdfe0f8203fc6775c306dc3"
+    },
+    {
+      "path": "02_brave_guy/assets/fonts/huninn-subset.woff2",
+      "category": "既有來源",
+      "bytes": 291044,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "b4d2fc9f7c1b343218a6b866a16ef4eb7d3966224e0ef059eba587cac5c2a6a1"
+    },
+    {
+      "path": "02_brave_guy/assets/fonts/notosanstc-black-subset.woff2",
+      "category": "既有來源",
+      "bytes": 242208,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "78715ecf4ada33a025332af432105763fd0cd04bc0a39afd5bdbfb1d5e310a0d"
+    },
+    {
+      "path": "02_brave_guy/assets/preview/unified-sheet-contact.png",
+      "category": "既有來源",
+      "bytes": 2638011,
+      "dimensions": "1728x1280",
+      "mode": "RGB",
+      "sha256": "1c61b75e26013bce950ecfd2bbdac696bb5f70258f32cbfb6c5e14dae15f3269"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/branding/banner_01.webp",
+      "category": "網頁衍生檔",
+      "bytes": 672078,
+      "dimensions": "1448x483",
+      "mode": "RGB",
+      "sha256": "a68bc142527c100568ba342b17272245f3d986658d91677b95bf51af72b934fb"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/branding/favicon.webp",
+      "category": "網頁衍生檔",
+      "bytes": 98544,
+      "dimensions": "256x256",
+      "mode": "RGB",
+      "sha256": "c3c33d0881535b7931f10bea9df8b2df08924f776014fc48193518aa3213f5eb"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/branding/icon_01.webp",
+      "category": "網頁衍生檔",
+      "bytes": 316466,
+      "dimensions": "512x512",
+      "mode": "RGB",
+      "sha256": "27b500811d54e8565c96cdff3537f35aa7661b2ea328159cdaeb1200ecd29a46"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/branding/logo_01.webp",
+      "category": "網頁衍生檔",
+      "bytes": 295292,
+      "dimensions": "768x512",
+      "mode": "RGBA",
+      "sha256": "d04511e17a5a059e5d8c62d1a550477dd340d74ddd9cdce149fd1248cfb6b789"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/ui/portrait_brave.webp",
+      "category": "網頁衍生檔",
+      "bytes": 52936,
+      "dimensions": "256x256",
+      "mode": "RGBA",
+      "sha256": "484c3cda0db6d5798cec99dd2bf3869b7fffff7469ae234e91df4dfb9110bbd8"
+    },
+    {
+      "path": "02_brave_guy/assets/runtime/pic/ui/portrait_student.webp",
+      "category": "網頁衍生檔",
+      "bytes": 43030,
+      "dimensions": "256x256",
+      "mode": "RGBA",
+      "sha256": "f77747e9248842b0b0a7a0a4d629b7309fa2d09d93555b23e349a383fad1bcff"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_battle.mp3",
+      "category": "既有來源",
+      "bytes": 923733,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "25d5a9b69dd825e130afba10c09499f896e50fec8c94c49083cd0bd4d8b899fa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_battle.ogg",
+      "category": "既有來源",
+      "bytes": 578069,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "dc151f9a0605b5bea5f18a9f6abc5d8736336e371da26b2cbe35cea22b47c650"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_boss.mp3",
+      "category": "既有來源",
+      "bytes": 1013595,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "76938c81a993c1f87b0ea41034b316f7b8fc1e180502bf1d0ef6736caf961239"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_boss.ogg",
+      "category": "既有來源",
+      "bytes": 651865,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d007a2a8d27493ef2397d17e79352e9c931065aec58e917ac78161493dd9e198"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_brave.mp3",
+      "category": "既有來源",
+      "bytes": 1295717,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "adad4a1f7fc5a436a0e8e29a50573cb9a74b8d12a722b9044628cd56fe951bd3"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_brave.ogg",
+      "category": "既有來源",
+      "bytes": 779163,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "186ea0f65d66196dc1c9b872d6fe0c606092775bd89ba134f83434bfb85f6672"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_campus.mp3",
+      "category": "既有來源",
+      "bytes": 923733,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "25d5a9b69dd825e130afba10c09499f896e50fec8c94c49083cd0bd4d8b899fa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_campus.ogg",
+      "category": "既有來源",
+      "bytes": 578069,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6910ec98af94a9791ced4602dfd45cd8faa4e918ced050d107ce14397ff127b9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_credits.mp3",
+      "category": "既有來源",
+      "bytes": 1882950,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "8f989e6517017c4fad013b35ed1f284440f7b52f7b55f1c33d0c947a5249f474"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_credits.ogg",
+      "category": "既有來源",
+      "bytes": 1092985,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "e809fb80ba1777f309fc7a998b3c649ca815e3fad9b70e9844329c5e365a3aad"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_defeat.mp3",
+      "category": "既有來源",
+      "bytes": 130656,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d22a6728736cde87f7f57180caf81730fcfa78c8966be526c372e2c1d8d3921d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_defeat.ogg",
+      "category": "既有來源",
+      "bytes": 84876,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "7c10b11b6a08a9fad80aa440eaf6c6a425f23269fe24dd6d869118a766ffc068"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_ending.mp3",
+      "category": "既有來源",
+      "bytes": 1603962,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "0d5ecb482694dd2a15f5a4ca7f24de8800314402e375adf8b09f9c819043dc2d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_ending.ogg",
+      "category": "既有來源",
+      "bytes": 907406,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "3cf23b10e843fcfcf9a123715fed33166c0b6ebb9017bd4e267c592f93f71533"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_office.mp3",
+      "category": "既有來源",
+      "bytes": 1024879,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "ce9ceae0885b2ad21d4ec6404352672e3c18049213003f97509da1b739c33af9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_office.ogg",
+      "category": "既有來源",
+      "bytes": 739481,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5bf175dcfeb5c27ba1df5f77c1f53627184d2fe8e21e1b6bbfc8c58a623ca950"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_office_mute.mp3",
+      "category": "既有來源",
+      "bytes": 564288,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "89685447a93921ea80858fb3b3ce9a32a2739aeab13bb61ef7caf3f3c453e565"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_office_mute.ogg",
+      "category": "既有來源",
+      "bytes": 426672,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c809a7d3531f75c0fe61b4262ba6ba91f1d53b997eca9854f190066b552d2b67"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_0.mp3",
+      "category": "既有來源",
+      "bytes": 1072109,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a1bfce8498193f6897bf33adde87969d079a43ac6d58d53c2647c75916c2d41b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_0.ogg",
+      "category": "既有來源",
+      "bytes": 620136,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d144369dd8db5507b29b3d0d7d086b9082992d8092146465dc977af1dce91ee7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_2.mp3",
+      "category": "既有來源",
+      "bytes": 1377219,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "54d5cb71e95ce53839383d2ecbbc571dcdfbf26743f28c49df3e98f9e23f76ca"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_2.ogg",
+      "category": "既有來源",
+      "bytes": 788293,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "95b6c0886646621add935756e6c6d0845d051cf26c78a80690f9d0dca1009bf1"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_3.mp3",
+      "category": "既有來源",
+      "bytes": 567423,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "021a699d4dd14ffde39f2376966d8e5ddcdd0531f99ad68b03040503e19eeb22"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_3.ogg",
+      "category": "既有來源",
+      "bytes": 330637,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f5157b51e4147f0511b550dbcc4302463b7da1c7c77c3b3bf50ff6112e1f58e1"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_4.mp3",
+      "category": "既有來源",
+      "bytes": 923733,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "abeb423acaa92bebcfee6383d46f0cd6597ff459cf9b23448392abbcea52399e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_1_4.ogg",
+      "category": "既有來源",
+      "bytes": 543636,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "198a60ac67e7ae26b3694ef5dffcf7f4f88e002af6061306e891c18376b8f8a8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_2_1.mp3",
+      "category": "既有來源",
+      "bytes": 1072109,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5c7f3cf78b5e1a4f32a7cb34eb98b04593004f34b249f91d263b938ba4ada1dd"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_2_1.ogg",
+      "category": "既有來源",
+      "bytes": 619815,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "3c021c1826b27faf2fb9bc1644c5310f795107f73ada86a070281a578613af14"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_2_2.mp3",
+      "category": "既有來源",
+      "bytes": 715799,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "00ce1c513e148623bbec5050c70934040a4778e7f014420cfc36a504ed8c7bdb"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_2_2.ogg",
+      "category": "既有來源",
+      "bytes": 413218,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "7dcf98318247f1990b46a5b9cd5f217c269087025c8a1f41199a9d22b0967113"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_0.mp3",
+      "category": "既有來源",
+      "bytes": 804615,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d9cdca630d1391269fcfeb44b99320fb3a4e026f69a739ef76ad09977b087358"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_0.ogg",
+      "category": "既有來源",
+      "bytes": 486599,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "608eeed372506a3edde0c07f5db2214a0e196bec5ba060c59974643f2a54dda8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_1.mp3",
+      "category": "既有來源",
+      "bytes": 1414836,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "bb327ed4c2b0dba67f1f629368436b09042ea198e41fec5c0218ab059549fb8e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_1.ogg",
+      "category": "既有來源",
+      "bytes": 881472,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "bf6905c878049f27d8d89ff1fe1cfa84193bf3109597f02c706a875555e267ff"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_2.mp3",
+      "category": "既有來源",
+      "bytes": 1518280,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "2aedc3c74fb4f1e3954d0e6ed143ea32f88801ba659dd1e3f5dd9b7a29824bb3"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_2.ogg",
+      "category": "既有來源",
+      "bytes": 784093,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "46908b703af1d5a4fcab4354a99420b5be98816851293bb82cf7fbced747a988"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_3.mp3",
+      "category": "既有來源",
+      "bytes": 693856,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "28f4a2bc6d17813a1bccc1bbeb5dbdc00052ec4442a08fa216c375ac96ee457a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_3.ogg",
+      "category": "既有來源",
+      "bytes": 374223,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "9e465271451fb6510fbc46ec4b282ace8acf6a767878fab9ac41db087f484346"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_4.mp3",
+      "category": "既有來源",
+      "bytes": 1384533,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "127e145b81d002e7ed8b1ee4ff2c013c88ffd963fb71018f491929f30a0f22af"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_4.ogg",
+      "category": "既有來源",
+      "bytes": 820762,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "94890e89c7d2fb7fb3191ba194ed692e8bdeca015a03b1866f10fd8bfbdbc41c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_5.mp3",
+      "category": "既有來源",
+      "bytes": 1377219,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a64cfdb310b493b1b523b68dff7c25200f3396d315efd18ddd9881980830840b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_3_5.ogg",
+      "category": "既有來源",
+      "bytes": 832767,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c1efd0d5b187591ed245e0362f92162e47c2f9b88d67a1fe8e5e9f237f4293a9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_4_1.mp3",
+      "category": "既有來源",
+      "bytes": 1882950,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1a4ba6c3d6aac7041e354152a7cb6222a2d6855d48b09ec1351f9c922c1a28c9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_stage_4_1.ogg",
+      "category": "既有來源",
+      "bytes": 1129081,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f5e1a9dc0679b996312f78e3bb47bb1c88acb4aee8cb6d21800cc60462a4cd52"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_talk.mp3",
+      "category": "既有來源",
+      "bytes": 1072109,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "e2f507981541798815769f07f54cf08290c06d88fa31eb4a7319780dbd217ecf"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_talk.ogg",
+      "category": "既有來源",
+      "bytes": 627569,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "2b61818ad0e3553cb389dcead1aa28fbe331d4e8a5863f7cb03083f1226ca155"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_title.mp3",
+      "category": "既有來源",
+      "bytes": 983293,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d18d05c02ffe930deb00c124a07ec576442e77ececc2c7fe4de3d1bd6e74a2aa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_title.ogg",
+      "category": "既有來源",
+      "bytes": 570530,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "62f3d7d1886ee6651211b59fc8a5a31527c52d820243fac8868fb1a674db1e10"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_transform.mp3",
+      "category": "既有來源",
+      "bytes": 602950,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f69872530ff93fbb383026b1305c499970832dacf9fd05a13ff0aad07d7ded16"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_transform.ogg",
+      "category": "既有來源",
+      "bytes": 339401,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "e86b588cb4d4de6c956e9e17d4a49ecee9c9d039e311fed5c9ee49c339a59f28"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_victory.mp3",
+      "category": "既有來源",
+      "bytes": 242460,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "82da9dc000ede056622308d134397b5e1b3ee773cbff34ba28d990a1a473aa23"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_victory.ogg",
+      "category": "既有來源",
+      "bytes": 142492,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "87f35758123d9bd78d1c0b8bfaf0eab076420411c07c9eba258a384ace9d8ca2"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_wild.mp3",
+      "category": "既有來源",
+      "bytes": 1053301,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "27f5c7cae29a470b2c48f667813a6db784dcc12372f9da0f5565ddc61a0d3e12"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/bgm_wild.ogg",
+      "category": "既有來源",
+      "bytes": 877470,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1ddd0ae543d5ed32aaa924be0f2930304dc7b8a3d67164d4d62eb18b91a35a76"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/jingle_clear.mp3",
+      "category": "既有來源",
+      "bytes": 242460,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "82da9dc000ede056622308d134397b5e1b3ee773cbff34ba28d990a1a473aa23"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/jingle_clear.ogg",
+      "category": "既有來源",
+      "bytes": 142492,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "8f6e73900f87d92c9bf829418acebfe9deb559da6d1710cc4a3bf68e05b964b1"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/theme_braveguy_demo.mp3",
+      "category": "既有來源",
+      "bytes": 146329,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4561c4d198b09ae75b6f104a347c0025412e2a984ceb5f4a0f30d51431767416"
+    },
+    {
+      "path": "02_brave_guy/assets/source/music/theme_braveguy_demo.ogg",
+      "category": "既有來源",
+      "bytes": 124146,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d7016e6a61f1d3ecdf8ad4290eb3bad7e6da445318a7d539dee6318e56f5437f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/bg_loading.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 3096,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a0333dfde022545b9ef7c46f086f61d72a1f7435856564260fa17265a51e6eaa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/bg_result.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 3102,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "aed6ef1e2f7d79c541421da0de429c8f057f20787e13d1a514bf4b4cf3951f9d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_corridor.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2088590,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "544fe421ba880602048eb8870fb50744083ccccd191c600b997a66956b64b64a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_court.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2397482,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "f35e66a762004badf662ae220c564ec0c678eb1857c8b3e2bbd239d0f409c85d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_desk.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1862563,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "0c902dea3dc8577fc2b1ed58a1110172b845862b33895a8a47156607dbd8cc09"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_dorm.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2065265,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "d12a4e6052ce0df9f91f2265e67d41cfaeb681c733e3d14cb4afbf904b1f523b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_forest.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2353360,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "22289c4f69da895fe81ad6c4a2f0704ba7c8eaf8ed8e17a699754f978a38004a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_gate.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1983358,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "70c372cb2b747d045deae4b53da7794b4f1afe5438ca3f15547175d26346a479"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_lobby.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2240195,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "02182c67634a800355d522db8117410b4ed180476756633825ce33851717c506"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_office.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2123691,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "cbd1b79ade32a046389388dd8dcbebc20ab87fa0fa454dc5d938b70f6edb60d7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_openoffice.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2166527,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "2a4e117d324b603aecd0f38ee403932c93cfcf74488d27464b09e23a2e0ec766"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/scene_village.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2405474,
+      "dimensions": "1672x941",
+      "mode": "RGB",
+      "sha256": "2f6a9c51ee175edc2fd134110ddc89b7133a35a53da9569d65cde226aa0bcc2d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/sky_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2978,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "3e94b7991f8161cb0c32853031ed3cb270acace0cce38f38a403d0ea1acb5317"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/banner_01.png",
+      "category": "既有來源",
+      "bytes": 1849785,
+      "dimensions": "2172x724",
+      "mode": "RGB",
+      "sha256": "30e848aac7ade6e7c236e067cdde1ccf72ff47105a3b4fb08e2b5441bb047a0c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/banner_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 5035,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "633ea9ae33e05571fe74c5072daa23431397e2cb2bdb65da1f4d311026d79a28"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/icon_01.png",
+      "category": "既有來源",
+      "bytes": 1808368,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "bbd1f5d5415edaa1d3c2c9bac75952110176716cd5c523f6d8f6e388bb38b5de"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/icon_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 3377,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "49505216e3ced19f1527db0c4f762e7435b39d86dfe3bcabb7788eea2c5ad948"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/icon_01_logo.png",
+      "category": "既有來源",
+      "bytes": 1924355,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "c890dc0dd6162c8082b384f025362f57a735c3d5782761d35856da7101fc013b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/logo_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2755,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5461983241d451ac8f5e4c4b158cc27a9baf19ee609efbe0e1898b7c5d2ca21d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png",
+      "category": "既有來源",
+      "bytes": 1620366,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "117520eb3a2f51502377089a37e15277c18ac96b7f0d9434a363efb17cc6159f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/menu_keyart_01.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2216099,
+      "dimensions": "1330x1182",
+      "mode": "RGB",
+      "sha256": "74c52a2f904ee48d49cd9dcd4255434e15c2755bb15ac156d2ac4f0626f1fe7c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/menu_keyart_portrait_01.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 2113507,
+      "dimensions": "1448x1086",
+      "mode": "RGB",
+      "sha256": "5f9d9e15034557b7b412485d3ee6f2c388d8a3e49df945d30aca1aeae038148c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/angel_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1249027,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "b6d64a6ebfb9edef0413fd28e22c31e33c5844edff7e1466086c3e9de3616070"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/angel_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1366056,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "eb3f157909a246e4e7b358c055fd4635af9742b28fd8d6fb2b0996b9d964ce51"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/angel_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1143650,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "d54160bb2a6acd589e74551bc6f66dbcc5ad5d6419206cecf9a5912df4b6c6fa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/boss_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 237152,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "14f3e19df37553bec62e2db16f50d48492d55014b11e931d1795223247eff382"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/boss_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 255187,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "bac6ee98a900038d822c0de7f2e4ed851d9071909ca490bf064d4a4f068d77cf"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/boss_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 176155,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "69c364d17e0b8154cf55cb031406a7abd2ea40b35dbf1d231aaf8362bf0c66e3"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/braveguy_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1185000,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "03528deed3084150c2fc87a31ff8a183022047568d150db545c3642ed7b13cd0"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/braveguy_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1267407,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "530cf401d1db9b1f5635c9ad92a7cef96e64ca60cbdb6aeeb70cc13cd32430e8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/braveguy_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1157610,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "1f993869281bdde6788f84c6c4854336ec2503b2de39fba3ba2e1609049bb2f7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1348765,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "97b9de634500e0d974c45bfb331961c5bb081cd67fed534198f574d65751a16f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1361554,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "3d8440d92bd3cfbe250c30f538368aef8b28aa312d441851c37cb5bfcb2cc691"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1212599,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "9caa0acd07f516aa430edf282e9ab5f99d5d2ecea8870c3385e9320219dca068"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/hero_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 209526,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "e93e88a65d97f6659d883b2d1fcc383b1be42a4db0f6c0c52415afa8f959c504"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/hero_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 220084,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "cdb56c8d7e338ce85e1c6a7aea818492eb122b1ca81bc02b7aa4a18875751e6f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/hero_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 170468,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "b4b2a45421d066307f3a28a0c1d5db32a2d6fbaeb2a109211a7428aa312e5d2d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/braveguy_back_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1382130,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "b3d47db7f9791784c44fdcc14219a44019ccfd421663d3dbc34c27a791290c77"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/braveguy_front_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1431662,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "74483ee336d5a2f8aaaecd292a33755d8e299f621865dc090f868fea051dbb9a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/braveguy_side_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1324251,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "59130f7f10356cdd54280773c3b60b53a494dfbad92d31814ea2d5ebb444a3f6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/student_back_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1343533,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "63d30f6109da6403176ba2b65ce9f566e31e5a82543f4a26357363b7abf959a7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/student_front_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1402128,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "14fdc9d354b5f441fed03cbf5e1596da6ae12f4042c0f28735df22341b8146cb"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/history/student_side_gray_v1.png",
+      "category": "歷史／封存",
+      "bytes": 1321262,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "afa2afb53aa7d52c4db67bbdb0925d27964021c03f2a4cb4334cf599862563f4"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_imp_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 195915,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "700459217791a8e7462d86df7803846e586ea65275b1c1b31b129db3a03133f4"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_imp_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 206296,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "f8d0159512d756fd24fa3ddf9d1f01dcb5f617c6c4d73ccd468ec278aa525fe0"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_imp_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 160957,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "12d13c5f4c3d0476788aca81de57861ed5139134a2df6c1483709d0b646988f6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_plant_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 219673,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "9661a1c5cdd680f38dcfb17cc00e2f561ecd48a1b28f08737ba604e15a95b491"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_plant_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 226848,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "e84ebfdfd5013d9a56bbcdd7b26ddbc1fc3b9072dc79e0b3016e7240f925522f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_plant_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 175716,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "0705ad8a9db0bf67cde6999cca0e789a3a6383b213ccd7d0b6dbf6288b5e995b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_spear_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 205516,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "2ff9fce360bd522742a30ce94bc5ee6da7155ca56e04102378f6521e02b4908e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_spear_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 214862,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "66b1e9c0501d62b98b58a3becc6b7637d6754ca9d9a5f3873ae84853b4b633ff"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_spear_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 162646,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "b9871e3c3cc96d4563886ea907b699a9b2ada71734b328584308a8002b65ccf7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/mob_spear_weapon.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 91046,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "17ecdac923f12785c931b5073fe88c2587033ff51257172c5aa593e549499cae"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/nightmare_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1225162,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "830ed44e43aa9860c77474472e566f158e4c373640d724fa624759facb519934"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/nightmare_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1684563,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "4bb11eb547763d89112f736ffdfe7838da1c374fc293fc2b0289f30ec17f3c7a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/nightmare_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1181409,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "d891ab2630c9565706f05a2b654ffd02619071ece0dee877c52e214f987782cb"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/student_back.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1125852,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "526bac7d52e8dd559a000f499518f901bf071da8f572603f5ba1548676445fb3"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/student_front.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1211478,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "a2fd4b335e81e48288544303e738917655bfbbd27588ea254defd2a0748eb778"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/student_side.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 1150932,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "a8425099aed93421d002415b048f010426cf0bf50f5a46c5c9212d594f571089"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/concept/sword_01.png",
+      "category": "角色參考（須區分新版15張與舊佔位）",
+      "bytes": 88969,
+      "dimensions": "2048x2048",
+      "mode": "RGBA",
+      "sha256": "ea6621d9627f02d8a746969c6dc7547e0fc221eb4dae33389233ef5522668413"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_fire_sheet.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 3585,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d13235fb1f1326dfb6d8eb8e5a492e592180148d024664c719b935eb201c0a59"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_leaf.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1899,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "8c87a6a7fb51ced19ab645fd3696c2f27f1944d4631e878c7d849b9b5cc66fbc"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_magic_circle.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2191,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d8fdf3c1afd554c4f1e3c66053494f11af25d6118b418935e4804a57e6e5af31"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_noise.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1851,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "781f678a7778fcbf799f195a0b495454c0d58f9a892d398cd9d9d219dd99ebb7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_petal.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1863,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "691ee75cf1c64182f1c00eb3564b4eda93317cc94901decf482b6ac776052aca"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_ring.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1921,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "26592f925cbf1b7732c8ab1cdaec1a7a735939359d16399cfe327aaff0a88890"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_slash.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1941,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f7f0087496f9a4d23e3c0398a48c08f56e9d8240c576ad6a746348caa3dc2ffb"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_smoke.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2252,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f4c8b6cd58185e02cb91026cd2daba37a74d7e16df7096d1f338857c31dcc87d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_spark.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1977,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "48b34d0ec70698bc2128ada7bfb3a27f08a601f89a4f00962584960306ded5b8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/howto/howto_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 7514,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5bc3f224898b0f5e33f395ddd1643d30d77f4ad5bd04d97fea14ca1a7831db6b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/btn_attack_sheet.png",
+      "category": "既有來源",
+      "bytes": 1085326,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "470a1cf7f482f97a417d61ac3da49932a02dc8eefeede2baefce43a621f3f4c2"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/btn_dodge_transform_sheet.png",
+      "category": "既有來源",
+      "bytes": 1574857,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "4b26867ea2ee5b1a8898ef55f374762695669c3636abe71272cd808b946ee009"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_atk.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2742,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a3dd47bbb80561aeae805fefd55bd8061dc6beca30ae6d247383b781568a5bfa"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_def.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1910,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "abd459e2d18ac3a8c757914e95e3729a34811e80ecafe9506e024b855a9057e8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_speed.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2180,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "40602348ab98744ab95e32c71eeb6936499c905906a644da0067899534c3b8ce"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_coin.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1777,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "284fdb20180b44747cfca7fc6fc72f06b47e9af524ae21be8b808322c11f967b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_hp.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1803,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "583e3035c456658a3f6eda9db85d3ca2dd3e1814768ab18b70b2fcbeee5cf583"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_mp.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1804,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "0c575ec572d3e1a8bfef1a300eb5299c3a0c336c89d4efea0a63b3c19c4cc6dd"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_bag.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1952,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1d119cf089e3155f4b07d0d6d74e82c91d242e783755982987e5b32f29e6918c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_character.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1882,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4248b6998c18fb7795b52a1b5c948dc0e51cf6ba6d9683aab8613da15ea39aee"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_pause.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1913,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "d672387464d8e968a64fd4087c5bc5888d2b7405c3c5302dcb3de0f9cce4f771"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_quest.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1986,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f01a1b4daec0836af89e6adff499008913ec951c6fc91ce56d715e4e19423a40"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_settings.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2938,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "24a7461b43344d218bd6de1fef7ce191abed42b79d05e15bdef23b1a39c79ae5"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_sound_off.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1961,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "296be04507487a3fcd7da39905abca04da087642397d8e05b92d87783ad0f004"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_sound_on.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1993,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6de4ee4ea61777cdd6fe55fe169b90d450980241e7aa7787d560c36eddc8db79"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/function_icons_sheet.png",
+      "category": "既有來源",
+      "bytes": 1566675,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "3084442c98af9335a873145f34ba9d5b9b151d2b2fb81959cc2c07ef35eb1471"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/lock_heal_sheet.png",
+      "category": "既有來源",
+      "bytes": 1465288,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "f4b4e2e9b85141465e42773f901633f10a5fa15cb09261cb572efe0517c30a32"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2064,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "e5594706b33d6caaa56d3f0943464d3e6dc6e5539d2e6ad364664617e57efb7b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_02.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2345,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6312a47638f07e6d822a5484586f0c9893b975d4a422da33491b1344919e4f11"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_03.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2747,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c7c18d1126a7a3908f0d4cdb2a7f0a6888be405597c716341ba075f847f5637b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_04.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2094,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6770ce48029e409663be404390ee8eed9151426ebbe96011def2ee22686e0561"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_05.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 3417,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "8039d63f9b671a008dcb1eee67cf8eb75763442d926b8be90f43d088fe97a4ae"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_06.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 4718,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "24816168b7a77912c6318e7a4230f4ef47b1ae631d0d78bb904d434774c0538e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_buttons_sheet.png",
+      "category": "既有來源",
+      "bytes": 1935128,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "32b1d7160ba5fa141cdd7c665de9c3a68df5d8e7b7090f898b2f40c7cb21c19f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_crit.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 4699,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "67f15fa9b3b521523a2ffb64190a8434d8e571c1a9b44f6173ad98c43495fa82"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_dmg.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 4440,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1522a680b0ebc460106c923faab2b7b89bcabac935f67449248318853c41e935"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_heal.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 4440,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a35247198c96b7200c95db2e365e7d77d28dfca711928d82725841c4ea150893"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_ui.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 5217,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c5b4f7a15991547fc5469a94e34bc753ef406f8e415eee729b48e3d4fdb3f202"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_cover_back.jpg",
+      "category": "原始參考，不是交付成品",
+      "bytes": 433708,
+      "dimensions": "2000x1924",
+      "mode": "RGB",
+      "sha256": "d1375f5a122360e04fef8c3de691ce80cdc08d085716d3ef13dfabcdf851bab7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_cover_front.jpg",
+      "category": "原始參考，不是交付成品",
+      "bytes": 479980,
+      "dimensions": "2000x1923",
+      "mode": "RGB",
+      "sha256": "29a2bbcc023dde06311b864774a6350270d778f0c7d5231fc9fafb88440d9da6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_folaidi.png",
+      "category": "原始參考，不是交付成品",
+      "bytes": 20250,
+      "dimensions": "89x106",
+      "mode": "RGBA",
+      "sha256": "d093043e64827d46753686b23ada330c2765f5652074d3f261f99e67f6f2522e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_full.png",
+      "category": "原始參考，不是交付成品",
+      "bytes": 129925,
+      "dimensions": "382x218",
+      "mode": "RGBA",
+      "sha256": "f3b939d4868afa9beed2318ebcb483663a5796eaf6d478fee71b9c5883f30655"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_initial_mid.png",
+      "category": "原始參考，不是交付成品",
+      "bytes": 155545,
+      "dimensions": "332x330",
+      "mode": "RGBA",
+      "sha256": "968dfc4902922acc3795cd967525aeb480055926afc192b164e93bb293a6384c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/braveguy_jiasen.png",
+      "category": "原始參考，不是交付成品",
+      "bytes": 57477,
+      "dimensions": "166x224",
+      "mode": "RGBA",
+      "sha256": "4a46e311303cc91ee10d49635300eedc9a9783f7d46f346a74b4932c41e52006"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/reference/sheet_layout_example.webp",
+      "category": "原始參考，不是交付成品",
+      "bytes": 273862,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "fa5a31b8ebe01a0dec3ceb11829c5ac661f4cf56503b3725fa3d7e43c4d3d167"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/history/sheet_braveguy_before_logo_approval.png",
+      "category": "歷史／封存",
+      "bytes": 1992507,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "843fbdeb4e4184ea925322829a49b2781ccd8e801315e00c3cf40ad9b074a2b6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/history/sheet_student_before_logo_approval.png",
+      "category": "歷史／封存",
+      "bytes": 1856022,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "9879f8607a8484b0a711b60faae8323d5cabd5e991e787c0b0af676c86403e78"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_angel.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2035545,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "2487a8f287922cea4f08bd29c608d5fcf2d60860f3f5c3acce76d9088d39c602"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_baguashe_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2117655,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "68f286a700a666fc58ef79f0ae9888393e31279d0b32c2b7f31801cd445de272"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_baguashe_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2170938,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "766f91e113cdfcd41c45908964edb8ded6528f010f6fbbfe31f826e975d170a4"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_braveguy.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1984392,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "87afbf35b5a60e3169fbde1d0dfdc4152d8ab7cdf49d94632a88118147743536"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_ganqiao.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2021009,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "8603781ae7ef210e8bb26364bf5f64bdd252a6934465bf7a53933fc676f35a04"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_guanlaoban_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1939687,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "80f8a3351429897b660a89bb0b2d53e6eb94d7bd39294d7b46b4a19221c628e8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_guanlaoban_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1970895,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "80625632e34e132c0a3fa194f1335c40338e7a8b8395561d3e7b4ebf1394f7bd"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_hell_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2123767,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "924fc2d23a5974077aa400e47f769c4aff9006434ecd7dfe90473667337a3022"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_hell_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2162192,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "fd95fecb53cfa1a3015ccf82c5fa26af18070f47519d430e3e814704d68cfe6d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_incubus_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2029430,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "1f10f5e68eb074fda5cf5cf65a3e214186e652a84c0ea410bd22aa9c02ece42c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_incubus_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1984118,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "0858dbc7066034754826f98f178b7023b52457758d6200e2569a2c11bd395f5a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_junxiong_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1948165,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "747fe10b48c98e33ed155550115567921632ef8a8b6d5f6c38fc85f34daf3b8a"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_laichuang_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1847069,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "12b9a78ac57d027cae1d98489b2a2cf9ad5778b6f0199f525c8288f465b2e176"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_laichuang_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1885501,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "8de482cc90de9c6989c346f534595bbc16a779a7ef6bd1680a78f924af6db966"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_lan_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2024453,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "dc47656989618658174925095416fb428a0240960c61e74190e865508946279b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_nightmare.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1936835,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "d354e5ae800b29d2911ffeea00568b11d85482458d94a39384765041fa45802d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_qian_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2028387,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "289484274188e22253701e5197c95392484cb9396547a0cfd7225f2ee767257b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_student.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1867953,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "a66a3916358b45bb4826bf3ca60f0bc02e652541930bc8a9a02ceeaf13c4273e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_worker_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2055523,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "ec3fda64501acaeab3d07a5bd6f1d0ee6e212f7c0f15b2a13c5d7efd6a42bfa2"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_worker_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2035450,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "cc1ce2bde697f08233fd820f7e397a3f56702775881e97cf3f64f970244ac458"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_xinji_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1974934,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "6fa614d03b5cf8d41826b3ad2e5fe6b21e8de6eaef3b81905f4538a79f0a4704"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_xinji_logo_v2.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1925702,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "e467de6d13fc6448893f0218da6e35c36656aadcc53f15d27f661f775f3b30cf"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_zhuangxiong_draft_v1.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1956036,
+      "dimensions": "1536x1024",
+      "mode": "RGB",
+      "sha256": "07f485504aa06329d0fa6cf5df59483ffce05c2719bf4f5ac31e1ac1eb874602"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_angel.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1978981,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "e98b21d124b293f115fa109606199bc00cab4ba9feba2ec7a67af9ef2efeb5d9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_baguashe.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2078828,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "e35e1502e1c8d4d6ba1783d0bfa95ee0f3e9740ba20699cecdf11b209445d690"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_braveguy.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1918544,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "274114701d8f7734293c19c8dce854e0c4af43970c8696a477eca517e97fc1f5"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_ganqiao.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1977720,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "56e7fb053a39a9827f3c217fe306965df478303270f58c943f0a0513ccdb1d6b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_guanlaoban.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1887834,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "a2e7ed8020d3f7a9274a18bac9a97c041ace8e4b956634028fbfd486aebf42d0"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_hell.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 2142768,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "6e347b4904bb3eae8ad75ed6a9400774584f50468115779513af536d2fa2fbc5"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_incubus.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1968245,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "7d02deacd480ccd8873fca6e4a4e8901226e40172894ebad6f7abd84ff15017c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_junxiong.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1865061,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "6e0eebfb795ce50994bfcab6220d3eb1b8053855952fcfd44933d42cae4d441e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_laichuang.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1783875,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "8307795691e42a44e0cea6d5adc2c84a4c0f8b2fb4cc77e32c6d104a0a35bcca"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_lan.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1973791,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "3b4b9d225c1be92697e5fc99e48093151f4660bf2a775fca409c3a907ccd926c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_nightmare.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1876128,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "e3408b1dc803a2d10186278238718961169876bbba9f38c7501db4e701279767"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_qian.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1966399,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "6c91911078b2057326d0a513d81f2806d8218ac2992043cb1e61569093851e99"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_student.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1762063,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "569cf45f4beaee5ede67f05e7d736dfa48d63405e32f06dad5d5883933102403"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_worker.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1967643,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "d7c17a96222539dedb5e407436435c534a4dbadc858d005ed5e82ee357f795ad"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_xinji.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1917202,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "af48b29e4f7e8ed0019b00545476a3405a5e5e4f85cdbddb040d53aba617cf08"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_zhuangxiong.png",
+      "category": "角色合輯（含歷史版本；勿重複計件）",
+      "bytes": 1879714,
+      "dimensions": "1728x1152",
+      "mode": "RGBA",
+      "sha256": "e52faa91f564f8ffb0f56d0b1a548c45065bd6cece961b869f759b92dfe5dd76"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_boss.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1883,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "3b147e9a1c17184c37227c72ac09702255e241dbd4213d90a7296fc3c691d1c8"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_combo.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1876,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "61e50a1c73c564c0452a6c859a4ed6febd3e2a37e7bd1b3298669ee859b4cd40"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_defeat.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1878,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c29583206d131b16776274811fecf04d04af7cb38c97b267b6d85b695eab3882"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_pause.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1878,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "7a7bb897e41a9abdab2e57e400c4f2093c00e67cea626e484f19fb789316f10e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_start.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1876,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "2dfd6d6ebf49018e86d925e1e0fabcb6c6b400fd5fef201da72d7413ddc0e428"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_victory.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1878,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6f53d2e6bada2b558e58826ef432b896f3830a45da5ea81795e5d33c8fe629d9"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_wave_a.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1872,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "936b512fbf74c55cef521b70563e34878a405b3ebc5d46ca574607f45f4a7b9c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_wave_b.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1872,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c51bcbd14f7d2241e2db73af3aa2c1c7b1e154e7a2f35f00f8aa725d8fcd08bf"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/aux_hud_sheet.png",
+      "category": "既有來源",
+      "bytes": 1132310,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "6a0d376da656ad8a31d95f6754b124ed773dd2b3c7de615fb6c7683e36f72d68"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/bingo_card.png",
+      "category": "既有來源",
+      "bytes": 1159164,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "f1fcd33f488c32453642e6c6e732b3865d666d85b86b4bfac9c54c6ea16a199d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/boss_bar.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2019,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c480f0191b11fde733402d24a3868ccacb486d8569b38cc423a80eb5455b6718"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_attack.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2671,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "902b960cab08d174e93797a132a347b5600947297c52d4371139df0b6562c2df"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_dodge.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1931,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a5795aaa5b4a026b02ce96807198b91bc82d6cbce33a99ec474fac3cf0623b16"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_skill_frame.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1759,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c6018fc9fc137006fa3b504ca87a6609e65be9c963158397bd63bbf8ae97663c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_text.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1034564,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "43c4d2e857a1f2ebea54d25eca38e5665f36e7ea2bb6e2ef36ade6b2b67a039c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_text.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1780,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6f159f9c1290255cbac43ec084d9115351046440471296915cf544a186780bfd"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/bubble_sheet.png",
+      "category": "既有來源",
+      "bytes": 1188709,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "482456b30f9b1864b99dc1ad829830f55d40b541665a057d7839a0045acdd385"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/control_extras_sheet.png",
+      "category": "既有來源",
+      "bytes": 1317563,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "e03d9614b421bf4292dd2d4ff892d4a26a4a289523073a503ef87edd5356678f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/counter_suanle.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1566682,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "1b24fb87d1f4399bfe56c40652edf8971c56f398326953ba5a92b5e5f79bd42f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/difficulty_sheet.png",
+      "category": "既有來源",
+      "bytes": 2005063,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "be3543c9b976f4cf08b838da8557dfce355c2c2c4060745a67f56471660e746c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/enemy_bar.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1756,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c946a3fc4ffff7e3d01d5d94b5c63b11fbbc5a04e3ba1e37b0b5f0bf40988057"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/guilt_explode_sheet.png",
+      "category": "既有來源",
+      "bytes": 1245869,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "b4b60d977ee377e62b9a7deb0ff2f3286b7836dbceee0e8281a7b7b2ee1b4488"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_frame.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1692,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5e4b095598568e0455a6b6d8c104b540de95e3c96d5c79523f636f0c3730f9f5"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_hp.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1864,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "937a11e1f4603eb58399b0badc394fd3af06ef7abd095d2d2b19267990c4bd29"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_mp.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1864,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5ebdca9a64abcfe9ef1fbf9d1695f166ecacd9f8191963039bf45483350e5fea"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_core_sheet.png",
+      "category": "既有來源",
+      "bytes": 1332630,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "6bda61f6aa7d5191fac0ae06d9c3088946f32cf3108a497d916c9d2adec97c14"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_brave.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2896,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "7dc7c1c6f492d97fcc4c02eaf00ce77d9ea13c9c718beafdcdfd0f0b246d945b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_frame.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2057,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "64244509dfd3f64eed9d26e492f2d6a69e1eda4ae0f4d29e56ec9b0839a4ff0e"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_hero.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2362,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "13cd2e28436dc7f1bac22802138a55b844d0143724cbc8ce343a49ec2a5b563c"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/joystick_base.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2161,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "517ecff1b528a1e985cf3dd7f46aa656bf0e82f2af77e013254331a8d04b9f76"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/joystick_knob.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2031,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6520d73800d08aab9c77164b1e02f614d38e4629a45fa263f634069390aa23e6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/minimap_frame.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1779,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "39008d831b2a9cfef8a5544cf9ce529e3ccab0692bc695e282fe8eb9a7369cc2"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/minimap_sheet.png",
+      "category": "既有來源",
+      "bytes": 1411399,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "5a9d0281a669fb235934d74ed5dba661a88378a1c55565aca98d23666410060f"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_dialog.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2216,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4bea184ae211f1059db58710c5635a603f0a4a8f81005b810e597fa9e1f07e95"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_popup.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1542448,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "9e03102946be684669423a23c6f995f46ad4c80ff209dc5694cc5305fa73f59d"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_popup.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2202,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "92b19dab39a31d2a645605a7c0cec3a0586b628b277e060f756a5ff863e923d0"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_quest.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 2202,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c1c9e8db1996c23a2a28b69922968a4edcf32ac90bd7017c78d3305599e577b7"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_sheet.png",
+      "category": "既有來源",
+      "bytes": 1134682,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "046754aa02a7131c018e046b25037c852d437de0e7acc00f61deac04409449ec"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_title_plate.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 855778,
+      "dimensions": "2172x724",
+      "mode": "RGBA",
+      "sha256": "73b6199e2680a861a5e6d67971c534e0b3ffef9e3691440146b8bd80a1c4c0be"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/portrait_brave.png",
+      "category": "既有來源",
+      "bytes": 1110602,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "bbb5b3596d8f82327237eae6c75ead0e999eb33437682991571d92dae9e4b03b"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/portrait_student.png",
+      "category": "既有來源",
+      "bytes": 1028299,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "923aeff59c4d0eacca1eadb62e8eac79a457f8a9269a0b9d5d87322206363483"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/resume.png",
+      "category": "本輪新增，尚未驗收",
+      "bytes": 1188140,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "ed0fe87920c11ebdc24c1502d5cadf43d2e348b702354f9326a911ebf1a4c6f6"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/tab_01.svg",
+      "category": "舊佔位 SVG",
+      "bytes": 1817,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "896a2420e4e81172e0c47ab2ff851994d8879aca70498c420a56443913f74cf6"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/kv_cover.webp",
+      "category": "網頁衍生檔",
+      "bytes": 101538,
+      "dimensions": "640x640",
+      "mode": "RGB",
+      "sha256": "9b1a345366e162e6457ead86ad41839355741c4901c0f07b921eafb196ac5d66"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/kv_main.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1622680,
+      "dimensions": "941x1672",
+      "mode": "RGB",
+      "sha256": "41893206c5760b2348b2fc3b58018cd5057a6503d345b5eabcb2caabdf0c51a4"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/kv_pug.webp",
+      "category": "網頁衍生檔",
+      "bytes": 1387344,
+      "dimensions": "1090x1443",
+      "mode": "RGBA",
+      "sha256": "8ca3fe0d64cbc6d87f7139428a924964410d9992c1db2c3df637d1a8060b5f10"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/pug_fullbody.webp",
+      "category": "網頁衍生檔",
+      "bytes": 136948,
+      "dimensions": "820x1025",
+      "mode": "RGBA",
+      "sha256": "7bfbbefb86361aa89fbaf5e175fe678e4c408d6da71b61bee26645d6cc94a361"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/pug_head.webp",
+      "category": "網頁衍生檔",
+      "bytes": 160944,
+      "dimensions": "900x900",
+      "mode": "RGBA",
+      "sha256": "b0e0ac9c59e6dd9df84af44a3cafab937217fb4fcdc4025c430cf6263eb05caa"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/runtime/pic/batch3/titles_fx_combo_v3.webp",
+      "category": "網頁衍生檔",
+      "bytes": 128022,
+      "dimensions": "1000x500",
+      "mode": "RGBA",
+      "sha256": "6497a1c3558a57d51926c6f0fa9f1ee9225dfabcedd3024bc3926f6f8eedb5a9"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_01.mp3",
+      "category": "歷史／封存",
+      "bytes": 616951,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "52c8a9597c7cae20f0bb27d1c139485b36882f48aee0bb5797841f57a9d7bf91"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_01.ogg",
+      "category": "歷史／封存",
+      "bytes": 597599,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4459df3f5417819318c5b251265c54857157f2cb423215b0dacb05b3ed292cf3"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_02.mp3",
+      "category": "歷史／封存",
+      "bytes": 1773652,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "784278efae0e0c09f6c6f4aa6727015c8feb9f8b516b8bc0f2b7301335ba98cb"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_02.ogg",
+      "category": "歷史／封存",
+      "bytes": 1491565,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "3f88893b314690b0f39a0c97c85d01984481513a6546061bc75dbe848a65cb36"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_entry.mp3",
+      "category": "歷史／封存",
+      "bytes": 616951,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "62781b5a6297a8c8ec898646f5af1980a489e142a7945cf5613c57102eee0cbf"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/music_192k/bgm_entry.ogg",
+      "category": "歷史／封存",
+      "bytes": 601550,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "38ea27960cabb4434fd7227fb3258902b4d5fa10281868dabe3cbb70b7913bbc"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/character/char_01.png",
+      "category": "歷史／封存",
+      "bytes": 2208656,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "3b1c806433eafd42fcfe933c426537d51372f818c927ce6a8386af013c1fd4de"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/character/pug_fullbody.png",
+      "category": "歷史／封存",
+      "bytes": 1627000,
+      "dimensions": "1122x1402",
+      "mode": "RGBA",
+      "sha256": "f060fe4b12b87f061f2ba44e99c79b7ad63d28a0cfebe34e6195eaeb754dbaa1"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/character/pug_head.png",
+      "category": "歷史／封存",
+      "bytes": 2090421,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "8713218de41ef7ad16d10003bf5cf656e683f0698b72725a7608450725670636"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/kv/kv_cover.png",
+      "category": "歷史／封存",
+      "bytes": 2312206,
+      "dimensions": "1254x1254",
+      "mode": "RGB",
+      "sha256": "6740de2e8a1d71f17f56a5bb44f24527682f8032acecc71c81de2745add6e00f"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/kv/kv_main.png",
+      "category": "歷史／封存",
+      "bytes": 2183673,
+      "dimensions": "941x1672",
+      "mode": "RGB",
+      "sha256": "bd275d153d9b3c178b476ce0b825e3c8fc543dc8efa785913b2bb7b451896582"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/kv/kv_pug.png",
+      "category": "歷史／封存",
+      "bytes": 2071642,
+      "dimensions": "1090x1443",
+      "mode": "RGBA",
+      "sha256": "2d8f356f7fad2ae1e9b85b38753a9e2c9510c54acc1e082e2ac3aace7ad95ca5"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/again.png",
+      "category": "歷史／封存",
+      "bytes": 93845,
+      "dimensions": "393x190",
+      "mode": "RGBA",
+      "sha256": "7e3e25c5ae65418e570d0c9d16ca4db39a23f9efdd117f1ce19038fa1d8d8453"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/gameover.png",
+      "category": "歷史／封存",
+      "bytes": 91446,
+      "dimensions": "393x165",
+      "mode": "RGBA",
+      "sha256": "5cc441e88e3b8b5b45b74a62e1bc9509bda4e8390a382697e14b1f6992c91c8b"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/home.png",
+      "category": "歷史／封存",
+      "bytes": 95318,
+      "dimensions": "393x197",
+      "mode": "RGBA",
+      "sha256": "248abd2bd7027805c10e93fc0498f43159f7282294a0efd9fca8a13b4c053fa9"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/how_to_play.png",
+      "category": "歷史／封存",
+      "bytes": 81291,
+      "dimensions": "393x157",
+      "mode": "RGBA",
+      "sha256": "f0e366a89e6a25bf370ebbcfee1189c04c1fd1261c049a89859fcd9ebee5e5a5"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/master_mode.png",
+      "category": "歷史／封存",
+      "bytes": 80596,
+      "dimensions": "393x151",
+      "mode": "RGBA",
+      "sha256": "031e6d10c50dc86ab5e7bb4282aa3ab5e1377376a31822603d6b325f5881f63b"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/miss.png",
+      "category": "歷史／封存",
+      "bytes": 110310,
+      "dimensions": "393x206",
+      "mode": "RGBA",
+      "sha256": "152523ffef8d8b7963165835ebfc150b1d15e843cbb345a12262e5ea4b42e440"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/option.png",
+      "category": "歷史／封存",
+      "bytes": 91534,
+      "dimensions": "393x182",
+      "mode": "RGBA",
+      "sha256": "4f2322c21b29ee7824e02e6d5ea44d36679fba5796e7d2513afc8bd3ed675400"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/perfect.png",
+      "category": "歷史／封存",
+      "bytes": 98319,
+      "dimensions": "393x227",
+      "mode": "RGBA",
+      "sha256": "20ffa9517494eaf0653fcc7c3f66aa27119eb00193ce149b188f077b7d90b04b"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/ready.png",
+      "category": "歷史／封存",
+      "bytes": 92925,
+      "dimensions": "393x188",
+      "mode": "RGBA",
+      "sha256": "560c6f7bc825d7ac3d2392e3637db6907b8a8d3e8fe8e15dbc6a25be3484592c"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/start.png",
+      "category": "歷史／封存",
+      "bytes": 91067,
+      "dimensions": "393x192",
+      "mode": "RGBA",
+      "sha256": "4d3ae96dc9554e04105781b238a8485dd623247b927a31a72ca2a68c19413b4e"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_01.png",
+      "category": "歷史／封存",
+      "bytes": 1057785,
+      "dimensions": "1254x1254",
+      "mode": "RGBA",
+      "sha256": "886b216ef9903d99b70f8ba7048e4885f1ac42854bce6b62fb87aded923e749e"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_again.png",
+      "category": "歷史／封存",
+      "bytes": 1963451,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "125b6104e7cc605cf3424978bad231103633ade2189fc28597be5b7618661cd2"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_atlas.png",
+      "category": "歷史／封存",
+      "bytes": 2767033,
+      "dimensions": "1536x1024",
+      "mode": "RGBA",
+      "sha256": "bf800298946a58200372e33f577006551f9719a0a6fc8fac43c13e2238a49c8a"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_combo.png",
+      "category": "歷史／封存",
+      "bytes": 2029984,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "8f95df958525131c2b107da123ca3c9b855cffeabb5f68418a4939069229d8dd"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_combo_v3.png",
+      "category": "歷史／封存",
+      "bytes": 1519514,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "e9583db43158fd8bdcf6cc71be83f1cfbc9b2c0255319e5ac139d7a84445531b"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_miss.png",
+      "category": "歷史／封存",
+      "bytes": 1944756,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "42a36475a654ef9946a721f62641a89889e92b78fd254b772013dd8f73fffe99"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_perfect.png",
+      "category": "歷史／封存",
+      "bytes": 2134698,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "86fc0f4e79c7a67ef495a8229c0aced08f7f51326ae5c2b96a6344c7c1852e6e"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_ready.png",
+      "category": "歷史／封存",
+      "bytes": 1884202,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "967e3ba47dbff902a6778c76f0adb30a6409a044bf92b9acda806d3cbdd6c380"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/titles_fx_your_turn.png",
+      "category": "歷史／封存",
+      "bytes": 1923593,
+      "dimensions": "1774x887",
+      "mode": "RGBA",
+      "sha256": "137ab88599582d40cd0dead68d3be3482e5bc8c26de0c65e694b7d8078c64e81"
+    },
+    {
+      "path": "_archive/01_memory_crash/assets/source/pic/titles/your_turn.png",
+      "category": "歷史／封存",
+      "bytes": 91194,
+      "dimensions": "393x171",
+      "mode": "RGBA",
+      "sha256": "88d373f472dfd3735449cde8b35ea4fff61ac4b6b8b799e5f007a9fa62019b41"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_boss.wav",
+      "category": "歷史／封存",
+      "bytes": 10263316,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "1ea3f14bc462a392f1d2d5d924283e67959f616720d46a4ad25de9d027f6163a"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_brave.wav",
+      "category": "歷史／封存",
+      "bytes": 10263316,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4be94a5c58e59291415fdbbdecd318f654774437c40631f6fb6ca2fbe41af14f"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_campus.wav",
+      "category": "歷史／封存",
+      "bytes": 10584044,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "dd768c5eb22b4d498c2a4e51786317f3de373bb38241fa0881a8c5066181d157"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_credits.wav",
+      "category": "歷史／封存",
+      "bytes": 13550730,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f2e4d395976c604bc3351ca8447903e086e533a6d9fad9cd64ae923e8981dc4e"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_defeat.wav",
+      "category": "歷史／封存",
+      "bytes": 502806,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "c9691f9cc5480785a35a147932f32109ec8cace7f22c2d308d1a37c8e13eb754"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_ending.wav",
+      "category": "歷史／封存",
+      "bytes": 12709450,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "0d548a3aa189f32d8c6e3f900b68cf9e86b90edfdb2676d76671c14510d33bca"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_office.wav",
+      "category": "歷史／封存",
+      "bytes": 11289678,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "293d8a4d1e3ad230e47454955052d6e10ab3d2cbacb003e2a6723cddb3db7359"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_office_mute.wav",
+      "category": "歷史／封存",
+      "bytes": 6209358,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "70d979ab674ecc798d81548bbaf4c891a13110ecf99fdef5b6e17ed59f8c7af7"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_1_0.wav",
+      "category": "歷史／封存",
+      "bytes": 10957630,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "21759a610d0ff1f4855014ffd8b22e535a5dad2fd837d687b98aa91bd67cb7dc"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_1_2.wav",
+      "category": "歷史／封存",
+      "bytes": 11598982,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "541a8802d5dc2cb782433d0b39cd9973c281b01e48e9aa108dc92d85c5497ef4"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_1_3.wav",
+      "category": "歷史／封存",
+      "bytes": 11289678,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "de3ee984dbb1d803c4537c715b37833292f29e69029c894c27613de4635e46e0"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_1_4.wav",
+      "category": "歷史／封存",
+      "bytes": 11491278,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "a3bb1fb4cddcf76b26608a2a0040fd83e21026341fc6fbb73f3bb8282dd04f7c"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_2_1.wav",
+      "category": "歷史／封存",
+      "bytes": 11598982,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f0525b26b18dbf8e1bd04d40d52150e066124a214d139e4fe475f14bbbd1ab81"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_2_2.wav",
+      "category": "歷史／封存",
+      "bytes": 10984550,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f626f4452887b1f4ffba0ccdb456c4684cafba9b12f8b2541c7d49eda26a0c45"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_3_1.wav",
+      "category": "歷史／封存",
+      "bytes": 11424078,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "474b17abc7a372d0499b4ba636c6908ec31f5375b01db03cb4b2ffc20f877a9d"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_3_2.wav",
+      "category": "歷史／封存",
+      "bytes": 11245578,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "11e088097fd837202715f1ef2d9b60b7065cd593d36bc200bc0728b1a7d2fd75"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_3_3.wav",
+      "category": "歷史／封存",
+      "bytes": 11072570,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "205acade388f61d2597eafe276d311307b74d8d8804d3fc8e5227ab7dcbff9c5"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_3_4.wav",
+      "category": "歷史／封存",
+      "bytes": 11289678,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6bddb841be7a4b6ef6831e32d00762d4ff663863a2d0fe61361f0c1ce5cde83e"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_3_5.wav",
+      "category": "歷史／封存",
+      "bytes": 11072570,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "95fc47b3da0b4fb8b49fd9bc1f48bb113e20153c8f10af75c59a197d1473f81f"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_stage_4_1.wav",
+      "category": "歷史／封存",
+      "bytes": 17179902,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "4ed9d390395cc76593bba4dd754a75526a3f8678bae7d1e48605975666fc6b48"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_talk.wav",
+      "category": "歷史／封存",
+      "bytes": 10584078,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "e7535b3b4c08e13468933dac070d94c24311d3ef179ecc5f3e37921e8c52fc5f"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_title.wav",
+      "category": "歷史／封存",
+      "bytes": 10752044,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "71e5f01d52c7a97df474670f1e3523df2fc6ac17e505e57f5ec07182859c1adc"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_transform.wav",
+      "category": "歷史／封存",
+      "bytes": 2639982,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "152a6df8a260b718f686f7d036d401823dee5a7383b987f5af0073b50ffc8de7"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/bgm_wild.wav",
+      "category": "歷史／封存",
+      "bytes": 11598982,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "f0525b26b18dbf8e1bd04d40d52150e066124a214d139e4fe475f14bbbd1ab81"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/jingle_clear.wav",
+      "category": "歷史／封存",
+      "bytes": 924214,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6893530732f9e00380992eb78f5736f8c3548cdddf2992cbcd614beec515f68d"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/theme_braveguy_demo.wav",
+      "category": "歷史／封存",
+      "bytes": 1601450,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "af81a88894590c24abb89340e50c00f6d8195a7e495f3d56fe434240cda77b2a"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/v1/bgm_boss.wav",
+      "category": "歷史／封存",
+      "bytes": 10705730,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "6c4bd41967cd50666cd953a6d6606d6e34f2ed80ff6883b15f5e0b2d1cd97021"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/v1/bgm_brave.wav",
+      "category": "歷史／封存",
+      "bytes": 5773166,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "ac66b0511c029632ded9e2bf53a093e5a3c1dbc351c17eac238953416ea4e5b7"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/v1/bgm_campus.wav",
+      "category": "歷史／封存",
+      "bytes": 10584078,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "412a6c6ab50ca1787d5ef5349e7820746fc3a91e80ee6eb01d5913b4174b1b3e"
+    },
+    {
+      "path": "_archive/02_xianxia_battle/music/v1/bgm_title.wav",
+      "category": "歷史／封存",
+      "bytes": 10584078,
+      "dimensions": "",
+      "mode": "",
+      "sha256": "5cc7fb9d45a43e6adcd242fe4df3cb89b0cc8257cf4a0fca5f1ce17e6f518e62"
+    },
+    {
+      "path": "_archive/assets/runtime/pic/banner_02.webp",
+      "category": "網頁衍生檔",
+      "bytes": 97932,
+      "dimensions": "1600x533",
+      "mode": "RGB",
+      "sha256": "77820c2501cfb6ed27415046418bd29279d85f07a3bedaeb84087cea266eb2b8"
+    },
+    {
+      "path": "_archive/assets/runtime/pic/banner_03.webp",
+      "category": "網頁衍生檔",
+      "bytes": 43542,
+      "dimensions": "2000x704",
+      "mode": "RGB",
+      "sha256": "56bff2c2749e15e2c1120ba3249322e2acedf10dbf8caf2f4f1cc11f1cef822e"
+    },
+    {
+      "path": "_archive/assets/source/pic/banner/banner_02.png",
+      "category": "歷史／封存",
+      "bytes": 2055448,
+      "dimensions": "2172x724",
+      "mode": "RGB",
+      "sha256": "234b7147fe9264c160bcd2a8ed9fd9fdd2aab3446697968c1a0d28a66b90ddad"
+    },
+    {
+      "path": "_archive/assets/source/pic/banner/banner_03.png",
+      "category": "歷史／封存",
+      "bytes": 413645,
+      "dimensions": "2000x704",
+      "mode": "RGB",
+      "sha256": "9b2caf3428f480727cc5783c1ac05e1a73be9d5c3f5e98b741663f8c1e97451b"
+    },
+    {
+      "path": "assets/preview/hub_banner_desktop.png",
+      "category": "既有來源",
+      "bytes": 688428,
+      "dimensions": "1440x1080",
+      "mode": "RGB",
+      "sha256": "5c8f77aad97d74489db09b4ad78643f6c423acf7f758c897b471fa6b12848b6a"
+    },
+    {
+      "path": "assets/preview/hub_banner_mobile.png",
+      "category": "既有來源",
+      "bytes": 217696,
+      "dimensions": "390x1054",
+      "mode": "RGB",
+      "sha256": "af1b8fbb903a1b61cd8a632df7a88e252799a7efdf5a889b47dcbd5978da5035"
+    },
+    {
+      "path": "assets/preview/hub_banner_thai.png",
+      "category": "既有來源",
+      "bytes": 226795,
+      "dimensions": "390x1109",
+      "mode": "RGB",
+      "sha256": "0d4f1d04bb8b8552eb700076486be3d1b60ac63c2b93089892657cee72861697"
+    },
+    {
+      "path": "assets/preview/hub_compact_desktop.png",
+      "category": "既有來源",
+      "bytes": 601979,
+      "dimensions": "1440x900",
+      "mode": "RGB",
+      "sha256": "a1af31fcd5332c007d27ab2d629a9d296147d04122cd3c227c9aa6589fee5ccc"
+    },
+    {
+      "path": "assets/preview/hub_compact_mobile.png",
+      "category": "既有來源",
+      "bytes": 168614,
+      "dimensions": "390x844",
+      "mode": "RGB",
+      "sha256": "039f60c779c9dcf35f82e1839fb2ecedb8627c09d6b2c8422d4195b9a79ea72d"
+    },
+    {
+      "path": "assets/runtime/pic/banner_01.webp",
+      "category": "網頁衍生檔",
+      "bytes": 134066,
+      "dimensions": "2000x667",
+      "mode": "RGB",
+      "sha256": "910586ee567e919886be9a32b3de895c8207050977839129908fb7fc44683556"
+    },
+    {
+      "path": "assets/source/pic/banner/banner_01.png",
+      "category": "既有來源",
+      "bytes": 1820990,
+      "dimensions": "2172x724",
+      "mode": "RGB",
+      "sha256": "6c9f12d786043d16081766514fd9bdd00e8c1f13718267de22537e7fbfc4b212"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-10-game02-boss.png",
+      "category": "既有來源",
+      "bytes": 178760,
+      "dimensions": "960x540",
+      "mode": "RGB",
+      "sha256": "d33f23b753095d13234acd5bb46affa347a12afda9d4db9e24253239175b128b"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-10-game02-prototype.png",
+      "category": "既有來源",
+      "bytes": 640103,
+      "dimensions": "2560x1440",
+      "mode": "RGB",
+      "sha256": "27b3f158954291b64d36556b11059a266c5f18af7ca32fad53a8427f1d2f8a84"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-braveguy-d1-quake.png",
+      "category": "既有來源",
+      "bytes": 433420,
+      "dimensions": "2560x1440",
+      "mode": "RGB",
+      "sha256": "cd6095078da31ef2f0f32a9e20231f5bf5259732a38375028f6883ade26e0625"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-braveguy-d1-student.png",
+      "category": "既有來源",
+      "bytes": 123509,
+      "dimensions": "1280x720",
+      "mode": "RGB",
+      "sha256": "fb7fffb8a363ca152f629b54de64ba8135f5ae16de916af90d6972ae97d89fa1"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-braveguy-d1-ult.png",
+      "category": "既有來源",
+      "bytes": 394853,
+      "dimensions": "2560x1440",
+      "mode": "RGB",
+      "sha256": "028cdd5441a2d34d4cbfc8a35a5e39028808d26141b931b7a63ce999b8709972"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-game02-art-sheet.png",
+      "category": "既有來源",
+      "bytes": 416845,
+      "dimensions": "1580x900",
+      "mode": "RGB",
+      "sha256": "9a7d2431b7a576cf4118b7b49515d3a356a7f9a874e3e6372325328fe6cec49e"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-game02-simple-art.png",
+      "category": "既有來源",
+      "bytes": 660716,
+      "dimensions": "2560x1440",
+      "mode": "RGB",
+      "sha256": "f6034915f18f212b0f64a751cbb73b6abf555f2dfb574ff6a30ce7d876bf27d6"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-game02-start.png",
+      "category": "既有來源",
+      "bytes": 294050,
+      "dimensions": "2560x1440",
+      "mode": "RGB",
+      "sha256": "8599eb7529f8e87a8f68547ccc772ceb6aeb2e00f8fef79285bf1b8b905e7c24"
+    },
+    {
+      "path": "docs/handoffs/img/2026-11-11-hub-entry.png",
+      "category": "既有來源",
+      "bytes": 463534,
+      "dimensions": "2400x958",
+      "mode": "RGB",
+      "sha256": "af18dc004a9d6df56adcdc79e69dfda220daec6d2f1c308336b1aafd7a7c63c4"
+    }
+  ]
+}

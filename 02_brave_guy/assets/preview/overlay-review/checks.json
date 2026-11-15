@@ -1,0 +1,421 @@
+{
+  "results": [
+    {
+      "width": 390,
+      "height": 844,
+      "view": "stages",
+      "widths": [
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330,
+        330
+      ],
+      "card": [
+        0,
+        0,
+        390,
+        844
+      ],
+      "scrollable": false,
+      "titleStroke": "1.5px"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "pause",
+      "widths": [
+        270,
+        270,
+        270,
+        270
+      ],
+      "card": [
+        12,
+        201.21875,
+        366,
+        441.546875
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "result",
+      "widths": [
+        270,
+        270,
+        270,
+        270
+      ],
+      "card": [
+        12,
+        99.828125,
+        366,
+        644.328125
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "defeat",
+      "widths": [
+        270,
+        270,
+        270,
+        270
+      ],
+      "card": [
+        12,
+        113.4375,
+        366,
+        617.125
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "ending",
+      "widths": [
+        270,
+        270,
+        270
+      ],
+      "card": [
+        12,
+        153.03125,
+        366,
+        537.9375
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "view": "stages",
+      "widths": [
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243,
+        243
+      ],
+      "card": [
+        0,
+        0,
+        844,
+        390
+      ],
+      "scrollable": false,
+      "titleStroke": "1.5px"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "view": "pause",
+      "widths": [
+        556,
+        556,
+        556,
+        556
+      ],
+      "card": [
+        112,
+        32,
+        620,
+        326
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "view": "result",
+      "widths": [
+        556,
+        556,
+        556,
+        556
+      ],
+      "card": [
+        112,
+        8,
+        620,
+        374
+      ],
+      "scrollable": true,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "view": "defeat",
+      "widths": [
+        556,
+        556,
+        556,
+        556
+      ],
+      "card": [
+        112,
+        8,
+        620,
+        374
+      ],
+      "scrollable": true,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "view": "ending",
+      "widths": [
+        556,
+        556,
+        556
+      ],
+      "card": [
+        112,
+        8,
+        620,
+        374
+      ],
+      "scrollable": true,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "stages",
+      "widths": [
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279,
+        279
+      ],
+      "card": [
+        0,
+        0,
+        1280,
+        800
+      ],
+      "scrollable": false,
+      "titleStroke": "1.5px"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "pause",
+      "widths": [
+        364,
+        364,
+        364,
+        364
+      ],
+      "card": [
+        410,
+        179.21875,
+        460,
+        441.546875
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "result",
+      "widths": [
+        364,
+        364,
+        364,
+        364
+      ],
+      "card": [
+        410,
+        77.828125,
+        460,
+        644.328125
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "defeat",
+      "widths": [
+        364,
+        364,
+        364,
+        364
+      ],
+      "card": [
+        410,
+        112.421875,
+        460,
+        575.140625
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "ending",
+      "widths": [
+        364,
+        364,
+        364
+      ],
+      "card": [
+        410,
+        145.421875,
+        460,
+        509.140625
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "view": "stages",
+      "widths": [
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272,
+        272
+      ],
+      "card": [
+        0,
+        0,
+        320,
+        568
+      ],
+      "scrollable": false,
+      "titleStroke": "1.5px"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "view": "pause",
+      "widths": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "card": [
+        12,
+        76.21875,
+        296,
+        415.546875
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "view": "result",
+      "widths": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "card": [
+        12,
+        12,
+        296,
+        544
+      ],
+      "scrollable": true,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "view": "defeat",
+      "widths": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "card": [
+        12,
+        12,
+        296,
+        544
+      ],
+      "scrollable": true,
+      "titleStroke": "0px"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "view": "ending",
+      "widths": [
+        240,
+        240,
+        240
+      ],
+      "card": [
+        12,
+        28.03125,
+        296,
+        511.9375
+      ],
+      "scrollable": false,
+      "titleStroke": "0px"
+    }
+  ],
+  "errors": []
+}

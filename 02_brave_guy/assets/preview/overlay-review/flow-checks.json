@@ -1,0 +1,78 @@
+{
+  "clears": [
+    {
+      "stage": 0,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 1,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 2,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 3,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 4,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 5,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 6,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 7,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 8,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 9,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 10,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 11,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 12,
+      "next": true,
+      "equal": true
+    },
+    {
+      "stage": 13,
+      "next": false,
+      "equal": true
+    }
+  ],
+  "errors": [],
+  "pauseResume": true,
+  "retry": true,
+  "language": true
+}

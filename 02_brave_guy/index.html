@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="css/ui-art.css?v=20261115f">
 <link rel="stylesheet" href="css/menu-art.css?v=20261114f">
 <link rel="stylesheet" href="css/panel-art.css?v=20261114g">
+<link rel="stylesheet" href="css/overlay-art.css?v=20261115a">
+<link rel="stylesheet" href="css/feedback-art.css?v=20261115b">
+<link rel="stylesheet" href="css/hud-art.css?v=20261115b">
+<link rel="preload" as="image" href="assets/source/pic/ui/guilt_explode_sheet.png">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js">
@@ -80,6 +84,7 @@
 <div id="dialog" class="dialog" hidden>
   <div class="dlg-box">
     <b id="dlg-name"></b>
+    <img id="dlg-bingo" src="assets/source/pic/ui/bingo_card.png" alt="" aria-hidden="true" hidden>
     <p id="dlg-text"></p>
     <span class="dlg-next">▼</span>
     <button id="dlg-skip" data-i18n="跳過">跳過</button>
@@ -143,7 +148,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261115f';
+    s.src = 'js/main.js?v=20261115g';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

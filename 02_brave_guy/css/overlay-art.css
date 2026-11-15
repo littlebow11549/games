@@ -1,0 +1,102 @@
+/* Shared illustrated overlays. Original PNGs remain unmodified. */
+.game-art #pause-menu,
+.game-art #overlay.result{padding:12px;background:radial-gradient(ellipse at 50% 35%,#204c3480,#07110fe8);backdrop-filter:blur(4px)}
+.game-art #pause-menu .card,
+.game-art #overlay.result .card{
+  width:min(100%,460px);max-width:460px;max-height:calc(100dvh - 24px);overflow:auto;
+  display:flex;flex-direction:column;align-items:stretch;gap:12px;
+  padding:24px 28px 28px;border:20px solid transparent;border-radius:30px;outline:0;
+  border-image:url('../assets/source/pic/ui/panel_popup.png') 160 / 24px / 0 stretch;
+  background:#173522;background-clip:padding-box;box-shadow:0 18px 55px #0009;
+}
+.game-art #pause-menu .card h1,
+.game-art #overlay.result .card h1{
+  margin:0 0 4px;min-height:78px;padding:20px 8px 16px;
+  display:grid;place-items:center;background:url('../assets/source/pic/ui/panel_title_plate.png') center/100% 100% no-repeat;
+  color:#172114;font-size:clamp(25px,5vw,34px);line-height:1.2;letter-spacing:.08em;
+  -webkit-text-stroke:0;text-shadow:none;font-weight:900;
+}
+.game-art #pause-menu .card>button,
+.game-art #overlay.result .card>button{
+  display:block;position:relative;flex-shrink:0;align-self:stretch;width:100%;max-width:none;min-width:0;
+  min-height:54px;margin:0;padding:12px 20px;border:0;border-radius:18px;
+  background:#f6c21c;color:#172114;box-shadow:0 4px 0 #a52e18,0 0 0 2px #111;
+  font-size:16px;line-height:1.35;white-space:normal;overflow-wrap:anywhere;
+  -webkit-text-stroke:0;text-shadow:none;
+}
+.game-art #pause-menu .card>button.ghost,
+.game-art #overlay.result .card>button.ghost{background:#fff9e5;color:#172114;box-shadow:0 4px 0 #347c39,0 0 0 2px #111}
+.game-art #pause-menu .card>button:not(.lang-btn){padding-left:52px;padding-right:52px}
+.game-art #pause-menu .card>button::before{left:14px}
+.game-art #pause-menu .card>button:active,
+.game-art #overlay.result .card>button:active{transform:translateY(2px);box-shadow:0 2px 0 #172114}
+.game-art #pause-menu .card>button:focus-visible,
+.game-art #overlay.result .card>button:focus-visible,
+.game-art #overlay .stage:focus-visible{outline:3px solid white;outline-offset:4px}
+.game-art #pause-menu .card>.lang-btn,
+.game-art #overlay.result .card>.lang-btn{width:100%;margin:4px 0 0;min-height:44px!important;padding:5px!important;box-shadow:none;background:#0b2519;color:#fff;border:2px solid #80ca50}
+.game-art #pause-menu .card>.lang-btn::before{display:none}
+.game-art #overlay.result #ov-text{font-size:16px;line-height:1.8;margin:2px 0;padding:12px;background:#081e15a6;border-radius:10px;color:#fff7dd}
+.game-art #overlay.result #ov-load{font-size:14px!important;opacity:1;color:#c9e6a9;margin:0 0 4px}
+.game-art #overlay.result .back{margin:0;font-size:13px}
+.game-art #overlay.result[data-outcome="defeat"]{background:radial-gradient(ellipse at 50% 35%,#573364a0,#100d1be8)}
+.game-art #overlay.result[data-outcome="ending"]{background:radial-gradient(ellipse at 50% 30%,#73702a99,#0b281ee8)}
+/* Existing panel atlas supplies stage cards; state labels remain live text. */
+.game-art #overlay.menu.stages{background:#0b211a}
+.game-art #overlay.menu.stages .card{padding:16px max(20px,4vw) 30px}
+.game-art #overlay.menu.stages #ov-menu{width:180px;max-width:100%;min-width:0;min-height:44px;margin-bottom:8px}
+.game-art #overlay.menu #ov-stages h4{
+  min-width:220px;max-width:100%;padding:16px 30px;margin:18px 0 10px;
+  background:url('../assets/source/pic/ui/panel_title_plate.png') center/100% 100% no-repeat;
+  border:0;box-shadow:none;transform:none;color:#172114;letter-spacing:.03em;font-size:18px;
+}
+.game-art #overlay.menu .stage-row{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px}
+.game-art #overlay.menu .card button.stage{
+  width:100%;min-width:0;min-height:106px;padding:20px 20px 18px 64px;
+  background:#fff5db url('../assets/source/pic/ui/panel_sheet.png') 2.667% 11.236%/241.509% 208.98% no-repeat;
+  border:0;border-radius:13px;box-shadow:0 5px 0 #030b08;gap:4px;
+}
+.game-art #overlay.menu .card button.stage::before{left:12px;top:25px;bottom:25px;width:40px;border:2px solid #142719;border-radius:9px;clip-path:none}
+.game-art #overlay.menu .card button.stage i{left:12px;width:40px;font-size:14px}
+.game-art #overlay.menu .card button.stage b{font-size:17px;padding-right:24px}
+.game-art #overlay.menu .card button.stage small{font-size:12px;color:#36523b}
+.game-art #overlay.menu .card button.stage em{font-size:11px;color:#8c3025}
+.game-art #overlay.menu .card button.stage.current{outline:3px solid #ffdd45;outline-offset:2px;box-shadow:0 6px 0 #ab381d}
+.game-art #overlay.menu .card button.stage.done::after{right:14px;top:14px;background:#fff5db}
+.game-art #overlay.menu .card button.stage:disabled{opacity:.62;filter:grayscale(1)}
+/* Keep every control accessible on short landscape screens. */
+@media(max-height:480px) and (orientation:landscape){
+ .game-art #pause-menu .card,.game-art #overlay.result .card{width:min(100%,620px);max-width:620px;padding:10px 18px 14px;gap:9px;border-width:14px;max-height:calc(100dvh - 16px)}
+ .game-art #pause-menu .card h1,.game-art #overlay.result .card h1{min-height:52px;padding:10px;font-size:24px;margin:0}
+ .game-art #pause-menu .card>button,.game-art #overlay.result .card>button{min-height:44px;padding-top:8px;padding-bottom:8px;font-size:14px}
+ .game-art #overlay.result #ov-text{padding:6px;margin:0;font-size:14px}
+}
+@media(max-width:380px){
+ .game-art #pause-menu .card,.game-art #overlay.result .card{padding:16px 12px 18px;border-width:16px}
+ .game-art #pause-menu .card>button,.game-art #overlay.result .card>button{font-size:14px}
+ .game-art #overlay.menu.stages .card{padding-left:14px;padding-right:14px}
+}
+@media(prefers-reduced-motion:reduce){.game-art .card *{transition:none!important}}
+/* Six-state atlas: 690×260 viewing windows, originals stay intact. */
+.game-art #pause-menu .card>button:not(.lang-btn),
+.game-art #overlay.result .card>button:not(.lang-btn){
+ background-color:transparent;background-image:url('../assets/source/pic/ui/btn_text.png');
+ background-size:314.783% 278.462%;background-position:.81% 16.16%;background-repeat:no-repeat;box-shadow:none;
+}
+.game-art #pause-menu .card>button.ghost:not(.lang-btn),
+.game-art #overlay.result .card>button.ghost:not(.lang-btn){background-position:.81% 92.67%}
+.game-art #pause-menu .card>button:not(.lang-btn):active,
+.game-art #overlay.result .card>button:not(.lang-btn):active{background-position:49.66% 16.16%;box-shadow:none}
+.game-art #pause-menu .card>button.ghost:not(.lang-btn):active,
+.game-art #overlay.result .card>button.ghost:not(.lang-btn):active{background-position:49.66% 92.67%}
+.game-art #pause-menu .card>button:not(.lang-btn):disabled,
+.game-art #overlay.result .card>button:not(.lang-btn):disabled{background-position:98.5% 16.16%;opacity:.7}
+.game-art #overlay.result #ov-text.result-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;background:none;padding:0}
+.result-stage{grid-column:1/-1;font-size:16px;line-height:1.5;padding:2px 0 6px}
+.result-metric{display:flex;flex-direction:column;padding:10px 6px;background:#081e1599;border:1px solid #74ad534d;border-radius:10px}
+.result-metric small{font-size:12px;color:#d0e4b8}
+.result-metric b{font-size:28px;line-height:1.3;color:#ffdf59;font-variant-numeric:tabular-nums}
+.game-art #menu-art .art{background-image:url('../assets/source/pic/branding/menu_keyart_01.png');background-position:center;background-size:cover}
+@media(orientation:portrait){
+ .game-art #menu-art .art{background-image:url('../assets/source/pic/branding/menu_keyart_portrait_01.png');background-position:center top;background-size:100% auto;background-color:#07301d}
+}

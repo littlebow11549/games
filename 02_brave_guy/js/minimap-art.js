@@ -1,6 +1,8 @@
 // Native atlas regions. A failed/unfinished load leaves the original vector map usable.
 export const MINIMAP_REGIONS = {
   frame: [58, 26, 646, 646],
+  ground: [830,24,646,646],
+  bear: [1236,744,240,240],
   enemy: [100, 808, 124, 124],
   elite: [334, 780, 184, 184],
   boss: [602, 724, 270, 270],
