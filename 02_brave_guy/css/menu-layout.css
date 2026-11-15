@@ -40,3 +40,35 @@
  .game-art .overlay.menu:not(.stages) .card>.logo{max-height:16vh}
  .game-art .overlay.menu:not(.stages) #ov-btn,.game-art .overlay.menu:not(.stages) #ov-menu{width:74vw;min-height:44px}
 }
+
+/* A single-screen portrait title: main action, two paired action rows, difficulty. */
+@media(orientation:portrait){
+ .game-art .overlay.menu:not(.stages) .card{
+  --menu-logo:clamp(56px,12vh,110px);
+  --menu-art-height:calc(100dvh - 96px - 34px - 30px - var(--menu-logo) - 194px);
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:minmax(0,1fr) var(--menu-logo) 48px 44px 44px 58px;
+  gap:6px 12px;align-items:center;justify-items:center;
+  padding:96px 18px 34px;overflow:hidden;
+ }
+ .game-art .overlay.menu:not(.stages) .card::before{content:'';grid-area:1/1/2/3}
+ .game-art .overlay.menu:not(.stages) #menu-art .frame{top:96px;height:calc(var(--menu-art-height) + 22px)}
+ .game-art .overlay.menu:not(.stages) #menu-art .art{background-size:cover;background-position:center 42%}
+ .game-art .overlay.menu:not(.stages) .card>.logo{grid-area:2/1/3/3;max-height:100%;width:auto;height:100%;max-width:90%;margin:0;object-fit:contain}
+ .game-art .overlay.menu:not(.stages) #ov-btn{grid-area:3/1/4/3}
+ .game-art .overlay.menu:not(.stages) #ov-menu{grid-area:4/1/5/2}
+ .game-art .overlay.menu:not(.stages) #ov-run{grid-area:4/2/5/3}
+ .game-art .overlay.menu:not(.stages) #ov-opening{grid-area:5/1/6/2}
+ .game-art .overlay.menu:not(.stages) #ov-replay{grid-area:5/2/6/3}
+ .game-art #overlay.menu:not(.stages) .card>:is(#ov-btn,#ov-menu,#ov-run,#ov-opening,#ov-replay){
+  width:100%;min-width:0;max-width:none;height:100%;min-height:0;
+  margin:0!important;padding:4px 8px;font-size:clamp(11px,3.1vw,17px);line-height:1.2;align-self:stretch;
+ }
+ .game-art #overlay.menu:not(.stages) .card>#ov-btn{font-size:clamp(15px,4vw,22px)}
+ .game-art .overlay.menu:not(.stages) #ov-diff{grid-area:6/1/7/3;margin:0;align-self:center;transform:none;gap:16px}
+ .game-art .overlay.menu:not(.stages) .card button.diff{font-size:11px;width:70px;gap:0}
+ .game-art .overlay.menu:not(.stages) .card button.diff::before{width:36px;height:36px}
+ /* Angel dialogue already appears in the footer ticker; avoid a duplicate bubble. */
+ .game-art .overlay.menu:not(.stages) #menu-bubble,
+ .game-art .overlay.menu:not(.stages) #ov-load{display:none}
+}
