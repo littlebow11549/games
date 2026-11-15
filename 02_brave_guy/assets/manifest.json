@@ -10,9 +10,9 @@
     "boss": null
   },
   "audio": {
-    "bgm_battle": "assets/source/music/bgm_campus.ogg",
+    "bgm_battle": "assets/source/music/bgm_battle.ogg",
     "bgm_boss": "assets/source/music/bgm_boss.ogg",
-    "bgm_victory": "assets/source/music/jingle_clear.ogg",
+    "bgm_victory": "assets/source/music/bgm_victory.ogg",
     "bgm_stage_1_0": "assets/source/music/bgm_stage_1_0.ogg",
     "bgm_stage_1_1": "assets/source/music/bgm_campus.ogg",
     "bgm_stage_1_2": "assets/source/music/bgm_stage_1_2.ogg",
@@ -20,7 +20,7 @@
     "bgm_stage_1_4": "assets/source/music/bgm_stage_1_4.ogg",
     "bgm_stage_2_1": "assets/source/music/bgm_stage_2_1.ogg",
     "bgm_stage_2_2": "assets/source/music/bgm_stage_2_2.ogg",
-    "bgm_stage_3_0": "assets/source/music/bgm_office_mute.ogg",
+    "bgm_stage_3_0": "assets/source/music/bgm_stage_3_0.ogg",
     "bgm_stage_3_1": "assets/source/music/bgm_stage_3_1.ogg",
     "bgm_stage_3_2": "assets/source/music/bgm_stage_3_2.ogg",
     "bgm_stage_3_3": "assets/source/music/bgm_stage_3_3.ogg",
