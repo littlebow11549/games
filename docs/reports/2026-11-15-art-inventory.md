@@ -1,5 +1,7 @@
 # 美術庫存 × Claude 需求 × 玩家畫面完成度
 
+> 後續製作請優先使用[美術來源對照](2026-11-15-art-source-ledger.md)。本頁是初次盤點快照，不能直接作生圖清單。
+
 盤點基準：遠端 `3228adf`；本輪新圖另列。掃描全 repo 555 個媒體檔（含首頁、第一款遊戲、來源、衍生與歷史版本），逐檔路徑、尺寸、模式、SHA256 見 [CSV](2026-11-15-assets-files.csv)，分支證據見 [JSON](2026-11-15-assets-audit.json)。第二款遊戲原有 103 張來源 PNG，本輪新增 17 張；檔案數不等於需求完成件數。
 
 需求依據：`02_brave_guy/assets/ASSETS.md`、`ART_OUTSTANDING_2026-11-15.md`、`MODELS_3D.md`、最新交接；接入依據：index.html、CSS、main.js、manifest。這份庫存不能把「沒有獨立檔名」等同「沒有做」，也不能把「有圖」等同「玩家畫面已完成」。
