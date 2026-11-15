@@ -23,3 +23,20 @@
 .game-art .overlay.menu .card>#menu-art{z-index:-1;pointer-events:none}
 .game-art .overlay>#menu-ticker{z-index:2;pointer-events:none}
 .game-art .overlay:not(.menu)>#menu-ticker{display:none}
+
+/* Keep the two primary actions ahead of optional replay/challenge actions. */
+.game-art .overlay.menu:not(.stages) .card{pointer-events:auto}
+.game-art .overlay.menu:not(.stages) .card>.logo{order:-3}
+.game-art .overlay.menu:not(.stages) #ov-btn{order:-2}
+.game-art .overlay.menu:not(.stages) #ov-menu{order:-1}
+/* Full-width language rail, with three equal language targets. */
+.game-art .overlay.menu:not(.stages) .card>.lang-btn{
+ left:12px;right:12px;top:44px;width:calc(100% - 24px);max-width:none;
+ grid-template-columns:30px repeat(3,minmax(0,1fr));
+}
+@media(orientation:portrait){
+ .game-art .overlay.menu:not(.stages) #menu-art .frame{top:96px;height:34vh}
+ .game-art .overlay.menu:not(.stages) .card{padding-top:calc(96px + 28vh);padding-bottom:calc(48px + var(--safe-b))}
+ .game-art .overlay.menu:not(.stages) .card>.logo{max-height:16vh}
+ .game-art .overlay.menu:not(.stages) #ov-btn,.game-art .overlay.menu:not(.stages) #ov-menu{width:74vw;min-height:44px}
+}
