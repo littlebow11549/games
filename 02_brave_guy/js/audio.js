@@ -165,7 +165,7 @@ export class GameAudio {
     if(this.sfxBuffers.has(name))return Promise.resolve();
     const promise = (async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url + (url.includes('?') ? '&' : '?') + 'v=20261115hot');
         if (!response.ok) throw new Error('SFX HTTP ' + response.status);
         const data = await response.arrayBuffer();
         const buffer = await this.ctx.decodeAudioData(data);
