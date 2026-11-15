@@ -1,0 +1,55 @@
+/* Existing lock switch stays intact; the adjacent arrows cycle targets. */
+.game-art .act.cycle-lock{right:194px;bottom:172px;width:44px;height:44px;border-radius:50%;color:#ffe974;background:#173c20!important;border:2px solid #c9e368;box-shadow:0 2px 0 #061b0a;display:grid;place-items:center}
+.game-art .act.cycle-lock svg{width:34px;height:34px;pointer-events:none}
+.game-art .act.cycle-lock:disabled{opacity:.45;filter:grayscale(1)}
+.word-art{display:inline-block;width:100%;max-width:650px;background-repeat:no-repeat;vertical-align:middle;flex-shrink:0}
+.has-word-art{text-shadow:none!important;-webkit-text-stroke:0!important;letter-spacing:0!important}
+.game-art #banner.has-word-art{width:min(84vw,630px);padding:0;background:none!important;border:0!important;box-shadow:none!important}
+.game-art #banner.wave-art{display:flex;align-items:center;justify-content:center;gap:4px}
+.wave-art .word-art{width:24%}.wave-art .art-number{font-size:clamp(42px,10vw,92px)}
+.game-art #pause-menu h1.has-word-art,.game-art #ov-title.has-word-art{display:flex;align-items:center;justify-content:center;height:100px;padding:0!important}
+.game-art #pause-menu h1 .word-art,.game-art #ov-title .word-art{width:min(100%,310px)}
+.game-art .dmg.has-word-art{width:170px;max-width:48vw;background:none!important;padding:0!important}
+.game-art #combo{background:none!important;box-shadow:none!important;border:0!important;width:110px;height:90px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible}
+.game-art #combo[hidden]{display:none}
+.game-art #combo-n,.art-number{font-family:var(--font-display);font-weight:900;font-style:italic;color:#fff1a1;-webkit-text-stroke:2px #3e1609;paint-order:stroke fill;text-shadow:2px 3px #f24b18,3px 5px #091c11;line-height:1.05;font-size:46px;font-variant-numeric:tabular-nums;transform-origin:center}
+.game-art #combo>span{width:110px;font-size:0;line-height:0;padding:0;background:none}
+.system-lettering{font-weight:900;paint-order:stroke fill;text-shadow:1px 2px #102917,0 0 8px #baff6555}
+.game-art .dmg.system-lettering{-webkit-text-stroke:1px #132216;font-weight:900;text-shadow:1px 2px #122616,2px 3px #0009}
+.game-art .debuffs b,.game-art #boss-name{color:#fff1af;font-weight:900;text-shadow:1px 2px #813415,0 0 7px #e2bc45}
+.game-art .lang-btn i{display:block!important;width:30px;height:30px;flex:0 0 30px;background:url('../assets/source/pic/icons/language_globe.png') center/130% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.game-art .lang-btn i::before,.game-art .lang-btn i::after{display:none!important}
+.game-art .lang-btn span{font-size:14px;padding:6px 10px}.game-art .lang-btn{gap:3px;max-width:100%;box-sizing:border-box}
+@media(max-width:600px){
+ .game-art .overlay.menu:not(.stages) .lang-btn{top:48px;right:12px}
+ .game-art .overlay.menu:not(.stages) #menu-art .frame{top:104px}
+ .game-art .overlay.menu:not(.stages) .card{padding-top:calc(104px + 32vh)}
+ .game-art .lang-btn span{font-size:12px;padding:6px 8px}
+ .game-art #combo{height:64px;width:90px}.game-art #combo-n{font-size:34px}.game-art #combo>span{width:90px}
+}
+@media(prefers-reduced-motion:reduce){.word-art{animation:none!important}}
+/* Charge remains legible under the glow; only the filled portion emits light. */
+.game-art .bars .bar{--neon:#ff5a85;--charge:1;isolation:isolate;box-shadow:0 0 4px color-mix(in srgb,var(--neon) 45%,transparent),inset 0 0 4px #000}
+.game-art .bars .bar.courage{--neon:#83ff4f}.game-art .bars .bar.guilt{--neon:#d56aff}
+.game-art .bars .bar i{filter:brightness(1.28) saturate(1.4);box-shadow:0 0 5px var(--neon),0 0 12px var(--neon),inset 0 1px 2px #fff9}
+.game-art .bars .bar::after{content:'';position:absolute;left:5px;top:3px;bottom:3px;width:calc((100% - 10px)*var(--charge));pointer-events:none;border-radius:6px;background:linear-gradient(100deg,transparent 20%,#fff9 49%,transparent 67%) -200% 0/45% 100% no-repeat;mix-blend-mode:screen;animation:meter-sweep 3.2s ease-in-out infinite}
+.game-art .bars .bar.full,.game-art .bars .bar.burst{animation:meter-full 1.3s ease-in-out infinite alternate}
+.game-art .bars .bar.full::after,.game-art .bars .bar.burst::after{animation-duration:1.1s;background-size:65% 100%}
+.game-art .bars .bar.meter-exploding{animation:meter-explode .65s ease-out!important}
+.meter-shards{position:fixed;z-index:105;pointer-events:none;animation:shards-life .75s linear}.meter-shards i{position:absolute;width:10px;height:5px;background:#f7b7ff;box-shadow:0 0 8px #ef76ff;border:1px solid white;animation:meter-shard .7s ease-out forwards}
+@keyframes meter-sweep{0%,15%{background-position:-120% 0}80%,100%{background-position:240% 0}}
+@keyframes meter-full{from{box-shadow:0 0 5px var(--neon),0 0 10px color-mix(in srgb,var(--neon) 45%,transparent)}to{box-shadow:0 0 8px var(--neon),0 0 19px color-mix(in srgb,var(--neon) 65%,transparent)}}
+@keyframes meter-explode{0%{filter:brightness(3);transform:scale(1.03)}15%{transform:translateX(-5px)}30%{transform:translateX(5px);box-shadow:0 0 35px 10px #efa2ff}45%{transform:translateX(-3px)}100%{transform:none;filter:brightness(1)}}
+@keyframes meter-shard{to{transform:translate(var(--sx),var(--sy)) rotate(var(--sr));opacity:0}}
+@keyframes shards-life{to{opacity:0}}
+@media(prefers-reduced-motion:reduce){.game-art .bars .bar.full,.game-art .bars .bar.burst,.game-art .bars .bar::after{animation:none!important}.game-art .bars .bar.meter-exploding{animation:none!important;box-shadow:0 0 12px #efb4ff}}
+#menu-art .menu-live-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
+.game-art #pause-menu .lang-btn::before{display:none!important}.game-art #pause-menu .lang-btn{padding-left:8px!important}
+@font-face{font-family:'BG Japanese';src:url('../assets/fonts/notosansjp-subset.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:lang(ja){--font-body:'BG Japanese',sans-serif;--font-display:'BG Japanese',sans-serif}
+.game-art #ov-local-logo{width:min(74vw,350px);height:auto;min-height:90px;max-height:none;background:none;padding:0;line-height:0;filter:none}
+.game-art #ov-local-logo[hidden]{display:none}
+.game-art .act.ult{filter:drop-shadow(0 0 4px #78ff5d66)}
+.game-art .act.ult.ready{animation:ult-neon 1.2s ease-in-out infinite alternate}
+@keyframes ult-neon{to{filter:drop-shadow(0 0 10px #bcff4f) brightness(1.3)}}
+@media(prefers-reduced-motion:reduce){.game-art .act.ult.ready{animation:none;filter:drop-shadow(0 0 8px #bcff4f)}}
