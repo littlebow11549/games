@@ -7,7 +7,7 @@
 .game-art #banner.has-word-art{width:min(84vw,630px);padding:0;background:none!important;border:0!important;box-shadow:none!important}
 .game-art #banner.wave-art{display:flex;align-items:center;justify-content:center;gap:4px}
 .wave-art .word-art{width:24%}.wave-art .art-number{font-size:clamp(42px,10vw,92px)}
-.game-art #pause-menu h1.has-word-art,.game-art #ov-title.has-word-art{display:flex;align-items:center;justify-content:center;height:100px;padding:0!important}
+.game-art #pause-menu .card h1.has-word-art,.game-art #overlay.result .card #ov-title.has-word-art{display:flex;align-items:center;justify-content:center;height:100px;padding:0!important}
 .game-art #pause-menu h1 .word-art,.game-art #ov-title .word-art{width:min(100%,310px)}
 .game-art .dmg.has-word-art{width:170px;max-width:48vw;background:none!important;padding:0!important}
 .game-art #combo{background:none!important;box-shadow:none!important;border:0!important;width:110px;height:90px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible}
