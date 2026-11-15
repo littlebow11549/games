@@ -21,3 +21,5 @@
 }
 /* Artwork and controls share the scroll container, so scrolling cannot move text over a face. */
 .game-art .overlay.menu .card>#menu-art{z-index:-1;pointer-events:none}
+.game-art .overlay>#menu-ticker{z-index:2;pointer-events:none}
+.game-art .overlay:not(.menu)>#menu-ticker{display:none}
