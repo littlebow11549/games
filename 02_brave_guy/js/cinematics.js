@@ -43,7 +43,7 @@ export function createCinematics(renderer, audioProvider) {
  const $=q=>root.querySelector(q), skip=$('.cinema-skip'), title=$('h2'), subtitle=$('p'), credits=$('.cinema-credits');
  let active=null, scene=null, camera=null, actors=[], elapsed=0, shot=-1, previousFocus=null;
  let endingTexture=null;
- new THREE.TextureLoader().load('assets/source/pic/cinematics/ending_applause.png', texture=>{endingTexture=texture;});
+ new THREE.TextureLoader().load('assets/source/pic/cinematics/ending_applause.png?v=20261115canon', texture=>{endingTexture=texture;});
  let artScene=null, artMaterial=null;
  function clearScene(){if(artScene){artScene.children[0].geometry.dispose();artMaterial.dispose();artScene=null;artMaterial=null;}for(const a of actors){scene?.remove(a.root);a.dispose?.();} actors=[];scene?.traverse(o=>{if(o.isMesh){o.geometry.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
  function cancel(){if(!active)return;active=null;storyboard.stop();root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}

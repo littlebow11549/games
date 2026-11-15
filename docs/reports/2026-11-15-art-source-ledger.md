@@ -45,3 +45,10 @@
 
 ## 2026-11-15 使用者明確追加過場重設計
 使用者要求所有 Boss 過場重新設計及以原 Logo 製作日文變體；新素材範圍、來源核對見 `2026-11-15-sfx-folaidi-logo-audit.md`。此次許可只涵蓋專用過場及日文 Logo，不恢復場景生圖佇列。
+
+## 結局群像定向修訂（使用者指出未依設定）
+
+- 既有來源：source/pic/cinematics/ending_applause.png；不是新場景缺件。原圖造型錯誤，依本次明確指示修訂此圖。
+- 設定依據：CHARACTERS.md、DESIGN.md、sheet/unified 的 braveguy／laichuang／lan／xinji／baguashe／guanlaoban／ganqiao／incubus／nightmare／hell／qian／angel。
+- 修訂版 1536×1024，主角＋13 Boss＋小天使。保留原生尺寸，未插值放大；舊版 _archive/game02/cinematics/2026-11-15/ending-correction/ending_applause_rejected.png。
+- 三次定向編修均保留生成原檔於 /workspace/generated_images；最後採 exec-ff122630-5341-4dea-bbb5-794c610b7cda.png。修正歷程與差異見 handoffs/2026-11-15-game02-ending-character-correction.md，不視為使用者已審核通過。
