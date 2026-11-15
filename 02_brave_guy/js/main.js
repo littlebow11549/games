@@ -1,24 +1,24 @@
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js?v=20261115fast';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
-import { RunRecords, formatTime, words } from './run-records.js';
-import { disposeOwned } from './dispose-owned.js';
+import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
+import { disposeOwned } from './dispose-owned.js?v=20261115fast';
 import * as THREE from '../vendor/three/three.module.min.js';
-import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115perf';
-import { createVisual, loadModel } from './visuals.js';
-import { Fx } from './fx.js?v=20261115perf';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115finish';
-import { createCinematics } from './cinematics.js?v=20261115perf';
-import { createOpening } from './opening.js?v=20261115portrait';
-import { createMenuMotion } from './menu-motion.js?v=20261115perf';
-import { nextLockTarget } from './targeting.js';
-import { Input, lockViewport } from './input.js?v=20261115portrait';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115glam';
-import { GameAudio } from './audio.js?v=20261115perf';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115finish';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
-import { makeMaze } from './maze.js';
-import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115g';
+import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
+import { createVisual, loadModel } from './visuals.js?v=20261115fast';
+import { Fx } from './fx.js?v=20261115fast';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115fast';
+import { createCinematics } from './cinematics.js?v=20261115fast';
+import { createOpening } from './opening.js?v=20261115fast';
+import { createMenuMotion } from './menu-motion.js?v=20261115fast';
+import { nextLockTarget } from './targeting.js?v=20261115fast';
+import { Input, lockViewport } from './input.js?v=20261115fast';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
+import { GameAudio } from './audio.js?v=20261115fast';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115fast';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
+import { makeMaze } from './maze.js?v=20261115fast';
+import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -839,7 +839,10 @@ function hurtHero(amount, opts = {}) {
   hero.invuln = 0.4;
   hero.visual.flash();
   popup(hero.pos, 2.2, `-${dmg}`, 'hurt');
-  game.shake = Math.max(game.shake, 0.25);
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  game.shake = Math.max(game.shake,reducedMotion?0:Math.min(.65,.35+dmg/hero.maxHp));
+  game.hitstop=Math.max(game.hitstop,.065);
+  if(!reducedMotion){const feedback=$('hit-feedback');feedback.classList.remove('hit');void feedback.offsetWidth;feedback.classList.add('hit');}
   audio.sfx('hurt');
   tauntFrom(TAUNTS_HIT, 0.6);
   game.combo = 0;
@@ -1540,7 +1543,7 @@ let lockTargetEnemy = null;
 const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
 // Reuse the ground-lock window from the existing atlas; retain the vector fallback.
 if (document.body.classList.contains('game-art')) {
-  new THREE.TextureLoader().load('assets/source/pic/icons/lock_heal_sheet.png', texture => {
+  new THREE.TextureLoader().load('assets/runtime/lossless/pic/icons/lock_heal_sheet.webp', texture => {
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.repeat.set(884 / 1536, 368 / 1024);
     texture.offset.set(54 / 1536, 1 - (610 + 368) / 1024);
@@ -1819,7 +1822,7 @@ function updateHero(dt) {
     if (hero.data.step === 0 && hero.t >= 0.26) {
       hero.data.step = 1;
       fx.dome(hero.pos, s.radius, 0xffe08a, 0.5);
-      fx.ring(hero.pos, 1, s.radius, 0xfff0b0, 0.45);
+      fx.slash(hero.pos,hero.yaw,s.radius,Math.PI*1.85,0xfff6bf,1,.25);
       fx.burst(hero.pos, 0xffe08a, 40, 14, 0.3, 0.34);
       game.shake = Math.max(game.shake, 0.8);
       audio.sfx('boom');
@@ -2226,7 +2229,7 @@ function updateCamera(dt) {
   if (camera.aspect < 1) camera.position.addScaledVector(CAM_OFFSET, 0.25);
   if (game.shake > 0) {
     game.shake = Math.max(0, game.shake - dt * 2.2);
-    const s = game.shake * game.shake * 1.2;
+    const s = matchMedia('(prefers-reduced-motion: reduce)').matches?0:game.shake * game.shake * 1.2;
     camera.position.x += rand(-s, s);
     camera.position.y += rand(-s, s);
   }
@@ -2288,7 +2291,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261115finish';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261115fast';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

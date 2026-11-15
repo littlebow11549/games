@@ -1,0 +1,9 @@
+{
+  "bootBytes": 18569626,
+  "baselineBytes": 30166992,
+  "reduction": 0.384438925829927,
+  "nativePNGRequests": 0,
+  "unusedLandscapeRequested": false,
+  "gameplayReady": true,
+  "errors": []
+}

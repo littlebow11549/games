@@ -1,10 +1,11 @@
-import { waitForArtwork, cancelArtwork } from './loading.js';
-import { words } from './run-records.js';
-import { BOSS_BANTER } from './boss-banter.js?v=20261115portrait';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115perf';
+import { createVictoryStoryboard } from './victory-storyboard.js?v=20261115fast';
+import { waitForArtwork, cancelArtwork } from './loading.js?v=20261115fast';
+import { words } from './run-records.js?v=20261115fast';
+import { BOSS_BANTER } from './boss-banter.js?v=20261115fast';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115fast';
 import * as THREE from '../vendor/three/three.module.min.js';
-import { createVisual } from './visuals.js';
-import { t, lang } from './i18n.js?v=20261115cinema';
+import { createVisual } from './visuals.js?v=20261115fast';
+import { t, lang } from './i18n.js?v=20261115fast';
 // Each encounter has its own entrance, palette, motif, camera and line.
 export const BOSS_PROFILES = {
  folaidiKing:['佛賴弟王','boss','#bda8ff','mist','再五分鐘啦～','laichuang'],
@@ -42,17 +43,18 @@ export function createCinematics(renderer, audioProvider) {
  const root=document.createElement('section'); root.id='cinema';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
  root.innerHTML='<div class="cinema-lines" aria-hidden="true"></div><div class="cinema-portrait" aria-hidden="true"></div><div class="cinema-top"><span class="cinema-kicker"></span><button class="cinema-skip"></button></div><div class="cinema-caption"><h2></h2><p></p></div><div class="cinema-progress"><i></i></div><div class="cinema-credits" hidden></div>';
  document.body.append(root);
- const storyboard=createBossStoryboard(root,audioProvider);
+ const storyboard=createBossStoryboard(root,audioProvider),victoryArt=createVictoryStoryboard(root);
  const $=q=>root.querySelector(q), skip=$('.cinema-skip'), title=$('h2'), subtitle=$('p'), credits=$('.cinema-credits');
  let active=null, scene=null, camera=null, actors=[], elapsed=0, shot=-1, previousFocus=null;
  let endingTexture=null;
  let endingLoad=null;
- function prepareEnding(){if(!endingLoad)endingLoad=new Promise((resolve,reject)=>new THREE.TextureLoader().load('assets/source/pic/cinematics/ending_applause.png',texture=>{texture.image.decode().then(()=>{endingTexture=texture;resolve(texture);},error=>{texture.dispose();endingLoad=null;reject(error);});},undefined,error=>{endingLoad=null;reject(error);} ));return endingLoad;}
+ function prepareEnding(){if(!endingLoad)endingLoad=new Promise((resolve,reject)=>new THREE.TextureLoader().load('assets/runtime/lossless/pic/cinematics/ending_applause.webp',texture=>{texture.image.decode().then(()=>{endingTexture=texture;resolve(texture);},error=>{texture.dispose();endingLoad=null;reject(error);});},undefined,error=>{endingLoad=null;reject(error);} ));return endingLoad;}
  let artScene=null, artMaterial=null;
  function clearScene(){if(artScene){artScene.children[0].geometry.dispose();artMaterial.dispose();artScene=null;artMaterial=null;}for(const a of actors){scene?.remove(a.root);a.dispose?.();} actors=[];scene?.traverse(o=>{if(o.isMesh){o.geometry.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene=null;}
- function cancel(){cancelArtwork();if(!active)return;active=null;storyboard.stop();root.classList.remove('banter-hit');delete root.dataset.speaker;root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
+ function cancel(){cancelArtwork();if(!active)return;active=null;storyboard.stop();victoryArt.stop();root.classList.remove('banter-hit');delete root.dataset.speaker;root.hidden=true;document.body.classList.remove('in-cinematic');clearScene();previousFocus?.focus?.({preventScroll:true});}
  function finish(){const done=active?.done;cancel();done?.();}
  function base(mode,done){cancel();previousFocus=document.activeElement;active={mode,done};elapsed=0;shot=-1;root.hidden=false;document.body.classList.add('in-cinematic');root.dataset.mode=mode;credits.hidden=true;title.hidden=false;subtitle.hidden=false;skip.textContent=t('跳過');skip.focus({preventScroll:true});root.setAttribute('aria-label',t(mode==='boss'?'心魔來襲':'找回自己'));
+  if(mode==='victory'){root.setAttribute('aria-label',words(lang,'勝利過場','Victory cinematic','勝利演出'));return;}
   scene=new THREE.Scene();scene.background=new THREE.Color(mode==='boss'?0x07121b:0x0c1b19);scene.fog=new THREE.Fog(scene.background,20,55);
   camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.1,100);
   scene.add(new THREE.HemisphereLight(0xe7ffd8,0x211936,2.2));const light=new THREE.DirectionalLight(0xffe6a1,3);light.position.set(-4,8,8);scene.add(light);
@@ -67,19 +69,22 @@ export function createCinematics(renderer, audioProvider) {
   root.dataset.motif=p[3];root.style.setProperty('--cinema-color',p[2]);
   $('.cinema-kicker').textContent=t('心魔來襲');title.className='cinema-name system-lettering';title.textContent=t(p[0]);subtitle.textContent=t(p[4]);
   // Existing full-body front view: source sheet is neither edited nor regenerated.
-  const portrait=$('.cinema-portrait');portrait.style.backgroundImage=`url(assets/source/pic/sheet/unified/sheet_${p[5]}.png)`;
+  const portrait=$('.cinema-portrait');portrait.style.backgroundImage=`url(assets/runtime/lossless/pic/sheet/unified/sheet_${p[5]}.webp)`;
   const [x,y,w,h]=CROPS[key];portrait.style.aspectRatio=`${w}/${h}`;portrait.style.backgroundSize=`${1728/w*100}% ${1152/h*100}%`;portrait.style.backgroundPosition=`${x/(1728-w)*100}% ${y/(1152-h)*100}%`;
   portrait.style.animation='none';void portrait.offsetWidth;portrait.style.animation='';
   actor(p[1],0,0,3.4).root.visible=false;storyboard.start(key);
  }
- function combatFilm(mode,kinds,done){base(mode,done);title.className='cinema-name system-lettering';active.duration=mode==='awakening'?10.5:6;active.kinds=kinds;active.beat=-1;root.dataset.motif='impact';root.style.setProperty('--cinema-color',mode==='victory'?'#b9ff61':'#c889ff');
+ function combatFilm(mode,kinds,done){base(mode,done);title.className='cinema-name system-lettering';active.duration=mode==='awakening'?10.5:6;active.kinds=kinds;active.beat=-1;root.dataset.motif='impact';root.style.setProperty('--cinema-color','#c889ff');
   actor(mode==='defeat'?'student':'brave',-1,0,3.2);kinds.forEach((key,i)=>actor(BOSS_PROFILES[key][1],1+i*.7,-i*.6,3.2));
-  $('.cinema-kicker').textContent=words(lang,mode==='victory'?'勇氣・終結一擊':'夢魘・第二形態',mode==='victory'?'COURAGE · FINAL STRIKE':'NIGHTMARE · SECOND FORM',mode==='victory'?'勇気・最後の一撃':'悪夢・第二形態');
+  $('.cinema-kicker').textContent=words(lang,'夢魘・第二形態','NIGHTMARE · SECOND FORM','悪夢・第二形態');
   if(mode==='awakening'){active.aura=[];for(let i=0;i<3;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.25+i*.16,.035,6,48),new THREE.MeshBasicMaterial({color:i===1?0xb5ff6a:0xaf55ff,transparent:true,opacity:.55}));ring.position.set(1,1.7,-.15);ring.rotation.set(i*.8,.6+i,0);scene.add(ring);active.aura.push(ring);}}
   if(mode==='defeat'){$('.cinema-kicker').textContent=words(lang,'迷失的結局','A LOST ENDING','迷いの結末');root.style.setProperty('--cinema-color','#a99ec9');audioProvider()?.playBgm('bgm_defeat');}
-  audioProvider()?.sfx(mode==='victory'?'win':mode==='defeat'?'lose':'guilt_crack');
+  audioProvider()?.sfx(mode==='defeat'?'lose':'guilt_crack');
  }
- function victory(kinds,done){combatFilm('victory',kinds,done);}
+ function victory(kinds,done){waitForArtwork(()=>victoryArt.prepare(kinds),()=>{
+  base('victory',done);active.duration=6;active.beat=-1;active.hit=-1;title.className='cinema-name system-lettering';root.dataset.speaker='hero';root.style.setProperty('--cinema-color','#b9ff61');victoryArt.start(kinds);
+  $('.cinema-kicker').textContent=words(lang,'勇氣・終結一擊','COURAGE · FINAL STRIKE','勇気・最後の一撃');
+ });}
  function defeat(done){combatFilm('defeat',['nightmare'],done);}
  function awakening(done){combatFilm('awakening',['incubus'],done);}
  function ending(done){waitForArtwork(()=>prepareEnding(),()=>endingReady(done));}
@@ -107,7 +112,7 @@ export function createCinematics(renderer, audioProvider) {
   if(waiting)active.loadWait=(active.loadWait||0)+dt;
   if(!document.hidden&&!waiting)elapsed+=dt;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+  if(camera){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
   if(active.mode==='boss'){
    const index=Math.max(0,active.starts.findLastIndex(start=>elapsed>=start));if(index!==shot)showBoss(index);
    const local=elapsed-active.starts[index], a=actors[0], motif=active.profile[3];
@@ -123,35 +128,31 @@ export function createCinematics(renderer, audioProvider) {
    if(title.textContent!==speaker)title.textContent=speaker;
    if(subtitle.textContent!==words)subtitle.textContent=words;
    if(active.banterBeat!==beat){
-    active.banterBeat=beat;
+    active.banterBeat=beat;root.dataset.dialogueTone=beat===2?'impact':'normal';
     root.classList.remove('banter-hit');void root.offsetWidth;root.classList.add('banter-hit');
     audioProvider()?.sfx(beat===1?'hit_2':'hit_heavy');
    }
    if(['mirror','fracture'].includes(motif))a.root.position.x=Math.sin(local*23)*Math.max(0,.55-local)*.2;
-  }else if(active.mode==='victory'||active.mode==='awakening'||active.mode==='defeat'){
-   const victory=active.mode==='victory',defeat=active.mode==='defeat',beat=Math.min(2,Math.floor(elapsed/(active.duration/3))),hero=actors[0],boss=actors[1];
+  }else if(active.mode==='victory'){
+   const beat=Math.min(2,Math.floor(elapsed/2));victoryArt.render(elapsed,reduced);
+   const lines=[['這一次，換我說了算！','My turn to call the shots!','今度は俺が決める！'],['把你的廢話，全都打回去！','Take your excuses back!','その言い訳、全部返す！'],['我還會害怕，但我不會再退。','I still feel fear. I will not back down.','怖くても、もう引かない。']];
+   if(active.beat!==beat){active.beat=beat;root.dataset.dialogueTone=beat===1?'impact':'normal';title.textContent=t('主角');subtitle.textContent=words(lang,...lines[beat]);root.classList.remove('banter-hit');void root.offsetWidth;root.classList.add('banter-hit');audioProvider()?.sfx(beat===2?'boom':'hit_heavy');}
+   const hit=Math.floor(elapsed*4);if(beat===1&&active.hit!==hit){active.hit=hit;audioProvider()?.sfx(hit%2?'hit_2':'hit_heavy');}
+  }else if(active.mode==='awakening'||active.mode==='defeat'){
+   const defeat=active.mode==='defeat',beat=Math.min(2,Math.floor(elapsed/(active.duration/3))),hero=actors[0],boss=actors[1];
    const lines=defeat?[
     ['他把自己的聲音，交給了恐懼。','He surrendered his voice to fear.','彼は自分の声を恐怖に明け渡した。'],
     ['從此以後，主角變成了懦夫與娘炮。','From then on, he became a coward and a sissy.','それから彼は臆病者の、なよなよした男になった。'],
     ['不。我的故事，不能就這樣結束。','No. My story cannot end here.','いや。俺の物語を、ここで終わらせない。']
-   ]:victory?[
-    ['這一次，換我說了算！','My turn to call the shots!','今度は俺が決める！'],
-    ['把你的廢話，全都打回去！','Take your excuses back!','その言い訳、全部返す！'],
-    ['我還會害怕，但我不會再退。','I still feel fear. I will not back down.','怖くても、もう引かない。']
    ]:[
     ['你打碎的，只是我讓你看見的樣子。','You broke only the face I let you see.','壊したのは、見せてやった姿だけだ。'],
     ['你的恐懼，才是我真正的力量！','Your fear is my true power!','お前の恐怖こそ、俺の本当の力だ！'],
     ['那就看清楚。我怕，但我還是會往前！','Then watch. I am afraid, but I keep moving!','よく見ろ。怖くても、俺は前へ進む！']
    ];
-   if(active.beat!==beat){active.beat=beat;root.dataset.speaker=victory||beat===2?'hero':'boss';title.textContent=defeat?words(lang,beat===2?'主角':'如果就此放棄',beat===2?'HERO':'IF YOU GIVE UP',beat===2?'主人公':'ここで諦めたら'):t(victory||beat===2?'主角':'夢魘超人');subtitle.textContent=words(lang,...lines[beat]);root.classList.remove('banter-hit');void root.offsetWidth;root.classList.add('banter-hit');audioProvider()?.sfx(defeat?(beat===2?'courage_full':'guilt_tick'):victory?(beat===2?'boom':'hit_heavy'):(beat===1?'guilt_burst':'transform'));}
+   if(active.beat!==beat){active.beat=beat;root.dataset.dialogueTone=!defeat&&beat===1?'impact':'normal';root.dataset.speaker=beat===2?'hero':'boss';title.textContent=defeat?words(lang,beat===2?'主角':'如果就此放棄',beat===2?'HERO':'IF YOU GIVE UP',beat===2?'主人公':'ここで諦めたら'):t(beat===2?'主角':'夢魘超人');subtitle.textContent=words(lang,...lines[beat]);root.classList.remove('banter-hit');void root.offsetWidth;root.classList.add('banter-hit');audioProvider()?.sfx(defeat?(beat===2?'courage_full':'guilt_tick'):(beat===1?'guilt_burst':'transform'));}
    actors.forEach(a=>a.update(dt));hero.root.rotation.y=Math.PI/2;
-   const pulse=Math.max(0,Math.sin(elapsed*15));
    if(defeat){hero.root.position.set(-.3,0,1);hero.root.rotation.set(beat===2?-.1:-.65,0,0);boss.root.position.set(.9,0,-1);boss.root.rotation.y=-.25;scene.background.set(0x090b1c);}
-   else if(victory){
-    hero.root.position.x=beat<2?-1+Math.min(1,elapsed)*.7:-.7;
-    const hit=Math.floor(elapsed*3);if(beat<2&&active.hit!==hit){active.hit=hit;hero.play(hit%2?'attack1':'attack2',.3);actors.slice(1).forEach(a=>a.play('hit',.3));audioProvider()?.sfx(hit%2?'hit_2':'hit_heavy');}
-    actors.slice(1).forEach((a,i)=>{a.root.rotation.y=-Math.PI/2;a.root.position.x=beat<2?1+i*.5+(reduced?0:pulse*.18):1+Math.min(3,(elapsed-4)*2)+i*.5;a.root.position.y=beat===2?Math.max(0,Math.sin(Math.min(1,(elapsed-4)/2)*Math.PI)*1.7):0;a.root.rotation.z=beat===2?-Math.min(1.4,(elapsed-4)*2):0;});
-   }else{
+   else{
     active.aura?.forEach((ring,i)=>{ring.visible=beat>0;ring.rotation.z=reduced?0:elapsed*(i%2?1:-1);ring.scale.setScalar(1+Math.sin(elapsed*2+i)*.08);});
     const size=1+Math.min(1,Math.max(0,(elapsed-2)/3))*.45;boss.root.scale.setScalar(active.baseScale||(active.baseScale=boss.root.scale.x));boss.root.scale.multiplyScalar(size);boss.root.rotation.y=-.4;boss.root.position.y=reduced?0:Math.sin(elapsed*3)*.12;
     hero.root.position.x=-1.1;hero.root.position.z=0;scene.background.set(beat===1?0x240a38:0x071b18);
@@ -176,7 +177,7 @@ export function createCinematics(renderer, audioProvider) {
    artMaterial.uniforms.viewport.value.set(innerWidth,innerHeight);artMaterial.uniforms.time.value=reduced?0:elapsed;
    artMaterial.uniforms.zoom.value=zoom;artMaterial.uniforms.pan.value=act===2?.10:act===3?-.10:0;
    renderer.render(artScene,camera);
-  }else if(active.mode!=='boss'||root.dataset.artReady!=='true') renderer.render(scene,camera);
+  }else if(active.mode!=='victory'&&(active.mode!=='boss'||root.dataset.artReady!=='true')) renderer.render(scene,camera);
   if(elapsed>=active.duration)finish();
   return true;
  }

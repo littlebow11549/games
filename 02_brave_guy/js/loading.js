@@ -1,11 +1,13 @@
-import { words } from './run-records.js';
-import { lang } from './i18n.js?v=20261115cinema';
+import { words } from './run-records.js?v=20261115fast';
+import { lang } from './i18n.js?v=20261115fast';
 let manifestPromise,gameplayPromise,gameplayReady=false;const decoded=new Set();
 export async function preloadImages(report=()=>{},scope='boot'){
- if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261115finish').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
+ if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261115fast').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
  const all=await manifestPromise;
- const common=all.filter(url=>!url.includes('/cinematics/')&&(!url.includes('/sheet/unified/')||/sheet_(angel|ganqiao|worker)\.png$/.test(url)));
- const urls=common.filter(url=>!decoded.has(url)&&(scope==='game'||/\/branding\/|language_globe|panel_popup|panel_title_plate|btn_text|difficulty_sheet|portrait_student|sheet_(angel|ganqiao)\.png/.test(url)));let next=0,done=0,failure=null;
+ const common=all.filter(url=>!url.includes('/cinematics/')&&(!url.includes('/sheet/unified/')||/sheet_(angel|ganqiao|worker)\.webp$/.test(url)));
+ const portrait=matchMedia('(orientation:portrait)').matches;
+ const selected=common.filter(url=>!url.includes('/branding/')||url.endsWith('/logo_01.webp')||url.endsWith('/logo_ja.webp')||url.endsWith(portrait?'/menu_keyart_portrait_01.webp':'/menu_keyart_01.webp'));
+ const urls=selected.filter(url=>!decoded.has(url)&&(scope==='game'||/\/branding\/|language_globe|panel_popup|panel_title_plate|btn_text|difficulty_sheet|portrait_student|sheet_(angel|ganqiao)\.webp/.test(url)));let next=0,done=0,failure=null;
  async function worker(){while(!failure&&next<urls.length){const url=urls[next++],im=new Image();im.src=url;try{await im.decode();if(!im.naturalWidth)throw new Error('Empty image');}catch{failure=true;throw new Error(words(lang,'圖片載入失敗，請重試：','Image failed. Please retry: ','画像の読み込みに失敗。再試行：')+url);}decoded.add(url);report(++done,urls.length);}}
  const results=await Promise.allSettled(Array.from({length:3},worker));
  const failed=results.find(result=>result.status==='rejected');if(failed)throw failed.reason;

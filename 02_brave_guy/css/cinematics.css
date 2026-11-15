@@ -82,3 +82,7 @@ body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{vis
  .game-art #overlay.result #run-result h3{font-size:14px;margin-bottom:3px}
  .game-art #overlay.result #run-result ol{margin:4px auto}
 }
+
+.victory-storyboard{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.victory-storyboard[hidden]{display:none}
+#cinema[data-mode=victory] .cinema-lines{display:none}
+#cinema[data-mode=victory] .cinema-caption{bottom:7%}

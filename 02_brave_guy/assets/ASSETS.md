@@ -357,3 +357,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 - 44.1 kHz、192 kbps MP3；歡呼原錄音為單聲道，輸出雙聲道不宣稱原生立體聲。
 - 原錄音、WAV 母帶、來源／授權：`_archive/game02/sfx/2026-11-15/crowd-v4/`；完整交付 `source/CROWD_SFX_DELIVERY.json`。重製腳本 `tools/make_game02_crowd.py`。舊合成拍手留存，但 manifest 已改用新錄音。
 - 每關勝利與結局群眾演出疊播；6.5／12 秒間隔限制重疊，重試及回標題停止殘音。兩檔全音量疊加峰值 -3.9 dBFS，遊戲另經音效主音量及 limiter。
+
+## 2026-11-15 勝利圖片與無損配送
+沿用既有 tf_pose、tf_glove 與Boss分鏡作6秒勝利漫畫演出。75張來源圖的原生尺寸無損WebP副本放在 `runtime/lossless/pic/`，不是新美術；`runtime/lossless/report.json` 記錄來源SHA、尺寸、大小與RGBA逐像素驗證，`../tools/compress_runtime.py` 可重建。CSS／Canvas／貼圖與預載清單共同使用配送版，原圖不刪除、不改動。完整交接見 `docs/handoffs/2026-11-15-game02-victory-comic-fast.md`。

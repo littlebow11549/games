@@ -56,3 +56,8 @@
 ## 效能與勝敗／二次變身演出
 - 使用現有 visuals.js 角色、原 Boss storyboards、學生頭像、結局與變身原圖，新增程式動畫／氣泡／讀取頁；沒有新生成原圖。
 - runtime-images.json 僅為載入分組索引，不作未製作清單。待追溯素材與生圖停止狀態不變。
+
+## 勝利圖片／配送優化追加
+- 勝利三鏡復用 `transform/tf_pose.png`、`tf_glove.png` 與 `cinematics/boss_*_storyboard.png`／佛萊迪 reveal；運行時裁窗組合，未生新圖。
+- 75張已接入原圖新增 `assets/runtime/lossless/pic/` 無損配送副本；原尺寸、全RGBA逐像素相同，來源SHA與大小見該目錄上層 report.json。原稿沒有覆寫、14張爭議稿未處理。
+- 白／橘爆裂對話框、金色數字及按鈕用CSS；火焰拳風用mesh，未複製參考圖。

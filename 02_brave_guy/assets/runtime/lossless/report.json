@@ -1,0 +1,752 @@
+[
+  {
+    "source": "assets/source/pic/branding/icon_01_logo.png",
+    "runtime": "assets/runtime/lossless/pic/branding/icon_01_logo.webp",
+    "before": 1924355,
+    "after": 1407970,
+    "width": 1254,
+    "height": 1254,
+    "pixelIdentical": true,
+    "sourceSHA256": "c890dc0dd6162c8082b384f025362f57a735c3d5782761d35856da7101fc013b"
+  },
+  {
+    "source": "assets/source/pic/branding/logo_ja.png",
+    "runtime": "assets/runtime/lossless/pic/branding/logo_ja.webp",
+    "before": 1627960,
+    "after": 1118748,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "61fcd672a5823e1bad93b00bd24e80ee1a11dba104ba034cdcc59f9e4c26400d"
+  },
+  {
+    "source": "assets/source/pic/branding/menu_keyart_01.png",
+    "runtime": "assets/runtime/lossless/pic/branding/menu_keyart_01.webp",
+    "before": 2216099,
+    "after": 1656730,
+    "width": 1330,
+    "height": 1182,
+    "pixelIdentical": true,
+    "sourceSHA256": "74c52a2f904ee48d49cd9dcd4255434e15c2755bb15ac156d2ac4f0626f1fe7c"
+  },
+  {
+    "source": "assets/source/pic/branding/menu_keyart_portrait_01.png",
+    "runtime": "assets/runtime/lossless/pic/branding/menu_keyart_portrait_01.webp",
+    "before": 2113507,
+    "after": 1632886,
+    "width": 1448,
+    "height": 1086,
+    "pixelIdentical": true,
+    "sourceSHA256": "5f9d9e15034557b7b412485d3ee6f2c388d8a3e49df945d30aca1aeae038148c"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_baguashe_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_baguashe_storyboard.webp",
+    "before": 2457285,
+    "after": 1878898,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "b7c583abebd94cf74c7021b216f0e98a299ba0cf3c248a6173bbdb27df0376d4"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_ganqiaoFull_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_ganqiaoFull_storyboard.webp",
+    "before": 3044394,
+    "after": 2329334,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "405e472432e24bbb50bce6bf5f1100453bed5ca08efc708f81b446b54b8a18ab"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_guan_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_guan_storyboard.webp",
+    "before": 2725699,
+    "after": 2172056,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "3e5620b0893129e53eda35c808c863b5401e21fcd072ddc6ef4501785fe88330"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_hell_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_hell_storyboard.webp",
+    "before": 2948218,
+    "after": 2484764,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "1455b6ff93204175f7f2ce1bafa1490bf184b7534e86a5bac00fff93b7d15eb8"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_incubus_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_incubus_storyboard.webp",
+    "before": 2429759,
+    "after": 1794062,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "737afd0637123e2b3ac87258d13d64219ee5e2aeec5a9a388cf918e0d657fc24"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_kabanKing_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_kabanKing_storyboard.webp",
+    "before": 2604443,
+    "after": 1955960,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "390af530a209436bd871a90256331e69a9a896430de0880333fb6b2ca28d9537"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_lanMgr_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_lanMgr_storyboard.webp",
+    "before": 2563764,
+    "after": 2022848,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "5539adaab57fe6fe9436f7e12f53e7b49c66d1433aaaaa5954327ed1f52065c7"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_lan_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_lan_storyboard.webp",
+    "before": 2726321,
+    "after": 2124296,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "2b7bf5577daaa4d41f816d7ba22d22267cecc1654ad23c8d65563c6c1bc3dfc5"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_midKing_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_midKing_storyboard.webp",
+    "before": 3000022,
+    "after": 2225964,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "3c02363ff97da5a2d14ac813db0a82c82782c8438ef9b5e0449e58c9290dfcf4"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_nightmare_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_nightmare_storyboard.webp",
+    "before": 2912012,
+    "after": 2250022,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "b7317384deac0e56b7bbd757f01de34e577a59f857525570fa66d12c23d85f7c"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_qian_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_qian_storyboard.webp",
+    "before": 3003093,
+    "after": 2452798,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "635a9991a2a70db87f68962c26815d5d52af161c248b7eb6831ca8db9fdbdba0"
+  },
+  {
+    "source": "assets/source/pic/cinematics/boss_xinji_storyboard.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/boss_xinji_storyboard.webp",
+    "before": 2170911,
+    "after": 1715284,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "0a5429c76931671efe48603b435f4ded682e60808c19d6c5eb04ce47e2d4d04d"
+  },
+  {
+    "source": "assets/source/pic/cinematics/ending_applause.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/ending_applause.webp",
+    "before": 2767333,
+    "after": 2308140,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "8ed99a8edfd9634cedd9f8bb9b86be70eb9124a175e9cf6b3d9d39a87154b068"
+  },
+  {
+    "source": "assets/source/pic/cinematics/folaidi_corridor.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/folaidi_corridor.webp",
+    "before": 2001677,
+    "after": 1537648,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "2e621b6094e572c78cb39b7f786f256030a3e74fc4ca992e4054535cdc5de0b5"
+  },
+  {
+    "source": "assets/source/pic/cinematics/folaidi_eyes.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/folaidi_eyes.webp",
+    "before": 1772961,
+    "after": 1330168,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "fcb05242140e4ae5cb073a2de2745e1026e50527bec4919fec893a88e13dcfbf"
+  },
+  {
+    "source": "assets/source/pic/cinematics/folaidi_reveal.png",
+    "runtime": "assets/runtime/lossless/pic/cinematics/folaidi_reveal.webp",
+    "before": 2267375,
+    "after": 1798726,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "b414be141470520623ef6b132213205e915a4b51f5911a53b393d98dc162d348"
+  },
+  {
+    "source": "assets/source/pic/icons/btn_attack_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/icons/btn_attack_sheet.webp",
+    "before": 1085326,
+    "after": 717980,
+    "width": 2172,
+    "height": 724,
+    "pixelIdentical": true,
+    "sourceSHA256": "470a1cf7f482f97a417d61ac3da49932a02dc8eefeede2baefce43a621f3f4c2"
+  },
+  {
+    "source": "assets/source/pic/icons/btn_dodge_transform_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp",
+    "before": 1574857,
+    "after": 1076978,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "4b26867ea2ee5b1a8898ef55f374762695669c3636abe71272cd808b946ee009"
+  },
+  {
+    "source": "assets/source/pic/icons/function_icons_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/icons/function_icons_sheet.webp",
+    "before": 1566675,
+    "after": 1098752,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "3084442c98af9335a873145f34ba9d5b9b151d2b2fb81959cc2c07ef35eb1471"
+  },
+  {
+    "source": "assets/source/pic/icons/language_globe.png",
+    "runtime": "assets/runtime/lossless/pic/icons/language_globe.webp",
+    "before": 1068298,
+    "after": 698636,
+    "width": 1254,
+    "height": 1254,
+    "pixelIdentical": true,
+    "sourceSHA256": "02a10ed084eb33d138a70b978a851e3639e2d29c90e37eba53458d750d7b0347"
+  },
+  {
+    "source": "assets/source/pic/icons/lock_heal_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/icons/lock_heal_sheet.webp",
+    "before": 1465288,
+    "after": 987674,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "f4b4e2e9b85141465e42773f901633f10a5fa15cb09261cb572efe0517c30a32"
+  },
+  {
+    "source": "assets/source/pic/icons/skill_buttons_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/icons/skill_buttons_sheet.webp",
+    "before": 1935128,
+    "after": 1354782,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "32b1d7160ba5fa141cdd7c665de9c3a68df5d8e7b7090f898b2f40c7cb21c19f"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_angel.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_angel.webp",
+    "before": 1978981,
+    "after": 1484622,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "e98b21d124b293f115fa109606199bc00cab4ba9feba2ec7a67af9ef2efeb5d9"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_baguashe.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_baguashe.webp",
+    "before": 2078828,
+    "after": 1505588,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "e35e1502e1c8d4d6ba1783d0bfa95ee0f3e9740ba20699cecdf11b209445d690"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_braveguy.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_braveguy.webp",
+    "before": 1918544,
+    "after": 1449422,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "274114701d8f7734293c19c8dce854e0c4af43970c8696a477eca517e97fc1f5"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_ganqiao.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_ganqiao.webp",
+    "before": 1977720,
+    "after": 1499240,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "56e7fb053a39a9827f3c217fe306965df478303270f58c943f0a0513ccdb1d6b"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_guanlaoban.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_guanlaoban.webp",
+    "before": 1887834,
+    "after": 1398260,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "a2e7ed8020d3f7a9274a18bac9a97c041ace8e4b956634028fbfd486aebf42d0"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_hell.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_hell.webp",
+    "before": 2142768,
+    "after": 1633198,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "6e347b4904bb3eae8ad75ed6a9400774584f50468115779513af536d2fa2fbc5"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_incubus.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_incubus.webp",
+    "before": 1968245,
+    "after": 1410264,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "7d02deacd480ccd8873fca6e4a4e8901226e40172894ebad6f7abd84ff15017c"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_laichuang.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_laichuang.webp",
+    "before": 1783875,
+    "after": 1302904,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "8307795691e42a44e0cea6d5adc2c84a4c0f8b2fb4cc77e32c6d104a0a35bcca"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_lan.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_lan.webp",
+    "before": 1973791,
+    "after": 1478150,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "3b4b9d225c1be92697e5fc99e48093151f4660bf2a775fca409c3a907ccd926c"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_nightmare.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_nightmare.webp",
+    "before": 1876128,
+    "after": 1422326,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "e3408b1dc803a2d10186278238718961169876bbba9f38c7501db4e701279767"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_qian.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_qian.webp",
+    "before": 1966399,
+    "after": 1484726,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "6c91911078b2057326d0a513d81f2806d8218ac2992043cb1e61569093851e99"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_student.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_student.webp",
+    "before": 1762063,
+    "after": 1319562,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "569cf45f4beaee5ede67f05e7d736dfa48d63405e32f06dad5d5883933102403"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_worker.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_worker.webp",
+    "before": 1967643,
+    "after": 1400982,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "d7c17a96222539dedb5e407436435c534a4dbadc858d005ed5e82ee357f795ad"
+  },
+  {
+    "source": "assets/source/pic/sheet/unified/sheet_xinji.png",
+    "runtime": "assets/runtime/lossless/pic/sheet/unified/sheet_xinji.webp",
+    "before": 1917202,
+    "after": 1453682,
+    "width": 1728,
+    "height": 1152,
+    "pixelIdentical": true,
+    "sourceSHA256": "af48b29e4f7e8ed0019b00545476a3405a5e5e4f85cdbddb040d53aba617cf08"
+  },
+  {
+    "source": "assets/source/pic/titles/system_combat_en.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_combat_en.webp",
+    "before": 2342685,
+    "after": 1891368,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "c9aa30b8899735d0cd7cdf0a32f9a8276cefb4ad1495f7f3a503a732e0b48a24"
+  },
+  {
+    "source": "assets/source/pic/titles/system_combat_ja.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_combat_ja.webp",
+    "before": 2223353,
+    "after": 1777828,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "0bc55bc269bd40618979e6e5f6f3ec9f15c2cf2147d4298ef38868f12c2b5d47"
+  },
+  {
+    "source": "assets/source/pic/titles/system_combat_zh.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_combat_zh.webp",
+    "before": 2286880,
+    "after": 1832580,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "c7f95cb91656aec02638717689cb644bc036000299386fc073c95206c64c80b7"
+  },
+  {
+    "source": "assets/source/pic/titles/system_labels_en.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_labels_en.webp",
+    "before": 2215878,
+    "after": 1750186,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "917b2a01fe27ad7dc22da5b541057bdd2450ff4506f31a34480a5566fd84c470"
+  },
+  {
+    "source": "assets/source/pic/titles/system_labels_ja.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_labels_ja.webp",
+    "before": 2042073,
+    "after": 1559722,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "7e274730b7d81bd38c4539fa516a3ab72af34f6bc362e0dbb9c2b7d9c2e50f0a"
+  },
+  {
+    "source": "assets/source/pic/titles/system_labels_zh.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_labels_zh.webp",
+    "before": 2119846,
+    "after": 1636148,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "da74cbf1bb2d83d89a4243620923427abd984ba732f3e8b41306210ce9fe7050"
+  },
+  {
+    "source": "assets/source/pic/titles/system_outcomes_en.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_outcomes_en.webp",
+    "before": 2241516,
+    "after": 1779138,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "74433158a2397a8b43265afb0d9bb487b917d35d3f877d9f5fe6c51f72913a22"
+  },
+  {
+    "source": "assets/source/pic/titles/system_outcomes_ja.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_outcomes_ja.webp",
+    "before": 2129560,
+    "after": 1636364,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "9459c7b250f2e7fd851b35ec8d9d09ec86be87b593ccf0c3a5d4abc622a051c9"
+  },
+  {
+    "source": "assets/source/pic/titles/system_outcomes_zh.png",
+    "runtime": "assets/runtime/lossless/pic/titles/system_outcomes_zh.webp",
+    "before": 1900942,
+    "after": 1407444,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "42916f51684c849185006cbdd03f88c0ffe005a202c3bbeac050c3c5aa8d8459"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_bg_stars.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_bg_stars.webp",
+    "before": 1907036,
+    "after": 1519160,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "866873c7de07dcdbd80ff20e2badc669cecb8b40cab3f2dd705a1fc229e27a59"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_glove.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_glove.webp",
+    "before": 1839631,
+    "after": 1382864,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "6404358c3481590b80920f3243376102aaeb3dffa49f7756f8a6fa4de65c24c9"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_hair.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_hair.webp",
+    "before": 1923802,
+    "after": 1462514,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "c47f1f2282d25c7bdff8b2a56e8bb91e34db13c45d46738ed25b560e24136444"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_jacket.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_jacket.webp",
+    "before": 1870709,
+    "after": 1431478,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "d975d70299097bb4c1792abf72003d7ba4265b11b74aacbe0fb4cb4723753488"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_knee.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_knee.webp",
+    "before": 1818021,
+    "after": 1405754,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "1ba89e338136fc2db8c4fd19204cf50ef7cd1ae59c3d9c9238f3119dd8a361aa"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_pose.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_pose.webp",
+    "before": 2197853,
+    "after": 1781044,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "ca320f659b0ff9024b4e8dc5f7dfd9e19bff877d2dad446f1b7216651e0de383"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_scarf.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_scarf.webp",
+    "before": 1991178,
+    "after": 1585896,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "b56009536f59685fd42d0d45b6ea8e03eaea10a00b8b31648beed499b2adad71"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_sign.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_sign.webp",
+    "before": 1667644,
+    "after": 1145804,
+    "width": 1024,
+    "height": 1536,
+    "pixelIdentical": true,
+    "sourceSHA256": "2a64ca219d559dbe801174cd04805463fbc892256ad1b46fd7e3081c79d1f2dd"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_silhouette.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_silhouette.webp",
+    "before": 568100,
+    "after": 424926,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "980c10e8828fdee8acc653b1e139c16279dcfe8542bd5396b24b375deedc847e"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_waiting_1.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_waiting_1.webp",
+    "before": 1987158,
+    "after": 1549590,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "0e351cdad38a86276435b3cf8f851baa5762aa0495091bb43c297189676f5daa"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_waiting_2.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_waiting_2.webp",
+    "before": 2047233,
+    "after": 1615098,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "9481a0076d7390d17748d3220ab28f562a512c6b52a71220b248ca791ff8fe2e"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_waiting_3.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_waiting_3.webp",
+    "before": 1999850,
+    "after": 1566802,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "635812bdf954b7f2c0531da31199ecf61dd747674f99b93d7e7993080f5bd801"
+  },
+  {
+    "source": "assets/source/pic/transform/tf_waiting_4.png",
+    "runtime": "assets/runtime/lossless/pic/transform/tf_waiting_4.webp",
+    "before": 1985683,
+    "after": 1552268,
+    "width": 1672,
+    "height": 941,
+    "pixelIdentical": true,
+    "sourceSHA256": "06bce845267128d0a69cf8a71912d913ecc496427441ada5e2731573a4a33c4e"
+  },
+  {
+    "source": "assets/source/pic/ui/aux_hud_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/aux_hud_sheet.webp",
+    "before": 1132310,
+    "after": 754846,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "6a0d376da656ad8a31d95f6754b124ed773dd2b3c7de615fb6c7683e36f72d68"
+  },
+  {
+    "source": "assets/source/pic/ui/bingo_card.png",
+    "runtime": "assets/runtime/lossless/pic/ui/bingo_card.webp",
+    "before": 1159164,
+    "after": 634088,
+    "width": 1254,
+    "height": 1254,
+    "pixelIdentical": true,
+    "sourceSHA256": "f1fcd33f488c32453642e6c6e732b3865d666d85b86b4bfac9c54c6ea16a199d"
+  },
+  {
+    "source": "assets/source/pic/ui/btn_text.png",
+    "runtime": "assets/runtime/lossless/pic/ui/btn_text.webp",
+    "before": 1034564,
+    "after": 565670,
+    "width": 2172,
+    "height": 724,
+    "pixelIdentical": true,
+    "sourceSHA256": "43c4d2e857a1f2ebea54d25eca38e5665f36e7ea2bb6e2ef36ade6b2b67a039c"
+  },
+  {
+    "source": "assets/source/pic/ui/bubble_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/bubble_sheet.webp",
+    "before": 1188709,
+    "after": 803960,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "482456b30f9b1864b99dc1ad829830f55d40b541665a057d7839a0045acdd385"
+  },
+  {
+    "source": "assets/source/pic/ui/control_extras_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/control_extras_sheet.webp",
+    "before": 1317563,
+    "after": 859950,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "e03d9614b421bf4292dd2d4ff892d4a26a4a289523073a503ef87edd5356678f"
+  },
+  {
+    "source": "assets/source/pic/ui/difficulty_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/difficulty_sheet.webp",
+    "before": 2005063,
+    "after": 1435196,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "be3543c9b976f4cf08b838da8557dfce355c2c2c4060745a67f56471660e746c"
+  },
+  {
+    "source": "assets/source/pic/ui/guilt_explode_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/guilt_explode_sheet.webp",
+    "before": 1245869,
+    "after": 836010,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "b4b60d977ee377e62b9a7deb0ff2f3286b7836dbceee0e8281a7b7b2ee1b4488"
+  },
+  {
+    "source": "assets/source/pic/ui/hud_core_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/hud_core_sheet.webp",
+    "before": 1332630,
+    "after": 879090,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "6bda61f6aa7d5191fac0ae06d9c3088946f32cf3108a497d916c9d2adec97c14"
+  },
+  {
+    "source": "assets/source/pic/ui/minimap_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/minimap_sheet.webp",
+    "before": 1411399,
+    "after": 925378,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "5a9d0281a669fb235934d74ed5dba661a88378a1c55565aca98d23666410060f"
+  },
+  {
+    "source": "assets/source/pic/ui/panel_popup.png",
+    "runtime": "assets/runtime/lossless/pic/ui/panel_popup.webp",
+    "before": 1542448,
+    "after": 891004,
+    "width": 1254,
+    "height": 1254,
+    "pixelIdentical": true,
+    "sourceSHA256": "9e03102946be684669423a23c6f995f46ad4c80ff209dc5694cc5305fa73f59d"
+  },
+  {
+    "source": "assets/source/pic/ui/panel_sheet.png",
+    "runtime": "assets/runtime/lossless/pic/ui/panel_sheet.webp",
+    "before": 1134682,
+    "after": 750170,
+    "width": 1536,
+    "height": 1024,
+    "pixelIdentical": true,
+    "sourceSHA256": "046754aa02a7131c018e046b25037c852d437de0e7acc00f61deac04409449ec"
+  },
+  {
+    "source": "assets/source/pic/ui/panel_title_plate.png",
+    "runtime": "assets/runtime/lossless/pic/ui/panel_title_plate.webp",
+    "before": 855778,
+    "after": 459906,
+    "width": 2172,
+    "height": 724,
+    "pixelIdentical": true,
+    "sourceSHA256": "73b6199e2680a861a5e6d67971c534e0b3ffef9e3691440146b8bd80a1c4c0be"
+  },
+  {
+    "source": "assets/source/pic/ui/portrait_student.png",
+    "runtime": "assets/runtime/lossless/pic/ui/portrait_student.webp",
+    "before": 1028299,
+    "after": 641140,
+    "width": 1254,
+    "height": 1254,
+    "pixelIdentical": true,
+    "sourceSHA256": "923aeff59c4d0eacca1eadb62e8eac79a457f8a9269a0b9d5d87322206363483"
+  }
+]

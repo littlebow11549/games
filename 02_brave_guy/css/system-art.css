@@ -17,7 +17,7 @@
 .system-lettering{font-weight:900;paint-order:stroke fill;text-shadow:1px 2px #102917,0 0 8px #baff6555}
 .game-art .dmg.system-lettering{-webkit-text-stroke:1px #132216;font-weight:900;text-shadow:1px 2px #122616,2px 3px #0009}
 .game-art .debuffs b,.game-art #boss-name{color:#fff1af;font-weight:900;text-shadow:1px 2px #813415,0 0 7px #e2bc45}
-.game-art .lang-btn i{display:block!important;width:30px;height:30px;flex:0 0 30px;background:url('../assets/source/pic/icons/language_globe.png') center/130% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.game-art .lang-btn i{display:block!important;width:30px;height:30px;flex:0 0 30px;background:url('../assets/runtime/lossless/pic/icons/language_globe.webp') center/130% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important}
 .game-art .lang-btn i::before,.game-art .lang-btn i::after{display:none!important}
 .game-art .lang-btn span{font-size:14px;padding:6px 10px}.game-art .lang-btn{gap:3px;max-width:100%;box-sizing:border-box}
 @media(max-width:600px){

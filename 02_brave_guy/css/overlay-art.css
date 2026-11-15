@@ -6,13 +6,13 @@
   width:min(100%,460px);max-width:460px;max-height:calc(100dvh - 24px);overflow:auto;
   display:flex;flex-direction:column;align-items:stretch;gap:12px;
   padding:24px 28px 28px;border:20px solid transparent;border-radius:30px;outline:0;
-  border-image:url('../assets/source/pic/ui/panel_popup.png') 160 / 24px / 0 stretch;
+  border-image:url('../assets/runtime/lossless/pic/ui/panel_popup.webp') 160 / 24px / 0 stretch;
   background:#173522;background-clip:padding-box;box-shadow:0 18px 55px #0009;
 }
 .game-art #pause-menu .card h1,
 .game-art #overlay.result .card h1{
   margin:0 0 4px;min-height:78px;padding:20px 8px 16px;
-  display:grid;place-items:center;background:url('../assets/source/pic/ui/panel_title_plate.png') center/100% 100% no-repeat;
+  display:grid;place-items:center;background:url('../assets/runtime/lossless/pic/ui/panel_title_plate.webp') center/100% 100% no-repeat;
   color:#172114;font-size:clamp(25px,5vw,34px);line-height:1.2;letter-spacing:.08em;
   -webkit-text-stroke:0;text-shadow:none;font-weight:900;
 }
@@ -47,13 +47,13 @@
 .game-art #overlay.menu.stages #ov-menu{width:180px;max-width:100%;min-width:0;min-height:44px;margin-bottom:8px}
 .game-art #overlay.menu #ov-stages h4{
   min-width:220px;max-width:100%;padding:16px 30px;margin:18px 0 10px;
-  background:url('../assets/source/pic/ui/panel_title_plate.png') center/100% 100% no-repeat;
+  background:url('../assets/runtime/lossless/pic/ui/panel_title_plate.webp') center/100% 100% no-repeat;
   border:0;box-shadow:none;transform:none;color:#172114;letter-spacing:.03em;font-size:18px;
 }
 .game-art #overlay.menu .stage-row{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px}
 .game-art #overlay.menu .card button.stage{
   width:100%;min-width:0;min-height:106px;padding:20px 20px 18px 64px;
-  background:#fff5db url('../assets/source/pic/ui/panel_sheet.png') 2.667% 11.236%/241.509% 208.98% no-repeat;
+  background:#fff5db url('../assets/runtime/lossless/pic/ui/panel_sheet.webp') 2.667% 11.236%/241.509% 208.98% no-repeat;
   border:0;border-radius:13px;box-shadow:0 5px 0 #030b08;gap:4px;
 }
 .game-art #overlay.menu .card button.stage::before{left:12px;top:25px;bottom:25px;width:40px;border:2px solid #142719;border-radius:9px;clip-path:none}
@@ -80,7 +80,7 @@
 /* Six-state atlas: 690×260 viewing windows, originals stay intact. */
 .game-art #pause-menu .card>button:not(.lang-btn),
 .game-art #overlay.result .card>button:not(.lang-btn){
- background-color:transparent;background-image:url('../assets/source/pic/ui/btn_text.png');
+ background-color:transparent;background-image:url('../assets/runtime/lossless/pic/ui/btn_text.webp');
  background-size:314.783% 278.462%;background-position:.81% 16.16%;background-repeat:no-repeat;box-shadow:none;
 }
 .game-art #pause-menu .card>button.ghost:not(.lang-btn),
@@ -96,9 +96,9 @@
 .result-metric{display:flex;flex-direction:column;padding:10px 6px;background:#081e1599;border:1px solid #74ad534d;border-radius:10px}
 .result-metric small{font-size:12px;color:#d0e4b8}
 .result-metric b{font-size:28px;line-height:1.3;color:#ffdf59;font-variant-numeric:tabular-nums}
-.game-art #menu-art .art{background-image:url('../assets/source/pic/branding/menu_keyart_01.png');background-position:center;background-size:cover}
+.game-art #menu-art .art{background-image:url('../assets/runtime/lossless/pic/branding/menu_keyart_01.webp');background-position:center;background-size:cover}
 @media(orientation:portrait){
- .game-art #menu-art .art{background-image:url('../assets/source/pic/branding/menu_keyart_portrait_01.png');background-position:center top;background-size:100% auto;background-color:#07301d}
+ .game-art #menu-art .art{background-image:url('../assets/runtime/lossless/pic/branding/menu_keyart_portrait_01.webp');background-position:center top;background-size:100% auto;background-color:#07301d}
 }
 
 /* Every clear lands on the existing illustrated result card before any outro. */
