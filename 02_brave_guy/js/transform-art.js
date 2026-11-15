@@ -11,7 +11,15 @@ function load(id) {
   }));
   return cache.get(id);
 }
-export function createTransformArt(root) {
+// Reuse delivered SFX; fire at the committed visual frame, not at dialog input time.
+export const TRANSFORM_SFX = Object.freeze({
+ bg_stars:['courage_full'], silhouette:['beam_start'],
+ glove:['dodge','guard'], knee:['dodge','pan_hit'], jacket:['fan'],
+ hair:['qi_full'], scarf:['dash'], pose:['transform_done'],
+ waiting_1:['ui_back'], waiting_2:['chips'], waiting_3:['revert'],
+ waiting_4:['student_punch'], sign:['ui_confirm'],
+});
+export function createTransformArt(root, onFrame = () => {}) {
   const picture = root.querySelector('.tf-picture');
   const sign = root.querySelector('.tf-sign-card');
   let generation = 0, timer = 0, current = null;
@@ -39,6 +47,7 @@ export function createTransformArt(root) {
         const copy = img.cloneNode(); copy.alt = ''; copy.setAttribute('aria-hidden', 'true');
         if (id === 'sign') sign.querySelector('img').src = img.src;
         else picture.append(copy);
+        if (!document.hidden) onFrame(id);
       }
       if (!img) sign.hidden = true;
       if (index + 1 < shots.length) {
