@@ -41,7 +41,7 @@
 
 ### E. 每一首的風格與 AI 提示詞
 
-**鍵名與檔名全部不變，直接覆蓋**，程式自動換歌。舊 v2 母帶請先搬到 `_archive/02_xianxia_battle/music/v2/`。提示詞用中文（AI 生成工具多半也吃中文；若你的工具對英文較準，再把關鍵字翻成英文即可）。都標明「純演奏無人聲」。各首都要把**主角主題的吉他 riff**放進去當記憶點。
+**鍵名與檔名全部不變，直接覆蓋**，程式自動換歌。舊 v2 母帶請先搬到 `_archive/02_brave_guy/music/v2/`。提示詞用中文（AI 生成工具多半也吃中文；若你的工具對英文較準，再把關鍵字翻成英文即可）。都標明「純演奏無人聲」。各首都要把**主角主題的吉他 riff**放進去當記憶點。
 
 | 優先 | 鍵（＝檔名） | 用途 | 速度/副類型 | AI 提示詞（中文，純演奏、可循環的遊戲 BGM） |
 |---|---|---|---|---|
@@ -134,7 +134,7 @@ ffmpeg -i 曲子.ogg -af loudnorm=print_format=summary -f null -
 
 ### D. 每一首的新設計
 
-**鍵名與檔名全部不變，直接覆蓋舊檔**，程式就會自動換歌，不需要改任何程式或 manifest。舊檔請先搬到 `_archive/02_xianxia_battle/music/v1/`。
+**鍵名與檔名全部不變，直接覆蓋舊檔**，程式就會自動換歌，不需要改任何程式或 manifest。舊檔請先搬到 `_archive/02_brave_guy/music/v1/`。
 
 | 優先 | 鍵（＝檔名） | 用在哪 | BPM | 新設計 |
 | --- | --- | --- | --- | --- |
@@ -195,12 +195,12 @@ ffmpeg -i 曲子.ogg -af loudnorm=print_format=summary -f null -
 | 音效響度 | 峰值約 −3 dB，同類音效音量一致 |
 | 檔案大小 | 這是手機網頁遊戲：單首 BGM 建議 1.5MB 以內，全部音效合計 1MB 以內 |
 | 母帶 | 未壓縮的 WAV 母帶請放 repo 根目錄的 `_archive/`，不要放進遊戲資料夾 |
-| 路徑 | BGM：`02_xianxia_battle/assets/source/music/`　音效：`02_xianxia_battle/assets/source/sfx/` |
+| 路徑 | BGM：`02_brave_guy/assets/source/music/`　音效：`02_brave_guy/assets/source/sfx/` |
 | 檔名 | 照下面各表，**勿改** |
 
 ## 2. 接進遊戲的方式
 
-遊戲啟動時讀 `02_xianxia_battle/assets/manifest.json` 的 `audio` 欄位。把檔案放好後，把對應的值從 `null` 改成路徑，例如：
+遊戲啟動時讀 `02_brave_guy/assets/manifest.json` 的 `audio` 欄位。把檔案放好後，把對應的值從 `null` 改成路徑，例如：
 
 ```json
 "audio": {
@@ -346,14 +346,14 @@ ffmpeg -i 曲子.ogg -af loudnorm=print_format=summary -f null -
 
 ## 5. 配音（另案，列在這裡供統籌）
 
-- 腳本每句台詞有四位數 ID，配音檔名用它：`02_xianxia_battle/assets/source/voice/vo_1042.mp3`。
+- 腳本每句台詞有四位數 ID，配音檔名用它：`02_brave_guy/assets/source/voice/vo_1042.mp3`。
 - 規格：MP3 96–128kbps 單聲道，一句一檔，前後不留空白。
 - 量：主線 670 句、戰鬥泡泡 52 句。可以只配主線，或只配「怪叫與語氣詞」（主角的出拳喊聲、小天使的「喔。」、俊熊的「蛤～～」、八卦蛇的「私私～」），其餘用文字。
 - 語氣參考 `SCRIPT.md` 開頭的「角色語氣速查」。
 
 ## 6. 交付時請一併做的事
 
-1. 在 `02_xianxia_battle/assets/source/` 放一份 `AUDIO_DELIVERY.json`（或 Markdown），列出每個檔案的長度、取樣率、位元率、響度、是否可循環與循環長度、製作工具、**授權來源**。
+1. 在 `02_brave_guy/assets/source/` 放一份 `AUDIO_DELIVERY.json`（或 Markdown），列出每個檔案的長度、取樣率、位元率、響度、是否可循環與循環長度、製作工具、**授權來源**。
 2. 在 `docs/handoffs/` 新增交接報告，並更新 `docs/HANDOFF.md`（專案規定，見根目錄 `AGENTS.md`）。
 3. P0 三首 BGM 請直接把路徑填進 `assets/manifest.json`，並實際開遊戲聽一次確認會循環、音量合理。
 4. 不要改 `js/` 裡的程式；音效接入由 Claude 處理。

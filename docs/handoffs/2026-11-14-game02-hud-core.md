@@ -6,7 +6,7 @@
 
 本機根目錄：`C:\Users\user\Documents\Codex\2026-11-14\task\games`。
 
-| 相對 `02_xianxia_battle/assets/source/` 路徑 | 原生尺寸 | 內容 |
+| 相對 `02_brave_guy/assets/source/` 路徑 | 原生尺寸 | 內容 |
 |---|---|---|
 | `pic/ui/portrait_student.png` | 1254×1254 RGBA | 大學生頭肩像，全黃帽與上衣、棕眼 |
 | `pic/ui/portrait_brave.png` | 1254×1254 RGBA | 勇氣超人頭肩像，紅眼紅圍巾、棕色尖髮白挑染 |

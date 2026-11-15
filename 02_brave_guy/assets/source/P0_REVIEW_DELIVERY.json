@@ -1,6 +1,6 @@
 [
   {
-    "path": "02_xianxia_battle/assets/source/pic/branding/logo_01_review_v1.png",
+    "path": "02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png",
     "width": 1536,
     "height": 1024,
     "bytes": 1620366,
@@ -12,7 +12,7 @@
     "compression": "Original generated PNG bytes, no re-encoding"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/sheet/sheet_student.png",
+    "path": "02_brave_guy/assets/source/pic/sheet/sheet_student.png",
     "width": 1536,
     "height": 1024,
     "bytes": 1867953,
@@ -24,7 +24,7 @@
     "compression": "Original generated PNG bytes, no re-encoding"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/sheet/sheet_braveguy.png",
+    "path": "02_brave_guy/assets/source/pic/sheet/sheet_braveguy.png",
     "width": 1536,
     "height": 1024,
     "bytes": 1984392,

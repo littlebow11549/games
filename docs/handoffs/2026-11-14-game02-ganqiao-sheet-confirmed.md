@@ -4,9 +4,9 @@
 
 ## 完成
 
-- `02_xianxia_battle/CHARACTERS.md`：更新變體說明、3D 注意事項及原第 4 項待確認問題，改為已確認。
-- `02_xianxia_battle/assets/ASSETS.md`：明記單張合輯；修正 P2 表格避免重複列入中階與完全體合輯。保留每型態正面／左側／背面各一張，共 9 張 3D 參考；初始 P1，其餘 P2。
-- `02_xianxia_battle/tools/make_character_bible.py`：同步相同來源文字，避免重新生成角色文件時恢復過時的待確認問題。未執行整份再生成，以保留其餘文件內容。
+- `02_brave_guy/CHARACTERS.md`：更新變體說明、3D 注意事項及原第 4 項待確認問題，改為已確認。
+- `02_brave_guy/assets/ASSETS.md`：明記單張合輯；修正 P2 表格避免重複列入中階與完全體合輯。保留每型態正面／左側／背面各一張，共 9 張 3D 參考；初始 P1，其餘 P2。
+- `02_brave_guy/tools/make_character_bible.py`：同步相同來源文字，避免重新生成角色文件時恢復過時的待確認問題。未執行整份再生成，以保留其餘文件內容。
 - `docs/HANDOFF.md`：加入本交接連結。
 
 ## 查核與狀態

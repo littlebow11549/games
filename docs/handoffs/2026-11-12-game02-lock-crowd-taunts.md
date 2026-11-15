@@ -9,7 +9,7 @@
 
 ## 完成內容
 
-全部在 `02_xianxia_battle/js/main.js`，樣式在 `css/game.css`，按鈕在 `index.html`。
+全部在 `02_brave_guy/js/main.js`，樣式在 `css/game.css`，按鈕在 `index.html`。
 
 ### 自動鎖定
 

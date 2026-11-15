@@ -8,9 +8,9 @@
 
 | 檔案（相對根目錄） | 實際尺寸與格式 | 內容 |
 |---|---|---|
-| `02_xianxia_battle/assets/source/pic/sheet/sheet_angel.png` | 1536×1024 RGB PNG | 小天使五角度、六表情、六細節、五色、檔案及身高圖；粉紅長髮修正至膝附近 |
-| `02_xianxia_battle/assets/source/pic/sheet/sheet_nightmare.png` | 1536×1024 RGB PNG | 惡夢超人五角度、六表情、六細節、五色、檔案及身高圖；綠圍巾與紫綠服裝 |
-| `02_xianxia_battle/assets/source/pic/sheet/sheet_ganqiao.png` | 1536×1024 RGB PNG | 初始／中階／完全體同張，每型態五角度，共十五個轉面圖；共用六表情、六細節、五色與身高圖 |
+| `02_brave_guy/assets/source/pic/sheet/sheet_angel.png` | 1536×1024 RGB PNG | 小天使五角度、六表情、六細節、五色、檔案及身高圖；粉紅長髮修正至膝附近 |
+| `02_brave_guy/assets/source/pic/sheet/sheet_nightmare.png` | 1536×1024 RGB PNG | 惡夢超人五角度、六表情、六細節、五色、檔案及身高圖；綠圍巾與紫綠服裝 |
+| `02_brave_guy/assets/source/pic/sheet/sheet_ganqiao.png` | 1536×1024 RGB PNG | 初始／中階／完全體同張，每型態五角度，共十五個轉面圖；共用六表情、六細節、五色與身高圖 |
 
 三張原生影像 bytes 原樣保存，沒有縮放、重編碼或程式佔位圖。深綠底為合輯設計，不要求透明。要求3072×2048而工具實際返回1536×1024，符合最低尺寸但非建議高解析尺寸。
 
@@ -26,8 +26,8 @@
 
 ## 紀錄與後續
 
-- `02_xianxia_battle/assets/source/P1_REVIEW_DELIVERY.json`：實際尺寸、RGB格式、bytes與SHA256。
-- `02_xianxia_battle/assets/source/P1_REVIEW_PROMPTS.md`：三張實際生成及修正提示詞。
+- `02_brave_guy/assets/source/P1_REVIEW_DELIVERY.json`：實際尺寸、RGB格式、bytes與SHA256。
+- `02_brave_guy/assets/source/P1_REVIEW_PROMPTS.md`：三張實際生成及修正提示詞。
 - 已同步ASSETS.md與HANDOFF.md。既有CHARACTERS.md及其生成器先前已記錄幹譙龍三型態同張，不重複改寫。
 - 待審：小天使／惡夢超人造型與背面，以及幹譙龍三型態新增身體結構。核准後再製作P1單視角參考；幹譙龍後續仍為三模型、各三張，共九張，不因合輯合併而減少。
 - P0六張單視角仍有1254×1254及非嚴格純白限制，未解決，不視為正式Tripo輸入。

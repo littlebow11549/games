@@ -12,7 +12,7 @@
 
 ## 已套用的試看入口
 
-`02_xianxia_battle/art-preview.html` 載入現有 index.html，以 `js/art-preview-host.js` 注入獨立 `css/art-preview.css`。正常 index 不受預覽樣式影響，未更動戰鬥邏輯。
+`02_brave_guy/art-preview.html` 載入現有 index.html，以 `js/art-preview-host.js` 注入獨立 `css/art-preview.css`。正常 index 不受預覽樣式影響，未更動戰鬥邏輯。
 
 預覽套用學生／勇氣超人頭像、計量條、攻擊／閃避／變身／四技能、鎖定、靜音／暫停圖示及搖桿。其餘新增面板、難度、小地圖和賓果圖集目前僅總覽，不能稱已全面整合。技能可用性、冷卻、變身由原遊戲狀態類別驅動。
 
@@ -23,7 +23,7 @@
 - Node 語法檢查通過；Chrome 實際載入 WebGL 遊戲與新素材，目視寬螢幕及 430px 介面；新舊切換的 body 類別變化已驗證。
 - 修正介面檢視時選單原有 CSS 覆蓋 hidden 的問題。
 - 圖集直接用 CSS 定位只作審稿預覽；按鍵圓形比例、各狀態中心、光暈範圍及小尺寸辨識仍需正式切圖校準。沒有宣稱完整戰鬥回歸、觸控實機、所有冷卻狀態或所有關卡通過。
-- 本機 Python HTTP 服務無回應，改用只監聽 127.0.0.1 的 Node 預覽服務後成功。當次入口為 http://127.0.0.1:8766/02_xianxia_battle/art-preview.html；服務重啟後網址依啟動埠而定。
+- 本機 Python HTTP 服務無回應，改用只監聽 127.0.0.1 的 Node 預覽服務後成功。當次入口為 http://127.0.0.1:8766/02_brave_guy/art-preview.html；服務重啟後網址依啟動埠而定。
 
 ## Claude 與 Git 交接
 

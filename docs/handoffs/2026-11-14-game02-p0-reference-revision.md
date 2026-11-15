@@ -6,7 +6,7 @@
 
 本機根目錄：`C:\Users\user\Documents\Codex\2026-11-14\task\games`。
 
-目前版本均在 `02_xianxia_battle/assets/source/pic/concept/`：
+目前版本均在 `02_brave_guy/assets/source/pic/concept/`：
 
 - `student_front.png`、`student_side.png`、`student_back.png`
 - `braveguy_front.png`、`braveguy_side.png`、`braveguy_back.png`

@@ -4,9 +4,9 @@
 使用者要求一次執行更多項目後集中驗收。本批優先修復音效的正式接入能力，不變更角色外觀、14關流程、遊戲平衡或已核准Logo。
 
 ## 完成
-1. `02_xianxia_battle/js/audio.js`：支援從 `manifest.sfx` 讀取音效；第一次使用時非同步下載並解碼；緩存同一音效，多次播放支援疊音；失敗後停止重試並保留原本WebAudio合成音；靜音時不觸發合成／檔案音效。
-2. `02_xianxia_battle/assets/manifest.json`：新增 11 個可選SFX插槽（swing/hit/crit/boom/hurt/skill/dodge/shoot/ui/win/lose），目前全部為 null。**沒有虛構正式音效檔**。
-3. `02_xianxia_battle/tools/audio-sfx.test.mjs`：新增Node內建測試，涵蓋無檔回退、快取疊音、失敗回退、靜音。指令：`node --test 02_xianxia_battle/tools/audio-sfx.test.mjs`。
+1. `02_brave_guy/js/audio.js`：支援從 `manifest.sfx` 讀取音效；第一次使用時非同步下載並解碼；緩存同一音效，多次播放支援疊音；失敗後停止重試並保留原本WebAudio合成音；靜音時不觸發合成／檔案音效。
+2. `02_brave_guy/assets/manifest.json`：新增 11 個可選SFX插槽（swing/hit/crit/boom/hurt/skill/dodge/shoot/ui/win/lose），目前全部為 null。**沒有虛構正式音效檔**。
+3. `02_brave_guy/tools/audio-sfx.test.mjs`：新增Node內建測試，涵蓋無檔回退、快取疊音、失敗回退、靜音。指令：`node --test 02_brave_guy/tools/audio-sfx.test.mjs`。
 4. `docs/HANDOFF.md`：增加本批入口。
 
 ## 驗收與限制

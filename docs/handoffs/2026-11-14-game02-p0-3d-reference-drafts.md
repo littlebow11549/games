@@ -4,7 +4,7 @@
 
 使用者在兩張更新後的角色合輯與「確認後製作3D單視角參考」說明之後回覆「可以」，因此記錄兩個P0角色造型已確認，開始各三張單視角製作。本次沒有呼叫Tripo、購買、產生模型或啟動P1。
 
-六張檔案均位於 APHASEN：`C:\Users\user\Documents\Codex\2026-11-14\task\games\02_xianxia_battle\assets\source\pic\concept\`：
+六張檔案均位於 APHASEN：`C:\Users\user\Documents\Codex\2026-11-14\task\games\02_brave_guy\assets\source\pic\concept\`：
 
 | 角色 | 正面 | 左側（面朝圖左） | 背面 |
 |---|---|---|---|

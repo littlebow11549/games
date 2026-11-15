@@ -1,7 +1,7 @@
 # 02 勇氣超人 Brave Guy — 進度
 
 狀態：**遊戲底層完成，14 關可玩**（2026-11-12）。所有美術都是程式拼的佔位物；音樂有 3 首 demo。
-已上線：https://littlebow11549.github.io/games/02_xianxia_battle/ ，首頁遊戲收藏有入口。資料夾 `02_xianxia_battle` 是早期工作代號，尚未改名。
+已上線：https://littlebow11549.github.io/games/02_brave_guy/ ，首頁遊戲收藏有入口。資料夾 `02_brave_guy` 是早期工作代號，尚未改名。
 
 ## 文件
 

@@ -1,6 +1,6 @@
 [
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/student_front.png",
+    "path": "02_brave_guy/assets/source/pic/concept/student_front.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1211478,
@@ -19,7 +19,7 @@
     "status": "revised_reference_native_resolution_pending"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/student_side.png",
+    "path": "02_brave_guy/assets/source/pic/concept/student_side.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1150932,
@@ -38,7 +38,7 @@
     "status": "revised_reference_native_resolution_pending"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/student_back.png",
+    "path": "02_brave_guy/assets/source/pic/concept/student_back.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1125852,
@@ -57,7 +57,7 @@
     "status": "revised_reference_native_resolution_pending"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_front.png",
+    "path": "02_brave_guy/assets/source/pic/concept/braveguy_front.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1267407,
@@ -76,7 +76,7 @@
     "status": "revised_reference_native_resolution_pending"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_side.png",
+    "path": "02_brave_guy/assets/source/pic/concept/braveguy_side.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1157610,
@@ -95,7 +95,7 @@
     "status": "revised_reference_native_resolution_pending"
   },
   {
-    "path": "02_xianxia_battle/assets/source/pic/concept/braveguy_back.png",
+    "path": "02_brave_guy/assets/source/pic/concept/braveguy_back.png",
     "width": 1254,
     "height": 1254,
     "bytes": 1185000,

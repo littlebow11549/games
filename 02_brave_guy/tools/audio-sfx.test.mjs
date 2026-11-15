@@ -1,4 +1,4 @@
-// Run: node --test 02_xianxia_battle/tools/audio-sfx.test.mjs
+// Run: node --test 02_brave_guy/tools/audio-sfx.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';

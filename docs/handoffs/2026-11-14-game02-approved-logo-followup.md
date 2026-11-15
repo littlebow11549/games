@@ -4,9 +4,9 @@
 
 使用者先說「Logo ok」，再指示「繼續後續處理」。已核准的是新版主 Logo 造型，不表示角色、精密尺寸或其他批次均已核准。本報告更新並取代前兩份報告中「等待 Logo 定案／角色暫停」的當時狀態。
 
-- 已保留核准 Logo 原檔，SHA256 不變：`02_xianxia_battle/assets/source/pic/branding/logo_01_review_v1.png`。1536×1024 RGBA 真透明，正式原生高解析寬2400以上仍待補，未將低解析圖放大充數。
-- `02_xianxia_battle/assets/source/pic/sheet/sheet_student.png`：換上新版頁首 Logo；全黃上衣、黑色 BRAVE 胸字保留。
-- `02_xianxia_battle/assets/source/pic/sheet/sheet_braveguy.png`：換上新版頁首 Logo、胸口標誌與 CHEST LOGO 細節框。
+- 已保留核准 Logo 原檔，SHA256 不變：`02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png`。1536×1024 RGBA 真透明，正式原生高解析寬2400以上仍待補，未將低解析圖放大充數。
+- `02_brave_guy/assets/source/pic/sheet/sheet_student.png`：換上新版頁首 Logo；全黃上衣、黑色 BRAVE 胸字保留。
+- `02_brave_guy/assets/source/pic/sheet/sheet_braveguy.png`：換上新版頁首 Logo、胸口標誌與 CHEST LOGO 細節框。
 - 原兩張合輯另存同目錄 `history/sheet_student_before_logo_approval.png`、`history/sheet_braveguy_before_logo_approval.png`，便於比較。
 - `CHARACTERS.md` 與 `tools/make_character_bible.py` 同步全黃上衣／黃色袖口。綠色色票改註鞋與背包點綴的審稿提案，避免舊綠袖規格再生。
 - `assets/ASSETS.md` 記錄 Logo 已核准與最新製作狀態，幹譙龍同張合輯決定不變。

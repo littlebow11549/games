@@ -6,12 +6,12 @@
 
 ## 本次完成內容
 - 看過參考影片（28 秒、1280×720，抽幀檢視）。內容是斜俯視 3D 即時動作砍殺；UI 整段沒有變化，屬於靜態圖層疊在戰鬥錄影上。
-- 新增素材需求清單：[`02_xianxia_battle/assets/ASSETS.md`](../../02_xianxia_battle/assets/ASSETS.md)。
-- 使用者後續要求「先把環境建立好」「需要 3D 就用 3D」「特效要 3D」，因此建立了**可玩的佔位版原型**：[`02_xianxia_battle/`](../../02_xianxia_battle/)，功能與檔案見 [`PROGRESS.md`](../../02_xianxia_battle/PROGRESS.md)。
+- 新增素材需求清單：[`02_brave_guy/assets/ASSETS.md`](../../02_brave_guy/assets/ASSETS.md)。
+- 使用者後續要求「先把環境建立好」「需要 3D 就用 3D」「特效要 3D」，因此建立了**可玩的佔位版原型**：[`02_brave_guy/`](../../02_brave_guy/)，功能與檔案見 [`PROGRESS.md`](../../02_brave_guy/PROGRESS.md)。
 - 原型內所有角色、場景、UI、音效都是程式產生的佔位物；**沒有任何正式美術、模型或音樂**。資料夾名為工作代號，遊戲尚未定名。
-- 素材插槽 `assets/manifest.json`：填入 GLB／音樂路徑即可替換佔位物，格式見 [`assets/README.md`](../../02_xianxia_battle/assets/README.md)。
+- 素材插槽 `assets/manifest.json`：填入 GLB／音樂路徑即可替換佔位物，格式見 [`assets/README.md`](../../02_brave_guy/assets/README.md)。
 - 需求清單 §8 已改為「特效由 Claude 以 3D 製作，GPT 只供貼圖」。
-- Three.js r170（MIT）與 GLTFLoader 放在 `02_xianxia_battle/vendor/three/`，約 840KB，無建置步驟。
+- Three.js r170（MIT）與 GLTFLoader 放在 `02_brave_guy/vendor/three/`，約 840KB，無建置步驟。
 
 ## 驗證（無頭 Chromium＋軟體 WebGL，2026-11-10）
 - 啟動、開始、三波小怪、Boss、勝利結算、重來、落敗結算：皆通過，console 無錯誤。

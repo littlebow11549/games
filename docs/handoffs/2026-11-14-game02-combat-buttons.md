@@ -4,7 +4,7 @@
 
 ## 成果
 
-根目錄：`C:\Users\user\Documents\Codex\2026-11-14\task\games`。下列路徑相對 `02_xianxia_battle/assets/source/`。
+根目錄：`C:\Users\user\Documents\Codex\2026-11-14\task\games`。下列路徑相對 `02_brave_guy/assets/source/`。
 
 | 檔案 | 原生尺寸 | 內容 |
 |---|---|---|

@@ -8,7 +8,7 @@
 ## 完成內容
 
 ### 首頁入口
-- `assets/js/hub.js`：`GAMES` 新增第二款（id `jade-sword-trial`、分類「動作」、連到 `02_xianxia_battle/`），六種語言各加一句介紹（`description2`）。
+- `assets/js/hub.js`：`GAMES` 新增第二款（id `jade-sword-trial`、分類「動作」、連到 `02_brave_guy/`），六種語言各加一句介紹（`description2`）。
 - 遊戲名稱**暫定「青玉劍試煉 / Jade Sword Trial」**，是 Claude 為了做入口先取的，使用者尚未確認。
 - 首頁大 Banner 仍是 Memory Crash，沒有更動。
 - `tools/check_hub.cjs` 配合兩款遊戲更新斷言（空格數、動作分類、多張卡片），並把寫死的 `/workspace/games` 截圖路徑與 Chromium 路徑改成相對／可選。
@@ -16,7 +16,7 @@
 - 遊戲開始畫面加了「回遊戲中心」連結。
 
 ### 簡單版美術（全部為程式繪製的暫代圖）
-- `02_xianxia_battle/tools/make_simple_art.py` 產生 **65 張 SVG** 到 `02_xianxia_battle/assets/source/pic/`：
+- `02_brave_guy/tools/make_simple_art.py` 產生 **65 張 SVG** 到 `02_brave_guy/assets/source/pic/`：
   品牌 3、背景 3、字藝 8、UI 18、圖示 19、數字 4、特效貼圖 9、教學圖 1。總計約 324KB。
 - `tools/concept.html`＋`tools/render_concepts.cjs` 把佔位 3D 角色輸出成 **17 張 2048×2048 PNG 三視圖**（`pic/concept/`，約 3MB，瀏覽器原生 PNG 無損輸出，未再壓縮）。
   這些只適合當比例參考，不建議直接送去生 3D。
@@ -26,7 +26,7 @@
 - 文字類 SVG（Logo、字藝、數字）使用系統字型，不同裝置上字形會略有差異。
 
 ### 美術優先級清單
-- `02_xianxia_battle/assets/ASSETS.md` 新增「優先級總表」：A 組（Claude 已完成簡單版，11 項）與 B 組（需其他軟體，P0–P3）。
+- `02_brave_guy/assets/ASSETS.md` 新增「優先級總表」：A 組（Claude 已完成簡單版，11 項）與 B 組（需其他軟體，P0–P3）。
 - P0 是主角設定圖與主角 3D 模型（Tripo，需使用者的 API 金鑰）。
 
 ### 順手修掉的錯誤

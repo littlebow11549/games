@@ -22,7 +22,7 @@ const assert=require('node:assert/strict');
  await page.locator('.favorite-button').first().click();assert.equal(await page.locator('.favorite-button').first().getAttribute('aria-pressed'),'true');
  await page.locator('[data-filter="favorites"]').click();assert.equal(await page.locator('.game-card').count(),1);
  await page.reload();assert.equal(await page.locator('.favorite-button').first().getAttribute('aria-pressed'),'true');
- await page.locator('[data-filter="action"]').click();assert.equal(await page.locator('.game-card').count(),1);assert.ok((await page.locator('.game-card a').first().getAttribute('href')).endsWith('02_xianxia_battle/'));await page.locator('[data-filter="casual"]').click();assert.equal(await page.locator('.game-card').count(),0);
+ await page.locator('[data-filter="action"]').click();assert.equal(await page.locator('.game-card').count(),1);assert.ok((await page.locator('.game-card a').first().getAttribute('href')).endsWith('02_brave_guy/'));await page.locator('[data-filter="casual"]').click();assert.equal(await page.locator('.game-card').count(),0);
  await page.locator('[data-filter="puzzle"]').click();assert.equal(await page.locator('.game-card').count(),1);
  await page.locator('[data-filter="favorites"]').click();await page.locator('.favorite-button').first().click();assert.equal(await page.locator('.game-card').count(),0);assert.equal(await page.locator('#favorite-count').textContent(),'0');
  await page.locator('[data-filter="all"]').click();await page.selectOption('#language','zh-Hant');

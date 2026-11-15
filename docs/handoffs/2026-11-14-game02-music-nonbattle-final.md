@@ -1,6 +1,6 @@
 # 勇氣超人 Brave Guy — 非戰鬥曲 + 3-1，音樂全數完成（2026-11-14）
 
-製作：音樂工作階段（Claude）。依 [`02_xianxia_battle/assets/MUSIC.md`](../../02_xianxia_battle/assets/MUSIC.md) v1.3。
+製作：音樂工作階段（Claude）。依 [`02_brave_guy/assets/MUSIC.md`](../../02_brave_guy/assets/MUSIC.md) v1.3。
 分支：`claude/brave-guy-music`（已併最新主線）。
 
 ## 本次交付（7 首）
@@ -18,7 +18,7 @@
 - 每首：`.ogg`（q4）＋`.mp3`（128k），44.1kHz，−16 LUFS／真峰 ≤ −1 dBTP。
 - `bgm_transform` 依需求**刻意不用電音**、結尾硬切無尾音。
 - `bgm_stage_3_1` 補上專屬曲，取代原本借用的 `bgm_office`。
-- 母帶 `_archive/02_xianxia_battle/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（26 項）。
+- 母帶 `_archive/02_brave_guy/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（26 項）。
 
 ## 🎉 音樂全數完成
 
