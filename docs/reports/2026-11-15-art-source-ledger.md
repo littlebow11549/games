@@ -27,18 +27,18 @@
 |暫停/結算新框/標題/按鈕|`ui/panel_popup.png`、`ui/panel_title_plate.png`、`ui/btn_text.png`|本聊天已生成，PR35實作及測試通過|等待合併/視覺驗收，不重生|
 |履歷/算了計數器|`ui/resume.png`、`ui/counter_suanle.png`|本聊天已生成未提交，履歷欄數不合規|保留，先核對既有稿再決定修改|
 |14個場景|見程式／交付紀錄|world.js已有14主題；使用者指出美術已做；10張本聊天新稿另列|查原交付來源；不再生成場景|
-|首次變身13件|`transform/tf_bg_stars.png`、`transform/tf_glove.png`、`transform/tf_hair.png`、`transform/tf_jacket.png`、`transform/tf_knee.png`、`transform/tf_pose.png`、`transform/tf_scarf.png`、`transform/tf_sign.png`、`transform/tf_silhouette.png`、`transform/tf_waiting_1.png`、`transform/tf_waiting_2.png`、`transform/tf_waiting_3.png`、`transform/tf_waiting_4.png`|本聊天已生成13張但使用者指出重複；未提交、未接入|停用生成佇列；核對原稿及程式演出|
+|首次變身13件|`transform/tf_bg_stars.png`、`transform/tf_glove.png`、`transform/tf_hair.png`、`transform/tf_jacket.png`、`transform/tf_knee.png`、`transform/tf_pose.png`、`transform/tf_scarf.png`、`transform/tf_sign.png`、`transform/tf_silhouette.png`、`transform/tf_waiting_1.png`、`transform/tf_waiting_2.png`、`transform/tf_waiting_3.png`、`transform/tf_waiting_4.png`|沿用先前13張原檔，SHA256未變；接入首次變身及重播|已核對內容及來源；保留尺寸/構圖限制，不重生|
 |其他三視角/道具/教學/貼圖/GLB|見程式／交付紀錄|獨立正式檔未定位，不等於從未製作|追溯交付紀錄與合輯/程式內容；無確認不進製作佇列|
 
 ## 本聊天未提交稿：另列，不作新需求
 
-共27張，包含10場景、13變身、2學生表情、2職場道具。全部保留，沒有刪除或改圖；未混入PR35正式交付。逐檔尺寸、SHA256見同名JSON。
+原先27張中，13張變身圖本輪依使用者續作要求核對後原樣接入；其SHA256見JSON的 integrated_transform_images。其餘14張（10場景、2學生表情、2職場道具）仍保留待比對，未刪除、未改圖、未提交。
 
 ## 可以執行的下一步
 
 1. 核對PR35選關、暫停、結算與等寬按鈕的交付／接入狀態，不再生圖。
 2. 既有HUD圖集本輪已接入，座標見 `02_brave_guy/assets/source/HUD_RUNTIME_REGIONS.json`；驗證及例外見最新交接。
 3. 上班族HUD頭像已取自合輯；角色其他表情仍沿用合輯，不重畫。
-4. 場景、變身與其餘來源有爭議的項目維持「待追溯」，不得因ASSETS/manifest缺檔而生圖。
+4. 變身已沿用本聊天先前生成的13張，不宣稱找到更早原稿；場景與其他來源有爭議項目仍待追溯，不得因缺檔重生。
 
 **本輪沒有已確認需要新生成的項目，生圖佇列為空。**
