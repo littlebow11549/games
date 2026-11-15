@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-15 勇氣超人：修正絕招/衝刺穿牆 + 盤點未收到美術（Claude）](handoffs/2026-11-15-game02-wall-fix-and-art-backlog.md)：修正高速位移低幀率單幀跨過薄牆的穿牆 bug（新增 `moveHeroBy` 分段推進，衝刺/閃避/擊退/移動都改走它；無頭測試舊式 11/11 全穿、修正後 11/11 全擋、0 error）。並產出 [`assets/ART_OUTSTANDING_2026-11-15.md`](../02_brave_guy/assets/ART_OUTSTANDING_2026-11-15.md) 未收到美術完整清單（交 GPT），`ASSETS.md §4.5` 展開暫停/彈窗面板細規格。已 commit 並比照上線（預設分支）。
+
 - [2026-11-15 勇氣超人：套用交響金屬 BGM（v3.0 音檔到位）（Claude）](handoffs/2026-11-15-game02-music-v3-symphonic-metal-applied.md)：套用使用者上傳的 25 首交響金屬 MP3，轉出同名 OGG 一起覆蓋；新增 `bgm_battle`／`bgm_victory`／`bgm_stage_3_0` 三首專屬曲並改接 manifest（原為佔位）。無頭 Chromium 載入 0 error、24 鍵全對應、OGG 皆可解碼。**未做母帶處理，未 commit／push／部署。**
 
 - [2026-11-15 勇氣超人：資料夾改名 02_xianxia_battle → 02_brave_guy（Claude）](handoffs/2026-11-15-game02-folder-rename-brave-guy.md)：早期代號改為與遊戲名一致的 `02_brave_guy`；`git mv` 搬資料夾並全 repo 更新 52 檔的路徑引用。**GitHub Pages 網址改為 `.../02_brave_guy/`，舊網址失效**。Playwright 驗證 hub 連結、遊戲載入、0 error 全過。
