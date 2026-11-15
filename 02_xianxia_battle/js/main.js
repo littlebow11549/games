@@ -112,7 +112,7 @@ const DEBUFFS = {
 const BOSS_DEBUFF = { folaidiKing: ['sleepy'], qian: ['extort'], lan: ['mute'], nightmare: ['guilty'], midKing: ['weak'], hell: ['burn', 'guilty'],
   kabanKing: ['tired', 'sleepy'], xinji: ['mute'], baguashe: ['confuse'], lanMgr: ['weak', 'mute'], ganqiaoFull: ['burn', 'mute'], guan: ['blind', 'extort'], incubus: ['confuse', 'guilty', 'weak'] };
 
-const MAX_ATTACKERS = 4;      // 同時出手的小怪上限，避免被圍毆到無法反應
+const MAX_ATTACKERS = 6;      // 同時出手的小怪上限，避免被圍毆到無法反應
 const SAVE_KEY = 'braveguy.save.v1';
 
 // 小天使的吐槽（節錄自 SCRIPT.md 附錄 A）
@@ -160,9 +160,9 @@ if (!$('dialog') || !$('ov-stages') || !$('loadbar') || !$('btn-lock') || !$('pa
 const QUALITY_KEY = 'braveguy.quality';
 const QUALITY = [
   // crowd：每波總數的倍率；cap：同時在場的小怪上限（超過的排隊，有怪倒下就補上）
-  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 2.4, cap: 28 },
-  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 4, cap: 48 },
-  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 5, cap: 60 },
+  { name: '低', ratio: 1, shadows: false, shadowSize: 512, crowd: 5, cap: 36 },
+  { name: '中', ratio: 1.5, shadows: true, shadowSize: 1024, crowd: 9, cap: 64 },
+  { name: '高', ratio: 2, shadows: true, shadowSize: 2048, crowd: 11, cap: 80 },
 ];
 const coarse = matchMedia('(pointer: coarse)').matches;
 const forced = new URLSearchParams(location.search).get('q');
@@ -623,7 +623,6 @@ const BLOB_GEO = new THREE.CircleGeometry(1, 16);
 const BLOB_MAT = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28, depthWrite: false });
 
 // 小怪有大中小三種體型：小隻的跑得快但一碰就倒，大隻的血厚、打人痛、走得慢
-const HOLD_AGGRO = 8.5;
 const SIZES = [
   { w: 45, s: 0.78, hp: 0.6, dmg: 0.8, speed: 1.2 },
   { w: 40, s: 1, hp: 1, dmg: 1, speed: 1 },
@@ -672,7 +671,7 @@ function spawnEnemy(kind, at, delay = 0) {
   const maxHp = def.boss ? def.hp : Math.round(def.hp * hpMult);
   const e = { kind, def, visual, pos, y: 0, vy: 0, yaw: 0, hp: maxHp, maxHp, state: 'spawn', t: -delay, vel: new THREE.Vector3(), bar,
     cool: rand(0.6, 2.5), stun: 0, struck: false, shown: false, cds: {}, cast: null, haste: 0, fear: 0, fly: false, lineT: 0,
-    shield: !!def.incubus, broken: new Set(), phase: 0, size, hold: !def.boss && !at && D().spread && Math.random() < 0.75 };
+    shield: !!def.incubus, broken: new Set(), phase: 0, size };
   enemies.push(e);
   return e;
 }
@@ -694,10 +693,12 @@ function feedQueue(dt) {
   if (!game.queue.length) return;
   game.queueT -= dt;
   if (game.queueT > 0) return;
+  game.queueT = 0.04;
+  // 無雙：只要畫面沒滿就一次補好幾隻，剛清掉一片馬上又塞滿
+  const cap = Math.round(Q().cap * D().cap);
   const onField = enemies.filter((e) => e.state !== 'dead' && !e.def.boss).length;
-  if (onField >= Math.round(Q().cap * D().cap)) return;
-  game.queueT = 0.07;
-  spawnEnemy(game.queue.shift());
+  let budget = Math.min(6, cap - onField, game.queue.length);
+  while (budget-- > 0) spawnEnemy(game.queue.shift());
 }
 
 function spawnBoss() {
@@ -1238,11 +1239,6 @@ function updateEnemy(e, dt, attackers) {
   } else if (e.state === 'chase') {
     e.cool -= dt;
     e.yaw = Math.atan2(dx, dz);
-    // 地獄難度：守在原地的怪，主角靠近或自己挨打才撲上來（所以整張地圖都是怪）
-    if (e.hold) {
-      if (d < HOLD_AGGRO || e.hp < e.maxHp || !heroAlive) e.hold = false;
-      else { e.visual.play('idle'); return; }
-    }
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
     if (heroAlive && d <= def.reach && e.cool <= 0 && canAttack) {
       e.state = 'windup'; e.t = 0; e.struck = false;
@@ -1250,7 +1246,7 @@ function updateEnemy(e, dt, attackers) {
       e.visual.play('attack', def.windup / 0.6);
     } else if (def.ranged) {
       // 遠程：保持距離
-      const want = d > 11 ? 1 : d < 6 ? -1 : 0;
+      const want = d > 9 ? 1 : d < 5 ? -1 : 0;
       e.pos.x += (dx / d) * speed * want * dt;
       e.pos.z += (dz / d) * speed * want * dt;
       e.visual.play(want ? 'run' : 'idle');
@@ -1367,7 +1363,7 @@ function separate() {
       const b = enemies[j];
       if (!alive(b) || b.y > 0) continue;
       const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
-      const min = a.def.radius + b.def.radius;
+      const min = (a.def.radius + b.def.radius) * (a.def.boss || b.def.boss ? 1 : 0.7); // 小怪擠緊一點，圍滿主角
       if (Math.abs(dx) > min || Math.abs(dz) > min) continue;
       const d = Math.hypot(dx, dz) || 0.001;
       if (d < min) {
