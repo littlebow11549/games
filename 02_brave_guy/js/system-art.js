@@ -50,7 +50,7 @@ export function updateCombo(value) {
  ],{duration:milestone?440:300,easing:'cubic-bezier(.2,.8,.3,1)'});
 }
 export function decorateSystemUI() {
- setSystemArt(document.getElementById('ov-local-logo'),'勇氣超人！');
+
  for(const el of document.querySelectorAll('#pause-menu h1, #combo [data-i18n]')) setSystemArt(el,el.dataset.i18n);
  for(const el of document.querySelectorAll('[aria-label]')) {
   if(el.id==='btn-cycle-lock'){el.setAttribute('aria-label',t('切換鎖定目標'));el.title=t('切換鎖定目標')+' · Y / Shift+Y';}
