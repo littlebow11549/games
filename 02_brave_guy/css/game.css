@@ -414,3 +414,10 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 .quest.mini #quest-mini{display:flex!important;align-items:center;gap:10px;margin:0;font-size:13px;line-height:1.4;white-space:nowrap}
 .quest.mini #quest-mini b{font-family:var(--font-display);color:var(--yellow)}
 .quest.mini #quest-mini i{font-style:normal;color:#ff7fb6;letter-spacing:.08em}
+
+/* Temporary review shortcut: below sound/pause, above the minimap. */
+#btn-quick-clear{position:absolute;right:0;top:46px;width:112px;min-height:40px;padding:6px 8px;border:2px solid #fbe156;border-radius:12px;background:linear-gradient(#fff49b,#ffc421);color:#152818;font-size:14px;font-weight:900;box-shadow:0 3px 0 #8c351b;white-space:nowrap}
+#btn-quick-clear:active{transform:translateY(2px);box-shadow:0 1px 0 #8c351b}
+#btn-quick-clear:focus-visible{outline:3px solid white;outline-offset:2px}
+#minimap{top:calc(104px + var(--safe-t))}
+@media (max-height:430px){#minimap{top:calc(98px + var(--safe-t))}}
