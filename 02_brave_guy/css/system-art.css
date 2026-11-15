@@ -52,3 +52,8 @@
 .game-art .act.ult.ready{animation:ult-neon 1.2s ease-in-out infinite alternate}
 @keyframes ult-neon{to{filter:drop-shadow(0 0 10px #bcff4f) brightness(1.3)}}
 @media(prefers-reduced-motion:reduce){.game-art .act.ult.ready{animation:none;filter:drop-shadow(0 0 8px #bcff4f)}}
+
+/* Three equal language targets; selection styling never changes their width. */
+.game-art .card .lang-btn{display:grid!important;grid-template-columns:30px repeat(3,minmax(0,1fr));align-items:center;column-gap:4px;width:min(100%,340px);box-sizing:border-box}
+.game-art .card .lang-btn i{margin:0;justify-self:center}
+.game-art .card .lang-btn span{display:flex;align-items:center;justify-content:center;min-width:0;box-sizing:border-box;padding:7px 4px;text-align:center;white-space:nowrap}
