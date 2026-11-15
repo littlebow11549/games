@@ -346,3 +346,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 - 結局：7 鏡、約 31.5 秒的動態插畫（推拉、取景、局部鼓掌律動）；接 8 秒 Staff。模型版為插畫載入失敗回退。Staff 所有職務 LilinS。
 - 主選單：原主視覺 UV 局部呼吸形變、能量光流與粒子；WebGL 不可用時保留原靜態圖。血量/勇氣/罪惡感持續螢光、滿格脈衝掃光、氣量大招待發光；爆表使用原爆炸圖集與新增程式化表身碎片。
 - 詳細檔案 SHA、原生規格：`source/system_cinematics_manifest.json`；交接見 `docs/handoffs/2026-11-15-game02-system-cinematics.md`。
+
+## 2026-11-15 直式開場與對嗆接入
+
+使用者確認以手機直式9:16呈現。開場七幕復用 student 頭像與 angel／ganqiao 設定合輯，由CSS取景與繪製宿舍／門／光環，未重製圖片或引用待追溯場景稿。Boss原分鏡圖保留，統一改為三段4秒對嗆（中英日），爆裂框與震動為CSS／Canvas效果，音效使用既有交付檔。詳見 docs/handoffs/2026-11-15-game02-portrait-opening-banter.md。
