@@ -90,7 +90,7 @@
     "bubble": "assets/source/sfx/sfx_bubble.mp3",
     "pan_fly": "assets/source/sfx/sfx_pan_fly.mp3",
     "pan_hit": "assets/source/sfx/sfx_pan_hit.mp3",
-    "applause": "assets/source/sfx/sfx_applause.mp3",
+    "applause": "assets/source/sfx/sfx_applause_crowd.mp3",
     "chips": "assets/source/sfx/sfx_chips.mp3",
     "whistle": "assets/source/sfx/sfx_whistle.mp3",
     "fan": "assets/source/sfx/sfx_fan.mp3",
@@ -126,6 +126,7 @@
     "tf_jacket": "assets/source/sfx/sfx_tf_jacket.mp3",
     "tf_hair": "assets/source/sfx/sfx_tf_hair.mp3",
     "tf_scarf": "assets/source/sfx/sfx_tf_scarf.mp3",
-    "tf_pose": "assets/source/sfx/sfx_tf_pose.mp3"
+    "tf_pose": "assets/source/sfx/sfx_tf_pose.mp3",
+    "crowd_cheer": "assets/source/sfx/sfx_crowd_cheer.mp3"
   }
 }

@@ -64,5 +64,6 @@ export function burstMeter() {
  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  const box=meter.getBoundingClientRect(), layer=document.createElement('div');layer.className='meter-shards';layer.style.left=`${box.x+box.width/2}px`;layer.style.top=`${box.y+box.height/2}px`;document.body.append(layer);
  for(let i=0;i<12;i++){const shard=document.createElement('i');const a=i*Math.PI/6;shard.style.setProperty('--sx',`${Math.cos(a)*(35+i%3*15)}px`);shard.style.setProperty('--sy',`${Math.sin(a)*(30+i%4*10)}px`);shard.style.setProperty('--sr',`${i*47}deg`);layer.append(shard);}
- layer.addEventListener('animationend',()=>layer.remove(),{once:true});
+ const cleanup=setTimeout(()=>layer.remove(),1000);
+ layer.addEventListener('animationend',()=>{clearTimeout(cleanup);layer.remove();},{once:true});
 }

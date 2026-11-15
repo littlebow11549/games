@@ -1,0 +1,15 @@
+{
+  "stages": 14,
+  "locales": 3,
+  "victoryChecks": 42,
+  "bossVictoryFilm": true,
+  "frozenScores": true,
+  "singleAward": true,
+  "outroThenNext": true,
+  "finalVictoryBeforeEnding": true,
+  "staffPreserved": true,
+  "retry": true,
+  "menu": true,
+  "errors": [],
+  "missing": []
+}

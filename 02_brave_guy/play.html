@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="css/transform-art.css?v=20261115a">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261115a">
 <link rel="stylesheet" href="css/system-art.css?v=20261115allboss">
-<link rel="stylesheet" href="css/cinematics.css?v=20261115portrait">
+<link rel="stylesheet" href="css/cinematics.css?v=20261115perf">
 <link rel="stylesheet" href="css/opening.css?v=20261115portrait">
 <link rel="preload" as="image" href="assets/source/pic/ui/guilt_explode_sheet.png">
 <link rel="modulepreload" href="js/world.js">
@@ -27,8 +27,10 @@
 <link rel="modulepreload" href="js/story.js">
 <link rel="preload" href="assets/fonts/huninn-subset.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/notosanstc-black-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/loading.css?v=20261115finish">
 </head>
 <body class="game-art">
+<section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit"></div><img src="assets/source/pic/ui/portrait_student.png" alt=""><h1>BRAVE GUY</h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
 <canvas id="scene"></canvas>
 
 <div id="hud" hidden>
@@ -128,6 +130,7 @@
     <p id="loadbar-text" class="muted">讀取中　0%</p>
     <p id="ov-load" class="muted"></p>
     <button id="ov-btn" disabled>開始</button>
+    <button id="ov-run" class="ghost" hidden>完整通關計時挑戰</button>
     <button id="ov-opening" class="ghost" hidden>重播開場</button>
     <button id="ov-replay" class="ghost" hidden data-i18n="重播變身">重播變身</button>
     <button id="ov-next" hidden data-i18n="下一關">下一關</button>
@@ -147,12 +150,21 @@
   var note = document.getElementById('ov-load');
   var bar = document.getElementById('loadbar'), fill = document.getElementById('loadbar-fill'), label = document.getElementById('loadbar-text');
   var pct = 0, failed = false;
+  var locale=new URLSearchParams(location.search).get('lang');try{locale=locale||localStorage.getItem('braveguy.lang');}catch(e){}
+  var language=locale==='en'?1:locale==='ja'?2:0;
+  var tips=[['20 連擊：攻擊提升 25%','20-hit combo: +25% damage','20 コンボ：攻撃力 25% アップ'],['完美閃避：3 秒反擊增傷 50%','Perfect dodge: +50% damage for 3 seconds','ジャスト回避：3 秒間ダメージ 50% アップ'],['魔王久戰會加速，抓住出招後的破綻','Bosses accelerate in long fights. Punish openings.','長期戦ではボスが加速。攻撃後の隙を狙おう。']];
+  var tipIndex=0;function tip(){document.getElementById('boot-tip').textContent=tips[tipIndex++%tips.length][language];}tip();
+  var tipTimer=setInterval(function(){if(window.__booted||failed)clearInterval(tipTimer);else tip();},4500);
+  document.getElementById('boot-retry').onclick=function(){location.reload();};
 
   // 進度只會往前，不會倒退
   window.__progress = function (value, text) {
     if (failed) return;
     pct = Math.max(pct, Math.min(100, value));
     fill.style.width = pct + '%';
+    document.getElementById('boot-fill').style.transform='scaleX('+pct/100+')';
+    document.getElementById('boot-percent').textContent=Math.round(pct)+'%';
+    document.getElementById('boot-caption').textContent=pct<76?['喚醒勇氣，準備內心世界…','Awakening courage. Preparing your inner world…','勇気を呼び覚まし、心の世界を準備中…'][language]:text;
     label.textContent = (text || '讀取中') + '　' + Math.round(pct) + '%';
     if (pct >= 100) setTimeout(function () { bar.hidden = true; label.hidden = true; }, 400);
   };
@@ -163,7 +175,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261115portrait';
+    s.src = 'js/main.js?v=20261115perf';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');
@@ -203,8 +215,12 @@
   window.__fail = function (html) {
     if (window.__booted) return;
     failed = true;
+    clearInterval(tipTimer);
+    document.getElementById('boot-caption').textContent=['載入未完成，請重試。','Loading incomplete. Please retry.','読み込みが完了していません。再試行してください。'][language];
+    document.getElementById('boot-retry').hidden=false;
     bar.hidden = true; label.hidden = true;
-    note.innerHTML = html + '<br><a href="#" id="ov-reload" style="color:#f6c21c">重新載入</a>';
+    note.textContent = html;
+    note.innerHTML += '<br><a href="#" id="ov-reload" style="color:#f6c21c">重新載入</a>';
     note.style.opacity = 1;
     document.getElementById('ov-reload').onclick = function (e) { e.preventDefault(); location.replace(location.pathname + '?r=' + Date.now()); };
   };

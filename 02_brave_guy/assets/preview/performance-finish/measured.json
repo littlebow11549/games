@@ -1,0 +1,32 @@
+{
+  "boot": {
+    "bytes": 29726175,
+    "endingRequested": false
+  },
+  "menu": {
+    "frames": 36,
+    "draws": {
+      "menu-live-art": 30
+    },
+    "mutations": 0
+  },
+  "battle": {
+    "frames": 10,
+    "draws": {
+      "scene": 640
+    },
+    "mutations": 0
+  },
+  "pause": {
+    "frames": 8,
+    "draws": {
+      "scene": 64
+    },
+    "mutations": 3
+  },
+  "boss": {
+    "frames": 5,
+    "draws": {},
+    "mutations": 0
+  }
+}

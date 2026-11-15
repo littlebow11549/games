@@ -454,16 +454,18 @@ export const STAGES = [
 
 export const MAP_NAMES = { 1: '地圖一　校園', 2: '地圖二　荒野', 3: '地圖三　職場', 4: '終章' };
 
-// 這一關開始時主角已經會什麼。地圖三要重新找回，所以只算地圖三之內拿到的。
-export function abilitiesFor(index) {
-  const stage = STAGES[index];
-  const has = new Set();
-  if (stage.map === 4) return new Set(['transform', 'skill1', 'skill2', 'skill3', 'ult', 'hp', 'qi']);
-  for (let i = 0; i < index; i++) {
-    const s = STAGES[i];
-    if (stage.map === 3 ? s.map !== 3 : s.map === 3) continue;
-    for (const g of [s.grant, s.mid && s.mid.grant]) if (g) g.split('+').forEach((x) => has.add(x));
+// Rewards come from saved clears, never from the selected stage index.
+// The workplace temporarily seals techniques until their story recovery clears.
+export function abilitiesFor(index, cleared = []) {
+  const stage = STAGES[index], earned = new Set(cleared), has = new Set();
+  for(const s of STAGES){
+    if(!earned.has(s.id))continue;
+    for(const grant of [s.grant,s.mid?.grant]){
+      if(!grant)continue;
+      for(const ability of grant.split('+')){
+        if(stage.map!==3||s.map===3||['hp','qi'].includes(ability))has.add(ability);
+      }
+    }
   }
-  if (stage.map === 3) { has.add('hp'); has.add('qi'); }
   return has;
 }

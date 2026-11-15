@@ -1,5 +1,6 @@
 // 3D 特效：全部是場景內的網格與粒子（不是 2D 貼片疊圖）。
 // 刀光 slash 在這版改當拳風使用。
+import { disposeOwned } from './dispose-owned.js';
 import * as THREE from '../vendor/three/three.module.min.js';
 
 const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
@@ -25,15 +26,14 @@ export class Fx {
       const k = Math.min(1, it.t / it.life);
       it.tick(k, dt, it.obj);
       if (k >= 1) {
-        this.scene.remove(it.obj);
-        it.obj.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
+        disposeOwned(it.obj);
         this.items.splice(i, 1);
       }
     }
   }
 
   clear() {
-    for (const it of this.items) this.scene.remove(it.obj);
+    for (const it of this.items) disposeOwned(it.obj);
     this.items.length = 0;
   }
 

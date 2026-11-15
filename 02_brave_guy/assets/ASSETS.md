@@ -350,3 +350,10 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-15 直式開場與對嗆接入
 
 使用者確認以手機直式9:16呈現。開場七幕復用 student 頭像與 angel／ganqiao 設定合輯，由CSS取景與繪製宿舍／門／光環，未重製圖片或引用待追溯場景稿。Boss原分鏡圖保留，統一改為三段4秒對嗆（中英日），爆裂框與震動為CSS／Canvas效果，音效使用既有交付檔。詳見 docs/handoffs/2026-11-15-game02-portrait-opening-banter.md。
+
+## 2026-11-15 群眾掌聲與歡呼 v4
+- `source/sfx/sfx_applause_crowd.mp3`：6.32 秒真實劇場群眾掌聲，Sandermotions，CC0。
+- `source/sfx/sfx_crowd_cheer.mp3`：11.62 秒拍手與 woo／woohoo 人聲，starlite，Public domain。
+- 44.1 kHz、192 kbps MP3；歡呼原錄音為單聲道，輸出雙聲道不宣稱原生立體聲。
+- 原錄音、WAV 母帶、來源／授權：`_archive/game02/sfx/2026-11-15/crowd-v4/`；完整交付 `source/CROWD_SFX_DELIVERY.json`。重製腳本 `tools/make_game02_crowd.py`。舊合成拍手留存，但 manifest 已改用新錄音。
+- 每關勝利與結局群眾演出疊播；6.5／12 秒間隔限制重疊，重試及回標題停止殘音。兩檔全音量疊加峰值 -3.9 dBFS，遊戲另經音效主音量及 limiter。

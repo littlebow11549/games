@@ -52,3 +52,7 @@
 - 設定依據：CHARACTERS.md、DESIGN.md、sheet/unified 的 braveguy／laichuang／lan／xinji／baguashe／guanlaoban／ganqiao／incubus／nightmare／hell／qian／angel。
 - 修訂版 1536×1024，主角＋13 Boss＋小天使。保留原生尺寸，未插值放大；舊版 _archive/game02/cinematics/2026-11-15/ending-correction/ending_applause_rejected.png。
 - 三次定向編修均保留生成原檔於 /workspace/generated_images；最後採 exec-ff122630-5341-4dea-bbb5-794c610b7cda.png。修正歷程與差異見 handoffs/2026-11-15-game02-ending-character-correction.md，不視為使用者已審核通過。
+
+## 效能與勝敗／二次變身演出
+- 使用現有 visuals.js 角色、原 Boss storyboards、學生頭像、結局與變身原圖，新增程式動畫／氣泡／讀取頁；沒有新生成原圖。
+- runtime-images.json 僅為載入分組索引，不作未製作清單。待追溯素材與生圖停止狀態不變。
