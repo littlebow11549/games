@@ -7,8 +7,8 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
 import { createVisual, loadModel } from './visuals.js?v=20261115fast';
 import { Fx } from './fx.js?v=20261115fast';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115fast';
-import { createCinematics } from './cinematics.js?v=20261115fast';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261116films';
+import { createCinematics } from './cinematics.js?v=20261116films';
 import { createOpening } from './opening.js?v=20261115fast';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget } from './targeting.js?v=20261115fast';
@@ -1266,7 +1266,8 @@ function bossThink(e, d, dx, dz) {
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
 function startAwakening(e) {
   game.awakened=true;game.phase='cinematic';audio.stopLoops();input.takeActions();
-  if(beam)endUlt();e.cast=null;e.state='chase';e.cool=2.5;
+  if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
+  e.shown=true;e.visual.root.visible=true;
   hazards.forEach(h=>h.life=0);$('hud').hidden=true;
   cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());});
 }
@@ -2267,6 +2268,7 @@ function frame(now) {
   if (opening.active) { requestAnimationFrame(frame); return; }
   audio.syncCombatLoops(game.phase==='playing'&&!game.paused&&!cinematics.active?hero.state:null);
   if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
+  if(game.phase==='cinematic'){requestAnimationFrame(frame);return;}
   menuMotion.update(now, game.phase === 'ready');
   if(game.phase==='ready'){staticFrame=null;requestAnimationFrame(frame);return;}
   const frozen=game.paused||game.phase==='over';
@@ -2477,7 +2479,10 @@ $('btn-quick-clear').addEventListener('click', () => {
     game.midDone = true;
     runDialog(st.bossIntro, spawnBoss);
   } else if(st.boss==='incubus'&&!game.awakened){
-    const boss=enemies.find(e=>e.def.incubus&&alive(e));if(boss){boss.shield=false;boss.hp=boss.maxHp*.6;startAwakening(boss);}
+    // Preview must also work immediately after skipping the entrance, while
+    // the boss is still in its otherwise untargetable spawn animation.
+    const boss=enemies.find(e=>e.def.incubus&&e.state!=='dead'&&!e.gone&&e.hp>0);
+    if(boss){boss.shield=false;boss.hp=boss.maxHp*.6;startAwakening(boss);}
   } else {
     clearStage();
   }

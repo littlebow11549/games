@@ -38,16 +38,16 @@ let previous = -1;
 export function updateCombo(value) {
  const el=document.getElementById('combo-n');
  if(previous === value) return;
- const old=previous; previous=value; el.textContent=value;el.dataset.digits=String(Math.min(5,String(value).length));
+ const old=previous; previous=value; el.textContent=value;
  for(const a of el.getAnimations()) a.cancel();
  if(value < 5 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
  const milestone = Math.floor(value/10)>Math.floor(old/10);
  el.animate([
- {transform:'translateY(14px) scale(.55) rotate(-12deg)',opacity:.35,filter:'brightness(2)'},
- {transform:`translateY(-13px) scale(${milestone?1.8:1.5}) rotate(5deg)`,opacity:1,offset:.4},
- {transform:'translateY(4px) scale(.88) rotate(-1deg)',offset:.75},
+ {transform:'translateY(9px) scale(.62) rotate(-8deg)',opacity:.35,filter:'brightness(2)'},
+ {transform:`translateY(-7px) scale(${milestone?1.65:1.32}) rotate(3deg)`,opacity:1,offset:.4},
+ {transform:'translateY(2px) scale(.94) rotate(-1deg)',offset:.75},
  {transform:'translateY(0) scale(1) rotate(0)',filter:'brightness(1)'}
- ],{duration:milestone?480:340,easing:'cubic-bezier(.2,.8,.3,1)'});
+ ],{duration:milestone?440:300,easing:'cubic-bezier(.2,.8,.3,1)'});
 }
 export function decorateSystemUI() {
 

@@ -360,3 +360,11 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-15 勝利圖片與無損配送
 沿用既有 tf_pose、tf_glove 與Boss分鏡作6秒勝利漫畫演出。75張來源圖的原生尺寸無損WebP副本放在 `runtime/lossless/pic/`，不是新美術；`runtime/lossless/report.json` 記錄來源SHA、尺寸、大小與RGBA逐像素驗證，`../tools/compress_runtime.py` 可重建。CSS／Canvas／貼圖與預載清單共同使用配送版，原圖不刪除、不改動。完整交接見 `docs/handoffs/2026-11-15-game02-victory-comic-fast.md`。
+
+## 2026-11-16 圖片過場修訂
+- `source/pic/cinematics/victory_*.png`：13張各三鏡，勇氣超人實際命中及擊倒對應Boss。初次登場原圖保留。
+- `awakening_armor_a/b.png`：依使用者提供的 Final Ascension 鎧甲設定圖，七拍組裝／主角吐槽／爆發。B圖分鏡不等高，按原生座標裁窗，未插值或修改原圖。
+- `defeat_storyboard.png`＋`defeat_retry.png`：三鏡失敗及獨立重試；`ending_applause_final.png`：定向修正15角色終章群像。
+- 原生來源、SHA與自審紀錄：`source/PICTURE_FILMS_REVIEW.json`；無損配送報告：`runtime/lossless/report.json`。詳細驗證與發布狀態見 `docs/handoffs/2026-11-16-game02-all-picture-films.md`。
+
+- 配送最佳化追加：93張以最高強度無損WebP比對後擇小，總計197,949,744→146,614,638 bytes（-25.93%）；原生像素／透明度一致。
