@@ -35,6 +35,19 @@ export class GameAudio {
     for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
   }
 
+  // Short filtered-noise handclaps, routed through the user's existing mute control.
+  applause() {
+    if (!this.ctx || this.muted || this.ctx.state !== 'running') return;
+    const now = this.ctx.currentTime;
+    for (let i=0;i<3;i++) {
+      const src=this.ctx.createBufferSource(), filter=this.ctx.createBiquadFilter(), gain=this.ctx.createGain();
+      src.buffer=this.noiseBuf; filter.type='bandpass'; filter.frequency.value=1100+i*430; filter.Q.value=.7;
+      const at=now+i*.026; gain.gain.setValueAtTime(.12,at); gain.gain.exponentialRampToValueAtTime(.001,at+.09);
+      src.connect(filter).connect(gain).connect(this.master); src.start(at); src.stop(at+.1);
+      src.onended=()=>{src.disconnect();filter.disconnect();gain.disconnect();};
+    }
+  }
+
   setMuted(m) {
     this.muted = m;
     localStorage.setItem(MUTE_KEY, m ? '1' : '0');

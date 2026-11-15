@@ -6,6 +6,7 @@
 
 原始字型（都是 SIL Open Font License 1.1，可商用、可內嵌）不放進 repo，執行前先下載：
   jf-openhuninn-2.1.ttf   https://github.com/justfont/open-huninn-font/releases/download/v2.1/jf-openhuninn-2.1.ttf
+  NotoSansJP[wght].ttf    https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf
   NotoSansTC[wght].ttf    https://raw.githubusercontent.com/google/fonts/main/ofl/notosanstc/NotoSansTC%5Bwght%5D.ttf
 
 遊戲裡新增或修改文字之後要重跑一次，否則新字會退回系統字型（不會壞，只是不一致）。
@@ -43,3 +44,8 @@ def build(font, name):
 build(TTFont(os.path.join(src, 'jf-openhuninn-2.1.ttf')), 'huninn-subset.woff2')
 black = instantiateVariableFont(TTFont(os.path.join(src, 'NotoSansTC[wght].ttf')), {'wght': 900})
 build(black, 'notosanstc-black-subset.woff2')
+
+# Japanese localized glyph forms, rather than falling back to a Chinese font.
+jp_path = os.path.join(src, "NotoSansJP[wght].ttf")
+if os.path.exists(jp_path):
+    build(TTFont(jp_path), "notosansjp-subset.woff2")

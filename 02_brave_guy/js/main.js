@@ -1,14 +1,18 @@
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
-// 規格見 DESIGN.md；關卡與對白資料在 story.js。所有美術都是佔位物。
+// 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js';
 import { createVisual, loadModel } from './visuals.js';
 import { Fx } from './fx.js';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261115cinema';
+import { createCinematics } from './cinematics.js?v=20261115cinema';
+import { createMenuMotion } from './menu-motion.js?v=20261115cinema';
+import { nextLockTarget } from './targeting.js';
 import { Input, lockViewport } from './input.js';
 import { createTransformArt } from './transform-art.js?v=20261115a';
 import { GameAudio } from './audio.js';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115tf';
-import { t, tf, lang, nextLang, applyStatic } from './i18n.js?v=20261115tf';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115cinema';
 import { makeMaze } from './maze.js';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115g';
 
@@ -221,6 +225,8 @@ const fx = new Fx(scene);
 lockViewport();
 const input = new Input();
 let audio = new GameAudio(null);
+const cinematics = createCinematics(renderer, () => audio);
+const menuMotion = createMenuMotion();
 progress(76, '讀取設定');
 
 function resize() {
@@ -353,6 +359,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index) {
+  cinematics.cancel();
   transformArt.hide();
   game.stage = index;
   const st = stage();
@@ -431,7 +438,7 @@ function advanceDialog(skip = false) {
 
 function banner(text) {
   const b = $('banner');
-  b.textContent = t(text);
+  setSystemArt(b, text);
   b.classList.remove('show');
   void b.offsetWidth;
   b.classList.add('show');
@@ -448,7 +455,7 @@ function popup(world, height, text, cls = '') {
   const p = screenPos(world, height);
   const el = document.createElement('div');
   el.className = `dmg ${cls}`;
-  el.textContent = t(text);
+  setSystemArt(el, text);
   el.style.left = `${p.x + rand(-14, 14)}px`;
   el.style.top = `${p.y + rand(-8, 8)}px`;
   ui.append(el);
@@ -492,16 +499,22 @@ function updateHud() {
   const g = hero.guilt / hero.guiltMax;
   $('guilt-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, g))})`;
   $('guilt').classList.toggle('crack', g >= 0.9);
+  $('guilt').classList.toggle('full', g >= 1);
+  $('hp-fill').parentElement.classList.toggle('full', hero.hp >= hero.maxHp);
+  $('courage').style.setProperty('--charge', Math.max(0, Math.min(1, courageShown)));
+  $('guilt').style.setProperty('--charge', Math.max(0, Math.min(1, g)));
+  $('hp-fill').parentElement.style.setProperty('--charge', Math.max(0, Math.min(1, hero.hp/hero.maxHp)));
   $('guilt').classList.toggle('heavy', g >= GAUGE.guiltHesitate);
   $('portrait').classList.toggle('brave', brave);
   $('portrait').classList.toggle('worker', hero.form === 'worker');
+  $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !enemies.some(e => alive(e) && !e.gone && dist2d(e.pos, hero.pos) - e.def.radius < LOCK_RANGE);
   $('quest-count').textContent = tf('擊倒 {0}', game.kills);
   $('suanle-n').textContent = game.suanle;
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
   $('rescue-n').textContent = hearts;
   $('quest-mini').innerHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`; // 收合時只顯示這一行
   $('combo').hidden = game.combo < 5;
-  $('combo-n').textContent = game.combo;
+  updateCombo(game.combo);
 
   for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
@@ -604,6 +617,7 @@ function finishTransform() {
 }
 
 function guiltBurst() {
+  burstMeter();
   if (!canTransform()) {
     // 悶爆：爆不起來，只說「……算了」
     hero.guilt = 0;
@@ -750,6 +764,13 @@ function feedQueue(dt) {
 }
 
 function spawnBoss() {
+  const key = stage().boss;
+  game.phase = 'cinematic';
+  cinematics.boss(BOSS_GROUPS[key] || [key], () => {
+    input.takeActions(); game.phase = 'playing'; spawnBossActual();
+  });
+}
+function spawnBossActual() {
   game.bossSpawned = true;
   const key = stage().boss;
   const kinds = BOSS_GROUPS[key] || [key];
@@ -957,7 +978,7 @@ function heroSay(text, dur = 1.8) {
   if (hero.sayEl) hero.sayEl.remove();
   const el = document.createElement('div');
   el.className = 'taunt hero';
-  el.textContent = t(text);
+  setSystemArt(el, text);
   $('world-ui').append(el);
   hero.sayEl = el; hero.sayT = dur;
 }
@@ -978,7 +999,7 @@ function enemySay(e, text, dur = 2.0) {
   if (e.sayEl) e.sayEl.remove();
   const el = document.createElement('div');
   el.className = `taunt ${hero.form === 'brave' && !e.def.boss ? 'scared' : ''}`;
-  el.textContent = t(text);
+  setSystemArt(el, text);
   $('world-ui').append(el);
   e.sayEl = el;
   e.sayRaw = text;
@@ -1497,7 +1518,17 @@ function setLock(on) {
   try { localStorage.setItem(LOCK_KEY, on ? '1' : '0'); } catch { /* 存不了也沒關係 */ }
   $('btn-lock').classList.toggle('on', on);
   $('btn-lock').setAttribute('aria-pressed', String(on));
-  if (game.phase === 'playing') popup(hero.pos, 2.8, on ? '自動鎖定：開' : '自動鎖定：關', on ? 'good' : 'guard');
+  if (game.phase === 'playing') popup(hero.pos, 2.8, on ? '自動鎖定：開' : '鎖定解除', on ? 'good' : 'guard');
+}
+
+function cycleLockTarget(direction = 1) {
+  if (game.phase !== 'playing' || game.paused || dialog) return;
+  const next = nextLockTarget(enemies, lockOn ? lockTargetEnemy : null, hero.pos, LOCK_RANGE, direction);
+  if (!next) { popup(hero.pos, 2.8, '附近沒有可鎖定目標', 'guard'); return; }
+  if (!lockOn) setLock(true);
+  lockTargetEnemy = next;
+  popup(next.pos, next.def.height + 0.7, '目標切換', 'good');
+  audio.sfx('ui');
 }
 
 function updateLockMarker(dt) {
@@ -1837,15 +1868,17 @@ function updateShots(dt) {
 let lastOverlay = null;
 function showOverlay(config) {
   lastOverlay = config;
-  $('ov-replay').hidden = true;
+  $('ov-replay').hidden = config.outcome !== 'ending';
+  if(config.outcome === 'ending') $('ov-replay').textContent = t('重播結局');
   const { title, text, note, btn, next, easy, outcome = 'clear', stats } = config;
   $('overlay').dataset.outcome = outcome;
   $('overlay').classList.remove('menu', 'stages');
   $('ov-menu').textContent = t('選關');
   $('ov-logo').hidden = true;
+  $('ov-local-logo').hidden = true;
   $('ov-title').hidden = false;
   $('overlay').classList.add('result');
-  $('ov-title').textContent = t(title);
+  setSystemArt($('ov-title'), title);
   $('ov-text').textContent = typeof text === 'function' ? text() : text;
   $('ov-text').classList.toggle('result-stats', Boolean(stats));
   if (stats) {
@@ -1855,7 +1888,7 @@ function showOverlay(config) {
     const time = document.createElement('span');
     const kills = document.createElement('span');
     time.className = kills.className = 'result-metric';
-    for (const [node, label, value] of [[time, lang === 'en' ? 'Time · sec' : '用時・秒', stats.time], [kills, lang === 'en' ? 'Defeated' : '擊倒', stats.kills]]) {
+    for (const [node, label, value] of [[time, t('用時・秒'), stats.time], [kills, t('擊倒'), stats.kills]]) {
       const caption = document.createElement('small'); caption.textContent = label;
       const number = document.createElement('b'); number.textContent = value;
       node.append(caption, number);
@@ -1898,7 +1931,7 @@ function clearStage() {
     // 最後一關：結局曲陪著和解的對話，講完後換製作名單的主題曲
     game.bgm = null; audio.playBgm(last && audio.tracks.bgm_ending ? 'bgm_ending' : 'bgm_victory');
     if (!last) audio.sfx('win');
-    runDialog(st.outro, () => {
+    const finish = () => {
       game.phase = 'over';
       if (last && audio.tracks.bgm_credits) audio.playBgm('bgm_credits');
       showOverlay({
@@ -1909,8 +1942,17 @@ function clearStage() {
         note: () => last ? t('小天使留下的便利貼：「還行。」') : st.grantName ? tf('得到：{0}', st.grantName.split('、').map(t).join(lang === 'en' ? ', ' : '、')) : t('小天使：「還行。」'),
         btn: '再打一次', next: !last,
       });
-    });
+      if (last) { $('ov-replay').hidden = false; $('ov-replay').textContent = t('重播結局'); }
+    };
+    if (last) playEnding(finish);
+    else runDialog(st.outro, finish);
   }, 1400);
+}
+
+function playEnding(done) {
+  game.phase = 'cinematic';
+  $('overlay').hidden = true; $('hud').hidden = true;
+  cinematics.ending(() => { input.takeActions(); done(); });
 }
 
 function update(dt) {
@@ -2131,6 +2173,8 @@ function frame(now) {
   const rawDt = (now - last) / 1000;
   const dt = Math.min(0.05, rawDt);
   last = now;
+  if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
+  menuMotion.update(now, game.phase === 'ready');
   watchPerformance(rawDt);
   if (!game.paused && (game.phase === 'playing' || game.phase === 'ending')) { update(dt); updateAngel(dt); }
   else if (game.phase === 'dialog' && hero.visual) { hero.visual.update(dt); updateAngel(dt); fx.update(dt); }
@@ -2185,6 +2229,8 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  cinematics.cancel();
+  $('ov-replay').textContent = t('重播變身');
   transformArt.hide();
   dialog = null;
   $('ov-replay').hidden = menuView !== 'title';
@@ -2196,7 +2242,8 @@ function showMenu() {
   $('overlay').classList.remove('result');
   $('overlay').classList.add('menu');
   $('overlay').classList.toggle('stages', menuView === 'stages');
-  $('ov-logo').hidden = false;
+  $('ov-logo').hidden = lang === 'ja';
+  $('ov-local-logo').hidden = lang !== 'ja';
   $('ov-title').hidden = true;
   $('ov-next').hidden = true;
   $('ov-easy').hidden = true;
@@ -2210,6 +2257,7 @@ function showMenu() {
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
     : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
+  $('ov-text').append(document.createElement('br'), document.createTextNode(t('切換鎖定目標') + (coarse ? ' ↻' : ' · Y / Shift+Y')));
   const next = firstOpenStage();
   game.stage = next;
   $('ov-btn').textContent = save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
@@ -2258,6 +2306,9 @@ function showMenu() {
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();
+  if (game.phase === 'over' && lastOverlay?.outcome === 'ending') {
+    playEnding(() => { game.phase = 'over'; showOverlay(lastOverlay); $('ov-replay').hidden = false; $('ov-replay').textContent = t('重播結局'); }); return;
+  }
   $('overlay').hidden = true;
   setBgm('bgm_transform');
   runDialog(FIRST_TRANSFORM, showMenu, 'stars');
@@ -2272,6 +2323,8 @@ $('ov-menu').addEventListener('click', () => {
 $('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
 $('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
+$('btn-cycle-lock').addEventListener('click', () => cycleLockTarget());
+addEventListener('keydown', e => { if (e.code === 'KeyY' && !e.repeat && game.phase === 'playing' && !game.paused && !dialog) { e.preventDefault(); cycleLockTarget(e.shiftKey ? -1 : 1); } });
 addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
 $('btn-lock').classList.toggle('on', lockOn);
 // 暫停：跳出選單，可以繼續、重打這一關，或回標題選關
@@ -2285,6 +2338,7 @@ $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!gam
 // 語系切換：標題畫面與暫停選單各有一顆。切換後立刻重畫目前看得到的文字
 function refreshLang() {
   applyStatic();
+  decorateSystemUI();
   if (game.phase === 'ready') showMenu();
   else if (game.phase === 'over' && lastOverlay) showOverlay(lastOverlay);
   else if (game.phase === 'playing' || game.phase === 'dialog') {
@@ -2294,8 +2348,9 @@ function refreshLang() {
     if (dialog) showLine();
   }
 }
-for (const el of document.querySelectorAll('[data-lang-toggle]')) el.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); nextLang(); refreshLang(); });
+for (const el of document.querySelectorAll('[data-lang-toggle]')) el.addEventListener('click', e => { audio.unlock(); audio.sfx('ui'); const code=e.target.closest('[data-lang]')?.dataset.lang; if(code) setLang(code); else nextLang(); refreshLang(); });
 applyStatic();
+decorateSystemUI();
 // 瀏覽器要等玩家第一次點擊才准播聲音：第一次點擊時啟動音訊，人還在標題畫面就補播標題曲
 addEventListener('pointerdown', () => {
   if (audio.ctx) return;
@@ -2328,8 +2383,8 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
-  startGame, startStage, spawnEnemy, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
+window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+  startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
 
