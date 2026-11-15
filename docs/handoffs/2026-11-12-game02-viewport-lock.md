@@ -3,7 +3,7 @@
 ## 使用者要求
 - 鎖定固定尺寸大小，不要因為操作導致網頁被拉近；整體放大就無法玩。
 
-## 完成內容（`02_xianxia_battle/`）
+## 完成內容（`02_brave_guy/`）
 - `js/input.js` 新增 `lockViewport()`，`js/main.js` 啟動時呼叫：
   - 攔截 iOS 的 `gesturestart／gesturechange／gestureend`（iPhone 的 Safari 會無視 viewport 的 `user-scalable=no`）。
   - 攔截兩指以上的 `touchmove`。

@@ -4,10 +4,10 @@
 
 ## 交付與規格
 
-- 16張PNG：02_xianxia_battle/assets/source/pic/sheet/unified/sheet_{id}.png。包含原5張及新11張角色；幹譙龍仍三型態同張。
+- 16張PNG：02_brave_guy/assets/source/pic/sheet/unified/sheet_{id}.png。包含原5張及新11張角色；幹譙龍仍三型態同張。
 - 同一核准logo_01_review_v1.png，只做一次等比縮小至156×104，重用同一像素資料；每張固定座標(48,12)。頁首128px，標題字型、分隔線、中英文角色名稱位置統一。
 - 全部1728×1152 RGBA PNG，3:2。以增加畫布保留角色原生像素，沒有放大角色或宣稱增加細節。舊稿未覆蓋。
-- 可重製腳本：02_xianxia_battle/tools/unify_sheet_headers.py。使用Pillow，這次已有使用者明確核准程式編修。
+- 可重製腳本：02_brave_guy/tools/unify_sheet_headers.py。使用Pillow，這次已有使用者明確核准程式編修。
 - 查核紀錄：assets/source/UNIFIED_SHEET_HEADERS.json。審稿頁：assets/preview/unified-character-review.html；16張總覽：assets/preview/unified-sheet-contact.png（僅預覽縮圖）。
 
 ## 驗證

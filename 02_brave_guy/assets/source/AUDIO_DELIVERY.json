@@ -1,5 +1,5 @@
 {
-  "_about": "勇氣超人 Brave Guy — 音樂交付清單(電音方向)。母帶 WAV 於 repo 根 _archive/02_xianxia_battle/music/。",
+  "_about": "勇氣超人 Brave Guy — 音樂交付清單(電音方向)。母帶 WAV 於 repo 根 _archive/02_brave_guy/music/。",
   "produced": "2026-11-15",
   "tool": "原創程式合成(Python/numpy 加法合成，ffmpeg loudnorm 母帶處理)",
   "license": "原創，版權歸使用者所有，可商用；未取樣任何第三方素材",
@@ -30,7 +30,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 960932
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_campus.wav",
+      "master_wav": "_archive/02_brave_guy/music/bgm_campus.wav",
       "version": "v2.0",
       "mastering": {
         "loudness_LUFS": -13.4,
@@ -69,7 +69,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 932093
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_boss.wav",
+      "master_wav": "_archive/02_brave_guy/music/bgm_boss.wav",
       "version": "v2.0",
       "mastering": {
         "loudness_LUFS": -13.4,
@@ -108,7 +108,7 @@
         "bitrate_kbps": 129,
         "size_bytes": 84889
       },
-      "master_wav": "_archive/02_xianxia_battle/music/jingle_clear.wav"
+      "master_wav": "_archive/02_brave_guy/music/jingle_clear.wav"
     },
     {
       "file_base": "bgm_wild",
@@ -136,7 +136,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1053301
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_wild.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_wild.wav"
     },
     {
       "file_base": "bgm_office",
@@ -164,7 +164,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1024879
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_office.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_office.wav"
     },
     {
       "file_base": "bgm_office_mute",
@@ -192,7 +192,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 564288
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_office_mute.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_office_mute.wav"
     },
     {
       "file_base": "theme_braveguy_demo",
@@ -220,7 +220,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 146329
       },
-      "master_wav": "_archive/02_xianxia_battle/music/theme_braveguy_demo.wav"
+      "master_wav": "_archive/02_brave_guy/music/theme_braveguy_demo.wav"
     },
     {
       "file_base": "bgm_stage_1_0",
@@ -248,7 +248,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 994786
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_1_0.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_1_0.wav"
     },
     {
       "file_base": "bgm_stage_1_2",
@@ -276,7 +276,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1053301
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_1_2.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_1_2.wav"
     },
     {
       "file_base": "bgm_stage_1_3",
@@ -304,7 +304,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1024879
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_1_3.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_1_3.wav"
     },
     {
       "file_base": "bgm_stage_1_4",
@@ -332,7 +332,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1043270
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_1_4.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_1_4.wav"
     },
     {
       "file_base": "bgm_stage_2_1",
@@ -360,7 +360,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1053301
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_2_1.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_2_1.wav"
     },
     {
       "file_base": "bgm_brave",
@@ -388,7 +388,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 932093
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_brave.wav",
+      "master_wav": "_archive/02_brave_guy/music/bgm_brave.wav",
       "version": "v2.0",
       "mastering": {
         "loudness_LUFS": -13.4,
@@ -427,7 +427,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 997294
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_2_2.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_2_2.wav"
     },
     {
       "file_base": "bgm_stage_3_2",
@@ -455,7 +455,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1021118
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_2.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_3_2.wav"
     },
     {
       "file_base": "bgm_stage_3_3",
@@ -483,7 +483,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1005235
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_3.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_3_3.wav"
     },
     {
       "file_base": "bgm_stage_3_4",
@@ -511,7 +511,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1024879
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_4.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_3_4.wav"
     },
     {
       "file_base": "bgm_stage_3_5",
@@ -539,7 +539,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1005235
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_5.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_3_5.wav"
     },
     {
       "file_base": "bgm_stage_4_1",
@@ -567,7 +567,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1559449
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_4_1.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_4_1.wav"
     },
     {
       "file_base": "bgm_title",
@@ -595,7 +595,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 976396
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_title.wav",
+      "master_wav": "_archive/02_brave_guy/music/bgm_title.wav",
       "version": "v2.0",
       "mastering": {
         "loudness_LUFS": -13.4,
@@ -634,7 +634,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 240370
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_transform.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_transform.wav"
     },
     {
       "file_base": "bgm_defeat",
@@ -662,7 +662,7 @@
         "bitrate_kbps": 129,
         "size_bytes": 46855
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_defeat.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_defeat.wav"
     },
     {
       "file_base": "bgm_talk",
@@ -690,7 +690,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 960932
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_talk.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_talk.wav"
     },
     {
       "file_base": "bgm_ending",
@@ -718,7 +718,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1154029
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_ending.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_ending.wav"
     },
     {
       "file_base": "bgm_credits",
@@ -746,7 +746,7 @@
         "bitrate_kbps": 128,
         "size_bytes": 1230097
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_credits.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_credits.wav"
     },
     {
       "file_base": "bgm_stage_3_1",
@@ -774,8 +774,8 @@
         "bitrate_kbps": 128,
         "size_bytes": 1037418
       },
-      "master_wav": "_archive/02_xianxia_battle/music/bgm_stage_3_1.wav"
+      "master_wav": "_archive/02_brave_guy/music/bgm_stage_3_1.wav"
     }
   ],
-  "_v2_note": "v2.0 重製：P0 四首。加厚合成（5+ 層、側鏈 pump）＋ ffmpeg 母帶（壓縮/中高頻 EQ/限幅/loudnorm -13）。驗收數字見各項 mastering 欄。舊 v1 母帶於 _archive/02_xianxia_battle/music/v1/。"
+  "_v2_note": "v2.0 重製：P0 四首。加厚合成（5+ 層、側鏈 pump）＋ ffmpeg 母帶（壓縮/中高頻 EQ/限幅/loudnorm -13）。驗收數字見各項 mastering 欄。舊 v1 母帶於 _archive/02_brave_guy/music/v1/。"
 }

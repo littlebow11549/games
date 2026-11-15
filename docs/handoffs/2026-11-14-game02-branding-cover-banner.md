@@ -8,8 +8,8 @@
 
 | 路徑（相對根目錄） | 原生尺寸 | 格式與用途 |
 |---|---|---|
-| `02_xianxia_battle/assets/source/pic/branding/banner_01.png` | 2172×724 | RGB PNG，3:1首頁橫幅 |
-| `02_xianxia_battle/assets/source/pic/branding/icon_01.png` | 1254×1254 | RGB PNG，方形列表封面來源圖 |
+| `02_brave_guy/assets/source/pic/branding/banner_01.png` | 2172×724 | RGB PNG，3:1首頁橫幅 |
+| `02_brave_guy/assets/source/pic/branding/icon_01.png` | 1254×1254 | RGB PNG，方形列表封面來源圖 |
 
 原生bytes直接保存，沒有插值、縮放、重新編碼。沒有覆蓋同目錄既有SVG暫代圖。沒有寫入根目錄首頁runtime素材，也沒有修改網站引用。
 
@@ -25,8 +25,8 @@
 
 ## 紀錄與交接
 
-- `02_xianxia_battle/assets/source/P1_BRANDING_DELIVERY.json`：尺寸、格式、bytes及SHA256。
-- `02_xianxia_battle/assets/source/P1_BRANDING_PROMPTS.md`：內建image_gen的兩段實際提示詞。
+- `02_brave_guy/assets/source/P1_BRANDING_DELIVERY.json`：尺寸、格式、bytes及SHA256。
+- `02_brave_guy/assets/source/P1_BRANDING_PROMPTS.md`：內建image_gen的兩段實際提示詞。
 - ASSETS.md與HANDOFF.md已更新；git diff --check通過。
 - 新封面與橫幅為審稿，未視為使用者已批准。已核准Logo來源維持不變，其寬2400以上技術項目仍待完成；P1 HUD與其他項目未因此宣稱完成。
 - 未提交、推送、部署、外部通知或Tripo轉換；無Library檔案ID，成果留在APHASEN本機。

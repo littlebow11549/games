@@ -1,6 +1,6 @@
 # 勇氣超人 Brave Guy — 關卡戰鬥電音：地圖一全數 + 2-1（2026-11-12）
 
-製作：音樂工作階段（Claude）。依**更新後的** [`02_xianxia_battle/assets/MUSIC.md`](../../02_xianxia_battle/assets/MUSIC.md)（v1.2）製作。
+製作：音樂工作階段（Claude）。依**更新後的** [`02_brave_guy/assets/MUSIC.md`](../../02_brave_guy/assets/MUSIC.md)（v1.2）製作。
 
 ## 對齊主線（版本管理）
 
@@ -18,7 +18,7 @@
 
 - 連同先前的 `bgm_stage_1_1`（=`bgm_campus`），**地圖一一般戰鬥（1-0～1-4）全數到位**。
 - 每首：`.ogg`（q4，無縫循環）＋`.mp3`（128k 後備），44.1kHz 立體聲，−16 LUFS／真峰 ≤ −1 dBTP，每首把主角主題（或其鏡像）用該關音色藏入至少一次。
-- 路徑 `02_xianxia_battle/assets/source/music/`；WAV 母帶 `_archive/02_xianxia_battle/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（現 9 首）。
+- 路徑 `02_brave_guy/assets/source/music/`；WAV 母帶 `_archive/02_brave_guy/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（現 9 首）。
 - 六個鍵已填入 `manifest.json`；**未改 `js/`**。
 
 ## 驗證

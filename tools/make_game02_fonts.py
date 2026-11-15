@@ -15,7 +15,7 @@ from fontTools import subset
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '02_xianxia_battle')
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '02_brave_guy')
 OUT = os.path.join(ROOT, 'assets', 'fonts')
 src = sys.argv[1]
 

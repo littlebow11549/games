@@ -9,7 +9,7 @@
 5. 俊熊作為隱藏怪隨難度變多，抓到可以加血。
 6. 小怪也要有大小之分。
 
-## 完成內容（`02_xianxia_battle/js/main.js`、`css/game.css`、`index.html`、`js/lang_en.js`）
+## 完成內容（`02_brave_guy/js/main.js`、`css/game.css`、`index.html`、`js/lang_en.js`）
 
 - **小地圖**（`updateMinimap`）：右上角（暫停鍵下方）的圓形地圖；任務欄改到左上血條下方，顯示整個場地。小怪紅色小點、較強的怪（有護甲／血條／大隻）橘色中點、守關者紫色大點、紅色區塊是危險區；主角是箭頭，前方扇形是瞄準方向（鎖定時變紅並指向目標）。點一下放大、再點縮小，大小存在 `braveguy.minimap`。
 - **難度**（`DIFFS`，選關畫面三顆按鈕，存在 `braveguy.diff`）：

@@ -6,7 +6,7 @@
 
 工作副本根目錄：`C:\Users\user\Documents\Codex\2026-11-14\task\games`。
 
-九張PNG在 `02_xianxia_battle/assets/source/pic/concept/`：
+九張PNG在 `02_brave_guy/assets/source/pic/concept/`：
 
 - `angel_front.png`、`angel_side.png`、`angel_back.png`
 - `nightmare_front.png`、`nightmare_side.png`、`nightmare_back.png`

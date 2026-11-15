@@ -4,4 +4,4 @@
 
 上層原圖與draft/logo_v2為製作歷程，不是本輪統一版。角色內頁的比例、文字與細節待修項目不因頁首修正而視為通過。
 
-重製工具：02_xianxia_battle/tools/unify_sheet_headers.py；驗證：assets/source/UNIFIED_SHEET_HEADERS.json。
+重製工具：02_brave_guy/tools/unify_sheet_headers.py；驗證：assets/source/UNIFIED_SHEET_HEADERS.json。
