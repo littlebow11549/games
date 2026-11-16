@@ -546,8 +546,8 @@ function updateHud() {
   textIfChanged('rescue-n', hearts);
   const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
-  $('btn-lock').hidden = !brave;
-  $('btn-cycle-lock').hidden = !brave;
+  $('btn-lock').hidden = false;
+  $('btn-cycle-lock').hidden = false;
   $('combo').hidden = game.combo < 5;
   updateCombo(game.combo);
 
