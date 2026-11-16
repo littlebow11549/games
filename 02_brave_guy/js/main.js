@@ -15,8 +15,8 @@ import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget } from './targeting.js?v=20261115fast';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261116menuplus';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115fast';
+import { GameAudio } from './audio.js?v=20261116cleanui';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116order';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
 import { makeMaze } from './maze.js?v=20261115fast';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
@@ -446,7 +446,7 @@ function showLine() {
 function advanceDialog(skip = false) {
   if (!dialog) return;
   dialog.i = skip ? dialog.lines.length : dialog.i + 1;
-  if (dialog.i < dialog.lines.length) { showLine(); if(dialog.lines!==FIRST_TRANSFORM)audio.sfx('ui'); return; }
+  if (dialog.i < dialog.lines.length) { showLine(); if(dialog.lines!==FIRST_TRANSFORM)audio.sfx('dialog_next'); return; }
   const d = dialog;
   dialog = null;
   $('dialog').hidden = true;
@@ -546,11 +546,15 @@ function updateHud() {
   textIfChanged('rescue-n', hearts);
   const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
+  $('btn-lock').hidden = !brave;
+  $('btn-cycle-lock').hidden = !brave;
   $('combo').hidden = game.combo < 5;
   updateCombo(game.combo);
 
   for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
+    btn.hidden = a==='transform' ? brave || !canTransform() || hero.courage < GAUGE.courageMax : Boolean(SKILLS[a]) && !brave;
+    if(btn.hidden)input.held.delete(a);
     if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):t(SKILLS[a].name);if(btn.title!==hint)btn.title=hint;}
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / SKILLS[a].cd}turn`);
@@ -2298,7 +2302,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116menuplus';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116cleanui';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
@@ -2417,7 +2421,7 @@ function showMenu() {
     b.disabled = !isOpen(i);
     b.classList.toggle('done', save.cleared.includes(st.id));
     b.classList.toggle('current', i === next);
-    b.addEventListener('click', () => { audio.unlock(); audio.sfx('ui'); startStage(i); });
+    b.addEventListener('click', () => { audio.unlock(); audio.sfx('stage_select'); startStage(i); });
     group.append(b);
   });
   box.hidden = false;

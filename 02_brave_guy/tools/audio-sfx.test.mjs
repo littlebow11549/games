@@ -105,3 +105,26 @@ test('real applause and cheers layer once, throttle overlap, and stop when leavi
  g.ctx.currentTime=0;g.ctx.createBufferSource=()=>({connect(){},start(){starts++},stop(){stops++},disconnect(){}});
  g.sfxBuffers.set('applause',{});g.sfxBuffers.set('crowd_cheer',{});g.applause();g.ctx.currentTime=.5;g.applause();assert.equal(starts,2);assert.equal(g.crowdVoices.size,2);g.stopCelebration();assert.equal(stops,2);assert.equal(g.crowdVoices.size,0);g.applause();assert.equal(starts,4);
 });
+
+test('clean cues work before files load, use silent edges and respect mute', () => {
+  for (const [name, expected] of [['stage_select',2], ['dialog_next',1], ['win',4], ['hit',2]]) {
+    const audio = new GameAudio({});
+    let starts = 0, disconnected = 0;
+    const envelopes = [];
+    audio.master = {};
+    audio.ctx = {
+      currentTime: 1,
+      createOscillator: () => ({frequency:{},connect(){return this;},start(){starts++;},stop(){this.onended();},disconnect(){disconnected++;}}),
+      createGain: () => {
+        const points = []; envelopes.push(points);
+        return {gain:{setValueAtTime(v){points.push(v);},linearRampToValueAtTime(v){points.push(v);},exponentialRampToValueAtTime(v){points.push(v);}},connect(){return this;},disconnect(){disconnected++;}};
+      },
+    };
+    audio.sfx(name);
+    assert.equal(starts, expected);
+    assert.equal(disconnected, expected * 2);
+    for (const points of envelopes) { assert.equal(points[0], 0); assert.equal(points.at(-1), 0); }
+    audio.muted = true; audio.sfx(name);
+    assert.equal(starts, expected);
+  }
+});

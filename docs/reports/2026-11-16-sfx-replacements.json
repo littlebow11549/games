@@ -1,0 +1,242 @@
+[
+  {
+    "original": "assets/source/sfx/sfx_beam_end.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_beam_end_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_beam_loop.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_beam_loop_clean.wav",
+    "design": "energy_loop",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_beam_start.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_beam_start_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_bubble.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_bubble_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -21
+  },
+  {
+    "original": "assets/source/sfx/sfx_chips.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_chips_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_combo_100.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_combo_100_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_courage_full.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_courage_full_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_crowd_cheer.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_crowd_cheer_clean.wav",
+    "design": "crowd_filtered",
+    "peak_target_db": -14
+  },
+  {
+    "original": "assets/source/sfx/sfx_dash.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_dash_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_dodge.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_dodge_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_dodge_perfect.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_dodge_perfect_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_enemy_down_1.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_enemy_down_2.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_enemy_down_3.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_folaidi_reveal.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_folaidi_reveal_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_folaidi_tick.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_folaidi_tick_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -21
+  },
+  {
+    "original": "assets/source/sfx/sfx_guilt_burst.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_guilt_burst_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_guilt_crack.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_guilt_crack_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_guilt_tick.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_guilt_tick_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -21
+  },
+  {
+    "original": "assets/source/sfx/sfx_hit_1.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_hit_1_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_hit_2.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_hit_2_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_hit_3.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_hit_3_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_hit_heavy.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_hit_heavy_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_junxiong_pop.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_junxiong_pop_clean.wav",
+    "design": "energy_impact",
+    "peak_target_db": -13
+  },
+  {
+    "original": "assets/source/sfx/sfx_ki_blast.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_ki_blast_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_kick_spin.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_kick_spin_clean.wav",
+    "design": "body_impact",
+    "peak_target_db": -10
+  },
+  {
+    "original": "assets/source/sfx/sfx_lock_switch.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_lock_switch_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  },
+  {
+    "original": "assets/source/sfx/sfx_lose.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_lose_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_notify.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_notify_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  },
+  {
+    "original": "assets/source/sfx/sfx_pan_fly.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_pan_fly_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_punch_1.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_punch_1_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_punch_2.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_punch_2_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_punch_3.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_punch_3_clean.wav",
+    "design": "rounded_sweep",
+    "peak_target_db": -16
+  },
+  {
+    "original": "assets/source/sfx/sfx_punch_clock.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_punch_clock_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  },
+  {
+    "original": "assets/source/sfx/sfx_qi_full.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_qi_full_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_tf_hair.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_tf_hair_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_tf_silhouette.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_tf_silhouette_clean.wav",
+    "design": "harmonic_chime",
+    "peak_target_db": -15
+  },
+  {
+    "original": "assets/source/sfx/sfx_ui_back.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_ui_back_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  },
+  {
+    "original": "assets/source/sfx/sfx_ui_confirm.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_ui_confirm_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  },
+  {
+    "original": "assets/source/sfx/sfx_ui_tap.mp3",
+    "replacement": "assets/source/sfx/clean/sfx_ui_tap_clean.wav",
+    "design": "soft_ui",
+    "peak_target_db": -17
+  }
+]
