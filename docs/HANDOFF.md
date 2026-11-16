@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-16 新增 3-7 社會版假森（假忙森主管）（Claude）](handoffs/2026-11-16-game02-office-jiasen-stage.md)：新 boss `jiamangKing`「假忙森主管」（面具西裝熊外觀、甩鍋/召喚、tired+confuse）＋新關 3-7「跨部門與甩鍋會議」插在 3-6 與 4-1 間，三語對白；過場暫沿用加班鬼王圖、名牌三語。關卡 15→16。無頭測試 0 error。commit `a130ee9`。
+
 - [2026-11-16 錢經理專屬過場](handoffs/2026-11-16-game02-qian-biz-films.md)：同步Claude最新15關、名牌及救援調整；補3-6職場套裝三鏡登場／三鏡擊倒、三語對嗆與完整接線。
 
 - [2026-11-16 名牌語系修正 + 救援調降 + 新關社會版錢大姐 + 音效/音樂需求 v2（Claude）](handoffs/2026-11-16-game02-boss-name-rescue-stage-sfx.md)：修正戰鬥中切語系時 Boss 名牌沒換語系（存 `bossKinds`、refreshLang 重算）；救援 easy/normal/hell 3/3/2→2/2/1；新增地圖三 `3-6`「財務部．社會版錢大姐(錢經理 qianBiz)」三語對白、關卡 14→15；交付 ComfyUI 音效/音樂需求 v2（KOF 打擊感、寶石變身、Boss 狂暴曲、各關不重複）。無頭測試 0 error。commit `60d5325`/`3f2ec0b`/`4ad4489`。
