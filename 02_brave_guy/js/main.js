@@ -78,6 +78,7 @@ const ENEMIES = {
 const BOSSES = {
   folaidiKing: { name: '佛賴弟王', vis: 'boss', hp: 4200, speed: 2.6, radius: 1.5, height: 4.6, moves: ['slam', 'charge', 'summon'], minion: 'ganqiao', lines: ['再五分鐘啦～', '明天的你會處理的～'] },
   qian: { name: '錢大姐', vis: 'qian', hp: 3600, speed: 3.6, radius: 0.7, height: 2.1, moves: ['fan', 'charge', 'summon'], minion: 'folaidi', minionN: 3, lines: ['過路費！', '這個場子我罩的！'] },
+  qianBiz: { name: '錢經理', vis: 'qian', hp: 5200, speed: 3.8, radius: 0.7, height: 2.1, moves: ['fan', 'charge', 'summon'], minion: 'jiamang', minionN: 3, lines: ['先幫我墊一下嘛～', '這個業績，算你的喔～'] },
   lan: { name: '藍教頭', vis: 'lan', hp: 4600, speed: 3.0, radius: 0.9, height: 2.7, moves: ['whistle', 'spread', 'slam'], lines: ['立正！', '稍息！', '我沒說可以動！', '你要檢討你自己！'] },
   nightmare: { name: '惡夢超人', vis: 'nightmare', hp: 4800, speed: 4.2, radius: 0.6, height: 2.1, fear: true, moves: ['mDash', 'mKi', 'mQuake', 'guiltTalk'], lines: ['我這麼做都是為你好。', '好啊你打。打死我好了。', '我沒關係。你開心就好。', '全世界只有我是真的替你想。'] },
   midKing: { name: '特大隻的悶幹譙', vis: 'midKing', hp: 5200, speed: 3.6, radius: 1.5, height: 4.4, enrage: true, moves: ['charge', 'slam', 'summon'], minion: 'ganqiao_mid', minionN: 3, lines: ['……！', '……！！'] },
@@ -95,9 +96,9 @@ const BOSS_GROUPS = { duo: ['xinji', 'baguashe'] }; // 一關有兩隻守關者�
 // 難度：怪的數量、同場上限、嘲諷頻率、俊熊出現的次數都跟著變。
 // crowd／cap 是乘在畫質表上的倍率；地獄難度的怪會直接生在整張地圖上，幾乎鋪滿。
 const DIFFS = [
-  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false, rescues: 3, pulse: [12, 16] },
-  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: true, rescues: 3, pulse: [9, 12] },
-  { id: 'hell', name: '地獄', crowd: 2, cap: 2, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true, rescues: 2, pulse: [6, 8] },
+  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false, rescues: 2, pulse: [12, 16] },
+  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: true, rescues: 2, pulse: [9, 12] },
+  { id: 'hell', name: '地獄', crowd: 2, cap: 2, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true, rescues: 1, pulse: [6, 8] },
 ];
 const DIFF_KEY = 'braveguy.diff';
 let diff = 1;
@@ -118,7 +119,7 @@ const DEBUFFS = {
   confuse: { name: '謠言', tip: '左右顛倒', color: 0x5fe07a, dur: 4 },
   blind: { name: '畫大餅', tip: '看不到小地圖', color: 0xf2b21c, dur: 6 },
 };
-const BOSS_DEBUFF = { folaidiKing: ['sleepy'], qian: ['extort'], lan: ['mute'], nightmare: ['guilty'], midKing: ['weak'], hell: ['burn', 'guilty'],
+const BOSS_DEBUFF = { folaidiKing: ['sleepy'], qian: ['extort'], qianBiz: ['extort', 'tired'], lan: ['mute'], nightmare: ['guilty'], midKing: ['weak'], hell: ['burn', 'guilty'],
   kabanKing: ['tired', 'sleepy'], xinji: ['mute'], baguashe: ['confuse'], lanMgr: ['weak', 'mute'], ganqiaoFull: ['burn', 'mute'], guan: ['blind', 'extort'], incubus: ['confuse', 'guilty', 'weak'] };
 
 const MAX_ATTACKERS = 6;      // 同時出手的小怪上限，避免被圍毆到無法反應
