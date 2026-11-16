@@ -115,3 +115,16 @@
 #reset-progress #reset-confirm{background:#652c24;border-color:#ed9e80;color:#fff1e5}
 #reset-progress button:focus-visible{outline:3px solid #fff;outline-offset:3px}
 #reset-progress .reset-error{color:#ffb99c}
+
+/* Leave room for the raised button shadows and hover offsets. */
+@media(orientation:portrait){
+ .game-art .overlay.menu:not(.stages) .card{
+  --menu-art-height:calc(100dvh - 96px - 34px - 80px - var(--menu-logo) - 194px);
+  grid-template-rows:minmax(24px,1fr) var(--menu-logo) 48px 44px 44px 58px;
+  gap:16px 20px;overflow-y:auto;
+ }
+}
+
+/* Progress reset belongs only to stage selection. */
+#overlay:not(.stages) #ov-reset{display:none!important}
+#overlay.stages #ov-reset{display:block}

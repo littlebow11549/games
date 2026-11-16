@@ -10,7 +10,7 @@ export class GameAudio {
     this.bgmLoads = new Map();
     this.sfxLoading = new Map();
     this.sfxFailed = new Set();
-    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.crowdVoices=new Set();
+    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.crowdVoices=new Set(); this.celebrationEpoch=0;
     this.loops = new Map(); this.loopRequests = new Map(); this.duck = 1;
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
@@ -42,7 +42,7 @@ export class GameAudio {
   }
 
   applause() { this.sfx('applause'); this.sfx('crowd_cheer'); }
-  stopCelebration(){for(const voice of this.crowdVoices){try{voice.stop();}catch{}}this.crowdVoices.clear();this.sfxLast.delete('applause');this.sfxLast.delete('crowd_cheer');}
+  stopCelebration(){this.celebrationEpoch++;for(const voice of this.crowdVoices){try{voice.stop();}catch{}}this.crowdVoices.clear();this.sfxLast.delete('applause');this.sfxLast.delete('crowd_cheer');}
 
   preloadSfx() {
     for(const [name,source] of Object.entries(this.sfxTracks)) {
@@ -216,11 +216,19 @@ export class GameAudio {
       if (buffer) {
         if(this.voices.size>=16){const oldest=this.voices.values().next().value;oldest.stop?.();this.voices.delete(oldest);}
         const player=this.ctx.createBufferSource();player.buffer=buffer;player.connect(this.master);this.voices.add(player);
-        if(name==='applause'||name==='crowd_cheer')this.crowdVoices.add(player);
+        if(name==='applause'||name==='crowd_cheer'||name==='victory_human_cheer')this.crowdVoices.add(player);
         player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);};player.start();return;
+      }
+      if(name==='victory_human_cheer') {
+        const epoch=this.celebrationEpoch;
+        this.loadSfx(cacheKey,this.resolve(source)).then(()=>{
+          if(epoch===this.celebrationEpoch && this.sfxBuffers.has(cacheKey) && !this.muted){this.sfxLast.delete(name);this.sfx(name);}
+        });
+        return;
       }
       this.loadSfx(cacheKey,this.resolve(source));
     }
+    if(name==='victory_human_cheer')return; // Recorded voice only: never substitute a synthesized cue.
     if(name==='stage_select'||name==='dialog_next'||name==='win'){this.cleanUiCue(name);return;}
     const basic=['swing','hit','crit','boom','hurt','skill','dodge','shoot','ui','win','lose'];
     const fallback=basic.includes(name)?name:/burst|slam|quake|blast|done|reveal|beam_end/.test(name)?'boom':/punch|kick|fly|fan/.test(name)?'swing':/hurt|guilt/.test(name)?'hurt':/full|beam|charge|revive|combo/.test(name)?'skill':'ui';

@@ -15,7 +15,7 @@ import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261116nearsoft';
+import { GameAudio } from './audio.js?v=20261116human';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116order';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
 import { makeMaze } from './maze.js?v=20261115fast';
@@ -2109,7 +2109,7 @@ function clearStage() {
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
   game.bgm = null; audio.stopBgm(); audio.stopCelebration();
   if (hero.form === 'brave') revert(true);
-  audio.playBgm('bgm_victory'); audio.applause();
+  audio.playBgm('bgm_victory'); audio.sfx('victory_human_cheer');
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
     note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
@@ -2401,7 +2401,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116nearsoft';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116human';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

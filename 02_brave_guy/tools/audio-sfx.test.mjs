@@ -128,3 +128,16 @@ test('clean cues work before files load, use silent edges and respect mute', () 
     assert.equal(starts, expected);
   }
 });
+
+test('user victory recording loads before playback, with no synthesized substitute', async()=>{
+ const {g,played}=harness({victory_human_cheer:'voice.wav'});
+ g.loadSfx=async key=>{g.sfxBuffers.set(key,{});};
+ g.sfx('victory_human_cheer');await new Promise(r=>setImmediate(r));
+ assert.deepEqual(played,['file']);assert.equal(g.crowdVoices.size,1);
+ const missing=harness();missing.g.sfx('victory_human_cheer');assert.deepEqual(missing.played,[]);
+});
+test('leaving victory cancels pending recorded cheer', async()=>{
+ const {g,played}=harness({victory_human_cheer:'voice.wav'});let finish;
+ g.loadSfx=()=>new Promise(resolve=>{finish=()=>{g.sfxBuffers.set('victory_human_cheer',{});resolve();};});
+ g.sfx('victory_human_cheer');g.stopCelebration();finish();await new Promise(r=>setImmediate(r));assert.deepEqual(played,[]);
+});

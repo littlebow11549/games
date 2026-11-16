@@ -144,6 +144,7 @@
     "tf_hair": "assets/source/sfx/clean/sfx_tf_hair_clean.wav",
     "tf_scarf": "assets/source/sfx/sfx_tf_scarf.mp3",
     "tf_pose": "assets/source/sfx/sfx_tf_pose.mp3",
-    "crowd_cheer": "assets/source/sfx/clean/sfx_crowd_cheer_clean.wav"
+    "crowd_cheer": "assets/source/sfx/clean/sfx_crowd_cheer_clean.wav",
+    "victory_human_cheer": "assets/source/sfx/y2004.wav"
   }
 }
