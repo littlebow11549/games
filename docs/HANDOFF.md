@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-16 錢經理專屬過場](handoffs/2026-11-16-game02-qian-biz-films.md)：同步Claude最新15關、名牌及救援調整；補3-6職場套裝三鏡登場／三鏡擊倒、三語對嗆與完整接線。
+
 - [2026-11-16 名牌語系修正 + 救援調降 + 新關社會版錢大姐 + 音效/音樂需求 v2（Claude）](handoffs/2026-11-16-game02-boss-name-rescue-stage-sfx.md)：修正戰鬥中切語系時 Boss 名牌沒換語系（存 `bossKinds`、refreshLang 重算）；救援 easy/normal/hell 3/3/2→2/2/1；新增地圖三 `3-6`「財務部．社會版錢大姐(錢經理 qianBiz)」三語對白、關卡 14→15；交付 ComfyUI 音效/音樂需求 v2（KOF 打擊感、寶石變身、Boss 狂暴曲、各關不重複）。無頭測試 0 error。commit `60d5325`/`3f2ec0b`/`4ad4489`。
 
 - [2026-11-16 容量/圖片優化 + 資料夾清理（Claude）](handoffs/2026-11-16-game02-optimization-cleanup.md)：過場/著裝大圖改視覺無損的有損 WebP q90（`runtime` 142M→75M）；刪除 `assets/preview/` 開發殘留與孤兒音檔；不採用美術與設定集保留在 `source/pic` 分類下；遊戲資料夾 511M→395M。無頭載入 0 error、無死引用。commit `e1982f8`／`1369943`。

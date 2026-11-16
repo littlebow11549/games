@@ -4,7 +4,7 @@ export const BOSS_INTRO_TIMING=Object.freeze({cuts:Object.freeze([4,8]),duration
 export const BOSS_STORYBOARDS={
  folaidiKing:{files:['folaidi_corridor','folaidi_eyes','folaidi_reveal'],...BOSS_INTRO_TIMING,fx:'mist',cues:[[0.0,'folaidi_flicker'],[0.323,'folaidi_tick'],[0.969,'folaidi_tick'],[1.615,'folaidi_tick'],[2.4,'folaidi_rise'],[4.2,'folaidi_reveal']]},
  qian:{...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
- qianBiz:{files:['boss_qian_storyboard'],...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
+ qianBiz:{fit:'contain',...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
  lan:{...BOSS_INTRO_TIMING,fx:'rings',cues:[[0.0,'boss_warn'],[2.4,'whistle'],[4.2,'boss_slam']]},
  nightmare:{...BOSS_INTRO_TIMING,fx:'glass',cues:[[0.0,'guilt_tick'],[2.4,'guilt_crack'],[4.2,'guilt_burst']]},
  midKing:{...BOSS_INTRO_TIMING,fx:'rubble',cues:[[0.0,'guilt_crack'],[2.4,'hit_heavy'],[4.2,'boss_slam']]},
@@ -45,7 +45,7 @@ export function createBossStoryboard(root,audioProvider){
   if(backKey!==cacheKey){backKey=cacheKey;backdrop.width=w;backdrop.height=h;const bg=backdrop.getContext('2d');bg.fillStyle='#03080e';bg.fillRect(0,0,w,h);bg.globalAlpha=.32;bg.filter='blur(18px)';const back=Math.max(w/sw,h/sh);bg.drawImage(im,0,sy,sw,sh,(w-sw*back)/2,(h-sh*back)/2,sw*back,sh*back);}
   ctx.drawImage(backdrop,0,0,w,h);
   const tall=w/h<1,areaH=tall?Math.min(h*.63,w/.95):h*.82;
-  const scale=(tall?Math.max(w/sw,areaH/sh):Math.min(w/sw,areaH/sh)),zoom=reduced?1:beat===0?1+local/length*.075:beat===1?1.06-local/length*.035:1.055-Math.min(local/.4,1)*.055;
+  const scale=(tall&&d.fit!=='contain'?Math.max(w/sw,areaH/sh):Math.min(w/sw,areaH/sh)),zoom=reduced?1:beat===0?1+local/length*.075:beat===1?1.06-local/length*.035:1.055-Math.min(local/.4,1)*.055;
   const dw=sw*scale*zoom,dh=sh*scale*zoom,cy=tall?h*.42:h*.43;
   const shake=!reduced?Math.sin(local*65)*Math.max(0,1-local/.4)*(beat===1?7:11):0;
   const pan=reduced?0:Math.sin(local/length*Math.PI)*Math.min(12,(dw-w)*.08)*(beat===1?-1:1);
