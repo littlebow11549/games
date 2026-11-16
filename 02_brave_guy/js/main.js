@@ -18,7 +18,7 @@ import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115
 import { GameAudio } from './audio.js?v=20261116score';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116order';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
-import { makeMaze } from './maze.js?v=20261115fast';
+import { makeMaze } from './maze.js?v=20261116pursuit';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
@@ -1391,9 +1391,10 @@ function updateEnemy(e, dt, attackers) {
       if (d < 3.2 && game.phase === 'playing') { e.hp = 0; e.state = 'dead'; e.t = 0; e.visual.play('die', 0.9); fx.pillar(e.pos, 2, 14, 0xffffff, 0.9); fx.ring(e.pos, 1, 12, 0x9be564, 0.9); }
       return;
     }
-    if (heroAlive && bossThink(e, d, dx, dz)) return;
-    if (d > Math.max(2.2, def.radius + 1.6)) {
-      const go = maze ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d); // 迷宮裡繞路走
+    const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
+    if (heroAlive && clearSight && bossThink(e, d, dx, dz)) return;
+    if (!clearSight || d > Math.max(2.2, def.radius + 1.6)) {
+      const go = maze ? maze.steer(e.pos, hero.pos, navTmp, def.radius) : navTmp.set(dx / d, 0, dz / d); // 迷宮裡繞路走
       e.pos.x += go.x * speed * dt;
       e.pos.z += go.z * speed * dt;
       e.visual.play('run');
@@ -1407,19 +1408,21 @@ function updateEnemy(e, dt, attackers) {
     e.cool -= dt*(game.pressure?1.25:1)*(e.def.incubus&&game.awakened?1.2:1);
     e.yaw = Math.atan2(dx, dz);
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
-    if (heroAlive && d <= def.reach && e.cool <= 0 && canAttack) {
+    const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
+    if (heroAlive && clearSight && d <= def.reach && e.cool <= 0 && canAttack) {
       e.state = 'windup'; e.t = 0; e.struck = false;
       if (def.ranged) attackers.ranged++; else attackers.melee++;
       e.visual.play('attack', def.windup / 0.6);
     } else if (def.ranged) {
       // 遠程：保持距離
-      const want = d > 9 ? 1 : d < 5 ? -1 : 0;
-      e.pos.x += (dx / d) * speed * want * dt;
-      e.pos.z += (dz / d) * speed * want * dt;
+      const want = !clearSight || d > 7 ? 1 : d < 4 ? -1 : 0;
+      const go = want > 0 && maze ? maze.steer(e.pos, hero.pos, navTmp, def.radius) : navTmp.set(dx / d, 0, dz / d);
+      e.pos.x += go.x * speed * want * dt;
+      e.pos.z += go.z * speed * want * dt;
       e.visual.play(want ? 'run' : 'idle');
     } else {
       // 近戰：還沒輪到出手的也一直往主角擠（被 separate() 推開 → 整團不停湧動，不會定在原地）
-      const go = (maze && d > def.reach) ? maze.steer(e.pos, hero.pos, navTmp) : navTmp.set(dx / d, 0, dz / d);
+      const go = (maze && (!clearSight || d > def.reach)) ? maze.steer(e.pos, hero.pos, navTmp, def.radius) : navTmp.set(dx / d, 0, dz / d);
       const press = d > def.reach * 0.8 ? 1 : 0.55; // 已經貼到就慢慢頂
       e.pos.x += go.x * speed * press * dt;
       e.pos.z += go.z * speed * press * dt;
@@ -1540,7 +1543,8 @@ function separate() {
       const cell = sepGrid.get((cx + ox) + ',' + (cz + oz)); if (!cell) continue;
       for (const b of cell) {
         if (b._si <= a._si) continue; // 每對只處理一次
-        const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
+        let dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
+        if(Math.abs(dx)+Math.abs(dz)<1e-6){const angle=(a._si*2.399+b._si)*2.399;dx=Math.cos(angle)*.001;dz=Math.sin(angle)*.001;}
         const min = (a.def.radius + b.def.radius) * (a.def.boss || b.def.boss ? 1 : 0.7); // 小怪擠緊一點，圍滿主角
         if (Math.abs(dx) > min || Math.abs(dz) > min) continue;
         const d = Math.hypot(dx, dz) || 0.001;
@@ -2158,7 +2162,7 @@ function update(dt) {
   enemies = enemies.filter((e) => !e.gone);
   separate();
   // Movement and separation must finish before rendering either enemy or lock marker.
-  for (const e of enemies) e.visual.root.position.set(e.pos.x, e.y, e.pos.z);
+  for (const e of enemies) { clampArena(e.pos, e.def.radius); e.visual.root.position.set(e.pos.x, e.y, e.pos.z); }
   updateShots(dt);
   updateHazards(dt);
   updateAmbush(dt);

@@ -78,42 +78,89 @@ export function makeMaze({ radius, n = 6, open = 0.35, clear = 9, color = 0x4a5a
     return inside(cx, cz) ? [cx, cz] : null;
   };
 
-  // 走到主角那一格的最短路：從主角所在格做廣度優先，每格記下「往哪個方向走會更近」
-  const toward = new Int8Array(n * n);
-  let heroCell = -1;
+  // Test the whole swept circle, not just the endpoint or logical cell.
+  function lineClear(a, b, r = 0.2) {
+    for (const w of walls) {
+      let lo = 0, hi = 1;
+      for (const [origin, delta, min, max] of [[a.x,b.x-a.x,w.x0-r,w.x1+r],[a.z,b.z-a.z,w.z0-r,w.z1+r]]) {
+        if (Math.abs(delta) < 1e-9) { if (origin < min || origin > max) { lo=2; break; } }
+        else { const t1=(min-origin)/delta,t2=(max-origin)/delta;lo=Math.max(lo,Math.min(t1,t2));hi=Math.min(hi,Math.max(t1,t2)); }
+      }
+      if (lo <= hi) return false;
+    }
+    return true;
+  }
+  const nodes=[];
+  const nodeAt=new Map();
+  for(let z=0;z<n;z++)for(let x=0;x<n;x++)if(inside(x,z)){
+    nodeAt.set(id(x,z),nodes.length);nodes.push({x,z,pos:centre(x,z)});
+  }
+  const fields=new Map();let flowVersion='';
   function updateFlow(heroPos) {
-    const c = cellOf(heroPos);
-    const hid = c ? id(...c) : -1;
-    if (hid === heroCell) return;
-    heroCell = hid;
-    toward.fill(-1);
-    if (hid < 0) return;
-    const queue = [c];
-    toward[hid] = 4;
-    for (let i = 0; i < queue.length; i++) {
-      const [cx, cz] = queue[i];
-      for (let d = 0; d < 4; d++) {
-        if (!((passage[id(cx, cz)] >> d) & 1)) continue;
-        const nx = cx + DIRS[d][0], nz = cz + DIRS[d][1];
-        if (toward[id(nx, nz)] !== -1) continue;
-        toward[id(nx, nz)] = (d + 2) % 4; // 從鄰格往回走
-        queue.push([nx, nz]);
+    // Includes the outer rim, which has no logical maze cell.
+    const version=Math.round(heroPos.x*2)+','+Math.round(heroPos.z*2);
+    if(version!==flowVersion){flowVersion=version;for(const f of fields.values())f.version=null;}
+  }
+  function fieldFor(heroPos,r) {
+    const clearance=Math.ceil((r+0.08)*10)/10;
+    let f=fields.get(clearance);
+    if(!f){
+      const edges=nodes.map(node=>DIRS.flatMap(([dx,dz],d)=>{
+        const j=nodeAt.get(id(node.x+dx,node.z+dz));
+        return (passage[id(node.x,node.z)]&(1<<d)) && j!==undefined && lineClear(node.pos,nodes[j].pos,clearance)?[j]:[];
+      }));
+      f={edges,version:null,cost:[]};fields.set(clearance,f);
+    }
+    if(f.version!==flowVersion){
+      f.version=flowVersion;
+      f.cost=nodes.map(node=>lineClear(node.pos,heroPos,clearance)?Math.hypot(node.pos.x-heroPos.x,node.pos.z-heroPos.z):Infinity);
+      const visited=new Set();
+      for(let k=0;k<nodes.length;k++){
+        let best=-1;for(let i=0;i<nodes.length;i++)if(!visited.has(i)&&(best<0||f.cost[i]<f.cost[best]))best=i;
+        if(best<0||!Number.isFinite(f.cost[best]))break;
+        visited.add(best);for(const j of f.edges[best])f.cost[j]=Math.min(f.cost[j],f.cost[best]+cell);
       }
     }
+    return {f,clearance};
   }
-  // 回傳從 pos 走向主角該朝哪個方向（單位向量寫進 out）。同一格或找不到路就直線
-  function steer(pos, heroPos, out) {
-    const c = cellOf(pos);
-    const d = c ? toward[id(...c)] : -1;
-    if (d < 0 || d === 4) { out.set(heroPos.x - pos.x, 0, heroPos.z - pos.z); }
-    else {
-      // 先走到通往下一格的門口（邊的中點再往裡一點）
-      const tx = (c[0] + 0.5 + DIRS[d][0] * 0.62) * cell - radius, tz = (c[1] + 0.5 + DIRS[d][1] * 0.62) * cell - radius;
-      out.set(tx - pos.x, 0, tz - pos.z);
+  function safePoint(pos,r) {
+    const p={x:pos.x,z:pos.z};
+    for(let pass=0;pass<4;pass++)for(const w of walls){
+      const left=w.x0-r,right=w.x1+r,top=w.z0-r,bottom=w.z1+r;
+      if(p.x>left&&p.x<right&&p.z>top&&p.z<bottom){
+        const distances=[p.x-left,right-p.x,p.z-top,bottom-p.z];
+        const side=distances.indexOf(Math.min(...distances));
+        if(side===0)p.x=left-.01;else if(side===1)p.x=right+.01;else if(side===2)p.z=top-.01;else p.z=bottom+.01;
+      }
     }
-    const len = Math.hypot(out.x, out.z) || 1;
-    out.x /= len; out.z /= len;
-    return out;
+    return p;
+  }
+  function steer(pos,heroPos,out,r=0.6) {
+    updateFlow(heroPos);
+    // A hero can stand closer to a wall than a large enemy can fit.
+    heroPos=safePoint(heroPos,r+0.2);
+    const safe=safePoint(pos,r+0.12);
+    if(Math.hypot(safe.x-pos.x,safe.z-pos.z)>.01)return out.set(safe.x-pos.x,0,safe.z-pos.z).normalize();
+    if(lineClear(pos,heroPos,r+0.05))return out.set(heroPos.x-pos.x,0,heroPos.z-pos.z).normalize();
+    const {f,clearance}=fieldFor(heroPos,r);
+    const c=cellOf(pos);let best=-1,score=Infinity;
+    const select=local=>{
+      for(let i=0;i<nodes.length;i++){
+        const node=nodes[i];
+        if(local&&c&&(Math.abs(node.x-c[0])>1||Math.abs(node.z-c[1])>1))continue;
+        const distance=Math.hypot(node.pos.x-pos.x,node.pos.z-pos.z);
+        const cost=distance+f.cost[i]*1.001; // Prefer advancing on equal-cost segments.
+        if(cost<score&&distance>0.05&&lineClear(pos,node.pos,clearance)) {best=i;score=cost;}
+      }
+    };
+    select(true);if(best<0&&c)select(false);
+    if(best>=0)return out.set(nodes[best].pos.x-pos.x,0,nodes[best].pos.z-pos.z).normalize();
+    // A pushed actor may touch the safety margin: recover using its real body radius.
+    for(let i=0;i<nodes.length;i++)if(Number.isFinite(f.cost[i])&&lineClear(pos,nodes[i].pos,r)){
+      const cost=Math.hypot(nodes[i].pos.x-pos.x,nodes[i].pos.z-pos.z)+f.cost[i]*1.001;
+      if(cost<score){best=i;score=cost;}
+    }
+    return best>=0?out.set(nodes[best].pos.x-pos.x,0,nodes[best].pos.z-pos.z).normalize():out.set(0,0,0);
   }
 
   // 把圓形的東西推出牆外。回傳有沒有碰到
@@ -139,5 +186,5 @@ export function makeMaze({ radius, n = 6, open = 0.35, clear = 9, color = 0x4a5a
     group.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
     if (group.parent) group.parent.remove(group);
   }
-  return { group, walls, collide, blocked, steer, updateFlow, dispose, cell, n };
+  return { group, walls, collide, blocked, lineClear, steer, updateFlow, dispose, cell, n };
 }
