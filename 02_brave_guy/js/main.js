@@ -2445,8 +2445,31 @@ function showMenu() {
     group.append(b);
   });
   box.hidden = false;
+  $('ov-wipe').hidden = menuView !== 'stages';
+  $('ov-wipe').classList.remove('armed');
+  $('ov-wipe').textContent = t('清除所有進度');
   $('overlay').hidden = false;
 }
+
+// 清除所有進度：二次確認，清掉全部 braveguy* 存檔後重載
+let wipeTimer = null;
+function wireWipe() {
+  const btn = $('ov-wipe'); if (!btn) return;
+  btn.addEventListener('click', () => {
+    audio.sfx('ui');
+    if (!btn.classList.contains('armed')) {
+      btn.classList.add('armed');
+      btn.textContent = t('再按一次：清除全部');
+      clearTimeout(wipeTimer);
+      wipeTimer = setTimeout(() => { btn.classList.remove('armed'); btn.textContent = t('清除所有進度'); }, 4000);
+      return;
+    }
+    clearTimeout(wipeTimer);
+    try { for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && k.startsWith('braveguy')) localStorage.removeItem(k); } } catch { /* 清不掉也沒關係 */ }
+    location.reload();
+  });
+}
+wireWipe();
 
 function playOpening() {
   audio.stopLoops(); cinematics.cancel(); transformArt.hide(); input.takeActions();

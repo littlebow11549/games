@@ -102,6 +102,8 @@ export default {
   "……嘖。沒以前好玩了。": "...Tch. Not as fun as you used to be.",
   "她第一次，沒把手伸出來。": "For the first time, she didn't hold out her hand.",
   "假忙森主管": "Supervisor Jiamang",
+  "清除所有進度": "Erase all progress",
+  "再按一次：清除全部": "Tap again to ERASE all",
   "跨部門與甩鍋會議": "Cross-Dept Blame Meeting",
   "這不是我的業務": "Not my job",
   "這個案子……到底是哪個部門的？": "This project... whose department is it even?",

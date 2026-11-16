@@ -126,6 +126,9 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
   color:var(--ink);background:linear-gradient(#fff3c4,var(--yellow));box-shadow:0 3px 0 var(--red)}
 .card button:disabled{opacity:.5}
 .card button.ghost{display:block;margin:10px auto 0;padding:6px 14px;font-size:12px;background:#fff;box-shadow:0 2px 0 var(--pink)}
+.card button.ghost.danger{background:#fff0f0;color:#c0241e;box-shadow:0 2px 0 #c0241e;border-color:#c0241e;opacity:.85}
+.card button.ghost.danger.armed{background:#ff5a4d;color:#fff;box-shadow:0 2px 0 #7a1510;opacity:1;animation:wipePulse .5s ease-in-out infinite alternate}
+@keyframes wipePulse{from{transform:scale(1)}to{transform:scale(1.05)}}
 .back{display:block;margin-top:12px;color:var(--green-light);font-size:13px;text-decoration:none}
 
 @media (max-height:420px){
