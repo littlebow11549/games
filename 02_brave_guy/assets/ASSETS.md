@@ -375,3 +375,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-16 假忙森主管專屬過場
 新增source/pic/cinematics/boss_jiamangKing_storyboard.png及victory_jiamangKing.png，原生1024×1536三鏡，runtime/lossless/pic/cinematics同名WebP為逐像素一致無損配送。來源／自審／壓縮記錄見source/JIAMANG_FILMS_REVIEW.json；不再借用加班鬼王圖。
+
+## 2026-11-16 清脆 UI 音效 v3
+原創合成 source/sfx/sfx_ui_{tap,confirm,back}_crisp_v3.wav：44.1kHz/16-bit/mono，115/205/145ms，峰值 -4dBFS，合計 41,144 bytes。規格見 source/UI_CRISP_V3.json；重建 tools/make_ui_crisp.py。manifest 四個 UI 鍵接線，其餘音樂與音效保留。

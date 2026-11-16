@@ -1,3 +1,4 @@
+import { createProgressReset } from './progress-reset.js?v=20261116menuplus';
 import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js?v=20261115fast';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
@@ -14,7 +15,7 @@ import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget } from './targeting.js?v=20261115fast';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261115fast';
+import { GameAudio } from './audio.js?v=20261116menuplus';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261115fast';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
 import { makeMaze } from './maze.js?v=20261115fast';
@@ -2297,7 +2298,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261115fast';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116menuplus';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
@@ -2338,6 +2339,7 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  progressReset.refresh();
   audio.stopCelebration();
   document.getElementById('run-result')?.remove();
   $('ov-run').hidden=menuView!=='title';
@@ -2430,6 +2432,7 @@ function playOpening() {
 }
 $('ov-run').addEventListener('click',()=>{audio.unlock();runs.reset();startStage(0);});
 $('ov-opening').addEventListener('click', playOpening);
+const progressReset=createProgressReset(()=>audio);
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); if(lastOverlay?.outcome==='ending'&&game.phase==='over'){runs.reset();startStage(0);}else startStage(game.stage); });
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();
