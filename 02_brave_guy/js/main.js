@@ -1503,23 +1503,34 @@ function updateAmbush(dt) {
   }
 }
 
-// 怪物之間、怪物與主角互推，避免疊成一團
+// 怪物之間、怪物與主角互推，避免疊成一團。
+// 用空間網格只檢查鄰近格子，避免 O(n²)（地獄模式上百隻時明顯）；行為與逐對比較等價。
+const sepGrid = new Map();
 function separate() {
-  for (let i = 0; i < enemies.length; i++) {
-    const a = enemies[i];
-    if (!alive(a) || a.y > 0) continue;
-    for (let j = i + 1; j < enemies.length; j++) {
-      const b = enemies[j];
-      if (!alive(b) || b.y > 0) continue;
-      const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
-      const min = (a.def.radius + b.def.radius) * (a.def.boss || b.def.boss ? 1 : 0.7); // 小怪擠緊一點，圍滿主角
-      if (Math.abs(dx) > min || Math.abs(dz) > min) continue;
-      const d = Math.hypot(dx, dz) || 0.001;
-      if (d < min) {
-        const push = (min - d) / 2;
-        const wa = a.def.boss ? 0 : 1, wb = b.def.boss ? 0 : 1;
-        a.pos.x -= (dx / d) * push * wa; a.pos.z -= (dz / d) * push * wa;
-        b.pos.x += (dx / d) * push * wb; b.pos.z += (dz / d) * push * wb;
+  const CELL = 3; // 大於任何一對的互推距離（最大 min≈2.4），±1 格即可涵蓋
+  const live = [];
+  for (const e of enemies) if (alive(e) && e.y <= 0) { e._si = live.length; live.push(e); }
+  sepGrid.clear();
+  for (const e of live) {
+    const k = Math.floor(e.pos.x / CELL) + ',' + Math.floor(e.pos.z / CELL);
+    let cell = sepGrid.get(k); if (!cell) { cell = []; sepGrid.set(k, cell); } cell.push(e);
+  }
+  for (const a of live) {
+    const cx = Math.floor(a.pos.x / CELL), cz = Math.floor(a.pos.z / CELL);
+    for (let ox = -1; ox <= 1; ox++) for (let oz = -1; oz <= 1; oz++) {
+      const cell = sepGrid.get((cx + ox) + ',' + (cz + oz)); if (!cell) continue;
+      for (const b of cell) {
+        if (b._si <= a._si) continue; // 每對只處理一次
+        const dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
+        const min = (a.def.radius + b.def.radius) * (a.def.boss || b.def.boss ? 1 : 0.7); // 小怪擠緊一點，圍滿主角
+        if (Math.abs(dx) > min || Math.abs(dz) > min) continue;
+        const d = Math.hypot(dx, dz) || 0.001;
+        if (d < min) {
+          const push = (min - d) / 2;
+          const wa = a.def.boss ? 0 : 1, wb = b.def.boss ? 0 : 1;
+          a.pos.x -= (dx / d) * push * wa; a.pos.z -= (dz / d) * push * wa;
+          b.pos.x += (dx / d) * push * wb; b.pos.z += (dz / d) * push * wb;
+        }
       }
     }
     const dx = hero.pos.x - a.pos.x, dz = hero.pos.z - a.pos.z;
