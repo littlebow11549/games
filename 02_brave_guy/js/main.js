@@ -12,7 +12,7 @@ import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './syste
 import { createCinematics } from './cinematics.js?v=20261116sharp';
 import { createOpening } from './opening.js?v=20261116sharp';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
-import { nextLockTarget, lockCandidates, isLockTarget } from './targeting.js?v=20261116targetfix';
+import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116combat';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116nearsoft';
@@ -640,6 +640,19 @@ function onHit(count, killed) {
   const oldCombo=game.combo;
   game.combo += count;
   for(const milestone of [100,50,10])if(oldCombo<milestone&&game.combo>=milestone){audio.sfx('combo_'+milestone);break;}
+  // Each threshold is awarded once per uninterrupted combo, including multi-hit jumps.
+  if (oldCombo < 20 && game.combo >= 20) {
+    hero.hp = Math.min(hero.maxHp, hero.hp + hero.maxHp * 0.05);
+    popup(hero.pos, 3.2, tr('20 連擊：血量 +5%', '20 COMBO: HP +5%', '20 コンボ：HP +5%'), 'good');
+  }
+  if (oldCombo < 40 && game.combo >= 40) {
+    hero.qi = Math.min(GAUGE.qiMax, hero.qi + 20);
+    popup(hero.pos, 3.8, tr('40 連擊：氣量 +20', '40 COMBO: Qi +20', '40 コンボ：気 +20'), 'good');
+  }
+  if (oldCombo < 50 && game.combo >= 50) {
+    game.rescues++;
+    popup(hero.pos, 4.4, tr('50 連擊：小天使救援 +1', '50 COMBO: Angel rescue +1', '50 コンボ：天使の救援 +1'), 'good');
+  }
   game.comboT = 2.2;
   if (hero.form === 'brave') { addCourage(GAUGE.courageHitBrave * count); addQi(GAUGE.qiHit * count + GAUGE.qiKill * killed); }
   else addCourage(GAUGE.courageHitStudent * count);
@@ -710,8 +723,8 @@ function guiltBurst() {
   say('burst', true);
 }
 
-function revert() {
-  audio.sfx('revert');
+function revert(silent = false) {
+  if (!silent) audio.sfx('revert');
   setForm(hero.base);
   hero.mode = null;
   hero.courage = 0;
@@ -719,7 +732,7 @@ function revert() {
   hero.readySaid = false;
   hero.state = 'free';
   fx.ring(hero.pos, 0.5, 2.5, 0xffffff, 0.3);
-  say('revert', true);
+  if (!silent) say('revert', true);
   hero.sayNext = { text: pickLine(HERO_BACK_ANGEL), t: 1.1 }; // 主角小聲頂回去
 }
 
@@ -952,6 +965,7 @@ function damageEnemy(e, mult, o = {}) {
   const killed = e.hp <= 0;
   if (killed) {
     e.state = 'dead';
+    updateLockMarker(0); // Release the killed target in the damage event, even during hitstop.
     if(!e.def.boss)audio.sfx('enemy_down');
     e.t = 0;
     e.visual.play('die', 0.8);
@@ -1621,16 +1635,23 @@ function setLock(on) {
   if (game.phase === 'playing') popup(hero.pos, 2.8, on ? '自動鎖定：開' : '鎖定解除', on ? 'good' : 'guard');
 }
 
+function selectLock() {
+  if (game.phase !== 'playing' || game.paused || dialog) return;
+  if (input.move().len > 0) cycleLockTarget();
+  else { setLock(!lockOn); updateLockMarker(0); }
+}
+
 function cycleLockTarget(direction = 1) {
   if (game.phase !== 'playing' || game.paused || dialog) return;
   const current = lockOn ? lockTargetEnemy : null;
   const candidates = lockCandidates(enemies, hero.pos, LOCK_RANGE);
-  const next = nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
+  const movement = input.move();
+  const next = movement.len > 0 ? directionalLockTarget(candidates, hero.pos, LOCK_RANGE, movement) : nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
   const button = $('btn-cycle-lock');
   button.getAnimations().forEach(animation => animation.cancel());
   button.animate([{filter:'brightness(1.8)'},{filter:'brightness(1)'}],{duration:180});
   if (!next) {
-    const message = candidates.length
+    const message = movement.len > 0 ? tr('該方向沒有目標', 'No target in that direction', 'その方向に標的がいない') : candidates.length
       ? tr('附近沒有其他目標','No other target nearby','近くに他の標的はいない')
       : tr('附近沒有可鎖定目標','No target in range','範囲内に標的がいない');
     popup(hero.pos, 2.8, message, 'guard');
@@ -1650,7 +1671,7 @@ function updateLockMarker(dt) {
   const t = game.phase === 'playing' ? lockTarget() : null;
   lockMarker.visible = !!t;
   if (!t) return;
-  lockMarker.position.set(t.pos.x, 0.08, t.pos.z);
+  lockMarker.position.set(t.pos.x, Math.max(0, t.y || 0) + 0.08, t.pos.z);
   lockMarker.scale.setScalar(t.def.radius * 1.9 + 0.5 + Math.sin(game.time * 8) * 0.08);
   lockMarker.rotation.z += dt * 2.5;
 }
@@ -2068,9 +2089,8 @@ function clearStage() {
   const newlyCleared=!save.cleared.includes(st.id);
   if(newlyCleared){save.cleared.push(st.id);writeSave();}
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
-  if(newlyCleared&&st.grant)audio.sfx('courage_full');
-  if (hero.form === 'brave') revert();
-  game.bgm = null; audio.playBgm('bgm_victory'); audio.sfx('win');audio.applause();
+  game.bgm = null; audio.stopBgm(); audio.stopCelebration();
+  if (hero.form === 'brave') revert(true);
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
     note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
@@ -2118,6 +2138,8 @@ function update(dt) {
   for (const e of enemies){updateEnemy(e, dt, attackers);if(game.phase!=='playing'&&game.phase!=='ending')return;}
   enemies = enemies.filter((e) => !e.gone);
   separate();
+  // Movement and separation must finish before rendering either enemy or lock marker.
+  for (const e of enemies) e.visual.root.position.set(e.pos.x, e.y, e.pos.z);
   updateShots(dt);
   updateHazards(dt);
   updateAmbush(dt);
@@ -2515,7 +2537,7 @@ $('ov-menu').addEventListener('click', () => {
 });
 $('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
-$('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
+$('btn-lock').addEventListener('click', () => { audio.sfx('ui'); selectLock(); });
 $('btn-cycle-lock').addEventListener('pointerdown', e => {
   if(e.button!==0 || $('btn-cycle-lock').disabled)return;
   e.preventDefault();audio.unlock();cycleLockTarget();
@@ -2523,7 +2545,7 @@ $('btn-cycle-lock').addEventListener('pointerdown', e => {
 // Keyboard/assistive activation has no pointerdown; avoid a second pointer click.
 $('btn-cycle-lock').addEventListener('click', e => {if(e.detail===0){audio.unlock();cycleLockTarget();}});
 addEventListener('keydown', e => { if (e.code === 'KeyY' && !e.repeat && game.phase === 'playing' && !game.paused && !dialog) { e.preventDefault(); cycleLockTarget(e.shiftKey ? -1 : 1); } });
-addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
+addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); selectLock(); } });
 $('btn-lock').classList.toggle('on', lockOn);
 // 暫停：跳出選單，可以繼續、重打這一關，或回標題選關
 function setPaused(on) {
@@ -2618,7 +2640,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && gam
 
 // 供自動化測試與除錯讀取狀態
 window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
-  runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
+  onHit, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {nextLockTarget} from '../js/targeting.js';
+import {nextLockTarget, directionalLockTarget, isLockTarget} from '../js/targeting.js';
 const pos={x:0,z:0};
 const enemy=x=>({pos:{x,z:0},state:'chase',def:{radius:.5}});
 test('targets cycle nearest to farthest regardless of spawn order and wrap',()=>{
@@ -31,4 +31,16 @@ test('hidden, zero HP, gone and out of range targets cannot be selected',()=>{
  assert.equal(nextLockTarget([a,b,c,d,edge],null,pos,16),edge);
  edge.pos.x=16.51;assert.equal(nextLockTarget([edge],null,pos,16),null);
  const stale=enemy(1);const live=enemy(3);assert.equal(nextLockTarget([live],stale,pos,16),live);
+});
+
+test('detached or invisible rendered enemies are rejected',()=>{
+ const e=enemy(2);e.visual={root:{visible:true,parent:{}}};assert(isLockTarget(e,pos,16));
+ e.visual.root.visible=false;assert(!isLockTarget(e,pos,16));
+ e.visual.root.visible=true;e.visual.root.parent=null;assert(!isLockTarget(e,pos,16));
+});
+test('directional selection prioritizes nearest within cone, no opposite fallback',()=>{
+ const near=enemy(3),far=enemy(8),left=enemy(-1);
+ assert.equal(directionalLockTarget([far,left,near],pos,16,{x:1,y:0}),near);
+ assert.equal(directionalLockTarget([left],pos,16,{x:1,y:0}),null);
+ near.pos.z=3;assert.equal(directionalLockTarget([near,far],pos,16,{x:1,y:1}),near);
 });
