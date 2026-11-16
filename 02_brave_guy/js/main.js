@@ -509,11 +509,13 @@ function say(key, force = false) {
   audio.sfx('bubble');
 }
 
+const ACTION_PANEL = document.querySelector('.actions');
 const ACT_BUTTONS = [...document.querySelectorAll('.act[data-action]')]; // 每幀都要用，先查好
 
 function textIfChanged(id, value) { const el=$(id), text=String(value); if(el.textContent!==text)el.textContent=text; }
 function updateHud() {
   const brave = hero.form === 'brave';
+  ACTION_PANEL.classList.toggle('base-form', !brave);
   $('hp-fill').style.transform = `scaleX(${Math.max(0, hero.hp / hero.maxHp)})`;
   textIfChanged('hp-text', `${Math.max(0, Math.ceil(hero.hp))} / ${hero.maxHp}`);
   const courageShown = hero.mode === 'burst' ? hero.burstT / GAUGE.burstTime : hero.courage / GAUGE.courageMax;

@@ -5,3 +5,15 @@
 /* Give the original-position courage gem room when it becomes available. */
 .actions:has(.transform:not([hidden])) .act.lock,
 .actions:has(.transform:not([hidden])) .act.cycle-lock{bottom:252px}
+
+/* Base form has fewer actions: larger targets, with room for the left thumb. */
+.game-art .actions.base-form .act.attack{width:108px;height:108px;right:0;bottom:0}
+.game-art .actions.base-form .act.dodge{width:76px;height:76px;right:116px;bottom:16px}
+.game-art .actions.base-form .act.lock{width:64px;height:64px;right:14px;bottom:128px}
+.game-art .actions.base-form .act.cycle-lock{width:64px;height:64px;right:90px;bottom:128px}
+.game-art .actions.base-form .act.cycle-lock svg{width:44px;height:44px}
+.game-art .actions.base-form .act.transform{right:28px;bottom:212px}
+
+@media(max-width:360px){
+  #hud:has(.actions.base-form) #stick-base{left:calc(12px + var(--safe-l));bottom:calc(18px + var(--safe-b));width:96px;height:96px}
+}
