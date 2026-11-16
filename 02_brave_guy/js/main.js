@@ -9,13 +9,13 @@ import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
 import { createVisual, loadModel } from './visuals.js?v=20261115fast';
 import { Fx } from './fx.js?v=20261115fast';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261116films';
-import { createCinematics } from './cinematics.js?v=20261116sharp';
+import { createCinematics } from './cinematics.js?v=20261116score';
 import { createOpening } from './opening.js?v=20261116sharp';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261116human';
+import { GameAudio } from './audio.js?v=20261116score';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116order';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
 import { makeMaze } from './maze.js?v=20261115fast';
@@ -2109,7 +2109,7 @@ function clearStage() {
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
   game.bgm = null; audio.stopBgm(); audio.stopCelebration();
   if (hero.form === 'brave') revert(true);
-  audio.playBgm('bgm_victory'); audio.sfx('victory_human_cheer');
+  audio.playBgm('bgm_victory'); audio.sfx('win'); audio.sfx('victory_human_cheer');
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
     note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),

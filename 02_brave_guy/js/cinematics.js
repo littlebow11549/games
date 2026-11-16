@@ -84,7 +84,7 @@ export function createCinematics(_renderer,audioProvider){
   }else{
    const index=Math.min(6,Math.floor(elapsed/4.5)),staff=elapsed>=31.5;root.dataset.act=staff?'credits':String(index);
    if(staff){film.stop();title.hidden=subtitle.hidden=true;if(!active.credits){active.credits=true;credits.hidden=false;audioProvider()?.stopCelebration?.();audioProvider()?.playBgm('bgm_credits');$('.cinema-kicker').textContent='STAFF';}credits.style.transform=reduced?'none':`translateY(${innerHeight-(elapsed-31.5)/5*(innerHeight+credits.offsetHeight+30)}px)`;}
-   else{film.render([{file:'ending_applause_final',row:0,rows:1}],elapsed,{reduced,color:'#ffe5a0'});line(index,t(endingLines[index][0]||'找回自己'),t(endingLines[index][1]),index===0||index>=5?'hero':'boss');if(elapsed>=4.5&&active.clapBeat!==Math.floor(elapsed*2)){active.clapBeat=Math.floor(elapsed*2);audioProvider()?.applause?.();}}
+   else{film.render([{file:'ending_applause_final',row:0,rows:1}],elapsed,{reduced,color:'#ffe5a0'});line(index,t(endingLines[index][0]||'找回自己'),t(endingLines[index][1]),index===0||index>=5?'hero':'boss');if(elapsed>=4.5&&!active.cheered){active.cheered=true;audioProvider()?.sfx('victory_human_cheer');}}
   }
   $('.cinema-progress i').style.transform=`scaleX(${Math.min(1,elapsed/active.duration)})`;
   if(elapsed>=active.duration)finish();return true;

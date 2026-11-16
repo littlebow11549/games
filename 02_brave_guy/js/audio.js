@@ -41,7 +41,6 @@ export class GameAudio {
     this.preloadSfx();
   }
 
-  applause() { this.sfx('applause'); this.sfx('crowd_cheer'); }
   stopCelebration(){this.celebrationEpoch++;for(const voice of this.crowdVoices){try{voice.stop();}catch{}}this.crowdVoices.clear();this.sfxLast.delete('applause');this.sfxLast.delete('crowd_cheer');}
 
   preloadSfx() {
