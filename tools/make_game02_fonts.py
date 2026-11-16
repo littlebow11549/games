@@ -20,7 +20,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '02_brave_
 OUT = os.path.join(ROOT, 'assets', 'fonts')
 src = sys.argv[1]
 
-files = glob.glob(os.path.join(ROOT, 'js', '*.js')) + [os.path.join(ROOT, 'index.html'), os.path.join(ROOT, 'SCRIPT.md')]
+files = glob.glob(os.path.join(ROOT, 'js', '*.js')) + [os.path.join(ROOT, 'index.html'), os.path.join(ROOT, 'play.html'), os.path.join(ROOT, 'SCRIPT.md')]
 chars = set(chr(c) for c in range(0x20, 0x7F))
 chars |= set('　、。，．・：；？！「」『』（）《》〈〉【】—…～％＋－／＝＜＞▼▲►◄★☆♪←→↑↓×÷°·“”‘’')
 for f in files:

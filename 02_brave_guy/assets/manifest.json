@@ -72,6 +72,7 @@
     "beam_start": "assets/source/sfx/clean/sfx_beam_start_clean.wav",
     "beam_loop": "assets/source/sfx/clean/sfx_beam_loop_clean.wav",
     "beam_end": "assets/source/sfx/clean/sfx_beam_end_clean.wav",
+    "beam_hit": "assets/source/sfx/sfx_beam_hit.wav",
     "courage_full": "assets/source/sfx/clean/sfx_courage_full_clean.wav",
     "qi_full": "assets/source/sfx/clean/sfx_qi_full_clean.wav",
     "revive": "assets/source/sfx/sfx_revive.mp3",

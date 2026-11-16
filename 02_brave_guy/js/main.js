@@ -966,15 +966,18 @@ function damageEnemy(e, mult, o = {}) {
   return { killed, crit };
 }
 
-function tally(results, heavy) {
+function tally(results, heavy, quiet) {
   const hits = results.filter(Boolean);
   if (!hits.length) return 0;
   const killed = hits.filter((r) => r.killed).length;
   const crit = hits.some((r) => r.crit);
   onHit(hits.length, killed);
-  game.hitstop = Math.max(game.hitstop, heavy || crit ? 0.07 : 0.035);
+  // 超勇氣波持續命中（quiet）不逐 tick 播拳擊音、也不每 tick 頓幀，避免吵雜與卡頓；聲音由 beam_loop 與節流的 beam_hit 擔當
+  if (!quiet) {
+    game.hitstop = Math.max(game.hitstop, heavy || crit ? 0.07 : 0.035);
+    audio.sfx(heavy || crit ? 'crit' : 'hit');
+  }
   game.shake = Math.max(game.shake, heavy ? 0.4 : 0.15);
-  audio.sfx(heavy || crit ? 'crit' : 'hit');
   return hits.length;
 }
 
@@ -1010,7 +1013,7 @@ function lineStrike(a, b, width, mult, o = {}, skip = null) {
     if (skip) skip.add(e);
     res.push(damageEnemy(e, mult, { from: a, ...o }));
   }
-  return tally(res, o.heavy);
+  return tally(res, o.heavy, o.quiet);
 }
 
 // ---------- 嘲諷 ----------
@@ -1890,11 +1893,13 @@ function updateHero(dt) {
       beam.scale.set(Math.max(0.01, w), Math.max(0.01, w), 1);
     }
     hero.data.tick -= dt;
+    hero.data.zapT = (hero.data.zapT || 0) - dt;
     if (hero.data.tick <= 0 && k < 0.92) {
       hero.data.tick = s.tick;
       const a = hero.pos.clone().addScaledVector(f, 1);
       const b = hero.pos.clone().addScaledVector(f, s.length);
-      lineStrike(a, b, s.width, s.mult, { kb: 9, launch: 4, from: hero.pos });
+      const hits = lineStrike(a, b, s.width, s.mult, { kb: 9, launch: 4, from: hero.pos, quiet: true });
+      if (hits > 0 && hero.data.zapT <= 0) { hero.data.zapT = 0.18; audio.sfx('beam_hit'); } // 節流的能量 zap，取代每 tick 的拳擊音
       game.shake = Math.max(game.shake, 0.3);
     }
     if (hero.t >= s.dur) {
