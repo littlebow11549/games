@@ -19,6 +19,23 @@ const assert=require('node:assert/strict');
  assert(await p.evaluate(()=>{const g=__game,e=g.lockTarget;return Math.abs(g.hero.yaw-Math.atan2(e.pos.x-g.hero.pos.x,e.pos.z-g.hero.pos.z))<0.1;}),'attack faces selected target');
  await p.screenshot({path:'/tmp/game02-combat-check.png'});
  assert(await p.evaluate(()=>{const g=__game;g.game.paused=true;g.hero.form='student';g.hero.hp=500;g.hero.maxHp=1000;g.hero.qi=0;g.game.combo=19;g.game.rescues=0;g.onHit(1,0);if(g.hero.hp!==550)return false;g.onHit(1,0);if(g.hero.hp!==550)return false;g.game.combo=39;g.onHit(1,0);if(g.hero.qi!==20)return false;g.game.combo=49;g.onHit(1,0);if(g.game.rescues!==1)return false;g.onHit(10,0);if(g.game.rescues!==1)return false;g.game.combo=0;g.onHit(50,0);if(g.hero.hp!==600||g.hero.qi!==40||g.game.rescues!==2)return false;g.hero.hp=990;g.hero.qi=95;g.game.combo=19;g.onHit(31,0);return g.hero.hp===1000&&g.hero.qi===100&&g.game.rescues===3;}),'thresholds, no duplicates, jumps, reset and caps');
+ assert(await p.evaluate(()=>{
+  const g=__game,original=g.diff;
+  for(const [difficulty,cap] of [[0,5],[1,4],[2,3]]){
+   g.setDiff(difficulty);g.game.rescues=0;g.game.combo=49;
+   g.onHit(1,0);if(g.game.rescues!==1)return false;
+   g.onHit(49,0);if(g.game.rescues!==1)return false;
+   g.onHit(1,0);if(g.game.rescues!==2)return false;
+   g.onHit(50,0);if(g.game.rescues!==3)return false;
+   g.onHit(1000,0);if(g.game.rescues!==cap)return false;
+   if(g.addRescues()!==0||g.game.rescues!==cap)return false;
+   g.game.rescues--;g.onHit(1,0);if(g.game.rescues!==cap-1)return false;
+   g.onHit(49,0);if(g.game.rescues!==cap)return false;
+   g.game.combo=0;g.game.rescues=0;g.onHit(150,0);if(g.game.rescues!==3)return false;
+  }
+  g.setDiff(0);g.game.rescues=5;g.setDiff(2);if(g.game.rescues!==3)return false;
+  g.setDiff(original);return true;
+ }),'50-hit intervals, no duplicates, multi-threshold jumps, difficulty caps and shared rewards');
  await p.evaluate(()=>{__game.game.paused=false;for(const e of targets)if(e.state!=='dead')__game.damageEnemy(e,100000);});
  assert(await p.evaluate(()=>__game.lockTarget===null&&!__game.lockMarker.visible),'last death hides marker');
  assert(await p.evaluate(async()=>{const a=__game.audio;a.unlock();a.muted=false;await a.loadSfx('victory_human_cheer',a.resolve(a.sfxTracks.victory_human_cheer));a.stopCelebration();a.sfx('victory_human_cheer');return a.sfxBuffers.get('victory_human_cheer')?.duration>20&&a.crowdVoices.size>0;}),'cheer file decodes and creates a playing voice');

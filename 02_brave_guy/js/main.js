@@ -98,15 +98,15 @@ const BOSS_GROUPS = { duo: ['xinji', 'baguashe'] }; // 一關有兩隻守關者�
 // 難度：怪的數量、同場上限、嘲諷頻率、俊熊出現的次數都跟著變。
 // crowd／cap 是乘在畫質表上的倍率；地獄難度的怪會直接生在整張地圖上，幾乎鋪滿。
 const DIFFS = [
-  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false, rescues: 2, pulse: [12, 16] },
-  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: true, rescues: 2, pulse: [9, 12] },
-  { id: 'hell', name: '地獄', crowd: 2, cap: 2, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true, rescues: 1, pulse: [6, 8] },
+  { id: 'easy', name: '輕鬆', crowd: 0.6, cap: 0.6, tauntGap: 1.4, bubbles: 2, hurt: 0.75, bearMax: 3, bearGap: [9, 14], spread: false, rescues: 2, rescueCap: 5, pulse: [12, 16] },
+  { id: 'normal', name: '普通', crowd: 1, cap: 1, tauntGap: 1, bubbles: 3, hurt: 1, bearMax: 5, bearGap: [6, 10], spread: true, rescues: 2, rescueCap: 4, pulse: [9, 12] },
+  { id: 'hell', name: '地獄', crowd: 2, cap: 2, tauntGap: 0.5, bubbles: 6, hurt: 1, bearMax: 9, bearGap: [3, 6], spread: true, rescues: 1, rescueCap: 3, pulse: [6, 8] },
 ];
 const DIFF_KEY = 'braveguy.diff';
 let diff = 1;
 try { const d = localStorage.getItem(DIFF_KEY); if (d !== null && DIFFS[+d]) diff = +d; } catch { /* 讀不到就用普通 */ }
 const D = () => DIFFS[diff];
-function setDiff(i) { if(i!==diff)runs.invalidate();diff = i; try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
+function setDiff(i) { if(i!==diff)runs.invalidate();diff = i; game.rescues = Math.min(game.rescues || 0, D().rescueCap); try { localStorage.setItem(DIFF_KEY, String(i)); } catch { /* 存不了也沒關係 */ } }
 
 // 負面狀態：每個守關者有自己的招牌狀態，每隔一陣子在主角腳下畫圈，圈爆開時還站在裡面就中。
 // 變身中持續時間減半。效果寫在 updateDebuffs 與各處的 hasDebuff() 判斷。
@@ -635,6 +635,12 @@ function addQi(x) { if (hero.form === 'brave' && hero.state !== 'ult') {const ol
 // 終章最後一段與地圖三找回變身之前不能變身
 const canTransform = () => game.abilities.has('transform') && !game.final;
 
+function addRescues(count = 1) {
+  const before = Math.min(game.rescues || 0, D().rescueCap);
+  game.rescues = Math.min(D().rescueCap, before + count);
+  return game.rescues - before;
+}
+
 function onHit(count, killed) {
   if (!count) return;
   const oldCombo=game.combo;
@@ -649,9 +655,10 @@ function onHit(count, killed) {
     hero.qi = Math.min(GAUGE.qiMax, hero.qi + 20);
     popup(hero.pos, 3.8, tr('40 連擊：氣量 +20', '40 COMBO: Qi +20', '40 コンボ：気 +20'), 'good');
   }
-  if (oldCombo < 50 && game.combo >= 50) {
-    game.rescues++;
-    popup(hero.pos, 4.4, tr('50 連擊：小天使救援 +1', '50 COMBO: Angel rescue +1', '50 コンボ：天使の救援 +1'), 'good');
+  const rescueAwards = Math.floor(game.combo / 50) - Math.floor(oldCombo / 50);
+  if (rescueAwards > 0) {
+    const gained = addRescues(rescueAwards);
+    if (gained > 0) popup(hero.pos, 4.4, tr(`連擊獎勵：小天使救援 +${gained}`, `COMBO: Angel rescue +${gained}`, `コンボ：天使の救援 +${gained}`), 'good');
   }
   game.comboT = 2.2;
   if (hero.form === 'brave') { addCourage(GAUGE.courageHitBrave * count); addQi(GAUGE.qiHit * count + GAUGE.qiKill * killed); }
@@ -1504,7 +1511,7 @@ function updateAmbush(dt) {
       // 被抓到（變身中不會被嚇到，等於直接抓到）
       a.done = true; a.t = 0; a.caught = true; audio.sfx('revive');
       game.caught++;
-      if (game.rescues < 5) { game.rescues++; popup(hero.pos, 3.8, tf('救援 +1（共 {0} 次）', game.rescues), 'good'); }
+      if (addRescues() > 0) { popup(hero.pos, 3.8, tf('救援 +1（共 {0} 次）', game.rescues), 'good'); }
       addCourage(15);
       const heal = Math.round(hero.maxHp * 0.1);
       hero.hp = Math.min(hero.maxHp, hero.hp + heal);
@@ -2663,7 +2670,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && gam
 
 // 供自動化測試與除錯讀取狀態
 window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
-  onHit, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
+  onHit, addRescues, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
 
