@@ -2,7 +2,7 @@
 export function createPictureFilm(root,className='picture-film'){
  const canvas=document.createElement('canvas');canvas.className=className;canvas.hidden=true;canvas.setAttribute('aria-hidden','true');root.prepend(canvas);
  const ctx=canvas.getContext('2d'),cache=new Map();let stamp='';
- const bounds=f=>f.file==='awakening_armor_b'?[[0,438],[445,480],[934,602]][f.row||0]:null;
+ const bounds=f=>f.file==='victory_qianBiz'?[[0,534],[537,520],[1060,476]][f.row||0]:f.file==='awakening_armor_b'?[[0,438],[445,480],[934,602]][f.row||0]:null;
  const url=file=>`assets/runtime/lossless/pic/cinematics/${file}.webp`;
  async function prepare(files){
   const wanted=new Set(files);for(const key of cache.keys())if(!wanted.has(key))cache.delete(key);

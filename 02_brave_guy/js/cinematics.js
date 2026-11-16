@@ -1,11 +1,12 @@
-import { createVictoryStoryboard } from './victory-storyboard.js?v=20261116films';
-import { createPictureFilm } from './picture-film.js?v=20261116films';
+import { createVictoryStoryboard } from './victory-storyboard.js?v=20261116qian';
+import { createPictureFilm } from './picture-film.js?v=20261116qian';
 import { waitForArtwork, cancelArtwork } from './loading.js?v=20261115fast';
 import { words } from './run-records.js?v=20261115fast';
-import { BOSS_BANTER } from './boss-banter.js?v=20261115fast';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261115fast';
+import { BOSS_BANTER } from './boss-banter.js?v=20261116qian';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261116qian';
 import { t, lang } from './i18n.js?v=20261115fast';
 export const BOSS_PROFILES = {
+ qianBiz:['錢經理','qian','#ffd84d','coins','妳的帳，別算在我頭上。','qian'],
  folaidiKing:['佛賴弟王','boss','#bda8ff','mist','再五分鐘啦～','laichuang'],
  qian:['錢大姐','qian','#ffd84d','coins','先付錢，再談勇氣。','qian'],
  lan:['藍教頭','lan','#49cfff','slash','站直！你還差得遠！','lan'],

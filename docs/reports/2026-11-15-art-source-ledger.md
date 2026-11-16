@@ -76,3 +76,10 @@
 - 新增共18張原生PNG，含13組專屬勝利、2組變身、1組失敗、1張重試、1張結局；18份WebP只做無損配送，並非新美術。原有14張爭議稿沒有改動。
 
 - 壓縮追加不屬於新生圖：全部93份配送圖比較最高強度無損編碼，原尺寸RGBA一致後擇小；原PNG及14張爭議稿不變。
+
+## 2026-11-16 錢經理新關過場
+- 同步Claude dd616e8：3-6 qianBiz暫借boss_qian_storyboard，沒有victory_qianBiz；原qian為校園水手服，非職場套裝。
+- 核對既有sheet/unified/sheet_qian、校園登場及勝利原圖；CHARACTERS §8指定職場版套裝、資料夾、收款信封，保留馬尾耳環。確定本輪只新增boss_qianBiz_storyboard與victory_qianBiz兩組三鏡，不重製校園圖。
+- 新圖原PNG保留，配送副本採原尺寸無損壓縮；既有Claude壓縮結果不回退。
+
+- 勝利稿經使用者再次退回後，採用exec-56374f59（側面出拳、刪除多餘手）；之前各稿僅留生成資料夾，正式採用及退回清單見QIAN_BIZ_FILMS_REVIEW.json。

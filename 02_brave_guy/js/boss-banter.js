@@ -1,5 +1,6 @@
 // Every entrance uses the same three-shot exchange: boss / hero / boss.
 export const BOSS_BANTER = {
+ qianBiz:[['先替我墊錢，大家都是自己人嘛！','Cover my bill. We are all family here!','立て替えてよ。身内でしょ！'],['不要。妳的帳，別算在我頭上。','No. Your bill is not my burden.','断る。あんたの勘定を俺に回すな。'],['敢拒絕？讓你看看職場的人情債！','You refuse? Feel the weight of office favors!','断るの？職場の貸し借りを教えてあげる！']],
  folaidiKing:[['再拖五分鐘，你就永遠別想走！','Five more minutes. Then you never leave!','あと五分。そのまま一生ここにいろ！'],['你繼續賴床，我先把你打醒。','Keep snoozing. I’ll wake you up.','寝てろ。こっちが叩き起こす。'],['嘴很硬嘛。看你醒不醒得來！','Big talk. Try waking from this!','強がるなよ。この夢から出てみろ！']],
  qian:[['想過去？先把勇氣交出來！','Want to pass? Hand over your courage!','通りたい？勇気を置いていきな！'],['不交。這次換妳讓路。','No. This time, you move.','渡さない。今度はそっちがどいて。'],['敢拒絕我？那就站穩了！','You dare refuse? Stand your ground!','断る気？なら踏ん張りな！']],
  lan:[['站直！你連頂嘴的資格都沒有！','Stand straight! You don’t get to talk back!','直立！口答えする資格などない！'],['音量很大，道理在哪？','Loud voice. Where’s your point?','声は大きいね。筋は通ってる？'],['好！我親自教你規矩！','Fine! I’ll teach you discipline!','よし！私が規則を教えてやる！']],

@@ -1,5 +1,5 @@
-import { createPictureFilm } from './picture-film.js?v=20261116films';
-export const VICTORY_KEYS=['folaidiKing','qian','lan','nightmare','midKing','hell','kabanKing','xinji','baguashe','lanMgr','ganqiaoFull','guan','incubus'];
+import { createPictureFilm } from './picture-film.js?v=20261116qian';
+export const VICTORY_KEYS=['folaidiKing','qian','qianBiz','lan','nightmare','midKing','hell','kabanKing','xinji','baguashe','lanMgr','ganqiaoFull','guan','incubus'];
 export function createVictoryStoryboard(root){
  const film=createPictureFilm(root,'victory-storyboard');let kinds=[];
  return{

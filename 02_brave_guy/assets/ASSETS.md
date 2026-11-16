@@ -368,3 +368,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 - 原生來源、SHA與自審紀錄：`source/PICTURE_FILMS_REVIEW.json`；無損配送報告：`runtime/lossless/report.json`。詳細驗證與發布狀態見 `docs/handoffs/2026-11-16-game02-all-picture-films.md`。
 
 - 配送最佳化追加：93張以最高強度無損WebP比對後擇小，總計197,949,744→146,614,638 bytes（-25.93%）；原生像素／透明度一致。
+
+## 2026-11-16 錢經理專屬過場增補
+
+3-6職場版沿CHARACTERS §8，不復用校園服裝圖。新增source/pic/cinematics/boss_qianBiz_storyboard.png及victory_qianBiz.png，皆原生1024×1536三鏡；runtime/lossless/pic/cinematics/同名WebP為逐像素一致無損配送，原PNG保留。來源、壓縮、自審見source/QIAN_BIZ_FILMS_REVIEW.json，接線交接見docs/handoffs/2026-11-16-game02-qian-biz-films.md。
