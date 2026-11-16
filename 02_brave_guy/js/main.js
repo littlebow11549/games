@@ -821,9 +821,10 @@ function spawnBossActual() {
   $('boss-name').textContent = names;
   $('quest-wave').textContent = tf('打倒{0}', names);
   const own = `bgm_stage_${stage().id.replace('-', '_')}`;
-  // 黑影戰（惡夢／地獄／夢魘超人）整關用自己的曲子；其他關卡守關者登場後切通用守關曲
+  // 黑影戰（惡夢／地獄／夢魘超人）整關用自己的曲子；其他關卡守關者登場後切守關曲（有專屬曲就用，否則通用）
   const shadowFight = ['nightmare', 'hell', 'incubus'].includes(stage().boss);
-  if (!audio.tracks[own] || (stage().waves.length && !shadowFight)) setBgm('bgm_boss');
+  const bossTrack = audio.tracks[`bgm_boss_${stage().boss}`] ? `bgm_boss_${stage().boss}` : 'bgm_boss';
+  if (!audio.tracks[own] || (stage().waves.length && !shadowFight)) setBgm(bossTrack);
   if (stage().boss === 'incubus') say('shield', true);
 }
 
@@ -2048,7 +2049,7 @@ function update(dt) {
   if (game.hitstop > 0) { game.hitstop -= dt; fx.update(dt * 0.2); return; } // 命中頓幀
   game.time += dt;
   game.counterT=Math.max(0,game.counterT-dt);
-  if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));}
+  if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));if(audio.tracks['bgm_boss_rage'])setBgm('bgm_boss_rage');}
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
   if(game.phase!=='playing'&&game.phase!=='ending')return;
