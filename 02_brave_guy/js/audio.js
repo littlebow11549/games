@@ -221,24 +221,31 @@ export class GameAudio {
       }
       this.loadSfx(cacheKey,this.resolve(source));
     }
+    if(name==='stage_select'||name==='dialog_next'||name==='win'){this.cleanUiCue(name);return;}
     const basic=['swing','hit','crit','boom','hurt','skill','dodge','shoot','ui','win','lose'];
     const fallback=basic.includes(name)?name:/burst|slam|quake|blast|done|reveal|beam_end/.test(name)?'boom':/punch|kick|fly|fan/.test(name)?'swing':/hurt|guilt/.test(name)?'hurt':/full|beam|charge|revive|combo/.test(name)?'skill':'ui';
     this.syntheticSfx(fallback);
   }
 
-  syntheticSfx(name) {
-    switch (name) {
-      case 'swing': this.noise(0.16, 900, 1.2, 0.5, 3200); break;
-      case 'hit': this.tone('square', 220, 70, 0.09, 0.35); this.noise(0.07, 2400, 0.8, 0.4); break;
-      case 'crit': this.tone('square', 330, 60, 0.14, 0.45); this.noise(0.12, 3200, 0.7, 0.5); break;
-      case 'boom': this.tone('sine', 120, 30, 0.5, 0.9); this.noise(0.45, 400, 0.5, 0.8, 80); break;
-      case 'hurt': this.tone('sawtooth', 300, 120, 0.18, 0.3); break;
-      case 'skill': this.tone('triangle', 400, 1200, 0.25, 0.3); this.noise(0.25, 1500, 2, 0.3, 5000); break;
-      case 'dodge': this.noise(0.14, 500, 1, 0.35, 1800); break;
-      case 'shoot': this.tone('triangle', 700, 300, 0.12, 0.2); break;
-      case 'ui': this.tone('triangle', 1800, 1250, 0.065, 0.19); this.tone('sine', 2800, 2300, 0.04, 0.07); break;
-      case 'win': [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => this.tone('triangle', f, f, 0.3, 0.3), i * 120)); break;
-      case 'lose': [392, 330, 262].forEach((f, i) => setTimeout(() => this.tone('triangle', f, f * 0.9, 0.4, 0.3), i * 200)); break;
+  // Match the PCM cues even on the first click before audio files finish loading.
+  cleanUiCue(name) {
+    if(!this.ctx || !this.master)return;
+    const combat={lose:[[0,392,.18,.17],[.10,330,.20,.15],[.20,262,.25,.12]],swing:[[0,330,.16,.20]],hit:[[0,130,.15,.35],[.01,520,.06,.10]],crit:[[0,110,.22,.40],[.01,440,.08,.12]],boom:[[0,65,.40,.40],[.02,130,.25,.15]],hurt:[[0,196,.17,.22]],skill:[[0,440,.18,.20],[.07,660,.22,.16]],dodge:[[0,330,.14,.16]],shoot:[[0,660,.13,.18]],ui:[[0,587.330,.105,.12]]};
+    const notes=combat[name] || (name==='win'?[[0,523.251,.22,.17],[.10,659.255,.22,.15],[.20,783.991,.24,.14],[.32,1046.502,.32,.12]]:name==='stage_select'?[[0,659.255,.15,.19],[.075,987.767,.20,.16]]:[[0,587.330,.105,.12]]);
+    for(const [delay,frequency,duration,volume] of notes){
+      const start=this.ctx.currentTime+delay,osc=this.ctx.createOscillator(),gain=this.ctx.createGain();
+      osc.type='sine';osc.frequency.value=frequency;
+      gain.gain.setValueAtTime(0,start);
+      gain.gain.linearRampToValueAtTime(volume,start+.008);
+      gain.gain.exponentialRampToValueAtTime(volume*.025,start+duration-.025);
+      gain.gain.linearRampToValueAtTime(0,start+duration);
+      osc.connect(gain).connect(this.master);
+      osc.onended=()=>{osc.disconnect();gain.disconnect();};
+      osc.start(start);osc.stop(start+duration);
     }
+  }
+
+  syntheticSfx(name) {
+    this.cleanUiCue(name);
   }
 }

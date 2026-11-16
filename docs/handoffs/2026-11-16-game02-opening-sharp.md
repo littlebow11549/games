@@ -13,3 +13,6 @@
 - tools/tests/game02-opening-sharp.cjs：390×844、320×568、1280×900 三尺寸、兩幕實際控制切換，原生尺寸與完整解碼檢查、contain 顯示、無橫向溢出、跳過與重播；0 pageerror。
 - 目視手機雙幕，確認五官、輪廓、全身比例清楚。
 - 本提交準備合併發布，發布結果以 GitHub Pages workflow 為準。
+
+## 同步最新製作
+合併前同步 ad1cf2a（關卡順序、音效清理、未變身操作），保留其 manifest、audio、story 與按鍵顯示修改；解決入口版本與素材文件衝突後重新驗證。
