@@ -2,7 +2,7 @@ import { words } from './run-records.js?v=20261115fast';
 import { lang } from './i18n.js?v=20261115fast';
 let manifestPromise,gameplayPromise,gameplayReady=false;const decoded=new Set();
 export async function preloadImages(report=()=>{},scope='boot'){
- if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261116sharp').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
+ if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261116gem').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
  const all=await manifestPromise;
  const common=all.filter(url=>!url.includes('/cinematics/')&&(!url.includes('/sheet/unified/')||/sheet_(angel|ganqiao|worker)\.webp$/.test(url)));
  const portrait=matchMedia('(orientation:portrait)').matches;

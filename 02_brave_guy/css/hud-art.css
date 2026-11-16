@@ -24,7 +24,6 @@
 .game-art .portrait::after{background-image:url('../assets/runtime/lossless/pic/ui/hud_core_sheet.webp');background-size:515.436242% 343.624161%;background-position:18.901454% 1.652893%;background-repeat:no-repeat}
 .game-art .portrait.worker:not(.brave){background-image:url('../assets/runtime/lossless/pic/sheet/unified/sheet_worker.webp');background-size:754.585153% 503.056769%;background-position:7.605070% 18.851571%;background-repeat:no-repeat}
 .game-art .act.ult em::after{background-image:url('../assets/runtime/lossless/pic/ui/hud_core_sheet.webp');background-size:522.448980% 348.299320%;background-position:80.917874% 100.000000%;background-repeat:no-repeat}
-.game-art .act.transform.ready:not(:active):not(.art-pressed)::before{background-image:url('../assets/runtime/lossless/pic/ui/control_extras_sheet.webp');background-size:198.963731% 259.898477%;background-position:50.000000% 92.063492%;background-repeat:no-repeat}
 .game-art .boss-bar .bar{background-image:url('../assets/runtime/lossless/pic/ui/aux_hud_sheet.webp');background-size:313.469388% 624.390244%;background-position:2.294455% 13.255814%;background-repeat:no-repeat}
 .game-art .bar.boss i{background-image:url('../assets/runtime/lossless/pic/ui/aux_hud_sheet.webp');background-size:372.815534% 2327.272727%;background-position:51.334520% 17.857143%;background-repeat:no-repeat}
 .game-art #boss-name{background-image:url('../assets/runtime/lossless/pic/ui/aux_hud_sheet.webp');background-size:343.624161% 624.390244%;background-position:96.969697% 13.255814%;background-repeat:no-repeat}

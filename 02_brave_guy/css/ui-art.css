@@ -6,20 +6,15 @@
 .game-art .act em{z-index:1;border-radius:50%}
 .game-art .act::after{z-index:2}
 .game-art .act.locked{filter:none}
-.game-art .act.transform{height:56px;letter-spacing:normal}
-.game-art .act.transform::before,.game-art .act.transform em{border-radius:28px}
 .game-art .act.lock{outline:0}
 .game-art .act:focus-visible,.game-art .icon-btn:focus-visible{outline:3px solid white;outline-offset:3px}
 .game-art .icon-btn{background-repeat:no-repeat}
 .game-art .act.attack::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_attack_sheet.webp');background-size:353.7459283387622% 117.91530944625408%;background-position:3.530166880616174% 36.36363636363637%}
 .game-art .act.dodge::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:357.2093023255814% 238.13953488372093%;background-position:4.882459312839059% 15.151515151515152%}
-.game-art .act.transform::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:313.46938775510205% 417.9591836734694%;background-position:1.9120458891013385% 81.51476251604622%}
 .game-art .act.attack:active::before, .game-art .act.attack.art-pressed::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_attack_sheet.webp');background-size:353.7459283387622% 117.91530944625408%;background-position:50% 36.36363636363637%}
 .game-art .act.dodge:active::before, .game-art .act.dodge.art-pressed::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:357.2093023255814% 238.13953488372093%;background-position:50.09041591320072% 15.151515151515152%}
-.game-art .act.transform:active::before, .game-art .act.transform.art-pressed::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:313.46938775510205% 417.9591836734694%;background-position:49.7131931166348% 81.51476251604622%}
 .game-art .act.attack.locked::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_attack_sheet.webp');background-size:353.7459283387622% 117.91530944625408%;background-position:96.46983311938384% 36.36363636363637%}
 .game-art .act.dodge.locked::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:357.2093023255814% 238.13953488372093%;background-position:95.29837251356238% 15.151515151515152%}
-.game-art .act.transform.locked::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp');background-size:313.46938775510205% 417.9591836734694%;background-position:97.51434034416826% 81.51476251604622%}
 .game-art .act.s1::before{background-image:url('../assets/runtime/lossless/pic/icons/skill_buttons_sheet.webp');background-size:492.3076923076923% 328.2051282051282%;background-position:3.9215686274509802% 2.247191011235955%}
 .game-art .act.s1:active::before,.game-art .act.s1.art-pressed::before{background-image:url('../assets/runtime/lossless/pic/icons/skill_buttons_sheet.webp');background-size:492.3076923076923% 328.2051282051282%;background-position:3.9215686274509802% 50%}
 .game-art .act.s1.locked::before{background-image:url('../assets/runtime/lossless/pic/icons/skill_buttons_sheet.webp');background-size:492.3076923076923% 328.2051282051282%;background-position:3.9215686274509802% 97.75280898876404%}
@@ -42,3 +37,13 @@
 .game-art #stick-knob{background-image:url('../assets/runtime/lossless/pic/ui/control_extras_sheet.webp');background-size:560.5839416058394% 373.7226277372263%;background-position:76.8621236133122% 20%}
 .game-art #stick-base,.game-art #stick-knob{border:0;background-repeat:no-repeat}
 .game-art #minimap.art-loaded{border:0;outline:0;background:#0c1611cc;box-shadow:none}
+
+/* Courage gem: native transparent artwork, all states share the same icon. */
+.game-art .act.transform{width:76px;height:76px;right:24px;bottom:160px;border-radius:50%;letter-spacing:normal}
+.game-art .act.transform::before{background-image:url('../assets/runtime/lossless/pic/icons/btn_transform_courage_gem.webp');background-size:contain;background-position:center;border-radius:0;transition:filter .12s,transform .12s}
+.game-art .act.transform.ready{animation:none}
+.game-art .act.transform.ready::before{animation:courage-gem-glow 1.4s ease-in-out infinite alternate}
+.game-art .act.transform:active::before,.game-art .act.transform.art-pressed::before{animation:none;filter:brightness(1.25) drop-shadow(0 0 6px #aaff62);transform:scale(.94)}
+.game-art .act.transform.locked::before{animation:none;filter:grayscale(1) brightness(.55)}
+@keyframes courage-gem-glow{from{filter:drop-shadow(0 0 3px #8dff4999)}to{filter:brightness(1.12) drop-shadow(0 0 9px #b5ff62)}}
+@media(prefers-reduced-motion:reduce){.game-art .act.transform.ready::before{animation:none;filter:drop-shadow(0 0 5px #aaff62)}}

@@ -86,3 +86,8 @@
 
 ## 2026-11-16 假忙森主管新關過場
 - 核對Claude e1116eb/a130ee9：3-7 jiamangKing暫借加班鬼王圖，缺專屬勝利。已有假森原設定及sheet_zhuangxiong；職場版為灰黑西裝紅領帶、橘棕布偶熊、紅雞冠、白灰曲棍球面具與黑屏電腦。只新增boss_jiamangKing_storyboard、victory_jiamangKing兩組，不重做其他Boss或背景素材。
+
+## 2026-11-16 使用者指定重繪：勇氣寶石變身按鈕
+已定位目前圖源 `icons/btn_dodge_transform_sheet.png`（下列紅圍巾三態）及 CSS 接線。使用者明確要求將紅圍巾改為勇氣寶石並重新繪製，故新增獨立寶石按鈕；非依缺件清單重工。舊圖集保留供閃避按鈕使用。
+
+補充：滿氣紅圍巾另由 `ui/control_extras_sheet.webp` 提供（hud-art.css 高優先度覆蓋），亦已解除該變身鍵引用；搖桿仍沿用原圖集。新寶石已接入普通／就緒／按下／鎖定狀態。

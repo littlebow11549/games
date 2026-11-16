@@ -1,5 +1,5 @@
 import { createProgressReset } from './progress-reset.js?v=20261116menuplus';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js?v=20261116sharp';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js?v=20261116gem';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
