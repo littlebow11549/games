@@ -398,7 +398,7 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossFightTime:0, bossSpawned: false, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
+    bossFightTime:0, bossSpawned: false, bossKinds: null, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -811,6 +811,7 @@ function spawnBossActual() {
   game.bossSpawned = true;
   const key = stage().boss;
   const kinds = BOSS_GROUPS[key] || [key];
+  game.bossKinds = kinds; // 記下目前守關者，供切語系時重算名牌
   for (const k of kinds) spawnEnemy(k);
   const names = kinds.map((k) => t(BOSSES[k].name)).join(t('＋'));
   banner('心魔來襲');
@@ -2497,7 +2498,14 @@ function refreshLang() {
   else if (game.phase === 'playing' || game.phase === 'dialog') {
     const st = stage();
     $('quest-title').textContent = `${st.id}　${t(st.name)}`;
-    if (!game.bossSpawned) $('quest-wave').textContent = t(st.sub);
+    if (game.bossKinds) {
+      // 守關者戰中切語系：名牌與任務字要跟著換語系
+      const names = game.bossKinds.map((k) => t(BOSSES[k].name)).join(t('＋'));
+      $('boss-name').textContent = names;
+      $('quest-wave').textContent = tf('打倒{0}', names);
+    } else if (!game.bossSpawned) {
+      $('quest-wave').textContent = t(st.sub);
+    }
     if (dialog) showLine();
   }
 }
