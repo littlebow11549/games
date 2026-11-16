@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/feedback-art.css?v=20261115fast">
 <link rel="stylesheet" href="css/hud-art.css?v=20261116gem">
 <link rel="stylesheet" href="css/transform-art.css?v=20261115fast">
-<link rel="stylesheet" href="css/system-art.css?v=20261116equal">
+<link rel="stylesheet" href="css/system-art.css?v=20261116health">
 <link rel="stylesheet" href="css/cinematics.css?v=20261116fit">
 <link rel="stylesheet" href="css/opening.css?v=20261116sharp">
 <link rel="preload" as="image" href="assets/runtime/lossless/pic/ui/guilt_explode_sheet.webp">
@@ -66,7 +66,6 @@
     <p id="music-loading" hidden data-i18n="♪ 音樂載入中…">♪ 音樂載入中…</p>
   </div>
 
-  <div class="combo" id="combo" hidden><b id="combo-n">0</b><span data-i18n="連擊">連擊</span></div>
 
   <div class="boss-bar" id="boss-bar" hidden>
     <span id="boss-name"></span>
@@ -93,6 +92,8 @@
     <button class="act attack" data-action="attack" data-key="左鍵" data-i18n-key="左鍵" aria-label="攻擊"><span data-i18n="拳">拳</span></button>
   </div>
 </div>
+
+<div class="combo" id="combo" hidden><b id="combo-n">0</b><span data-i18n="連擊">連擊</span></div>
 
 <div id="dialog" class="dialog" hidden>
   <div id="tf-art" class="tf-art" hidden aria-hidden="true">
@@ -181,7 +182,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261116rescue';
+    s.src = 'js/main.js?v=20261116health';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

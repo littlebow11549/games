@@ -57,3 +57,11 @@
 .game-art .card .lang-btn{display:grid!important;grid-template-columns:30px repeat(3,minmax(0,1fr));align-items:center;column-gap:4px;width:min(100%,340px);box-sizing:border-box}
 .game-art .card .lang-btn i{margin:0;justify-self:center}
 .game-art .card .lang-btn span{display:flex;align-items:center;justify-content:center;min-width:0;box-sizing:border-box;padding:7px 4px;text-align:center;white-space:nowrap}
+
+/* Combat counters sit above the world, HUD and floating effects, without taking clicks. */
+.game-art #combo{position:fixed;z-index:1100;pointer-events:none}
+body:has(#hud[hidden]) #combo,
+body:has(#pause-menu:not([hidden])) #combo,
+body:has(#dialog:not([hidden])) #combo{display:none!important}
+body:has(#minimap.big) #combo{right:calc(240px + var(--safe-r))}
+@media(max-height:430px){body:has(#minimap.big) #combo{right:calc(170px + var(--safe-r))}}

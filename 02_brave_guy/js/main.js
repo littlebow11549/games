@@ -565,7 +565,7 @@ function updateHud() {
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
   $('btn-lock').hidden = false;
   $('btn-cycle-lock').hidden = false;
-  $('combo').hidden = game.combo < 5;
+  $('combo').hidden = game.combo < 5 || game.phase !== 'playing' || game.paused || Boolean(dialog);
   updateCombo(game.combo);
 
   for (const btn of ACT_BUTTONS) {
@@ -593,9 +593,9 @@ function updateHud() {
   for (const e of enemies) {
     if (e.def.boss) { bossHp += Math.max(0, e.hp); bossMax += e.def.hp; continue; }
     if (!e.bar) continue;
-    if(e.state==='dead'||e.hp>=e.maxHp){if(e.bar.style.display!=='none')e.bar.style.display='none';continue;}
+    if(e.state==='dead'||e.state==='spawn'||!e.shown||!e.visual.root.visible){if(e.bar.style.display!=='none')e.bar.style.display='none';continue;}
     const p = screenPos(e.pos, e.def.height + 0.3 + e.y);
-    const show = p.visible && e.state !== 'dead' && e.hp < e.maxHp;
+    const show = p.visible && e.hp > 0;
     e.bar.style.display = show ? '' : 'none';
     if (show) {
       e.bar.style.left = `${p.x}px`;
@@ -786,7 +786,7 @@ function spawnEnemy(kind, at, delay = 0) {
   visual.root.visible = false;
   scene.add(visual.root);
   let bar = null;
-  if (def.bar) {
+  if (!def.boss) {
     bar = document.createElement('div');
     bar.className = 'ebar';
     bar.append(document.createElement('i'));
