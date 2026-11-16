@@ -1,6 +1,6 @@
 import { createVictoryStoryboard } from './victory-storyboard.js?v=20261116jiamang';
 import { createPictureFilm } from './picture-film.js?v=20261116qian';
-import { waitForArtwork, cancelArtwork } from './loading.js?v=20261115fast';
+import { waitForArtwork, cancelArtwork } from './loading.js?v=20261116sharp';
 import { words } from './run-records.js?v=20261115fast';
 import { BOSS_BANTER } from './boss-banter.js?v=20261116jiamang';
 import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261116jiamang';
