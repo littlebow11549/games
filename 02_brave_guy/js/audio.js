@@ -207,7 +207,7 @@ export class GameAudio {
   sfx(name) {
     if (this.muted) return;
     const now=this.ctx?.currentTime;
-    const gap={spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
+    const gap={dialog_next:.08,spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
     if(Number.isFinite(now)){if(now-(this.sfxLast.get(name)??-Infinity)<gap)return;this.sfxLast.set(name,now);}
     let source=this.sfxTracks[name],cacheKey=name;
     if(Array.isArray(source)){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%source.length);cacheKey=`${name}:${i}`;source=source[i];}
@@ -230,7 +230,7 @@ export class GameAudio {
   // Match the PCM cues even on the first click before audio files finish loading.
   cleanUiCue(name) {
     if(!this.ctx || !this.master)return;
-    const combat={lose:[[0,392,.18,.17],[.10,330,.20,.15],[.20,262,.25,.12]],swing:[[0,330,.16,.20]],hit:[[0,130,.15,.35],[.01,520,.06,.10]],crit:[[0,110,.22,.40],[.01,440,.08,.12]],boom:[[0,65,.40,.40],[.02,130,.25,.15]],hurt:[[0,196,.17,.22]],skill:[[0,440,.18,.20],[.07,660,.22,.16]],dodge:[[0,330,.14,.16]],shoot:[[0,660,.13,.18]],ui:[[0,587.330,.105,.12]]};
+    const combat={dialog_next:[[0,420,.085,.10],[0,1159,.05,.012]],lose:[[0,392,.18,.17],[.10,330,.20,.15],[.20,262,.25,.12]],swing:[[0,330,.16,.20]],hit:[[0,130,.15,.35],[.01,520,.06,.10]],crit:[[0,110,.22,.40],[.01,440,.08,.12]],boom:[[0,65,.40,.40],[.02,130,.25,.15]],hurt:[[0,196,.17,.22]],skill:[[0,440,.18,.20],[.07,660,.22,.16]],dodge:[[0,330,.14,.16]],shoot:[[0,660,.13,.18]],ui:[[0,587.330,.105,.12]]};
     const notes=combat[name] || (name==='win'?[[0,523.251,.22,.17],[.10,659.255,.22,.15],[.20,783.991,.24,.14],[.32,1046.502,.32,.12]]:name==='stage_select'?[[0,659.255,.15,.19],[.075,987.767,.20,.16]]:[[0,587.330,.105,.12]]);
     for(const [delay,frequency,duration,volume] of notes){
       const start=this.ctx.currentTime+delay,osc=this.ctx.createOscillator(),gain=this.ctx.createGain();

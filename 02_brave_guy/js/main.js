@@ -12,10 +12,10 @@ import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './syste
 import { createCinematics } from './cinematics.js?v=20261116sharp';
 import { createOpening } from './opening.js?v=20261116sharp';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
-import { nextLockTarget } from './targeting.js?v=20261115fast';
+import { nextLockTarget } from './targeting.js?v=20261116nearsoft';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261116cleanui';
+import { GameAudio } from './audio.js?v=20261116nearsoft';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116order';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261115fast';
 import { makeMaze } from './maze.js?v=20261115fast';
@@ -2339,7 +2339,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116cleanui';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116nearsoft';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

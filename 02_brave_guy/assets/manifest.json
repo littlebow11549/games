@@ -97,7 +97,7 @@
     "boss_slam": "assets/source/sfx/sfx_boss_slam.mp3",
     "junxiong_pop": "assets/source/sfx/clean/sfx_junxiong_pop_clean.wav",
     "stage_select": "assets/source/sfx/sfx_stage_select_clean.wav",
-    "dialog_next": "assets/source/sfx/sfx_dialog_next_clean.wav",
+    "dialog_next": "assets/source/sfx/sfx_dialog_soft_v4.wav",
     "ui_tap": "assets/source/sfx/clean/sfx_ui_tap_clean.wav",
     "ui_confirm": "assets/source/sfx/clean/sfx_ui_confirm_clean.wav",
     "ui_back": "assets/source/sfx/clean/sfx_ui_back_clean.wav",

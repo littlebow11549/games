@@ -389,3 +389,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-16 勇氣寶石變身按鈕
 
 使用者指定重繪：`source/pic/icons/btn_transform_courage_gem.png`，1254×1254 RGBA；`runtime/lossless/pic/icons/btn_transform_courage_gem.webp` 同尺寸逐像素一致。分類：操作UI／變身按鈕。替代紅圍巾圖示，舊圖保留。詳見 `../../docs/handoffs/2026-11-16-game02-courage-gem.md`。
+
+## 2026-11-16 對話點按音 v4
+`source/sfx/sfx_dialog_soft_v4.wav`：原創DSP，PCM16 mono 44.1kHz、85ms、峰值-19.94dBFS，無噪音層；manifest dialog_next接入。重建腳本 `../../tools/make_game02_dialog_soft.py`。其他v3音效及原對話檔保留。

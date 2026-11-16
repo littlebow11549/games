@@ -107,7 +107,7 @@ test('real applause and cheers layer once, throttle overlap, and stop when leavi
 });
 
 test('clean cues work before files load, use silent edges and respect mute', () => {
-  for (const [name, expected] of [['stage_select',2], ['dialog_next',1], ['win',4], ['hit',2]]) {
+  for (const [name, expected] of [['stage_select',2], ['dialog_next',2], ['win',4], ['hit',2]]) {
     const audio = new GameAudio({});
     let starts = 0, disconnected = 0;
     const envelopes = [];
