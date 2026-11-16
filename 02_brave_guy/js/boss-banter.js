@@ -1,5 +1,6 @@
 // Every entrance uses the same three-shot exchange: boss / hero / boss.
 export const BOSS_BANTER = {
+ jiamangKing:[['我有抄送你！這口鍋，你自己背！','I copied you in! This mess is yours!','CCに入れただろ！責任はお前が取れ！'],['假忙不算工作。你的鍋，接回去！','Looking busy is not work. Take your blame back!','忙しいふりは仕事じゃない。責任は返す！'],['敢拆穿我？先接完這堆爛案子！','Calling my bluff? Catch these doomed projects!','見破ったつもりか？この案件、全部受けろ！']],
  qianBiz:[['先替我墊錢，大家都是自己人嘛！','Cover my bill. We are all family here!','立て替えてよ。身内でしょ！'],['不要。妳的帳，別算在我頭上。','No. Your bill is not my burden.','断る。あんたの勘定を俺に回すな。'],['敢拒絕？讓你看看職場的人情債！','You refuse? Feel the weight of office favors!','断るの？職場の貸し借りを教えてあげる！']],
  folaidiKing:[['再拖五分鐘，你就永遠別想走！','Five more minutes. Then you never leave!','あと五分。そのまま一生ここにいろ！'],['你繼續賴床，我先把你打醒。','Keep snoozing. I’ll wake you up.','寝てろ。こっちが叩き起こす。'],['嘴很硬嘛。看你醒不醒得來！','Big talk. Try waking from this!','強がるなよ。この夢から出てみろ！']],
  qian:[['想過去？先把勇氣交出來！','Want to pass? Hand over your courage!','通りたい？勇気を置いていきな！'],['不交。這次換妳讓路。','No. This time, you move.','渡さない。今度はそっちがどいて。'],['敢拒絕我？那就站穩了！','You dare refuse? Stand your ground!','断る気？なら踏ん張りな！']],

@@ -83,3 +83,6 @@
 - 新圖原PNG保留，配送副本採原尺寸無損壓縮；既有Claude壓縮結果不回退。
 
 - 勝利稿經使用者再次退回後，採用exec-56374f59（側面出拳、刪除多餘手）；之前各稿僅留生成資料夾，正式採用及退回清單見QIAN_BIZ_FILMS_REVIEW.json。
+
+## 2026-11-16 假忙森主管新關過場
+- 核對Claude e1116eb/a130ee9：3-7 jiamangKing暫借加班鬼王圖，缺專屬勝利。已有假森原設定及sheet_zhuangxiong；職場版為灰黑西裝紅領帶、橘棕布偶熊、紅雞冠、白灰曲棍球面具與黑屏電腦。只新增boss_jiamangKing_storyboard、victory_jiamangKing兩組，不重做其他Boss或背景素材。

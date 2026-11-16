@@ -1,0 +1,31 @@
+{
+  "baseClaude": "e1116eb",
+  "adopted": [
+    {
+      "source": "assets/source/pic/cinematics/boss_jiamangKing_storyboard.png",
+      "runtime": "assets/runtime/lossless/pic/cinematics/boss_jiamangKing_storyboard.webp",
+      "generatedFrom": "/workspace/generated_images/exec-3fd88d02-1b0a-4348-ab67-a7de17f3adb8.png",
+      "width": 1024,
+      "height": 1536,
+      "pixelIdentical": true,
+      "pngBytes": 2304849,
+      "webpBytes": 1614178,
+      "sha256": "60a9e4632bd6723124aa819b2520a82e85e4affcce1ba3941ce443ab3df517da"
+    },
+    {
+      "source": "assets/source/pic/cinematics/victory_jiamangKing.png",
+      "runtime": "assets/runtime/lossless/pic/cinematics/victory_jiamangKing.webp",
+      "generatedFrom": "/workspace/generated_images/exec-50bd4fe7-a3f1-4b54-8a63-4d7d984824c4.png",
+      "width": 1024,
+      "height": 1536,
+      "pixelIdentical": true,
+      "pngBytes": 2317879,
+      "webpBytes": 1726286,
+      "sha256": "f7df70b6420531cfe92081b0023e5717f1985a5e8eb159755962728537e512d1"
+    }
+  ],
+  "rejected": [
+    "/workspace/generated_images/exec-5f7c5f71-94e5-4acb-a8d2-d8c5b8f75e1b.png"
+  ],
+  "review": "Checked reference identity, suit, mask removal, connected limbs and paws; removed extra central paw from impact before adoption. Native equal thirds checked."
+}

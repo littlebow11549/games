@@ -1,11 +1,12 @@
-import { createVictoryStoryboard } from './victory-storyboard.js?v=20261116qian';
+import { createVictoryStoryboard } from './victory-storyboard.js?v=20261116jiamang';
 import { createPictureFilm } from './picture-film.js?v=20261116qian';
 import { waitForArtwork, cancelArtwork } from './loading.js?v=20261115fast';
 import { words } from './run-records.js?v=20261115fast';
-import { BOSS_BANTER } from './boss-banter.js?v=20261116qian';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261116qian';
+import { BOSS_BANTER } from './boss-banter.js?v=20261116jiamang';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261116jiamang';
 import { t, lang } from './i18n.js?v=20261115fast';
 export const BOSS_PROFILES = {
+ jiamangKing:['假忙森主管','jiamang','#71dfdc','papers','你的鍋，接回去！','zhuangxiong'],
  qianBiz:['錢經理','qian','#ffd84d','coins','妳的帳，別算在我頭上。','qian'],
  folaidiKing:['佛賴弟王','boss','#bda8ff','mist','再五分鐘啦～','laichuang'],
  qian:['錢大姐','qian','#ffd84d','coins','先付錢，再談勇氣。','qian'],
