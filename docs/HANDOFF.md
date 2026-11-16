@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-16 大 Logo 特效、清脆按鍵聲與清除進度](handoffs/2026-11-16-game02-menuplus.md)：放大既有 Logo 並加光暈／掃光；三款短促按鍵音；三語清除確認視窗，保留設定及其他遊戲資料。18 單元測試、12 組手機排版、取消與重置流程驗證通過。
+
 - [2026-11-16 套用音效/音樂 v2 + 社會版假森音樂需求（Claude）](handoffs/2026-11-16-game02-audio-v2-applied.md)：套用 72 音效(KOF 打擊/寶石變身)＋13 音樂（10 首各 Boss 專屬曲、`bgm_boss_rage` 狂暴曲、`bgm_stage_1_1`/`bgm_stage_3_6`）；接線 Boss 登場播專屬曲、45 秒加壓切狂暴曲；無頭測試 0 error、36 音訊鍵全載入。另開假森(3-7)專屬音樂需求，隨後補上並接線（`bgm_stage_3_7`＋`bgm_boss_jiamangKing`，commit `c9faa41`）。commit `72246d4`/`b39047a`。
 
 - [2026-11-16 假忙森主管專屬過場](handoffs/2026-11-16-game02-office-jiasen-films.md)：補齊3-7西裝面具熊登場／打回甩鍋與卸下面具勝利三鏡、三語對嗆，沿用Claude最新16關。

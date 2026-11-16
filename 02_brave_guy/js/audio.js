@@ -236,7 +236,7 @@ export class GameAudio {
       case 'skill': this.tone('triangle', 400, 1200, 0.25, 0.3); this.noise(0.25, 1500, 2, 0.3, 5000); break;
       case 'dodge': this.noise(0.14, 500, 1, 0.35, 1800); break;
       case 'shoot': this.tone('triangle', 700, 300, 0.12, 0.2); break;
-      case 'ui': this.tone('sine', 880, 1320, 0.08, 0.25); break;
+      case 'ui': this.tone('triangle', 1800, 1250, 0.065, 0.19); this.tone('sine', 2800, 2300, 0.04, 0.07); break;
       case 'win': [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => this.tone('triangle', f, f, 0.3, 0.3), i * 120)); break;
       case 'lose': [392, 330, 262].forEach((f, i) => setTimeout(() => this.tone('triangle', f, f * 0.9, 0.4, 0.3), i * 200)); break;
     }
