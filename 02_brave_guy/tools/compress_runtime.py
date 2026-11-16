@@ -11,6 +11,17 @@ ROOT = Path(__file__).resolve().parents[1]
 urls = json.loads((ROOT / 'assets/runtime-images.json').read_text())
 MAX_EFFORT = False
 
+# 全螢幕插畫（過場、著裝特寫）改走視覺無損的有損 WebP：這些圖沒有透明、
+# 以插畫為主，q90 肉眼看不出差別卻能省掉 60%+ 容量。有真透明的（字藝、剪影）仍走無損。
+LOSSY_QUALITY = 90
+
+def wants_lossy(url, original):
+    if '/cinematics/' in url:
+        return True
+    if '/transform/' in url:
+        return original.getchannel('A').getextrema() == (255, 255)  # 僅對完全不透明者有損
+    return False
+
 def convert(url):
     if '/runtime/lossless/pic/' not in url:
         return None
@@ -18,8 +29,25 @@ def convert(url):
     src, dst = ROOT / source, ROOT / url
     with Image.open(src) as image:
         original = image.convert('RGBA')
-        valid = False
         previous_size = dst.stat().st_size if dst.exists() else None
+
+        if wants_lossy(url, original):
+            # 有損：由來源 PNG 以 q90 重壓，native 尺寸；確定性編碼，只在更小時覆寫（可重複執行）
+            data = BytesIO()
+            original.convert('RGB').save(data, 'WEBP', quality=LOSSY_QUALITY, method=6)
+            payload = data.getvalue()
+            if previous_size is None or len(payload) < previous_size:
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                dst.write_bytes(payload)
+            if MAX_EFFORT:
+                print(f'{dst.name}(lossy): {previous_size} -> {dst.stat().st_size}', flush=True)
+            return dict(source=source, runtime=url, before=src.stat().st_size, after=dst.stat().st_size,
+                        width=original.width, height=original.height, pixelIdentical=False, lossy=True,
+                        quality=LOSSY_QUALITY,
+                        sourceSHA256=hashlib.sha256(src.read_bytes()).hexdigest(),
+                        maxEffortCompared=MAX_EFFORT, previousRuntimeBytes=previous_size)
+
+        valid = False
         if dst.exists():
             try:
                 with Image.open(dst) as check:
