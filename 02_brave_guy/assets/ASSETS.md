@@ -379,6 +379,9 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-16 清脆 UI 音效 v3
 原創合成 source/sfx/sfx_ui_{tap,confirm,back}_crisp_v3.wav：44.1kHz/16-bit/mono，115/205/145ms，峰值 -4dBFS，合計 41,144 bytes。規格見 source/UI_CRISP_V3.json；重建 tools/make_ui_crisp.py。manifest 四個 UI 鍵接線，其餘音樂與音效保留。
 
+## 2026-11-16 開場清晰原圖配送
+沿用 source/pic/concept/angel_front.png 與 ganqiao_front.png，1254×1254 原生尺寸，以無損 WebP 配送至 runtime/lossless/pic/concept/。RGBA 逐像素一致，無新生圖或插值放大；來源與規格見 source/OPENING_SHARP_REVIEW.json。
+
 ## 2026-11-16 音效清理
 
 新增 3 個專用 UI／結算 PCM 音檔與 `source/sfx/clean/` 40 檔（39 原創合成、1 既有歡呼錄音濾波）。均為 44.1kHz 單聲道 PCM16，原檔保留。檔案與分類對照見 `../../docs/reports/2026-11-16-sfx-replacements.json`；驗證與發布狀態見 `../../docs/handoffs/2026-11-16-game02-order-audio-controls.md`。
