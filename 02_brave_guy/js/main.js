@@ -12,7 +12,7 @@ import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './syste
 import { createCinematics } from './cinematics.js?v=20261116sharp';
 import { createOpening } from './opening.js?v=20261116sharp';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
-import { nextLockTarget } from './targeting.js?v=20261116nearsoft';
+import { nextLockTarget, lockCandidates, isLockTarget } from './targeting.js?v=20261116targetfix';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116nearsoft';
@@ -357,6 +357,8 @@ function resetHero() {
 }
 
 function clearField() {
+  lockTargetEnemy = null;
+  manualLockTarget = null;
   for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove(); }
   for (const s of shots) disposeOwned(s.mesh);
   for (const h of hazards) disposeOwned(h.mesh);
@@ -554,7 +556,7 @@ function updateHud() {
     ? (lang === 'ja' ? 'ボスへ' : lang === 'en' ? 'Jump to boss' : '跳到魔王')
     : stage().boss==='incubus'&&!game.awakened?tr('第二形態','Second form','第二形態')
     : (lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關'));
-  $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !enemies.some(e => alive(e) && !e.gone && dist2d(e.pos, hero.pos) - e.def.radius < LOCK_RANGE);
+  $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !!dialog;
   textIfChanged('quest-count', tf('擊倒 {0}', game.kills));
   textIfChanged('suanle-n', game.suanle);
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
@@ -1576,9 +1578,11 @@ function mouseYaw() {
 // 目標會黏住同一隻，直到牠倒下或離太遠才換最近的一隻。
 const LOCK_KEY = 'braveguy.lock';
 const LOCK_RANGE = 16;
+const LOCK_RELEASE_RANGE = 18; // Small hysteresis prevents boundary flicker.
 let lockOn = false;
 try { lockOn = localStorage.getItem(LOCK_KEY) === '1'; } catch { /* 讀不到就預設關閉 */ }
 let lockTargetEnemy = null;
+let manualLockTarget = null;
 const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
 // Reuse the ground-lock window from the existing atlas; retain the vector fallback.
 if (document.body.classList.contains('game-art')) {
@@ -1600,8 +1604,9 @@ scene.add(lockMarker);
 function lockTarget() {
   if (!lockOn) return null;
   const t = lockTargetEnemy;
-  if (t && alive(t) && !t.gone && dist2d(t.pos, hero.pos) - t.def.radius < LOCK_RANGE) return t;
-  lockTargetEnemy = nearestEnemy(LOCK_RANGE);
+  if (enemies.includes(t) && isLockTarget(t, hero.pos, LOCK_RELEASE_RANGE)) return t;
+  manualLockTarget = null;
+  lockTargetEnemy = lockCandidates(enemies, hero.pos, LOCK_RANGE)[0] || null;
   return lockTargetEnemy;
 }
 const yawTo = (e) => Math.atan2(e.pos.x - hero.pos.x, e.pos.z - hero.pos.z);
@@ -1609,6 +1614,7 @@ const yawTo = (e) => Math.atan2(e.pos.x - hero.pos.x, e.pos.z - hero.pos.z);
 function setLock(on) {
   lockOn = on;
   lockTargetEnemy = null;
+  manualLockTarget = null;
   try { localStorage.setItem(LOCK_KEY, on ? '1' : '0'); } catch { /* 存不了也沒關係 */ }
   $('btn-lock').classList.toggle('on', on);
   $('btn-lock').setAttribute('aria-pressed', String(on));
@@ -1617,11 +1623,26 @@ function setLock(on) {
 
 function cycleLockTarget(direction = 1) {
   if (game.phase !== 'playing' || game.paused || dialog) return;
-  const next = nextLockTarget(enemies, lockOn ? lockTargetEnemy : null, hero.pos, LOCK_RANGE, direction);
-  if (!next) { popup(hero.pos, 2.8, '附近沒有可鎖定目標', 'guard'); return; }
+  const current = lockOn ? lockTargetEnemy : null;
+  const candidates = lockCandidates(enemies, hero.pos, LOCK_RANGE);
+  const next = nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
+  const button = $('btn-cycle-lock');
+  button.getAnimations().forEach(animation => animation.cancel());
+  button.animate([{filter:'brightness(1.8)'},{filter:'brightness(1)'}],{duration:180});
+  if (!next) {
+    const message = candidates.length
+      ? tr('附近沒有其他目標','No other target nearby','近くに他の標的はいない')
+      : tr('附近沒有可鎖定目標','No target in range','範囲内に標的がいない');
+    popup(hero.pos, 2.8, message, 'guard');
+    audio.sfx('ui_back');
+    return;
+  }
   if (!lockOn) setLock(true);
   lockTargetEnemy = next;
-  popup(next.pos, next.def.height + 0.7, '目標切換', 'good');
+  manualLockTarget = next;
+  popup(next.pos, next.def.height + 0.7, next===current
+    ? tr('已鎖定最近目標','Nearest target locked','最も近い標的をロック済み')
+    : t('目標切換'), 'good');
   audio.sfx('lock_switch');
 }
 
@@ -2495,7 +2516,12 @@ $('ov-menu').addEventListener('click', () => {
 $('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });
 $('btn-mute').addEventListener('click', () => { audio.setMuted(!audio.muted); $('btn-mute').classList.toggle('off', audio.muted); });
 $('btn-lock').addEventListener('click', () => { audio.sfx('ui'); setLock(!lockOn); });
-$('btn-cycle-lock').addEventListener('click', () => cycleLockTarget());
+$('btn-cycle-lock').addEventListener('pointerdown', e => {
+  if(e.button!==0 || $('btn-cycle-lock').disabled)return;
+  e.preventDefault();audio.unlock();cycleLockTarget();
+});
+// Keyboard/assistive activation has no pointerdown; avoid a second pointer click.
+$('btn-cycle-lock').addEventListener('click', e => {if(e.detail===0){audio.unlock();cycleLockTarget();}});
 addEventListener('keydown', e => { if (e.code === 'KeyY' && !e.repeat && game.phase === 'playing' && !game.paused && !dialog) { e.preventDefault(); cycleLockTarget(e.shiftKey ? -1 : 1); } });
 addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); setLock(!lockOn); } });
 $('btn-lock').classList.toggle('on', lockOn);

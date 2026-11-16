@@ -21,3 +21,14 @@ test('movement updates distance order; unavailable targets are excluded',()=>{
  assert.equal(nextLockTarget([enemy(20)],null,pos,10),null);
  const left=enemy(-2),right=enemy(2);assert.equal(nextLockTarget([left,right],null,pos,10),left);
 });
+
+test('one current target never reports a switch, but can be acquired when unlocked',()=>{
+ const a=enemy(2);assert.equal(nextLockTarget([a],a,pos,16),null);assert.equal(nextLockTarget([a],null,pos,16),a);
+});
+test('hidden, zero HP, gone and out of range targets cannot be selected',()=>{
+ const a=enemy(2),b=enemy(3),c=enemy(4),d=enemy(5),edge=enemy(16.5);
+ a.shown=false;b.hp=0;c.gone=true;d.state='spawn';
+ assert.equal(nextLockTarget([a,b,c,d,edge],null,pos,16),edge);
+ edge.pos.x=16.51;assert.equal(nextLockTarget([edge],null,pos,16),null);
+ const stale=enemy(1);const live=enemy(3);assert.equal(nextLockTarget([live],stale,pos,16),live);
+});
