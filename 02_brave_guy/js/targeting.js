@@ -11,13 +11,11 @@ export function lockCandidates(enemies, position, range) {
   const distance = e => Math.hypot(e.pos.x-position.x,e.pos.z-position.z);
   return enemies.filter(e=>isLockTarget(e,position,range)).sort((a,b)=>distance(a)-distance(b));
 }
-// Re-evaluate distances on every press; ties retain spawn order.
+// Every press chooses the nearest alternative, never a farther cycle cursor.
 export function nextLockTarget(enemies, current, position, range, direction = 1) {
   const eligible = lockCandidates(enemies, position, range);
   if (!eligible.length || (eligible.length === 1 && eligible[0] === current)) return null;
-  const index = eligible.indexOf(current);
-  if (index < 0) return eligible[0];
-  return eligible[(index + (direction < 0 ? -1 : 1) + eligible.length) % eligible.length];
+  return eligible.find(enemy => enemy !== current) || null;
 }
 
 // Nearest within a 90-degree cone in the same world axes as movement.

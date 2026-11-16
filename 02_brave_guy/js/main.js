@@ -12,7 +12,7 @@ import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './syste
 import { createCinematics } from './cinematics.js?v=20261116sharp';
 import { createOpening } from './opening.js?v=20261116sharp';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
-import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116combat';
+import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116nearsoft';
@@ -1646,7 +1646,7 @@ function cycleLockTarget(direction = 1) {
   const current = lockOn ? lockTargetEnemy : null;
   const candidates = lockCandidates(enemies, hero.pos, LOCK_RANGE);
   const movement = input.move();
-  const next = movement.len > 0 ? directionalLockTarget(candidates, hero.pos, LOCK_RANGE, movement) : nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
+  const next = movement.len > 0 ? directionalLockTarget(candidates.filter(e => e !== (lockOn ? manualLockTarget : null)), hero.pos, LOCK_RANGE, movement) : nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
   const button = $('btn-cycle-lock');
   button.getAnimations().forEach(animation => animation.cancel());
   button.animate([{filter:'brightness(1.8)'},{filter:'brightness(1)'}],{duration:180});
@@ -1684,6 +1684,20 @@ function faceForAction(mv, autoRange = 9) {
   if (mv.len > 0) { hero.yaw = Math.atan2(mv.x, mv.y); return; }
   const target = nearestEnemy(autoRange); // 沒推搖桿時自動朝向最近的怪
   if (target) hero.yaw = Math.atan2(target.pos.x - hero.pos.x, target.pos.z - hero.pos.z);
+}
+
+// Refresh only the lock: unlocked attacks retain their committed input direction.
+function trackAttackLock() {
+  const target = lockTarget();
+  if (target && dist2d(target.pos, hero.pos) > 0.001) hero.yaw = yawTo(target);
+  return target;
+}
+function advanceLockedAttack(distance) {
+  const target = trackAttackLock();
+  if (target) distance = Math.min(distance, Math.max(0, dist2d(target.pos, hero.pos) - target.def.radius - HERO.radius));
+  const f = forward(hero.yaw);
+  moveHeroBy(f.x * distance, f.z * distance);
+  trackAttackLock();
 }
 
 // 有攻擊即將命中時閃避，才算完美閃避
@@ -1837,6 +1851,7 @@ function updateHero(dt) {
     } else {
       hero.visual.play('idle');
     }
+    trackAttackLock();
     for (const a of actions) { if (hero.state !== 'free') break; act(a); }
   } else if (hero.state === 'transforming') {
     // 可按住拖延 1–3 秒，全程無敵；拖越久衝擊波越強
@@ -1846,7 +1861,8 @@ function updateHero(dt) {
     if ((hero.t >= GAUGE.transformMin && !holding) || hero.t >= GAUGE.transformMax) finishTransform();
   } else if (hero.state === 'attack') {
     const c = combo[hero.combo];
-    if (hero.t < c.hitAt) hero.pos.addScaledVector(forward(hero.yaw), (c.lunge / c.hitAt) * dt);
+    if (!hero.hitDone) trackAttackLock();
+    if (hero.t < c.hitAt) advanceLockedAttack((c.lunge / c.hitAt) * dt);
     if (!hero.hitDone && hero.t >= c.hitAt) {
       hero.hitDone = true;
       const brave = hero.form === 'brave';
@@ -1870,7 +1886,7 @@ function updateHero(dt) {
     // 勇氣衝拳：長距離突進，路徑上的怪全部打飛
     const s = SKILLS.skill1;
     const before = hero.pos.clone();
-    if (hero.t < 0.24) { const f = forward(hero.yaw); moveHeroBy(f.x * (s.dash / 0.24) * dt, f.z * (s.dash / 0.24) * dt); }
+    if (hero.t < 0.24) advanceLockedAttack((s.dash / 0.24) * dt);
     lineStrike(before, hero.pos, s.width, s.mult, { kb: s.kb, launch: s.launch, heavy: true, src: 'skill1' }, hero.data.hitSet);
     if (hero.data.step === 0 && hero.t >= 0.24) {
       hero.data.step = 1;
@@ -1885,6 +1901,7 @@ function updateHero(dt) {
   } else if (hero.state === 'skill2') {
     // 氣功彈：大顆、貫穿、飛到底會爆
     const s = SKILLS.skill2;
+    if (hero.data.step === 0) trackAttackLock();
     if (hero.data.step === 0 && hero.t >= 0.14) {
       hero.data.step = 1;
       const g = new THREE.Group();
@@ -1924,7 +1941,8 @@ function updateHero(dt) {
     if (aim !== null || mv.len > 0) {
       const want = aim !== null ? aim : Math.atan2(mv.x, mv.y); // 鎖定時追著目標；否則電腦用游標帶著光束掃
       let diff = ((want - hero.yaw + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
-      hero.yaw += THREE.MathUtils.clamp(diff, -s.turn * dt, s.turn * dt);
+      if (locked) hero.yaw = want;
+      else hero.yaw += THREE.MathUtils.clamp(diff, -s.turn * dt, s.turn * dt);
     }
     const f = forward(hero.yaw);
     const k = hero.t / s.dur;

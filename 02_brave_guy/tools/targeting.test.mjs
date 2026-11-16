@@ -3,13 +3,13 @@ import assert from 'node:assert/strict';
 import {nextLockTarget, directionalLockTarget, isLockTarget} from '../js/targeting.js';
 const pos={x:0,z:0};
 const enemy=x=>({pos:{x,z:0},state:'chase',def:{radius:.5}});
-test('targets cycle nearest to farthest regardless of spawn order and wrap',()=>{
+test('each switch selects nearest alternative regardless of spawn order',()=>{
  const near=enemy(1),mid=enemy(3),far=enemy(8),all=[far,near,mid];
  assert.equal(nextLockTarget(all,null,pos,10),near);
  assert.equal(nextLockTarget(all,near,pos,10),mid);
- assert.equal(nextLockTarget(all,mid,pos,10),far);
+ assert.equal(nextLockTarget(all,mid,pos,10),near);
  assert.equal(nextLockTarget(all,far,pos,10),near);
- assert.equal(nextLockTarget(all,near,pos,10,-1),far);
+ assert.equal(nextLockTarget(all,near,pos,10,-1),mid);
  assert.deepEqual(all,[far,near,mid]);
 });
 test('movement updates distance order; unavailable targets are excluded',()=>{
