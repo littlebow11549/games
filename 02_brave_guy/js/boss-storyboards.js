@@ -5,7 +5,7 @@ export const BOSS_STORYBOARDS={
  folaidiKing:{files:['folaidi_corridor','folaidi_eyes','folaidi_reveal'],...BOSS_INTRO_TIMING,fx:'mist',cues:[[0.0,'folaidi_flicker'],[0.323,'folaidi_tick'],[0.969,'folaidi_tick'],[1.615,'folaidi_tick'],[2.4,'folaidi_rise'],[4.2,'folaidi_reveal']]},
  qian:{...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
  qianBiz:{fit:'contain',...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'notify'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
- jiamangKing:{files:['boss_kabanKing_storyboard'],...BOSS_INTRO_TIMING,fx:'papers',cues:[[0.0,'notify'],[2.4,'pan_fly'],[4.2,'pan_hit'],[4.429,'boss_slam']]},
+ jiamangKing:{fit:'contain',...BOSS_INTRO_TIMING,fx:'papers',cues:[[0.0,'notify'],[2.4,'pan_fly'],[4.2,'pan_hit'],[4.429,'boss_slam']]},
  lan:{...BOSS_INTRO_TIMING,fx:'rings',cues:[[0.0,'boss_warn'],[2.4,'whistle'],[4.2,'boss_slam']]},
  nightmare:{...BOSS_INTRO_TIMING,fx:'glass',cues:[[0.0,'guilt_tick'],[2.4,'guilt_crack'],[4.2,'guilt_burst']]},
  midKing:{...BOSS_INTRO_TIMING,fx:'rubble',cues:[[0.0,'guilt_crack'],[2.4,'hit_heavy'],[4.2,'boss_slam']]},

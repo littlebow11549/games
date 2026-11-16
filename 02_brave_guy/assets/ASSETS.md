@@ -372,3 +372,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-16 錢經理專屬過場增補
 
 3-6職場版沿CHARACTERS §8，不復用校園服裝圖。新增source/pic/cinematics/boss_qianBiz_storyboard.png及victory_qianBiz.png，皆原生1024×1536三鏡；runtime/lossless/pic/cinematics/同名WebP為逐像素一致無損配送，原PNG保留。來源、壓縮、自審見source/QIAN_BIZ_FILMS_REVIEW.json，接線交接見docs/handoffs/2026-11-16-game02-qian-biz-films.md。
+
+## 2026-11-16 假忙森主管專屬過場
+新增source/pic/cinematics/boss_jiamangKing_storyboard.png及victory_jiamangKing.png，原生1024×1536三鏡，runtime/lossless/pic/cinematics同名WebP為逐像素一致無損配送。來源／自審／壓縮記錄見source/JIAMANG_FILMS_REVIEW.json；不再借用加班鬼王圖。
