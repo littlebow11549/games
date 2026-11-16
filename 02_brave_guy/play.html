@@ -28,7 +28,7 @@
 <link rel="preload" href="assets/fonts/notosanstc-black-subset.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/loading.css?v=20261115fast">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261116numbers">
-<link rel="stylesheet" href="css/menu-layout.css?v=20261116sharp">
+<link rel="stylesheet" href="css/menu-layout.css?v=20261116onereset">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261116transformfix">
 </head>
 <body class="game-art">
@@ -144,7 +144,6 @@
     <div id="ov-diff" class="diff-row" hidden></div>
     <button id="ov-reset" class="ghost" type="button">清除所有進度</button>
     <div id="ov-stages" hidden></div>
-    <button id="ov-wipe" class="ghost danger" hidden data-i18n="清除所有進度">清除所有進度</button>
     <button id="ov-easy" class="ghost" hidden data-i18n="調簡單一點（不丟臉，她只會笑你三天）">調簡單一點（不丟臉，她只會笑你三天）</button>
     <button class="ghost lang-btn" data-lang-toggle>🌐 English</button>
     <a class="back" href="../" target="_top" data-i18n="← 回遊戲中心">← 回遊戲中心</a>
@@ -182,7 +181,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261116transformfix';
+    s.src = 'js/main.js?v=20261116onereset';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

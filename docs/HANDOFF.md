@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-16 清除進度重複按鈕修正](handoffs/2026-11-16-game02-single-reset.md)：移除第二套ov-wipe，主選單／選關／結算只保留一個入口，統一確認視窗。
+
 - [2026-11-16 中文字型子集補齊 + 超勇氣波命中音（Claude）](handoffs/2026-11-16-game02-font-subset-ult-sfx.md)：修正字型跑掉（工具漏掃 play.html + 新文字未重跑子集，字 fallback）→ 三語子集重生涵蓋 1958 字；超勇氣波改不逐 tick 播拳擊音（原 2.3s 內 ~23 記重拳），新增節流 `sfx_beam_hit` 能量 zap。commit `631eccf`。
 
 - [2026-11-16 清除進度按鈕 + 清脆按鍵音 + 效能優化（Claude）](handoffs/2026-11-16-game02-wipe-clicks-perf.md)：選關加「清除所有進度」按鈕（紅色二次確認，清掉全部 `braveguy*` 存檔）；ui 按鍵音改合成清脆點擊；怪物互推 `separate()` 改空間網格 O(n²)→~O(n)（地獄 120 隻約 7200→1080 次/幀）。關卡順序採 Codex 版。真實戰鬥 80 隻 0 重疊、0 error。commit `90a9cb9`/`10878d7`。
