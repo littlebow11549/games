@@ -516,11 +516,24 @@ function textIfChanged(id, value) { const el=$(id), text=String(value); if(el.te
 function updateHud() {
   const brave = hero.form === 'brave';
   ACTION_PANEL.classList.toggle('base-form', !brave);
+  const transformStatus = $('transform-status');
+  transformStatus.hidden = brave || canTransform();
+  if(!transformStatus.hidden){
+    const message=game.final
+      ? tr('閃避集滿勇氣，再走向董事長','Dodge to fill courage, then approach the chairman','回避で勇気を満たし、会長へ近づこう')
+      : stage().id==='3-1'
+      ? tr('先清完第一波，找回變身能力','Clear wave 1 to restore transformation','第1波を倒して変身能力を取り戻そう')
+      : stage().id==='3-0'
+      ? tr('變身暫時封印，下一關找回能力','Transformation sealed. Recover it next stage','変身は封印中。次のステージで取り戻そう')
+      : tr('尚未解鎖變身，請先完成前面關卡','Transformation locked. Clear earlier stages first','変身は未解放。前のステージをクリアしよう');
+    textIfChanged('transform-status', message);
+  }
+
   $('hp-fill').style.transform = `scaleX(${Math.max(0, hero.hp / hero.maxHp)})`;
   textIfChanged('hp-text', `${Math.max(0, Math.ceil(hero.hp))} / ${hero.maxHp}`);
   const courageShown = hero.mode === 'burst' ? hero.burstT / GAUGE.burstTime : hero.courage / GAUGE.courageMax;
   $('courage-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, courageShown))})`;
-  $('courage').classList.toggle('full', !brave && hero.courage >= GAUGE.courageMax);
+  $('courage').classList.toggle('full', !brave && canTransform() && hero.courage >= GAUGE.courageMax);
   $('courage').classList.toggle('burst', hero.mode === 'burst');
   const g = hero.guilt / hero.guiltMax;
   if(game.phase==='playing'&&!game.paused){const old=hero.guiltSoundRatio||0;if(g>=.9&&old<.9)audio.sfx('guilt_crack');else if(g>old+.001)audio.sfx('guilt_tick');}
@@ -2090,6 +2103,11 @@ function update(dt) {
         st.mid.grant.split('+').forEach((g) => game.abilities.add(g));
         angel.visual.root.scale.setScalar(1);
         hero.readySaid = false;
+        if(st.mid.grant.split('+').includes('transform')){
+          hero.courage = GAUGE.courageMax;
+          hero.farT = 0;
+          addCourage(0);
+        }
         popup(hero.pos, 2.8, '可以變身了', 'good');
       });
     } else if (game.wave < game.waves.length - 1) {

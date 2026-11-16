@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="css/loading.css?v=20261115fast">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261116numbers">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261116sharp">
-<link rel="stylesheet" href="css/controls-layout.css?v=20261116basebig">
+<link rel="stylesheet" href="css/controls-layout.css?v=20261116transformfix">
 </head>
 <body class="game-art">
 <section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit"></div><img src="assets/runtime/lossless/pic/ui/portrait_student.webp" alt=""><h1>BRAVE GUY</h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
@@ -81,6 +81,7 @@
   <div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div>
 
   <div class="actions">
+    <p id="transform-status" role="status" hidden></p>
     <button hidden class="act skill s3" data-action="skill3" data-key="R" aria-label="氣功震地"><span data-i18n="震">震</span><em></em></button>
     <button hidden class="act skill s2" data-action="skill2" data-key="E" aria-label="氣功彈"><span data-i18n="彈">彈</span><em></em></button>
     <button hidden class="act skill s1" data-action="skill1" data-key="Q" aria-label="勇氣衝拳"><span data-i18n="衝">衝</span><em></em></button>
@@ -180,7 +181,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261116basebig';
+    s.src = 'js/main.js?v=20261116transformfix';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

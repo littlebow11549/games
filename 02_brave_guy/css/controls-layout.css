@@ -17,3 +17,5 @@
 @media(max-width:360px){
   #hud:has(.actions.base-form) #stick-base{left:calc(12px + var(--safe-l));bottom:calc(18px + var(--safe-b));width:96px;height:96px}
 }
+
+#transform-status{position:absolute;right:0;bottom:302px;width:200px;margin:0;padding:7px 10px;box-sizing:border-box;border:1px solid #badc67;border-radius:10px;background:#102419ed;color:#f6ffdc;font:600 12px/1.4 system-ui;text-align:center;pointer-events:none}
