@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-16 套用音效/音樂 v2 + 社會版假森音樂需求（Claude）](handoffs/2026-11-16-game02-audio-v2-applied.md)：套用 72 音效(KOF 打擊/寶石變身)＋13 音樂（10 首各 Boss 專屬曲、`bgm_boss_rage` 狂暴曲、`bgm_stage_1_1`/`bgm_stage_3_6`）；接線 Boss 登場播專屬曲、45 秒加壓切狂暴曲；無頭測試 0 error、36 音訊鍵全載入。另開假森(3-7)專屬音樂需求。commit `72246d4`/`b39047a`。
+
 - [2026-11-16 新增 3-7 社會版假森（假忙森主管）（Claude）](handoffs/2026-11-16-game02-office-jiasen-stage.md)：新 boss `jiamangKing`「假忙森主管」（面具西裝熊外觀、甩鍋/召喚、tired+confuse）＋新關 3-7「跨部門與甩鍋會議」插在 3-6 與 4-1 間，三語對白；過場暫沿用加班鬼王圖、名牌三語。關卡 15→16。無頭測試 0 error。commit `a130ee9`。
 
 - [2026-11-16 錢經理專屬過場](handoffs/2026-11-16-game02-qian-biz-films.md)：同步Claude最新15關、名牌及救援調整；補3-6職場套裝三鏡登場／三鏡擊倒、三語對嗆與完整接線。
