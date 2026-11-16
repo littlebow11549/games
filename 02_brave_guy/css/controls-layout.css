@@ -1,14 +1,7 @@
-/* Stable two-thumb layout: movement left, aiming above the right-hand attacks. */
-#stick-zone{display:block;left:calc(14px + var(--safe-l));bottom:calc(18px + var(--safe-b));width:116px;height:116px}
-#stick-base{left:0;bottom:0;width:112px;height:112px}
-.actions{height:260px}
+/* Keep original movement, attacks, skills and gem positions; only move aiming. */
+#stick-zone{display:block}
 .game-art .act.lock{right:14px;bottom:202px;width:48px;height:48px}
 .game-art .act.cycle-lock{right:72px;bottom:202px;width:48px;height:48px}
-.game-art .act.transform{right:24px;bottom:112px}
-/* Keep the ultimate clear of the left thumb on narrow portrait screens. */
-.game-art .act.ult{bottom:132px}
-@media(max-height:420px){
-  #stick-zone{width:100px;height:100px}
-  #stick-base{width:96px;height:96px}
-}
-.game-art .act.s2{bottom:132px}
+/* Give the original-position courage gem room when it becomes available. */
+.actions:has(.transform:not([hidden])) .act.lock,
+.actions:has(.transform:not([hidden])) .act.cycle-lock{bottom:252px}
