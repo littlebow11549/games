@@ -26,4 +26,6 @@
 - 未完整真人通關；BGM、群眾掌聲保留。
 
 ## 發布狀態
-本次僅修改目前工作區，未推送 GitHub，未部署線上站點。
+已整合遠端 #58 的 Logo 與重設進度功能；音效以本次全面清理版本為準。整合後 19 項測試通過，Chromium 再驗 74 檔解碼與操作鍵切換成功。
+
+程式提交 `6655f48` 已推送預設分支；GitHub Pages 部署 [43800821430](https://github.com/littlebow11549/games/actions/runs/43800821430) 成功。已讀取線上 main.js，確認新操作鍵條件、dialog_next 與 stage_select 接線存在。網站：https://littlebow11549.github.io/games/02_brave_guy/ 。
