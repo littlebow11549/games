@@ -2091,6 +2091,7 @@ function clearStage() {
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
   game.bgm = null; audio.stopBgm(); audio.stopCelebration();
   if (hero.form === 'brave') revert(true);
+  audio.playBgm('bgm_victory'); audio.applause();
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
     note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
