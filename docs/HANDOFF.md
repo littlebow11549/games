@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 手機Banner對齊與圖示放大](handoffs/2026-11-17-hub-mobile-align-icons.md)：兩張名稱同座標，手機遊戲圖示放大至96px、小螢幕86px。
+
 - [2026-11-17 記憶水晶中文名稱](handoffs/2026-11-17-hub-memory-name.md)：第一款卡片與Banner補上記憶水晶，保留Memory Crash。
 
 - [2026-11-17 遊戲卡片移除底圖](handoffs/2026-11-17-hub-plain-cards.md)：移除圖示後方水晶場景，改純深藍底，保留圖示與愛心。
