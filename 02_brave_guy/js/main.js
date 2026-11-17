@@ -357,7 +357,13 @@ function resetHero() {
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
   hero.pos.set(0, 0, 5);
-  setForm(hero.base);
+  // 天下無敵從進場就使用勇氣超人；不觸發變身動畫或範圍傷害。
+  if (godMode()) {
+    hero.mode = 'courage';
+    hero.courage = GAUGE.courageMax;
+    hero.extendLeft = GAUGE.courageExtendCap;
+    setForm('brave');
+  } else setForm(hero.base);
   angel.pos.copy(hero.pos);
   // 地圖三前段小天使縮成巴掌大，找回變身後長回來
   angel.visual.root.scale.setScalar(stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
