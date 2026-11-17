@@ -1,4 +1,4 @@
-import { lang } from './i18n.js?v=20261117incubus';
+import { lang } from './i18n.js?v=20261117rounds';
 import { words } from './run-records.js?v=20261115fast';
 // Only this game's progress and rankings. Preferences and other games stay intact.
 export function clearProgress(storage){

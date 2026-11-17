@@ -1,5 +1,7 @@
 // English localization.
 export default {
+  "你已經第 {0} 次去尋找勇氣": "You’ve sought courage {0} time(s).",
+  "你已經天下無敵了": "You are UNSTOPPABLE now.",
   "切換鎖定目標": "Switch target",
   "附近沒有可鎖定目標": "No target in range",
   "目標切換": "TARGET SWITCH",

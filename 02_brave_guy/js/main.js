@@ -1,5 +1,5 @@
-import { createProgressReset } from './progress-reset.js?v=20261117incubus';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117incubus';
+import { createProgressReset } from './progress-reset.js?v=20261117rounds';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117rounds';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
@@ -8,16 +8,16 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
 import { createVisual, loadModel } from './visuals.js?v=20261115fast';
 import { Fx } from './fx.js?v=20261115fast';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261117incubus';
-import { createCinematics } from './cinematics.js?v=20261117incubus';
-import { createOpening } from './opening.js?v=20261117incubus';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261117rounds';
+import { createCinematics } from './cinematics.js?v=20261117rounds';
+import { createOpening } from './opening.js?v=20261117rounds';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116score';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261117incubus';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261117incubus';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261117rounds';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261117rounds';
 import { makeMaze } from './maze.js?v=20261116pursuit';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
 
@@ -252,7 +252,7 @@ resize();
 
 const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0, fails: 0, easy: false,
   stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0, bossFodderT: 0 };
-let save = { cleared: [], seenTransform: false, seenOpening: false };
+let save = { cleared: [], seenTransform: false, seenOpening: false, rounds: 0 };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
 // 正式逐關解鎖；?unlock=all 僅供選關預覽，不贈送招式。
 const DEV_UNLOCK = false;
@@ -313,6 +313,11 @@ function buildMaze(st) {
 // 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
 const ALL_ABILITIES=['transform','skill1','skill2','skill3','ult','hp','qi'];
 const stageAbilities=index=>save.cleared.includes(STAGES.at(-1).id)?new Set(ALL_ABILITIES):abilitiesFor(index,save.cleared);
+// 輪迴（New Game+）：每破關一輪強度升一階，最多 +3 階；超過三次＝天下無敵（開掛模式）
+const roundTier = () => Math.min(save.rounds || 0, 3);          // 0,1,2,3
+const roundCrowd = () => 1 + roundTier() * 0.5;                 // 怪量倍率 1 / 1.5 / 2 / 2.5
+const roundRush = () => 1 + roundTier() * 0.3;                  // 守關者出招頻率倍率
+const godMode = () => (save.rounds || 0) > 3;                   // 超過三次：天下無敵、勇氣超人開掛
 const unlockRequirement = ability => STAGES.find(s=>(stage().map===3?s.map===3:s.map!==3)&&s.grant?.split('+').includes(ability));
 const unlockHint = ability => {const required=unlockRequirement(ability);return required?tr(`通過 ${required.id} 解鎖`,`Clear ${required.id} to unlock`,`${required.id} クリアで解放`):t('未解鎖');};
 
@@ -811,7 +816,7 @@ function nextWave() {
   banner(rush ? t('狂潮來襲') : tf('第 {0} 波', game.wave + 1));
   // 怪的總數是關卡表的 crowd 倍；同時在場有上限，其餘排隊陸續補進來（清不完的感覺，但不會卡）
   const list = [];
-  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * D().crowd * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
+  for (const [kind, n] of Object.entries(wave)) for (let k = 0; k < Math.max(1, Math.round(n * Q().crowd * D().crowd * roundCrowd() * (game.rules.tutorial ? 0.5 : 1))); k++) list.push(kind);
   for (let i = list.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [list[i], list[j]] = [list[j], list[i]]; }
   game.queue = list;
   game.queueT = 0;
@@ -823,7 +828,7 @@ function feedBossFodder(dt) {
   if (!game.bossSpawned || game.phase !== 'playing') return;
   const boss = enemies.find((e) => e.def.boss && alive(e));
   if (!boss) return; // 王倒了就不再補，好讓關卡結算
-  const base = { easy: 6, normal: 10, hell: 16 }[D().id] || 10;   // 同時在場的小怪數，遠少於一般波次，不會蓋過王
+  const base = Math.round(({ easy: 6, normal: 10, hell: 16 }[D().id] || 10) * roundCrowd());   // 同時在場的小怪數，遠少於一般波次，不會蓋過王
   const target = base + (game.desperate ? 8 : 0);                  // 危機時補更多，給割草回血的機會
   const fodder = enemies.filter((e) => !e.def.boss && e.state !== 'dead').length;
   game.bossFodderT -= dt;
@@ -849,7 +854,7 @@ function feedQueue(dt) {
   if (game.queueT > 0) return;
   game.queueT = 0.04;
   // 無雙：只要畫面沒滿就一次補好幾隻，剛清掉一片馬上又塞滿
-  const cap = Math.round(Q().cap * D().cap);
+  const cap = Math.round(Q().cap * D().cap * roundCrowd());
   const onField = enemies.filter((e) => e.state !== 'dead' && !e.def.boss).length;
   let budget = Math.min(6, cap - onField, game.queue.length);
   while (budget-- > 0) spawnEnemy(game.queue.shift());
@@ -1374,7 +1379,7 @@ function updateEnemy(e, dt, attackers) {
   e.visual.update(dt);
   const def = e.def;
   if (e.lineT > 0) e.lineT -= dt;
-  for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.7:1)*(def.incubus&&game.awakened?1.2:1);
+  for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.7:1)*(def.incubus&&game.awakened?1.2:1)*(def.boss?roundRush():1);
 
   if (e.state === 'spawn') {
     if (e.t < 0) return;
@@ -1424,7 +1429,7 @@ function updateEnemy(e, dt, attackers) {
     }
     if (e.state === 'recover') { if (e.t >= def.recover * (def.enrage ? 0.4 + 0.6 * e.hp / e.maxHp : 1) * (def.boss && game.pressure ? 0.55 : 1)) { e.state = 'chase'; e.t = 0; e.cool = rand(0.3, 0.9) * (def.boss && game.pressure ? 0.5 : 1); } return; }
     e.state = 'chase';
-    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1);
+    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1)*(e.def.boss?roundRush():1);
     e.yaw = Math.atan2(dx, dz);
     if (e.untouchable && hero.courage >= GAUGE.courageMax) {
       // 等主角走上前
@@ -1446,7 +1451,7 @@ function updateEnemy(e, dt, attackers) {
   if (e.state === 'stagger') {
     if (e.t > 0.3) { e.state = 'chase'; e.t = 0; }
   } else if (e.state === 'chase') {
-    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1);
+    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1)*(e.def.boss?roundRush():1);
     e.yaw = Math.atan2(dx, dz);
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
     const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
@@ -1847,7 +1852,7 @@ function updateHero(dt) {
 
   // 計量隨時間的變化
   if (hero.form === 'brave') {
-    if (hero.mode === 'burst') hero.burstT -= dt; else hero.courage -= GAUGE.courageDrain * dt;
+    if (hero.mode === 'burst') hero.burstT -= dt; else if (!godMode()) hero.courage -= GAUGE.courageDrain * dt; // 天下無敵：勇氣不衰減，保持勇氣超人
     const over = hero.mode === 'burst' ? hero.burstT <= 0 : hero.courage <= 0;
     if (over && hero.state === 'free') { revert(); return; }
   } else if (enemies.some(alive)) {
@@ -2170,6 +2175,7 @@ function continueVictory() {
   pendingVictory = null; // Repeated taps cannot advance twice.
   $('overlay').hidden = true;
   if (result.last) {
+    save.rounds = (save.rounds || 0) + 1; writeSave(); // 破關一輪：記錄「第幾次尋找勇氣」
     playEnding(() => {
       game.phase = 'over';
       showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
@@ -2533,6 +2539,11 @@ function showMenu() {
   // 主選單的小天使：泡泡隨機講一句，底下的跑馬燈輪播她的吐槽
   const quips = ['又來了？', '今天也要被我笑嗎。', '按開始啊，還要我幫你按？', '還行。', '你的內心在等你。很亂，但在等你。', '選地獄難度的人通常活不久。', '怕成這樣還敢做夢？'];
   $('menu-bubble').textContent = t(quips[Math.floor(Math.random() * quips.length)]);
+  // 輪迴標示：第幾次尋找勇氣 / 天下無敵
+  const rb = $('round-badge'), rounds = save.rounds || 0;
+  rb.hidden = rounds < 1;
+  rb.classList.toggle('god', rounds > 3);
+  if (rounds >= 1) rb.textContent = rounds > 3 ? t('你已經天下無敵了') : tf('你已經第 {0} 次去尋找勇氣', rounds);
   $('menu-ticker').firstElementChild.textContent = quips.map((q) => `${t('小天使')}：「${t(q)}」`).join('　　★　　');
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'

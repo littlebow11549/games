@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 New Game+ 輪迴系統（Claude）](handoffs/2026-11-17-game02-newgame-plus-rounds.md)：破關後重玩記錄輪數，主選單標示「你已經第 N 次去尋找勇氣」、第 4 輪起「你已經天下無敵了」(金色流光)。每破一輪怪量×+0.5、boss 出招冷卻×+0.3，最多 +3 階封頂；天下無敵後勇氣槽不流失(永久勇氣超人開掛)、怪量/攻擊頻率/難度全最高。三語同步，headless 0/2/3/5 輪標示正確、0 error。
+
 - [2026-11-17 董事長第一階段過場+走上前門檻+超惡夢波機率（Claude）](handoffs/2026-11-17-game02-incubus-firststrike-threshold.md)：第一階段打完先播新圖過場(incubus_firststrike, 同 storyboard 系統)再接原甦醒；走上前收尾門檻 30%→10%；超惡夢波 boss<25%血時機率調高。另修 Boss 登場自己過關 bug。commit `f4ec6cc`/`9b940d7`。
 
 - [2026-11-17 字藝改有損 WebP（Claude）]：`compress_runtime.py` 對 `/titles/` 系統字藝走 q92 有損並保留透明，每張 ~1.5MB→~0.37MB(-76%)，q92 目視與無損幾乎一致；進關 game-scope 累計 43→26.2MB(-39%)、repo 省 11.4MB。透明保留、0 error。commit `fd5c042`。

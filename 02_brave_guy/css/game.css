@@ -424,3 +424,8 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 #btn-quick-clear:focus-visible{outline:3px solid white;outline-offset:2px}
 #minimap{top:calc(104px + var(--safe-t))}
 @media (max-height:430px){#minimap{top:calc(98px + var(--safe-t))}}
+
+/* 輪迴標示（New Game+）：第幾次尋找勇氣 / 天下無敵 */
+.round-badge{display:inline-block;margin:2px auto 6px;padding:4px 16px;border-radius:999px;font-family:var(--font-display);font-weight:900;font-size:clamp(12px,3.2vw,16px);color:var(--ink);background:linear-gradient(#fff3a8,#f6c21c 60%,#f08a1b);border:2.5px solid var(--ink);box-shadow:0 3px 0 var(--red);-webkit-text-stroke:0;transform:rotate(-2deg)}
+.round-badge.god{background:linear-gradient(90deg,#ff5a4d,#f6c21c,#59d354,#4f9bff,#b06cff);background-size:300% 100%;color:#fff;text-shadow:0 1px 2px #0008;box-shadow:0 3px 0 #0b2414;animation:godShift 3s linear infinite}
+@keyframes godShift{from{background-position:0 0}to{background-position:300% 0}}

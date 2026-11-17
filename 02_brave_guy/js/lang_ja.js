@@ -1,5 +1,7 @@
 // Japanese localization: full story coverage, reviewed UI / cinematic terminology.
 export default {
+  "你已經第 {0} 次去尋找勇氣": "勇気を探しに行くのは {0} 回目。",
+  "你已經天下無敵了": "もう無敵だ。",
   "切換鎖定目標": "ロック対象を切替",
   "附近沒有可鎖定目標": "範囲内に対象がいません",
   "目標切換": "ターゲット切替",
