@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 Banner標籤單行](handoffs/2026-11-17-hub-label-nowrap.md)：本期精選與遊戲名稱取消flex換行，直橫式與桌面驗證。
+
 - [2026-11-17 Banner Logo起點對齊](handoffs/2026-11-17-hub-logo-origin.md)：清除勇氣超人舊底部排列設定，修正42px高低差，三尺寸Logo區域完全一致。
 
 - [2026-11-17 手機Banner對齊與圖示放大](handoffs/2026-11-17-hub-mobile-align-icons.md)：兩張名稱同座標，手機遊戲圖示放大至96px、小螢幕86px。

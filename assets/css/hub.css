@@ -156,3 +156,6 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
 /* Clear the old Brave Guy bottom alignment so both logo slots share an origin. */
 .featured-carousel .banner-content,.featured-carousel .brave-banner-content{justify-content:flex-start}
 .featured-carousel .feature-logo img,.featured-carousel .brave-banner h2 img{height:100%;max-height:100%;object-position:center}
+/* Keep the feature label and game name on a single line, including landscape phones. */
+.featured-carousel .eyebrow{flex-wrap:nowrap;flex-shrink:0;width:max-content;max-width:none}
+.featured-carousel .eyebrow>span{flex-shrink:0}
