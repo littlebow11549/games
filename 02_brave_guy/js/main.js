@@ -2214,8 +2214,9 @@ function update(dt) {
   feedQueue(dt);
   feedBossFodder(dt);
   feedDesperation(dt);
-  // 王倒了直接過關：清掉場上剩下的小兵，不用再補刀
-  if (game.phase === 'playing' && game.bossSpawned && !game.victoryShown && !enemies.some((e) => e.def.boss && alive(e))) {
+  // 王倒了直接過關：清掉場上剩下的小兵，不用再補刀。
+  // 用 state!=='dead'（而非 alive）判斷：登場中(spawn)的王也算存在，只有真的死了才過關，否則王一出場就被誤判成過關。
+  if (game.phase === 'playing' && game.bossSpawned && !game.victoryShown && enemies.some((e) => e.def.boss) && !enemies.some((e) => e.def.boss && e.state !== 'dead')) {
     for (const e of enemies) if (alive(e) && !e.def.boss) { e.state = 'dead'; e.t = 0; if (e.bar) e.bar.remove(); e.visual.play('die', 0.6); fx.ring(e.pos, 0.2, 2, 0xffffff, 0.3); }
     clearStage();
     return;
