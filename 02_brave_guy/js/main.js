@@ -1,3 +1,4 @@
+import { createSecretToggle } from './secret-toggle.js?v=20261117secret';
 import { createProgressReset } from './progress-reset.js?v=20261117rounds';
 import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117rounds';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
@@ -556,7 +557,7 @@ function updateHud() {
   $('guilt').classList.toggle('heavy', g >= GAUGE.guiltHesitate);
   $('portrait').classList.toggle('brave', brave);
   $('portrait').classList.toggle('worker', hero.form === 'worker');
-  $('btn-quick-clear').hidden = game.phase !== 'playing' || game.paused || !!dialog || cinematics.active;
+  $('btn-quick-clear').hidden = !secretToggle.enabled || game.phase !== 'playing' || game.paused || !!dialog || cinematics.active;
   const jumpToBoss = stage().boss && !game.bossSpawned;
   textIfChanged('btn-quick-clear', jumpToBoss
     ? (lang === 'ja' ? 'ボスへ' : lang === 'en' ? 'Jump to boss' : '跳到魔王')
@@ -2648,14 +2649,22 @@ addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dial
 $('btn-lock').classList.toggle('on', lockOn);
 // 暫停：跳出選單，可以繼續、重打這一關，或回標題選關
 function setPaused(on) {
+  if (secretToggle.opened) return;
   if (on && (game.phase !== 'playing' || dialog)) return;
   game.paused = on;
   if(on)audio.stopLoops();
   $('btn-pause').classList.toggle('on', on);
   $('pause-menu').hidden = !on;
 }
+const secretToggle = createSecretToggle({
+  canUse:()=>game.phase==='playing'&&!game.paused&&!dialog&&!cinematics.active&&!$('hud').hidden,
+  pause:()=>{game.paused=true;audio.stopLoops();input.takeActions();},
+  resume:()=>{input.takeActions();game.paused=false;},
+  onChange:()=>{$('btn-quick-clear').hidden=!secretToggle.enabled;},
+  labels:()=>({name:tr('小天使','Little Angel','小天使'),question:tr('要開啟秘技嗎？','Enable cheats?','秘技を有効にする？'),no:tr('取消','Cancel','キャンセル'),yes:tr('開啟','Enable','有効にする')})
+});
 $('btn-quick-clear').addEventListener('click', () => {
-  if (game.phase !== 'playing' || game.paused || dialog || cinematics.active) return;
+  if (!secretToggle.enabled || game.phase !== 'playing' || game.paused || dialog || cinematics.active) return;
   audio.unlock();
   runs.invalidate();
   if (beam) endUlt();
