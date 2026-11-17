@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 字藝改有損 WebP（Claude）]：`compress_runtime.py` 對 `/titles/` 系統字藝走 q92 有損並保留透明，每張 ~1.5MB→~0.37MB(-76%)，q92 目視與無損幾乎一致；進關 game-scope 累計 43→26.2MB(-39%)、repo 省 11.4MB。透明保留、0 error。commit `fd5c042`。
+
 - [2026-11-17 啟動載入優化：只載當前語言（Claude）](handoffs/2026-11-17-game02-load-perf-lang.md)：預載改只載當前語言的字藝/logo(省~10MB)、移除零引用的 sheet_angel/ganqiao(2.8MB)、日文 logo 延後載入。boot 11.66→7.83MB(-33%)、進關 43→~28.5MB(-34%)，零畫質損失。zh/ja 實測 0 error。commit `da13f10`。
 
 - [2026-11-17 魔王二型態強化+超惡夢波+危機補兵+王倒過關（Claude）](handoffs/2026-11-17-game02-boss-phase2-nightmarewave.md)：加壓(二型態)受傷×0.5更硬、出招更頻繁；新招超惡夢波(三道衝擊波, 施放全程無敵, 可走位閃)；血<25%且無救援時小兵大量增補且擊殺回血; 血條 z-index 不再被對話框擋; 王倒直接清場過關。單元測試 0 error。commit `c393a09`。
