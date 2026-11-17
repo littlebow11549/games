@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 董事長第一階段過場+走上前門檻+超惡夢波機率（Claude）](handoffs/2026-11-17-game02-incubus-firststrike-threshold.md)：第一階段打完先播新圖過場(incubus_firststrike, 同 storyboard 系統)再接原甦醒；走上前收尾門檻 30%→10%；超惡夢波 boss<25%血時機率調高。另修 Boss 登場自己過關 bug。commit `f4ec6cc`/`9b940d7`。
+
 - [2026-11-17 字藝改有損 WebP（Claude）]：`compress_runtime.py` 對 `/titles/` 系統字藝走 q92 有損並保留透明，每張 ~1.5MB→~0.37MB(-76%)，q92 目視與無損幾乎一致；進關 game-scope 累計 43→26.2MB(-39%)、repo 省 11.4MB。透明保留、0 error。commit `fd5c042`。
 
 - [2026-11-17 啟動載入優化：只載當前語言（Claude）](handoffs/2026-11-17-game02-load-perf-lang.md)：預載改只載當前語言的字藝/logo(省~10MB)、移除零引用的 sheet_angel/ganqiao(2.8MB)、日文 logo 延後載入。boot 11.66→7.83MB(-33%)、進關 43→~28.5MB(-34%)，零畫質損失。zh/ja 實測 0 error。commit `da13f10`。
