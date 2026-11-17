@@ -1,5 +1,5 @@
 import { words } from './run-records.js?v=20261115fast';
-import { lang } from './i18n.js?v=20261116dialog';
+import { lang } from './i18n.js?v=20261117incubus';
 let manifestPromise,gameplayPromise,gameplayReady=false;const decoded=new Set();
 export async function preloadImages(report=()=>{},scope='boot'){
  if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261116gem').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});

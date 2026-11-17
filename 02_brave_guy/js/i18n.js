@@ -1,6 +1,6 @@
 // 語系切換。中文原文就是鍵：t('中文') 在英文語系下回傳翻譯，找不到就回傳原文。
-import EN from './lang_en.js?v=20261116dialog';
-import JA from './lang_ja.js?v=20261116dialog';
+import EN from './lang_en.js?v=20261117incubus';
+import JA from './lang_ja.js?v=20261117incubus';
 
 const KEY = 'braveguy.lang';
 const DICTS = { en: EN, ja: JA };

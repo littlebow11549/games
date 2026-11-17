@@ -1,5 +1,5 @@
-import { createProgressReset } from './progress-reset.js?v=20261116dialog';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261116dialog';
+import { createProgressReset } from './progress-reset.js?v=20261117incubus';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117incubus';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
@@ -8,16 +8,16 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
 import { createVisual, loadModel } from './visuals.js?v=20261115fast';
 import { Fx } from './fx.js?v=20261115fast';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261116dialog';
-import { createCinematics } from './cinematics.js?v=20261116dialog';
-import { createOpening } from './opening.js?v=20261116dialog';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261117incubus';
+import { createCinematics } from './cinematics.js?v=20261117incubus';
+import { createOpening } from './opening.js?v=20261117incubus';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116score';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261116dialog';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261116dialog';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261117incubus';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261117incubus';
 import { makeMaze } from './maze.js?v=20261116pursuit';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
 
