@@ -324,11 +324,11 @@ const unlockRequirement = ability => STAGES.find(s=>(stage().map===3?s.map===3:s
 const unlockHint = ability => {const required=unlockRequirement(ability);return required?tr(`通過 ${required.id} 解鎖`,`Clear ${required.id} to unlock`,`${required.id} クリアで解放`):t('未解鎖');};
 
 // ---------- 背景音樂 ----------
-// game.bgm 是「現在這個場面該播的曲子」。變身成勇氣超人的期間改播變身專用曲，變回來再接回去。
+// 場面原曲保留在 game.bgm；只有可操作戰場的勇氣超人形態覆蓋配樂。
 function setBgm(name) { game.bgm = name; applyBgm(); }
 function applyBgm() {
   if (!game.bgm) return;
-  audio.playBgm(hero.form === 'brave' && audio.tracks.bgm_brave && game.bgm !== 'bgm_transform' ? 'bgm_brave' : game.bgm);
+  audio.playBgm(game.phase === 'playing' && hero.form === 'brave' && audio.tracks.bgm_brave && game.bgm !== 'bgm_transform' ? 'bgm_brave' : game.bgm);
 }
 const stageBgm = () => { const key = `bgm_stage_${stage().id.replace('-', '_')}`; return audio.tracks[key] ? key : 'bgm_battle'; };
 
@@ -447,6 +447,7 @@ function runDialog(lines, done, cls = '') {
   if (!lines || !lines.length) { if (done) done(); return; }
   dialog = { lines, i: 0, done, prev: game.phase };
   game.phase = 'dialog';
+  applyBgm();
   $('dialog').className = `dialog ${cls}`;
   $('dialog').hidden = false;
   showLine();
@@ -473,6 +474,7 @@ function advanceDialog(skip = false) {
   game.phase = d.prev === 'dialog' ? 'playing' : d.prev;
   input.takeActions(); // 對話時按的鍵不要帶進戰鬥
   if (d.done) d.done();
+  if (game.phase === 'playing') applyBgm();
 }
 
 // ---------- HUD ----------
@@ -872,9 +874,22 @@ function feedQueue(dt) {
   while (budget-- > 0) spawnEnemy(game.queue.shift());
 }
 
+// 沿用各關原有配樂規則，讓登場對話／過場先播守關者原曲。
+function bossBgm() {
+  const own = `bgm_stage_${stage().id.replace('-', '_')}`;
+  const shadowFight = ['nightmare', 'hell', 'incubus'].includes(stage().boss);
+  if (audio.tracks[own] && (!stage().waves.length || shadowFight)) return own;
+  const specific = `bgm_boss_${stage().boss}`;
+  return audio.tracks[specific] ? specific : 'bgm_boss';
+}
+function startBossIntro() {
+  runDialog(stage().bossIntro, spawnBoss);
+  if (dialog) setBgm(bossBgm());
+}
 function spawnBoss() {
   const key = stage().boss;
   game.phase = 'cinematic';
+  setBgm(bossBgm());
   cinematics.boss(BOSS_GROUPS[key] || [key], () => {
     input.takeActions(); game.phase = 'playing'; spawnBossActual();
   });
@@ -890,11 +905,7 @@ function spawnBossActual() {
   $('boss-bar').hidden = false;
   $('boss-name').textContent = names;
   $('quest-wave').textContent = tf('打倒{0}', names);
-  const own = `bgm_stage_${stage().id.replace('-', '_')}`;
-  // 黑影戰（惡夢／地獄／夢魘超人）整關用自己的曲子；其他關卡守關者登場後切守關曲（有專屬曲就用，否則通用）
-  const shadowFight = ['nightmare', 'hell', 'incubus'].includes(stage().boss);
-  const bossTrack = audio.tracks[`bgm_boss_${stage().boss}`] ? `bgm_boss_${stage().boss}` : 'bgm_boss';
-  if (!audio.tracks[own] || (stage().waves.length && !shadowFight)) setBgm(bossTrack);
+  setBgm(bossBgm());
   if (stage().boss === 'incubus') say('shield', true);
 }
 
@@ -1369,7 +1380,7 @@ function bossThink(e, d, dx, dz) {
 
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
 function startAwakening(e) {
-  game.awakened=true;game.phase='cinematic';audio.stopLoops();input.takeActions();
+  game.awakened=true;game.phase='cinematic';setBgm(bossBgm());audio.stopLoops();input.takeActions();
   if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
   e.shown=true;e.visual.root.visible=true;
   hazards.forEach(h=>h.life=0);$('hud').hidden=true;
@@ -2171,7 +2182,7 @@ function clearStage() {
   if (game.phase !== 'playing') return; // One award / one victory screen per clear.
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
   if(st.boss)playBossKO(); // Includes quick-clear and scripted victory paths.
-  if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
+  if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';setBgm(bossBgm());$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
   runs.clear(index,last);
   const stats = { id: st.id, name: st.name, time: (runs.stageResult?.seconds??game.time).toFixed(0), kills: game.kills };
   game.phase = 'over'; game.fails = 0; game.paused = false;
@@ -2278,7 +2289,7 @@ function update(dt) {
       if (game.wave >= 0) say('wave');
       nextWave();
     } else if (st.boss && !game.bossSpawned) {
-      runDialog(st.bossIntro, spawnBoss);
+      startBossIntro();
     } else if (enemies.length === 0) {
       clearStage();
     }
@@ -2701,7 +2712,7 @@ $('btn-quick-clear').addEventListener('click', () => {
       angel.visual.root.scale.setScalar(1); hero.readySaid = false;
     }
     game.midDone = true;
-    runDialog(st.bossIntro, spawnBoss);
+    startBossIntro();
   } else if(st.boss==='incubus'&&!game.awakened){
     // Preview must also work immediately after skipping the entrance, while
     // the boss is still in its otherwise untargetable spawn animation.
