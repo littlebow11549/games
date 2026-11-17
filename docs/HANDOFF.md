@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 手機Banner人物右移](handoffs/2026-11-17-hub-mobile-hero-position.md)：人物右移12%，減少Logo遮擋超人主體，保留少量重疊。
+
 - [2026-11-17 Boss過場配樂](handoffs/2026-11-17-game02-boss-scene-music.md)：過場還原各Boss原曲，回戰場已變身則恢復勇氣超人音樂，含冠老闆。
 
 - [2026-11-17 Banner標籤單行](handoffs/2026-11-17-hub-label-nowrap.md)：本期精選與遊戲名稱取消flex換行，直橫式與桌面驗證。

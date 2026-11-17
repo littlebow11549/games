@@ -159,3 +159,7 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
 /* Keep the feature label and game name on a single line, including landscape phones. */
 .featured-carousel .eyebrow{flex-wrap:nowrap;flex-shrink:0;width:max-content;max-width:none}
 .featured-carousel .eyebrow>span{flex-shrink:0}
+/* Keep Brave Guy's face clear of the mobile logo and play button. */
+@media(max-width:760px){
+ .featured-carousel .brave-banner-art{transform:translateX(12%)}
+}
