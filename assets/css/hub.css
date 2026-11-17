@@ -99,3 +99,50 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
  .featured-carousel .brave-banner h2 img{width:150px;max-height:100px;margin:0}
  .featured-carousel .brave-banner-play{position:absolute;right:18px;bottom:24px}
 }
+/* Shared CTA and elapsed-time page indicators. */
+.featured-carousel .button.primary,.featured-carousel .brave-banner-play{
+ display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:46px;padding:12px 20px;
+ border:1px solid #ffeaa0;border-radius:11px;background:linear-gradient(135deg,#fff0a0,#ffd15a);box-shadow:0 3px 0 #a06b20;
+ color:#172438;font-size:14px;font-weight:800;line-height:1.3;text-decoration:none;transition:filter .15s,transform .15s;
+}
+.featured-carousel .button.primary:hover,.featured-carousel .brave-banner-play:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.featured-carousel .button.primary svg,.featured-carousel .brave-banner-play svg{width:20px;height:20px;flex-shrink:0}
+.carousel-controls{gap:6px}
+.carousel-controls button[data-slide]{width:34px;min-width:34px;transition:width .25s}
+.carousel-controls button[data-slide][aria-pressed=true]{width:90px}
+.carousel-controls i{position:relative;display:block;width:8px;height:8px;overflow:hidden;background:#667888;border:1px solid #8b9dac55;box-shadow:0 1px 4px #0005}
+.carousel-controls [aria-pressed=true] i{width:74px;height:6px;border:0;background:#293747;box-shadow:0 0 0 1px #8195ac33}
+.carousel-controls [aria-pressed=true] i::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#f5b736,#fff0a7);transform:scaleX(var(--progress,0));transform-origin:left}
+@media(max-width:760px){.featured-carousel .button.primary,.featured-carousel .brave-banner-play{font-size:12px;padding:11px 15px;gap:16px;min-height:44px}}
+/* Unified editorial typography across both games. Artwork supplies the identity. */
+.featured-carousel h1,.featured-carousel .feature-title{font-family:inherit;font-size:clamp(29px,2.8vw,40px);font-weight:800;line-height:1.14;letter-spacing:-1px;color:#edf2f7;margin:12px 0}
+.featured-carousel h1 em{color:inherit;font-style:normal}
+.featured-carousel .banner-content,.featured-carousel .brave-banner-content{position:relative;display:block;width:52%;max-width:620px;height:100%;padding:32px 38px}
+.featured-carousel .brave-banner-content{background:linear-gradient(90deg,#061322ee,#06132299 85%,transparent)}
+.featured-carousel .intro,.featured-carousel .brave-banner p{display:block;font-family:inherit;font-size:12px;line-height:1.7;color:#b8c8d8;max-width:355px;margin:0 0 20px}
+.featured-carousel .actions{margin-top:16px}
+.featured-carousel .brave-banner-play{position:static}
+.featured-carousel .brave-banner{border-color:#294453;box-shadow:none}
+@media(max-width:760px){
+ .featured-carousel .banner-content,.featured-carousel .brave-banner-content{width:100%;padding:30px 22px;max-width:none;background:linear-gradient(90deg,#061322ed,#061322c9 52%,#06132233)}
+ .featured-carousel h1,.featured-carousel .feature-title{font-size:29px;line-height:1.15;margin:13px 0 18px}
+ .featured-carousel .intro,.featured-carousel .brave-banner p{display:none}
+}
+/* Both features share the Brave Guy composition and one logo/CTA centerline. */
+.featured-carousel .banner-content,.featured-carousel .brave-banner-content{display:flex;flex-direction:column;align-items:center;width:38%;max-width:460px;padding:22px 28px;height:100%;background:linear-gradient(90deg,#061322e6,#061322aa 88%,transparent)}
+.featured-carousel .eyebrow{align-self:flex-start;font-size:10px;white-space:nowrap}
+.featured-carousel .feature-logo{display:flex;justify-content:center;align-items:center;width:100%;height:150px;flex-shrink:0;margin:6px 0 10px}
+.featured-carousel .feature-logo img,.featured-carousel .brave-banner h2 img{display:block;width:230px;height:150px;max-width:100%;max-height:150px;object-fit:contain;margin:0}
+.featured-carousel .intro,.featured-carousel .brave-banner p{width:100%;font-size:12px;line-height:1.6;margin:0 0 12px}
+.featured-carousel .actions{display:flex;justify-content:center;width:100%;margin:auto 0 0}
+.featured-carousel .brave-banner-play{margin-top:auto;position:static}
+.featured-carousel .button.primary,.featured-carousel .brave-banner-play{justify-content:center;min-width:145px}
+@media(max-width:760px){
+ .featured-carousel .banner-content,.featured-carousel .brave-banner-content{width:56%;padding:18px 12px;height:100%;background:linear-gradient(90deg,#061322e6,#061322aa 85%,transparent)}
+ .featured-carousel .eyebrow{font-size:8px;letter-spacing:1px}.featured-carousel .eyebrow-divider,.featured-carousel .eyebrow [data-i18n=featured]{display:none}
+ .featured-carousel .feature-logo{height:140px;margin:20px 0 14px}
+ .featured-carousel .feature-logo img,.featured-carousel .brave-banner h2 img{width:100%;height:140px;max-height:140px}
+ .featured-carousel .intro,.featured-carousel .brave-banner p{display:none}
+ .featured-carousel .actions,.featured-carousel .brave-banner-play{margin-top:0}
+ .featured-carousel .button.primary,.featured-carousel .brave-banner-play{min-width:130px}
+}
