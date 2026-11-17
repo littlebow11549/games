@@ -1,4 +1,4 @@
-import { createSecretToggle } from './secret-toggle.js?v=20261117secret';
+import { createSecretToggle } from './secret-toggle.js?v=20261117hold';
 import { createProgressReset } from './progress-reset.js?v=20261117rounds';
 import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117rounds';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。

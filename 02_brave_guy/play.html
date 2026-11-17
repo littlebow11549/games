@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="css/menu-layout.css?v=20261117bubble">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261116transformfix">
 <link rel="stylesheet" href="css/ui-layers.css?v=20261117layers">
-<link rel="stylesheet" href="css/secret-toggle.css?v=20261117secret">
+<link rel="stylesheet" href="css/secret-toggle.css?v=20261117hold">
 </head>
 <body class="game-art">
 <section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit"></div><img src="assets/runtime/lossless/pic/ui/portrait_student.webp" alt=""><h1>BRAVE GUY</h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
@@ -184,7 +184,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261117secret';
+    s.src = 'js/main.js?v=20261117hold';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');
