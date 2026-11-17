@@ -4,7 +4,7 @@ await p.evaluate(async()=>{const g=__game;await g.prepareGameplay();g.startStage
 assert(await p.evaluate(()=>healthEnemies.every(e=>e.bar&&e.bar.style.display!=='none'&&e.bar.firstChild.style.transform==='scaleX(1)')),'all six small enemy types show full HP bars');
 const before=await p.evaluate(()=>{const e=healthEnemies[0];const y=e.bar.style.top;__game.damageEnemy(e,.1);e.y=2;e.vy=0;return y;});await p.waitForTimeout(100);
 assert(await p.evaluate(y=>{const e=healthEnemies[0];return e.bar.style.top!==y&&e.bar.firstChild.style.transform!=='scaleX(1)';},before),'bar follows airborne enemy and damage');
-assert(await p.evaluate(()=>{const c=document.querySelector('#combo');return c.parentElement===document.body&&getComputedStyle(c).zIndex==='1100'&&getComputedStyle(c).pointerEvents==='none'&&!c.hidden;}),'combo is outside HUD stacking context and click-through');
+assert(await p.evaluate(()=>{const c=document.querySelector('#combo');return c.parentElement===document.body&&Number(getComputedStyle(c).zIndex)>Number(getComputedStyle(document.querySelector('#hud')).zIndex)&&getComputedStyle(c).pointerEvents==='none'&&!c.hidden;}),'combo is outside HUD stacking context and click-through');
 await p.screenshot({path:'/tmp/game02-health-combo.png'});
 await p.evaluate(()=>__game.damageEnemy(healthEnemies[0],100000));assert(await p.evaluate(()=>!healthEnemies[0].bar.isConnected),'dead bar removed');
 await p.locator('#btn-pause').click();assert(!await p.locator('#combo').isVisible(),'combo hidden on pause');await p.locator('#pm-resume').click();await p.waitForTimeout(100);assert(await p.locator('#combo').isVisible());
