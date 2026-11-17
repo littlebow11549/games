@@ -11,12 +11,12 @@ ROOT = Path(__file__).resolve().parents[1]
 urls = json.loads((ROOT / 'assets/runtime-images.json').read_text())
 MAX_EFFORT = False
 
-# 全螢幕插畫（過場、著裝特寫）改走視覺無損的有損 WebP：這些圖沒有透明、
-# 以插畫為主，q90 肉眼看不出差別卻能省掉 60%+ 容量。有真透明的（字藝、剪影）仍走無損。
+# 插畫與字藝改走視覺無損的有損 WebP：過場/著裝（無透明）以 q90 壓；
+# 字藝（system 字圖集，RGBA 透明）以 q92 壓並保留 alpha，q92 肉眼看不出差別卻能省 ~76%。
 LOSSY_QUALITY = 90
 
 def wants_lossy(url, original):
-    if '/cinematics/' in url:
+    if '/cinematics/' in url or '/titles/' in url:
         return True
     if '/transform/' in url:
         return original.getchannel('A').getextrema() == (255, 255)  # 僅對完全不透明者有損
@@ -32,9 +32,12 @@ def convert(url):
         previous_size = dst.stat().st_size if dst.exists() else None
 
         if wants_lossy(url, original):
-            # 有損：由來源 PNG 以 q90 重壓，native 尺寸；確定性編碼，只在更小時覆寫（可重複執行）
+            # 有損：由來源 PNG 重壓，native 尺寸；確定性編碼，只在更小時覆寫（可重複執行）
+            quality = 92 if '/titles/' in url else LOSSY_QUALITY
+            opaque = original.getchannel('A').getextrema() == (255, 255)
+            image_out = original.convert('RGB') if opaque else original  # 字藝等透明圖保留 alpha
             data = BytesIO()
-            original.convert('RGB').save(data, 'WEBP', quality=LOSSY_QUALITY, method=6)
+            image_out.save(data, 'WEBP', quality=quality, method=6)
             payload = data.getvalue()
             if previous_size is None or len(payload) < previous_size:
                 dst.parent.mkdir(parents=True, exist_ok=True)
@@ -43,7 +46,7 @@ def convert(url):
                 print(f'{dst.name}(lossy): {previous_size} -> {dst.stat().st_size}', flush=True)
             return dict(source=source, runtime=url, before=src.stat().st_size, after=dst.stat().st_size,
                         width=original.width, height=original.height, pixelIdentical=False, lossy=True,
-                        quality=LOSSY_QUALITY,
+                        quality=quality,
                         sourceSHA256=hashlib.sha256(src.read_bytes()).hexdigest(),
                         maxEffortCompared=MAX_EFFORT, previousRuntimeBytes=previous_size)
 
