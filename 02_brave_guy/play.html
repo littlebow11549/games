@@ -28,7 +28,7 @@
 <link rel="preload" href="assets/fonts/notosanstc-black-subset.woff2?v=20261117rounds" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/loading.css?v=20261115fast">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261116numbers">
-<link rel="stylesheet" href="css/menu-layout.css?v=20261117rounds">
+<link rel="stylesheet" href="css/menu-layout.css?v=20261117bubble">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261116transformfix">
 <link rel="stylesheet" href="css/ui-layers.css?v=20261117layers">
 </head>
@@ -131,7 +131,6 @@
     <img id="ov-logo" class="logo" src="assets/runtime/pic/branding/logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy">
     <img id="ov-local-logo" class="logo" data-src="assets/runtime/lossless/pic/branding/logo_ja.webp" width="1536" height="1024" alt="ブレイブガイ BRAVEGUY" hidden>
     <div class="menu-logo-fx" aria-hidden="true"></div>
-    <div id="round-badge" class="round-badge" hidden></div>
     <h1 id="ov-title" hidden></h1>
     <p id="ov-text"></p>
     <div class="loadbar" id="loadbar"><i id="loadbar-fill"></i></div>
@@ -184,7 +183,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261117rounds';
+    s.src = 'js/main.js?v=20261117bubble';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

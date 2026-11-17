@@ -2545,10 +2545,10 @@ function showMenu() {
   const quips = ['又來了？', '今天也要被我笑嗎。', '按開始啊，還要我幫你按？', '還行。', '你的內心在等你。很亂，但在等你。', '選地獄難度的人通常活不久。', '怕成這樣還敢做夢？'];
   $('menu-bubble').textContent = t(quips[Math.floor(Math.random() * quips.length)]);
   // 輪迴標示：第幾次尋找勇氣 / 天下無敵
-  const rb = $('round-badge'), rounds = save.rounds || 0;
-  rb.hidden = rounds < 1;
-  rb.classList.toggle('god', rounds > 3);
-  if (rounds >= 1) rb.textContent = rounds > 3 ? t('你已經天下無敵了') : tf('你已經第 {0} 次去尋找勇氣', rounds);
+  const startButton = $('ov-btn'), rounds = save.rounds || 0;
+  startButton.classList.toggle('god', rounds > 3);
+  if (rounds >= 1) startButton.dataset.roundLabel = rounds > 3 ? t('你已經天下無敵了') : tf('你已經第 {0} 次去尋找勇氣', rounds);
+  else delete startButton.dataset.roundLabel;
   const tickerQuips = quips.slice();
   if (rounds >= 1 && rounds <= 3) tickerQuips.push('多找幾次勇氣，說不定你就會天下無敵唷，你這個小嫩逼。'); // 輪迴提示
   $('menu-ticker').firstElementChild.textContent = tickerQuips.map((q) => `${t('小天使')}：「${t(q)}」`).join('　　★　　');

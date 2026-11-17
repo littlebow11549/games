@@ -129,17 +129,22 @@
 #overlay:not(.stages) #ov-reset{display:none!important}
 #overlay.stages #ov-reset{display:block}
 
-/* 輪迴標示（第幾次尋找勇氣／天下無敵）：標題畫面置中、左右滿寬，放在難度列下方。
-   只有真的顯示時才撐出一列並相應壓低美術高度，一般玩家的版面不受影響。 */
-.game-art .overlay.menu.stages #round-badge{display:none}
-@media(orientation:portrait){
- .game-art .overlay.menu:not(.stages) .card:has(#round-badge:not([hidden])){
-  --menu-art-height:calc(100dvh - 96px - 34px - 80px - var(--menu-logo) - 228px);
-  grid-template-rows:minmax(24px,1fr) var(--menu-logo) 48px 44px 44px 58px 34px;
- }
- .game-art .overlay.menu:not(.stages) #round-badge{grid-area:7/1/8/3;justify-self:stretch;align-self:center;width:100%;margin:0}
+/* Attach the journey status to the main action instead of a separate menu row. */
+.game-art #overlay.menu:not(.stages) #ov-btn{position:relative;overflow:visible}
+.game-art #overlay.menu:not(.stages) #ov-btn[data-round-label]::after{
+ content:attr(data-round-label);position:absolute;right:8px;bottom:calc(100% - 3px);
+ max-width:calc(100% - 24px);box-sizing:border-box;padding:6px 10px 10px;
+ background:#101612;color:#fff7da;border-radius:9px 9px 2px 9px;
+ clip-path:polygon(0 0,100% 0,100% 100%,calc(100% - 12px) calc(100% - 6px),0 calc(100% - 6px));
+ font:700 12px/1.35 var(--font-body);white-space:normal;text-shadow:none;
+ transform:skewX(9deg);pointer-events:none;z-index:2;
 }
-/* 寬螢幕（非 portrait）：對齊左欄按鈕寬度 */
-@media not all and (orientation:portrait){
- .game-art .overlay.menu:not(.stages) #round-badge{align-self:flex-start;width:min(40vw,360px)}
+.game-art #overlay.menu:not(.stages) #ov-btn.god{
+ background:linear-gradient(110deg,#ff665d,#ffd445,#69df6b,#51b4ff,#bd79ff,#ff665d);
+ background-size:250% 100%;animation:godShift 6s linear infinite;
+ color:#10271b;text-shadow:0 1px 1px #ffffffb3;
+ box-shadow:inset 0 2px 0 #fff9,inset 0 -4px 0 #0003,3px 5px 0 #24634b,5px 8px 0 #10271b;
+}
+@media(prefers-reduced-motion:reduce){
+ .game-art #overlay.menu:not(.stages) #ov-btn.god{animation:none}
 }
