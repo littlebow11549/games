@@ -342,7 +342,11 @@ function setForm(form) {
   hero.visual.play('idle');
 }
 
+let portraitHurtTimer;
 function resetHero() {
+  clearTimeout(portraitHurtTimer);
+  $('portrait').classList.remove('hurt');
+  $('hit-feedback').classList.remove('hit');
   if (!hero.vis.student) {
     for (const k of ['student', 'worker', 'brave']) { hero.vis[k] = createVisual(k); scene.add(hero.vis[k].root); }
     angel.visual = createVisual('angel');
@@ -912,7 +916,11 @@ function hurtHero(amount, opts = {}) {
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   game.shake = Math.max(game.shake,reducedMotion?0:Math.min(.65,.35+dmg/hero.maxHp));
   game.hitstop=Math.max(game.hitstop,.065);
-  if(!reducedMotion){const feedback=$('hit-feedback');feedback.classList.remove('hit');void feedback.offsetWidth;feedback.classList.add('hit');}
+  if(dmg>0){
+    clearTimeout(portraitHurtTimer);$('portrait').classList.add('hurt');
+    portraitHurtTimer=setTimeout(()=>$('portrait').classList.remove('hurt'),700);
+    const feedback=$('hit-feedback');feedback.classList.remove('hit');void feedback.offsetWidth;feedback.classList.add('hit');
+  }
   audio.sfx('hurt');
   tauntFrom(TAUNTS_HIT, 0.6);
   game.combo = 0;
