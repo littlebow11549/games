@@ -823,13 +823,24 @@ function feedBossFodder(dt) {
   if (!game.bossSpawned || game.phase !== 'playing') return;
   const boss = enemies.find((e) => e.def.boss && alive(e));
   if (!boss) return; // 王倒了就不再補，好讓關卡結算
-  const target = { easy: 6, normal: 10, hell: 16 }[D().id] || 10;   // 同時在場的小怪數，遠少於一般波次，不會蓋過王
+  const base = { easy: 6, normal: 10, hell: 16 }[D().id] || 10;   // 同時在場的小怪數，遠少於一般波次，不會蓋過王
+  const target = base + (game.desperate ? 8 : 0);                  // 危機時補更多，給割草回血的機會
   const fodder = enemies.filter((e) => !e.def.boss && e.state !== 'dead').length;
   game.bossFodderT -= dt;
   if (game.bossFodderT > 0 || fodder >= target) return;
-  game.bossFodderT = rand(0.7, 1.4);
+  game.bossFodderT = rand(0.7, 1.4) * (game.desperate ? 0.4 : 1);
   const kind = boss.def.minion || BOSS_FODDER_KIND[stage().map] || 'ganqiao';
   spawnEnemy(kind);
+}
+
+// 一般波次的危機補兵（守關者戰由 feedBossFodder 處理）
+function feedDesperation(dt) {
+  if (!game.desperate || game.bossSpawned || game.phase !== 'playing') return;
+  const mobs = enemies.filter((e) => !e.def.boss && e.state !== 'dead').length;
+  game.despT = (game.despT || 0) - dt;
+  if (game.despT > 0 || mobs >= 12) return;
+  game.despT = rand(0.4, 0.8);
+  spawnEnemy(BOSS_FODDER_KIND[stage().map] || 'ganqiao');
 }
 
 function feedQueue(dt) {
@@ -938,6 +949,7 @@ function hurtHero(amount, opts = {}) {
 function damageEnemy(e, mult, o = {}) {
   if (!alive(e) || e.fly) return null;
   if (e.untouchable) return { killed: false, crit: false }; // 終章最後一段：打不到，但出手仍然算數
+  if (e.castInvuln) { audio.sfx('guard'); return { killed: false, crit: false }; } // 放超惡夢波時無敵
   if (e.shield) {
     audio.sfx('guard');
     // 夢魘超人只會擋：要用三個小招各破一次
@@ -951,6 +963,7 @@ function damageEnemy(e, mult, o = {}) {
   }
   const crit = Math.random() < HERO.critRate;
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
+  if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.3) dmg = Math.max(0, e.hp - e.maxHp * 0.3 + 1); // 不會被直接打死，要進入最後一段
   if (guarded) {dmg *= 0.35;audio.sfx('guard');} // 假森：平常打不動，出手後或被打飛時才打得痛
@@ -979,7 +992,8 @@ function damageEnemy(e, mult, o = {}) {
     if (e.bar) e.bar.remove();
     game.kills++;
     if (!e.def.boss && TAUNTS_BEG[e.kind] && taunt.begT <= 0 && Math.random() < 0.3) { taunt.begT = 1.4; popup(e.pos, e.def.height + 0.6 + e.y, pickLine(TAUNTS_BEG[e.kind]), 'beg'); }
-    if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); } // 被打倒的怪飛出去
+    if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); // 被打倒的怪飛出去
+      if (game.desperate) { hero.hp = Math.min(hero.maxHp, hero.hp + hero.maxHp * 0.045); fx.ring(e.pos, 0.3, 2.2, 0x7dff9a, 0.4); } } // 危機時割草回血
     else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; audio.sfx('boom'); }
   } else if (!e.def.boss && !guarded && e.state !== 'spawn') {
     e.state = 'stagger';
@@ -1291,6 +1305,21 @@ const MOVES = {
   gossip: { cd: 8,             // 八卦蛇咬耳朵：其他敵人加速
     start(e) { audio.sfx('notify');bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play('attack', 0.6); },
     update: (e) => e.cast.t > 0.6 },
+  // 超惡夢波：魔王二型態的大招。蓄力後放出三道擴張的惡夢衝擊波；施放全程無敵，玩家要靠走位閃到場邊。
+  nightmareWave: { cd: 8,
+    start(e) { bossLine(e); e.castInvuln = true; e.cast.wv = 0; audio.sfx('beam_start'); popup(e.pos, e.def.height + 0.9, '超惡夢波！', 'shout'); fx.telegraph(e.pos, 3.5, 2.2, 0x8a4fd6); e.visual.play('attack', 1.4); game.shake = 0.4; },
+    update(e) {
+      const t = e.cast.t;
+      if (t > 0.9 && e.cast.wv < 3 && t > 0.9 + e.cast.wv * 0.33) {
+        const r = 7 + e.cast.wv * 4.5;
+        fx.ring(e.pos, 1, r, 0x8a4fd6, 0.7); fx.dome(e.pos, r * 0.7, 0xb06cff, 0.4);
+        if (dist2d(hero.pos, e.pos) < r && hero.invuln <= 0 && hero.state !== 'transforming') { hurtHero(210); hero.invuln = Math.max(hero.invuln, 0.45); }
+        audio.sfx('beam_hit');
+        e.cast.wv++;
+      }
+      if (t >= 2.0) { e.castInvuln = false; audio.sfx('beam_end'); game.shake = 0.7; fx.burst(e.pos, 0x8a4fd6, 40, 16, 1.5, 0.4); return true; }
+      return false;
+    } },
 };
 
 // 守關者決定下一招。回傳 true 表示開始出招
@@ -1298,7 +1327,8 @@ function bossThink(e, d, dx, dz) {
   if (e.cool > 0 || hero.state === 'dead') return false;
   let pool = e.def.moves;
   if (e.shield) pool = ['guiltTalk'];                 // 夢魘第一段只會擋和講話
-  if (e.untouchable) pool = hero.courage >= GAUGE.courageMax ? [] : ['mDash', 'mQuake']; // 最後一段給玩家閃的機會
+  else if (e.untouchable) pool = hero.courage >= GAUGE.courageMax ? [] : ['mDash', 'mQuake']; // 最後一段給玩家閃的機會
+  else if (game.pressure) pool = [...pool, 'nightmareWave']; // 二型態：追加超惡夢波大招
   const options = pool.filter((m) => {
     const M = MOVES[m];
     return (e.cds[m] || 0) <= 0 && (M.range === undefined || d <= M.range) && (M.minRange === undefined || d >= M.minRange) && (!M.cond || M.cond(e));
@@ -1340,7 +1370,7 @@ function updateEnemy(e, dt, attackers) {
   e.visual.update(dt);
   const def = e.def;
   if (e.lineT > 0) e.lineT -= dt;
-  for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.25:1)*(def.incubus&&game.awakened?1.2:1);
+  for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.7:1)*(def.incubus&&game.awakened?1.2:1);
 
   if (e.state === 'spawn') {
     if (e.t < 0) return;
@@ -1388,9 +1418,9 @@ function updateEnemy(e, dt, attackers) {
       if (MOVES[e.cast.name].update(e, dt, d)) { e.cast = null; e.state = 'recover'; e.t = 0; e.visual.play('idle'); }
       return;
     }
-    if (e.state === 'recover') { if (e.t >= def.recover * (def.enrage ? 0.4 + 0.6 * e.hp / e.maxHp : 1)) { e.state = 'chase'; e.t = 0; e.cool = rand(0.3, 0.9); } return; }
+    if (e.state === 'recover') { if (e.t >= def.recover * (def.enrage ? 0.4 + 0.6 * e.hp / e.maxHp : 1) * (def.boss && game.pressure ? 0.55 : 1)) { e.state = 'chase'; e.t = 0; e.cool = rand(0.3, 0.9) * (def.boss && game.pressure ? 0.5 : 1); } return; }
     e.state = 'chase';
-    e.cool -= dt*(game.pressure?1.25:1)*(e.def.incubus&&game.awakened?1.2:1);
+    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1);
     e.yaw = Math.atan2(dx, dz);
     if (e.untouchable && hero.courage >= GAUGE.courageMax) {
       // 等主角走上前
@@ -1412,7 +1442,7 @@ function updateEnemy(e, dt, attackers) {
   if (e.state === 'stagger') {
     if (e.t > 0.3) { e.state = 'chase'; e.t = 0; }
   } else if (e.state === 'chase') {
-    e.cool -= dt*(game.pressure?1.25:1)*(e.def.incubus&&game.awakened?1.2:1);
+    e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1);
     e.yaw = Math.atan2(dx, dz);
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
     const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
@@ -2156,6 +2186,8 @@ function playEnding(done) {
 function update(dt) {
   if (game.hitstop > 0) { game.hitstop -= dt; fx.update(dt * 0.2); return; } // 命中頓幀
   game.time += dt;
+  // 危機模式：血快見底又沒救援次數時，補更多小兵給玩家割草回血的機會
+  game.desperate = game.phase === 'playing' && hero.state !== 'dead' && hero.hp > 0 && hero.hp < hero.maxHp * 0.25 && game.rescues <= 0;
   game.counterT=Math.max(0,game.counterT-dt);
   if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));if(audio.tracks['bgm_boss_rage'])setBgm('bgm_boss_rage');}
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
@@ -2181,6 +2213,13 @@ function update(dt) {
   // 關卡流程：一波一波 →（中途事件）→ 守關者 → 過關
   feedQueue(dt);
   feedBossFodder(dt);
+  feedDesperation(dt);
+  // 王倒了直接過關：清掉場上剩下的小兵，不用再補刀
+  if (game.phase === 'playing' && game.bossSpawned && !game.victoryShown && !enemies.some((e) => e.def.boss && alive(e))) {
+    for (const e of enemies) if (alive(e) && !e.def.boss) { e.state = 'dead'; e.t = 0; if (e.bar) e.bar.remove(); e.visual.play('die', 0.6); fx.ring(e.pos, 0.2, 2, 0xffffff, 0.3); }
+    clearStage();
+    return;
+  }
   if (game.phase === 'playing' && !game.queue.length && enemies.every((e) => e.state === 'dead')) {
     const st = stage();
     game.waveTimer -= dt;

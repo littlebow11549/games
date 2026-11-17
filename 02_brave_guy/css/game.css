@@ -60,7 +60,7 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 .combo b{display:block;font-size:clamp(34px,7vw,56px);line-height:1;font-weight:900}
 .combo span{font-size:15px;font-weight:900}
 
-.boss-bar{position:absolute;left:50%;top:calc(10px + var(--safe-t));transform:translateX(-50%);text-align:center;font-size:13px;font-weight:800;text-shadow:0 1px 3px #000}
+.boss-bar{position:absolute;left:50%;top:calc(10px + var(--safe-t));transform:translateX(-50%);text-align:center;font-size:13px;font-weight:800;text-shadow:0 1px 3px #000;z-index:9}
 .boss-bar .bar{width:min(36vw,340px);height:13px;margin-top:3px}
 
 .banner{position:absolute;left:50%;top:26%;transform:translate(-50%,-50%) scale(.6);opacity:0;white-space:nowrap;
