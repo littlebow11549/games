@@ -128,3 +128,18 @@
 /* Progress reset belongs only to stage selection. */
 #overlay:not(.stages) #ov-reset{display:none!important}
 #overlay.stages #ov-reset{display:block}
+
+/* 輪迴標示（第幾次尋找勇氣／天下無敵）：標題畫面置中、左右滿寬，放在難度列下方。
+   只有真的顯示時才撐出一列並相應壓低美術高度，一般玩家的版面不受影響。 */
+.game-art .overlay.menu.stages #round-badge{display:none}
+@media(orientation:portrait){
+ .game-art .overlay.menu:not(.stages) .card:has(#round-badge:not([hidden])){
+  --menu-art-height:calc(100dvh - 96px - 34px - 80px - var(--menu-logo) - 228px);
+  grid-template-rows:minmax(24px,1fr) var(--menu-logo) 48px 44px 44px 58px 34px;
+ }
+ .game-art .overlay.menu:not(.stages) #round-badge{grid-area:7/1/8/3;justify-self:stretch;align-self:center;width:100%;margin:0}
+}
+/* 寬螢幕（非 portrait）：對齊左欄按鈕寬度 */
+@media not all and (orientation:portrait){
+ .game-art .overlay.menu:not(.stages) #round-badge{align-self:flex-start;width:min(40vw,360px)}
+}

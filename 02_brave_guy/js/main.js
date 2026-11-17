@@ -252,7 +252,7 @@ resize();
 
 const game = { phase: 'loading', time: 0, kills: 0, wave: -1, waveTimer: 0, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0, fails: 0, easy: false,
   stage: 0, rules: {}, abilities: new Set(), bossSpawned: false, midDone: false, suanle: 0, ambushT: 8, caught: 0, queue: [], queueT: 0, bossFodderT: 0 };
-let save = { cleared: [], seenTransform: false, seenOpening: false, rounds: 0 };
+let save = { cleared: [], seenTransform: false, seenOpening: false, rounds: 0, freshRun: false };
 try { save = { ...save, ...JSON.parse(localStorage.getItem(SAVE_KEY) || '{}') }; } catch { /* 存檔壞掉就從頭 */ }
 // 正式逐關解鎖；?unlock=all 僅供選關預覽，不贈送招式。
 const DEV_UNLOCK = false;
@@ -312,7 +312,8 @@ function buildMaze(st) {
 
 // 開發期間（關卡全開）每一關都能用全部招式；正式流程才照劇情逐關取得
 const ALL_ABILITIES=['transform','skill1','skill2','skill3','ult','hp','qi'];
-const stageAbilities=index=>save.cleared.includes(STAGES.at(-1).id)?new Set(ALL_ABILITIES):abilitiesFor(index,save.cleared);
+// 天下無敵（godMode）即使從序章重玩也維持全招式開掛
+const stageAbilities=index=>(godMode()||save.cleared.includes(STAGES.at(-1).id))?new Set(ALL_ABILITIES):abilitiesFor(index,save.cleared);
 // 輪迴（New Game+）：每破關一輪強度升一階，最多 +3 階；超過三次＝天下無敵（開掛模式）
 const roundTier = () => Math.min(save.rounds || 0, 3);          // 0,1,2,3
 const roundCrowd = () => 1 + roundTier() * 0.5;                 // 怪量倍率 1 / 1.5 / 2 / 2.5
@@ -2090,7 +2091,7 @@ function showOverlay(config) {
   $('overlay').dataset.outcome = outcome;
   if(outcome!=='clear')$('overlay').classList.remove('victory-arrive');
   $('overlay').classList.remove('menu', 'stages');
-  $('ov-menu').textContent = t('選關');
+  $('ov-menu').textContent = t(outcome === 'ending' ? '直接選關' : '選關'); // 破關結算：直接選關＝自由挑戰、不計刷
   $('ov-logo').hidden = true;
   $('ov-local-logo').hidden = true;
   $('ov-title').hidden = false;
@@ -2135,7 +2136,7 @@ function renderRunResult(outcome){
   const list=document.createElement('ol');for(const row of result?.rows||[]){const li=document.createElement('li');li.textContent=`${formatTime(row.seconds)}  ·  ${row.date||''}`;list.append(li);}box.append(list);
   const note=document.createElement('p');note.textContent=!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
   if(result&&!result.saved){const warning=document.createElement('p');warning.textContent=tr('無法保存紀錄，本次仍可查看。','Record could not be saved.','記録を保存できませんでした。');box.append(warning);}
-  $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('再挑戰一次・從序章開始','TRY AGAIN · FROM THE START','もう一度・序章から挑戦');
+  $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('從序章開始重玩（進度歸零）','RESTART FROM PROLOGUE (reset)','序章からやり直す（進捗リセット）');
 }
 function endGame(win) {
   if(win)return clearStage();
@@ -2175,7 +2176,9 @@ function continueVictory() {
   pendingVictory = null; // Repeated taps cannot advance twice.
   $('overlay').hidden = true;
   if (result.last) {
-    save.rounds = (save.rounds || 0) + 1; writeSave(); // 破關一輪：記錄「第幾次尋找勇氣」
+    // 只有「第一次破關」或「從序章重玩的那一輪」破關才計入一刷，避免重複打最終話刷輪數
+    if (save.rounds === 0 || save.freshRun) save.rounds = (save.rounds || 0) + 1;
+    save.freshRun = false; writeSave();
     playEnding(() => {
       game.phase = 'over';
       showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
@@ -2495,7 +2498,9 @@ async function boot() {
 
 // ---------- 選關 ----------
 
-const isOpen = (i) => save.cleared.includes(STAGES.at(-1).id) || unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
+const isOpen = (i) => godMode() || save.cleared.includes(STAGES.at(-1).id) || unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
+// 從序章開始重玩：進度歸零、標記這一輪的破關要計入「第幾次尋找勇氣」
+function restartJourney() { save.cleared = []; save.freshRun = true; writeSave(); runs.reset(); menuView = 'title'; startStage(0); }
 function firstOpenStage() {
   for (let i = 0; i < STAGES.length; i++) if (!save.cleared.includes(STAGES[i].id)) return isOpen(i) ? i : Math.max(0, i - 1);
   return STAGES.length - 1;
@@ -2544,14 +2549,17 @@ function showMenu() {
   rb.hidden = rounds < 1;
   rb.classList.toggle('god', rounds > 3);
   if (rounds >= 1) rb.textContent = rounds > 3 ? t('你已經天下無敵了') : tf('你已經第 {0} 次去尋找勇氣', rounds);
-  $('menu-ticker').firstElementChild.textContent = quips.map((q) => `${t('小天使')}：「${t(q)}」`).join('　　★　　');
+  const tickerQuips = quips.slice();
+  if (rounds >= 1 && rounds <= 3) tickerQuips.push('多找幾次勇氣，說不定你就會天下無敵唷，你這個小嫩逼。'); // 輪迴提示
+  $('menu-ticker').firstElementChild.textContent = tickerQuips.map((q) => `${t('小天使')}：「${t(q)}」`).join('　　★　　');
   $('ov-text').innerHTML = t(coarse
     ? '左下搖桿移動　右下按鍵出拳、閃避、放招<br>勇氣滿了按「變身」（可按住拖延）　變身鍵旁的「鎖」開關自動鎖定'
     : 'WASD 移動　滑鼠左鍵出拳（朝游標方向）　右鍵或 Shift 閃避<br>Q・E・R 小招　F 大招　空白鍵變身（可按住拖延）　T 自動鎖定　Esc 暫停');
   $('ov-text').append(document.createElement('br'), document.createTextNode(t('切換鎖定目標') + (coarse ? ' ↻' : ' · Y / Shift+Y')));
   const next = firstOpenStage();
   game.stage = next;
-  $('ov-btn').textContent = save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
+  const fullyCleared = save.cleared.includes(STAGES.at(-1).id);
+  $('ov-btn').textContent = fullyCleared ? t('從序章開始重玩') : save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
   $('ov-btn').disabled = false;
   const dbox = $('ov-diff');
   dbox.replaceChildren();
@@ -2603,7 +2611,11 @@ function playOpening() {
 $('ov-run').addEventListener('click',()=>{audio.unlock();runs.reset();startStage(0);});
 $('ov-opening').addEventListener('click', playOpening);
 const progressReset=createProgressReset(()=>audio);
-$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); if(lastOverlay?.outcome==='ending'&&game.phase==='over'){runs.reset();startStage(0);}else startStage(game.stage); });
+$('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm');
+  if (lastOverlay?.outcome === 'ending' && game.phase === 'over') restartJourney(); // 破關結算：從序章重玩（進度歸零、計一刷）
+  else if (game.phase === 'ready' && save.cleared.includes(STAGES.at(-1).id)) restartJourney(); // 全破後主選單主按鈕＝從序章重玩
+  else startStage(game.stage);
+});
 $('ov-replay').addEventListener('click', () => {
   audio.unlock();
   if (game.phase === 'over' && lastOverlay?.outcome === 'ending') {
@@ -2617,8 +2629,9 @@ $('ov-replay').addEventListener('click', () => {
 $('ov-next').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm'); if(pendingVictory)continueVictory(); });
 $('ov-menu').addEventListener('click', () => {
   audio.sfx('ui');
-  // 在主選單裡是「選關／返回」的切換；在結算畫面是回主選單
-  menuView = game.phase === 'ready' && menuView === 'title' ? 'stages' : 'title';
+  // 在主選單裡是「選關／返回」的切換；破關結算的「直接選關」直接進選關；其餘回主選單
+  if (game.phase === 'over' && lastOverlay?.outcome === 'ending') menuView = 'stages';
+  else menuView = game.phase === 'ready' && menuView === 'title' ? 'stages' : 'title';
   showMenu();
 });
 $('ov-easy').addEventListener('click', () => { setDiff(diff - 1); game.fails = 0; audio.unlock(); audio.sfx('ui'); startStage(game.stage); });

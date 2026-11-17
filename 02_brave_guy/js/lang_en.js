@@ -2,6 +2,9 @@
 export default {
   "你已經第 {0} 次去尋找勇氣": "You’ve sought courage {0} time(s).",
   "你已經天下無敵了": "You are UNSTOPPABLE now.",
+  "從序章開始重玩": "Restart from prologue",
+  "直接選關": "Free stage select",
+  "多找幾次勇氣，說不定你就會天下無敵唷，你這個小嫩逼。": "Go seek courage a few more times and maybe you’ll be unstoppable, you little rookie.",
   "切換鎖定目標": "Switch target",
   "附近沒有可鎖定目標": "No target in range",
   "目標切換": "TARGET SWITCH",
