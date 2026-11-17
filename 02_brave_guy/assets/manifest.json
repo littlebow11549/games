@@ -121,17 +121,13 @@
       "assets/source/sfx/clean/sfx_punch_2_clean.wav",
       "assets/source/sfx/clean/sfx_punch_3_clean.wav"
     ],
-    "hit": [
-      "assets/source/sfx/clean/sfx_hit_1_clean.wav",
-      "assets/source/sfx/clean/sfx_hit_2_clean.wav",
-      "assets/source/sfx/clean/sfx_hit_3_clean.wav"
-    ],
+    "hit": "assets/source/sfx/hit.wav",
     "enemy_down": [
       "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav",
       "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav",
       "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav"
     ],
-    "crit": "assets/source/sfx/clean/sfx_hit_heavy_clean.wav",
+    "crit": "assets/source/sfx/hit.wav",
     "boom": "assets/source/sfx/sfx_quake.mp3",
     "skill": "assets/source/sfx/sfx_transform_done.mp3",
     "shoot": "assets/source/sfx/sfx_enemy_shot.mp3",
@@ -145,6 +141,7 @@
     "tf_scarf": "assets/source/sfx/sfx_tf_scarf.mp3",
     "tf_pose": "assets/source/sfx/sfx_tf_pose.mp3",
     "crowd_cheer": "assets/source/sfx/clean/sfx_crowd_cheer_clean.wav",
-    "victory_human_cheer": "assets/source/sfx/y2004.wav"
+    "victory_human_cheer": "assets/source/sfx/y2004.wav",
+    "boss_ko": "assets/source/sfx/ko.wav"
   }
 }

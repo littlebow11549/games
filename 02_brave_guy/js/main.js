@@ -16,7 +16,7 @@ import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
-import { GameAudio } from './audio.js?v=20261116score';
+import { GameAudio } from './audio.js?v=20261117userhit';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261117rounds';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261117rounds';
 import { makeMaze } from './maze.js?v=20261116pursuit';
@@ -1015,7 +1015,7 @@ function damageEnemy(e, mult, o = {}) {
     if (!e.def.boss && TAUNTS_BEG[e.kind] && taunt.begT <= 0 && Math.random() < 0.3) { taunt.begT = 1.4; popup(e.pos, e.def.height + 0.6 + e.y, pickLine(TAUNTS_BEG[e.kind]), 'beg'); }
     if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); // 被打倒的怪飛出去
       if (game.desperate) { hero.hp = Math.min(hero.maxHp, hero.hp + hero.maxHp * 0.045); fx.ring(e.pos, 0.3, 2.2, 0x7dff9a, 0.4); } } // 危機時割草回血
-    else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; audio.sfx('boom'); }
+    else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; audio.sfx('boss_ko'); }
   } else if (!e.def.boss && !guarded && e.state !== 'spawn') {
     e.state = 'stagger';
     e.t = 0;
@@ -1450,7 +1450,7 @@ function updateEnemy(e, dt, attackers) {
     if (e.untouchable && hero.courage >= GAUGE.courageMax) {
       // 等主角走上前
       e.visual.play('idle');
-      if (d < 3.2 && game.phase === 'playing') { e.hp = 0; e.state = 'dead'; e.t = 0; e.visual.play('die', 0.9); fx.pillar(e.pos, 2, 14, 0xffffff, 0.9); fx.ring(e.pos, 1, 12, 0x9be564, 0.9); }
+      if (d < 3.2 && game.phase === 'playing') { e.hp = 0; e.state = 'dead'; e.t = 0; audio.sfx('boss_ko'); e.visual.play('die', 0.9); fx.pillar(e.pos, 2, 14, 0xffffff, 0.9); fx.ring(e.pos, 1, 12, 0x9be564, 0.9); }
       return;
     }
     const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
@@ -2480,7 +2480,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116human';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261117userhit';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
