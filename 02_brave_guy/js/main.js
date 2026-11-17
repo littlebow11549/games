@@ -1,5 +1,5 @@
 import { createProgressReset } from './progress-reset.js?v=20261116dialog';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork } from './loading.js?v=20261116dialog';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261116dialog';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
@@ -2518,6 +2518,7 @@ function showMenu() {
   $('overlay').classList.toggle('stages', menuView === 'stages');
   $('ov-logo').hidden = lang === 'ja';
   $('ov-local-logo').hidden = lang !== 'ja';
+  if (lang === 'ja' && !$('ov-local-logo').src && $('ov-local-logo').dataset.src) $('ov-local-logo').src = $('ov-local-logo').dataset.src; // 日文才載日文 logo
   $('ov-title').hidden = true;
   $('ov-next').hidden = true;
   $('ov-easy').hidden = true;
@@ -2655,6 +2656,7 @@ $('btn-quick-clear').addEventListener('click', () => {
 $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!game.paused); });
 // 語系切換：標題畫面與暫停選單各有一顆。切換後立刻重畫目前看得到的文字
 function refreshLang() {
+  preloadLanguage(lang); // 切語言後背景補載該語言字藝
   applyStatic();
   decorateSystemUI();
   if (game.phase === 'ready') showMenu();
