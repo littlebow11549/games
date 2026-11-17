@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 記憶水晶中文名稱](handoffs/2026-11-17-hub-memory-name.md)：第一款卡片與Banner補上記憶水晶，保留Memory Crash。
+
 - [2026-11-17 遊戲卡片移除底圖](handoffs/2026-11-17-hub-plain-cards.md)：移除圖示後方水晶場景，改純深藍底，保留圖示與愛心。
 
 - [2026-11-17 Banner統一排版與進度輪播](handoffs/2026-11-17-hub-progress-unified.md)：雙Logo／CTA同中心線、共用樣式；進度頁點填滿換張，移除探索／暫停／CTA箭頭。
