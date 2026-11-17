@@ -965,7 +965,7 @@ function damageEnemy(e, mult, o = {}) {
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
   if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
-  if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.3) dmg = Math.max(0, e.hp - e.maxHp * 0.3 + 1); // 不會被直接打死，要進入最後一段
+  if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.1) dmg = Math.max(0, e.hp - e.maxHp * 0.1 + 1); // 不會被直接打死，血打到剩一成才進入最後一段（走上前收尾）
   if (guarded) {dmg *= 0.35;audio.sfx('guard');} // 假森：平常打不動，出手後或被打飛時才打得痛
   dmg *= game.counterT>0?1.5:game.combo>=20?1.25:1;
   if(e.def.incubus&&!game.awakened&&!e.shield)dmg=Math.min(dmg,Math.max(0,e.hp-e.maxHp*.6));
@@ -1328,7 +1328,10 @@ function bossThink(e, d, dx, dz) {
   let pool = e.def.moves;
   if (e.shield) pool = ['guiltTalk'];                 // 夢魘第一段只會擋和講話
   else if (e.untouchable) pool = hero.courage >= GAUGE.courageMax ? [] : ['mDash', 'mQuake']; // 最後一段給玩家閃的機會
-  else if (game.pressure) pool = [...pool, 'nightmareWave']; // 二型態：追加超惡夢波大招
+  else if (game.pressure) { // 二型態：追加超惡夢波大招；boss 快死時提高觸發機率
+    pool = [...pool, 'nightmareWave'];
+    if (e.hp <= e.maxHp * 0.25) pool.push('nightmareWave', 'nightmareWave');
+  }
   const options = pool.filter((m) => {
     const M = MOVES[m];
     return (e.cds[m] || 0) <= 0 && (M.range === undefined || d <= M.range) && (M.minRange === undefined || d >= M.minRange) && (!M.cond || M.cond(e));
@@ -1349,7 +1352,8 @@ function startAwakening(e) {
   if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
   e.shown=true;e.visual.root.visible=true;
   hazards.forEach(h=>h.life=0);$('hud').hidden=true;
-  cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());});
+  // 第一階段打完：先播勇氣超人一拳打倒董事長的過場（新圖），再接原本的甦醒鎧甲過場
+  cinematics.firstStrike(()=>cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());}));
 }
 function startFinalPhase(e) {
   game.final = true;
@@ -1412,7 +1416,7 @@ function updateEnemy(e, dt, attackers) {
 
   if (def.boss) {
     if(def.incubus&&!game.awakened&&!e.shield&&e.hp<=e.maxHp*.6+2){startAwakening(e);return;}
-    if (def.incubus && !game.final && !e.shield && e.hp <= e.maxHp * 0.3 + 2) startFinalPhase(e);
+    if (def.incubus && !game.final && !e.shield && e.hp <= e.maxHp * 0.1 + 2) startFinalPhase(e); // 剩一成血才進入走上前收尾（原本 3 成太早）
     if (e.state === 'cast') {
       e.cast.t += dt;
       if (MOVES[e.cast.name].update(e, dt, d)) { e.cast = null; e.state = 'recover'; e.t = 0; e.visual.play('idle'); }

@@ -42,6 +42,14 @@ const AWAKENING_SHOTS=[
  {file:'awakening_armor_b',row:2,duration:3.8,sound:'guilt_burst',role:'boss',line:['現在，看看你還敢不敢往前。','Now, dare to take another step.','さあ、それでも前に進めるか。']}
 ];
 export const AWAKENING_DURATION=AWAKENING_SHOTS.reduce((n,s)=>n+s.duration,0);
+
+// 第一階段打完：勇氣超人一拳把董事長打倒的三格過場（用 incubus_firststrike 圖集，接在甦醒鎧甲過場之前）
+const FIRSTSTRIKE_SHOTS=[
+ {file:'incubus_firststrike',row:0,duration:2.2,sound:'boss_warn',role:'boss',line:['你真以為，打倒我就結束了？','You think beating me down ends it?','俺を倒せば終わると思ったか？']},
+ {file:'incubus_firststrike',row:1,duration:1.5,sound:'hit_heavy',role:'hero',line:['這一拳，連本帶利還你！','This one is for everything — with interest!','この一撃、利子つきで返す！']},
+ {file:'incubus_firststrike',row:2,duration:2.6,sound:'boss_slam',role:'hero',line:['站起來。我不會再退了。','Get up. I won’t back down again.','立て。もう引かない。']}
+];
+const FIRSTSTRIKE_DURATION=FIRSTSTRIKE_SHOTS.reduce((n,s)=>n+s.duration,0);
 export function createCinematics(_renderer,audioProvider){
  const root=document.createElement('section');root.id='cinema';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
  root.innerHTML='<div class="cinema-lines" aria-hidden="true"></div><div class="cinema-top"><span class="cinema-kicker"></span><button class="cinema-skip"></button></div><div class="cinema-caption"><h2></h2><p></p></div><div class="cinema-progress"><i></i></div><div class="cinema-credits" hidden></div>';
@@ -58,6 +66,7 @@ export function createCinematics(_renderer,audioProvider){
  function boss(kinds,done){waitForArtwork(()=>storyboard.prepare(kinds),()=>{base('boss',kinds.reduce((n,k)=>n+BOSS_STORYBOARDS[k].duration,0),done);active.kinds=kinds;active.index=-1;$('.cinema-kicker').textContent=t('心魔來襲');});}
  function victory(kinds,done){waitForArtwork(()=>victoryArt.prepare(kinds),()=>{base('victory',6,done);victoryArt.start(kinds);root.style.setProperty('--cinema-color','#caff69');$('.cinema-kicker').textContent=words(lang,'勇氣・終結一擊','COURAGE · FINAL STRIKE','勇気・最後の一撃');});}
  function awakening(done){waitForArtwork(()=>film.prepare(['awakening_armor_a','awakening_armor_b']),()=>{base('awakening',AWAKENING_DURATION,done);film.start();audioProvider()?.stopLoops?.();audioProvider()?.duckBgm?.(.25);root.style.setProperty('--cinema-color','#a6ff70');$('.cinema-kicker').textContent=words(lang,'夢魘・最終昇華','INCUBUS · FINAL ASCENSION','インキュバス・最終覚醒');});}
+ function firstStrike(done){waitForArtwork(()=>film.prepare(['incubus_firststrike']),()=>{base('firststrike',FIRSTSTRIKE_DURATION,done);film.start();audioProvider()?.duckBgm?.(.3);root.style.setProperty('--cinema-color','#caff69');$('.cinema-kicker').textContent=words(lang,'勇氣・第一擊','COURAGE · FIRST STRIKE','勇気・一撃');});}
  function defeat(done){waitForArtwork(()=>film.prepare(['defeat_storyboard','defeat_retry']),()=>{base('defeat',10,done);film.start();audioProvider()?.playBgm('bgm_defeat');audioProvider()?.sfx('lose');root.style.setProperty('--cinema-color','#c5abec');$('.cinema-kicker').textContent=words(lang,'迷失的結局','A LOST ENDING','迷いの結末');});}
  const prepareEnding=()=>film.prepare(['ending_applause_final']);
  function ending(done){waitForArtwork(prepareEnding,()=>{base('ending',36.5,done);film.start();audioProvider()?.playBgm('bgm_ending');root.style.setProperty('--cinema-color','#ffdf79');$('.cinema-kicker').textContent=t('找回自己');credits.replaceChildren();const heading=document.createElement('h2');heading.textContent='STAFF';credits.append(heading);for(const role of roles){const row=document.createElement('p'),label=document.createElement('span'),name=document.createElement('strong');label.textContent=t(role);name.textContent='LilinS';row.append(label,name);credits.append(row);}const thanks=document.createElement('p');thanks.className='credits-thanks';thanks.textContent=t('謝謝你，走到了這裡。');credits.append(thanks);});}
@@ -78,6 +87,11 @@ export function createCinematics(_renderer,audioProvider){
    if(active.beat!==index&&burst){root.classList.remove('awakening-impact');void root.offsetWidth;root.classList.add('awakening-impact');audioProvider()?.sfx('boss_slam');}
    film.render([shot],elapsed,{reduced,impact,dark:index===5?.75:0,flash:burst?Math.max(0,.65-local*2):0,color:'#a6ff70',zoom:burst&&!reduced?1+Math.max(0,.08-local*.12):1});
    line(index,t(shot.role==='hero'?'主角':'夢魘超人'),words(lang,...shot.line),shot.role,burst,shot.sound);
+  }else if(active.mode==='firststrike'){
+   let index=0,start=0;while(index<FIRSTSTRIKE_SHOTS.length-1&&elapsed>=start+FIRSTSTRIKE_SHOTS[index].duration)start+=FIRSTSTRIKE_SHOTS[index++].duration;
+   const shot=FIRSTSTRIKE_SHOTS[index],local=elapsed-start,impact=index===1?Math.max(0,1-local/.4):0;
+   film.render([shot],elapsed,{reduced,impact,color:'#caff69',zoom:index===1&&!reduced?1+Math.max(0,.06-local*.1):1});
+   line(index,t(shot.role==='hero'?'主角':'夢魘超人'),words(lang,...shot.line),shot.role,index===1,shot.sound);
   }else if(active.mode==='defeat'){
    const beat=elapsed<2?0:elapsed<4?1:elapsed<7?2:3;root.dataset.defeatShot=String(beat);film.render([beat===3?{file:'defeat_retry',rows:1,row:0}:{file:'defeat_storyboard',row:beat}],elapsed,{reduced,color:beat===3?'#baff66':'#b39acf'});
    const lines=[['他的勇氣，碎在恐懼面前。','His courage shattered before fear.','彼の勇気は、恐怖の前に砕けた。'],['他縮回角落，變成了只會逃避的懦夫。','He cowered in a corner, running from everything.','隅で震え、何もかもから逃げる臆病者に。'],['娘炮與懦夫……這就是放棄後的我？','A sissy and a coward… Is this who I become if I quit?','なよなよした臆病者……諦めた先の俺なのか？'],['我不甘心，我還要再試一次！','I refuse to give up. Let me try again!','諦められない。もう一度挑戦する！']];line(beat,beat>=2?t('主角'):words(lang,'如果就此放棄','IF YOU GIVE UP','ここで諦めたら'),words(lang,...lines[beat]),beat>=2?'hero':'boss',false,beat===3?'courage_full':'guilt_tick');
@@ -89,5 +103,5 @@ export function createCinematics(_renderer,audioProvider){
   $('.cinema-progress i').style.transform=`scaleX(${Math.min(1,elapsed/active.duration)})`;
   if(elapsed>=active.duration)finish();return true;
  }
- return{boss,victory,defeat,awakening,ending,cancel,update,prepareEnding,prepareBoss:storyboard.prepare,get active(){return Boolean(active);},get state(){return active?{mode:active.mode,elapsed,duration:active.duration,cast:0}:null;}};
+ return{boss,victory,defeat,awakening,firstStrike,ending,cancel,update,prepareEnding,prepareBoss:storyboard.prepare,get active(){return Boolean(active);},get state(){return active?{mode:active.mode,elapsed,duration:active.duration,cast:0}:null;}};
 }
