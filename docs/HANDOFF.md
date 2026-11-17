@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-17 全Boss勝利KO](handoffs/2026-11-17-game02-all-boss-ko.md)：所有Boss勝利流程補播KO，包含一鍵過關；與死亡事件去重、重打重置。
+
 - [2026-11-17 使用者打擊與KO音效](handoffs/2026-11-17-game02-user-hit-ko.md)：hit.wav取代一般／重擊，ko.wav用於Boss真正死亡與最終收尾；保留原音、節流避免疊播。
 
 - [2026-11-17 受擊頭像與紅光](handoffs/2026-11-17-game02-hurt-expression.md)：扣血切換表情0.7秒並閃紅色邊緣，換關清除、無敵不觸發。

@@ -420,7 +420,7 @@ function startStage(index) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossFightTime:0, bossSpawned: false, bossKinds: null, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
+    bossFightTime:0, bossSpawned: false, bossKinds: null, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, bossKoPlayed: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -1015,7 +1015,7 @@ function damageEnemy(e, mult, o = {}) {
     if (!e.def.boss && TAUNTS_BEG[e.kind] && taunt.begT <= 0 && Math.random() < 0.3) { taunt.begT = 1.4; popup(e.pos, e.def.height + 0.6 + e.y, pickLine(TAUNTS_BEG[e.kind]), 'beg'); }
     if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); // 被打倒的怪飛出去
       if (game.desperate) { hero.hp = Math.min(hero.maxHp, hero.hp + hero.maxHp * 0.045); fx.ring(e.pos, 0.3, 2.2, 0x7dff9a, 0.4); } } // 危機時割草回血
-    else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; audio.sfx('boss_ko'); }
+    else { fx.ring(e.pos, 1, 14, 0xffb347, 0.9); fx.burst(e.pos, 0xffb347, 50, 13, 2, 0.4); game.shake = 0.9; playBossKO(); }
   } else if (!e.def.boss && !guarded && e.state !== 'spawn') {
     e.state = 'stagger';
     e.t = 0;
@@ -1450,7 +1450,7 @@ function updateEnemy(e, dt, attackers) {
     if (e.untouchable && hero.courage >= GAUGE.courageMax) {
       // 等主角走上前
       e.visual.play('idle');
-      if (d < 3.2 && game.phase === 'playing') { e.hp = 0; e.state = 'dead'; e.t = 0; audio.sfx('boss_ko'); e.visual.play('die', 0.9); fx.pillar(e.pos, 2, 14, 0xffffff, 0.9); fx.ring(e.pos, 1, 12, 0x9be564, 0.9); }
+      if (d < 3.2 && game.phase === 'playing') { e.hp = 0; e.state = 'dead'; e.t = 0; playBossKO(); e.visual.play('die', 0.9); fx.pillar(e.pos, 2, 14, 0xffffff, 0.9); fx.ring(e.pos, 1, 12, 0x9be564, 0.9); }
       return;
     }
     const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
@@ -2162,9 +2162,15 @@ function endGame(win) {
   });
 }
 
+function playBossKO() {
+  if (game.bossKoPlayed) return;
+  game.bossKoPlayed = true;
+  audio.sfx('boss_ko');
+}
 function clearStage() {
   if (game.phase !== 'playing') return; // One award / one victory screen per clear.
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
+  if(st.boss)playBossKO(); // Includes quick-clear and scripted victory paths.
   if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
   runs.clear(index,last);
   const stats = { id: st.id, name: st.name, time: (runs.stageResult?.seconds??game.time).toFixed(0), kills: game.kills };
