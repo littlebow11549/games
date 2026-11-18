@@ -5,6 +5,53 @@
 ## 最新交付
 
 - [2026-11-18 套用 Seal Online 音效組（Claude）](handoffs/2026-11-18-game02-seal-sfx.md)：將使用者上傳的 Seal Online 音效（41 檔）對應套用到 37 個遊戲 SFX 鍵（揮擊/命中/暴擊/怪物死亡×5/光束/氣功/勇氣氣槽滿/救援/連擊/介面/過關失敗/格擋/衝刺/魔王預警＋新增「守關者登場」）。全部 adeclip 修破音＋峰值正規化到 -1.5dBFS（輸出 0 破音）、頭尾淡入淡出。manifest 重接、新增 enemy_down_4/5 與 boss_appear 鍵、spawnBossActual 播登場音。headless 解碼測試 49 檔全過、0 error。?v→20261118seal。brave_guy_sound 備選組因檔名無語意暫未套用。
+- [2026-11-18 Banner巴哥專用新姿勢](handoffs/2026-11-18-hub-pug-presenter.md)：依使用者要求重繪透明巴哥，放大右側鑽石場景並完成手機／中尺寸配置。
+
+- [2026-11-18 全音訊用途清單與試聽](handoffs/2026-11-18-game02-audio-usage-catalog.md)：38首BGM、85音效槽位逐項用途命名與檢核，冠老闆出場改回指定辦公室原曲。
+
+- [2026-11-18 移除卡片箭頭](handoffs/2026-11-18-hub-remove-card-arrows.md)：移除遊戲標題旁裝飾箭頭，保留遊玩連結。
+
+- [2026-11-18 水晶Banner重新佈局](handoffs/2026-11-18-hub-crystal-layout.md)：擴大場景展示、巴哥縮小移位，手機鑽石與人物上下分離。
+
+- [2026-11-18 Banner巴哥與Icon放大](handoffs/2026-11-18-hub-pug-icons.md)：沿用全身巴哥加入記憶水晶Banner，兩款遊戲Icon放大並保留留白。
+
+- [2026-11-17 手機Banner人物右移](handoffs/2026-11-17-hub-mobile-hero-position.md)：人物右移12%，減少Logo遮擋超人主體，保留少量重疊。
+
+- [2026-11-17 Boss過場配樂](handoffs/2026-11-17-game02-boss-scene-music.md)：過場還原各Boss原曲，回戰場已變身則恢復勇氣超人音樂，含冠老闆。
+
+- [2026-11-17 Banner標籤單行](handoffs/2026-11-17-hub-label-nowrap.md)：本期精選與遊戲名稱取消flex換行，直橫式與桌面驗證。
+
+- [2026-11-17 Banner Logo起點對齊](handoffs/2026-11-17-hub-logo-origin.md)：清除勇氣超人舊底部排列設定，修正42px高低差，三尺寸Logo區域完全一致。
+
+- [2026-11-17 手機Banner對齊與圖示放大](handoffs/2026-11-17-hub-mobile-align-icons.md)：兩張名稱同座標，手機遊戲圖示放大至96px、小螢幕86px。
+
+- [2026-11-17 記憶水晶中文名稱](handoffs/2026-11-17-hub-memory-name.md)：第一款卡片與Banner補上記憶水晶，保留Memory Crash。
+
+- [2026-11-17 遊戲卡片移除底圖](handoffs/2026-11-17-hub-plain-cards.md)：移除圖示後方水晶場景，改純深藍底，保留圖示與愛心。
+
+- [2026-11-17 Banner統一排版與進度輪播](handoffs/2026-11-17-hub-progress-unified.md)：雙Logo／CTA同中心線、共用樣式；進度頁點填滿換張，移除探索／暫停／CTA箭頭。
+
+- [2026-11-17 首頁單區輪播](handoffs/2026-11-17-hub-carousel.md)：兩款橫幅改共用一個輪播，固定高度、自動切換、箭頭／頁點／滑動與暫停。
+
+- [2026-11-17 遊戲中心勇氣超人橫幅](handoffs/2026-11-17-hub-brave-banner.md)：新增專屬角色主視覺與Logo、遊玩入口；手機專用裁切，六語介紹沿用。
+
+- [2026-11-17 全Boss勝利KO](handoffs/2026-11-17-game02-all-boss-ko.md)：所有Boss勝利流程補播KO，包含一鍵過關；與死亡事件去重、重打重置。
+
+- [2026-11-17 使用者打擊與KO音效](handoffs/2026-11-17-game02-user-hit-ko.md)：hit.wav取代一般／重擊，ko.wav用於Boss真正死亡與最終收尾；保留原音、節流避免疊播。
+
+- [2026-11-17 受擊頭像與紅光](handoffs/2026-11-17-game02-hurt-expression.md)：扣血切換表情0.7秒並閃紅色邊緣，換關清除、無敵不觸發。
+
+- [2026-11-17 天下無敵各關勇氣超人進場](handoffs/2026-11-17-game02-god-entry.md)：天下無敵所有關卡／重打直接勇氣超人、滿勇氣；正常輪次不變，全關進場測試通過。
+
+- [2026-11-17 快速通關按鈕美化](handoffs/2026-11-17-game02-quick-button-style.md)：深綠金框、快進圖示、漫畫立體底座，保留秘技長按機制與原位置。
+
+- [2026-11-17 秘技長按與表情包對話卡](handoffs/2026-11-17-game02-secret-hold-art.md)：三連點改為按住5秒，偷笑表情包＋粉紅漫畫對話卡，防短按／拖動誤觸。
+
+- [2026-11-17 三連點秘技開關](handoffs/2026-11-17-game02-secret-toggle.md)：通關按鈕預設隱藏；三連點小天使確認開啟，再三連點直接隱藏，防操作鍵誤觸與暫停確認。
+
+- [2026-11-17 開始按鈕整合輪迴提示](handoffs/2026-11-17-game02-start-round-bubble.md)：輪迴文字縮為主按鈕右上黑色對話框；天下無敵時整顆按鈕彩色，移除底部獨立列。
+
+- [2026-11-17 UI 堆疊順序檢驗與統一](handoffs/2026-11-17-game02-ui-layer-audit.md)：提示高於 Boss 血條、戰鬥連擊高於 HUD；對話／選單／過場／載入優先，隱藏殘留裝飾，改善橫式提示尺寸；三尺寸與操作回歸檢驗。
 
 - [2026-11-17 New Game+ 輪迴系統（Claude）](handoffs/2026-11-17-game02-newgame-plus-rounds.md)：破關後重玩記錄輪數，主選單標示「你已經第 N 次去尋找勇氣」、第 4 輪起「你已經天下無敵了」(金色流光、置中滿寬)。每破一輪怪量×+0.5、boss 出招冷卻×+0.3，最多 +3 階封頂；天下無敵後勇氣槽不流失(永久勇氣超人開掛)、全招式全關卡、怪量/攻擊頻率/難度全最高。**防刷**：破關結算給「從序章開始重玩(進度歸零、計一刷)」與「直接選關(自由挑戰、不計刷)」兩選項；只有第一次破關或從序章重玩那一輪的破關才計一刷，跳關重打最終話不再刷輪。跑馬燈加輪迴提示。字型重生(1958→1974 字，含「嫩」)。三語同步，headless 全驗證 0 error。
 

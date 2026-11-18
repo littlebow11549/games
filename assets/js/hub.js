@@ -22,7 +22,7 @@ const COPY = {
 };
 const LANGUAGE_KEY='gamehub_language';
 const FAVORITES_KEY='gamehub_favorites';
-const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/branding/icon_02.webp',categories:['puzzle','memory'],status:'ready'},{id:'brave-guy',folder:'02_brave_guy',name:'勇氣超人 Brave Guy',descriptionKey:'description2',icon:'02_brave_guy/assets/runtime/pic/branding/icon_01.webp',categories:['action'],status:'ready'}];
+const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'記憶水晶 Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/branding/icon_02.webp',categories:['puzzle','memory'],status:'ready'},{id:'brave-guy',folder:'02_brave_guy',name:'勇氣超人 Brave Guy',descriptionKey:'description2',icon:'02_brave_guy/assets/runtime/pic/branding/icon_01.webp',categories:['action'],status:'ready'}];
 const grid=document.getElementById('grid');
 const status=document.getElementById('result-status');
 const select=document.getElementById('language');
@@ -71,7 +71,7 @@ function renderGames(message=''){
   game.categories.forEach(category=>{const tag=document.createElement('span');tag.className='tag';tag.textContent=text(category);tags.append(tag);});
   const heading=document.createElement('div');heading.className='game-title';
   const title=document.createElement('h3');const link=document.createElement('a');link.href=game.folder+'/';link.target='_blank';link.rel='noopener noreferrer';link.textContent=game.name;link.setAttribute('aria-label',`${text('play')} — ${game.name}`);title.append(link);
-  const arrow=document.createElement('span');arrow.className='card-arrow';arrow.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 18 18 6M6 6h12v12"/></svg>';arrow.setAttribute('aria-hidden','true');heading.append(title,arrow);
+  heading.append(title);
   const description=document.createElement('p');description.textContent=text(game.descriptionKey);body.append(tags,heading,description);card.append(cover,favorite,body);grid.append(card);
  });
  // Keep one complete desktop row. Empty slots represent unbuilt games, never playable links.

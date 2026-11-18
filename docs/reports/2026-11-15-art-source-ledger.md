@@ -91,3 +91,9 @@
 已定位目前圖源 `icons/btn_dodge_transform_sheet.png`（下列紅圍巾三態）及 CSS 接線。使用者明確要求將紅圍巾改為勇氣寶石並重新繪製，故新增獨立寶石按鈕；非依缺件清單重工。舊圖集保留供閃避按鈕使用。
 
 補充：滿氣紅圍巾另由 `ui/control_extras_sheet.webp` 提供（hud-art.css 高優先度覆蓋），亦已解除該變身鍵引用；搖桿仍沿用原圖集。新寶石已接入普通／就緒／按下／鎖定狀態。
+
+## 2026-11-18 記憶水晶 Banner 專用巴哥（使用者明確要求重繪）
+
+- 已核對現有 `01_memory_crash/assets/source/pic/character/pug_idle_full.png`：8格待機圖集，先前Banner只取第一格。
+- 使用者本輪明確要求重新繪製Banner主角並放大右側主視覺，授權新增一張「朝右介紹鑽石」的獨立姿勢，不覆蓋既有遊戲待機圖集。
+- 新素材歸檔於根目錄 `assets/source/pic/banner/`，生成結果、尺寸與驗證見本輪交接報告。

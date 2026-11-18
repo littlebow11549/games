@@ -392,3 +392,8 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-16 對話點按音 v4
 `source/sfx/sfx_dialog_soft_v4.wav`：原創DSP，PCM16 mono 44.1kHz、85ms、峰值-19.94dBFS，無噪音層；manifest dialog_next接入。重建腳本 `../../tools/make_game02_dialog_soft.py`。其他v3音效及原對話檔保留。
+
+### 2026-11-17 使用者提供音效
+- `source/sfx/hit.wav`：原始 WAV，PCM16／44.1kHz／立體聲／0.737秒；一般命中與重擊共用。
+- `source/sfx/ko.wav`：原始 WAV，PCM16／11.025kHz／立體聲／1.443秒；Boss 實際死亡（含最終收尾）播放。
+- 保留上傳原檔，不重合成、不改音色；manifest.sfx 對應 hit、crit、boss_ko。

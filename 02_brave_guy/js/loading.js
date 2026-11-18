@@ -1,8 +1,8 @@
-import { words } from './run-records.js?v=20261115fast';
-import { lang } from './i18n.js?v=20261118seal';
+import { words } from './run-records.js?v=20261118seal2';
+import { lang } from './i18n.js?v=20261118seal2';
 let manifestPromise,gameplayPromise,gameplayReady=false;const decoded=new Set();
 export async function preloadImages(report=()=>{},scope='boot'){
- if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261116gem').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
+ if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261118seal2').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
  const all=await manifestPromise;
  // 只載「當前語言」的字藝/logo（_en/_zh/_ja 三語變體各只需一份，省約 10MB）；切語言時由 preloadLanguage 背景補載
  const tag=lang==='zh-Hant'?'zh':lang;

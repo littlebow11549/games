@@ -1,4 +1,4 @@
-import { createPictureFilm } from './picture-film.js?v=20261116qian';
+import { createPictureFilm } from './picture-film.js?v=20261118seal2';
 export const VICTORY_KEYS=['folaidiKing','qian','qianBiz','jiamangKing','lan','nightmare','midKing','hell','kabanKing','xinji','baguashe','lanMgr','ganqiaoFull','guan','incubus'];
 export function createVictoryStoryboard(root){
  const film=createPictureFilm(root,'victory-storyboard');let kinds=[];

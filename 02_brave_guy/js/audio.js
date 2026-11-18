@@ -204,9 +204,10 @@ export class GameAudio {
   }
 
   sfx(name) {
+    if(name==='crit')name='hit'; // One supplied impact recording and shared rate limit.
     if (this.muted) return;
     const now=this.ctx?.currentTime;
-    const gap={dialog_next:.08,spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.035,crit:.06,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
+    const gap={dialog_next:.08,spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.1,crit:.1,boss_ko:.6,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
     if(Number.isFinite(now)){if(now-(this.sfxLast.get(name)??-Infinity)<gap)return;this.sfxLast.set(name,now);}
     let source=this.sfxTracks[name],cacheKey=name;
     if(Array.isArray(source)){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%source.length);cacheKey=`${name}:${i}`;source=source[i];}
@@ -218,7 +219,7 @@ export class GameAudio {
         if(name==='applause'||name==='crowd_cheer'||name==='victory_human_cheer')this.crowdVoices.add(player);
         player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);};player.start();return;
       }
-      if(name==='victory_human_cheer') {
+      if(name==='victory_human_cheer'||name==='boss_ko') {
         const epoch=this.celebrationEpoch;
         this.loadSfx(cacheKey,this.resolve(source)).then(()=>{
           if(epoch===this.celebrationEpoch && this.sfxBuffers.has(cacheKey) && !this.muted){this.sfxLast.delete(name);this.sfx(name);}
@@ -227,7 +228,8 @@ export class GameAudio {
       }
       this.loadSfx(cacheKey,this.resolve(source));
     }
-    if(name==='victory_human_cheer')return; // Recorded voice only: never substitute a synthesized cue.
+    if(name==='victory_human_cheer'||name==='boss_ko')return; // Recorded voice only: never substitute a synthesized cue.
+    if(name==='hit'&&this.sfxTracks.hit){return;}
     if(name==='stage_select'||name==='dialog_next'||name==='win'){this.cleanUiCue(name);return;}
     const basic=['swing','hit','crit','boom','hurt','skill','dodge','shoot','ui','win','lose'];
     const fallback=basic.includes(name)?name:/burst|slam|quake|blast|done|reveal|beam_end/.test(name)?'boom':/punch|kick|fly|fan/.test(name)?'swing':/hurt|guilt/.test(name)?'hurt':/full|beam|charge|revive|combo/.test(name)?'skill':'ui';

@@ -1,0 +1,31 @@
+/* Global stacking order. Keep combat overlays below every blocking screen. */
+:root{
+ --layer-scene:0;--layer-impact:5;--layer-hud:10;--layer-particles:20;
+ --layer-combo:30;--layer-dialogue:40;--layer-menu:50;--layer-pause:60;
+ --layer-cinema:70;--layer-opening:80;--layer-loading:100;
+}
+#scene{z-index:var(--layer-scene)}
+#hit-feedback{z-index:var(--layer-impact);pointer-events:none}
+#hud{z-index:var(--layer-hud);isolation:isolate}
+/* Local HUD order: world annotations < information < controls < announcements. */
+#world-ui{z-index:0;pointer-events:none}
+#angel-bubble{z-index:1;pointer-events:none}
+#hud .quest{z-index:2}
+#hud .hud-top-left,#hud #debuffs{z-index:3}
+#hud #minimap{z-index:4}
+#hud #boss-bar{z-index:5;pointer-events:none}
+#hud .actions,#hud #stick-zone,#hud .hud-top-right{z-index:6}
+#hud #banner{z-index:7;pointer-events:none}
+.meter-shards{z-index:var(--layer-particles);pointer-events:none}
+.game-art #combo{z-index:var(--layer-combo);pointer-events:none}
+#dialog{z-index:var(--layer-dialogue)}
+#overlay{z-index:var(--layer-menu)}
+#pause-menu{z-index:var(--layer-pause)}
+#cinema{z-index:var(--layer-cinema)}
+#opening{z-index:var(--layer-opening)}
+#boot-scene{z-index:var(--layer-loading)}
+/* Decorative combat content must not leak into dialogue, menus or films.
+   Native reset-progress.showModal() stays in the browser top layer. */
+body:has(#hud[hidden],#dialog:not([hidden]),#pause-menu:not([hidden]),#overlay:not([hidden]),#cinema:not([hidden]),#opening:not([hidden]),#boot-scene:not([hidden])) :is(#combo,.meter-shards,#hit-feedback){display:none!important}
+/* Fit announcements to short landscape screens as well as portrait widths. */
+.game-art #banner.has-word-art{width:min(84vw,90svh,630px)}
