@@ -67,15 +67,28 @@ export class Input {
       this.stick.y = dy / R;
     };
     const release = (e) => {
-      if (e.pointerId !== pid) return;
+      if (e && e.pointerId !== pid) return;
       pid = null;
       this.stick.x = this.stick.y = 0;
       knob.style.transform = '';
     };
-    zone.addEventListener('pointerdown', (e) => { pid = e.pointerId; zone.setPointerCapture(pid); setKnob(e); });
+    zone.addEventListener('pointerdown', (e) => {
+      if (pid !== null || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      const b = base.getBoundingClientRect();
+      // Only start on the visible stick plus 8 CSS px of circular tolerance.
+      const radius = Math.min(b.width, b.height) / 2 + 8;
+      if (Math.hypot(e.clientX - b.left - b.width / 2, e.clientY - b.top - b.height / 2) > radius) return;
+      e.preventDefault();
+      pid = e.pointerId;
+      zone.setPointerCapture(pid);
+      setKnob(e);
+    });
     zone.addEventListener('pointermove', (e) => { if (e.pointerId === pid) setKnob(e); });
     zone.addEventListener('pointerup', release);
     zone.addEventListener('pointercancel', release);
+    zone.addEventListener('lostpointercapture', release);
+    addEventListener('blur', () => release());
+    document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
 
     for (const btn of document.querySelectorAll('[data-action]')) {
       const action = btn.dataset.action;
