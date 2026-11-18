@@ -178,3 +178,17 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
 .game-cover{min-height:164px}
 @media(max-width:760px){.game-cover{min-height:136px}}
 @media(max-width:360px){.game-cover{min-height:120px}}
+/* Let the crystal chamber lead; keep the pug beside, not over, the main gem. */
+.featured-carousel .banner::before{background:linear-gradient(90deg,#061322a6,transparent 48%)}
+.featured-carousel .banner-content{background:linear-gradient(90deg,#06132299,transparent)}
+.memory-banner-pug{width:260px;height:260px;left:36%;right:auto;bottom:-8px}
+@media(max-width:760px){
+ .featured-carousel .banner-art{background-size:auto 230px;background-position:calc(100% + 82px) top}
+ .featured-carousel .banner::before{background:linear-gradient(90deg,#06132299,transparent 45%),linear-gradient(0deg,#07192a,transparent 35%)}
+ .featured-carousel .banner-content{background:transparent}
+ .memory-banner-pug{width:170px;height:170px;left:auto;right:4px;bottom:-10px}
+}
+@media(max-width:360px){
+ .featured-carousel .banner-art{background-size:auto 190px;background-position:calc(100% + 76px) top}
+ .memory-banner-pug{width:155px;height:155px;right:0;bottom:0}
+}
