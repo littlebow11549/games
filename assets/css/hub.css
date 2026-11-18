@@ -210,3 +210,18 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
  .featured-carousel .feature-logo{height:130px;flex-shrink:0}
 }
 @media(min-width:361px) and (max-width:760px){.memory-banner-pug{width:137px;height:150px;bottom:0}}
+
+/* Fill the complete mobile banner height, including the floor behind the pug. */
+@media(max-width:760px){
+ .featured-carousel .banner-art{background-size:auto 100%;background-position:calc(100% + 98px) center}
+}
+@media(max-width:360px){
+ .featured-carousel .banner-art{background-position:calc(100% + 85px) center}
+}
+/* Fade the shifted illustration edge into the mobile banner background. */
+@media(max-width:760px){
+ .featured-carousel .brave-banner-art{
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 26%);
+  mask-image:linear-gradient(to right,transparent 0%,#000 26%);
+ }
+}
