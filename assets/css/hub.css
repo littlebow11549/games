@@ -163,3 +163,18 @@ html[lang="th"] h1{line-height:1.3;letter-spacing:0}
 @media(max-width:760px){
  .featured-carousel .brave-banner-art{transform:translateX(12%)}
 }
+/* Reuse the game's full-body pug sprite, showing its first idle pose. */
+.memory-banner-pug{position:absolute;right:12%;bottom:0;width:320px;height:320px;background:url('../../01_memory_crash/assets/runtime/pic/batch3/pug_idle_full.webp') 0 0/400% 200% no-repeat;pointer-events:none;filter:drop-shadow(0 8px 16px #00152780)}
+.featured-carousel .banner-content{z-index:1}
+.game-icon{width:140px;height:140px}
+@media(max-width:760px){
+ .memory-banner-pug{width:235px;height:235px;right:-16px;bottom:8px}
+ .game-icon{width:112px;height:112px;max-width:78%;object-fit:contain}
+}
+@media(max-width:360px){
+ .memory-banner-pug{width:210px;height:210px;right:-22px;bottom:18px}
+ .game-icon{width:96px;height:96px}
+}
+.game-cover{min-height:164px}
+@media(max-width:760px){.game-cover{min-height:136px}}
+@media(max-width:360px){.game-cover{min-height:120px}}

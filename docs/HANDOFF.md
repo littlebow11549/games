@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-18 Banner巴哥與Icon放大](handoffs/2026-11-18-hub-pug-icons.md)：沿用全身巴哥加入記憶水晶Banner，兩款遊戲Icon放大並保留留白。
+
 - [2026-11-17 手機Banner人物右移](handoffs/2026-11-17-hub-mobile-hero-position.md)：人物右移12%，減少Logo遮擋超人主體，保留少量重疊。
 
 - [2026-11-17 Boss過場配樂](handoffs/2026-11-17-game02-boss-scene-music.md)：過場還原各Boss原曲，回戰場已變身則恢復勇氣超人音樂，含冠老闆。
