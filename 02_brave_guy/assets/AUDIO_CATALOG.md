@@ -1,0 +1,129 @@
+# 勇氣超人音訊用途清單
+
+編號與 audio-catalog.json／audio-review.html 一致；提供替換檔時指定編號。
+
+|編號|用途名稱|播放事件|檔案|
+|---|---|---|---|
+|B01|一般戰鬥備用配樂|bgm_battle|assets/source/music/bgm_battle.ogg|
+|B02|一般Boss戰與出場備用配樂|bgm_boss|assets/source/music/bgm_boss.ogg|
+|B03|Boss久戰加壓配樂|bgm_boss_rage|assets/source/music/bgm_boss_rage.ogg|
+|B04|佛賴弟王：Boss戰／過場配樂|bgm_boss_folaidiKing|assets/source/music/bgm_boss_folaidiKing.ogg|
+|B05|錢大姐：Boss戰／過場配樂|bgm_boss_qian|assets/source/music/bgm_boss_qian.ogg|
+|B06|錢經理：Boss戰／過場配樂|bgm_boss_qianBiz|assets/source/music/bgm_boss_qianBiz.ogg|
+|B07|藍教頭：Boss戰／過場配樂|bgm_boss_lan|assets/source/music/bgm_boss_lan.ogg|
+|B08|特大隻的悶幹譙：Boss戰／過場配樂|bgm_boss_midKing|assets/source/music/bgm_boss_midKing.ogg|
+|B09|加班鬼王：Boss戰／過場配樂|bgm_boss_kabanKing|assets/source/music/bgm_boss_kabanKing.ogg|
+|B10|duo：Boss戰／過場配樂|bgm_boss_duo|assets/source/music/bgm_boss_duo.ogg|
+|B11|藍經理：Boss戰／過場配樂|bgm_boss_lanMgr|assets/source/music/bgm_boss_lanMgr.ogg|
+|B12|幹譙龍：Boss戰／過場配樂|bgm_boss_ganqiaoFull|assets/source/music/bgm_boss_ganqiaoFull.ogg|
+|B13|冠老闆：Boss戰／過場配樂|bgm_boss_guan|assets/source/music/bgm_boss_guan.ogg|
+|B14|關卡 3-6 財務部與年終帳|bgm_stage_3_6|assets/source/music/bgm_stage_3_6_finance.ogg|
+|B15|關卡 3-7 跨部門與甩鍋會議|bgm_stage_3_7|assets/source/music/bgm_stage_3_7_blame_meeting.ogg|
+|B16|假忙森主管：Boss戰／過場配樂|bgm_boss_jiamangKing|assets/source/music/bgm_boss_jiamangKing.ogg|
+|B17|勝利配樂|bgm_victory|assets/source/music/bgm_victory.ogg|
+|B18|關卡 1-0 宿舍房間|bgm_stage_1_0|assets/source/music/bgm_stage_1_0_dorm.ogg|
+|B19|關卡 1-1 教學大樓長廊|bgm_stage_1_1|assets/source/music/bgm_stage_1_1_school_corridor.ogg|
+|B20|關卡 1-2 籃球場|bgm_stage_1_2|assets/source/music/bgm_stage_1_2_basketball_court.ogg|
+|B21|關卡 1-3 教官室與司令台|bgm_stage_1_3|assets/source/music/bgm_stage_1_3_instructor_office.ogg|
+|B22|關卡 1-4 校門口|bgm_stage_1_4|assets/source/music/bgm_stage_1_4_nightmare_gate.ogg|
+|B23|關卡 2-1 黑森林|bgm_stage_2_1|assets/source/music/bgm_stage_2_1_dark_forest.ogg|
+|B24|關卡 2-2 夜晚的村落|bgm_stage_2_2|assets/source/music/bgm_stage_2_2_hell_village.ogg|
+|B25|關卡 3-0 加班的辦公桌|bgm_stage_3_0|assets/source/music/bgm_stage_3_0_overtime_desk.ogg|
+|B26|關卡 3-1 一樓大廳與打卡機|bgm_stage_3_1|assets/source/music/bgm_stage_3_1_clockin_lobby.ogg|
+|B27|關卡 3-2 開放式辦公室與茶水間|bgm_stage_3_2|assets/source/music/bgm_stage_3_2_office_pantry.ogg|
+|B28|關卡 3-3 會議室|bgm_stage_3_3|assets/source/music/bgm_stage_3_3_meeting_room.ogg|
+|B29|關卡 3-4 客服部與匿名留言板|bgm_stage_3_4|assets/source/music/bgm_stage_3_4_customer_service.ogg|
+|B30|關卡 3-5 頂樓老闆辦公室／慣老闆出場曲（已指定）|bgm_stage_3_5|assets/source/music/bgm_stage_3_5_rooftop_office_guan_entrance.ogg|
+|B31|關卡 4-1 董事長室|bgm_stage_4_1|assets/source/music/bgm_stage_4_1_chairman_incubus.ogg|
+|B32|標題選單配樂|bgm_title|assets/source/music/bgm_title.ogg|
+|B33|首次變身劇情配樂|bgm_transform|assets/source/music/bgm_transform.ogg|
+|B34|戰敗過場配樂|bgm_defeat|assets/source/music/bgm_defeat.ogg|
+|B35|劇情對話配樂|bgm_talk|assets/source/music/bgm_talk.ogg|
+|B36|結局過場配樂|bgm_ending|assets/source/music/bgm_ending.ogg|
+|B37|製作名單配樂|bgm_credits|assets/source/music/bgm_credits.ogg|
+|B38|勇氣超人變身後戰鬥配樂|bgm_brave|assets/source/music/bgm_brave.ogg|
+|S01|揮拳變化1|punch_1|assets/source/sfx/clean/sfx_punch_1_clean.wav|
+|S02|打擊變化1|hit_1|assets/source/sfx/clean/sfx_hit_1_clean.wav|
+|S03|小怪倒下變化1|enemy_down_1|assets/source/sfx/clean/sfx_enemy_down_1_clean.wav|
+|S04|揮拳變化2|punch_2|assets/source/sfx/clean/sfx_punch_2_clean.wav|
+|S05|打擊變化2|hit_2|assets/source/sfx/clean/sfx_hit_2_clean.wav|
+|S06|小怪倒下變化2|enemy_down_2|assets/source/sfx/clean/sfx_enemy_down_2_clean.wav|
+|S07|揮拳變化3|punch_3|assets/source/sfx/clean/sfx_punch_3_clean.wav|
+|S08|打擊變化3|hit_3|assets/source/sfx/clean/sfx_hit_3_clean.wav|
+|S09|小怪倒下變化3|enemy_down_3|assets/source/sfx/clean/sfx_enemy_down_3_clean.wav|
+|S10|重擊命中|hit_heavy|assets/source/sfx/clean/sfx_hit_heavy_clean.wav|
+|S11|旋風踢|kick_spin|assets/source/sfx/clean/sfx_kick_spin_clean.wav|
+|S12|閃避|dodge|assets/source/sfx/clean/sfx_dodge_clean.wav|
+|S13|完美閃避|dodge_perfect|assets/source/sfx/clean/sfx_dodge_perfect_clean.wav|
+|S14|主角受傷|hurt|assets/source/sfx/sfx_hurt.mp3|
+|S15|學生出拳|student_punch|assets/source/sfx/sfx_student_punch.mp3|
+|S16|衝刺|dash|assets/source/sfx/clean/sfx_dash_clean.wav|
+|S17|氣彈發射|ki_shot|assets/source/sfx/sfx_ki_shot.mp3|
+|S18|氣功爆發|ki_blast|assets/source/sfx/clean/sfx_ki_blast_clean.wav|
+|S19|氣功震地|quake|assets/source/sfx/sfx_quake.mp3|
+|S20|光束起手|beam_start|assets/source/sfx/clean/sfx_beam_start_clean.wav|
+|S21|光束持續發射|beam_loop|assets/source/sfx/clean/sfx_beam_loop_clean.wav|
+|S22|光束收尾|beam_end|assets/source/sfx/clean/sfx_beam_end_clean.wav|
+|S23|光束命中|beam_hit|assets/source/sfx/sfx_beam_hit.wav|
+|S24|勇氣滿格|courage_full|assets/source/sfx/clean/sfx_courage_full_clean.wav|
+|S25|氣量滿格|qi_full|assets/source/sfx/clean/sfx_qi_full_clean.wav|
+|S26|小天使救援復活|revive|assets/source/sfx/sfx_revive.mp3|
+|S27|新敵人波次|wave|assets/source/sfx/sfx_wave.mp3|
+|S28|10連擊提示|combo_10|assets/source/sfx/sfx_combo_10.mp3|
+|S29|50連擊提示|combo_50|assets/source/sfx/sfx_combo_50.mp3|
+|S30|100連擊提示|combo_100|assets/source/sfx/clean/sfx_combo_100_clean.wav|
+|S31|分數結算提示|win|assets/source/sfx/sfx_score_result.wav|
+|S32|戰敗提示|lose|assets/source/sfx/clean/sfx_lose_clean.wav|
+|S33|變身蓄力|transform_charge|assets/source/sfx/sfx_transform_charge.mp3|
+|S34|變身完成|transform_done|assets/source/sfx/sfx_transform_done.mp3|
+|S35|解除變身|revert|assets/source/sfx/sfx_revert.mp3|
+|S36|罪惡感累積|guilt_tick|assets/source/sfx/clean/sfx_guilt_tick_clean.wav|
+|S37|罪惡感裂開|guilt_crack|assets/source/sfx/clean/sfx_guilt_crack_clean.wav|
+|S38|罪惡感爆發|guilt_burst|assets/source/sfx/clean/sfx_guilt_burst_clean.wav|
+|S39|敵人登場|spawn|assets/source/sfx/sfx_spawn.mp3|
+|S40|敵人被打飛|enemy_fly|assets/source/sfx/sfx_enemy_fly.mp3|
+|S41|防禦擋擊|guard|assets/source/sfx/sfx_guard.mp3|
+|S42|面具脫落|mask_off|assets/source/sfx/sfx_mask_off.mp3|
+|S43|敵人射擊|enemy_shot|assets/source/sfx/sfx_enemy_shot.mp3|
+|S44|Boss警示|boss_warn|assets/source/sfx/sfx_boss_warn.mp3|
+|S45|Boss重砸|boss_slam|assets/source/sfx/sfx_boss_slam.mp3|
+|S46|俊雄冒出|junxiong_pop|assets/source/sfx/clean/sfx_junxiong_pop_clean.wav|
+|S47|點選關卡|stage_select|assets/source/sfx/sfx_stage_select_clean.wav|
+|S48|點選下一句對話|dialog_next|assets/source/sfx/sfx_dialog_next.wav|
+|S49|介面點擊|ui_tap|assets/source/sfx/clean/sfx_ui_tap_clean.wav|
+|S50|介面確認|ui_confirm|assets/source/sfx/clean/sfx_ui_confirm_clean.wav|
+|S51|介面返回|ui_back|assets/source/sfx/clean/sfx_ui_back_clean.wav|
+|S52|通知提示|notify|assets/source/sfx/clean/sfx_notify_clean.wav|
+|S53|打卡機|punch_clock|assets/source/sfx/clean/sfx_punch_clock_clean.wav|
+|S54|切換鎖定目標|lock_switch|assets/source/sfx/clean/sfx_lock_switch_clean.wav|
+|S55|對話氣泡|bubble|assets/source/sfx/clean/sfx_bubble_clean.wav|
+|S56|甩鍋飛行|pan_fly|assets/source/sfx/clean/sfx_pan_fly_clean.wav|
+|S57|甩鍋命中|pan_hit|assets/source/sfx/sfx_pan_hit.mp3|
+|S58|舊掌聲（停用）|applause|assets/source/sfx/sfx_applause_crowd.mp3|
+|S59|籌碼|chips|assets/source/sfx/clean/sfx_chips_clean.wav|
+|S60|哨聲|whistle|assets/source/sfx/sfx_whistle.mp3|
+|S61|扇動|fan|assets/source/sfx/sfx_fan.mp3|
+|S62|畫大餅|pie|assets/source/sfx/sfx_pie.mp3|
+|S63|佛賴弟出場滴答|folaidi_tick|assets/source/sfx/clean/sfx_folaidi_tick_clean.wav|
+|S64|佛賴弟出場閃爍|folaidi_flicker|assets/source/sfx/sfx_folaidi_flicker.mp3|
+|S65|佛賴弟出場升起|folaidi_rise|assets/source/sfx/sfx_folaidi_rise.mp3|
+|S66|佛賴弟現身|folaidi_reveal|assets/source/sfx/clean/sfx_folaidi_reveal_clean.wav|
+|S67|揮拳隨機音組|swing|assets/source/sfx/clean/sfx_punch_1_clean.wav、assets/source/sfx/clean/sfx_punch_2_clean.wav、assets/source/sfx/clean/sfx_punch_3_clean.wav|
+|S68|一般打擊命中（使用者提供）|hit|assets/source/sfx/sfx_combat_hit_user.wav|
+|S69|小怪倒下隨機音組|enemy_down|assets/source/sfx/clean/sfx_enemy_down_1_clean.wav、assets/source/sfx/clean/sfx_enemy_down_2_clean.wav、assets/source/sfx/clean/sfx_enemy_down_3_clean.wav|
+|S70|暴擊命中（共用打擊音）|crit|assets/source/sfx/sfx_combat_hit_user.wav|
+|S71|爆炸（共用震地音）|boom|assets/source/sfx/sfx_quake.mp3|
+|S72|技能提示（共用變身完成音）|skill|assets/source/sfx/sfx_transform_done.mp3|
+|S73|射擊（共用敵人射擊音）|shoot|assets/source/sfx/sfx_enemy_shot.mp3|
+|S74|介面操作（共用點擊音）|ui|assets/source/sfx/clean/sfx_ui_tap_clean.wav|
+|S75|變身分鏡星光|tf_stars|assets/source/sfx/sfx_tf_stars.mp3|
+|S76|變身分鏡剪影|tf_silhouette|assets/source/sfx/clean/sfx_tf_silhouette_clean.wav|
+|S77|變身分鏡手套|tf_glove|assets/source/sfx/sfx_tf_glove.mp3|
+|S78|變身分鏡護膝|tf_knee|assets/source/sfx/sfx_tf_knee.mp3|
+|S79|變身分鏡外套|tf_jacket|assets/source/sfx/sfx_tf_jacket.mp3|
+|S80|變身分鏡頭髮|tf_hair|assets/source/sfx/clean/sfx_tf_hair_clean.wav|
+|S81|變身分鏡圍巾|tf_scarf|assets/source/sfx/sfx_tf_scarf.mp3|
+|S82|變身分鏡定格|tf_pose|assets/source/sfx/sfx_tf_pose.mp3|
+|S83|舊合成歡呼（停用）|crowd_cheer|assets/source/sfx/clean/sfx_crowd_cheer_clean.wav|
+|S84|勝利真人歡呼（使用者提供）|victory_human_cheer|assets/source/sfx/sfx_victory_human_cheer_user.wav|
+|S85|擊敗每個Boss的KO（使用者提供）|boss_ko|assets/source/sfx/sfx_boss_defeat_ko_user.wav|

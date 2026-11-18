@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-18 全音訊用途清單與試聽](handoffs/2026-11-18-game02-audio-usage-catalog.md)：38首BGM、85音效槽位逐項用途命名與檢核，冠老闆出場改回指定辦公室原曲。
+
 - [2026-11-18 移除卡片箭頭](handoffs/2026-11-18-hub-remove-card-arrows.md)：移除遊戲標題旁裝飾箭頭，保留遊玩連結。
 
 - [2026-11-18 水晶Banner重新佈局](handoffs/2026-11-18-hub-crystal-layout.md)：擴大場景展示、巴哥縮小移位，手機鑽石與人物上下分離。

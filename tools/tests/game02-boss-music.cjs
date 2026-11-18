@@ -27,8 +27,8 @@ const assert=require('node:assert/strict');
   if(r.intro.phase==='dialog')assert.equal(r.intro.heard,r.intro.wanted,`intro ${r.id}`);
   assert.equal(r.cutscene.phase,'cinematic');assert.equal(r.cutscene.heard,r.cutscene.wanted,`cutscene ${r.id}`);
   assert.notEqual(r.cutscene.heard,'bgm_brave');
-  assert.equal(r.combat,r.form==='brave'?'bgm_brave':r.cutscene.wanted,`combat ${r.id}`);
-  if(r.boss==='guan')assert.equal(r.cutscene.heard,'bgm_boss_guan');
+  assert.equal(r.combat,r.form==='brave'?'bgm_brave':r.boss==='guan'?'bgm_boss_guan':r.cutscene.wanted,`combat ${r.id}`);
+  if(r.boss==='guan')assert.equal(r.cutscene.heard,'bgm_stage_3_5');
  }
  assert.deepEqual(errors,[]);console.log(`PASS ${rows.length} boss entries: original cutscene tracks, base/brave combat, Guan original track, stage intro music; no page errors`);
  await browser.close();

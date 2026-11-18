@@ -875,7 +875,9 @@ function feedQueue(dt) {
 }
 
 // 沿用各關原有配樂規則，讓登場對話／過場先播守關者原曲。
-function bossBgm() {
+function bossBgm(entrance = false) {
+  // 使用者指定：冠老闆登場沿用頂樓辦公室原曲，戰鬥配樂規則不變。
+  if (entrance && stage().boss === 'guan' && audio.tracks.bgm_stage_3_5) return 'bgm_stage_3_5';
   const own = `bgm_stage_${stage().id.replace('-', '_')}`;
   const shadowFight = ['nightmare', 'hell', 'incubus'].includes(stage().boss);
   if (audio.tracks[own] && (!stage().waves.length || shadowFight)) return own;
@@ -884,12 +886,12 @@ function bossBgm() {
 }
 function startBossIntro() {
   runDialog(stage().bossIntro, spawnBoss);
-  if (dialog) setBgm(bossBgm());
+  if (dialog) setBgm(bossBgm(true));
 }
 function spawnBoss() {
   const key = stage().boss;
   game.phase = 'cinematic';
-  setBgm(bossBgm());
+  setBgm(bossBgm(true));
   cinematics.boss(BOSS_GROUPS[key] || [key], () => {
     input.takeActions(); game.phase = 'playing'; spawnBossActual();
   });
@@ -2497,7 +2499,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261117userhit';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261118usage';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

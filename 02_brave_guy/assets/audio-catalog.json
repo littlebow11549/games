@@ -1,0 +1,1113 @@
+[
+  {
+    "id": "B01",
+    "key": "bgm_battle",
+    "name": "一般戰鬥備用配樂",
+    "files": [
+      "assets/source/music/bgm_battle.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B02",
+    "key": "bgm_boss",
+    "name": "一般Boss戰與出場備用配樂",
+    "files": [
+      "assets/source/music/bgm_boss.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B03",
+    "key": "bgm_boss_rage",
+    "name": "Boss久戰加壓配樂",
+    "files": [
+      "assets/source/music/bgm_boss_rage.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B04",
+    "key": "bgm_boss_folaidiKing",
+    "name": "佛賴弟王：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_folaidiKing.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B05",
+    "key": "bgm_boss_qian",
+    "name": "錢大姐：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_qian.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B06",
+    "key": "bgm_boss_qianBiz",
+    "name": "錢經理：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_qianBiz.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B07",
+    "key": "bgm_boss_lan",
+    "name": "藍教頭：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_lan.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B08",
+    "key": "bgm_boss_midKing",
+    "name": "特大隻的悶幹譙：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_midKing.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B09",
+    "key": "bgm_boss_kabanKing",
+    "name": "加班鬼王：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_kabanKing.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B10",
+    "key": "bgm_boss_duo",
+    "name": "duo：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_duo.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B11",
+    "key": "bgm_boss_lanMgr",
+    "name": "藍經理：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_lanMgr.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B12",
+    "key": "bgm_boss_ganqiaoFull",
+    "name": "幹譙龍：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_ganqiaoFull.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B13",
+    "key": "bgm_boss_guan",
+    "name": "冠老闆：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_guan.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B14",
+    "key": "bgm_stage_3_6",
+    "name": "關卡 3-6 財務部與年終帳",
+    "files": [
+      "assets/source/music/bgm_stage_3_6_finance.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B15",
+    "key": "bgm_stage_3_7",
+    "name": "關卡 3-7 跨部門與甩鍋會議",
+    "files": [
+      "assets/source/music/bgm_stage_3_7_blame_meeting.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B16",
+    "key": "bgm_boss_jiamangKing",
+    "name": "假忙森主管：Boss戰／過場配樂",
+    "files": [
+      "assets/source/music/bgm_boss_jiamangKing.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B17",
+    "key": "bgm_victory",
+    "name": "勝利配樂",
+    "files": [
+      "assets/source/music/bgm_victory.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B18",
+    "key": "bgm_stage_1_0",
+    "name": "關卡 1-0 宿舍房間",
+    "files": [
+      "assets/source/music/bgm_stage_1_0_dorm.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B19",
+    "key": "bgm_stage_1_1",
+    "name": "關卡 1-1 教學大樓長廊",
+    "files": [
+      "assets/source/music/bgm_stage_1_1_school_corridor.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B20",
+    "key": "bgm_stage_1_2",
+    "name": "關卡 1-2 籃球場",
+    "files": [
+      "assets/source/music/bgm_stage_1_2_basketball_court.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B21",
+    "key": "bgm_stage_1_3",
+    "name": "關卡 1-3 教官室與司令台",
+    "files": [
+      "assets/source/music/bgm_stage_1_3_instructor_office.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B22",
+    "key": "bgm_stage_1_4",
+    "name": "關卡 1-4 校門口",
+    "files": [
+      "assets/source/music/bgm_stage_1_4_nightmare_gate.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B23",
+    "key": "bgm_stage_2_1",
+    "name": "關卡 2-1 黑森林",
+    "files": [
+      "assets/source/music/bgm_stage_2_1_dark_forest.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B24",
+    "key": "bgm_stage_2_2",
+    "name": "關卡 2-2 夜晚的村落",
+    "files": [
+      "assets/source/music/bgm_stage_2_2_hell_village.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B25",
+    "key": "bgm_stage_3_0",
+    "name": "關卡 3-0 加班的辦公桌",
+    "files": [
+      "assets/source/music/bgm_stage_3_0_overtime_desk.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B26",
+    "key": "bgm_stage_3_1",
+    "name": "關卡 3-1 一樓大廳與打卡機",
+    "files": [
+      "assets/source/music/bgm_stage_3_1_clockin_lobby.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B27",
+    "key": "bgm_stage_3_2",
+    "name": "關卡 3-2 開放式辦公室與茶水間",
+    "files": [
+      "assets/source/music/bgm_stage_3_2_office_pantry.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B28",
+    "key": "bgm_stage_3_3",
+    "name": "關卡 3-3 會議室",
+    "files": [
+      "assets/source/music/bgm_stage_3_3_meeting_room.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B29",
+    "key": "bgm_stage_3_4",
+    "name": "關卡 3-4 客服部與匿名留言板",
+    "files": [
+      "assets/source/music/bgm_stage_3_4_customer_service.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B30",
+    "key": "bgm_stage_3_5",
+    "name": "關卡 3-5 頂樓老闆辦公室／慣老闆出場曲（已指定）",
+    "files": [
+      "assets/source/music/bgm_stage_3_5_rooftop_office_guan_entrance.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B31",
+    "key": "bgm_stage_4_1",
+    "name": "關卡 4-1 董事長室",
+    "files": [
+      "assets/source/music/bgm_stage_4_1_chairman_incubus.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B32",
+    "key": "bgm_title",
+    "name": "標題選單配樂",
+    "files": [
+      "assets/source/music/bgm_title.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B33",
+    "key": "bgm_transform",
+    "name": "首次變身劇情配樂",
+    "files": [
+      "assets/source/music/bgm_transform.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B34",
+    "key": "bgm_defeat",
+    "name": "戰敗過場配樂",
+    "files": [
+      "assets/source/music/bgm_defeat.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B35",
+    "key": "bgm_talk",
+    "name": "劇情對話配樂",
+    "files": [
+      "assets/source/music/bgm_talk.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B36",
+    "key": "bgm_ending",
+    "name": "結局過場配樂",
+    "files": [
+      "assets/source/music/bgm_ending.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B37",
+    "key": "bgm_credits",
+    "name": "製作名單配樂",
+    "files": [
+      "assets/source/music/bgm_credits.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "B38",
+    "key": "bgm_brave",
+    "name": "勇氣超人變身後戰鬥配樂",
+    "files": [
+      "assets/source/music/bgm_brave.ogg"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S01",
+    "key": "punch_1",
+    "name": "揮拳變化1",
+    "files": [
+      "assets/source/sfx/clean/sfx_punch_1_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S02",
+    "key": "hit_1",
+    "name": "打擊變化1",
+    "files": [
+      "assets/source/sfx/clean/sfx_hit_1_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S03",
+    "key": "enemy_down_1",
+    "name": "小怪倒下變化1",
+    "files": [
+      "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S04",
+    "key": "punch_2",
+    "name": "揮拳變化2",
+    "files": [
+      "assets/source/sfx/clean/sfx_punch_2_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S05",
+    "key": "hit_2",
+    "name": "打擊變化2",
+    "files": [
+      "assets/source/sfx/clean/sfx_hit_2_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S06",
+    "key": "enemy_down_2",
+    "name": "小怪倒下變化2",
+    "files": [
+      "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S07",
+    "key": "punch_3",
+    "name": "揮拳變化3",
+    "files": [
+      "assets/source/sfx/clean/sfx_punch_3_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S08",
+    "key": "hit_3",
+    "name": "打擊變化3",
+    "files": [
+      "assets/source/sfx/clean/sfx_hit_3_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S09",
+    "key": "enemy_down_3",
+    "name": "小怪倒下變化3",
+    "files": [
+      "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S10",
+    "key": "hit_heavy",
+    "name": "重擊命中",
+    "files": [
+      "assets/source/sfx/clean/sfx_hit_heavy_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S11",
+    "key": "kick_spin",
+    "name": "旋風踢",
+    "files": [
+      "assets/source/sfx/clean/sfx_kick_spin_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S12",
+    "key": "dodge",
+    "name": "閃避",
+    "files": [
+      "assets/source/sfx/clean/sfx_dodge_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S13",
+    "key": "dodge_perfect",
+    "name": "完美閃避",
+    "files": [
+      "assets/source/sfx/clean/sfx_dodge_perfect_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S14",
+    "key": "hurt",
+    "name": "主角受傷",
+    "files": [
+      "assets/source/sfx/sfx_hurt.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S15",
+    "key": "student_punch",
+    "name": "學生出拳",
+    "files": [
+      "assets/source/sfx/sfx_student_punch.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S16",
+    "key": "dash",
+    "name": "衝刺",
+    "files": [
+      "assets/source/sfx/clean/sfx_dash_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S17",
+    "key": "ki_shot",
+    "name": "氣彈發射",
+    "files": [
+      "assets/source/sfx/sfx_ki_shot.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S18",
+    "key": "ki_blast",
+    "name": "氣功爆發",
+    "files": [
+      "assets/source/sfx/clean/sfx_ki_blast_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S19",
+    "key": "quake",
+    "name": "氣功震地",
+    "files": [
+      "assets/source/sfx/sfx_quake.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S20",
+    "key": "beam_start",
+    "name": "光束起手",
+    "files": [
+      "assets/source/sfx/clean/sfx_beam_start_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S21",
+    "key": "beam_loop",
+    "name": "光束持續發射",
+    "files": [
+      "assets/source/sfx/clean/sfx_beam_loop_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S22",
+    "key": "beam_end",
+    "name": "光束收尾",
+    "files": [
+      "assets/source/sfx/clean/sfx_beam_end_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S23",
+    "key": "beam_hit",
+    "name": "光束命中",
+    "files": [
+      "assets/source/sfx/sfx_beam_hit.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S24",
+    "key": "courage_full",
+    "name": "勇氣滿格",
+    "files": [
+      "assets/source/sfx/clean/sfx_courage_full_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S25",
+    "key": "qi_full",
+    "name": "氣量滿格",
+    "files": [
+      "assets/source/sfx/clean/sfx_qi_full_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S26",
+    "key": "revive",
+    "name": "小天使救援復活",
+    "files": [
+      "assets/source/sfx/sfx_revive.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S27",
+    "key": "wave",
+    "name": "新敵人波次",
+    "files": [
+      "assets/source/sfx/sfx_wave.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S28",
+    "key": "combo_10",
+    "name": "10連擊提示",
+    "files": [
+      "assets/source/sfx/sfx_combo_10.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S29",
+    "key": "combo_50",
+    "name": "50連擊提示",
+    "files": [
+      "assets/source/sfx/sfx_combo_50.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S30",
+    "key": "combo_100",
+    "name": "100連擊提示",
+    "files": [
+      "assets/source/sfx/clean/sfx_combo_100_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S31",
+    "key": "win",
+    "name": "分數結算提示",
+    "files": [
+      "assets/source/sfx/sfx_score_result.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S32",
+    "key": "lose",
+    "name": "戰敗提示",
+    "files": [
+      "assets/source/sfx/clean/sfx_lose_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S33",
+    "key": "transform_charge",
+    "name": "變身蓄力",
+    "files": [
+      "assets/source/sfx/sfx_transform_charge.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S34",
+    "key": "transform_done",
+    "name": "變身完成",
+    "files": [
+      "assets/source/sfx/sfx_transform_done.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S35",
+    "key": "revert",
+    "name": "解除變身",
+    "files": [
+      "assets/source/sfx/sfx_revert.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S36",
+    "key": "guilt_tick",
+    "name": "罪惡感累積",
+    "files": [
+      "assets/source/sfx/clean/sfx_guilt_tick_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S37",
+    "key": "guilt_crack",
+    "name": "罪惡感裂開",
+    "files": [
+      "assets/source/sfx/clean/sfx_guilt_crack_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S38",
+    "key": "guilt_burst",
+    "name": "罪惡感爆發",
+    "files": [
+      "assets/source/sfx/clean/sfx_guilt_burst_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S39",
+    "key": "spawn",
+    "name": "敵人登場",
+    "files": [
+      "assets/source/sfx/sfx_spawn.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S40",
+    "key": "enemy_fly",
+    "name": "敵人被打飛",
+    "files": [
+      "assets/source/sfx/sfx_enemy_fly.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S41",
+    "key": "guard",
+    "name": "防禦擋擊",
+    "files": [
+      "assets/source/sfx/sfx_guard.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S42",
+    "key": "mask_off",
+    "name": "面具脫落",
+    "files": [
+      "assets/source/sfx/sfx_mask_off.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S43",
+    "key": "enemy_shot",
+    "name": "敵人射擊",
+    "files": [
+      "assets/source/sfx/sfx_enemy_shot.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S44",
+    "key": "boss_warn",
+    "name": "Boss警示",
+    "files": [
+      "assets/source/sfx/sfx_boss_warn.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S45",
+    "key": "boss_slam",
+    "name": "Boss重砸",
+    "files": [
+      "assets/source/sfx/sfx_boss_slam.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S46",
+    "key": "junxiong_pop",
+    "name": "俊雄冒出",
+    "files": [
+      "assets/source/sfx/clean/sfx_junxiong_pop_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S47",
+    "key": "stage_select",
+    "name": "點選關卡",
+    "files": [
+      "assets/source/sfx/sfx_stage_select_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S48",
+    "key": "dialog_next",
+    "name": "點選下一句對話",
+    "files": [
+      "assets/source/sfx/sfx_dialog_next.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S49",
+    "key": "ui_tap",
+    "name": "介面點擊",
+    "files": [
+      "assets/source/sfx/clean/sfx_ui_tap_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S50",
+    "key": "ui_confirm",
+    "name": "介面確認",
+    "files": [
+      "assets/source/sfx/clean/sfx_ui_confirm_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S51",
+    "key": "ui_back",
+    "name": "介面返回",
+    "files": [
+      "assets/source/sfx/clean/sfx_ui_back_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S52",
+    "key": "notify",
+    "name": "通知提示",
+    "files": [
+      "assets/source/sfx/clean/sfx_notify_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S53",
+    "key": "punch_clock",
+    "name": "打卡機",
+    "files": [
+      "assets/source/sfx/clean/sfx_punch_clock_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S54",
+    "key": "lock_switch",
+    "name": "切換鎖定目標",
+    "files": [
+      "assets/source/sfx/clean/sfx_lock_switch_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S55",
+    "key": "bubble",
+    "name": "對話氣泡",
+    "files": [
+      "assets/source/sfx/clean/sfx_bubble_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S56",
+    "key": "pan_fly",
+    "name": "甩鍋飛行",
+    "files": [
+      "assets/source/sfx/clean/sfx_pan_fly_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S57",
+    "key": "pan_hit",
+    "name": "甩鍋命中",
+    "files": [
+      "assets/source/sfx/sfx_pan_hit.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S58",
+    "key": "applause",
+    "name": "舊掌聲（停用）",
+    "files": [
+      "assets/source/sfx/sfx_applause_crowd.mp3"
+    ],
+    "status": "停用，保留供核對"
+  },
+  {
+    "id": "S59",
+    "key": "chips",
+    "name": "籌碼",
+    "files": [
+      "assets/source/sfx/clean/sfx_chips_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S60",
+    "key": "whistle",
+    "name": "哨聲",
+    "files": [
+      "assets/source/sfx/sfx_whistle.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S61",
+    "key": "fan",
+    "name": "扇動",
+    "files": [
+      "assets/source/sfx/sfx_fan.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S62",
+    "key": "pie",
+    "name": "畫大餅",
+    "files": [
+      "assets/source/sfx/sfx_pie.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S63",
+    "key": "folaidi_tick",
+    "name": "佛賴弟出場滴答",
+    "files": [
+      "assets/source/sfx/clean/sfx_folaidi_tick_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S64",
+    "key": "folaidi_flicker",
+    "name": "佛賴弟出場閃爍",
+    "files": [
+      "assets/source/sfx/sfx_folaidi_flicker.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S65",
+    "key": "folaidi_rise",
+    "name": "佛賴弟出場升起",
+    "files": [
+      "assets/source/sfx/sfx_folaidi_rise.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S66",
+    "key": "folaidi_reveal",
+    "name": "佛賴弟現身",
+    "files": [
+      "assets/source/sfx/clean/sfx_folaidi_reveal_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S67",
+    "key": "swing",
+    "name": "揮拳隨機音組",
+    "files": [
+      "assets/source/sfx/clean/sfx_punch_1_clean.wav",
+      "assets/source/sfx/clean/sfx_punch_2_clean.wav",
+      "assets/source/sfx/clean/sfx_punch_3_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S68",
+    "key": "hit",
+    "name": "一般打擊命中（使用者提供）",
+    "files": [
+      "assets/source/sfx/sfx_combat_hit_user.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S69",
+    "key": "enemy_down",
+    "name": "小怪倒下隨機音組",
+    "files": [
+      "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav",
+      "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav",
+      "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S70",
+    "key": "crit",
+    "name": "暴擊命中（共用打擊音）",
+    "files": [
+      "assets/source/sfx/sfx_combat_hit_user.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S71",
+    "key": "boom",
+    "name": "爆炸（共用震地音）",
+    "files": [
+      "assets/source/sfx/sfx_quake.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S72",
+    "key": "skill",
+    "name": "技能提示（共用變身完成音）",
+    "files": [
+      "assets/source/sfx/sfx_transform_done.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S73",
+    "key": "shoot",
+    "name": "射擊（共用敵人射擊音）",
+    "files": [
+      "assets/source/sfx/sfx_enemy_shot.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S74",
+    "key": "ui",
+    "name": "介面操作（共用點擊音）",
+    "files": [
+      "assets/source/sfx/clean/sfx_ui_tap_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S75",
+    "key": "tf_stars",
+    "name": "變身分鏡星光",
+    "files": [
+      "assets/source/sfx/sfx_tf_stars.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S76",
+    "key": "tf_silhouette",
+    "name": "變身分鏡剪影",
+    "files": [
+      "assets/source/sfx/clean/sfx_tf_silhouette_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S77",
+    "key": "tf_glove",
+    "name": "變身分鏡手套",
+    "files": [
+      "assets/source/sfx/sfx_tf_glove.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S78",
+    "key": "tf_knee",
+    "name": "變身分鏡護膝",
+    "files": [
+      "assets/source/sfx/sfx_tf_knee.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S79",
+    "key": "tf_jacket",
+    "name": "變身分鏡外套",
+    "files": [
+      "assets/source/sfx/sfx_tf_jacket.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S80",
+    "key": "tf_hair",
+    "name": "變身分鏡頭髮",
+    "files": [
+      "assets/source/sfx/clean/sfx_tf_hair_clean.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S81",
+    "key": "tf_scarf",
+    "name": "變身分鏡圍巾",
+    "files": [
+      "assets/source/sfx/sfx_tf_scarf.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S82",
+    "key": "tf_pose",
+    "name": "變身分鏡定格",
+    "files": [
+      "assets/source/sfx/sfx_tf_pose.mp3"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S83",
+    "key": "crowd_cheer",
+    "name": "舊合成歡呼（停用）",
+    "files": [
+      "assets/source/sfx/clean/sfx_crowd_cheer_clean.wav"
+    ],
+    "status": "停用，保留供核對"
+  },
+  {
+    "id": "S84",
+    "key": "victory_human_cheer",
+    "name": "勝利真人歡呼（使用者提供）",
+    "files": [
+      "assets/source/sfx/sfx_victory_human_cheer_user.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S85",
+    "key": "boss_ko",
+    "name": "擊敗每個Boss的KO（使用者提供）",
+    "files": [
+      "assets/source/sfx/sfx_boss_defeat_ko_user.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  }
+]
