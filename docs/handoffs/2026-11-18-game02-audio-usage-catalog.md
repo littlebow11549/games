@@ -8,3 +8,5 @@
 - 驗證：28組Boss音樂切換測試通過，冠老闆出場為指定曲、變身回戰場為勇氣超人；ffprobe檢查manifest所有音檔及MP3備援；手機試聽頁123項、搜尋及標記保存通過。非人工完整聽完每首。
 - 檔案：main.js、play.html、manifest.json、source/music與source/sfx改名、tools/make_game02_dialog_soft.py、tools/tests/game02-boss-music.cjs，及上述清單與試聽頁。
 - 待使用者逐項檢核並提供替換音檔；尚未收到的新版本不預先替換。推送後Pages發布，聊天回報線上核對。
+
+- 清單補正雙Boss中文名稱（新雞與八卦蛇），並區分冠老闆B13戰鬥／勝利過場與B30出場曲。

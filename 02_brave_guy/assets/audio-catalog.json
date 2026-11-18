@@ -83,7 +83,7 @@
   {
     "id": "B10",
     "key": "bgm_boss_duo",
-    "name": "duo：Boss戰／過場配樂",
+    "name": "新雞與八卦蛇：雙Boss戰／過場配樂",
     "files": [
       "assets/source/music/bgm_boss_duo.ogg"
     ],
@@ -110,7 +110,7 @@
   {
     "id": "B13",
     "key": "bgm_boss_guan",
-    "name": "冠老闆：Boss戰／過場配樂",
+    "name": "冠老闆：未變身Boss戰／勝利過場配樂",
     "files": [
       "assets/source/music/bgm_boss_guan.ogg"
     ],

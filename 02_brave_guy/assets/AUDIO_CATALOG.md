@@ -13,10 +13,10 @@
 |B07|藍教頭：Boss戰／過場配樂|bgm_boss_lan|assets/source/music/bgm_boss_lan.ogg|
 |B08|特大隻的悶幹譙：Boss戰／過場配樂|bgm_boss_midKing|assets/source/music/bgm_boss_midKing.ogg|
 |B09|加班鬼王：Boss戰／過場配樂|bgm_boss_kabanKing|assets/source/music/bgm_boss_kabanKing.ogg|
-|B10|duo：Boss戰／過場配樂|bgm_boss_duo|assets/source/music/bgm_boss_duo.ogg|
+|B10|新雞與八卦蛇：雙Boss戰／過場配樂|bgm_boss_duo|assets/source/music/bgm_boss_duo.ogg|
 |B11|藍經理：Boss戰／過場配樂|bgm_boss_lanMgr|assets/source/music/bgm_boss_lanMgr.ogg|
 |B12|幹譙龍：Boss戰／過場配樂|bgm_boss_ganqiaoFull|assets/source/music/bgm_boss_ganqiaoFull.ogg|
-|B13|冠老闆：Boss戰／過場配樂|bgm_boss_guan|assets/source/music/bgm_boss_guan.ogg|
+|B13|冠老闆：未變身Boss戰／勝利過場配樂|bgm_boss_guan|assets/source/music/bgm_boss_guan.ogg|
 |B14|關卡 3-6 財務部與年終帳|bgm_stage_3_6|assets/source/music/bgm_stage_3_6_finance.ogg|
 |B15|關卡 3-7 跨部門與甩鍋會議|bgm_stage_3_7|assets/source/music/bgm_stage_3_7_blame_meeting.ogg|
 |B16|假忙森主管：Boss戰／過場配樂|bgm_boss_jiamangKing|assets/source/music/bgm_boss_jiamangKing.ogg|
