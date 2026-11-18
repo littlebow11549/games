@@ -16,7 +16,7 @@ import { createMenuMotion } from './menu-motion.js?v=20261118seal2';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261118seal2';
 import { Input, lockViewport } from './input.js?v=20261118seal2';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261118seal2';
-import { GameAudio } from './audio.js?v=20261118seal2';
+import { GameAudio } from './audio.js?v=20261118whoosh';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261118seal2';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261118seal2';
 import { makeMaze } from './maze.js?v=20261118seal2';
@@ -356,7 +356,7 @@ function resetHero() {
   hero.maxHp = HERO.maxHp + (game.abilities.has('hp') ? 200 : 0);
   Object.assign(hero, {
     hp: hero.maxHp, courage: 0, qi: 0, guilt: 0, guiltMax: GAUGE.guiltBase,
-    state: 'free', t: 0, combo: -1, queued: false, comboGap: 0, hitDone: false, invuln: 0, cds: {}, yaw: 0, data: null,
+    state: 'free', actionLockTarget: null, t: 0, combo: -1, queued: false, comboGap: 0, hitDone: false, invuln: 0, cds: {}, yaw: 0, data: null,
     mode: null, burstT: 0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
@@ -983,8 +983,8 @@ function hurtHero(amount, opts = {}) {
 // 回傳 { hit, killed, crit }
 function damageEnemy(e, mult, o = {}) {
   if (!alive(e) || e.fly) return null;
-  if (e.untouchable) return { killed: false, crit: false }; // 終章最後一段：打不到，但出手仍然算數
-  if (e.castInvuln) { audio.sfx('guard'); return { killed: false, crit: false }; } // 放超惡夢波時無敵
+  if (e.untouchable) return { killed: false, crit: false, damaged: false }; // 終章最後一段：打不到，但出手仍然算數
+  if (e.castInvuln) { audio.sfx('guard'); return { killed: false, crit: false, damaged: false }; } // 放超惡夢波時無敵
   if (e.shield) {
     audio.sfx('guard');
     // 夢魘超人只會擋：要用三個小招各破一次
@@ -994,7 +994,7 @@ function damageEnemy(e, mult, o = {}) {
       fx.ring(e.pos, 0.5, 4, 0x9be564, 0.4);
       if (e.broken.size >= 3) { e.shield = false; popup(e.pos, e.def.height + 1.2, '……有點痛。', 'shout'); game.shake = 0.6; }
     } else if (e.lineT <= 0) { e.lineT = 1.5; popup(e.pos, e.def.height + 0.4, '何必呢。', 'guard'); }
-    return { killed: false, crit: false };
+    return { killed: false, crit: false, damaged: false };
   }
   const crit = Math.random() < HERO.critRate;
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
@@ -1039,7 +1039,7 @@ function damageEnemy(e, mult, o = {}) {
     e.t = 0;
     e.visual.play(e.stun > 0 ? 'stun' : 'hit', 0.25);
   }
-  return { killed, crit };
+  return { killed, crit, damaged: dmg > 0 && !guarded };
 }
 
 function tally(results, heavy, quiet) {
@@ -1049,7 +1049,7 @@ function tally(results, heavy, quiet) {
   const crit = hits.some((r) => r.crit);
   onHit(hits.length, killed);
   // 超勇氣波持續命中（quiet）不逐 tick 播拳擊音、也不每 tick 頓幀，避免吵雜與卡頓；聲音由 beam_loop 與節流的 beam_hit 擔當
-  if (!quiet) {
+  if (!quiet && hits.some(r => r.damaged)) {
     game.hitstop = Math.max(game.hitstop, heavy || crit ? 0.07 : 0.035);
     audio.sfx(heavy || crit ? 'crit' : 'hit');
   }
@@ -1681,6 +1681,7 @@ let lockOn = false;
 try { lockOn = localStorage.getItem(LOCK_KEY) === '1'; } catch { /* 讀不到就預設關閉 */ }
 let lockTargetEnemy = null;
 let manualLockTarget = null;
+let manualLockUntil = 0;
 const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
 // Reuse the ground-lock window from the existing atlas; retain the vector fallback.
 if (document.body.classList.contains('game-art')) {
@@ -1699,10 +1700,16 @@ lockMarker.rotation.x = -Math.PI / 2;
 lockMarker.visible = false;
 scene.add(lockMarker);
 
-function lockTarget() {
+function lockTarget(fresh = false) {
   if (!lockOn) return null;
+  if (!fresh && ['attack','skill1','skill2'].includes(hero.state)) {
+    const committed = hero.actionLockTarget;
+    lockTargetEnemy = enemies.includes(committed) && isLockTarget(committed, hero.pos, LOCK_RELEASE_RANGE) ? committed : null;
+    return lockTargetEnemy;
+  }
   const t = lockTargetEnemy;
-  if (enemies.includes(t) && isLockTarget(t, hero.pos, LOCK_RELEASE_RANGE)) return t;
+  // Briefly honor an explicit switch so automatic search cannot undo the same input.
+  if (game.time < manualLockUntil && t === manualLockTarget && enemies.includes(t) && isLockTarget(t, hero.pos, LOCK_RELEASE_RANGE)) return t;
   manualLockTarget = null;
   lockTargetEnemy = lockCandidates(enemies, hero.pos, LOCK_RANGE)[0] || null;
   return lockTargetEnemy;
@@ -1711,6 +1718,7 @@ const yawTo = (e) => Math.atan2(e.pos.x - hero.pos.x, e.pos.z - hero.pos.z);
 
 function setLock(on) {
   lockOn = on;
+  manualLockUntil = 0;
   lockTargetEnemy = null;
   manualLockTarget = null;
   try { localStorage.setItem(LOCK_KEY, on ? '1' : '0'); } catch { /* 存不了也沒關係 */ }
@@ -1730,7 +1738,7 @@ function cycleLockTarget(direction = 1) {
   const current = lockOn ? lockTargetEnemy : null;
   const candidates = lockCandidates(enemies, hero.pos, LOCK_RANGE);
   const movement = input.move();
-  const next = movement.len > 0 ? directionalLockTarget(candidates.filter(e => e !== (lockOn ? manualLockTarget : null)), hero.pos, LOCK_RANGE, movement) : nextLockTarget(candidates, lockOn ? manualLockTarget : null, hero.pos, LOCK_RANGE, direction);
+  const next = movement.len > 0 ? directionalLockTarget(candidates.filter(e => e !== current), hero.pos, LOCK_RANGE, movement) : nextLockTarget(candidates, current, hero.pos, LOCK_RANGE, direction);
   const button = $('btn-cycle-lock');
   button.getAnimations().forEach(animation => animation.cancel());
   button.animate([{filter:'brightness(1.8)'},{filter:'brightness(1)'}],{duration:180});
@@ -1745,6 +1753,7 @@ function cycleLockTarget(direction = 1) {
   if (!lockOn) setLock(true);
   lockTargetEnemy = next;
   manualLockTarget = next;
+  manualLockUntil = game.time + 1.2;
   popup(next.pos, next.def.height + 0.7, next===current
     ? tr('已鎖定最近目標','Nearest target locked','最も近い標的をロック済み')
     : t('目標切換'), 'good');
@@ -1761,7 +1770,8 @@ function updateLockMarker(dt) {
 }
 
 function faceForAction(mv, autoRange = 9) {
-  const locked = lockTarget();
+  const locked = lockTarget(true);
+  hero.actionLockTarget = locked;
   if (locked) { hero.yaw = yawTo(locked); return; } // 自動鎖定優先
   const aim = mouseYaw();
   if (aim !== null) { hero.yaw = aim; return; } // 電腦：朝游標方向打
@@ -1803,7 +1813,7 @@ function startAttack(index, mv) {
   const c = COMBO[hero.form === 'brave' ? 'brave' : 'student'][index];
   hero.state = 'attack'; hero.t = 0; hero.combo = index; hero.queued = false; hero.hitDone = false;
   hero.visual.play(c.anim, c.dur);
-  audio.sfx(hero.form!=='brave'?'student_punch':index===2?'kick_spin':'swing');
+  audio.sfx('swing'); // Every attack has a whoosh, even when it misses.
 }
 
 function startDodge(mv) {
@@ -1935,7 +1945,7 @@ function updateHero(dt) {
     } else {
       hero.visual.play('idle');
     }
-    trackAttackLock();
+    if (mv.len === 0) trackAttackLock();
     for (const a of actions) { if (hero.state !== 'free') break; act(a); }
   } else if (hero.state === 'transforming') {
     // 可按住拖延 1–3 秒，全程無敵；拖越久衝擊波越強
@@ -2504,7 +2514,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261118seal2';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261118whoosh';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

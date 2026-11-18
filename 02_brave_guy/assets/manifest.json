@@ -50,21 +50,21 @@
     "bgm_brave": "assets/source/music/bgm_brave.ogg"
   },
   "sfx": {
-    "punch_1": "assets/source/sfx/seal/sfx_punch_1.wav",
-    "hit_1": "assets/source/sfx/seal/sfx_hit_1.wav",
+    "punch_1": "assets/source/sfx/brave/sfx_swing_whoosh.wav",
+    "hit_1": "assets/source/sfx/brave/sfx_hit_light.wav",
     "enemy_down_1": "assets/source/sfx/seal/sfx_enemy_down_1.wav",
-    "punch_2": "assets/source/sfx/seal/sfx_punch_2.wav",
-    "hit_2": "assets/source/sfx/seal/sfx_hit_2.wav",
+    "punch_2": "assets/source/sfx/brave/sfx_swing_whoosh.wav",
+    "hit_2": "assets/source/sfx/brave/sfx_hit_snap.wav",
     "enemy_down_2": "assets/source/sfx/seal/sfx_enemy_down_2.wav",
-    "punch_3": "assets/source/sfx/seal/sfx_punch_3.wav",
-    "hit_3": "assets/source/sfx/seal/sfx_hit_3.wav",
+    "punch_3": "assets/source/sfx/brave/sfx_swing_whoosh.wav",
+    "hit_3": "assets/source/sfx/brave/sfx_hit_sharp.wav",
     "enemy_down_3": "assets/source/sfx/seal/sfx_enemy_down_3.wav",
-    "hit_heavy": "assets/source/sfx/seal/sfx_hit_heavy.wav",
-    "kick_spin": "assets/source/sfx/seal/sfx_kick_spin.wav",
+    "hit_heavy": "assets/source/sfx/brave/sfx_hit_heavy.wav",
+    "kick_spin": "assets/source/sfx/brave/sfx_hit_heavy.wav",
     "dodge": "assets/source/sfx/clean/sfx_dodge_clean.wav",
     "dodge_perfect": "assets/source/sfx/clean/sfx_dodge_perfect_clean.wav",
     "hurt": "assets/source/sfx/sfx_hurt.mp3",
-    "student_punch": "assets/source/sfx/seal/sfx_student_punch.wav",
+    "student_punch": "assets/source/sfx/brave/sfx_hit_light.wav",
     "dash": "assets/source/sfx/seal/sfx_dash.wav",
     "ki_shot": "assets/source/sfx/seal/sfx_ki_shot.wav",
     "ki_blast": "assets/source/sfx/seal/sfx_ki_blast.wav",
@@ -117,14 +117,12 @@
     "folaidi_rise": "assets/source/sfx/sfx_folaidi_rise.mp3",
     "folaidi_reveal": "assets/source/sfx/clean/sfx_folaidi_reveal_clean.wav",
     "swing": [
-      "assets/source/sfx/seal/sfx_punch_1.wav",
-      "assets/source/sfx/seal/sfx_punch_2.wav",
-      "assets/source/sfx/seal/sfx_punch_3.wav"
+      "assets/source/sfx/brave/sfx_swing_whoosh.wav"
     ],
     "hit": [
-      "assets/source/sfx/seal/sfx_hit_1.wav",
-      "assets/source/sfx/seal/sfx_hit_2.wav",
-      "assets/source/sfx/seal/sfx_hit_3.wav"
+      "assets/source/sfx/brave/sfx_hit_light.wav",
+      "assets/source/sfx/brave/sfx_hit_snap.wav",
+      "assets/source/sfx/brave/sfx_hit_sharp.wav"
     ],
     "enemy_down": [
       "assets/source/sfx/seal/sfx_enemy_down_1.wav",
@@ -133,7 +131,7 @@
       "assets/source/sfx/seal/sfx_enemy_down_4.wav",
       "assets/source/sfx/seal/sfx_enemy_down_5.wav"
     ],
-    "crit": "assets/source/sfx/seal/sfx_hit_heavy.wav",
+    "crit": "assets/source/sfx/brave/sfx_hit_heavy.wav",
     "boom": "assets/source/sfx/seal/sfx_boom.wav",
     "skill": "assets/source/sfx/sfx_transform_done.mp3",
     "shoot": "assets/source/sfx/sfx_enemy_shot.mp3",

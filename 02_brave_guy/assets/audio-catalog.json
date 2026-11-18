@@ -346,7 +346,7 @@
     "key": "punch_1",
     "name": "揮拳變化1",
     "files": [
-      "assets/source/sfx/clean/sfx_punch_1_clean.wav"
+      "assets/source/sfx/brave/sfx_swing_whoosh.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -355,7 +355,7 @@
     "key": "hit_1",
     "name": "打擊變化1",
     "files": [
-      "assets/source/sfx/clean/sfx_hit_1_clean.wav"
+      "assets/source/sfx/brave/sfx_hit_light.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -364,7 +364,7 @@
     "key": "enemy_down_1",
     "name": "小怪倒下變化1",
     "files": [
-      "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav"
+      "assets/source/sfx/seal/sfx_enemy_down_1.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -373,7 +373,7 @@
     "key": "punch_2",
     "name": "揮拳變化2",
     "files": [
-      "assets/source/sfx/clean/sfx_punch_2_clean.wav"
+      "assets/source/sfx/brave/sfx_swing_whoosh.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -382,7 +382,7 @@
     "key": "hit_2",
     "name": "打擊變化2",
     "files": [
-      "assets/source/sfx/clean/sfx_hit_2_clean.wav"
+      "assets/source/sfx/brave/sfx_hit_snap.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -391,7 +391,7 @@
     "key": "enemy_down_2",
     "name": "小怪倒下變化2",
     "files": [
-      "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav"
+      "assets/source/sfx/seal/sfx_enemy_down_2.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -400,7 +400,7 @@
     "key": "punch_3",
     "name": "揮拳變化3",
     "files": [
-      "assets/source/sfx/clean/sfx_punch_3_clean.wav"
+      "assets/source/sfx/brave/sfx_swing_whoosh.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -409,7 +409,7 @@
     "key": "hit_3",
     "name": "打擊變化3",
     "files": [
-      "assets/source/sfx/clean/sfx_hit_3_clean.wav"
+      "assets/source/sfx/brave/sfx_hit_sharp.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -418,7 +418,7 @@
     "key": "enemy_down_3",
     "name": "小怪倒下變化3",
     "files": [
-      "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav"
+      "assets/source/sfx/seal/sfx_enemy_down_3.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -427,16 +427,16 @@
     "key": "hit_heavy",
     "name": "重擊命中",
     "files": [
-      "assets/source/sfx/clean/sfx_hit_heavy_clean.wav"
+      "assets/source/sfx/brave/sfx_hit_heavy.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
   {
     "id": "S11",
     "key": "kick_spin",
-    "name": "旋風踢",
+    "name": "踢擊命中備用槽位（brave s05）",
     "files": [
-      "assets/source/sfx/clean/sfx_kick_spin_clean.wav"
+      "assets/source/sfx/brave/sfx_hit_heavy.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -472,7 +472,7 @@
     "key": "student_punch",
     "name": "學生出拳",
     "files": [
-      "assets/source/sfx/sfx_student_punch.mp3"
+      "assets/source/sfx/brave/sfx_hit_light.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -481,7 +481,7 @@
     "key": "dash",
     "name": "衝刺",
     "files": [
-      "assets/source/sfx/clean/sfx_dash_clean.wav"
+      "assets/source/sfx/seal/sfx_dash.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -490,7 +490,7 @@
     "key": "ki_shot",
     "name": "氣彈發射",
     "files": [
-      "assets/source/sfx/sfx_ki_shot.mp3"
+      "assets/source/sfx/seal/sfx_ki_shot.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -499,7 +499,7 @@
     "key": "ki_blast",
     "name": "氣功爆發",
     "files": [
-      "assets/source/sfx/clean/sfx_ki_blast_clean.wav"
+      "assets/source/sfx/seal/sfx_ki_blast.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -517,7 +517,7 @@
     "key": "beam_start",
     "name": "光束起手",
     "files": [
-      "assets/source/sfx/clean/sfx_beam_start_clean.wav"
+      "assets/source/sfx/seal/sfx_beam_start.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -535,7 +535,7 @@
     "key": "beam_end",
     "name": "光束收尾",
     "files": [
-      "assets/source/sfx/clean/sfx_beam_end_clean.wav"
+      "assets/source/sfx/seal/sfx_beam_end.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -553,7 +553,7 @@
     "key": "courage_full",
     "name": "勇氣滿格",
     "files": [
-      "assets/source/sfx/clean/sfx_courage_full_clean.wav"
+      "assets/source/sfx/seal/sfx_courage_full.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -562,7 +562,7 @@
     "key": "qi_full",
     "name": "氣量滿格",
     "files": [
-      "assets/source/sfx/clean/sfx_qi_full_clean.wav"
+      "assets/source/sfx/seal/sfx_qi_full.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -571,7 +571,7 @@
     "key": "revive",
     "name": "小天使救援復活",
     "files": [
-      "assets/source/sfx/sfx_revive.mp3"
+      "assets/source/sfx/seal/sfx_revive.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -607,7 +607,7 @@
     "key": "combo_100",
     "name": "100連擊提示",
     "files": [
-      "assets/source/sfx/clean/sfx_combo_100_clean.wav"
+      "assets/source/sfx/seal/sfx_combo_100.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -616,7 +616,7 @@
     "key": "win",
     "name": "分數結算提示",
     "files": [
-      "assets/source/sfx/sfx_score_result.wav"
+      "assets/source/sfx/seal/sfx_win.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -625,7 +625,7 @@
     "key": "lose",
     "name": "戰敗提示",
     "files": [
-      "assets/source/sfx/clean/sfx_lose_clean.wav"
+      "assets/source/sfx/seal/sfx_lose.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -706,7 +706,7 @@
     "key": "guard",
     "name": "防禦擋擊",
     "files": [
-      "assets/source/sfx/sfx_guard.mp3"
+      "assets/source/sfx/seal/sfx_guard.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -733,7 +733,7 @@
     "key": "boss_warn",
     "name": "Boss警示",
     "files": [
-      "assets/source/sfx/sfx_boss_warn.mp3"
+      "assets/source/sfx/seal/sfx_boss_warn.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -742,7 +742,7 @@
     "key": "boss_slam",
     "name": "Boss重砸",
     "files": [
-      "assets/source/sfx/sfx_boss_slam.mp3"
+      "assets/source/sfx/seal/sfx_boss_slam.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -760,7 +760,7 @@
     "key": "stage_select",
     "name": "點選關卡",
     "files": [
-      "assets/source/sfx/sfx_stage_select_clean.wav"
+      "assets/source/sfx/seal/sfx_stage_select.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -778,7 +778,7 @@
     "key": "ui_tap",
     "name": "介面點擊",
     "files": [
-      "assets/source/sfx/clean/sfx_ui_tap_clean.wav"
+      "assets/source/sfx/seal/sfx_ui_tap.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -787,7 +787,7 @@
     "key": "ui_confirm",
     "name": "介面確認",
     "files": [
-      "assets/source/sfx/clean/sfx_ui_confirm_clean.wav"
+      "assets/source/sfx/seal/sfx_ui_confirm.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -796,7 +796,7 @@
     "key": "ui_back",
     "name": "介面返回",
     "files": [
-      "assets/source/sfx/clean/sfx_ui_back_clean.wav"
+      "assets/source/sfx/seal/sfx_ui_back.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -805,7 +805,7 @@
     "key": "notify",
     "name": "通知提示",
     "files": [
-      "assets/source/sfx/clean/sfx_notify_clean.wav"
+      "assets/source/sfx/seal/sfx_notify.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -823,7 +823,7 @@
     "key": "lock_switch",
     "name": "切換鎖定目標",
     "files": [
-      "assets/source/sfx/clean/sfx_lock_switch_clean.wav"
+      "assets/source/sfx/seal/sfx_lock_switch.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -938,20 +938,20 @@
   {
     "id": "S67",
     "key": "swing",
-    "name": "揮拳隨機音組",
+    "name": "每次出拳的揮空破風聲（brave s13）",
     "files": [
-      "assets/source/sfx/clean/sfx_punch_1_clean.wav",
-      "assets/source/sfx/clean/sfx_punch_2_clean.wav",
-      "assets/source/sfx/clean/sfx_punch_3_clean.wav"
+      "assets/source/sfx/brave/sfx_swing_whoosh.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
   {
     "id": "S68",
     "key": "hit",
-    "name": "一般打擊命中（使用者提供）",
+    "name": "一般命中三種變化（brave s04／s08／s10）",
     "files": [
-      "assets/source/sfx/sfx_combat_hit_user.wav"
+      "assets/source/sfx/brave/sfx_hit_light.wav",
+      "assets/source/sfx/brave/sfx_hit_snap.wav",
+      "assets/source/sfx/brave/sfx_hit_sharp.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -960,18 +960,20 @@
     "key": "enemy_down",
     "name": "小怪倒下隨機音組",
     "files": [
-      "assets/source/sfx/clean/sfx_enemy_down_1_clean.wav",
-      "assets/source/sfx/clean/sfx_enemy_down_2_clean.wav",
-      "assets/source/sfx/clean/sfx_enemy_down_3_clean.wav"
+      "assets/source/sfx/seal/sfx_enemy_down_1.wav",
+      "assets/source/sfx/seal/sfx_enemy_down_2.wav",
+      "assets/source/sfx/seal/sfx_enemy_down_3.wav",
+      "assets/source/sfx/seal/sfx_enemy_down_4.wav",
+      "assets/source/sfx/seal/sfx_enemy_down_5.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
   {
     "id": "S70",
     "key": "crit",
-    "name": "暴擊命中（共用打擊音）",
+    "name": "重擊／暴擊命中（brave s05）",
     "files": [
-      "assets/source/sfx/sfx_combat_hit_user.wav"
+      "assets/source/sfx/brave/sfx_hit_heavy.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -980,7 +982,7 @@
     "key": "boom",
     "name": "爆炸（共用震地音）",
     "files": [
-      "assets/source/sfx/sfx_quake.mp3"
+      "assets/source/sfx/seal/sfx_boom.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -1007,7 +1009,7 @@
     "key": "ui",
     "name": "介面操作（共用點擊音）",
     "files": [
-      "assets/source/sfx/clean/sfx_ui_tap_clean.wav"
+      "assets/source/sfx/seal/sfx_ui.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   },
@@ -1107,6 +1109,33 @@
     "name": "擊敗每個Boss的KO（使用者提供）",
     "files": [
       "assets/source/sfx/sfx_boss_defeat_ko_user.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S86",
+    "key": "enemy_down_4",
+    "name": "小怪倒下變化4",
+    "files": [
+      "assets/source/sfx/seal/sfx_enemy_down_4.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S87",
+    "key": "enemy_down_5",
+    "name": "小怪倒下變化5",
+    "files": [
+      "assets/source/sfx/seal/sfx_enemy_down_5.wav"
+    ],
+    "status": "素材槽位；實際觸發依遊戲流程"
+  },
+  {
+    "id": "S88",
+    "key": "boss_appear",
+    "name": "守關者登場",
+    "files": [
+      "assets/source/sfx/seal/sfx_boss_appear.wav"
     ],
     "status": "素材槽位；實際觸發依遊戲流程"
   }
