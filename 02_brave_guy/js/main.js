@@ -8,7 +8,7 @@ import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
 import { createVisual, loadModel } from './visuals.js?v=20261118seal2';
-import { Fx } from './fx.js?v=20261118seal2';
+import { Fx } from './fx.js?v=20261118hit8';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261118seal2';
 import { createCinematics } from './cinematics.js?v=20261118seal2';
 import { createOpening } from './opening.js?v=20261118seal2';
@@ -1006,6 +1006,10 @@ function damageEnemy(e, mult, o = {}) {
   if(e.def.incubus&&!game.awakened&&!e.shield)dmg=Math.min(dmg,Math.max(0,e.hp-e.maxHp*.6));
   dmg = Math.round(dmg);
   e.hp -= dmg;
+  if (dmg > 0 && !guarded && game.time >= (e.nextHitSparkAt || 0)) {
+    fx.hitSpark(e.pos, e.y + Math.max(.6, e.def.height * .65), crit || mult >= 1.8);
+    e.nextHitSparkAt = game.time + .08;
+  }
   e.visual.flash();
   popup(e.pos, e.def.height + e.y, guarded ? tf('擋 {0}', dmg) : `-${dmg}`, guarded ? 'guard' : crit ? 'crit' : '');
   const from = o.from || hero.pos;

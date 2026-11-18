@@ -1,4 +1,4 @@
-// 3D 特效：全部是場景內的網格與粒子（不是 2D 貼片疊圖）。
+// 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
 import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
 import * as THREE from '../vendor/three/three.module.min.js';
@@ -7,6 +7,22 @@ const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
   color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
 });
 
+const hitFrames = [];
+const hitSheetReady = new THREE.TextureLoader().loadAsync(new URL('../assets/source/pic/fx/fx_hit_arcade_8f.png', import.meta.url).href).then(sheet => {
+  sheet.colorSpace = THREE.SRGBColorSpace;
+  for (let i = 0; i < 8; i++) {
+    const frame = sheet.clone();
+    frame.repeat.set(1 / 4, 1 / 2);
+    frame.offset.set((i % 4) / 4, 1 - (Math.floor(i / 4) + 1) / 2);
+    frame.needsUpdate = true;
+    hitFrames.push(frame);
+  }
+  sheet.dispose();
+}).catch(() => {}); // Missing art must not stop gameplay.
+function releaseFx(obj) {
+  if (obj.userData.hitSpark) { obj.material.dispose(); obj.removeFromParent(); }
+  else disposeOwned(obj);
+}
 export class Fx {
   constructor(scene) {
     this.scene = scene;
@@ -26,15 +42,33 @@ export class Fx {
       const k = Math.min(1, it.t / it.life);
       it.tick(k, dt, it.obj);
       if (k >= 1) {
-        disposeOwned(it.obj);
+        releaseFx(it.obj);
         this.items.splice(i, 1);
       }
     }
   }
 
   clear() {
-    for (const it of this.items) disposeOwned(it.obj);
+    for (const it of this.items) releaseFx(it.obj);
     this.items.length = 0;
+  }
+
+  // Eight discrete frames at 40fps: fast flash, sharp burst, then fading shards.
+  hitSpark(pos, y = 1, heavy = false) {
+    if (this.items.filter(it => it.obj.userData.hitSpark).length >= 18) return null;
+    if (!hitFrames.length) return null;
+    const material = new THREE.SpriteMaterial({ map: hitFrames[0], transparent: true,
+      depthWrite: false, depthTest: true, toneMapped: false, rotation: (Math.random() - .5) * .6 });
+    const sprite = new THREE.Sprite(material);
+    sprite.userData.hitSpark = true;
+    sprite.userData.frame = 0;
+    sprite.position.set(pos.x, y, pos.z);
+    sprite.scale.setScalar(heavy ? 2.6 : 1.7);
+    return this.add(sprite, .2, k => {
+      const frame = Math.min(7, Math.floor(k * 8));
+      sprite.userData.frame = frame;
+      material.map = hitFrames[frame];
+    });
   }
 
   // 半月刀光：扇形面片沿揮砍方向掃過並淡出。yaw 以 +Z 為前方。

@@ -397,3 +397,8 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 - `source/sfx/hit.wav`：原始 WAV，PCM16／44.1kHz／立體聲／0.737秒；一般命中與重擊共用。
 - `source/sfx/ko.wav`：原始 WAV，PCM16／11.025kHz／立體聲／1.443秒；Boss 實際死亡（含最終收尾）播放。
 - 保留上傳原檔，不重合成、不改音色；manifest.sfx 對應 hit、crit、boss_ko。
+
+### 2026-11-18 街機命中8格動效（已接入）
+- `source/pic/fx/fx_hit_arcade_8f.png`：1774×887 RGBA透明PNG，4欄×2列，原生解析度不重採樣。按等分UV取8格，40fps／0.2秒。
+- 一般命中與重擊／暴擊共用圖集但尺寸不同；未命中、無敵、護盾與已死亡目標不播放此命中火花。格擋不套用此火花。
+- 預覽：`../hit-effect-preview.html`；接入：`../js/fx.js`、`../js/main.js`。

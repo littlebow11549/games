@@ -97,3 +97,9 @@
 - 已核對現有 `01_memory_crash/assets/source/pic/character/pug_idle_full.png`：8格待機圖集，先前Banner只取第一格。
 - 使用者本輪明確要求重新繪製Banner主角並放大右側主視覺，授權新增一張「朝右介紹鑽石」的獨立姿勢，不覆蓋既有遊戲待機圖集。
 - 新素材歸檔於根目錄 `assets/source/pic/banner/`，生成結果、尺寸與驗證見本輪交接報告。
+
+## 2026-11-18 8格街機擊中火花
+
+- 已核對既有 fx_spark.svg 與 fx.js：既有靜態火花／粒子，沒有本次指定的6–8格命中序列。
+- 依使用者明確要求新增 fx_hit_arcade_8f.png（4×2），不是重製既有角色或取消佇列。
+- 第一版暈光過多，使用imagegen修正成透明硬邊火花；交付第二版，原生成稿留在generated_images。
