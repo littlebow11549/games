@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-18 移除卡片箭頭](handoffs/2026-11-18-hub-remove-card-arrows.md)：移除遊戲標題旁裝飾箭頭，保留遊玩連結。
+
 - [2026-11-18 水晶Banner重新佈局](handoffs/2026-11-18-hub-crystal-layout.md)：擴大場景展示、巴哥縮小移位，手機鑽石與人物上下分離。
 
 - [2026-11-18 Banner巴哥與Icon放大](handoffs/2026-11-18-hub-pug-icons.md)：沿用全身巴哥加入記憶水晶Banner，兩款遊戲Icon放大並保留留白。
