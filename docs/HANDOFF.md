@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-18 BGM替換對照文件](handoffs/2026-11-18-game02-bgm-guide.md)：38首音樂用途、選曲情緒、事件ID、路徑、長度與試聽，供Claude配對替換。
+
 - [2026-11-18 套用 Seal Online 音效組（Claude）](handoffs/2026-11-18-game02-seal-sfx.md)：將使用者上傳的 Seal Online 音效（41 檔）對應套用到 37 個遊戲 SFX 鍵（揮擊/命中/暴擊/怪物死亡×5/光束/氣功/勇氣氣槽滿/救援/連擊/介面/過關失敗/格擋/衝刺/魔王預警＋新增「守關者登場」）。全部 adeclip 修破音＋峰值正規化到 -1.5dBFS（輸出 0 破音）、頭尾淡入淡出。manifest 重接、新增 enemy_down_4/5 與 boss_appear 鍵、spawnBossActual 播登場音。headless 解碼測試 49 檔全過、0 error。?v→20261118seal。brave_guy_sound 備選組因檔名無語意暫未套用。
 - [2026-11-18 Banner巴哥專用新姿勢](handoffs/2026-11-18-hub-pug-presenter.md)：依使用者要求重繪透明巴哥，放大右側鑽石場景並完成手機／中尺寸配置。
 
