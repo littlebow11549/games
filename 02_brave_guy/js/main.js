@@ -1,5 +1,5 @@
-import { createProgressReset } from './progress-reset.js?v=20261117rounds';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261117rounds';
+import { createProgressReset } from './progress-reset.js?v=20261118seal';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261118seal';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261115fast';
@@ -8,16 +8,16 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261115fast';
 import { createVisual, loadModel } from './visuals.js?v=20261115fast';
 import { Fx } from './fx.js?v=20261115fast';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261117rounds';
-import { createCinematics } from './cinematics.js?v=20261117rounds';
-import { createOpening } from './opening.js?v=20261117rounds';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261118seal';
+import { createCinematics } from './cinematics.js?v=20261118seal';
+import { createOpening } from './opening.js?v=20261118seal';
 import { createMenuMotion } from './menu-motion.js?v=20261115fast';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261116aim';
 import { Input, lockViewport } from './input.js?v=20261115fast';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261115fast';
 import { GameAudio } from './audio.js?v=20261116score';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261117rounds';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261117rounds';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261118seal';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261118seal';
 import { makeMaze } from './maze.js?v=20261116pursuit';
 import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261115fast';
 
@@ -876,6 +876,7 @@ function spawnBossActual() {
   for (const k of kinds) spawnEnemy(k);
   const names = kinds.map((k) => t(BOSSES[k].name)).join(t('＋'));
   banner('心魔來襲');
+  audio.sfx('boss_appear'); // 守關者登場音效
   $('boss-bar').hidden = false;
   $('boss-name').textContent = names;
   $('quest-wave').textContent = tf('打倒{0}', names);
@@ -2465,7 +2466,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261116human';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261118seal';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

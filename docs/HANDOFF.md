@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-18 套用 Seal Online 音效組（Claude）](handoffs/2026-11-18-game02-seal-sfx.md)：將使用者上傳的 Seal Online 音效（41 檔）對應套用到 37 個遊戲 SFX 鍵（揮擊/命中/暴擊/怪物死亡×5/光束/氣功/勇氣氣槽滿/救援/連擊/介面/過關失敗/格擋/衝刺/魔王預警＋新增「守關者登場」）。全部 adeclip 修破音＋峰值正規化到 -1.5dBFS（輸出 0 破音）、頭尾淡入淡出。manifest 重接、新增 enemy_down_4/5 與 boss_appear 鍵、spawnBossActual 播登場音。headless 解碼測試 49 檔全過、0 error。?v→20261118seal。brave_guy_sound 備選組因檔名無語意暫未套用。
+
 - [2026-11-17 New Game+ 輪迴系統（Claude）](handoffs/2026-11-17-game02-newgame-plus-rounds.md)：破關後重玩記錄輪數，主選單標示「你已經第 N 次去尋找勇氣」、第 4 輪起「你已經天下無敵了」(金色流光、置中滿寬)。每破一輪怪量×+0.5、boss 出招冷卻×+0.3，最多 +3 階封頂；天下無敵後勇氣槽不流失(永久勇氣超人開掛)、全招式全關卡、怪量/攻擊頻率/難度全最高。**防刷**：破關結算給「從序章開始重玩(進度歸零、計一刷)」與「直接選關(自由挑戰、不計刷)」兩選項；只有第一次破關或從序章重玩那一輪的破關才計一刷，跳關重打最終話不再刷輪。跑馬燈加輪迴提示。字型重生(1958→1974 字，含「嫩」)。三語同步，headless 全驗證 0 error。
 
 - [2026-11-17 董事長第一階段過場+走上前門檻+超惡夢波機率（Claude）](handoffs/2026-11-17-game02-incubus-firststrike-threshold.md)：第一階段打完先播新圖過場(incubus_firststrike, 同 storyboard 系統)再接原甦醒；走上前收尾門檻 30%→10%；超惡夢波 boss<25%血時機率調高。另修 Boss 登場自己過關 bug。commit `f4ec6cc`/`9b940d7`。

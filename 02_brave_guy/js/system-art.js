@@ -1,5 +1,5 @@
 // Native atlas windows: sources remain unmodified and retain their alpha channel.
-import { lang, t } from './i18n.js?v=20261117rounds';
+import { lang, t } from './i18n.js?v=20261118seal';
 const groups = {
  combat: ['心魔來襲','狂潮來襲','心魔召喚爪牙','沒有超能力的時候','完美閃避','超勇氣波！'],
  outcomes: ['勇氣超人！','夠了！！','突破','倒下','醒來','暫停'],

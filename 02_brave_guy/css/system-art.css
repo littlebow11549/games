@@ -45,7 +45,7 @@
 @media(prefers-reduced-motion:reduce){.game-art .bars .bar.full,.game-art .bars .bar.burst,.game-art .bars .bar::after{animation:none!important}.game-art .bars .bar.meter-exploding{animation:none!important;box-shadow:0 0 12px #efb4ff}}
 #menu-art .menu-live-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
 .game-art #pause-menu .lang-btn::before{display:none!important}.game-art #pause-menu .lang-btn{padding-left:8px!important}
-@font-face{font-family:'BG Japanese';src:url('../assets/fonts/notosansjp-subset.woff2?v=20261117rounds') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'BG Japanese';src:url('../assets/fonts/notosansjp-subset.woff2?v=20261118seal') format('woff2');font-weight:100 900;font-display:swap}
 :lang(ja){--font-body:'BG Japanese',sans-serif;--font-display:'BG Japanese',sans-serif}
 .game-art #ov-local-logo[hidden]{display:none}
 .game-art .act.ult{filter:drop-shadow(0 0 4px #78ff5d66)}
