@@ -1,3 +1,4 @@
+import { angelText } from './angel-language.js?v=20261119lang';
 export const ROSTER = {
  brave:{name:'勇氣超人',role:'近戰・勇氣爆發',quote:'這次，換我自己決定。',skills:['勇氣衝拳','氣功彈','氣功震地','超勇氣波'],cd:[3,4,7],intro:'天下無敵不是不會害怕，是敢自己選擇。',win:'這一次，也沒有逃走。'},
  angel:{name:'小天使',role:'魔法・文字砲擊',quote:'我平常不出手，是怕你失業。',skills:['變態！不要過來','救命啊～色狼！','給我站住！','全都給我過來！'],cd:[4,8,10],intro:'導遊休假。今天換我清場，你在旁邊學著點。',win:'還行。當然，我說的是我自己。'},
@@ -11,11 +12,11 @@ export function createRosterPicker(){
  function finish(id){box.close();const done=resolve;resolve=null;done?.(id);}
  for(const [id,c] of Object.entries(ROSTER)){
   const btn=document.createElement('button');btn.type='button';btn.className='roster-card';btn.dataset.character=id;
-  btn.innerHTML=`<span class="roster-face ${id}" aria-hidden="true"></span><strong>${c.name}</strong><small>${c.role}</small><q>${c.quote}</q><span class="roster-skills">${c.skills.join('／')}</span>`;
+  btn.innerHTML=`<span class="roster-face ${id}" aria-hidden="true"></span><strong>${c.name}</strong><small>${c.role}</small><q>${c.quote}</q><span class="roster-skills">${c.skills.map(angelText).join('／')}</span>`;
   btn.onclick=()=>finish(id);box.querySelector('.roster-cards').append(btn);
  }
  box.querySelector('.roster-cancel').onclick=()=>finish(null);box.addEventListener('cancel',e=>{e.preventDefault();finish(null)});box.addEventListener('keydown',e=>e.stopPropagation());
- return {get open(){return box.open},choose(last='brave',rounds=0){for(const btn of box.querySelectorAll('.roster-card')){btn.hidden=!characterUnlocked(btn.dataset.character,rounds);}if(!characterUnlocked(last,rounds))last='brave';if(resolve)return Promise.resolve(null);return new Promise(done=>{resolve=done;box.showModal();box.querySelector(`[data-character="${last}"]`)?.focus()})}};
+ return {get open(){return box.open},choose(last='brave',rounds=0){for(const btn of box.querySelectorAll('.roster-card')){btn.hidden=!characterUnlocked(btn.dataset.character,rounds);btn.querySelector('.roster-skills').textContent=ROSTER[btn.dataset.character].skills.map(angelText).join('／');}if(!characterUnlocked(last,rounds))last='brave';if(resolve)return Promise.resolve(null);return new Promise(done=>{resolve=done;box.showModal();box.querySelector(`[data-character="${last}"]`)?.focus()})}};
 }
 
 export function createUnlockNotice(){

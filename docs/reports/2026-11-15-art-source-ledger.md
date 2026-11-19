@@ -116,3 +116,7 @@
 
 ## 2026-11-19 客串大招藝術字
 新增 `02_brave_guy/assets/source/pic/titles/ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
+
+
+## 2026-11-19 技能圖集精修與表情接入
+`assets/source/pic/icons/guest_skill_atlas.png` 為新image_gen原生1254×1254 RGBA圖集，CSS 3×3視窗使用，未縮圖／改像素。舊九張SVG移至assets/_alternate，最新交付JSON記錄雜湊與順序。小天使DISDAIN及惡夢EXPOSED受擊表情復用既有unified設定集，不另繪。新增ult_angel_en.svg／ult_angel_ja.svg向量語系標題。以上assets路徑相對02_brave_guy；詳細交接見2026-11-19-game02-language-portraits-drones-icons.md。

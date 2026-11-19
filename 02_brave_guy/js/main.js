@@ -1,6 +1,7 @@
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119unlock';
-import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119unlock';
-import { createGuestCombat } from './guest-combat.js?v=20261119unlock';
+import { angelText } from './angel-language.js?v=20261119lang';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119lang';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119lang';
+import { createGuestCombat } from './guest-combat.js?v=20261119lang';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
 import { createProgressReset } from './progress-reset.js?v=20261118seal2';
@@ -13,7 +14,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
 import { createVisual, loadModel } from './visuals.js?v=20261119models';
 import { Fx } from './fx.js?v=20261118hit8';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119unlock';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119lang';
 import { createCinematics } from './cinematics.js?v=20261118seal2';
 import { createOpening } from './opening.js?v=20261118seal2';
 import { createMenuMotion } from './menu-motion.js?v=20261118seal2';
@@ -364,8 +365,8 @@ function applyCharacterHud(){
  const id=hero.character||'brave';$('hud').dataset.character=id;
  $('portrait').querySelector('.guest-face')?.remove();
  if(guest()){const face=document.createElement('span');face.className=`roster-face guest-face ${id}`;$('portrait').append(face);}
- for(const btn of ACT_BUTTONS){btn.querySelector('.guest-icon')?.remove();if(btn.dataset.action==='attack')btn.setAttribute('aria-label',id==='angel'?'嘴砲攻擊':'攻擊');const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
-  if(guest()&&(i>=0||id==='angel'&&btn.dataset.action==='attack')){const el=document.createElement('img');el.className='guest-icon';el.alt='';el.setAttribute('aria-hidden','true');el.draggable=false;el.src=`assets/source/pic/icons/skill_${id}_${btn.dataset.action}.svg`;btn.append(el);}
+ for(const btn of ACT_BUTTONS){btn.querySelector('.guest-icon')?.remove();if(btn.dataset.action==='attack')btn.setAttribute('aria-label',id==='angel'?angelText('嘴砲攻擊'):t('攻擊'));const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
+  if(guest()&&(i>=0||id==='angel'&&btn.dataset.action==='attack')){const el=document.createElement('span');el.className='guest-icon';el.setAttribute('aria-hidden','true');const tile=id==='angel'?(i<0?0:i+1):i+5;el.style.backgroundPosition=`${tile%3*50}% ${Math.floor(tile/3)*50}%`;btn.append(el);}
  }
 }
 
@@ -656,7 +657,7 @@ function updateHud() {
     const a = btn.dataset.action;
     btn.hidden = a==='transform' ? brave || !canTransform() || hero.courage < GAUGE.courageMax : Boolean(SKILLS[a]) && !brave;
     if(btn.hidden)input.held.delete(a);
-    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)]:t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
+    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)]):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / (guest()?ROSTER[hero.character].cd[['skill1','skill2','skill3'].indexOf(a)]:SKILLS[a].cd)}turn`);
       btn.classList.toggle('locked', !brave || !game.abilities.has(a) || hero.silenceT > 0);
@@ -2623,6 +2624,7 @@ async function boot() {
   const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(91 + (++got / models.length) * 4, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));
   const ok = loaded.filter(Boolean).length;
 
+  await document.fonts.load('900 64px "BG JP"','バカ！あっち行って！黙りなさい！近寄らないで！');
   await document.fonts.ready;
   game.stage = firstOpenStage();
   game.abilities = stageAbilities(game.stage);

@@ -20,3 +20,6 @@ manifest.json、runtime-images.json、js/css/html 的實際引用為準。
 - `audio-review.html`（根目錄）＝docs 報告有對外 github.io 連結，移動會斷連結，暫留。
 - `source/pic/branding/` 的 `icon_01.svg` 在 **01_memory_crash** 版本是首頁 favicon（現役，留）；本遊戲(02) 的同名 SVG 才是未使用、已歸檔。
 - `source/sfx`、`source/music` 剩下的都是 manifest 現役引用檔（含 ogg/mp3 備援對）。
+
+
+2026-11-19：skill_angel_*.svg、skill_nightmare_*.svg及GUEST_SKILL_ICONS_V1_DELIVERY.json為第一版向量技能圖示；已由source/pic/icons/guest_skill_atlas.png取代，保留歷史，不再由遊戲引用。

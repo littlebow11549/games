@@ -1,43 +1,24 @@
 {
   "date": "2026-11-19",
-  "format": "SVG, native vector, viewBox 0 0 128 128",
-  "style": "bold black outline, cel gradients, transparent background; existing ring retained",
-  "files": [
-    {
-      "file": "pic/icons/skill_angel_attack.svg",
-      "purpose": "小天使普攻：嘴砲"
-    },
-    {
-      "file": "pic/icons/skill_angel_skill1.svg",
-      "purpose": "變態！不要過來：直線吹飛"
-    },
-    {
-      "file": "pic/icons/skill_angel_skill2.svg",
-      "purpose": "救命啊～色狼：冰凍暴風雪"
-    },
-    {
-      "file": "pic/icons/skill_angel_skill3.svg",
-      "purpose": "給我站住：十點麻痺爆炸"
-    },
-    {
-      "file": "pic/icons/skill_angel_ult.svg",
-      "purpose": "全都給我過來：聚攏龍捲"
-    },
-    {
-      "file": "pic/icons/skill_nightmare_skill1.svg",
-      "purpose": "夢的翅膀：三路衝拳"
-    },
-    {
-      "file": "pic/icons/skill_nightmare_skill2.svg",
-      "purpose": "聽話讓我看看：三子機"
-    },
-    {
-      "file": "pic/icons/skill_nightmare_skill3.svg",
-      "purpose": "夠了：範圍震懾定身"
-    },
-    {
-      "file": "pic/icons/skill_nightmare_ult.svg",
-      "purpose": "王之嘴炮：十子機齊射"
-    }
-  ]
+  "source": "image_gen original illustration",
+  "file": "02_brave_guy/assets/source/pic/icons/guest_skill_atlas.png",
+  "size": [
+    1254,
+    1254
+  ],
+  "mode": "RGBA",
+  "sha256": "306d3f6f33ccedc0e8ab255ed77288f78881416667e0333ed1649e584f6a5b48",
+  "layout": "3x3 equal cells, CSS windows; original pixels preserved",
+  "order": [
+    "angel attack",
+    "angel skill1",
+    "angel skill2",
+    "angel skill3",
+    "angel ult",
+    "nightmare skill1",
+    "nightmare skill2",
+    "nightmare skill3",
+    "nightmare ult"
+  ],
+  "previous": "assets/_alternate/skill_*.svg"
 }
