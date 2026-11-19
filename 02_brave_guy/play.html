@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="css/comic-polish.css?v=20261119dialogue">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261119dialogue">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261119dialogue">
-<link rel="stylesheet" href="css/ui-layers.css?v=20261119dialogue">
+<link rel="stylesheet" href="css/ui-layers.css?v=20261119ultlayer">
 <link rel="stylesheet" href="css/secret-toggle.css?v=20261119lang">
 <link rel="stylesheet" href="css/hurt-feedback.css?v=20261119dialogue">
 <link rel="stylesheet" href="css/playable-roster.css?v=20261119dialogue">
@@ -78,7 +78,7 @@
   </div>
 
   <div id="banner" class="banner"></div>
-  <div id="world-ui"></div>
+  <div id="world-ui"></div><div id="skill-announcements" aria-hidden="true"></div>
   <div id="angel-bubble" class="bubble" hidden></div>
 
 
@@ -187,7 +187,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261119dialogue';
+    s.src = 'js/main.js?v=20261119ultlayer';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

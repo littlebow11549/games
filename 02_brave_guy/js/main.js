@@ -444,6 +444,7 @@ function clearField() {
   hazards = [];
   fx.clear();
   $('world-ui').replaceChildren();
+  $('skill-announcements').replaceChildren();
 }
 
 // 開始（或重來）指定的關卡
@@ -567,7 +568,8 @@ function popup(world, height, text, cls = '') {
   setSystemArt(el, text);
   el.style.left = `${p.x + rand(-14, 14)}px`;
   el.style.top = `${p.y + rand(-8, 8)}px`;
-  ui.append(el);
+  const announcement=cls==='shout'&&el.classList.contains('has-word-art');
+  (announcement?$('skill-announcements'):ui).append(el);
   el.addEventListener('animationend', () => el.remove());
 }
 

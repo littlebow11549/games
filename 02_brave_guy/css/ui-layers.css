@@ -15,6 +15,7 @@
 #hud #minimap{z-index:4}
 #hud #boss-bar{z-index:5;pointer-events:none}
 #hud .actions,#hud #stick-zone,#hud .hud-top-right{z-index:6}
+#skill-announcements{position:absolute;inset:0;overflow:hidden;z-index:7;pointer-events:none}
 #hud #banner{z-index:7;pointer-events:none}
 .meter-shards{z-index:var(--layer-particles);pointer-events:none}
 .game-art #combo{z-index:var(--layer-combo);pointer-events:none}
