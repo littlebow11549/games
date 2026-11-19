@@ -1,4 +1,4 @@
-import { angelText } from './angel-language.js?v=20261119lang';
+import { angelText } from './angel-language.js?v=20261119arsenal';
 // Native atlas windows: sources remain unmodified and retain their alpha channel.
 import { lang, t } from './i18n.js?v=20261118seal2';
 const groups = {
@@ -24,7 +24,7 @@ export function setSystemArt(el, text) {
  el.classList.remove('wave-art');
  const value = clean(text);
  const guestTitle={'全都給我過來！':'angel','王之嘴炮':'nightmare'}[value];
- if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=`assets/source/pic/titles/ult_${guestTitle}${guestTitle==='angel'&&lang!=='zh-Hant'?'_'+lang:''}.svg`;img.alt=angelText(text);el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
+ if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=`assets/source/pic/titles/ult_${guestTitle}${lang!=='zh-Hant'?'_'+lang:''}.svg`;img.alt=angelText(text);el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
 
  for (const [group, keys] of Object.entries(groups)) {
   const index = keys.findIndex(k => clean(k) === value || clean(t(k)) === value);

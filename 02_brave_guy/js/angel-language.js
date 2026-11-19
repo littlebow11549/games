@@ -1,5 +1,6 @@
 import { lang } from './i18n.js?v=20261118seal2';
 const lines={
+ '王之嘴炮':['Royal Barrage!','王の口撃！'],
  '笨蛋！':['Dummy!','バカ！'],
  '走開啦！':['Back off!','あっち行って！'],
  '給我閉嘴！':['Shut it!','黙りなさい！'],

@@ -1,4 +1,4 @@
-import { angelText } from './angel-language.js?v=20261119lang';
+import { angelText } from './angel-language.js?v=20261119arsenal';
 export const ROSTER = {
  brave:{name:'勇氣超人',role:'近戰・勇氣爆發',quote:'這次，換我自己決定。',skills:['勇氣衝拳','氣功彈','氣功震地','超勇氣波'],cd:[3,4,7],intro:'天下無敵不是不會害怕，是敢自己選擇。',win:'這一次，也沒有逃走。'},
  angel:{name:'小天使',role:'魔法・文字砲擊',quote:'我平常不出手，是怕你失業。',skills:['變態！不要過來','救命啊～色狼！','給我站住！','全都給我過來！'],cd:[4,8,10],intro:'導遊休假。今天換我清場，你在旁邊學著點。',win:'還行。當然，我說的是我自己。'},

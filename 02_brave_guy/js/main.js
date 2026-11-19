@@ -1,7 +1,8 @@
-import { angelText } from './angel-language.js?v=20261119lang';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119lang';
-import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119lang';
-import { createGuestCombat } from './guest-combat.js?v=20261119lang';
+import { createPuaProjectile } from './pua-projectile.js?v=20261119arsenal';
+import { angelText } from './angel-language.js?v=20261119arsenal';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119arsenal';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119arsenal';
+import { createGuestCombat } from './guest-combat.js?v=20261119arsenal';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
 import { createProgressReset } from './progress-reset.js?v=20261118seal2';
@@ -13,9 +14,9 @@ import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
 import { createVisual, loadModel } from './visuals.js?v=20261119models';
-import { Fx } from './fx.js?v=20261118hit8';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119lang';
-import { createCinematics } from './cinematics.js?v=20261118seal2';
+import { Fx } from './fx.js?v=20261119arsenal';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119arsenal';
+import { createCinematics } from './cinematics.js?v=20261119arsenal';
 import { createOpening } from './opening.js?v=20261118seal2';
 import { createMenuMotion } from './menu-motion.js?v=20261118seal2';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261118seal2';
@@ -433,8 +434,8 @@ function clearField() {
   guestCombat.clear();nightmareBossSkills.clear();
   lockTargetEnemy = null;
   manualLockTarget = null;
-  for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove(); }
-  for (const s of shots) disposeOwned(s.mesh);
+  for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove();if(e.controlBadge)e.controlBadge.remove(); }
+  for (const s of shots) disposeShot(s.mesh);
   for (const h of hazards) disposeOwned(h.mesh);
   if (ambush) { scene.remove(ambush.visual.root); ambush.visual.dispose(); ambush = null; }
   if (beam) { disposeOwned(beam); beam = null; }
@@ -464,7 +465,7 @@ function startStage(index, character=null) {
   transformArt.hide();
   game.stage = index;
   const st = stage();
-  if(index===STAGES.length-1)cinematics.prepareEnding().catch(()=>{});
+  if(index===STAGES.length-1&&!guest())cinematics.prepareEnding().catch(()=>{});
   if(st.id==='3-0')audio.sfx('punch_clock');
   if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]).catch(()=>{});
   ({ sun } = buildWorld(scene, st.theme, Q()));
@@ -675,7 +676,9 @@ function updateHud() {
   }
 
   let bossHp = 0, bossMax = 0;
+  const controlTop=$('boss-bar').hidden?12:$('boss-bar').getBoundingClientRect().bottom+12;
   for (const e of enemies) {
+    updateControlBadge(e,controlTop);
     if (e.def.boss) { bossHp += Math.max(0, e.hp); bossMax += e.def.hp; continue; }
     if (!e.bar) continue;
     if(e.state==='dead'||e.state==='spawn'||!e.shown||!e.visual.root.visible){if(e.bar.style.display!=='none')e.bar.style.display='none';continue;}
@@ -1097,7 +1100,7 @@ function damageEnemy(e, mult, o = {}) {
     if(!e.def.boss)audio.sfx('enemy_down');
     e.t = 0;
     e.visual.play('die', 0.8);
-    if (e.bar) e.bar.remove();
+    if (e.bar) e.bar.remove();if(e.controlBadge)e.controlBadge.remove();
     game.kills++;
     if (!e.def.boss && TAUNTS_BEG[e.kind] && taunt.begT <= 0 && Math.random() < 0.3) { taunt.begT = 1.4; popup(e.pos, e.def.height + 0.6 + e.y, pickLine(TAUNTS_BEG[e.kind]), 'beg'); }
     if (!e.def.boss) { e.vel.addScaledVector(tmp, 6); e.vy = Math.max(e.vy, 6 + (o.launch || 0) * 0.5); // 被打倒的怪飛出去
@@ -1108,6 +1111,7 @@ function damageEnemy(e, mult, o = {}) {
     e.t = 0;
     e.visual.play(e.stun > 0 ? 'stun' : 'hit', 0.25);
   }
+  if(hero.character==='angel'&&o.src==='skill1'&&dmg>0&&!guarded)e.guestKnockT=.8;
   return { killed, crit, damaged: dmg > 0 && !guarded };
 }
 
@@ -1282,10 +1286,11 @@ function boomAt(pos, r) {
   fx.burst(pos, 0xffb347, 26, 10, 0.4, 0.3);
   game.shake = Math.max(game.shake, 0.6);
 }
+function disposeShot(mesh){if(mesh.isSprite){mesh.material.map?.dispose();mesh.material.dispose();mesh.removeFromParent();}else disposeOwned(mesh);}
 function hostileShot(from, yaw, o = {}) {
   if(o.pan)audio.sfx('pan_fly');
   const r = o.radius || 0.3;
-  const mesh = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), new THREE.MeshBasicMaterial({ color: o.color || 0xff5a4f }));
+  const mesh = o.pua !== undefined ? createPuaProjectile(o.pua) : new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), new THREE.MeshBasicMaterial({ color: o.color || 0xff5a4f }));
   mesh.position.set(from.x, 1.2, from.z);
   scene.add(mesh);
   shots.push({ mesh, vel: forward(yaw).multiplyScalar(o.speed || 11), life: o.life || 2.4, radius: r + 0.3, dmg: o.dmg || 80, hostile: true, owner:o.owner, pan: o.pan, silence: o.silence });
@@ -1301,7 +1306,7 @@ function addHazard(type, pos, r, warn, life) {
 
 // 守關者的招式庫。start 在出招瞬間呼叫；update 每幀呼叫，回傳 true 表示這招結束。
 // range／minRange 是與主角距離的條件，cd 是這招的冷卻。
-const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,hurt:n=>hurtHero(n),shot:hostileShot,say:(e,text)=>popup(e.pos,e.def.height+.5,text,'shout'),clamp:pos=>clampArena(pos,1)});
+const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_RADIUS,hurt:n=>hurtHero(n),shot:hostileShot,say:(e,text)=>popup(e.pos,e.def.height+.5,text,'shout'),clamp:pos=>clampArena(pos,1)});
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
@@ -1481,9 +1486,24 @@ function startFinalPhase(e) {
   game.shake = 0.7;
 }
 
+function updateControlBadge(e,bottom=12){
+ const kind=e.guestHold>0?(e.guestStatus||'stun'):e.guestKnockT>0?'knock':e.guestPullT>0?'pull':e.def.boss&&e.guestControlCooldown>0?'resist':null;
+ if(!kind||!alive(e)||!e.shown||e.hp<=0){e.controlBadge?.remove();e.controlBadge=null;return;}
+ const point=screenPos(e.pos,e.def.height+.75+e.y);if(!point.visible){if(e.controlBadge)e.controlBadge.hidden=true;return;}
+ if(!e.controlBadge){e.controlBadge=document.createElement('span');e.controlBadge.className='control-badge';$('world-ui').append(e.controlBadge);}
+ const badge=e.controlBadge;badge.hidden=false;badge.dataset.status=kind;
+ const names={freeze:['❄ 凍結','❄ Frozen','❄ 凍結'],paralyze:['ϟ 麻痺','ϟ Paralyzed','ϟ 麻痺'],stun:['✦ 震懾','✦ Stunned','✦ スタン'],knock:['↗ 吹飛','↗ Blown away','↗ 吹き飛ばし'],pull:['◎ 聚攏','◎ Pulled','◎ 引き寄せ'],resist:['控制抗性','Control resist','制御耐性']};
+ const seconds=kind==='resist'?e.guestControlCooldown:e.guestHold;
+ badge.textContent=names[kind][lang==='en'?1:lang==='ja'?2:0]+(seconds>0&&kind!=='pull'&&kind!=='knock'?` ${seconds.toFixed(1)}s`:'');
+ badge.style.left=`${Math.max(65,Math.min(innerWidth-65,point.x))}px`;badge.style.top=`${Math.max(bottom,Math.min(innerHeight-30,point.y))}px`;
+}
+
 function updateEnemy(e, dt, attackers) {
+  e.guestPullT=Math.max(0,(e.guestPullT||0)-dt);e.guestKnockT=Math.max(0,(e.guestKnockT||0)-dt);
+  const tint=alive(e)&&e.guestHold>0?e.guestStatus:null;
+  if(tint!==e.guestTint){e.visual.glow(!!tint,tint==='freeze'?0x7bdfff:0xffd751);e.guestTint=tint;}
   e.guestControlCooldown=Math.max(0,(e.guestControlCooldown||0)-dt);
-  if(alive(e)&&e.guestHold>0){e.guestHold-=dt;e.visual.play('stun');e.visual.root.position.set(e.pos.x,e.y,e.pos.z);return;}
+  if(alive(e)&&e.guestHold>0){e.guestHold=Math.max(0,e.guestHold-dt);e.visual.play('stun');e.visual.root.position.set(e.pos.x,e.y,e.pos.z);return;}
   e.t += dt;
   e.visual.update(dt);
   const def = e.def;
@@ -2198,7 +2218,7 @@ function updateShots(dt) {
       }
     }
     if (s.life <= 0 || out) {
-      disposeOwned(s.mesh);
+      disposeShot(s.mesh);
       if (s.hostile) fx.burst(s.mesh.position, 0xff5a4f, 6, 3, s.mesh.position.y);
       s.gone = true;
     }
@@ -2288,7 +2308,7 @@ function clearStage() {
   guestCombat.clear();nightmareBossSkills.clear();
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
   if(st.boss)playBossKO(); // Includes quick-clear and scripted victory paths.
-  if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';setBgm(bossBgm());$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
+  if(st.boss&&!guest()&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';setBgm(bossBgm());$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
   runs.clear(index,last);
   const stats = { id: st.id, name: st.name, time: (runs.stageResult?.seconds??game.time).toFixed(0), kills: game.kills };
   game.phase = 'over'; game.fails = 0; game.paused = false;
@@ -2326,6 +2346,7 @@ function continueVictory() {
         text:()=>t('他知道自己要往哪走了。'),note:()=>t('小天使留下的便利貼：「還行。」'),btn:'再打一次'});
     });
   } else {
+    if(guest()){startStage(result.index+1);return;}
     if (result.st.outro?.length) setBgm('bgm_talk');
     const outro=guest()?[[supportName(),hero.character==='angel'?'妳剛剛真的很帥。':'你做到了。'],[ROSTER[hero.character].name,hero.character==='angel'?'現在才知道？':'……你沒有走，真好。']]:result.st.outro;
     runDialog(outro, () => startStage(result.index + 1));
@@ -2335,7 +2356,7 @@ function continueVictory() {
 function playEnding(done) {
   game.phase = 'cinematic';
   $('overlay').hidden = true; $('hud').hidden = true;
-  cinematics.ending(() => { input.takeActions(); done(); });
+  cinematics.ending(() => { input.takeActions(); done(); },guest());
 }
 
 function update(dt) {
@@ -2374,7 +2395,7 @@ function update(dt) {
   // 王倒了直接過關：清掉場上剩下的小兵，不用再補刀。
   // 用 state!=='dead'（而非 alive）判斷：登場中(spawn)的王也算存在，只有真的死了才過關，否則王一出場就被誤判成過關。
   if (game.phase === 'playing' && game.bossSpawned && !game.victoryShown && enemies.some((e) => e.def.boss) && !enemies.some((e) => e.def.boss && e.state !== 'dead')) {
-    for (const e of enemies) if (alive(e) && !e.def.boss) { e.state = 'dead'; e.t = 0; if (e.bar) e.bar.remove(); e.visual.play('die', 0.6); fx.ring(e.pos, 0.2, 2, 0xffffff, 0.3); }
+    for (const e of enemies) if (alive(e) && !e.def.boss) { e.state = 'dead'; e.t = 0; if (e.bar) e.bar.remove();if(e.controlBadge)e.controlBadge.remove(); e.visual.play('die', 0.6); fx.ring(e.pos, 0.2, 2, 0xffffff, 0.3); }
     clearStage();
     return;
   }
@@ -2894,7 +2915,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { nightmareBossSkills, COMBO, guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { updateHud, nightmareBossSkills, COMBO, guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   onHit, addRescues, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };

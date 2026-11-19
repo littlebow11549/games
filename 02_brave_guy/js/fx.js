@@ -158,13 +158,13 @@ export class Fx {
   }
 
   // 殘影：衝拳路徑上留下的拖尾
-  trail(from, to, width, color = 0xffe08a, life = 0.3) {
+  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7) {
     const len = Math.hypot(to.x - from.x, to.z - from.z);
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), additive(color, 0.7));
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), additive(color, opacity));
     m.rotation.x = -Math.PI / 2;
     m.rotation.z = -Math.atan2(to.x - from.x, to.z - from.z);
     m.position.set((from.x + to.x) / 2, 0.2, (from.z + to.z) / 2);
-    return this.add(m, life, (k) => { m.material.opacity = 0.7 * (1 - k); m.scale.x = 1 - k * 0.6; });
+    return this.add(m, life, (k) => { m.material.opacity = opacity * (1 - k); m.scale.x = 1 - k * 0.6; });
   }
 
   // 半球衝擊波：變身與爆炸用

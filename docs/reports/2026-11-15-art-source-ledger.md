@@ -120,3 +120,7 @@
 
 ## 2026-11-19 技能圖集精修與表情接入
 `assets/source/pic/icons/guest_skill_atlas.png` 為新image_gen原生1254×1254 RGBA圖集，CSS 3×3視窗使用，未縮圖／改像素。舊九張SVG移至assets/_alternate，最新交付JSON記錄雜湊與順序。小天使DISDAIN及惡夢EXPOSED受擊表情復用既有unified設定集，不另繪。新增ult_angel_en.svg／ult_angel_ja.svg向量語系標題。以上assets路徑相對02_brave_guy；詳細交接見2026-11-19-game02-language-portraits-drones-icons.md。
+
+
+## 2026-11-19 王之嘴炮英日與傳送門
+新增source/pic/titles/ult_nightmare_en.svg、ult_nightmare_ja.svg（相對02_brave_guy/assets），復用既有760×370紫綠底形，Noto字形轉路徑。十門陣形與三語PUA文字砲為royal-arsenal.js／pua-projectile.js程式視覺，無新增點陣圖片。詳見2026-11-19-game02-royal-dialogue-barrage交接。
