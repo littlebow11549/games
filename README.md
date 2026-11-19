@@ -4,7 +4,7 @@
 
 | 編號 | 遊戲 | 資料夾 |
 |------|------|--------|
-| 01 | Memory Crash | `01_memory_crash/` |
+| 01 | 記憶水晶 Memory Crash | `01_memory_crash/` |
 | 02 | 勇氣超人 Brave Guy（3D 動作原型） | `02_brave_guy/` |
 
 每款遊戲的美術/音樂素材規格清單放在 `NN_game/assets/ASSETS.md`，格式見根目錄範本 `ASSETS_TEMPLATE.md`。
