@@ -108,3 +108,7 @@
 ## 2026-11-19 新角色技能圖示
 
 新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
+
+
+## 2026-11-19 程式模型分型
+`js/visuals.js` 新增 angel_playable（一般尺寸）、student_spirit、brave_spirit（小精靈）；復用既有幾何角色骨架，增加衣裙、翅膀與漂浮動作，無新增 GLB 或點陣圖片。詳見 docs/handoffs/2026-11-19-game02-character-model-variants.md（相對 repo）。

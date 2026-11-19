@@ -278,12 +278,44 @@ function buildAngel() {
   return { root, rig, angel: true };
 }
 
+// Separate playable body and companion variants; original angel remains the tiny guide.
+function addSpiritWings(p, color = 0xffffff) {
+  p.spiritWings = [];
+  for (const side of [-1, 1]) {
+    const pivot = new THREE.Group(); pivot.position.set(side * .19, .12, -.2);
+    p.torso.add(pivot);
+    for (let j = 0; j < 3; j++) {
+      const feather = mesh(new THREE.SphereGeometry(1, 10, 8), toon(color), side * (.21 + j * .09), .12 - j * .12, 0);
+      feather.scale.set(.32, .13, .045); feather.rotation.z = side * (.6 - j * .25); pivot.add(feather);
+    }
+    p.spiritWings.push(pivot);
+  }
+}
+function buildPlayableAngel() {
+  const p = buildHumanoid({scale:1,shirt:0xe0261c,pants:0x29233d,skin:0xf7c9a0,hair:0xf48fc6,shoes:0xf5d4ea});
+  p.torso.add(mesh(new THREE.BoxGeometry(.26,.4,.045),toon(0xffffff),0,0,.205));
+  p.rig.add(mesh(new THREE.CylinderGeometry(.22,.36,.29,12),toon(0x2a6fb8),0,.78,0));
+  p.head.add(mesh(new THREE.BoxGeometry(.37,.9,.1),toon(0xf48fc6),0,-.28,-.19));
+  for(const side of [-1,1]) {
+    const hat=mesh(new THREE.ConeGeometry(.12,.4,10),toon(0xe0261c),side*.16,.25,0);
+    hat.rotation.z=-side*.9;p.head.add(hat);
+    p.head.add(mesh(new THREE.SphereGeometry(.055,10,8),toon(0xffdc54),side*.32,.34,0));
+  }
+  addSpiritWings(p);p.playableAngel=true;return p;
+}
+function buildHeroSpirit(kind) {
+  const p=buildHumanoid({...LOOKS[kind],scale:.42,guard:false});
+  p.head.scale.setScalar(1.35);
+  addSpiritWings(p,kind==='brave'?0xe4ffd0:0xcdeaff);
+  p.spirit=true;return p;
+}
+
 const ease = (x) => 1 - (1 - x) * (1 - x);
 
 export class ProcVisual {
   constructor(kind) {
     this.kind = kind;
-    this.p = kind === 'angel' ? buildAngel() : kind === 'baguashe' ? buildSnake() : buildHumanoid(LOOKS[kind] || LOOKS.ganqiao);
+    this.p = kind === 'angel_playable' ? buildPlayableAngel() : kind === 'student_spirit' ? buildHeroSpirit('student') : kind === 'brave_spirit' ? buildHeroSpirit('brave') : kind === 'angel' ? buildAngel() : kind === 'baguashe' ? buildSnake() : buildHumanoid(LOOKS[kind] || LOOKS.ganqiao);
     this.root = this.p.root;
     this.state = 'idle';
     this.t = 0;
@@ -331,6 +363,13 @@ export class ProcVisual {
       this.applyEmissive();
     }
     if (this.p.angel) this.updateAngel(); else if (this.p.snake) this.updateSnake(); else this.updateHumanoid();
+    if(this.p.spiritWings) {
+      this.p.spiritWings.forEach((wing,i)=>wing.rotation.y=(i?1:-1)*Math.sin(this.clock*10)*.4);
+      if(this.p.spirit){this.p.rig.position.y+=Math.sin(this.clock*4)*.09;this.p.legR.rotation.x=.18;this.p.legL.rotation.x=-.15;}
+      if(this.p.playableAngel && ['attack','skill1','skill2','skill3','ult'].includes(this.state)) {
+        this.p.armR.rotation.x=-1.2;this.p.armL.rotation.x=-1.2;
+      }
+    }
   }
 
   updateSnake() {

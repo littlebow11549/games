@@ -10,7 +10,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261118seal2'
 import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
-import { createVisual, loadModel } from './visuals.js?v=20261118seal2';
+import { createVisual, loadModel } from './visuals.js?v=20261119models';
 import { Fx } from './fx.js?v=20261118hit8';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261118seal2';
 import { createCinematics } from './cinematics.js?v=20261118seal2';
@@ -385,13 +385,13 @@ function resetHero() {
   $('portrait').classList.remove('hurt');
   $('hit-feedback').classList.remove('hit');
   if (!hero.vis.student) {
-    for (const k of ['student', 'worker', 'brave', 'angel', 'nightmare']) { hero.vis[k] = createVisual(k); scene.add(hero.vis[k].root); }
-    angel.vis={angel:createVisual('angel'),brave:createVisual('brave')};
+    for (const k of ['student', 'worker', 'brave', 'angel', 'nightmare']) { hero.vis[k] = createVisual(k === 'angel' ? 'angel_playable' : k); scene.add(hero.vis[k].root); }
+    angel.vis={angel:createVisual('angel'),student:createVisual('student_spirit'),brave:createVisual('brave_spirit')};
     for(const v of Object.values(angel.vis))scene.add(v.root);
     angel.visual=angel.vis.angel;
   }
   hero.base = stage().form;
-  angel.visual=guest()?angel.vis.brave:angel.vis.angel;
+  angel.visual=hero.character==='angel'?angel.vis.student:hero.character==='nightmare'?angel.vis.brave:angel.vis.angel;
   for(const v of Object.values(angel.vis))v.root.visible=v===angel.visual;
   angel.sayT=0;angel.quiet=0;angel.rescueT=0;hero.rescueLines=0;hero.guestHurtAt=0;$('angel-bubble').hidden=true;
   hero.maxHp = HERO.maxHp + (game.abilities.has('hp') ? 200 : 0);
@@ -411,7 +411,7 @@ function resetHero() {
   } else setForm(hero.base);
   angel.pos.copy(hero.pos);
   // 地圖三前段小天使縮成巴掌大，找回變身後長回來
-  angel.visual.root.scale.setScalar(guest()?.35:stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
+  angel.visual.root.scale.setScalar(guest()?1:stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
   applyCharacterHud();
 }
 
@@ -2365,7 +2365,7 @@ function update(dt) {
       game.midDone = true;
       runDialog(guest()?[[supportName(),'下一段路打開了，繼續前進。'],[ROSTER[hero.character].name,hero.character==='angel'?'知道了，別搶我的台詞。':'……我會走下去的。']]:st.mid.dialog, () => {
         st.mid.grant.split('+').forEach((g) => game.abilities.add(g));
-        angel.visual.root.scale.setScalar(guest()?.35:1);
+        angel.visual.root.scale.setScalar(guest()?1:1);
         hero.readySaid = false;
         if(st.mid.grant.split('+').includes('transform')){
           hero.courage = GAUGE.courageMax;
@@ -2800,7 +2800,7 @@ $('btn-quick-clear').addEventListener('click', () => {
     // Preserve abilities normally restored by the skipped mid-stage event.
     if (st.mid && !game.midDone) {
       st.mid.grant.split('+').forEach(g => game.abilities.add(g));
-      angel.visual.root.scale.setScalar(guest()?.35:1); hero.readySaid = false;
+      angel.visual.root.scale.setScalar(guest()?1:1); hero.readySaid = false;
     }
     game.midDone = true;
     startBossIntro();
