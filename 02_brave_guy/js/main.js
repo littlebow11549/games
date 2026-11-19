@@ -351,8 +351,8 @@ function applyCharacterHud(){
  const id=hero.character||'brave';$('hud').dataset.character=id;
  $('portrait').querySelector('.guest-face')?.remove();
  if(guest()){const face=document.createElement('span');face.className=`roster-face guest-face ${id}`;$('portrait').append(face);}
- for(const btn of ACT_BUTTONS){btn.querySelector('.guest-symbol')?.remove();const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
-  if(guest()&&(i>=0||id==='angel'&&btn.dataset.action==='attack')){const el=document.createElement('b');el.className='guest-symbol';el.textContent=i<0?'嘴砲':(id==='angel'?['吹飛','冰凍','麻痺','龍捲']:['三衝','子機','定身','王砲'])[i];btn.append(el);}
+ for(const btn of ACT_BUTTONS){btn.querySelector('.guest-icon')?.remove();if(btn.dataset.action==='attack')btn.setAttribute('aria-label',id==='angel'?'嘴砲攻擊':'攻擊');const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
+  if(guest()&&(i>=0||id==='angel'&&btn.dataset.action==='attack')){const el=document.createElement('img');el.className='guest-icon';el.alt='';el.setAttribute('aria-hidden','true');el.draggable=false;el.src=`assets/source/pic/icons/skill_${id}_${btn.dataset.action}.svg`;btn.append(el);}
  }
 }
 

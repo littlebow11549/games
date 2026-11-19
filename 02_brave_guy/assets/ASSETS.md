@@ -402,3 +402,8 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 - `source/pic/fx/fx_hit_arcade_8f.png`：1774×887 RGBA透明PNG，4欄×2列，原生解析度不重採樣。按等分UV取8格，40fps／0.2秒。
 - 一般命中與重擊／暴擊共用圖集但尺寸不同；未命中、無敵、護盾與已死亡目標不播放此命中火花。格擋不套用此火花。
 - 預覽：`../hit-effect-preview.html`；接入：`../js/fx.js`、`../js/main.js`。
+
+
+## 2026-11-19 新角色技能圖示
+
+新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。

@@ -103,3 +103,8 @@
 - 已核對既有 fx_spark.svg 與 fx.js：既有靜態火花／粒子，沒有本次指定的6–8格命中序列。
 - 依使用者明確要求新增 fx_hit_arcade_8f.png（4×2），不是重製既有角色或取消佇列。
 - 第一版暈光過多，使用imagegen修正成透明硬邊火花；交付第二版，原生成稿留在generated_images。
+
+
+## 2026-11-19 新角色技能圖示
+
+新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
