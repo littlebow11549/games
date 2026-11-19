@@ -1,5 +1,5 @@
 // HTML/CSS prologue. Existing portraits remain unmodified; no WebGL dependency.
-import { lang, setLang } from './i18n.js?v=20261118seal2';
+import { lang, setLang } from './i18n.js?v=20261119dialogue';
 export const OPENING_SHOTS = [
  ['noise', ['總是說「沒關係」','Always saying “It’s fine”','いつも「大丈夫」'], ['被嘲笑、被責怪時，他總把想說的話吞回去。','When people mocked or blamed him, he swallowed every reply.','笑われても、責められても、言いたいことを飲み込んだ。']],
  ['sleep', ['期中考前夜','The night before midterms','中間試験の前夜'], ['宿舍的燈還亮著。他趴在課本上睡著了，連夢裡都在說：「再五分鐘……」','His dorm light stayed on. He fell asleep over his books. “Five more minutes…”','寮の明かりはついたまま。教科書に突っ伏して眠った。「あと五分……」']],

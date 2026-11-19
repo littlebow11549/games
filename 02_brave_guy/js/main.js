@@ -1,32 +1,32 @@
-import { createPuaProjectile } from './pua-projectile.js?v=20261119arsenal';
-import { angelText } from './angel-language.js?v=20261119arsenal';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119arsenal';
-import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119arsenal';
-import { createGuestCombat } from './guest-combat.js?v=20261119arsenal';
+import { createPuaProjectile } from './pua-projectile.js?v=20261119dialogue';
+import { angelText } from './angel-language.js?v=20261119dialogue';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119dialogue';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119dialogue';
+import { createGuestCombat } from './guest-combat.js?v=20261119dialogue';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
-import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
-import { createProgressReset } from './progress-reset.js?v=20261118seal2';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261118seal2';
+import { createSecretToggle } from './secret-toggle.js?v=20261119dialogue';
+import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261119dialogue';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
-import { RunRecords, formatTime, words } from './run-records.js?v=20261118seal2';
-import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
+import { RunRecords, formatTime, words } from './run-records.js?v=20261119dialogue';
+import { disposeOwned } from './dispose-owned.js?v=20261119dialogue';
 import * as THREE from '../vendor/three/three.module.min.js';
-import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
+import { buildWorld, ARENA_RADIUS } from './world.js?v=20261119dialogue';
 import { createVisual, loadModel } from './visuals.js?v=20261119models';
-import { Fx } from './fx.js?v=20261119arsenal';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119arsenal';
-import { createCinematics } from './cinematics.js?v=20261119arsenal';
-import { createOpening } from './opening.js?v=20261118seal2';
-import { createMenuMotion } from './menu-motion.js?v=20261118seal2';
-import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261118seal2';
+import { Fx } from './fx.js?v=20261119dialogue';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119dialogue';
+import { createCinematics } from './cinematics.js?v=20261119dialogue';
+import { createOpening } from './opening.js?v=20261119dialogue';
+import { createMenuMotion } from './menu-motion.js?v=20261119dialogue';
+import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261119dialogue';
 import { Input, lockViewport } from './input.js?v=20261118stick';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261118seal2';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261119dialogue';
 import { GameAudio } from './audio.js?v=20261118whoosh';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261118seal2';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261118seal2';
-import { makeMaze } from './maze.js?v=20261118seal2';
-import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261118seal2';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261119dialogue';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261119dialogue';
+import { makeMaze } from './maze.js?v=20261119dialogue';
+import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261119dialogue';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -345,7 +345,7 @@ const guestCombat = createGuestCombat({scene,hero,enemies:()=>enemies,fx,audio:{
   hit:(e,m,o)=>{const result=damageEnemy(e,m,o);tally([result],false,true);return result;},
   line:lineStrike,move:moveHeroBy});
 function supportSpeech(text, reply=null) {
-  const b=$('angel-bubble');b.textContent=`${supportName()}：${text}`;b.hidden=false;
+  const b=$('angel-bubble');b.textContent=`${t(supportName())}：${t(text)}`;b.hidden=false;
   angel.sayT=2.5;angel.quiet=5;angel.rescueT=1.2;
   if(reply)hero.sayNext={text:reply,t:2.5};
 }
@@ -591,7 +591,7 @@ function say(key, force = false) {
   angel.quiet = 5;
   const b = $('angel-bubble');
   const line = ANGEL[key];
-  b.textContent = guest()?`${supportName()}：${key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。'}`:t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
+  b.textContent = guest()?`${t(supportName())}：${t(key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。')}`:t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
   b.hidden = false;
   audio.sfx('bubble');
 }
@@ -646,7 +646,7 @@ function updateHud() {
   textIfChanged('suanle-n', game.suanle);
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
   textIfChanged('rescue-n', hearts);
-  $('rescue').querySelector('span').textContent=`${supportName()}救援`;
+  $('rescue').querySelector('span').textContent=tf('{0}救援',t(supportName()));
   const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
   $('btn-lock').hidden = false;
@@ -1035,7 +1035,7 @@ function hurtHero(amount, opts = {}) {
       hero.hp = hero.maxHp * 0.45;
       hero.invuln = 2.5;
       hero.debuff = {};
-      popup(hero.pos, 3.4, guest()?`${supportName()}救援！剩 ${game.rescues} 次`:tf('小天使救援！剩 {0} 次', game.rescues), 'good');
+      popup(hero.pos, 3.4, guest()?tf('{0}救援！剩 {1} 次',t(supportName()),game.rescues):tf('小天使救援！剩 {0} 次', game.rescues), 'good');
       fx.ring(hero.pos, 0.5, 7, guest()?0xcaff70:0xf48fc6, 0.5);
       fx.pillar(hero.pos, 1.2, 10, guest()?0xffed8a:0xffc4e3, 0.6);
       areaStrike(hero.pos, 6, 0.2, { kb: 14, launch: 4 });
@@ -1945,7 +1945,7 @@ function startSkill(name, mv) {
     if(name==='ult'){if(hero.qi<GAUGE.qiMax||guestCombat.ultActive)return;hero.qi=0;}
     else {if((hero.cds[name]||0)>0)return;hero.cds[name]=ROSTER[hero.character].cd[idx];}
     faceForAction(mv,18);hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
-    hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);heroSay(ROSTER[hero.character].skills[idx],2.3);
+    hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);if(name!=='ult')heroSay(ROSTER[hero.character].skills[idx],2.3);else{hero.sayEl?.remove();hero.sayEl=null;hero.sayT=0;}
     if(name==='ult')popup(hero.pos,2.8,ROSTER[hero.character].skills[3],'shout');
     guestCombat.begin(hero.character,name);return;
   }
@@ -2284,7 +2284,7 @@ function renderRunResult(outcome){
   const time=document.createElement('strong');time.textContent=result?formatTime(result.seconds):tr('選關體驗・不列榜','Stage preview · unranked','ステージ体験・ランキング対象外');if(total)box.append(time);
   const heading=document.createElement('p');heading.textContent=tr('本機・同難度 TOP 3','LOCAL · SAME DIFFICULTY · TOP 3','この端末・同難易度 TOP 3');box.append(heading);
   const list=document.createElement('ol');for(const row of result?.rows||[]){const li=document.createElement('li');li.textContent=`${formatTime(row.seconds)}  ·  ${row.date||''}`;list.append(li);}box.append(list);
-  const note=document.createElement('p');note.textContent=guest()?'夢境換角：通關進度照常保存，不列入一般計時排行。':!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
+  const note=document.createElement('p');note.textContent=guest()?t('夢境換角：通關進度照常保存，不列入一般計時排行。'):!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
   if(result&&!result.saved){const warning=document.createElement('p');warning.textContent=tr('無法保存紀錄，本次仍可查看。','Record could not be saved.','記録を保存できませんでした。');box.append(warning);}
   $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('從序章開始重玩（進度歸零）','RESTART FROM PROLOGUE (reset)','序章からやり直す（進捗リセット）');
 }
@@ -2321,7 +2321,7 @@ function clearStage() {
   audio.playBgm('bgm_victory'); audio.sfx('win'); audio.sfx('victory_human_cheer');
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
-    note:()=>guest()?`${ROSTER[hero.character].name}：「${ROSTER[hero.character].win}」`:st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
+    note:()=>guest()?`${t(ROSTER[hero.character].name)}：「${t(ROSTER[hero.character].win)}」`:st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
     btn:'再打一次', next:true, nextLabel:last?'繼續':'下一關'});
   $('overlay').classList.remove('victory-arrive');void $('overlay').offsetWidth;
   $('overlay').classList.add('victory-arrive');

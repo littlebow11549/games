@@ -1,5 +1,5 @@
-import { lang } from './i18n.js?v=20261118seal2';
-import { words } from './run-records.js?v=20261118seal2';
+import { lang } from './i18n.js?v=20261119dialogue';
+import { words } from './run-records.js?v=20261119dialogue';
 // Only this game's progress and rankings. Preferences and other games stay intact.
 export function clearProgress(storage){
  const entries=[];

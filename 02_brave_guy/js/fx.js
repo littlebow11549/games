@@ -1,6 +1,6 @@
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
-import { disposeOwned } from './dispose-owned.js?v=20261118seal2';
+import { disposeOwned } from './dispose-owned.js?v=20261119dialogue';
 import * as THREE from '../vendor/three/three.module.min.js';
 
 const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({

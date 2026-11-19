@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-19 全角色對話語系／單層大招框](handoffs/2026-11-19-game02-dialogue-localization.md)：補齊救援、技能、挑釁、選角與解鎖英日文字；雙角色大招只保留爆炸框，含字型更新與實際頁面驗證。
+
 - [2026-11-19 惡夢PUA傳送門大招](handoffs/2026-11-19-game02-royal-dialogue-barrage.md)：背後十門三語PUA對話、末段召回轟炸、E改五子機；小天使Q範圍傷害提升與負面狀態標記；客串過關跳電影、保留Staff解鎖。
 
 - [2026-11-19 語系／頭像／飛行子機／新圖示](handoffs/2026-11-19-game02-language-portraits-drones-icons.md)：小天使三語攻擊與大招字、雙角色受擊表情、九招漫畫圖集、玩家與Boss子機本體飛出自動鎖敵。

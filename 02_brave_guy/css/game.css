@@ -1,6 +1,6 @@
 /* 字型：內文用粉圓體（圓潤、好讀），標題與大字用思源黑體 Black。都只含遊戲用到的字，見 tools/make_game02_fonts.py */
-@font-face{font-family:"BG Round";src:url("../assets/fonts/huninn-subset.woff2?v=20261119arsenal") format("woff2");font-display:swap}
-@font-face{font-family:"BG Black";src:url("../assets/fonts/notosanstc-black-subset.woff2?v=20261119arsenal") format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"BG Round";src:url("../assets/fonts/huninn-subset.woff2?v=20261119dialogue") format("woff2");font-display:swap}
+@font-face{font-family:"BG Black";src:url("../assets/fonts/notosanstc-black-subset.woff2?v=20261119dialogue") format("woff2");font-weight:900;font-display:swap}
 :root{--font-body:"BG Round","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
   --font-display:"BG Black","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif}
 /* 佔位 UI：以 CSS 繪製，配色取自概念圖（勇氣綠、外套黃、圍巾紅）。正式美術到位後替換。 */
@@ -434,5 +434,5 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 .round-badge[hidden]{display:none}
 @keyframes godShift{from{background-position:0 0}to{background-position:300% 0}}
 
-@font-face{font-family:"BG JP";src:url("../assets/fonts/notosansjp-subset.woff2?v=20261119arsenal") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"BG JP";src:url("../assets/fonts/notosansjp-subset.woff2?v=20261119dialogue") format("woff2");font-weight:100 900;font-display:swap}
 html[lang="ja"]{--font-display:"BG JP","BG Black",sans-serif}
