@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-19 Boss血條與戰鬥對話](handoffs/2026-11-19-game02-boss-speech.md)：主角、怪物與小天使氣泡自動避開Boss血條，保留14px間距，五尺寸驗證。
+
 - [2026-11-18 手機Banner滿版與淡出](handoffs/2026-11-18-hub-banner-fill-fade.md)：記憶水晶背景撐滿上下，勇氣超人左側插畫邊緣漸層淡出。
 
 - [2026-11-18 秘技中文字型與音效核對](handoffs/2026-11-18-game02-secret-font-sfx-audit.md)：補缺少的「秘」字，列出26個尚未經近期替換的SFX槽位（24檔），不含BGM。

@@ -1,3 +1,4 @@
+import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
 import { createProgressReset } from './progress-reset.js?v=20261118seal2';
 import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261118seal2';
@@ -627,9 +628,7 @@ function updateHud() {
   const b = $('angel-bubble');
   if (!b.hidden) {
     const p = screenPos(angel.pos, 2.9);
-    const halfWidth = b.offsetWidth / 2 + 12;
-    b.style.left = `${Math.min(innerWidth - halfWidth, Math.max(halfWidth, p.x))}px`;
-    b.style.top = `${Math.min(innerHeight - 12, Math.max(b.offsetHeight + 12, p.y))}px`;
+    placeSpeech(b, p);
   }
 }
 
@@ -1164,14 +1163,13 @@ function updateTaunts(dt) {
     const p = screenPos(e.pos, e.def.height + 0.9 + e.y);
     if (e.sayT <= 0 || e.state === 'dead' || !p.visible) { e.sayEl.remove(); e.sayEl = null; continue; }
     talking++;
-    e.sayEl.style.left = `${p.x}px`;
-    e.sayEl.style.top = `${p.y}px`;
+    placeSpeech(e.sayEl, p);
   }
   if (hero.sayEl) {
     hero.sayT -= dt;
     const p = screenPos(hero.pos, 2.9);
     if (hero.sayT <= 0 || game.phase !== 'playing') { hero.sayEl.remove(); hero.sayEl = null; }
-    else { hero.sayEl.style.left = `${p.x}px`; hero.sayEl.style.top = `${p.y}px`; }
+    else { placeSpeech(hero.sayEl, p); }
   }
   if (hero.sayNext && (hero.sayNext.t -= dt) <= 0) { heroSay(hero.sayNext.text); hero.sayNext = null; }
   taunt.backT -= dt;
