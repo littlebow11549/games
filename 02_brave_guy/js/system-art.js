@@ -22,6 +22,9 @@ export function artSprite(group, index, label = '') {
 export function setSystemArt(el, text) {
  el.classList.remove('wave-art');
  const value = clean(text);
+ const guestTitle={'全都給我過來！':'angel','王之嘴炮':'nightmare'}[value];
+ if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=`assets/source/pic/titles/ult_${guestTitle}.svg`;img.alt=text;el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
+
  for (const [group, keys] of Object.entries(groups)) {
   const index = keys.findIndex(k => clean(k) === value || clean(t(k)) === value);
   if(index >= 0) { el.replaceChildren(artSprite(group,index,t(text))); el.classList.add('has-word-art'); return; }

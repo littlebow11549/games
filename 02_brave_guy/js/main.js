@@ -1,5 +1,6 @@
-import { ROSTER, createRosterPicker } from './playable-roster.js?v=20261119roster';
-import { createGuestCombat } from './guest-combat.js?v=20261119roster';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119unlock';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119unlock';
+import { createGuestCombat } from './guest-combat.js?v=20261119unlock';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
 import { createProgressReset } from './progress-reset.js?v=20261118seal2';
@@ -12,7 +13,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261118seal2';
 import { createVisual, loadModel } from './visuals.js?v=20261119models';
 import { Fx } from './fx.js?v=20261118hit8';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261118seal2';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119unlock';
 import { createCinematics } from './cinematics.js?v=20261118seal2';
 import { createOpening } from './opening.js?v=20261118seal2';
 import { createMenuMotion } from './menu-motion.js?v=20261118seal2';
@@ -62,6 +63,9 @@ const COMBO = {
   ],
 };
 
+COMBO.nightmare=COMBO.brave.map((c,i)=>({...c,mult:c.mult*1.3,range:c.range+.6,kb:c.kb*1.2,lunge:c.lunge*1.15}));
+const heroCombo=()=>COMBO[hero.character==='nightmare'?'nightmare':hero.form==='brave'?'brave':'student'];
+
 // 無雙感：範圍大、一次掃一片、把怪打飛
 const SKILLS = {
   skill1: { name: '勇氣衝拳', cd: 3, dur: 0.34, dash: 15, width: 5.5, mult: 3.2, kb: 14, launch: 7, endRadius: 6.5 },
@@ -98,6 +102,7 @@ const BOSSES = {
   incubus: { name: '夢魘超人', vis: 'incubus', hp: 8000, speed: 4.0, radius: 0.6, height: 2.2, fear: true, incubus: true, moves: ['mDash', 'mKi', 'mQuake', 'guiltTalk', 'firePools'], lines: ['何必呢。', '你這樣讓我很難做。', '我是對你有期待，才跟你講這些。', '你離開我，還有誰要你？'] },
 };
 for (const b of Object.values(BOSSES)) Object.assign(b, { boss: true, reach: 4.2, windup: 0.95, recover: 1.0, dmg: 200, ...b });
+for(const id of ['nightmare','hell','incubus']){const b=BOSSES[id];b.hp*=1.15;b.speed*=1.12;b.recover=.75;b.skillRate=.75;b.moves=['nPunch','nDash','nDrones','nShout','nKing',...(id==='hell'?['firePools']:[]),'guiltTalk'];}
 const BOSS_GROUPS = { duo: ['xinji', 'baguashe'] }; // 一關有兩隻守關者時
 // 難度：怪的數量、同場上限、嘲諷頻率、俊熊出現的次數都跟著變。
 // crowd／cap 是乘在畫質表上的倍率；地獄難度的怪會直接生在整張地圖上，幾乎鋪滿。
@@ -324,6 +329,14 @@ const roundCrowd = () => 1 + roundTier() * 0.5;                 // 怪量倍率 
 const roundRush = () => 1 + roundTier() * 0.3;                  // 守關者出招頻率倍率
 const godMode = () => (save.rounds || 0) > 3;                   // 超過三次：天下無敵、勇氣超人開掛
 const rosterPicker = createRosterPicker();
+const unlockNotice = createUnlockNotice();
+async function announceUnlocks(){
+ if(unlockNotice.open)return;
+ for(const id of [...(save.pendingCharacters||[])]){
+   if(characterUnlocked(id,save.rounds)){await unlockNotice.show(id);}
+   save.pendingCharacters=(save.pendingCharacters||[]).filter(x=>x!==id);writeSave();
+ }
+}
 const guest = () => hero.character === 'angel' || hero.character === 'nightmare';
 const supportName = () => hero.character === 'angel' ? '主角' : hero.character === 'nightmare' ? '勇氣超人' : '小天使';
 const guestCombat = createGuestCombat({scene,hero,enemies:()=>enemies,fx,audio:{sfx:name=>audio.sfx(name)},arena:ARENA_RADIUS,
@@ -403,7 +416,7 @@ function resetHero() {
   });
   hero.pos.set(0, 0, 5);
   // 天下無敵從進場就使用勇氣超人；不觸發變身動畫或範圍傷害。
-  if (godMode()) {
+  if (godMode() || guest()) {
     hero.mode = 'courage';
     hero.courage = GAUGE.courageMax;
     hero.extendLeft = GAUGE.courageExtendCap;
@@ -416,7 +429,7 @@ function resetHero() {
 }
 
 function clearField() {
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   lockTargetEnemy = null;
   manualLockTarget = null;
   for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove(); }
@@ -433,12 +446,12 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index, character=null) {
-  if(godMode()&&character===null){
+  if((save.rounds||0)>=3&&character===null){
     if(rosterPicker.open)return;
     const wasPaused=game.paused;game.paused=true;audio.stopLoops();input.takeActions();input.held.clear();input.keys.clear();input.stick.x=input.stick.y=0;
-    return rosterPicker.choose(hero.character||'brave').then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
+    return rosterPicker.choose(hero.character||'brave',save.rounds).then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
   }
-  hero.character=godMode()&&ROSTER[character]?character:'brave';
+  hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds)?character:'brave';
   if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index,hero.character));return;}
   audio.stopCelebration();input.takeActions();
   runs.start(index,diff);
@@ -465,6 +478,7 @@ function startStage(index, character=null) {
   }
   game.rules = st.rules || {};
   game.abilities = stageAbilities(index);
+  if(guest())for(const ability of ['transform','skill1','skill2','skill3','ult'])game.abilities.add(ability);
   if (game.rules.tutorial) game.abilities.add('transform'); // 序章就是學變身的地方
   clearField();
   resetHero();
@@ -1273,7 +1287,7 @@ function hostileShot(from, yaw, o = {}) {
   const mesh = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), new THREE.MeshBasicMaterial({ color: o.color || 0xff5a4f }));
   mesh.position.set(from.x, 1.2, from.z);
   scene.add(mesh);
-  shots.push({ mesh, vel: forward(yaw).multiplyScalar(o.speed || 11), life: o.life || 2.4, radius: r + 0.3, dmg: o.dmg || 80, hostile: true, pan: o.pan, silence: o.silence });
+  shots.push({ mesh, vel: forward(yaw).multiplyScalar(o.speed || 11), life: o.life || 2.4, radius: r + 0.3, dmg: o.dmg || 80, hostile: true, owner:o.owner, pan: o.pan, silence: o.silence });
 }
 function addHazard(type, pos, r, warn, life) {
   const color = { fire: 0x9b3bd6, meeting: 0x8a8f96, pie: 0xffd98a }[type];
@@ -1286,7 +1300,9 @@ function addHazard(type, pos, r, warn, life) {
 
 // 守關者的招式庫。start 在出招瞬間呼叫；update 每幀呼叫，回傳 true 表示這招結束。
 // range／minRange 是與主角距離的條件，cd 是這招的冷卻。
+const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,hurt:n=>hurtHero(n),shot:hostileShot,say:(e,text)=>popup(e.pos,e.def.height+.5,text,'shout'),clamp:pos=>clampArena(pos,1)});
 const MOVES = {
+ ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
     start(e) { e.aim = e.pos.clone(); e.visual.play('attack', 0.95 / 0.6); fx.telegraph(e.aim, 5.5, 0.95); },
     update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
@@ -1430,7 +1446,7 @@ function bossThink(e, d, dx, dz) {
   });
   if (!options.length) return false;
   const name = options[Math.floor(Math.random() * options.length)];
-  e.cds[name] = MOVES[name].cd * (e.untouchable ? 1.6 : 1);
+  e.cds[name] = MOVES[name].cd * (e.def.skillRate||1) * (e.untouchable ? 1.6 : 1);
   e.state = 'cast';
   e.cast = { name, t: 0 };
   audio.sfx('boss_warn');
@@ -1440,7 +1456,7 @@ function bossThink(e, d, dx, dz) {
 
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
 function startAwakening(e) {
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   game.awakened=true;game.phase='cinematic';setBgm(bossBgm());audio.stopLoops();input.takeActions();
   if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
   e.shown=true;e.visual.root.visible=true;
@@ -1449,7 +1465,7 @@ function startAwakening(e) {
   cinematics.firstStrike(()=>cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());}));
 }
 function startFinalPhase(e) {
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   game.final = true;
   e.untouchable = true;
   e.cast = null; e.state = 'chase'; e.cool = 2.5;
@@ -1869,7 +1885,7 @@ function threatNear() {
 function startAttack(index, mv) {
   faceForAction(mv, hero.character==='angel'?18:6);
   if(hero.character==='angel'){hero.state='guestCast';hero.t=0;hero.guestCastDuration=.38;hero.visual.play('attack',.38);guestCombat.attack();return;}
-  const c = COMBO[hero.form === 'brave' ? 'brave' : 'student'][index];
+  const c = heroCombo()[index];
   hero.state = 'attack'; hero.t = 0; hero.combo = index; hero.queued = false; hero.hitDone = false;
   hero.visual.play(c.anim, c.dur);
   audio.sfx('swing'); // Every attack has a whoosh, even when it misses.
@@ -1909,6 +1925,7 @@ function startSkill(name, mv) {
     else {if((hero.cds[name]||0)>0)return;hero.cds[name]=ROSTER[hero.character].cd[idx];}
     faceForAction(mv,18);hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
     hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);heroSay(ROSTER[hero.character].skills[idx],2.3);
+    if(name==='ult')popup(hero.pos,2.8,ROSTER[hero.character].skills[3],'shout');
     guestCombat.begin(hero.character,name);return;
   }
   const def = SKILLS[name];
@@ -1963,7 +1980,7 @@ function updateHero(dt) {
 
   // 計量隨時間的變化
   if (hero.form === 'brave') {
-    if (hero.mode === 'burst') hero.burstT -= dt; else if (!godMode()) hero.courage -= GAUGE.courageDrain * dt; // 天下無敵：勇氣不衰減，保持勇氣超人
+    if (hero.mode === 'burst') hero.burstT -= dt; else if (!godMode()&&!guest()) hero.courage -= GAUGE.courageDrain * dt; // 天下無敵：勇氣不衰減，保持勇氣超人
     const over = hero.mode === 'burst' ? hero.burstT <= 0 : hero.courage <= 0;
     if (over && hero.state === 'free') { revert(); return; }
   } else if (enemies.some(alive)) {
@@ -1977,7 +1994,7 @@ function updateHero(dt) {
   const speed = stats().speed * (hero.slowT > 0 ? 0.55 : 1) * (hasDebuff('sleepy') ? 0.6 : 1); // 揹鍋、想睡時變慢
   if (hasDebuff('confuse')) { mv.x = -mv.x; mv.y = -mv.y; } // 謠言：方向顛倒
   hero.movingT = mv.len > 0 ? 0 : hero.movingT + dt;
-  const combo = COMBO[hero.form === 'brave' ? 'brave' : 'student'];
+  const combo = heroCombo();
 
   const act = (a) => {
     if (a === 'attack') startAttack((hero.combo + 1) % combo.length, mv);
@@ -2028,7 +2045,7 @@ function updateHero(dt) {
     if (!hero.hitDone && hero.t >= c.hitAt) {
       hero.hitDone = true;
       const brave = hero.form === 'brave';
-      if (brave) fx.slash(hero.pos, hero.yaw, c.range, Math.min(c.arc, Math.PI * 2), c.heavy ? 0xfff0b0 : 0xffe9a8, hero.combo === 1 ? -1 : 1, 1.0);
+      if (brave) fx.slash(hero.pos, hero.yaw, c.range, Math.min(c.arc, Math.PI * 2), hero.character==='nightmare'?0xb46cff:c.heavy ? 0xfff0b0 : 0xffe9a8, hero.combo === 1 ? -1 : 1, 1.0);
       if (c.heavy) fx.ring(hero.pos, 0.6, c.range, 0xfff0b0, 0.3);
       arcStrike(hero.pos, hero.yaw, c.range, c.arc, c.mult, { kb: c.kb, launch: c.launch, heavy: c.heavy, src: 'combo' });
     }
@@ -2150,6 +2167,7 @@ function updateHero(dt) {
 function updateShots(dt) {
   for (const s of shots) {
     s.life -= dt;
+    if(s.owner&&(!alive(s.owner)||s.owner.shield||s.owner.untouchable)){s.life=0;continue;}
     s.mesh.position.addScaledVector(s.vel, dt);
     const out = Math.hypot(s.mesh.position.x, s.mesh.position.z) > ARENA_RADIUS + 3;
     if (s.hostile && maze && maze.blocked(s.mesh.position)) s.life = 0; // 敵人的子彈會被牆擋下
@@ -2252,7 +2270,7 @@ function renderRunResult(outcome){
 function endGame(win) {
   if(win)return clearStage();
   if(game.phase!=='playing')return;
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   audio.stopCelebration();game.fails++;game.phase='cinematic';game.paused=false;audio.stopLoops();input.takeActions();$('hud').hidden=true;
   cinematics.defeat(()=>{game.phase='over';game.bgm=null;audio.playBgm(audio.tracks.bgm_defeat?'bgm_defeat':null);
     showOverlay({outcome:'defeat',title:'倒 下',text:()=>`${stage().id}　${t(stage().name)}`,note:()=>tr('只要還願意站起來，這就不是結局。','If you stand up again, this is not the end.','もう一度立ち上がれば、これで終わりじゃない。'),btn:()=>tr('我不甘心，我還要再試一次','I WILL NOT GIVE UP. LET ME TRY AGAIN.','諦めたくない。もう一度挑戦する！'),easy:game.fails>=3&&diff>0});
@@ -2266,7 +2284,7 @@ function playBossKO() {
 }
 function clearStage() {
   if (game.phase !== 'playing') return; // One award / one victory screen per clear.
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
   if(st.boss)playBossKO(); // Includes quick-clear and scripted victory paths.
   if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';setBgm(bossBgm());$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
@@ -2296,9 +2314,12 @@ function continueVictory() {
   $('overlay').hidden = true;
   if (result.last) {
     // 只有「第一次破關」或「從序章重玩的那一輪」破關才計入一刷，避免重複打最終話刷輪數
-    if (save.rounds === 0 || save.freshRun) save.rounds = (save.rounds || 0) + 1;
+    const previousRounds=save.rounds||0;
+    if (save.rounds === 0 || save.freshRun) save.rounds = previousRounds + 1;
+    for(const [id,threshold] of [['nightmare',3],['angel',4]])if(previousRounds<threshold&&save.rounds>=threshold)save.pendingCharacters=[...new Set([...(save.pendingCharacters||[]),id])];
     save.freshRun = false; writeSave();
-    playEnding(() => {
+    playEnding(async () => {
+      await announceUnlocks();
       game.phase = 'over';
       showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
         text:()=>t('他知道自己要往哪走了。'),note:()=>t('小天使留下的便利貼：「還行。」'),btn:'再打一次'});
@@ -2326,6 +2347,7 @@ function update(dt) {
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
   if(guest()&&hero.state!=='dead')guestCombat.update(dt);
+  nightmareBossSkills.update(dt);
   if(game.phase!=='playing'&&game.phase!=='ending')return;
   if (maze) maze.updateFlow(hero.pos);
   updateDebuffs(dt);
@@ -2622,7 +2644,7 @@ async function boot() {
 
 const isOpen = (i) => godMode() || save.cleared.includes(STAGES.at(-1).id) || unlockAll || i === 0 || save.cleared.includes(STAGES[i - 1].id);
 // 從序章開始重玩：進度歸零、標記這一輪的破關要計入「第幾次尋找勇氣」
-function restartJourney() { save.cleared = []; save.freshRun = true; writeSave(); runs.reset(); menuView = 'title'; startStage(0); }
+async function restartJourney() { if(unlockNotice.open)return;await announceUnlocks();save.cleared = []; save.freshRun = true; writeSave(); runs.reset(); menuView = 'title'; startStage(0); }
 function firstOpenStage() {
   for (let i = 0; i < STAGES.length; i++) if (!save.cleared.includes(STAGES[i].id)) return isOpen(i) ? i : Math.max(0, i - 1);
   return STAGES.length - 1;
@@ -2630,7 +2652,7 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
-  guestCombat.clear();
+  guestCombat.clear();nightmareBossSkills.clear();
   progressReset.refresh();
   audio.stopCelebration();
   document.getElementById('run-result')?.remove();
@@ -2870,7 +2892,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { nightmareBossSkills, COMBO, guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   onHit, addRescues, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };

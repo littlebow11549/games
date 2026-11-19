@@ -407,3 +407,7 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-19 新角色技能圖示
 
 新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
+
+
+## 2026-11-19 客串大招藝術字
+新增 `02_brave_guy/assets/source/pic/titles/ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。

@@ -20,3 +20,5 @@
 /* Original vector emblems; cooldown sectors stay above the art, keycaps stay outside. */
 #hud .act .guest-icon{position:absolute;inset:10%;width:80%;height:80%;object-fit:contain;pointer-events:none;z-index:0;filter:drop-shadow(0 1px 1px #0009)}
 #hud .act:active .guest-icon{transform:scale(.92);filter:brightness(1.15)}
+
+.roster-card[hidden]{display:none}

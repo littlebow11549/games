@@ -2,13 +2,14 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // Owns all guest projectiles, drones and delayed casts. Simulation time only.
 export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,arena}) {
  const bolts=[], casts=[];
+ let attackStep=0,attackGap=0;
  const valid=e=>e.hp>0&&!e.gone&&!e.fly&&e.state!=='dead'&&e.state!=='spawn'&&e.shown;
  const targets=()=>enemies().filter(valid);
  const direction=yaw=>new THREE.Vector3(Math.sin(yaw),0,Math.cos(yaw));
  const dispose=m=>{scene.remove(m);m.traverse(o=>{if(o.isMesh)o.geometry?.dispose();if(o.material){o.material.map?.dispose();o.material.dispose()}})}; // Sprite geometry is shared by Three; never dispose it.
  const orb=(color,size=.35)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(size,10,8),new THREE.MeshBasicMaterial({color}));scene.add(m);return m};
  const textMesh=text=>{const cv=document.createElement('canvas');cv.width=512;cv.height=128;const c=cv.getContext('2d');c.font='900 64px "BG Black",sans-serif';c.textAlign='center';c.textBaseline='middle';c.lineWidth=10;c.strokeStyle='#4e194c';c.strokeText(text,256,64);c.fillStyle='#fff4b4';c.fillText(text,256,64);const texture=new THREE.CanvasTexture(cv);const m=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,depthWrite:false}));m.scale.set(5,1.25,1);scene.add(m);return m};
- function bolt(pos,dir,{text=null,target=null,mult=1,src='combo',life=1.1,speed=22}={}){const mesh=text?textMesh(text):orb(0xb55cff);mesh.position.copy(pos);mesh.position.y=1.4;bolts.push({mesh,vel:dir.clone().multiplyScalar(speed),target,mult,src,life,hit:new Set()});}
+ function bolt(pos,dir,{text=null,target=null,mult=1,src='combo',life=1.1,speed=22,scale=1}={}){const mesh=text?textMesh(text):orb(0xb55cff);mesh.scale.multiplyScalar(scale);mesh.position.copy(pos);mesh.position.y=1.4;bolts.push({mesh,vel:dir.clone().multiplyScalar(speed),target,mult,src,life,hit:new Set()});}
  function damage(e,mult,src,control=0,color=0xb891ff,from=hero.pos){
   const result=hit(e,mult,{src,from,kb:0});
   if(result?.damaged&&control&&!e.castInvuln&&!e.untouchable){
@@ -42,6 +43,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
   }
  }
  function update(dt){
+  attackGap=Math.max(0,attackGap-dt);if(!attackGap)attackStep=0;
   for(let i=casts.length-1;i>=0;i--){const c=casts[i];const elapsed=Math.min(dt,c.life);c.life-=dt;c.tick=(c.tick||0)-elapsed;
    if(c.kind==='dash'){
     const before=hero.pos.clone();move(c.dir.x*45*elapsed,c.dir.z*45*elapsed);const side=new THREE.Vector3(c.dir.z,0,-c.dir.x);
@@ -66,5 +68,5 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
    if(b.life<=0){dispose(b.mesh);bolts.splice(i,1);}
   }
  }
- return {begin,update,attack(){bolt(hero.pos,direction(hero.yaw),{text:['笨蛋！','走開！','想太多！'][Math.floor(Math.random()*3)],mult:1.25});audio.sfx('ki_shot');},get ultActive(){return casts.some(c=>c.ult)},get state(){return {bolts:bolts.length,casts:casts.map(c=>({kind:c.kind,life:c.life,nodes:c.nodes?.length||0,exploded:c.next}))}},clear(){bolts.forEach(b=>dispose(b.mesh));casts.forEach(c=>{c.nodes?.forEach(dispose);if(c.funnel)dispose(c.funnel)});bolts.length=casts.length=0;}};
+ return {begin,update,attack(){const step=attackStep;bolt(hero.pos,direction(hero.yaw),{text:['笨蛋！','走開啦！','給我閉嘴！'][step],mult:[1.25,1.7,2.4][step],scale:[1,1.3,1.65][step]});attackStep=(step+1)%3;attackGap=1.2;audio.sfx('ki_shot');},get ultActive(){return casts.some(c=>c.ult)},get state(){return {attackStep,attackGap,projectiles:bolts.map(b=>({mult:b.mult,width:b.mesh.scale.x})),bolts:bolts.length,casts:casts.map(c=>({kind:c.kind,life:c.life,nodes:c.nodes?.length||0,exploded:c.next}))}},clear(){attackStep=attackGap=0;bolts.forEach(b=>dispose(b.mesh));casts.forEach(c=>{c.nodes?.forEach(dispose);if(c.funnel)dispose(c.funnel)});bolts.length=casts.length=0;}};
 }

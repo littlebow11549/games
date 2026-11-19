@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-19 解鎖與戰鬥強化](handoffs/2026-11-19-game02-unlocks-combat-upgrade.md)：三刷惡夢／四刷小天使、Staff後角色通知、三段嘴砲、強化惡夢普攻、雙角色大招藝術字、三超人Boss同款四招與頻率提升。
+
 - [2026-11-19 角色模型分型](handoffs/2026-11-19-game02-character-model-variants.md)：一般尺寸小天使、主角／勇氣超人獨立小精靈，救援角色正確映射。
 
 - [2026-11-19 新角色技能圖示](handoffs/2026-11-19-game02-guest-skill-icons.md)：小天使／惡夢八招與嘴砲普攻共九張原創 SVG，保留冷卻遮罩和鍵位。

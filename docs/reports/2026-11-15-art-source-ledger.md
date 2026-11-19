@@ -112,3 +112,7 @@
 
 ## 2026-11-19 程式模型分型
 `js/visuals.js` 新增 angel_playable（一般尺寸）、student_spirit、brave_spirit（小精靈）；復用既有幾何角色骨架，增加衣裙、翅膀與漂浮動作，無新增 GLB 或點陣圖片。詳見 docs/handoffs/2026-11-19-game02-character-model-variants.md（相對 repo）。
+
+
+## 2026-11-19 客串大招藝術字
+新增 `02_brave_guy/assets/source/pic/titles/ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
