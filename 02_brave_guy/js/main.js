@@ -658,7 +658,7 @@ function updateHud() {
     const a = btn.dataset.action;
     btn.hidden = a==='transform' ? brave || !canTransform() || hero.courage < GAUGE.courageMax : Boolean(SKILLS[a]) && !brave;
     if(btn.hidden)input.held.delete(a);
-    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)]):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
+    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(t(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)])):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / (guest()?ROSTER[hero.character].cd[['skill1','skill2','skill3'].indexOf(a)]:SKILLS[a].cd)}turn`);
       btn.classList.toggle('locked', !brave || !game.abilities.has(a) || hero.silenceT > 0);
