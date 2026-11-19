@@ -32,19 +32,19 @@ NN_game/
     └── _alternate/              備選：未使用素材＋歷史舊圖，統一收這裡
 ```
 
-### 待執行的整理（2026-11-19 開工，未完成，接手者續做）
+### 整理執行狀態（2026-11-19）
 
-目標：把下列「已被取代／淘汰」的檔案移入各遊戲的 `assets/_alternate/`（用 `git mv`，保留可回溯；不是直接刪除）。移動前先 grep 確認未被 manifest/runtime-images/js/css/html 引用。
+**已完成並 push**（詳見各 `assets/_alternate/README.md`）：
+- 02_brave_guy：concept 舊佔位檔（hero/boss/mob/sword）、concept/history（gray_v1）、sheet/history、驗收頁（art-preview.html／hit-effect-preview.html＋其 css/js）→ 已移入 `assets/_alternate/`。
+- 01_memory_crash：`assets/preview/`（整批驗收截圖＋batchN.html）→ 已移入 `assets/_alternate/preview/`。
 
-- **02_brave_guy**（已確認未被引用，可移）：
-  - `assets/source/pic/concept/` 的舊佔位檔：`hero_{front,side,back}.png`、`boss_{front,side,back}.png`、`mob_imp_*`、`mob_plant_*`、`mob_spear_*`、`sword_01.png`（已被 student/braveguy/angel/ganqiao/nightmare 正式參考圖取代）。
-  - `assets/source/pic/concept/history/`（灰底第一輪 gray_v1）。
-  - `assets/source/pic/sheet/history/`（舊合輯稿）。
-  - `assets/source/pic/sheet/*_draft_v1.png` 中「已有對應 `*_logo_v2.png`」者（baguashe/guanlaoban/hell/incubus/laichuang/worker/xinji），v1 已被 v2 取代。**無 logo_v2 的 draft_v1（junxiong/lan/qian/zhuangxiong）先保留**，可能仍是現役母檔。
-  - 驗收頁 `art-preview.html`、`hit-effect-preview.html` 及其專屬 `css/art-preview.css`、`js/art-preview-host.js`。`audio-review.html` 在 docs 報告有對外連結，移動會斷連結，**先保留並於報告標註**。
-- **01_memory_crash**：`assets/preview/`（整批驗收截圖與 batchN.html）移入 `_alternate/preview/`；source 母檔保留。
-- 注意：`concept/angel_front.png`、`concept/ganqiao_front.png` 的 **runtime 版**（webp）被 `js/opening.js` 開場引用，屬使用中；但 source 的 PNG 仍是母檔，保留。移動 concept 其餘檔時不要動到這兩個的來源鏈。
-- 完成後更新各 `assets/ASSETS.md`、`docs/HANDOFF.md`，並附一份交接報告說明搬了哪些、依據為何、保留了哪些。
+**重要更正（原先一度誤判）**：`assets/source/pic/sheet/*_draft_v1.png` 是**現役母檔**，被 `tools/unify_sheet_headers.py`（idx≥5）讀來合成 unified 圖，**絕不可搬**。`*_logo_v2.png` 是疑似被取代的中間 Logo 審稿版、unify 未使用，但未百分百確認，**暫留 source 待確認**。
+
+**尚待接手者處理**：
+- 確認 `*_logo_v2.png` 是否確為棄用版，是則移入 `_alternate/sheet-logo-v2/`。
+- `audio-review.html` 在 docs 報告有對外 github.io 連結，移動會斷連結；要清理需先改掉那些連結。
+- 更新 `02_brave_guy/assets/ASSETS.md` 內指向 `../hit-effect-preview.html` 等已移動路徑的敘述，及 `docs/HANDOFF.md`，並補一份交接報告。
+- 其餘 source（music/sfx）的未引用檔尚未稽核；要做時以 manifest.json 的實際引用為準，未引用者移入 `_alternate/`，不要動到母檔。
 
 ## 美術製作防重工（使用者再次明確要求）
 
