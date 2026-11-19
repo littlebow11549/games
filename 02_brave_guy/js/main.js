@@ -1,3 +1,5 @@
+import { ROSTER, createRosterPicker } from './playable-roster.js?v=20261119roster';
+import { createGuestCombat } from './guest-combat.js?v=20261119roster';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261118seal2';
 import { createProgressReset } from './progress-reset.js?v=20261118seal2';
@@ -321,6 +323,39 @@ const roundTier = () => Math.min(save.rounds || 0, 3);          // 0,1,2,3
 const roundCrowd = () => 1 + roundTier() * 0.5;                 // 怪量倍率 1 / 1.5 / 2 / 2.5
 const roundRush = () => 1 + roundTier() * 0.3;                  // 守關者出招頻率倍率
 const godMode = () => (save.rounds || 0) > 3;                   // 超過三次：天下無敵、勇氣超人開掛
+const rosterPicker = createRosterPicker();
+const guest = () => hero.character === 'angel' || hero.character === 'nightmare';
+const supportName = () => hero.character === 'angel' ? '主角' : hero.character === 'nightmare' ? '勇氣超人' : '小天使';
+const guestCombat = createGuestCombat({scene,hero,enemies:()=>enemies,fx,audio:{sfx:name=>audio.sfx(name)},arena:ARENA_RADIUS,
+  hit:(e,m,o)=>{const result=damageEnemy(e,m,o);tally([result],false,true);return result;},
+  line:lineStrike,move:moveHeroBy});
+function supportSpeech(text, reply=null) {
+  const b=$('angel-bubble');b.textContent=`${supportName()}：${text}`;b.hidden=false;
+  angel.sayT=2.5;angel.quiet=5;angel.rescueT=1.2;
+  if(reply)hero.sayNext={text:reply,t:2.5};
+}
+function rescueSpeech(){
+ const a=hero.character==='angel';
+ const pairs=a?[
+  ['以前都是妳拉我起來，這次換我。','少煽情，我只是鞋帶鬆了。'],
+  ['接住了！妳還能站嗎？','能。你先別擋住我的射程。'],
+  ['妳也可以說需要幫忙。','我剛剛不是喊救命了嗎？']
+ ]:[['你也是我的一部分。我不會把你丟下。','……我可沒有求你。'],
+ ['站起來，這次不用一個人忍。','我只是怕你失望。'],
+ ['幫你不代表什麼都得聽你的。','我明明都是為你好……好啦。']];
+ const n=hero.rescueLines||0;hero.rescueLines=n+1;
+ const pair=n===0?pairs[0]:game.rescues===0?(a?['我還在，但暫時沒力氣拉妳起來了。','那就躲好，這次我罩你。']:['力量用完了，但我還會陪你。','……那就別走。']):game.rescues===1?(a?['最後一次援護了，我們一起撐過去。','知道啦。你也別逞強。']:['最後一次了。害怕也要看著前面。','你會陪著我，對吧？']):pairs[n%pairs.length];
+ supportSpeech(...pair);
+}
+function applyCharacterHud(){
+ const id=hero.character||'brave';$('hud').dataset.character=id;
+ $('portrait').querySelector('.guest-face')?.remove();
+ if(guest()){const face=document.createElement('span');face.className=`roster-face guest-face ${id}`;$('portrait').append(face);}
+ for(const btn of ACT_BUTTONS){btn.querySelector('.guest-symbol')?.remove();const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
+  if(guest()&&(i>=0||id==='angel'&&btn.dataset.action==='attack')){const el=document.createElement('b');el.className='guest-symbol';el.textContent=i<0?'嘴砲':(id==='angel'?['吹飛','冰凍','麻痺','龍捲']:['三衝','子機','定身','王砲'])[i];btn.append(el);}
+ }
+}
+
 const unlockRequirement = ability => STAGES.find(s=>(stage().map===3?s.map===3:s.map!==3)&&s.grant?.split('+').includes(ability));
 const unlockHint = ability => {const required=unlockRequirement(ability);return required?tr(`通過 ${required.id} 解鎖`,`Clear ${required.id} to unlock`,`${required.id} クリアで解放`):t('未解鎖');};
 
@@ -336,8 +371,9 @@ const stageBgm = () => { const key = `bgm_stage_${stage().id.replace('-', '_')}`
 function setForm(form) {
   const changed = hero.form !== form;
   hero.form = form;
-  for (const [k, v] of Object.entries(hero.vis)) v.root.visible = k === form;
-  hero.visual = hero.vis[form];
+  const visualKind = guest() ? hero.character : form;
+  for (const [k, v] of Object.entries(hero.vis)) v.root.visible = k === visualKind;
+  hero.visual = hero.vis[visualKind];
   hero.visual.glow(false);
   if (changed) applyBgm();
   hero.visual.play('idle');
@@ -349,11 +385,15 @@ function resetHero() {
   $('portrait').classList.remove('hurt');
   $('hit-feedback').classList.remove('hit');
   if (!hero.vis.student) {
-    for (const k of ['student', 'worker', 'brave']) { hero.vis[k] = createVisual(k); scene.add(hero.vis[k].root); }
-    angel.visual = createVisual('angel');
-    scene.add(angel.visual.root);
+    for (const k of ['student', 'worker', 'brave', 'angel', 'nightmare']) { hero.vis[k] = createVisual(k); scene.add(hero.vis[k].root); }
+    angel.vis={angel:createVisual('angel'),brave:createVisual('brave')};
+    for(const v of Object.values(angel.vis))scene.add(v.root);
+    angel.visual=angel.vis.angel;
   }
   hero.base = stage().form;
+  angel.visual=guest()?angel.vis.brave:angel.vis.angel;
+  for(const v of Object.values(angel.vis))v.root.visible=v===angel.visual;
+  angel.sayT=0;angel.quiet=0;angel.rescueT=0;hero.rescueLines=0;hero.guestHurtAt=0;$('angel-bubble').hidden=true;
   hero.maxHp = HERO.maxHp + (game.abilities.has('hp') ? 200 : 0);
   Object.assign(hero, {
     hp: hero.maxHp, courage: 0, qi: 0, guilt: 0, guiltMax: GAUGE.guiltBase,
@@ -371,10 +411,12 @@ function resetHero() {
   } else setForm(hero.base);
   angel.pos.copy(hero.pos);
   // 地圖三前段小天使縮成巴掌大，找回變身後長回來
-  angel.visual.root.scale.setScalar(stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
+  angel.visual.root.scale.setScalar(guest()?.35:stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
+  applyCharacterHud();
 }
 
 function clearField() {
+  guestCombat.clear();
   lockTargetEnemy = null;
   manualLockTarget = null;
   for (const e of enemies) { scene.remove(e.visual.root); e.visual.dispose(); if (e.bar) e.bar.remove(); }
@@ -390,11 +432,17 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-function startStage(index) {
-  if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index));return;}
+function startStage(index, character=null) {
+  if(godMode()&&character===null){
+    if(rosterPicker.open)return;
+    const wasPaused=game.paused;game.paused=true;audio.stopLoops();input.takeActions();input.held.clear();input.keys.clear();input.stick.x=input.stick.y=0;
+    return rosterPicker.choose(hero.character||'brave').then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
+  }
+  hero.character=godMode()&&ROSTER[character]?character:'brave';
+  if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index,hero.character));return;}
   audio.stopCelebration();input.takeActions();
   runs.start(index,diff);
-  if(unlockAll)runs.invalidate();
+  if(unlockAll||guest())runs.invalidate();
   pendingVictory = null;
   opening.cancel();
   audio.stopLoops();
@@ -436,7 +484,8 @@ function startStage(index) {
   // 開場對話播對話曲，講完才進該關的戰鬥曲
   const talk = st.intro && st.intro.length && audio.tracks.bgm_talk;
   setBgm(talk ? 'bgm_talk' : stageBgm());
-  runDialog(st.intro, () => { if (talk) setBgm(stageBgm()); if (index === 0) say('start', true); });
+  const lines=guest()?[[ROSTER[hero.character].name,ROSTER[hero.character].intro],[supportName(),'這是你的夢境重演。照原本的關卡目標突破，我會在旁邊。']]:st.intro;
+  runDialog(lines, () => { if (talk) setBgm(stageBgm()); if (index === 0&&!guest()) say('start', true); });
 }
 const startGame = () => startStage(game.stage);
 
@@ -526,7 +575,7 @@ function say(key, force = false) {
   angel.quiet = 5;
   const b = $('angel-bubble');
   const line = ANGEL[key];
-  b.textContent = t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
+  b.textContent = guest()?`${supportName()}：${key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。'}`:t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
   b.hidden = false;
   audio.sfx('bubble');
 }
@@ -581,6 +630,7 @@ function updateHud() {
   textIfChanged('suanle-n', game.suanle);
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
   textIfChanged('rescue-n', hearts);
+  $('rescue').querySelector('span').textContent=`${supportName()}救援`;
   const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
   $('btn-lock').hidden = false;
@@ -592,9 +642,9 @@ function updateHud() {
     const a = btn.dataset.action;
     btn.hidden = a==='transform' ? brave || !canTransform() || hero.courage < GAUGE.courageMax : Boolean(SKILLS[a]) && !brave;
     if(btn.hidden)input.held.delete(a);
-    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):t(SKILLS[a].name);if(btn.title!==hint)btn.title=hint;}
+    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)]:t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
     if (SKILLS[a] && a !== 'ult') {
-      btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / SKILLS[a].cd}turn`);
+      btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / (guest()?ROSTER[hero.character].cd[['skill1','skill2','skill3'].indexOf(a)]:SKILLS[a].cd)}turn`);
       btn.classList.toggle('locked', !brave || !game.abilities.has(a) || hero.silenceT > 0);
     } else if (a === 'ult') {
       btn.style.setProperty('--qi', `${hero.qi / GAUGE.qiMax}turn`);
@@ -649,7 +699,7 @@ function addCourage(x) {
   hero.courage = Math.max(0, Math.min(GAUGE.courageMax, hero.courage + x));
   if (hero.form !== 'brave' && canTransform() && hero.courage >= GAUGE.courageMax && !hero.readySaid) { hero.readySaid = true; say(game.final ? 'walk' : 'ready', true); audio.sfx('courage_full'); }
 }
-function addQi(x) { if (hero.form === 'brave' && hero.state !== 'ult') {const old=hero.qi;hero.qi = Math.min(GAUGE.qiMax, hero.qi + x * (game.abilities.has('qi') ? 1.3 : 1));if(old<GAUGE.qiMax&&hero.qi>=GAUGE.qiMax)audio.sfx('qi_full');} } // 大招期間不回氣
+function addQi(x) { if (hero.form === 'brave' && hero.state !== 'ult' && !guestCombat.ultActive) {const old=hero.qi;hero.qi = Math.min(GAUGE.qiMax, hero.qi + x * (game.abilities.has('qi') ? 1.3 : 1));if(old<GAUGE.qiMax&&hero.qi>=GAUGE.qiMax)audio.sfx('qi_full');} } // 大招期間不回氣
 // 終章最後一段與地圖三找回變身之前不能變身
 const canTransform = () => game.abilities.has('transform') && !game.final;
 
@@ -676,7 +726,8 @@ function onHit(count, killed) {
   const rescueAwards = Math.floor(game.combo / 50) - Math.floor(oldCombo / 50);
   if (rescueAwards > 0) {
     const gained = addRescues(rescueAwards);
-    if (gained > 0) popup(hero.pos, 4.4, tr(`連擊獎勵：小天使救援 +${gained}`, `COMBO: Angel rescue +${gained}`, `コンボ：天使の救援 +${gained}`), 'good');
+    if(gained>0&&guest())supportSpeech(hero.character==='angel'?'勇氣回來了，我還能再接妳一次！':'看，你也能把勇氣找回來。',hero.character==='angel'?'還行。這句是說你，別得意。':'別說得好像我剛剛很丟臉。');
+    if (gained > 0) popup(hero.pos, 4.4, tr(`連擊獎勵：${supportName()}救援 +${gained}`, `COMBO: Angel rescue +${gained}`, `コンボ：天使の救援 +${gained}`), 'good');
   }
   game.comboT = 2.2;
   if (hero.form === 'brave') { addCourage(GAUGE.courageHitBrave * count); addQi(GAUGE.qiHit * count + GAUGE.qiKill * killed); }
@@ -884,7 +935,10 @@ function bossBgm(entrance = false) {
   return audio.tracks[specific] ? specific : 'bgm_boss';
 }
 function startBossIntro() {
-  runDialog(stage().bossIntro, spawnBoss);
+  if(guest())heroSay(hero.character==='angel'?'排場這麼大，是怕大家不知道你欠罵？':'你也要我忍一下？我已經忍夠了。',3);
+  const names=(BOSS_GROUPS[stage().boss]||[stage().boss]).map(k=>BOSSES[k]?.name||k).join('、');
+  const encounter=guest()?[[names,'這裡不是你該來的地方。'],[ROSTER[hero.character].name,hero.character==='angel'?'排場這麼大，是怕大家不知道你欠罵？':stage().boss==='nightmare'?'原來從外面看，我一直都是這個樣子……。':'你也要我忍一下？我已經忍夠了。'],[supportName(),hero.character==='angel'?'放心，我會接住妳。':'這次，你可以自己決定要不要忍。']]:stage().bossIntro;
+  runDialog(encounter, spawnBoss);
   if (dialog) setBgm(bossBgm(true));
 }
 function spawnBoss() {
@@ -935,6 +989,7 @@ function hurtHero(amount, opts = {}) {
     const feedback=$('hit-feedback');feedback.classList.remove('hit');void feedback.offsetWidth;feedback.classList.add('hit');
   }
   audio.sfx('hurt');
+  if(guest()&&game.time>=(hero.guestHurtAt||0)){hero.guestHurtAt=game.time+5;heroSay(hero.character==='angel'?'喂！翅膀很貴耶！':'你看，果然沒人在乎我。');}
   tauntFrom(TAUNTS_HIT, 0.6);
   game.combo = 0;
   if (hero.form !== 'brave') addCourage(GAUGE.courageHurt);
@@ -947,8 +1002,8 @@ function hurtHero(amount, opts = {}) {
   else if (hero.guilt >= hero.guiltMax * GAUGE.guiltHesitate && hero.guilt < hero.guiltMax) say('guilt');
 
   if (hero.hp <= 0) {
-    if (hero.form === 'brave') { endTransformIfDead(); return; }
-    if (!hero.usedClutch && canTransform() && hero.guilt >= hero.guiltMax * GAUGE.clutchAt) {
+    if (hero.form === 'brave'&&!guest()) { endTransformIfDead(); return; }
+    if (!guest() && !hero.usedClutch && canTransform() && hero.guilt >= hero.guiltMax * GAUGE.clutchAt) {
       // 保險一：不甘心
       hero.usedClutch = true;
       hero.hp = 1;
@@ -962,11 +1017,11 @@ function hurtHero(amount, opts = {}) {
       hero.hp = hero.maxHp * 0.45;
       hero.invuln = 2.5;
       hero.debuff = {};
-      popup(hero.pos, 3.4, tf('小天使救援！剩 {0} 次', game.rescues), 'good');
-      fx.ring(hero.pos, 0.5, 7, 0xf48fc6, 0.5);
-      fx.pillar(hero.pos, 1.2, 10, 0xffc4e3, 0.6);
+      popup(hero.pos, 3.4, guest()?`${supportName()}救援！剩 ${game.rescues} 次`:tf('小天使救援！剩 {0} 次', game.rescues), 'good');
+      fx.ring(hero.pos, 0.5, 7, guest()?0xcaff70:0xf48fc6, 0.5);
+      fx.pillar(hero.pos, 1.2, 10, guest()?0xffed8a:0xffc4e3, 0.6);
       areaStrike(hero.pos, 6, 0.2, { kb: 14, launch: 4 });
-      say(game.rescues > 0 ? 'revive' : 'reviveLast', true);
+      if(guest()){hero.state='free';hero.kb.set(0,0,0);hero.stunT=hero.slowT=hero.silenceT=0;rescueSpeech();}else say(game.rescues > 0 ? 'revive' : 'reviveLast', true);
       audio.sfx('revive');
       return;
     }
@@ -1184,7 +1239,7 @@ function updateTaunts(dt) {
   // 被嗆了幾句之後，主角偶爾回嘴
   if (taunt.backT <= 0 && !hero.sayEl && Math.random() < 0.3) {
     taunt.backT = rand(4, 7);
-    const back = pickLine(hero.form === 'brave' ? HERO_BACK_BRAVE : HERO_BACK);
+    const back = guest()?(hero.character==='angel'?pickLine(['嘴這麼忙，腳倒是跑快點啊。','你們一起上，省得我重複罵。','別誤會，我對你沒有期待。']):pickLine(['我已經很努力了，你還想怎樣？','這都是你逼我的。','忍一下，很快就過去了。'])):pickLine(hero.form === 'brave' ? HERO_BACK_BRAVE : HERO_BACK);
     hero.sayNext = { text: back, t: 0.6 };
   }
 }
@@ -1385,6 +1440,7 @@ function bossThink(e, d, dx, dz) {
 
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
 function startAwakening(e) {
+  guestCombat.clear();
   game.awakened=true;game.phase='cinematic';setBgm(bossBgm());audio.stopLoops();input.takeActions();
   if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
   e.shown=true;e.visual.root.visible=true;
@@ -1393,11 +1449,13 @@ function startAwakening(e) {
   cinematics.firstStrike(()=>cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());}));
 }
 function startFinalPhase(e) {
+  guestCombat.clear();
   game.final = true;
   e.untouchable = true;
   e.cast = null; e.state = 'chase'; e.cool = 2.5;
   if (beam) endUlt();
-  if (hero.form === 'brave') revert();
+  if (hero.form === 'brave') revert(guest());
+  if(guest()){hero.sayNext=null;heroSay(hero.character==='angel'?'不用魔法也能往前走。看好了。':'這一次，我不會再叫自己忍下去。',3);}
   hero.courage = 0; hero.guilt = 0; hero.readySaid = false;
   hazards.forEach((h) => { h.life = 0; });
   banner('沒有超能力的時候');
@@ -1407,6 +1465,8 @@ function startFinalPhase(e) {
 }
 
 function updateEnemy(e, dt, attackers) {
+  e.guestControlCooldown=Math.max(0,(e.guestControlCooldown||0)-dt);
+  if(alive(e)&&e.guestHold>0){e.guestHold-=dt;e.visual.play('stun');e.visual.root.position.set(e.pos.x,e.y,e.pos.z);return;}
   e.t += dt;
   e.visual.update(dt);
   const def = e.def;
@@ -1807,7 +1867,8 @@ function threatNear() {
 }
 
 function startAttack(index, mv) {
-  faceForAction(mv, 6);
+  faceForAction(mv, hero.character==='angel'?18:6);
+  if(hero.character==='angel'){hero.state='guestCast';hero.t=0;hero.guestCastDuration=.38;hero.visual.play('attack',.38);guestCombat.attack();return;}
   const c = COMBO[hero.form === 'brave' ? 'brave' : 'student'][index];
   hero.state = 'attack'; hero.t = 0; hero.combo = index; hero.queued = false; hero.hitDone = false;
   hero.visual.play(c.anim, c.dur);
@@ -1842,6 +1903,14 @@ function startSkill(name, mv) {
   if (!game.abilities.has(name)) { popup(hero.pos,2.8,unlockHint(name),'guard');say('locked');return; }
   if (hero.form !== 'brave') { say('noSkill'); return; }
   if (hero.silenceT > 0) { popup(hero.pos, 2.6, '（被噴到說不出話）', 'guard'); return; }
+  if(guest()){
+    const idx=['skill1','skill2','skill3','ult'].indexOf(name);if(idx<0)return;
+    if(name==='ult'){if(hero.qi<GAUGE.qiMax||guestCombat.ultActive)return;hero.qi=0;}
+    else {if((hero.cds[name]||0)>0)return;hero.cds[name]=ROSTER[hero.character].cd[idx];}
+    faceForAction(mv,18);hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
+    hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);heroSay(ROSTER[hero.character].skills[idx],2.3);
+    guestCombat.begin(hero.character,name);return;
+  }
   const def = SKILLS[name];
   if (name === 'ult') { if (hero.qi < GAUGE.qiMax) return; hero.qi = 0; }
   else { if ((hero.cds[name] || 0) > 0) return; hero.cds[name] = def.cd; }
@@ -1933,7 +2002,8 @@ function updateHero(dt) {
     } else startSkill(a, mv);
   };
 
-  if (hero.state === 'free') {
+  if(hero.state==='guestCast'){if(hero.t>=hero.guestCastDuration)hero.state='free';}
+  else if (hero.state === 'free') {
     hero.comboGap += dt;
     if (hero.comboGap > 0.6) hero.combo = -1;
     if (mv.len > 0) {
@@ -2175,13 +2245,14 @@ function renderRunResult(outcome){
   const time=document.createElement('strong');time.textContent=result?formatTime(result.seconds):tr('選關體驗・不列榜','Stage preview · unranked','ステージ体験・ランキング対象外');if(total)box.append(time);
   const heading=document.createElement('p');heading.textContent=tr('本機・同難度 TOP 3','LOCAL · SAME DIFFICULTY · TOP 3','この端末・同難易度 TOP 3');box.append(heading);
   const list=document.createElement('ol');for(const row of result?.rows||[]){const li=document.createElement('li');li.textContent=`${formatTime(row.seconds)}  ·  ${row.date||''}`;list.append(li);}box.append(list);
-  const note=document.createElement('p');note.textContent=!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
+  const note=document.createElement('p');note.textContent=guest()?'夢境換角：通關進度照常保存，不列入一般計時排行。':!result?.ranked?(total?tr('完整從序章挑戰，不使用跳關，才能列入總榜。','Complete all stages without shortcuts to rank.','全ステージをスキップなしでクリアすると合計記録対象になります。'):tr('跳關預覽不列入紀錄。','Preview shortcuts are unranked.','スキップ体験は記録対象外です。')):result.rank?tr(`第 ${result.rank} 名！再快一點，突破自己。`,`Rank ${result.rank}! Beat your best.`,`${result.rank} 位！自分の記録を超えよう。`):tr('這記錄太爛，我還需要更多勇氣！','This record sucks. I need more courage!','この記録はひどい。もっと勇気が必要だ！');box.append(note);
   if(result&&!result.saved){const warning=document.createElement('p');warning.textContent=tr('無法保存紀錄，本次仍可查看。','Record could not be saved.','記録を保存できませんでした。');box.append(warning);}
   $('ov-text').after(box);if(total)$('ov-btn').textContent=tr('從序章開始重玩（進度歸零）','RESTART FROM PROLOGUE (reset)','序章からやり直す（進捗リセット）');
 }
 function endGame(win) {
   if(win)return clearStage();
   if(game.phase!=='playing')return;
+  guestCombat.clear();
   audio.stopCelebration();game.fails++;game.phase='cinematic';game.paused=false;audio.stopLoops();input.takeActions();$('hud').hidden=true;
   cinematics.defeat(()=>{game.phase='over';game.bgm=null;audio.playBgm(audio.tracks.bgm_defeat?'bgm_defeat':null);
     showOverlay({outcome:'defeat',title:'倒 下',text:()=>`${stage().id}　${t(stage().name)}`,note:()=>tr('只要還願意站起來，這就不是結局。','If you stand up again, this is not the end.','もう一度立ち上がれば、これで終わりじゃない。'),btn:()=>tr('我不甘心，我還要再試一次','I WILL NOT GIVE UP. LET ME TRY AGAIN.','諦めたくない。もう一度挑戦する！'),easy:game.fails>=3&&diff>0});
@@ -2195,6 +2266,7 @@ function playBossKO() {
 }
 function clearStage() {
   if (game.phase !== 'playing') return; // One award / one victory screen per clear.
+  guestCombat.clear();
   const st = stage(), index = game.stage, last = index === STAGES.length - 1;
   if(st.boss)playBossKO(); // Includes quick-clear and scripted victory paths.
   if(st.boss&&!game.victoryShown){game.victoryShown=true;game.phase='cinematic';setBgm(bossBgm());$('hud').hidden=true;audio.stopLoops();input.takeActions();cinematics.victory(BOSS_GROUPS[st.boss]||[st.boss],()=>{game.phase='playing';clearStage();});return;}
@@ -2206,11 +2278,11 @@ function clearStage() {
   if(newlyCleared){save.cleared.push(st.id);writeSave();}
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
   game.bgm = null; audio.stopBgm(); audio.stopCelebration();
-  if (hero.form === 'brave') revert(true);
+  if (hero.form === 'brave'&&!guest()) revert(true);
   audio.playBgm('bgm_victory'); audio.sfx('win'); audio.sfx('victory_human_cheer');
   pendingVictory = { index, st, last, stats };
   showOverlay({outcome:'clear', title:'突 破', stats,
-    note:()=>st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
+    note:()=>guest()?`${ROSTER[hero.character].name}：「${ROSTER[hero.character].win}」`:st.grantName ? tf('得到：{0}',st.grantName.split('、').map(t).join(lang==='en'?', ':'、')) : t('小天使：「還行。」'),
     btn:'再打一次', next:true, nextLabel:last?'繼續':'下一關'});
   $('overlay').classList.remove('victory-arrive');void $('overlay').offsetWidth;
   $('overlay').classList.add('victory-arrive');
@@ -2233,7 +2305,8 @@ function continueVictory() {
     });
   } else {
     if (result.st.outro?.length) setBgm('bgm_talk');
-    runDialog(result.st.outro, () => startStage(result.index + 1));
+    const outro=guest()?[[supportName(),hero.character==='angel'?'妳剛剛真的很帥。':'你做到了。'],[ROSTER[hero.character].name,hero.character==='angel'?'現在才知道？':'……你沒有走，真好。']]:result.st.outro;
+    runDialog(outro, () => startStage(result.index + 1));
   }
 }
 
@@ -2252,6 +2325,7 @@ function update(dt) {
   if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));if(audio.tracks['bgm_boss_rage'])setBgm('bgm_boss_rage');}
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
+  if(guest()&&hero.state!=='dead')guestCombat.update(dt);
   if(game.phase!=='playing'&&game.phase!=='ending')return;
   if (maze) maze.updateFlow(hero.pos);
   updateDebuffs(dt);
@@ -2289,16 +2363,16 @@ function update(dt) {
     if (st.mid && !game.midDone && game.wave === st.mid.afterWave) {
       // 中途找回能力（地圖三）
       game.midDone = true;
-      runDialog(st.mid.dialog, () => {
+      runDialog(guest()?[[supportName(),'下一段路打開了，繼續前進。'],[ROSTER[hero.character].name,hero.character==='angel'?'知道了，別搶我的台詞。':'……我會走下去的。']]:st.mid.dialog, () => {
         st.mid.grant.split('+').forEach((g) => game.abilities.add(g));
-        angel.visual.root.scale.setScalar(1);
+        angel.visual.root.scale.setScalar(guest()?.35:1);
         hero.readySaid = false;
         if(st.mid.grant.split('+').includes('transform')){
           hero.courage = GAUGE.courageMax;
           hero.farT = 0;
           addCourage(0);
         }
-        popup(hero.pos, 2.8, '可以變身了', 'good');
+        popup(hero.pos, 2.8, guest()?'前路開啟':'可以變身了', 'good');
       });
     } else if (game.wave < game.waves.length - 1) {
       if (game.wave >= 0) say('wave');
@@ -2313,9 +2387,10 @@ function update(dt) {
 
 function updateAngel(dt) {
   if (!angel.visual) return;
-  tmp.set(hero.pos.x - 1.3, 0, hero.pos.z - 0.6);
+  angel.rescueT=Math.max(0,(angel.rescueT||0)-dt);
+  tmp.set(hero.pos.x - (angel.rescueT>0?.3:1.3), 0, hero.pos.z - .6);
   angel.pos.lerp(tmp, 1 - Math.exp(-4 * dt));
-  angel.visual.root.position.set(angel.pos.x, 1.5, angel.pos.z);
+  angel.visual.root.position.set(angel.pos.x, guest()?2.1+Math.sin(game.time*4)*.15:1.5, angel.pos.z);
   angel.visual.root.rotation.y = Math.atan2(hero.pos.x - angel.pos.x, hero.pos.z - angel.pos.z);
   angel.visual.update(dt);
   angel.quiet = Math.max(0, angel.quiet - dt);
@@ -2555,6 +2630,7 @@ function firstOpenStage() {
 
 let menuView = 'title'; // 主選單有兩個畫面：標題（title）與選關（stages）
 function showMenu() {
+  guestCombat.clear();
   progressReset.refresh();
   audio.stopCelebration();
   document.getElementById('run-result')?.remove();
@@ -2724,7 +2800,7 @@ $('btn-quick-clear').addEventListener('click', () => {
     // Preserve abilities normally restored by the skipped mid-stage event.
     if (st.mid && !game.midDone) {
       st.mid.grant.split('+').forEach(g => game.abilities.add(g));
-      angel.visual.root.scale.setScalar(1); hero.readySaid = false;
+      angel.visual.root.scale.setScalar(guest()?.35:1); hero.readySaid = false;
     }
     game.midDone = true;
     startBossIntro();
@@ -2794,7 +2870,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   onHit, addRescues, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
