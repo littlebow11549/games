@@ -28,5 +28,6 @@
 /* Decorative combat content must not leak into dialogue, menus or films.
    Native reset-progress.showModal() stays in the browser top layer. */
 body:has(#hud[hidden],#dialog:not([hidden]),#pause-menu:not([hidden]),#overlay:not([hidden]),#cinema:not([hidden]),#opening:not([hidden]),#boot-scene:not([hidden])) :is(#combo,.meter-shards,#hit-feedback){display:none!important}
+body:has(#dialog:not([hidden]),#pause-menu:not([hidden]),#overlay:not([hidden]),#cinema:not([hidden]),#opening:not([hidden]),#boot-scene:not([hidden])) .skill-cast-name{visibility:hidden}
 /* Fit announcements to short landscape screens as well as portrait widths. */
 .game-art #banner.has-word-art{width:min(84vw,90svh,630px)}

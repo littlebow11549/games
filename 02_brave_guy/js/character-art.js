@@ -1,7 +1,7 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120approvedcomic';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120castfix';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
-let style=art.reviewStyles.includes(requested)?requested:art.defaultStyle;
+let style=requested==='legacy'||art.reviewStyles.includes(requested)?requested:art.defaultStyle;
 export const characterArtEnabled=()=>art.reviewStyles.includes(style);
 export function applyCharacterArt(hud,id){
  const record=art.characters[id]||art.characters.brave;
@@ -33,24 +33,28 @@ function titleWindow(record,col,row){
  const [y,y2]=a.rows?.[row]||[row*H/5,(row+1)*H/5];
  return {ratio:`${x2-x} / ${y2-y}`,size:`${W/(x2-x)*100}% ${H/(y2-y)*100}%`,pos:`${x/(W-x2+x)*100}% ${y/(H-y2+y)*100}%`};
 }
-export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
- if(!characterArtEnabled())return null;
- const normalize=value=>String(value).replace(/[\s！!～~]/g,'');
- for(const [id,record] of Object.entries(art.characters)){
-  if(id!==characterId)continue;
-  const row=record.titles.labels.findIndex(labels=>labels.some(label=>normalize(label)===normalize(text)));
-  if(row<0)continue;
-  const col=Math.max(0,art.title_grid.columnsByLanguage.indexOf(lang));
-  const el=document.createElement('span');el.className='word-art character-title-art';
-  el.dataset.character=id;el.dataset.action=art.title_grid.rowsByAction[row];el.dataset.locale=lang;
-  el.setAttribute('role','img');el.setAttribute('aria-label',record.titles.labels[row][col]);
-  const win=titleWindow(record,col,row);el.style.aspectRatio=win.ratio;el.style.backgroundImage=`url("${record.titles.runtime}")`;
-  el.style.backgroundSize=win.size;el.style.backgroundPosition=win.pos;
-  return el;
- }
- return null;
+function renderCharacterTitle(id,record,row){
+ const col=Math.max(0,art.title_grid.columnsByLanguage.indexOf(lang));
+ const el=document.createElement('span');el.className='word-art character-title-art';
+ el.dataset.character=id;el.dataset.action=art.title_grid.rowsByAction[row];el.dataset.locale=lang;
+ el.setAttribute('role','img');el.setAttribute('aria-label',record.titles.labels[row][col]);
+ const win=titleWindow(record,col,row);el.style.aspectRatio=win.ratio;el.style.backgroundImage=`url("${record.titles.runtime}")`;
+ el.style.backgroundSize=win.size;el.style.backgroundPosition=win.pos;
+ return el;
 }
-
+export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
+ const record=art.characters[characterId];
+ if(!characterArtEnabled()||!record)return null;
+ const normalize=value=>String(value).replace(/[\s！!～~]/g,'');
+ const row=record.titles.labels.findIndex(labels=>labels.some(label=>normalize(label)===normalize(text)));
+ return row<0?null:renderCharacterTitle(characterId,record,row);
+}
+// Cast labels use the approved dialogue atlas regardless of the control icon skin.
+export function characterSkillTitle(characterId,action){
+ const record=art.characters[characterId];
+ const row=art.title_grid.rowsByAction.indexOf(action);
+ return record?.titles.labels[row]?renderCharacterTitle(characterId,record,row):null;
+}
 export function applyCharacterSpeech(el,id,kind='talk'){
  const c=art.characters[id]||art.characters.brave;
  el.classList.add('character-speech');el.dataset.speaker=id;

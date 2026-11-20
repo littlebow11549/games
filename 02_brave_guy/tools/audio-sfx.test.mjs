@@ -141,3 +141,18 @@ test('leaving victory cancels pending recorded cheer', async()=>{
  g.loadSfx=()=>new Promise(resolve=>{finish=()=>{g.sfxBuffers.set('victory_human_cheer',{});resolve();};});
  g.sfx('victory_human_cheer');g.stopCelebration();finish();await new Promise(r=>setImmediate(r));assert.deepEqual(played,[]);
 });
+
+test('startup warms common sound only, limits background work, and skips muted sessions',async()=>{
+ const {g}=harness({ui:'ui.mp3',ui_confirm:'confirm.mp3',hit:['a.mp3','b.mp3'],boss_ko:'ko.mp3',victory_human_cheer:'heavy.mp3'});
+ const names=[];let active=0,max=0;
+ g.loadSfx=async name=>{names.push(name);++active;max=Math.max(max,active);await new Promise(setImmediate);--active;};
+ g.muted=true;
+ await g.preloadSfx();
+ assert.deepEqual(names,[]);
+ g.muted=false;
+ const pending=g.preloadSfx();
+ assert.equal(g.preloadSfx(),pending);
+ await pending;
+ assert.equal(max,2);
+ assert.deepEqual(names.sort(),['boss_ko','hit:0','hit:1','ui','ui_confirm']);
+});

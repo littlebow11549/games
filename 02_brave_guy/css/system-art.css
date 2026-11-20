@@ -10,6 +10,24 @@
 .game-art #pause-menu .card h1.has-word-art,.game-art #overlay.result .card #ov-title.has-word-art{display:flex;align-items:center;justify-content:center;height:100px;padding:0!important}
 .game-art #pause-menu h1 .word-art,.game-art #ov-title .word-art{width:min(100%,310px)}
 .game-art .dmg.has-word-art{width:170px;max-width:48vw;background:none!important;padding:0!important}
+/* Approved atlas title, independent of the icon style, damage DOM and dialogue. */
+.skill-cast-name{
+ --cast-width:min(70vw,clamp(215px,26vw,286px),67svh);
+ --cast-edge:calc(var(--cast-width)/2 + 8px);
+ position:absolute;width:var(--cast-width);
+ left:clamp(calc(var(--safe-l) + var(--cast-edge)),var(--cast-x,50%),calc(100% - var(--safe-r) - var(--cast-edge)));
+ top:clamp(calc(var(--safe-t) + var(--cast-width)*.51 + 12px),var(--cast-y,40%),calc(100% - var(--safe-b) - 84px));
+ transform:translate(-50%,-100%);text-align:center;line-height:0;
+ animation:skill-cast-name 1.55s ease-out both;
+}
+.skill-cast-name.system-lettering{color:#fff2a2;font-size:clamp(18px,4.5vw,30px);line-height:1.1}
+@keyframes skill-cast-name{
+ 0%{transform:translate(-50%,-85%) scale(.91)}
+ 12%,78%{transform:translate(-50%,-100%);opacity:1}
+ 100%{transform:translate(-50%,-115%);opacity:0}
+}
+@keyframes skill-cast-fade{0%,78%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.skill-cast-name{animation-name:skill-cast-fade}}
 .game-art #combo{background:none!important;box-shadow:none!important;border:0!important;width:110px;height:90px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible}
 .game-art #combo[hidden]{display:none}
 .game-art #combo-n,.art-number{font-family:var(--font-display);font-weight:900;font-style:italic;color:#fff1a1;-webkit-text-stroke:2px #3e1609;paint-order:stroke fill;text-shadow:2px 3px #f24b18,3px 5px #091c11;line-height:1.05;font-size:46px;font-variant-numeric:tabular-nums;transform-origin:center}

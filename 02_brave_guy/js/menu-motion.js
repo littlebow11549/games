@@ -8,10 +8,11 @@ export function createMenuMotion() {
  const vertex='attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
  const fragment=`precision mediump float;varying vec2 uv;uniform sampler2D art;uniform vec2 size;uniform vec2 imageSize;uniform float time;uniform float portrait;
  float hash(float n){return fract(sin(n*127.1)*43758.5453);}
- void main(){vec2 q=vec2(uv.x,1.-uv.y);float scale=portrait>.5?size.x/imageSize.x:max(size.x/imageSize.x,size.y/imageSize.y);vec2 drawn=imageSize*scale;vec2 offset=portrait>.5?vec2(0.):(size-drawn)*.5;vec2 v=(q*size-offset)/drawn;
+ // Use the static menu artwork's cover crop and portrait anchor (center 42%).
+ void main(){vec2 q=vec2(uv.x,1.-uv.y);float scale=max(size.x/imageSize.x,size.y/imageSize.y);vec2 drawn=imageSize*scale;vec2 offset=(size-drawn)*vec2(.5,portrait>.5?.42:.5);vec2 v=(q*size-offset)/drawn;
  if(v.y>1.||v.y<0.||v.x<0.||v.x>1.){gl_FragColor=vec4(.027,.188,.114,1.);return;}
  // Independent phases and torso masks keep the faces crisp and the motion restrained.
- vec2 d=vec2(0.);for(int j=0;j<3;j++){float i=float(j);float cx=.20+i*.31;float mask=exp(-pow((v.x-cx)*6.5,2.))*smoothstep(.94,.62,v.y)*smoothstep(.03,.16,v.y);float breath=sin(time*(1.18+i*.09)+i*2.1);d.y+=mask*breath*.0025;d.x+=mask*(v.x-cx)*breath*.007;}
+ vec2 d=vec2(0.);for(int j=0;j<3;j++){float i=float(j);float cx=.20+i*.31;float dx=(v.x-cx)*6.5;float mask=exp(-dx*dx)*(1.-smoothstep(.62,.94,v.y))*smoothstep(.03,.16,v.y);float breath=sin(time*(1.18+i*.09)+i*2.1);d.y+=mask*breath*.0025;d.x+=mask*(v.x-cx)*breath*.007;}
  vec4 color=texture2D(art,v+d);float energy=pow(max(0.,sin((v.x+v.y*.55)*12.-time*.9)),20.)*.075*smoothstep(.55,.95,v.y);color.rgb+=vec3(.3,1.,.13)*energy;
  for(int j=0;j<12;j++){float i=float(j);vec2 pt=vec2(hash(i+2.),1.-fract(time*.035+hash(i+9.)));float sparkle=max(0.,1.-length((v-pt)*vec2(1.,imageSize.y/imageSize.x))*180.);color.rgb+=vec3(.6,1.,.25)*sparkle*(.4+.6*pow(sin(time*2.+i),2.));}
  gl_FragColor=color;}`;

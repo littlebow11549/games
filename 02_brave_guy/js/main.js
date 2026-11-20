@@ -1,4 +1,4 @@
-import { applyCharacterArt, applyCharacterSpeech } from './character-art.js?v=20261120approvedcomic';
+import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120castfix';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
@@ -7,7 +7,7 @@ import { createGuestCombat } from './guest-combat.js?v=20261120assets';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120assets';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120castfix';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets';
@@ -16,14 +16,14 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
 import { Fx } from './fx.js?v=20261120assets';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120approvedcomic';
-import { createCinematics } from './cinematics.js?v=20261120assets';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120castfix';
+import { createCinematics } from './cinematics.js?v=20261120castfix';
 import { createOpening } from './opening.js?v=20261120assets';
-import { createMenuMotion } from './menu-motion.js?v=20261120assets';
+import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
 import { Input, lockViewport } from './input.js?v=20261120assets';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120assets';
-import { GameAudio } from './audio.js?v=20261120assets';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120castfix';
+import { GameAudio } from './audio.js?v=20261120castfix';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261120assets';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261120assets';
 import { makeMaze } from './maze.js?v=20261120assets';
@@ -462,7 +462,8 @@ function startStage(index, character=null) {
     return rosterPicker.choose(hero.character||'brave',save.rounds,save.secretCharacters).then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
   }
   hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds,save.secretCharacters)?character:'brave';
-  if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index,hero.character));return;}
+  const selectedCharacter=hero.character;
+  if(!gameplayIsReady(selectedCharacter)){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(()=>prepareGameplay(selectedCharacter),()=>startStage(index,selectedCharacter));return;}
   audio.stopCelebration();input.takeActions();
   runs.start(index,diff);
   if(unlockAll||guest())runs.invalidate();
@@ -528,8 +529,10 @@ function runDialog(lines, done, cls = '') {
 }
 function showLine() {
   const [who, text, art] = dialog.lines[dialog.i];
-  transformArt.show(dialog.lines === FIRST_TRANSFORM ? art : null);
-  $('dialog').classList.toggle('has-transform-art', dialog.lines === FIRST_TRANSFORM && Boolean(art));
+  const transformation = dialog.lines === FIRST_TRANSFORM;
+  transformArt.show(transformation ? art : null,
+    transformation ? dialog.lines[dialog.i + 1]?.[2] : null);
+  $('dialog').classList.toggle('has-transform-art', transformation && Boolean(art));
   $('dlg-name').textContent = t(who);
   $('dlg-name').hidden = !who;
   $('dlg-text').textContent = t(text);
@@ -578,6 +581,26 @@ function popup(world, height, text, cls = '') {
   const announcement=cls==='shout'&&el.classList.contains('has-word-art');
   (announcement?$('skill-announcements'):ui).append(el);
   el.addEventListener('animationend', () => el.remove());
+}
+
+function showSkillCastName(action, label) {
+  // A confirmed cast is neither dialogue nor a damage number: do not overwrite
+  // speech or let the crowd's world-UI cap suppress the name.
+  const layer = $('skill-announcements');
+  const el = document.createElement('div');
+  el.className = 'skill-cast-name';
+  el.dataset.action = action;
+  const title = characterSkillTitle(hero.character || 'brave', action);
+  if (title) el.append(title);
+  else { el.classList.add('system-lettering'); el.textContent = angelText(t(label)); }
+  const p = screenPos(hero.pos, 2.8);
+  if (p.visible) {
+    el.style.setProperty('--cast-x', `${p.x}px`);
+    el.style.setProperty('--cast-y', `${p.y}px`);
+  }
+  layer.querySelector('.skill-cast-name')?.remove();
+  layer.append(el);
+  el.addEventListener('animationend', () => el.remove(), { once: true });
 }
 
 // Existing 4 × 2 atlas; one non-looping burst, removed on completion.
@@ -1979,9 +2002,10 @@ function startSkill(name, mv) {
     if(name==='ult'){if(hero.qi<GAUGE.qiMax||guestCombat.ultActive)return;hero.qi=0;}
     else {if((hero.cds[name]||0)>0)return;hero.cds[name]=ROSTER[hero.character].cd[idx];}
     faceForAction(mv,18);hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
-    hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);if(name!=='ult')heroSay(ROSTER[hero.character].skills[idx],2.3);else{hero.sayEl?.remove();hero.sayEl=null;hero.sayT=0;}
-    if(name==='ult')popup(hero.pos,2.8,ROSTER[hero.character].skills[3],'shout');
-    guestCombat.begin(hero.character,name);return;
+    hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);
+    guestCombat.begin(hero.character,name);
+    showSkillCastName(name,ROSTER[hero.character].skills[idx]);
+    return;
   }
   const def = SKILLS[name];
   if (name === 'ult') { if (hero.qi < GAUGE.qiMax) return; hero.qi = 0; }
@@ -2000,10 +2024,10 @@ function startSkill(name, mv) {
     for (const m of [outer, core]) { m.rotation.x = Math.PI / 2; m.position.z = def.length / 2 + 0.8; beam.add(m); }
     beam.userData.mat = mat;
     scene.add(beam);
-    popup(hero.pos, 2.8, '超勇氣波！', 'shout');
     game.shake = 0.5;
     say('ult');
   }
+  showSkillCastName(name,def.name);
 }
 
 function endUlt() {

@@ -8,6 +8,14 @@
 
 ## 最新交付
 
+- [圖片載入優先級與首段流量](handoffs/2026-11-20-artwork-loading-priority.md)：只先備所選角色與當前語系必要圖集，移除首屏非必要圖、限制音效預熱，不改原圖。
+
+- [三角色招式名稱顯示](handoffs/2026-11-20-skill-cast-names.md)：成功施放 Q／E／R／F 使用原三語圖集，獨立顯示並保留對話。
+
+- [T 鎖定圖示方形光暈修正](handoffs/2026-11-20-lock-glow-fix.md)：透明輪廓發光取代矩形陰影，保持原圖與按鍵。
+
+- [主選單構圖與變身插圖穩定性](handoffs/2026-11-20-artwork-continuity.md)：靜止／動態主視覺使用同一裁切錨點，變身等候解碼不中斷畫面，失敗可重試，不改原圖。
+
 - [新版漫畫三語正式套用](handoffs/2026-11-20-approved-comic.md)：使用者已通過；三張PNG＋無損WebP正式採用，舊SVG備案。
 
 - [新圖強制預覽驗收門檻](handoffs/2026-11-20-art-preview-gate.md)：共用規範已落檔；多語系新圖仍待檢查及使用者驗收。

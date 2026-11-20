@@ -1,5 +1,9 @@
 // BGM 使用 manifest.audio；正式 SFX 可填 manifest.sfx，缺檔時沿用 WebAudio 合成音效。
 const MUTE_KEY = 'game02.muted';
+// Keep the startup network free for artwork; rare/large tracks remain on demand.
+const WARM_SFX = ['ui', 'ui_confirm', 'stage_select', 'dialog_next', 'student_punch',
+  'swing', 'hit', 'crit', 'punch_1', 'punch_2', 'punch_3', 'dodge', 'hurt',
+  'lock_switch', 'spawn', 'boss_ko'];
 
 export class GameAudio {
   constructor(manifest) {
@@ -38,16 +42,27 @@ export class GameAudio {
     this.noiseBuf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
     const d = this.noiseBuf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
-    this.preloadSfx();
+    if (!this.muted) this.preloadSfx();
   }
 
   stopCelebration(){this.celebrationEpoch++;for(const voice of this.crowdVoices){try{voice.stop();}catch{}}this.crowdVoices.clear();this.sfxLast.delete('applause');this.sfxLast.delete('crowd_cheer');}
 
   preloadSfx() {
-    for(const [name,source] of Object.entries(this.sfxTracks)) {
-      if(Array.isArray(source)) source.forEach((url,i)=>this.loadSfx(`${name}:${i}`,this.resolve(url)));
-      else if(source) this.loadSfx(name,this.resolve(source));
-    }
+    if (this.sfxWarmup || this.muted || !this.ctx) return this.sfxWarmup;
+    const jobs = WARM_SFX.flatMap(name => {
+      const source = this.sfxTracks[name];
+      return Array.isArray(source) ? source.map((url,i) => [`${name}:${i}`, url]) :
+        source ? [[name, source]] : [];
+    });
+    let next = 0;
+    const worker = async () => {
+      while (!this.muted && next < jobs.length) {
+        const [name, url] = jobs[next++];
+        await this.loadSfx(name, this.resolve(url));
+      }
+    };
+    this.sfxWarmup = Promise.all([worker(), worker()]).finally(() => { this.sfxWarmup = null; });
+    return this.sfxWarmup;
   }
   duckBgm(factor) { this.duck=factor; if(this.bgmGain)this.bgmGain.gain.value=this.muted?0:.55*factor; if(this.bgm)this.bgm.volume=.5*factor; }
   startLoop(name, repeat=true) {

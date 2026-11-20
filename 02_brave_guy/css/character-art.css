@@ -29,7 +29,8 @@
 .game-art #hud[data-art-style="classic2d"] .act.locked .art-lock-mark{display:block;position:absolute;right:12%;bottom:12%;width:22%;height:19%;border:2px solid #171717;border-radius:3px;background:#fff;z-index:2;pointer-events:none;box-shadow:0 0 0 1px #fff}
 .game-art #hud[data-art-style="classic2d"] .art-lock-mark::before{content:'';position:absolute;width:65%;height:80%;left:17%;bottom:80%;border:2px solid #fff;border-bottom:0;border-radius:8px 8px 0 0;box-shadow:0 -1px 0 1px #171717;box-sizing:border-box}
 .game-art #hud[data-art-style="classic2d"] #btn-cycle-lock svg{visibility:hidden}
-.game-art #hud[data-art-style="classic2d"] .act.lock.on::before{filter:brightness(1.3);box-shadow:0 0 10px #b4ff43}
+/* Follow the transparent badge silhouette, not the rectangular atlas window. */
+.game-art #hud[data-art-style="classic2d"] .act.lock.on::before{filter:brightness(1.3) drop-shadow(0 0 5px #b4ff43);box-shadow:none}
 
 /* The new lock badge replaces the legacy central lock on unlearned skills. */
 .game-art #hud[data-art-style="classic2d"] .act.unlearned::after{visibility:hidden}

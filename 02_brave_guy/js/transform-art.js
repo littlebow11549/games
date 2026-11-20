@@ -4,12 +4,15 @@ export const TRANSFORM_FILES = ['bg_stars', 'silhouette', 'glove', 'knee', 'jack
 const urls = Object.fromEntries(TRANSFORM_FILES.map(id => [id, new URL(assetPath(`../assets/runtime/lossless/pic/transform/tf_${id}.webp`), import.meta.url).href]));
 const cache = new Map();
 function load(id) {
-  if (!cache.has(id)) cache.set(id, new Promise(resolve => {
+  if (!urls[id]) return Promise.resolve(null);
+  if (!cache.has(id)) {
     const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => resolve(null); // Text dialog remains usable if an image fails.
     img.src = urls[id];
-  }));
+    cache.set(id, img.decode().then(() => img).catch(() => {
+      cache.delete(id); // A transient failure must not poison the rest of the play session.
+      return null;
+    }));
+  }
   return cache.get(id);
 }
 // Reuse delivered SFX; fire at the committed visual frame, not at dialog input time.
@@ -26,31 +29,38 @@ export function createTransformArt(root, onFrame = () => {}) {
   let generation = 0, timer = 0, current = null;
   function stop() { cancelAnimationFrame(timer); timer = 0; generation++; }
   function hide() { stop(); current = null; root.hidden = true; picture.replaceChildren(); sign.hidden = true; }
-  function show(cue) {
+  function show(cue, nextCue) {
     if (!cue) { hide(); return; }
     // Language refresh must not restart the outfit montage.
     if (cue === current) return;
     stop(); current = cue;
     const token = generation;
-    root.hidden = false;
-    root.dataset.shot = Array.isArray(cue) ? 'outfit' : cue;
-    picture.replaceChildren(); sign.hidden = true;
-    delete root.dataset.frame;
-    for (const id of TRANSFORM_FILES) load(id);
-    load('bg_stars').then(img => { if (img && token === generation) root.style.backgroundImage = `url("${img.src}")`; });
     const shots = Array.isArray(cue) ? cue : [cue];
     async function display(index) {
-      const id = shots[index], img = await load(id);
+      const id = shots[index];
+      const incoming = load(id);
+      // Warm only the next frame, not all 13 story images. Reuse each pending decode.
+      const next = shots[index + 1] ?? (Array.isArray(nextCue) ? nextCue[0] : nextCue);
+      if (next) load(next);
+      const img = await incoming;
       if (token !== generation) return;
-      root.dataset.frame = id;
       picture.replaceChildren(); sign.hidden = id !== 'sign';
       if (img) {
+        root.dataset.shot = Array.isArray(cue) ? 'outfit' : cue;
+        root.dataset.frame = id;
         const copy = img.cloneNode(); copy.alt = ''; copy.setAttribute('aria-hidden', 'true');
         if (id === 'sign') sign.querySelector('img').src = img.src;
         else picture.append(copy);
+        root.hidden = false;
+        load('bg_stars').then(bg => {
+          if (bg && token === generation) root.style.backgroundImage = `url("${bg.src}")`;
+        });
         if (!document.hidden) onFrame(id);
+      } else {
+        // Stop showing the previous frame after a failed request; the dialogue stays usable.
+        root.hidden = true; sign.hidden = true; delete root.dataset.frame;
+        current = null;
       }
-      if (!img) sign.hidden = true;
       if (index + 1 < shots.length) {
         let elapsed = 0, last = performance.now();
         const tick = now => {
