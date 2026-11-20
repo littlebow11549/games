@@ -20,26 +20,26 @@
 - [x] 完整素材製作列表 `assets/ASSETS.md`（背景/Logo/UI/寶石/數字/特效/音樂音效/Icon，依全專案標準範本）
 
 ## ✅ 已接入實體素材
-- [x] 背景 `bg_01.png`（`.app` 背景；關閉原 CSS 格線/暗角）
-- [x] Logo `logo_01.png`（`<img>` 取代標題文字）
-- [x] favicon `icon_01.png`
-- [x] 寶石 `gems_01.png`（4×3 圖集，含浮動/發光動畫）← 前一棒接入
-- [x] 音訊：背景音樂 `bgm_01.mp3`（循環）、音效 `sfx_01..05`（點擊/正確/點錯/過關/結束）
+- [x] 背景 `memory_crash_background01_水晶大廳.png`（`.app` 背景；關閉原 CSS 格線/暗角）
+- [x] Logo `memory_crash_branding05_logo_01.png`（`<img>` 取代標題文字）
+- [x] favicon `memory_crash_branding03_icon_01.png`
+- [x] 寶石 `memory_crash_ui04_gems_01.png`（4×3 圖集，含浮動/發光動畫）← 前一棒接入
+- [x] 音訊：背景音樂 `memory_crash_bgm01_一般關卡.mp3`（循環）、音效 `sfx_01..05`（點擊/正確/點錯/過關/結束）
       ；保留 SFX/MUSIC 獨立開關、記憶設定、互動後播放；寶石音高仍用 WebAudio
 
 ## ✅ UI 圖集已接入（ui_01 切成 9 張乾淨單圖 → `assets/source/pic/ui/`）
 - [x] 金色按鈕三態（`btn_normal/pressed/disabled.png`）→ `.gold-btn` `border-image`
-- [x] 藍色面板框（`panel.png`）→ `.panel` `border-image`
+- [x] 藍色面板框（`memory_crash_ui52_面板.png`）→ `.panel` `border-image`
 - [x] 愛心滿/空（`heart_full/empty.png`）→ `.heart`
-- [x] 齒輪鈕（`gear.png`）→ `.icon-btn`
+- [x] 齒輪鈕（`memory_crash_ui51_設定.png`）→ `.icon-btn`
 - [x] 切圖工具：`tools/`（slice 腳本於 scratchpad；已產出 `ui/*.png`）
 
 ## ✅ 文字/數字/教學素材已接入
-- [x] 數字 `numbers_01.png`（6×2）→ 切成 n0–n9/lv/colon，HUD LV 用圖顯示
+- [x] 數字 `memory_crash_ui20_numbers_01.png`（6×2）→ 切成 n0–n9/lv/colon，HUD LV 用圖顯示
 - [x] 主視覺文字 `titles_01.png`（3×4）→ 切成 11 字藝：START/OPTION/READY/
       YOUR TURN/PERFECT/MISS/GAMEOVER/MASTER MODE/HOW TO PLAY/HOME/AGAIN
       （標題、動態橫幅、GAMEOVER、按鈕字、彈窗標題皆已替換）
-- [x] 教學圖示 `howto_01.png`（4 格）→ 切成 step1–4，替換說明彈窗 SVG（保留文字）
+- [x] 教學圖示 `memory_crash_ui06_howto_01.png`（4 格）→ 切成 step1–4，替換說明彈窗 SVG（保留文字）
 
 ## ✅ 本次清單收尾
 - [x] 字型 68 字元邊界／基線／字距 metrics，已接 SOUND／MUSIC／ON／OFF。
@@ -54,7 +54,7 @@
 
 ## 🐞 已知事項
 - UI 按鈕、面板、愛心、齒輪與格子框均已換成素材。
-- `ui_01.png` 與 `numbers_01.png` 邊緣有生成雜訊，切圖需依實際邊界裁切。
+- `memory_crash_ui39_介面總圖集.png` 與 `memory_crash_ui20_numbers_01.png` 邊緣有生成雜訊，切圖需依實際邊界裁切。
 - Google Fonts 需連網才會載入；離線時字體退回系統字（版面不受影響）。
 - 瀏覽器政策：音效/音樂需使用者先互動（點擊）才會發聲，屬正常現象。
 
@@ -74,10 +74,10 @@
 ## Codex 素材交接（2026-11-09）
 - 六項主要圖片、主 BGM 與五種音效已依 ASSETS.md 分類放入 assets/source/。
 - 寶石已接上浮動、發光與點擊動畫，其餘素材待 Claude 接入。
-- 詳見 CLAUDE_HANDOFF.md 與 assets/DELIVERY_V2.md，包含原始尺寸與尚待聽測項目。
+- 詳見 CLAUDE_HANDOFF.md 與 assets/records/memory_crash_record03_delivery_v2.md，包含原始尺寸與尚待聽測項目。
 
 ## 新增美術交付（2026-11-09）
-- 已補齊 `assets/source/pic/titles/titles_01.png` 與 `assets/source/pic/howto/howto_01.png`。
+- 已補齊 `assets/source/pic/titles/titles_01.png` 與 `assets/source/pic/howto/memory_crash_ui06_howto_01.png`。
 - 已確認透明與無損像素一致，尚待切圖與接入。
 - 完整切圖順序、實際解析度與後續事項見根目錄 `docs/handoffs/2026-11-09-titles-howto.md`；全專案交接入口 `docs/HANDOFF.md`。
 
@@ -90,4 +90,4 @@
 - 主選單 ARCADE／CONTINUE／EXIT 已接 titles_02。
 - 字型單張及穿梭 WebM 來源已交付；字型排版與影片接入仍待處理。
 - 核對必要來源均有檔案，但四項選做仍缺，部分原生尺寸與原規格不同，不宣稱全數達規格。
-- 詳見根目錄 docs/handoffs/2026-11-09-character-animation-audit.md 與 assets/ASSET_AUDIT.json。
+- 詳見根目錄 docs/handoffs/2026-11-09-character-animation-audit.md 與 assets/records/memory_crash_record01_asset_audit.json。

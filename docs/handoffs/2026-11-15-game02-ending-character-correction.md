@@ -1,7 +1,7 @@
 # 結局群像角色設定修正
 
 ## 原因與依據
-使用者指出 ending_applause.png 未依設定製作。已對照 CHARACTERS.md、DESIGN.md 與既有 sheet/unified 合輯，確認多項角色身分特徵被擅自改寫；本次只修訂這張既有結局圖，不是重開場景批次。未將既有合輯的審稿狀態改稱已獲使用者核准。
+使用者指出 brave_guy_cinematic19_ending_applause.png 未依設定製作。已對照 CHARACTERS.md、DESIGN.md 與既有 sheet/unified 合輯，確認多項角色身分特徵被擅自改寫；本次只修訂這張既有結局圖，不是重開場景批次。未將既有合輯的審稿狀態改稱已獲使用者核准。
 
 ## 修正對照
 |角色|原圖問題|修訂內容|
@@ -20,7 +20,7 @@
 保留地獄超人、錢大姐及其他設定辨識點。畫面共主角＋13 Boss＋小天使（15 位），反派拍手仍帶嘲諷表情，主角平靜不受影響。沒有將所有角色改成全新造型。
 
 ## 檔案與追溯
-- 正式原圖：02_brave_guy/assets/source/pic/cinematics/ending_applause.png，原生 1536×1024 PNG，2767333 bytes；未縮圖、未插值放大。
+- 正式原圖：02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic19_ending_applause.png，原生 1536×1024 PNG，2767333 bytes；未縮圖、未插值放大。
 - SHA256：8ed99a8edfd9634cedd9f8bb9b86be70eb9124a175e9cf6b3d9d39a87154b068。
 - 被退回舊圖：_archive/game02/cinematics/2026-11-15/ending-correction/ending_applause_rejected.png，完整保留。
 - 三次定向編修原檔保留於 /workspace/generated_images：exec-282bfa12-32a1-422d-a605-c84d30c63237.png（群像身分修正）、exec-fdd8cb59-0a81-4c62-8013-a777ff9af593.png（胸標／小天使）、exec-ff122630-5341-4dea-bbb5-794c610b7cda.png（修復編修意外捲袖，正式採用）。

@@ -1,6 +1,7 @@
-import { angelText } from './angel-language.js?v=20261119dialogue';
+import { assetPath } from './asset-paths.js';
+import { angelText } from './angel-language.js?v=20261120assets';
 // Native atlas windows: sources remain unmodified and retain their alpha channel.
-import { lang, t } from './i18n.js?v=20261119dialogue';
+import { lang, t } from './i18n.js?v=20261120assets';
 const groups = {
  combat: ['心魔來襲','狂潮來襲','心魔召喚爪牙','沒有超能力的時候','完美閃避','超勇氣波！'],
  outcomes: ['勇氣超人！','夠了！！','突破','倒下','醒來','暫停'],
@@ -14,7 +15,7 @@ export function artSprite(group, index, label = '') {
  const rows = group === 'labels' && locale === 'zh' ? [0,370,735,1024] : [0,341,683,1024];
  const row = Math.floor(index / 2), x = index % 2 * 768, y = rows[row], h = rows[row+1]-y;
  el.style.aspectRatio = `768 / ${h}`;
- el.style.backgroundImage = `url("assets/runtime/lossless/pic/titles/system_${group}_${locale}.webp")`;
+ el.style.backgroundImage = `url("${assetPath(`assets/runtime/lossless/pic/titles/system_${group}_${locale}.webp`)}")`;
  el.style.backgroundSize = `200% ${1024/h*100}%`;
  el.style.backgroundPosition = `${x ? 100 : 0}% ${y/(1024-h)*100}%`;
  el.setAttribute('role','img'); el.setAttribute('aria-label', label || t(groups[group][index]));
@@ -24,7 +25,7 @@ export function setSystemArt(el, text) {
  el.classList.remove('wave-art');
  const value = clean(text);
  const guestTitle={'全都給我過來！':'angel','王之嘴炮':'nightmare'}[value];
- if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=`assets/source/pic/titles/ult_${guestTitle}${lang!=='zh-Hant'?'_'+lang:''}.svg`;img.alt=angelText(text);el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
+ if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=assetPath(`assets/source/pic/titles/ult_${guestTitle}${lang!=='zh-Hant'?'_'+lang:''}.svg`);img.alt=angelText(text);el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
 
  for (const [group, keys] of Object.entries(groups)) {
   const index = keys.findIndex(k => clean(k) === value || clean(t(k)) === value);

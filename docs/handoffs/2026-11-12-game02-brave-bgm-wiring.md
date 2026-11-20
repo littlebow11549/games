@@ -11,7 +11,7 @@
 ## 完成內容
 
 - **招式全開**：`DEV_UNLOCK` 開著時，每一關都有變身、三小招、大招、血量與集氣加成（`stageAbilities()`）。`?unlock=off` 才照劇情逐關取得。
-- **變身音樂**：新增 manifest 鍵 `bgm_brave`。變身期間切到這首，變回來切回關卡曲或守關曲（`setBgm()`／`applyBgm()`，`game.bgm` 記住場面該播的曲子）。**目前暫用 `theme_braveguy_demo`（9 秒的主題展示，非為循環製作）**；正式曲需求已寫進 `assets/MUSIC.md` v1.3（P0）。
+- **變身音樂**：新增 manifest 鍵 `bgm_brave`。變身期間切到這首，變回來切回關卡曲或守關曲（`setBgm()`／`applyBgm()`，`game.bgm` 記住場面該播的曲子）。**目前暫用 `theme_braveguy_demo`（9 秒的主題展示，非為循環製作）**；正式曲需求已寫進 `assets/records/brave_guy_record04_music.md` v1.3（P0）。
 - **新音樂**：合併 `claude/brave-guy-audio` 的 `bgm_wild`、`bgm_office`、`bgm_office_mute`，填進各關的鍵：2-1／2-2 → wild；3-0 → office_mute；3-1 到 3-5 → office。音樂分支的 manifest 用的是舊鍵名，合併時以本分支的每關鍵為準。
 - **鎖定鍵**：從右上角移到右下按鍵區，變身鍵左邊（`.act.lock`）。
 - **暫停選單**：按暫停（或 Esc／P）跳出選單：繼續、重新開始這一關、回標題／選關。切到背景分頁也會自動暫停並顯示選單。
@@ -24,5 +24,5 @@
 
 ## 尚待完成
 
-- 正式的 `bgm_brave`；其餘關卡各自的戰鬥曲（清單見 MUSIC.md 0 節）。
+- 正式的 `bgm_brave`；其餘關卡各自的戰鬥曲（清單見 brave_guy_record04_music.md 0 節）。
 - 快取版本號 `20261112h`。

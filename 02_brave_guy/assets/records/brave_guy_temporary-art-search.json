@@ -1,0 +1,441 @@
+{
+  "searched": [
+    "/tmp/codex-remote-attachments",
+    "/workspace/attachments",
+    "/workspace/generated_images",
+    "/tmp"
+  ],
+  "additional_candidates": [
+    {
+      "path": "/tmp/before-cleanup-student.png",
+      "sha256": "c198cf92cab9af56c7d2c6f4f4daff60f0fe95bd4087df779cab3b84f12e96b6",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/angel-play.png",
+      "sha256": "f0848bc9b2a99fdf453d42c26c2c6f8ad9d6713b01ef764b8d7ae63575ed6bea",
+      "size": [
+        1280,
+        720
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/before-cleanup-nightmare.png",
+      "sha256": "ae21c7ae209ced547fb7068b504f488c7312ba770f39efe127e97fd8e3ce8aff",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/hit-preview.png",
+      "sha256": "ee8ebe7870a96ba4bdc17233d80ffa08128fbe5c1a9e16b66dea6dbb8d679d98",
+      "size": [
+        900,
+        850
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/presenter-final-820.png",
+      "sha256": "9d772d4b0459004df7e08f9772287f2e7b164d5409da645dbbe5d0ff25ef333f",
+      "size": [
+        820,
+        850
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/ui-layers-1280.png",
+      "sha256": "ad365a1d0a3af66e59abdb578e9d596befc032a761208090878197677b4e883e",
+      "size": [
+        1280,
+        720
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/presenter-820.png",
+      "sha256": "62c07aab98e271fe482a87b8493591f8fad99906275c4e59db20688969d56c50",
+      "size": [
+        820,
+        850
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/hub-1280.png",
+      "sha256": "e925379098327d174620511188f72ed2e59f81f7a95851f2f24cd599117dbef8",
+      "size": [
+        1280,
+        900
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/before-cleanup-angel.png",
+      "sha256": "5bd50d5d2e6a9ed5866f8aaa5fd3175536af4020ed3af49403339b13221a73e6",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/before-cleanup-braveguy.png",
+      "sha256": "ba7f38ab5e8cb5d5e237b9ae22a5c40911e5a12003554bd642b34554f3dc8032",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/crystal-1280.png",
+      "sha256": "de5370db54e1238f692d3a1e6ba88c29f0eee392e76fe0e59b05dce792b5e338",
+      "size": [
+        1280,
+        850
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/models.png",
+      "sha256": "78c91ea4a840c1fee21e5e530e9e324f729b49a70aecd507381edfe1c7cf82d4",
+      "size": [
+        900,
+        500
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/carousel-1280.png",
+      "sha256": "f140aa6140ce2263384c3c1d9258c4de820719d6339fd4192baadc9202f71695",
+      "size": [
+        1280,
+        900
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/pug-desktop.png",
+      "sha256": "af539149e45f135a41b5c96ed1a22bbd8158283c1af55ae4560ba4f14cccd27f",
+      "size": [
+        1280,
+        900
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-174.png",
+      "sha256": "1eb692db30a2e91649d2a0b16d5cab17772509d90b4343bd804d168e496cd5c5",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor19_新雞_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-182.png",
+      "sha256": "ac9de11b824947022b5f37045087517373819281ac8ee4a2b90cf797f93b348c",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor27_夢魘超人最終覺醒_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-168.png",
+      "sha256": "3426bf64da1324f2e1e899d9d26d435cc6982fca636f0b42823a5eb224177939",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor25_冠老闆_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-210.png",
+      "sha256": "5de806cfc8d8d83d285ca3b7a61755f38d53850a5280acbd934a9093416591e0",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor11_惡夢超人.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-179.png",
+      "sha256": "2af554788a4dc916a4636264e7e0588eecec9b846da945a1763dc33af82cbd14",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor14_地獄超人_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/0f96038cd0d9a6e1d00d0d69ef3dbc85d3bb3b32.png",
+      "sha256": "c8382f5889600a7febdd05ded9000452048944a654bc495f5d892792e8cf6e21",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-195.png",
+      "sha256": "b86e3b65cf570372a60a7bd878fea048d223a5fc94fcd86d9349cb2596d09fc6",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor04_勇氣超人_表情特輯.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-199.png",
+      "sha256": "c486b0a2faa376326c743546c4ed5f20f82e9e17c77a0a66749e0391e50fa480",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor02_小天使_表情特輯.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/18afb83c78c857f1c3a8112937cb8b73764f5498.png",
+      "sha256": "a8918f0b5a20179430b7b83b8164ac2dc1f1977b21e2a8f757b2df2711797fbd",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui22_對話框圖集.webp",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-192.png",
+      "sha256": "44f7122246c21e2220ef9cea0593596b5b104a612a6d77d5c6e29dfe11c92ebe",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_三型態設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-191.png",
+      "sha256": "7e210c49190f699b6ad7f43f18b6a945293f2d5377d5b9aa31a9bdf908861e64",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor01_主角學生_表情特輯.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-189.png",
+      "sha256": "10202e75cd163b45aa057f6bb93443f092039e3ce7a2060e15c5f8c50420dfd6",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor16_加班鬼_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-211.png",
+      "sha256": "1f46260bc635b61bc8c33d7df84d0431e86cc14caf9454ad807e492da0d9a961",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor01_主角學生.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-190.png",
+      "sha256": "daa7f4383de6f1b7e9fb4f1646b1dbb3c5941aa7e960ce0adbdefdf4b5f20020",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor26_夢魘超人_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-180.png",
+      "sha256": "a479a3259345d06cbf0f73f79b484daf686447d4c1bbca1004a35dba085bfc75",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor08_假森_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-172.png",
+      "sha256": "0a866571c587a72725372c908de5694914609d1c2c21723858be803cd855d8a7",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor21_藍經理_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-184.png",
+      "sha256": "ce2329f79165918216aca746c3a97ceda8d7728939ae633d4cf2514025d5d3ba",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor15_主角上班族_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-209.png",
+      "sha256": "57a5051391fb5e67cfdb2be457cd9e0b7ac78c233d3df885001619ddcf64c4ee",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor04_勇氣超人.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-200.png",
+      "sha256": "717a21eb551c8cc5eb5eef91f3470168bd38a1790b8f943a9d553714e1618b24",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_職場版設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-166.png",
+      "sha256": "eae84c139df81a902bc24f64dddec2b0aae264b19c081b73786e762249b26db0",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor23_錢經理_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-203.png",
+      "sha256": "ee55242a7d43bd650fcbbcbd1d5b9a110077382930b156ca66fa80326e10bc9d",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor20_八卦蛇_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-208.png",
+      "sha256": "70ae84a9569525735cc3b3ba70ee68af0aec16b9819e13275aff1ecc7f45f609",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor02_小天使.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-176.png",
+      "sha256": "7ca6a0795ae0606af1993e7f7b2832dfbc5c911a4c457f26bba5c8d0d6e5fd86",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-201.png",
+      "sha256": "9d9b48bc3c6485161469223305f7b92a00ec50ba8066d04dc061410947ef8844",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor12_悶幹譙_職場版設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/d20a059b4ca82467c0528b5e4ec44f51c4eba2f9.png",
+      "sha256": "da1eab584486c6735ae39e6ffce0d2f07c8ff6610c502b63bc9368a0399b6ad5",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": null,
+      "classification": "qa-or-retired-requires-no-import"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-197.png",
+      "sha256": "4d6e198c1c5dd16222d83e9a4232cced32635f8471b725c7abb5741590a69874",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor17_假忙森_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-165.png",
+      "sha256": "21a9825b3d3b4aaa5340f47506a09951f05774848ab3b3e353e290f9f2a876dd",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_職場版設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/local-177.png",
+      "sha256": "4e6ce6a3ce876eae7dc4d88fcb67177934c68c418c42aa6c705e37ec74b3779f",
+      "size": [
+        1280,
+        853
+      ],
+      "match": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor05_佛賴弟_設定集.jpg",
+      "classification": "pixel-identical-existing"
+    },
+    {
+      "path": "/tmp/approved-art-search/429b6bc2d78ed9c72151dbfcd1ec7c48a55f3fa5.png",
+      "sha256": "862a40891cec0ece46eb792f2ed77f1b6b65cd6f4138dd44227e501510d0c3e6",
+      "size": [
+        1536,
+        1024
+      ],
+      "match": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui17_介面面板圖集.webp",
+      "classification": "pixel-identical-existing"
+    }
+  ],
+  "nightmare_expression_special": "Standalone original not located. Approved character sheet contains six expressions; these are not a replacement for the missing special."
+}

@@ -3,10 +3,10 @@
   'use strict';
   const root='assets/source/pic/character/';
   const clips={
-    idle:{file:'char_anim_idle.webp',fps:3,label:'Idle breathing'},
-    happy:{file:'char_anim_happy.webp',fps:8,label:'Happy'},
-    sad:{file:'char_anim_sad.webp',fps:5,label:'Sad'},
-    celebrate:{file:'char_anim_celebrate.webp',fps:8,label:'Celebrating'},
+    idle:{file:'memory_crash_charactor01_太空巴哥_idle.webp',fps:3,label:'Idle breathing'},
+    happy:{file:'memory_crash_charactor01_太空巴哥_happy.webp',fps:8,label:'Happy'},
+    sad:{file:'memory_crash_charactor01_太空巴哥_sad.webp',fps:5,label:'Sad'},
+    celebrate:{file:'memory_crash_charactor01_太空巴哥_celebrate.webp',fps:8,label:'Celebrating'},
   };
   const cache=new Map();
   const nodes=[...document.querySelectorAll('[data-mascot]')];

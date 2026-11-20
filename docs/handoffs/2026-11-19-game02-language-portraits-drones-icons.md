@@ -12,9 +12,9 @@
 - js/angel-language.js：當前語系翻譯與日文字型選擇，沿用i18n同一模組實例。
 - js/guest-combat.js、nightmare-boss-skills.js：飛行子機／語言文字彈；main.js、playable-roster.js、system-art.js整合。
 - css/playable-roster.css：圖示視窗、受擊表情；game.css：JP字型；play.html：版本及圖集預載。
-- assets/source/pic/icons/guest_skill_atlas.png：1254×1254 RGBA原生透明圖集，3×3等格；順序為嘴砲、吹飛、雪花／麻痺、龍捲、三拳／三子機、震懾、王冠。來源、SHA256見assets/source/GUEST_SKILL_ICONS_DELIVERY.json。
+- assets/source/pic/icons/brave_guy_ui25_小天使惡夢技能舊圖集.png：1254×1254 RGBA原生透明圖集，3×3等格；順序為嘴砲、吹飛、雪花／麻痺、龍捲、三拳／三子機、震懾、王冠。來源、SHA256見assets/records/brave_guy_record12_guest_skill_icons_delivery.json。
 - 被替換的九張skill_angel／skill_nightmare SVG及舊交付JSON收至assets/_alternate/，不刪歷史。
-- assets/source/pic/titles/ult_angel_en.svg、ult_angel_ja.svg：760×370原生向量，既有底形與Noto黑體字形轉路徑。
+- assets/source/pic/titles/brave_guy_ui11_ult_angel_en.svg、brave_guy_ui12_ult_angel_ja.svg：760×370原生向量，既有底形與Noto黑體字形轉路徑。
 - assets/fonts：依新文字重建TC/Huninn/JP子集，來源遵循原OFL字型工具；無語音新增。
 
 ## 驗證

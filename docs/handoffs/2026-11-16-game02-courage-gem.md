@@ -4,10 +4,10 @@
 
 ## 完成
 - 原創生成綠色六角切面寶石、金色護框、深綠徽章，透明底、無字，粗線條卡通風格。
-- 原生 `1254×1254 RGBA` PNG：`02_brave_guy/assets/source/pic/icons/btn_transform_courage_gem.png`。
-- 同尺寸無損 WebP：`02_brave_guy/assets/runtime/lossless/pic/icons/btn_transform_courage_gem.webp`，986416 bytes；RGBA 逐像素一致，未放大或裁切。
+- 原生 `1254×1254 RGBA` PNG：`02_brave_guy/assets/source/pic/icons/brave_guy_ui19_勇氣寶石.png`。
+- 同尺寸無損 WebP：`02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui19_勇氣寶石.webp`，986416 bytes；RGBA 逐像素一致，未放大或裁切。
 - `css/ui-art.css`：變身鍵改為 76×76 圓形寶石。就緒柔和光暈、按下縮小提亮、鎖定灰階，減少動態偏好停用呼吸效果。舊圖集保留供閃避使用。
-- `css/hud-art.css`：移除舊滿氣狀態從 `control_extras_sheet.webp` 顯示紅圍巾的高優先度覆蓋，避免就緒時回到舊圖。
+- `css/hud-art.css`：移除舊滿氣狀態從 `brave_guy_ui28_方向控制圖集.webp` 顯示紅圍巾的高優先度覆蓋，避免就緒時回到舊圖。
 - `assets/runtime-images.json` 與 `js/loading.js`：納入進場預載，更新入口及 CSS／JS／清單快取版本。
 - 保留未變身只有出拳與閃避，勇氣滿且能變身時才顯示寶石鍵的規則。
 

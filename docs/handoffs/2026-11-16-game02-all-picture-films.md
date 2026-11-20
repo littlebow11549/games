@@ -13,7 +13,7 @@
 - 語系三欄等寬；連擊回到PR50之前的顯示與彈跳，其餘受擊、爆裂對話框等保留。
 
 ## 來源與分類
-`02_brave_guy/assets/source/PICTURE_FILMS_REVIEW.json`列18張生成來源、原生尺寸、SHA256與自審註記。全部歸檔`source/pic/cinematics/`，配送`runtime/lossless/pic/cinematics/`。原稿不覆寫，退回稿不接入；14張既有爭議稿原樣保留。
+`02_brave_guy/assets/records/brave_guy_record45_picture_films_review.json`列18張生成來源、原生尺寸、SHA256與自審註記。全部歸檔`source/pic/cinematics/`，配送`runtime/lossless/pic/cinematics/`。原稿不覆寫，退回稿不接入；14張既有爭議稿原樣保留。
 
 ## 驗證
 - 16個Node單元測試通過。

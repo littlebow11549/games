@@ -1,4 +1,6 @@
-> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/source/APPROVED_VISUAL_REVISION_02.json。
+> **2026-11-20 命名與現況以 [素材索引](records/brave_guy_asset-index.md) 為準。以下是歷史製作規格；舊檔名、待製作及遺失敘述不得當作現況。**
+
+> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/records/brave_guy_record08_approved_visual_revision_02.json。
 
 # 🎨 勇氣超人 Brave Guy — 美術製作需求（交 GPT／Codex，v2.1，2026-11-13）
 
@@ -8,7 +10,7 @@
 **開工前必讀**
 - 企劃書 [`../DESIGN.md`](../DESIGN.md)、角色設定集 [`../CHARACTERS.md`](../CHARACTERS.md)、劇情腳本 [`../SCRIPT.md`](../SCRIPT.md)。
 - 造型一律以使用者的概念圖為準，放在 `source/pic/reference/`：
-  `braveguy_cover_front.jpg`（封面）、`braveguy_cover_back.jpg`（封底）、`braveguy_ganqiaolong_*.png`、`braveguy_jiasen.png`、`braveguy_folaidi.png`。
+  `brave_guy_reference02_braveguy_cover_front.jpg`（封面）、`brave_guy_reference01_braveguy_cover_back.jpg`（封底）、`braveguy_ganqiaolong_*.png`、`brave_guy_reference06_braveguy_jiasen.png`、`brave_guy_reference03_braveguy_folaidi.png`。
 - 舊版素材已全部遺失，只有這些圖。所有東西都要重做。
 - 使用者會親自把關品質。
 
@@ -70,18 +72,18 @@ jacket yellow, scarf red and orange, no watermark
 |------|------|
 | 檔名 | `sheet_{id}.png`（id 見角色設定集各小節） |
 | 尺寸 | 3072×2048（至少 1536×1024），橫式 |
-| 版式 | 參考 `reference/sheet_layout_example.webp`：標題列、角色檔案、5 色配色、5 角度轉面圖、6 表情、6 細節、身高比例 |
+| 版式 | 參考 `reference/brave_guy_reference07_sheet_layout_example.webp`：標題列、角色檔案、5 色配色、5 角度轉面圖、6 表情、6 細節、身高比例 |
 | 數量 | 16 個角色各一張 |
 
 那張版式範例是別的角色，只取版式，不沿用它的角色、Logo、配色。
 
-**使用者已確認**：幹譙龍初始、中階、完全體三型態共同製作在同一張 `sheet_ganqiao.png`，不拆成三張；P1 合輯數量不變。主 Logo 已獲使用者「Logo ok」核准，並指示繼續後續處理；兩張 P0 合輯已更新 Logo，角色造型也已獲使用者確認；六張單視角參考暫稿已產出，技術驗收仍待完成。大學生上衣（含袖子與袖口）依使用者更正為全黃。
+**使用者已確認**：幹譙龍初始、中階、完全體三型態共同製作在同一張 `brave_guy_charactor03_小幹譙_現役裁切圖集.png`，不拆成三張；P1 合輯數量不變。主 Logo 已獲使用者「Logo ok」核准，並指示繼續後續處理；兩張 P0 合輯已更新 Logo，角色造型也已獲使用者確認；六張單視角參考暫稿已產出，技術驗收仍待完成。大學生上衣（含袖子與袖口）依使用者更正為全黃。
 
-**P1製作進度（2026-11-14）**：依使用者持續指示製作，已產出 `sheet_angel.png`、`sheet_nightmare.png`、`sheet_ganqiao.png` 三張造型審稿。均為原生1536×1024 RGB PNG，達最低尺寸，未達3072×2048建議尺寸；未插值放大。幹譙龍三型態同張，各列五角度。原圖未顯示的背面／結構為提案，身高圖不是精密比例尺；P1尚待使用者確認，未製作其單視角3D參考。交接見 `docs/handoffs/2026-11-14-game02-p1-character-sheets.md`，實測見 `source/P1_REVIEW_DELIVERY.json`。
+**P1製作進度（2026-11-14）**：依使用者持續指示製作，已產出 `brave_guy_charactor02_小天使_現役裁切圖集.png`、`brave_guy_charactor11_惡夢超人_現役裁切圖集.png`、`brave_guy_charactor03_小幹譙_現役裁切圖集.png` 三張造型審稿。均為原生1536×1024 RGB PNG，達最低尺寸，未達3072×2048建議尺寸；未插值放大。幹譙龍三型態同張，各列五角度。原圖未顯示的背面／結構為提案，身高圖不是精密比例尺；P1尚待使用者確認，未製作其單視角3D參考。交接見 `docs/handoffs/2026-11-14-game02-p1-character-sheets.md`，實測見 `records/brave_guy_record40_p1_review_delivery.json`。
 
 ## 3. 3D 生成用圖　`source/pic/concept/`
 
-**P1製作進度（2026-11-14）**：使用者於三張合輯交付後指示「繼續」，已製作小天使 `angel`、惡夢超人 `nightmare`、幹譙龍初始 `ganqiao` 各 `front/side/back.png`，共九張暫稿。均原生1254×1254 RGB，未達2048；近白背景採樣249–255，非嚴格純白。圍巾／髮束／翅膀已作厚形適配，但多視角幾何與新增結構仍待審核，不是正式Tripo輸入。詳見 `docs/handoffs/2026-11-14-game02-p1-reference-drafts.md` 與 `source/P1_3D_REFERENCE_DELIVERY.json`。中階與完全體未製作。
+**P1製作進度（2026-11-14）**：使用者於三張合輯交付後指示「繼續」，已製作小天使 `angel`、惡夢超人 `nightmare`、幹譙龍初始 `ganqiao` 各 `front/side/back.png`，共九張暫稿。均原生1254×1254 RGB，未達2048；近白背景採樣249–255，非嚴格純白。圍巾／髮束／翅膀已作厚形適配，但多視角幾何與新增結構仍待審核，不是正式Tripo輸入。詳見 `docs/handoffs/2026-11-14-game02-p1-reference-drafts.md` 與 `records/brave_guy_record27_p1_3d_reference_delivery.json`。中階與完全體未製作。
 
 **P0製作進度**：使用者已確認兩張角色合輯。已產出 `student_front/side/back.png`、`braveguy_front/side/back.png` 六張建模參考暫稿；v2已修正手部、外側鞋圓片及側面Logo投影，並改白底；實測仍1254×1254，未達下表2048規格，背景採樣253–255亦非嚴格純白，尚不可視為正式Tripo輸入。詳見 `docs/handoffs/2026-11-14-game02-p0-reference-revision.md`。
 
@@ -114,22 +116,22 @@ jacket yellow, scarf red and orange, no watermark
 
 ### 4.1 左上角：頭像與計量條
 
-**製作進度（2026-11-14）**：`portrait_student.png`、`portrait_brave.png` 已產出原生1254×1254透明來源；八個外框／計量部件合併於 `hud_core_sheet.png`（1536×1024透明圖集）；`guilt_explode_sheet.png` 為1536×1024、4×2格透明序列。依本節允許圖集交付，正式切圖與512頭像衍生檔尚待完成；切片建議與alpha驗證見 `source/P1_HUD_SLICE_GUIDE.json`、`source/P1_HUD_DELIVERY.json`。尚未接runtime或驗證九宮格，`portrait_worker`未製作。
+**製作進度（2026-11-14）**：`brave_guy_ui16_主角頭像.png`、`brave_guy_ui21_勇氣超人頭像.png` 已產出原生1254×1254透明來源；八個外框／計量部件合併於 `brave_guy_ui31_血量與能量圖集.png`（1536×1024透明圖集）；`brave_guy_ui30_罪惡感爆裂圖集.png` 為1536×1024、4×2格透明序列。依本節允許圖集交付，正式切圖與512頭像衍生檔尚待完成；切片建議與alpha驗證見 `records/brave_guy_record36_p1_hud_slice_guide.json`、`records/brave_guy_record34_p1_hud_delivery.json`。尚未接runtime或驗證九宮格，`portrait_worker`未製作。
 
 | 檔案 | 內容 |
 |------|------|
-| `ui/portrait_student.png`、`portrait_brave.png`、`portrait_worker.png` | 主角三種型態的頭像，512×512，圓形構圖 |
+| `ui/brave_guy_ui16_主角頭像.png`、`brave_guy_ui21_勇氣超人頭像.png`、`portrait_worker.png` | 主角三種型態的頭像，512×512，圓形構圖 |
 | `ui/portrait_frame.png` | 頭像外框 |
 | `ui/bar_frame.png` | 計量條外框（共用，可橫向拉伸） |
 | `ui/bar_hp.png` | 血量（紅） |
 | `ui/bar_courage.png`、`bar_courage_full.png` | 勇氣（綠）；集滿時的發光版。造型呼應 Logo 的綠色能量球 |
 | `ui/bar_guilt.png`、`bar_guilt_crack.png` | 罪惡感（紫）；九成以上的裂痕版。要有「往下墜的重物」的感覺 |
 | `ui/bar_qi.png` | 氣（黃），環形，套在大招鍵外圈 |
-| `ui/guilt_explode_sheet.png` | 罪惡感條爆炸的序列圖，4×2 格 |
+| `ui/brave_guy_ui30_罪惡感爆裂圖集.png` | 罪惡感條爆炸的序列圖，4×2 格 |
 
 ### 4.2 右下角：按鍵
 
-**製作進度（2026-11-14）**：已產出 `icons/btn_attack_sheet.png`（2172×724）、`icons/btn_dodge_transform_sheet.png`、`icons/skill_buttons_sheet.png`、`ui/control_extras_sheet.png`（後三張1536×1024），均原生透明PNG，共24個狀態／部件。排列與切片起點見 `source/P1_BUTTONS_SLICE_GUIDE.json`；每顆正式256／384檔、狀態對齊與遊戲驗證尚待完成。詳見 `docs/handoffs/2026-11-14-game02-combat-buttons.md`。
+**製作進度（2026-11-14）**：已產出 `icons/brave_guy_ui29_普攻按鈕圖集.png`（2172×724）、`icons/brave_guy_ui36_閃避變身按鈕圖集.png`、`icons/brave_guy_ui20_勇氣超人技能圖集.png`、`ui/brave_guy_ui28_方向控制圖集.png`（後三張1536×1024），均原生透明PNG，共24個狀態／部件。排列與切片起點見 `records/brave_guy_record33_p1_buttons_slice_guide.json`；每顆正式256／384檔、狀態對齊與遊戲驗證尚待完成。詳見 `docs/handoffs/2026-11-14-game02-combat-buttons.md`。
 
 每顆出「一般、按下、不可用（灰）」三態，256×256（普攻 384×384）。
 
@@ -151,14 +153,14 @@ jacket yellow, scarf red and orange, no watermark
 | `ui/bubble_angel.png` | 小天使的對話框（九宮格），白底黑框粉紅陰影 |
 | `ui/bubble_enemy.png`、`bubble_enemy_scared.png`、`bubble_hero.png` | 頭上的對話泡泡（九宮格，下方有小尖角）。怪嘲諷用白底紅陰影；主角變身後怪求饒用淡藍底、抖抖的邊；主角頂嘴用淡黃底 |
 | `ui/panel_quest.png` | 任務面板（九宮格）。位置已改到**左上血條下方** |
-| `ui/panel_popup.png` | 通用彈窗：開始、暫停、結算（九宮格） |
+| `ui/brave_guy_ui26_彈出面板.png` | 通用彈窗：開始、暫停、結算（九宮格） |
 | `ui/panel_dialog.png` | 劇情對話框（九宮格），含左右兩側放頭像的位置 |
 | `ui/boss_bar.png` | 守關者血條（框、填充、名牌底） |
 | `ui/enemy_bar.png` | 一般敵人小血條 |
-| `ui/btn_text.png` | 通用文字按鈕（三態） |
+| `ui/brave_guy_ui27_文字按鈕圖集.png` | 通用文字按鈕（三態） |
 | `ui/combo_plate.png` | 連擊數字的底板 |
 | `icons/fn_pause.png`、`fn_sound_on.png`、`fn_sound_off.png`、`fn_settings.png` | 功能鍵 |
-| `ui/bingo_card.png` | 小天使的情勒賓果卡（5×5，格子裡的字由程式疊） |
+| `ui/brave_guy_ui33_賓果卡.png` | 小天使的情勒賓果卡（5×5，格子裡的字由程式疊） |
 | `ui/resume.png` | 地圖三的履歷表：五個欄位，另出「全塗黑」與「空白」兩版 |
 | `ui/counter_suanle.png` | 地圖三角落的「本月算了次數」計數器，另出冒煙壞掉版 |
 
@@ -178,15 +180,15 @@ jacket yellow, scarf red and orange, no watermark
 
 ### 4.5 暫停／彈窗面板主視覺（2026-11-15 展開，P2）— 交 GPT
 
-這是把 §4.3 的 `ui/panel_popup.png` 一行展開成可直接製作的細規格。**原因**：暫停選單（還有開場、結算）目前的面板是程式用 CSS 拼的——深綠漸層底 `#22402A→#12241A`、3px 黑框＋3px 黃外框、圓角、標題用黃字紅陰影。按鈕上的三個功能圖示（繼續／重打／回標題）已經是正式美術，但**面板框本身、標題牌、按鈕底都還是純 CSS，沒有一張正式圖**，所以整頁看起來「沒做美術」。這裡要補的就是把這塊換成正式插畫質感。
+這是把 §4.3 的 `ui/brave_guy_ui26_彈出面板.png` 一行展開成可直接製作的細規格。**原因**：暫停選單（還有開場、結算）目前的面板是程式用 CSS 拼的——深綠漸層底 `#22402A→#12241A`、3px 黑框＋3px 黃外框、圓角、標題用黃字紅陰影。按鈕上的三個功能圖示（繼續／重打／回標題）已經是正式美術，但**面板框本身、標題牌、按鈕底都還是純 CSS，沒有一張正式圖**，所以整頁看起來「沒做美術」。這裡要補的就是把這塊換成正式插畫質感。
 
 畫風、比例、配色一律照 §0 全域設定（粗黑描邊日系卡通、高彩平塗、勇氣綠／外套黃／圍巾紅／描邊黑）。**所有面板一律不要畫任何文字**，中文字 AI 容易出錯，標題與按鈕字都由程式疊上。
 
 | 檔案 | 內容 | 尺寸／格式 |
 |------|------|-----------|
-| `ui/panel_popup.png` | **通用九宮格彈窗框**（暫停／結算／開場共用）。圓角矩形面板，深綠面板底（勇氣綠深階，約 `#1E4A2A`～`#12241A` 的縱向漸層），外緣**粗黑描邊＋亮綠／外套黃雙層高光邊**，四角可加小鉚釘或漫畫星點裝飾。**正中央大面積保持乾淨平整**（文字、按鈕都疊在這上面，不可有雜紋干擾）；裝飾只放在邊框與四角。底邊可有一抹能量亮綠微光。**去背透明**。 | 建議 1024×1024，四角圓角半徑約 72px；九宮格安全邊：四邊各留約 160px 不被拉伸的邊框區，中央為可平鋪的純色區。RGBA PNG，去背 |
-| `ui/panel_title_plate.png` | **標題牌**：掛在面板頂端中央、放「暫　停／結　算」字的底牌（字由程式疊）。短橫幅狀，兩端可做成緞帶或漫畫爆炸框，外套黃為主、黑描邊、紅內影。**無字**。 | 建議 720×220，橫幅去背 RGBA PNG |
-| `ui/btn_text.png` | **通用文字按鈕底**，三態橫排一張圖集（正常／按下／禁用）。主要鈕＝黃金漸層（`#FFF6B0→#F6C21C→#F28A1B`）、粗黑框、下緣紅色厚邊（立體感）；另出一版白底綠邊的次要鈕。圓角膠囊形。**無字**。 | 每態建議 480×150，三態直排或橫排並附座標；RGBA PNG，去背 |
+| `ui/brave_guy_ui26_彈出面板.png` | **通用九宮格彈窗框**（暫停／結算／開場共用）。圓角矩形面板，深綠面板底（勇氣綠深階，約 `#1E4A2A`～`#12241A` 的縱向漸層），外緣**粗黑描邊＋亮綠／外套黃雙層高光邊**，四角可加小鉚釘或漫畫星點裝飾。**正中央大面積保持乾淨平整**（文字、按鈕都疊在這上面，不可有雜紋干擾）；裝飾只放在邊框與四角。底邊可有一抹能量亮綠微光。**去背透明**。 | 建議 1024×1024，四角圓角半徑約 72px；九宮格安全邊：四邊各留約 160px 不被拉伸的邊框區，中央為可平鋪的純色區。RGBA PNG，去背 |
+| `ui/brave_guy_ui38_面板標題底板.png` | **標題牌**：掛在面板頂端中央、放「暫　停／結　算」字的底牌（字由程式疊）。短橫幅狀，兩端可做成緞帶或漫畫爆炸框，外套黃為主、黑描邊、紅內影。**無字**。 | 建議 720×220，橫幅去背 RGBA PNG |
+| `ui/brave_guy_ui27_文字按鈕圖集.png` | **通用文字按鈕底**，三態橫排一張圖集（正常／按下／禁用）。主要鈕＝黃金漸層（`#FFF6B0→#F6C21C→#F28A1B`）、粗黑框、下緣紅色厚邊（立體感）；另出一版白底綠邊的次要鈕。圓角膠囊形。**無字**。 | 每態建議 480×150，三態直排或橫排並附座標；RGBA PNG，去背 |
 
 **切圖與接法**：出原生大圖、RGBA 去背、不插值放大即可；檔名放進 `source/pic/ui/`，Claude 負責九宮格切法、三態切圖與網頁衍生檔，並把 CSS 面板換成這些圖。若面板與標題牌想合成一張也可以，但請分圖層／另標註安全邊。
 
@@ -200,26 +202,26 @@ small rivets/decorations only on the border and corners, clean empty center,
 
 ## 5. 品牌　`source/pic/branding/`
 
-**含Logo遊戲Icon（2026-11-14）**：依使用者要求，新增 `icon_01_logo.png`，以方形出拳封面加入已核准雙語Logo，原生1254×1254 RGB PNG；原無字版保留。此為生成式合成，並非Logo原檔逐像素貼入。詳見 `docs/handoffs/2026-11-14-game02-icon-logo.md`，尚未接入網站runtime。
+**含Logo遊戲Icon（2026-11-14）**：依使用者要求，新增 `brave_guy_branding05_icon_01_logo.png`，以方形出拳封面加入已核准雙語Logo，原生1254×1254 RGB PNG；原無字版保留。此為生成式合成，並非Logo原檔逐像素貼入。詳見 `docs/handoffs/2026-11-14-game02-icon-logo.md`，尚未接入網站runtime。
 
-**封面／橫幅進度（2026-11-14）**：已生成 `icon_01.png`（原生1254×1254，保留來源尺寸，尚無精確1024衍生檔）及 `banner_01.png`（原生2172×724，與首頁既有banner來源尺寸一致）。兩張均RGB PNG、未放大；構圖待審，未接runtime。橫幅左側完全留白約28%，放字與手機裁切仍需實際版面檢查。詳見 `docs/handoffs/2026-11-14-game02-branding-cover-banner.md` 及 `source/P1_BRANDING_DELIVERY.json`。
+**封面／橫幅進度（2026-11-14）**：已生成 `brave_guy_branding04_icon_01.png`（原生1254×1254，保留來源尺寸，尚無精確1024衍生檔）及 `brave_guy_branding01_banner_01.png`（原生2172×724，與首頁既有banner來源尺寸一致）。兩張均RGB PNG、未放大；構圖待審，未接runtime。橫幅左側完全留白約28%，放字與手機裁切仍需實際版面檢查。詳見 `docs/handoffs/2026-11-14-game02-branding-cover-banner.md` 及 `records/brave_guy_record29_p1_branding_delivery.json`。
 
-**目前核准設計**：使用者已確認 `logo_01_review_v1.png` 的新版造型（綠能量球、金紅雙語字、紅圍巾）。原生 1536×1024、透明 PNG；檔名保留來源追溯。設計已定案但尚未達下表寬2400以上，不以插值放大補足，也尚未以正式 `logo_01.png` 接入遊戲。詳見交接 `docs/handoffs/2026-11-14-game02-approved-logo-followup.md`。
+**目前核准設計**：使用者已確認 `brave_guy_branding09_logo_01_review_v1.png` 的新版造型（綠能量球、金紅雙語字、紅圍巾）。原生 1536×1024、透明 PNG；檔名保留來源追溯。設計已定案但尚未達下表寬2400以上，不以插值放大補足，也尚未以正式 `logo_01.png` 接入遊戲。詳見交接 `docs/handoffs/2026-11-14-game02-approved-logo-followup.md`。
 
 | 檔案 | 內容 | 尺寸 |
 |------|------|------|
 | `logo_01.png` | 遊戲 Logo：**照概念圖封面中央的造型重繪**（綠色能量球＋橘紅金立體字「BRAVE GUY」＋上方中文「勇氣超人」），去背 | 寬 2400 以上 |
-| `icon_01.png` | 首頁遊戲列表封面：勇氣超人出拳的臉部特寫＋綠色能量球 | 1024×1024 |
-| `banner_01.png` | 首頁橫幅：勇氣超人與小天使在前，惡夢超人的影子在後，左側留空放字 | 沿用 01 的 banner 尺寸 |
+| `brave_guy_branding04_icon_01.png` | 首頁遊戲列表封面：勇氣超人出拳的臉部特寫＋綠色能量球 | 1024×1024 |
+| `brave_guy_branding01_banner_01.png` | 首頁橫幅：勇氣超人與小天使在前，惡夢超人的影子在後，左側留空放字 | 沿用 01 的 banner 尺寸 |
 
 ### 5.1 主選單用的主視覺（2026-11-15 更新，P1）
 
-主選單已改成漫畫分鏡風：主視覺放在一個**斜切的漫畫格**裡（橫向時在畫面右側約六成、左邊是斜邊；直向時在上方約四成、下邊是斜邊），Logo 與按鈕在格子外。現在用的是 3:1 的 `banner_01.png` 硬裁，只看得到勇氣超人，小天使被裁掉大半、惡夢超人只剩一角。請補兩張專用的：
+主選單已改成漫畫分鏡風：主視覺放在一個**斜切的漫畫格**裡（橫向時在畫面右側約六成、左邊是斜邊；直向時在上方約四成、下邊是斜邊），Logo 與按鈕在格子外。現在用的是 3:1 的 `brave_guy_branding01_banner_01.png` 硬裁，只看得到勇氣超人，小天使被裁掉大半、惡夢超人只剩一角。請補兩張專用的：
 
 | 檔案 | 內容 | 尺寸 |
 |------|------|------|
-| `branding/menu_keyart_01.png` | **橫向選單用，接近正方形。** 勇氣超人出拳在中間偏左、小天使叉腰在右側**完整入鏡**（帽子、翅膀、上半身）、惡夢超人的紫色影子在後方上半部。綠色能量特效鋪滿背景。**最左邊 22% 會被斜邊切掉**，那裡只放特效不要放臉或拳頭。右上角留一小塊空（約 20%×15%）給語系鍵與小天使的對話泡泡。不要畫 Logo 或任何字 | 1800×1600，RGB PNG |
-| `branding/menu_keyart_portrait_01.png` | **直向選單用，橫長。** 同樣三個角色，勇氣超人在中、小天使在右、惡夢超人在左後。**最下面 18% 會被斜邊切掉**，不要放臉。上緣留 12% 給按鍵。不要畫 Logo 或任何字 | 1600×1200，RGB PNG |
+| `branding/brave_guy_branding11_menu_keyart_01.png` | **橫向選單用，接近正方形。** 勇氣超人出拳在中間偏左、小天使叉腰在右側**完整入鏡**（帽子、翅膀、上半身）、惡夢超人的紫色影子在後方上半部。綠色能量特效鋪滿背景。**最左邊 22% 會被斜邊切掉**，那裡只放特效不要放臉或拳頭。右上角留一小塊空（約 20%×15%）給語系鍵與小天使的對話泡泡。不要畫 Logo 或任何字 | 1800×1600，RGB PNG |
+| `branding/brave_guy_branding12_menu_keyart_portrait_01.png` | **直向選單用，橫長。** 同樣三個角色，勇氣超人在中、小天使在右、惡夢超人在左後。**最下面 18% 會被斜邊切掉**，不要放臉。上緣留 12% 給按鍵。不要畫 Logo 或任何字 | 1600×1200，RGB PNG |
 
 角色造型照已定案的合輯。兩張都不需要去背。檔名對了、放進去就會自動換上（Claude 會做網頁用的衍生檔）。
 
@@ -230,12 +232,12 @@ small rivets/decorations only on the border and corners, clean empty center,
 
 | 檔案 | 內容 |
 |------|------|
-| `tf_bg_stars.png` | 星空與彩帶背景，1920×1080，可循環捲動 |
-| `tf_silhouette.png` | 主角**全身發光的剪影**：純色發光體，**不畫任何身體細節**，莊嚴的旋轉姿勢，去背 |
-| `tf_glove.png`、`tf_knee.png`、`tf_jacket.png`、`tf_hair.png`、`tf_scarf.png` | 五個著裝特寫（手套、護膝、外套、頭髮豎起、圍巾繞上），各 1920×1080 |
-| `tf_pose.png` | 落地定格姿勢，背後爆出大字（字由程式疊） |
-| `tf_waiting_1.png`–`tf_waiting_4.png` | 插入鏡頭：四隻小幹譙在旁邊等（問能不能打、吃洋芋片嫌棄、躺下睡著、做伏地挺身） |
-| `tf_sign.png` | 小天使舉的「請稍候」牌子 |
+| `brave_guy_cinematic25_tf_bg_stars.png` | 星空與彩帶背景，1920×1080，可循環捲動 |
+| `brave_guy_cinematic33_tf_silhouette.png` | 主角**全身發光的剪影**：純色發光體，**不畫任何身體細節**，莊嚴的旋轉姿勢，去背 |
+| `brave_guy_cinematic26_tf_glove.png`、`brave_guy_cinematic29_tf_knee.png`、`brave_guy_cinematic28_tf_jacket.png`、`brave_guy_cinematic27_tf_hair.png`、`brave_guy_cinematic31_tf_scarf.png` | 五個著裝特寫（手套、護膝、外套、頭髮豎起、圍巾繞上），各 1920×1080 |
+| `brave_guy_cinematic30_tf_pose.png` | 落地定格姿勢，背後爆出大字（字由程式疊） |
+| `brave_guy_cinematic34_tf_waiting_1.png`–`brave_guy_cinematic37_tf_waiting_4.png` | 插入鏡頭：四隻小幹譙在旁邊等（問能不能打、吃洋芋片嫌棄、躺下睡著、做伏地挺身） |
+| `brave_guy_cinematic32_tf_sign.png` | 小天使舉的「請稍候」牌子 |
 
 > 2026-11-15 接入更新：以上13檔已沿用本聊天先前生成的原檔，非重生。一般畫面原生1672×941；舉牌1024×1536，低於部分原需求且未插值放大。首次變身按原對話順序顯示，著裝五圖每800ms切換，其他對話由玩家點按；新增主選單重播，不改存檔。等待插鏡沿用既有校園走廊構圖，並非宿舍。完整來源及測試見 docs/handoffs/2026-11-15-game02-transform-storyboard.md。
 
@@ -284,11 +286,11 @@ small rivets/decorations only on the border and corners, clean empty center,
 
 ## 12. 音訊
 
-完整的音樂與音效製作需求另立一份：[`MUSIC.md`](MUSIC.md)（交由另一個工作階段製作）。下表只是摘要。
+完整的音樂與音效製作需求另立一份：[`brave_guy_record04_music.md`](brave_guy_record04_music.md)（交由另一個工作階段製作）。下表只是摘要。
 
 | 類別 | 路徑 | 規格 |
 |------|------|------|
-| BGM | `source/music/` | 方向已改為**硬派電音、每關一首**。已交付並接上：校園、荒野、職場（兩首）、守關戰、過關。缺：變身專用曲 `bgm_brave`（最優先）與其餘各關的曲子，清單見 MUSIC.md |
+| BGM | `source/music/` | 方向已改為**硬派電音、每關一首**。已交付並接上：校園、荒野、職場（兩首）、守關戰、過關。缺：變身專用曲 `bgm_brave`（最優先）與其餘各關的曲子，清單見 brave_guy_record04_music.md |
 | 配音 | `source/voice/vo_XXXX.mp3` | MP3 96–128kbps 單聲道，一句一檔。**檔名用腳本的四位數台詞 ID**（例 `vo_1042.mp3`）。主線 670 句、泡泡 52 句，可只配主線 |
 | 音效 | `source/sfx/` | 目前是程式合成的暫代版（出拳、命中、爆炸、變身、受傷、UI） |
 
@@ -308,7 +310,7 @@ small rivets/decorations only on the border and corners, clean empty center,
 
 ## 2026-11-14 介面大批交付補記
 
-新增八張介面來源 PNG：bubble_sheet、panel_sheet、minimap_sheet、difficulty_sheet、aux_hud_sheet、bingo_card、function_icons_sheet、lock_heal_sheet。七張1536×1024，一張1254×1254，原生RGBA未放大；詳細紀錄見 source/P1_INTERFACE_DELIVERY.json 與 ../../../docs/handoffs/2026-11-14-game02-interface-preview.md。圖集仍待正式切圖及狀態對齊。art-preview.html 可切換新舊頭像、計量條及戰鬥按鍵，Chrome寬／窄介面已目視驗證；其餘素材先供總覽，未宣稱整批正式接入。Claude登入過期，本輪預覽由Codex製作。
+新增八張介面來源 PNG：bubble_sheet、panel_sheet、minimap_sheet、difficulty_sheet、aux_hud_sheet、bingo_card、function_icons_sheet、lock_heal_sheet。七張1536×1024，一張1254×1254，原生RGBA未放大；詳細紀錄見 records/brave_guy_record37_p1_interface_delivery.json 與 ../../../docs/handoffs/2026-11-14-game02-interface-preview.md。圖集仍待正式切圖及狀態對齊。art-preview.html 可切換新舊頭像、計量條及戰鬥按鍵，Chrome寬／窄介面已目視驗證；其餘素材先供總覽，未宣稱整批正式接入。Claude登入過期，本輪預覽由Codex製作。
 
 ## 2026-11-14 按鍵正式接入補記
 
@@ -326,14 +328,14 @@ panel_sheet左上任務卡、bubble_sheet左上小天使泡泡已透過css/panel
 
 minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入；保留既有定位與鎖定操作，底圖和熊頭尚未使用。完整剩餘項目見../../../docs/handoffs/2026-11-14-game02-minimap-backlog.md；前段歷史『尚未接入』說明請以最新交接為準。
 <!-- 2026-11-14 latest character batch status -->
-本輪新增11位角色初稿及7張Logo修訂，均原生1536×1024，詳細見 source/P2_P3_BATCH_DELIVERY.json 與 ../../../docs/handoffs/2026-11-14-game02-character-batch-logo.md。尚未通過角色比例、文字、統一版型與Logo一致性驗收，不列為正式成品。使用者確認所有角色設定合輯左上角必須使用已核准 branding/logo_01_review_v1.png 的同一Logo，位置、尺寸、留白一致，不可各自重設。其餘缺件清單仍有效。
+本輪新增11位角色初稿及7張Logo修訂，均原生1536×1024，詳細見 records/brave_guy_record42_p2_p3_batch_delivery.json 與 ../../../docs/handoffs/2026-11-14-game02-character-batch-logo.md。尚未通過角色比例、文字、統一版型與Logo一致性驗收，不列為正式成品。使用者確認所有角色設定合輯左上角必須使用已核准 branding/brave_guy_branding09_logo_01_review_v1.png 的同一Logo，位置、尺寸、留白一致，不可各自重設。其餘缺件清單仍有效。
 ## 2026-11-14 統一頁首交付
 
-使用者已明確核准程式合成。全部16張在 source/pic/sheet/unified/，同一核准Logo原檔固定156×104、座標(48,12)、頁首高128，逐像素一致性通過。畫布1728×1152（3:2），角色圖維持原生像素，沒有插值放大；舊稿保留。查核 source/UNIFIED_SHEET_HEADERS.json，總覽 preview/unified-character-review.html。此項取代前文Logo一致性未通過的歷史狀態，角色內頁比例與文字等問題仍待修。
+使用者已明確核准程式合成。全部16張在 source/pic/sheet/unified/，同一核准Logo原檔固定156×104、座標(48,12)、頁首高128，逐像素一致性通過。畫布1728×1152（3:2），角色圖維持原生像素，沒有插值放大；舊稿保留。查核 records/brave_guy_record54_unified_sheet_headers.json，總覽 preview/unified-character-review.html。此項取代前文Logo一致性未通過的歷史狀態，角色內頁比例與文字等問題仍待修。
 
 ## 2026-11-15 主選單專用圖交付補記
 
-`menu_keyart_01.png` 與 `menu_keyart_portrait_01.png` 已生成並放入 `source/pic/branding/`。原生 1330×1182／1448×1086，RGB PNG 無字，未放大；尚未達指定尺寸或實際裁切驗收。game.css 目前仍引用舊 banner，需要 Claude 接入。詳見 `../../../docs/handoffs/2026-11-15-game02-menu-keyart.md`。
+`brave_guy_branding11_menu_keyart_01.png` 與 `brave_guy_branding12_menu_keyart_portrait_01.png` 已生成並放入 `source/pic/branding/`。原生 1330×1182／1448×1086，RGB PNG 無字，未放大；尚未達指定尺寸或實際裁切驗收。game.css 目前仍引用舊 banner，需要 Claude 接入。詳見 `../../../docs/handoffs/2026-11-15-game02-menu-keyart.md`。
 
 ## 2026-11-15 選關／暫停／結算接入
 
@@ -342,47 +344,47 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-15 已接入：三語系統字藝與過場
 
 - `source/pic/titles/system_{combat,outcomes,labels}_{zh,en,ja}.png`：9 張原生 1536×1024 RGBA 圖集，每張 2×3 字藝。以 `js/system-art.js` 定義視窗，來源不裁切、不放大；單格約 768×341，因此並非每個詞獨立 1200px 寬的版本。
-- `source/pic/icons/language_globe.png`：原生 1254×1254 RGBA 地球，替換舊 CSS 經線圖示。
-- `source/pic/cinematics/ending_applause.png`：原生 1536×1024，主角＋13 位 Boss＋小天使。2026-11-15 依使用者指出的造型錯誤，對照 CHARACTERS.md 與 unified 設定合輯定向修訂；新雞／冠老闆／八卦蛇／幹譙龍等回歸角色設定，主角補終章紅綠雙圍巾。被退回的舊圖保存在 `_archive/game02/cinematics/2026-11-15/ending-correction/`。
+- `source/pic/icons/brave_guy_ui32_語系地球.png`：原生 1254×1254 RGBA 地球，替換舊 CSS 經線圖示。
+- `source/pic/cinematics/brave_guy_cinematic19_ending_applause.png`：原生 1536×1024，主角＋13 位 Boss＋小天使。2026-11-15 依使用者指出的造型錯誤，對照 CHARACTERS.md 與 unified 設定合輯定向修訂；新雞／冠老闆／八卦蛇／幹譙龍等回歸角色設定，主角補終章紅綠雙圍巾。被退回的舊圖保存在 `_archive/game02/cinematics/2026-11-15/ending-correction/`。
 - Boss 登場：13 種／12 個守關關卡，以既有角色合輯前視圖 + 動態漫畫式揭幕、主題特效、字幕整合；佛賴弟王/加班鬼王及藍教頭/藍經理沿用同角色家族圖，配置各自色調與台詞。非新增逐格角色動畫或新 3D 模型。
 - 結局：7 鏡、約 31.5 秒的動態插畫（推拉、取景、局部鼓掌律動）；接 8 秒 Staff。模型版為插畫載入失敗回退。Staff 所有職務 LilinS。
 - 主選單：原主視覺 UV 局部呼吸形變、能量光流與粒子；WebGL 不可用時保留原靜態圖。血量/勇氣/罪惡感持續螢光、滿格脈衝掃光、氣量大招待發光；爆表使用原爆炸圖集與新增程式化表身碎片。
-- 詳細檔案 SHA、原生規格：`source/system_cinematics_manifest.json`；交接見 `docs/handoffs/2026-11-15-game02-system-cinematics.md`。
+- 詳細檔案 SHA、原生規格：`records/brave_guy_record56_system_cinematics_manifest.json`；交接見 `docs/handoffs/2026-11-15-game02-system-cinematics.md`。
 
 ## 2026-11-15 直式開場與對嗆接入
 
 使用者確認以手機直式9:16呈現。開場七幕復用 student 頭像與 angel／ganqiao 設定合輯，由CSS取景與繪製宿舍／門／光環，未重製圖片或引用待追溯場景稿。Boss原分鏡圖保留，統一改為三段4秒對嗆（中英日），爆裂框與震動為CSS／Canvas效果，音效使用既有交付檔。詳見 docs/handoffs/2026-11-15-game02-portrait-opening-banter.md。
 
 ## 2026-11-15 群眾掌聲與歡呼 v4
-- `source/sfx/sfx_applause_crowd.mp3`：6.32 秒真實劇場群眾掌聲，Sandermotions，CC0。
-- `source/sfx/sfx_crowd_cheer.mp3`：11.62 秒拍手與 woo／woohoo 人聲，starlite，Public domain。
+- `source/sfx/brave_guy_sfx02_applause_crowd.mp3`：6.32 秒真實劇場群眾掌聲，Sandermotions，CC0。
+- `source/sfx/brave_guy_sfx29_crowd_cheer.mp3`：11.62 秒拍手與 woo／woohoo 人聲，starlite，Public domain。
 - 44.1 kHz、192 kbps MP3；歡呼原錄音為單聲道，輸出雙聲道不宣稱原生立體聲。
-- 原錄音、WAV 母帶、來源／授權：`_archive/game02/sfx/2026-11-15/crowd-v4/`；完整交付 `source/CROWD_SFX_DELIVERY.json`。重製腳本 `tools/make_game02_crowd.py`。舊合成拍手留存，但 manifest 已改用新錄音。
+- 原錄音、WAV 母帶、來源／授權：`_archive/game02/sfx/2026-11-15/crowd-v4/`；完整交付 `records/brave_guy_record11_crowd_sfx_delivery.json`。重製腳本 `tools/make_game02_crowd.py`。舊合成拍手留存，但 manifest 已改用新錄音。
 - 每關勝利與結局群眾演出疊播；6.5／12 秒間隔限制重疊，重試及回標題停止殘音。兩檔全音量疊加峰值 -3.9 dBFS，遊戲另經音效主音量及 limiter。
 
 ## 2026-11-15 勝利圖片與無損配送
-沿用既有 tf_pose、tf_glove 與Boss分鏡作6秒勝利漫畫演出。75張來源圖的原生尺寸無損WebP副本放在 `runtime/lossless/pic/`，不是新美術；`runtime/lossless/report.json` 記錄來源SHA、尺寸、大小與RGBA逐像素驗證，`../tools/compress_runtime.py` 可重建。CSS／Canvas／貼圖與預載清單共同使用配送版，原圖不刪除、不改動。完整交接見 `docs/handoffs/2026-11-15-game02-victory-comic-fast.md`。
+沿用既有 tf_pose、tf_glove 與Boss分鏡作6秒勝利漫畫演出。75張來源圖的原生尺寸無損WebP副本放在 `runtime/lossless/pic/`，不是新美術；`records/brave_guy_record06_report.json` 記錄來源SHA、尺寸、大小與RGBA逐像素驗證，`../tools/compress_runtime.py` 可重建。CSS／Canvas／貼圖與預載清單共同使用配送版，原圖不刪除、不改動。完整交接見 `docs/handoffs/2026-11-15-game02-victory-comic-fast.md`。
 
 ## 2026-11-16 圖片過場修訂
 - `source/pic/cinematics/victory_*.png`：13張各三鏡，勇氣超人實際命中及擊倒對應Boss。初次登場原圖保留。
 - `awakening_armor_a/b.png`：依使用者提供的 Final Ascension 鎧甲設定圖，七拍組裝／主角吐槽／爆發。B圖分鏡不等高，按原生座標裁窗，未插值或修改原圖。
-- `defeat_storyboard.png`＋`defeat_retry.png`：三鏡失敗及獨立重試；`ending_applause_final.png`：定向修正15角色終章群像。
-- 原生來源、SHA與自審紀錄：`source/PICTURE_FILMS_REVIEW.json`；無損配送報告：`runtime/lossless/report.json`。詳細驗證與發布狀態見 `docs/handoffs/2026-11-16-game02-all-picture-films.md`。
+- `brave_guy_cinematic18_defeat_storyboard.png`＋`brave_guy_cinematic17_defeat_retry.png`：三鏡失敗及獨立重試；`brave_guy_cinematic20_ending_applause_final.png`：定向修正15角色終章群像。
+- 原生來源、SHA與自審紀錄：`records/brave_guy_record45_picture_films_review.json`；無損配送報告：`records/brave_guy_record06_report.json`。詳細驗證與發布狀態見 `docs/handoffs/2026-11-16-game02-all-picture-films.md`。
 
 - 配送最佳化追加：93張以最高強度無損WebP比對後擇小，總計197,949,744→146,614,638 bytes（-25.93%）；原生像素／透明度一致。
 
 ## 2026-11-16 錢經理專屬過場增補
 
-3-6職場版沿CHARACTERS §8，不復用校園服裝圖。新增source/pic/cinematics/boss_qianBiz_storyboard.png及victory_qianBiz.png，皆原生1024×1536三鏡；runtime/lossless/pic/cinematics/同名WebP為逐像素一致無損配送，原PNG保留。來源、壓縮、自審見source/QIAN_BIZ_FILMS_REVIEW.json，接線交接見docs/handoffs/2026-11-16-game02-qian-biz-films.md。
+3-6職場版沿CHARACTERS §8，不復用校園服裝圖。新增source/pic/cinematics/boss_qianBiz_storyboard.png及victory_qianBiz.png，皆原生1024×1536三鏡；runtime/lossless/pic/cinematics/同名WebP為逐像素一致無損配送，原PNG保留。來源、壓縮、自審見source/brave_guy_record46_qian_biz_films_review.json，接線交接見docs/handoffs/2026-11-16-game02-qian-biz-films.md。
 
 ## 2026-11-16 假忙森主管專屬過場
-新增source/pic/cinematics/boss_jiamangKing_storyboard.png及victory_jiamangKing.png，原生1024×1536三鏡，runtime/lossless/pic/cinematics同名WebP為逐像素一致無損配送。來源／自審／壓縮記錄見source/JIAMANG_FILMS_REVIEW.json；不再借用加班鬼王圖。
+新增source/pic/cinematics/boss_jiamangKing_storyboard.png及victory_jiamangKing.png，原生1024×1536三鏡，runtime/lossless/pic/cinematics同名WebP為逐像素一致無損配送。來源／自審／壓縮記錄見source/brave_guy_record16_jiamang_films_review.json；不再借用加班鬼王圖。
 
 ## 2026-11-16 清脆 UI 音效 v3
-原創合成 source/sfx/sfx_ui_{tap,confirm,back}_crisp_v3.wav：44.1kHz/16-bit/mono，115/205/145ms，峰值 -4dBFS，合計 41,144 bytes。規格見 source/UI_CRISP_V3.json；重建 tools/make_ui_crisp.py。manifest 四個 UI 鍵接線，其餘音樂與音效保留。
+原創合成 source/sfx/sfx_ui_{tap,confirm,back}_crisp_v3.wav：44.1kHz/16-bit/mono，115/205/145ms，峰值 -4dBFS，合計 41,144 bytes。規格見 records/brave_guy_record52_ui_crisp_v3.json；重建 tools/make_ui_crisp.py。manifest 四個 UI 鍵接線，其餘音樂與音效保留。
 
 ## 2026-11-16 開場清晰原圖配送
-沿用 source/pic/concept/angel_front.png 與 ganqiao_front.png，1254×1254 原生尺寸，以無損 WebP 配送至 runtime/lossless/pic/concept/。RGBA 逐像素一致，無新生圖或插值放大；來源與規格見 source/OPENING_SHARP_REVIEW.json。
+沿用 source/pic/concept/brave_guy_charactor02_小天使_正面.png 與 brave_guy_charactor03_小幹譙_正面.png，1254×1254 原生尺寸，以無損 WebP 配送至 runtime/lossless/pic/concept/。RGBA 逐像素一致，無新生圖或插值放大；來源與規格見 records/brave_guy_record19_opening_sharp_review.json。
 
 ## 2026-11-16 音效清理
 
@@ -390,43 +392,43 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-16 勇氣寶石變身按鈕
 
-使用者指定重繪：`source/pic/icons/btn_transform_courage_gem.png`，1254×1254 RGBA；`runtime/lossless/pic/icons/btn_transform_courage_gem.webp` 同尺寸逐像素一致。分類：操作UI／變身按鈕。替代紅圍巾圖示，舊圖保留。詳見 `../../docs/handoffs/2026-11-16-game02-courage-gem.md`。
+使用者指定重繪：`source/pic/icons/brave_guy_ui19_勇氣寶石.png`，1254×1254 RGBA；`runtime/lossless/pic/icons/brave_guy_ui19_勇氣寶石.webp` 同尺寸逐像素一致。分類：操作UI／變身按鈕。替代紅圍巾圖示，舊圖保留。詳見 `../../docs/handoffs/2026-11-16-game02-courage-gem.md`。
 
 ## 2026-11-16 對話點按音 v4
 `source/sfx/sfx_dialog_soft_v4.wav`：原創DSP，PCM16 mono 44.1kHz、85ms、峰值-19.94dBFS，無噪音層；manifest dialog_next接入。重建腳本 `../../tools/make_game02_dialog_soft.py`。其他v3音效及原對話檔保留。
 
 ### 2026-11-17 使用者提供音效
-- `source/sfx/hit.wav`：原始 WAV，PCM16／44.1kHz／立體聲／0.737秒；一般命中與重擊共用。
+- `source/sfx/brave_guy_sfx72_import_hit.wav`：原始 WAV，PCM16／44.1kHz／立體聲／0.737秒；一般命中與重擊共用。
 - `source/sfx/ko.wav`：原始 WAV，PCM16／11.025kHz／立體聲／1.443秒；Boss 實際死亡（含最終收尾）播放。
 - 保留上傳原檔，不重合成、不改音色；manifest.sfx 對應 hit、crit、boss_ko。
 
 ### 2026-11-18 街機命中8格動效（已接入）
-- `source/pic/fx/fx_hit_arcade_8f.png`：1774×887 RGBA透明PNG，4欄×2列，原生解析度不重採樣。按等分UV取8格，40fps／0.2秒。
+- `source/pic/fx/brave_guy_fx01_fx_hit_arcade_8f.png`：1774×887 RGBA透明PNG，4欄×2列，原生解析度不重採樣。按等分UV取8格，40fps／0.2秒。
 - 一般命中與重擊／暴擊共用圖集但尺寸不同；未命中、無敵、護盾與已死亡目標不播放此命中火花。格擋不套用此火花。
 - 預覽：`../hit-effect-preview.html`；接入：`../js/fx.js`、`../js/main.js`。
 
 
 ## 2026-11-19 新角色技能圖示
 
-新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
+新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/records/brave_guy_record12_guest_skill_icons_delivery.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
 
 
 ## 2026-11-19 客串大招藝術字
-新增 `02_brave_guy/assets/source/pic/titles/ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
+新增 `02_brave_guy/assets/source/pic/titles/brave_guy_ui10_ult_angel.svg`、`brave_guy_ui13_ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
 
 
 ## 2026-11-19 技能圖集精修與表情接入
-`assets/source/pic/icons/guest_skill_atlas.png` 為新image_gen原生1254×1254 RGBA圖集，CSS 3×3視窗使用，未縮圖／改像素。舊九張SVG移至assets/_alternate，最新交付JSON記錄雜湊與順序。小天使DISDAIN及惡夢EXPOSED受擊表情復用既有unified設定集，不另繪。新增ult_angel_en.svg／ult_angel_ja.svg向量語系標題。以上assets路徑相對02_brave_guy；詳細交接見2026-11-19-game02-language-portraits-drones-icons.md。
+`assets/source/pic/icons/brave_guy_ui25_小天使惡夢技能舊圖集.png` 為新image_gen原生1254×1254 RGBA圖集，CSS 3×3視窗使用，未縮圖／改像素。舊九張SVG移至assets/_alternate，最新交付JSON記錄雜湊與順序。小天使DISDAIN及惡夢EXPOSED受擊表情復用既有unified設定集，不另繪。新增ult_angel_en.svg／ult_angel_ja.svg向量語系標題。以上assets路徑相對02_brave_guy；詳細交接見2026-11-19-game02-language-portraits-drones-icons.md。
 
 
 ## 2026-11-19 王之嘴炮英日與傳送門
-新增source/pic/titles/ult_nightmare_en.svg、ult_nightmare_ja.svg（相對02_brave_guy/assets），復用既有760×370紫綠底形，Noto字形轉路徑。十門陣形與三語PUA文字砲為royal-arsenal.js／pua-projectile.js程式視覺，無新增點陣圖片。詳見2026-11-19-game02-royal-dialogue-barrage交接。
+新增source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg、brave_guy_ui15_ult_nightmare_ja.svg（相對02_brave_guy/assets），復用既有760×370紫綠底形，Noto字形轉路徑。十門陣形與三語PUA文字砲為royal-arsenal.js／pua-projectile.js程式視覺，無新增點陣圖片。詳見2026-11-19-game02-royal-dialogue-barrage交接。
 
 ## 2026-11-20 客串爆氣寶石與對話彈
 復用已歸檔勇氣寶石1254×1254母檔與無損WebP；小天使粉色心形、惡夢紫色菱形由playable-roster.css及角色HUD裝飾呈現，無新增圖片。PUA對話彈在pua-projectile.js以1536×384 Canvas重新繪製字形／向量框，非插值放大。詳見 ../../docs/handoffs/2026-11-20-game02-guest-burst-balance.md。
 
 ## 2026-11-20 小天使第三招新圖示
-使用者要求五點轟炸＋排斥結界，已參照現役guest_skill_atlas.png以image_gen生成獨立angel_guard_bombardment.png（1254×1254 RGBA），母檔位於02_brave_guy/assets/source/pic/icons/，runtime/lossless/pic/icons/下同名WebP逐像素無損。交付JSON：assets/source/ANGEL_GUARD_ICON_DELIVERY.json。CSS只替換小天使R；原圖集其他八區仍在使用。詳見docs/handoffs/2026-11-20-game02-angel-guard-bombardment.md。
+使用者要求五點轟炸＋排斥結界，已參照現役guest_skill_atlas.png以image_gen生成獨立angel_guard_bombardment.png（1254×1254 RGBA），母檔位於02_brave_guy/assets/source/pic/icons/，runtime/lossless/pic/icons/下同名WebP逐像素無損。交付JSON：assets/records/brave_guy_record07_angel_guard_icon_delivery.json。CSS只替換小天使R；原圖集其他八區仍在使用。詳見docs/handoffs/2026-11-20-game02-angel-guard-bombardment.md。
 
 
 ## 2026-11-20 廢棄視覺清理與職場補圖

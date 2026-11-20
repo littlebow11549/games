@@ -1,9 +1,9 @@
-> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/source/APPROVED_VISUAL_REVISION_02.json。
+> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/records/brave_guy_record08_approved_visual_revision_02.json。
 
 # 勇氣超人 Brave Guy — 角色設定集與「角色設定合輯」需求（v0.4）
 
 使用者要求：**每一個角色都要做角色設定合輯**，版式參考使用者提供的範例圖
-[`assets/source/pic/reference/sheet_layout_example.webp`](assets/source/pic/reference/sheet_layout_example.webp)。
+[`assets/source/pic/reference/brave_guy_reference07_sheet_layout_example.webp`](assets/source/pic/reference/brave_guy_reference07_sheet_layout_example.webp)。
 那張範例是別的角色，**只參考版式，不沿用它的角色、Logo、配色**。
 
 本檔由 `tools/make_character_bible.py` 產生。造型以兩張概念圖為準（`assets/source/pic/reference/`）；
@@ -29,7 +29,7 @@
 
 **全系列共同規定**
 - 程式合成核准（2026-11-14）：統一頁首交付在 `assets/source/pic/sheet/unified/`。畫布1728×1152（3:2），Logo採核准原檔等比縮小至156×104，固定座標(48,12)，頁首高128；16張左上區域逐像素一致。角色原圖不放大；2026-11-20已核對像素後刪除錯Logo舊稿，unified為正式母檔。驗證使用 `tools/unify_sheet_headers.py`。
-- 使用者確認（2026-11-14）：所有角色設定合輯左上角必須統一使用已核准的 `assets/source/pic/branding/logo_01_review_v1.png`；禁止各自重設字樣、改色或替換圖形。Logo 等比縮放，位置、尺寸、留白以共同版型為準；生成後必須逐張對照原檔查核，不把近似重畫視為完全一致。
+- 使用者確認（2026-11-14）：所有角色設定合輯左上角必須統一使用已核准的 `assets/source/pic/branding/brave_guy_branding09_logo_01_review_v1.png`；禁止各自重設字樣、改色或替換圖形。Logo 等比縮放，位置、尺寸、留白以共同版型為準；生成後必須逐張對照原檔查核，不把近似重畫視為完全一致。
 - 畫風：逗趣可愛的日系卡通、粗黑描邊、高彩度平塗加簡單陰影，與概念圖一致。
 - 比例：**保留概念圖原本的比例**（人形角色約 4–5 頭身），不改成 Q 版（使用者確認）。遊戲內的 3D 模型也照這個比例做。
 - 合輯底色：深色（建議深綠黑 `#0E1A14`），框線用勇氣綠 `#3FB53A`，標題字用黃 `#F6C21C`。每張版面位置一致，16 張排在一起要像同一套。
@@ -91,7 +91,7 @@ English labels only. No watermark.
 
 ### 1. 主角・大學生（The Student）
 
-`P0`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_student.png`
+`P0`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor01_主角學生_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -108,7 +108,7 @@ English labels only. No watermark.
 
 ### 2. 勇氣超人（Brave Guy）
 
-`P0`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_braveguy.png`
+`P0`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor04_勇氣超人_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -125,7 +125,7 @@ English labels only. No watermark.
 
 ### 3. 主角・上班族（The Office Worker）
 
-`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_worker.png`
+`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor15_主角上班族_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -142,7 +142,7 @@ English labels only. No watermark.
 
 ### 4. 小天使（Little Angel）
 
-`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_angel.png`
+`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor02_小天使_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -159,7 +159,7 @@ English labels only. No watermark.
 
 ### 5. 惡夢超人（Nightmare Guy）
 
-`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_nightmare.png`
+`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor11_惡夢超人_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -176,7 +176,7 @@ English labels only. No watermark.
 
 ### 6. 地獄超人（Hell Guy）
 
-`P2`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_hell.png`
+`P2`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor14_地獄超人_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -193,7 +193,7 @@ English labels only. No watermark.
 
 ### 7. 夢魘超人（Incubus Guy）
 
-`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_incubus.png`
+`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor26_夢魘超人_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -205,12 +205,12 @@ English labels only. No watermark.
 | 配色 | 西裝深灰 `#22252B`、領帶綠 `#2E8B2E`、襯衫白 `#EDEDED`、影子墨色 `#0B0B10`、淡紅眼 `#B24A4A` |
 | 表情 ×6 | 平靜；「何必呢」的淡淡微笑；看錶；被戳破時小聲「這句不要講出來」；「你會想我嗎」；全篇第一次的笑 |
 | 細節特寫 ×6 | 綠領帶（會變回綠圍巾）；梳整齊的刺蝟頭；過大的影子；辦公桌與音響；手錶；解下領帶的手 |
-| 變體與備註 | 依使用者追加的「INCUBUS GUY — FINAL ASCENSION / SECOND TRANSFORMATION」設定圖，階段二為機械鎧甲最終昇華：橘色刺蝟頭、人類面孔／紅眼、黑紫尖角分層鎧甲、綠色多面胸核與能量線、破損長綠圍巾、綠晶護腕及紫色裝甲靴。此新圖取代原先「變回惡夢／地獄，最後回西裝」的過場方案；西裝只保留初始型態。來源與採用稿見 assets/source/PICTURE_FILMS_REVIEW.json |
+| 變體與備註 | 依使用者追加的「INCUBUS GUY — FINAL ASCENSION / SECOND TRANSFORMATION」設定圖，階段二為機械鎧甲最終昇華：橘色刺蝟頭、人類面孔／紅眼、黑紫尖角分層鎧甲、綠色多面胸核與能量線、破損長綠圍巾、綠晶護腕及紫色裝甲靴。此新圖取代原先「變回惡夢／地獄，最後回西裝」的過場方案；西裝只保留初始型態。來源與採用稿見 assets/records/brave_guy_record45_picture_films_review.json |
 | 3D 注意事項 | 本體沿用惡夢超人換裝；影子用特效做。 |
 
 ### 8. 錢大姐（校園大姐頭）（Sister Qian）
 
-`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_qian.png`
+`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor09_錢大姐_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -227,7 +227,7 @@ English labels only. No watermark.
 
 ### 9. 藍教頭（Instructor Lan）
 
-`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_lan.png`
+`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor10_藍教頭_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -244,7 +244,7 @@ English labels only. No watermark.
 
 ### 10. 幹譙龍（三型態）（Ganqiao Dragon）
 
-`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_ganqiao.png`
+`P1`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor03_小幹譙_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -256,19 +256,19 @@ English labels only. No watermark.
 | 配色 | 初始綠 `#2FA043`、中階灰 `#7C7F86`、完全體橘 `#F29A2E`、角與背鰭黃 `#F4D03F`、噴出物藍 `#9CC7F0` |
 | 表情 ×6 | 碎碎唸（初始）；嚼洋芋片嫌棄（初始）；悶住講不出話（中階）；暴怒（中階）；吸氣準備噴（完全體）；洩氣縮小後的心虛 |
 | 細節特寫 ×6 | 初始的大爪與紅爪痕；中階的角（每吞一句長一根）；完全體的大嘴與牙；噴出的字；洋芋片袋；縮小的連續過程 |
-| 變體與備註 | 使用者已確認：初始、中階、完全體三型態同一張合輯（sheet_ganqiao.png），不拆成三張，並排呈現進化圖；職場版：初始型態戴客服耳機、掛黑眼圈；身高：初始約 60、中階約 150、完全體約 300 公分；使用者確認：綠色是初始型態，灰色是中階，橘色是完全體 |
+| 變體與備註 | 使用者已確認：初始、中階、完全體三型態同一張合輯（brave_guy_charactor03_小幹譙_現役裁切圖集.png），不拆成三張，並排呈現進化圖；職場版：初始型態戴客服耳機、掛黑眼圈；身高：初始約 60、中階約 150、完全體約 300 公分；使用者確認：綠色是初始型態，灰色是中階，橘色是完全體 |
 | 3D 注意事項 | 三個型態各自一個模型；後續各自獨立製作正面、左側、背面參考各一張，共 9 張，不因合輯合併而減少。完全體是四足，不適用人形自動綁骨。 |
 
 ### 11. 假森（Jiasen）
 
-`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_zhuangxiong.png`
+`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor08_假森_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
 | 定位 | 恐怖片帶來的幼時恐懼。看起來很兇，面具底下是布偶。錢大姐與藍教頭的打手。 |
 | 個性 | 假仙（裝兇）。被拆穿就很卑微 |
 | 代表台詞 | 「不要拿我面具！我裡面是棉花！」 |
-| 外觀 | 橘棕色布偶熊身體、縫線、白色曲棍球面具（黑色孔洞與紅色斜紋）、紅色雞冠頭、圓耳朵（封面左側；使用者裁圖 `reference/braveguy_jiasen.png`）。 |
+| 外觀 | 橘棕色布偶熊身體、縫線、白色曲棍球面具（黑色孔洞與紅色斜紋）、紅色雞冠頭、圓耳朵（封面左側；使用者裁圖 `reference/brave_guy_reference06_braveguy_jiasen.png`）。 |
 | 身高 | 約 140 公分（主角・大學生為 170） |
 | 配色 | 布偶橘棕 `#D9822B`、面具灰白 `#B9BDC4`、雞冠紅 `#D62B1F`、面具孔洞黑 `#1A1A1A`、縫線深棕 `#5A3414` |
 | 表情 ×6 | 面具下看不出表情（預設）；出手瞬間面具鬆脫；面具掉了的圓滾滾布偶臉；嚇到；求饒；做伏地挺身 |
@@ -278,14 +278,14 @@ English labels only. No watermark.
 
 ### 12. 佛賴弟（Folaidi）
 
-`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_laichuang.png`
+`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor05_佛賴弟_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
 | 定位 | 恐怖片帶來的幼時恐懼（看完不敢睡），長大後轉型成「不想起床、明天再說」。只在夢裡出現，所以到處都是。長廊守關者是佛賴弟王，也兼差當錢大姐的小弟。 |
 | 個性 | 嘴很賤、愛起鬨取綽號、會講歪理 |
 | 代表台詞 | 「再五分鐘啦～你自己也常講啊～」 |
-| 外觀 | 黑白橫條紋上衣、棕色寬邊帽（帽上有綠葉）、紅色格紋的臉、瞇眼壞笑（使用者裁圖 `reference/braveguy_folaidi.png`）。會從地板或牆裡冒出來。 |
+| 外觀 | 黑白橫條紋上衣、棕色寬邊帽（帽上有綠葉）、紅色格紋的臉、瞇眼壞笑（使用者裁圖 `reference/brave_guy_reference03_braveguy_folaidi.png`）。會從地板或牆裡冒出來。 |
 | 身高 | 約 160 公分（主角・大學生為 170） |
 | 配色 | 條紋黑 `#1B1B1B`、條紋白 `#F2F2F2`、帽子棕 `#6B4A2A`、格紋臉紅 `#C8322B`、帽上葉子綠 `#3FA34D` |
 | 表情 ×6 | 壞笑（預設）；起鬨大笑；打呵欠；講歪理的無辜臉；被打敗縮小；「那是你自己加的」 |
@@ -295,7 +295,7 @@ English labels only. No watermark.
 
 ### 13. 俊熊（Junxiong）
 
-`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/sheet_junxiong.png`
+`P2`　造型來源：**概念圖有**　合輯檔名：`pic/sheet/brave_guy_charactor06_俊熊_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -312,7 +312,7 @@ English labels only. No watermark.
 
 ### 14. 冠老闆（Boss Guan）
 
-`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_guanlaoban.png`
+`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor25_冠老闆_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -329,7 +329,7 @@ English labels only. No watermark.
 
 ### 15. 新雞（Newbie Chick）
 
-`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_xinji.png`
+`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor19_新雞_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|
@@ -346,7 +346,7 @@ English labels only. No watermark.
 
 ### 16. 八卦蛇（Gossip Snake）
 
-`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/sheet_baguashe.png`
+`P3`　造型來源：**新設計**　合輯檔名：`pic/sheet/brave_guy_charactor20_八卦蛇_現役裁切圖集.png`
 
 | 欄位 | 內容 |
 |------|------|

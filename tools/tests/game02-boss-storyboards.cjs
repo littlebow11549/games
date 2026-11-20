@@ -11,20 +11,20 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  await page.goto('http://127.0.0.1:8000/02_brave_guy/play.html');await page.locator('.opening-skip').click();await page.waitForFunction(()=>window.__game?.game.phase==='ready',null,{polling:50});
  await page.locator('#overlay [data-lang="ja"]').click();
  await page.locator('#ov-local-logo').evaluate(e=>e.getAnimations().forEach(a=>a.finish()));
- const logo=await page.locator('#ov-local-logo').evaluate(async e=>{await e.decode();const r=e.getBoundingClientRect();return{tag:e.tagName,src:e.src,w:r.width,h:r.height,nw:e.naturalWidth,nh:e.naturalHeight};});assert.equal(logo.tag,'IMG');assert(logo.src.endsWith('/logo_ja.png'));assert.equal(logo.nw,1536);assert(logo.w>100&&logo.h>50);await page.screenshot({path:path.join(out,'logo-ja.png')});
+ const logo=await page.locator('#ov-local-logo').evaluate(async e=>{await e.decode();const r=e.getBoundingClientRect();return{tag:e.tagName,src:e.src,w:r.width,h:r.height,nw:e.naturalWidth,nh:e.naturalHeight};});assert.equal(logo.tag,'IMG');assert(logo.src.endsWith('/brave_guy_branding10_logo_ja.png'));assert.equal(logo.nw,1536);assert(logo.w>100&&logo.h>50);await page.screenshot({path:path.join(out,'logo-ja.png')});
  // Decode every delivery file in the actual browser, including MP3 Safari fallback.
  const decoded=await page.evaluate(async()=>{const a=__game.audio;a.unlock();const m=await(await fetch('assets/manifest.json')).json(),urls=[...new Set(Object.values(m.sfx).flat().flatMap(u=>u.endsWith('.ogg')?[u,u.replace(/\.ogg$/,'.mp3')]:[u]))];const rows=[];for(const url of urls){const b=await a.ctx.decodeAudioData(await(await fetch(url)).arrayBuffer());let peak=0;for(const v of b.getChannelData(0))peak=Math.max(peak,Math.abs(v));rows.push({url,seconds:b.duration,channels:b.numberOfChannels,peak});}return rows;});
  assert(decoded.length>=63);for(const r of decoded){assert(r.seconds>0,r.url);assert.equal(r.channels,1);assert(r.peak<1,r.url+' clipping');}
- const config=await page.evaluate(async()=>{const m=await import('./js/boss-storyboards.js?v=20261115allboss');window.__boards=m.BOSS_STORYBOARDS;await Promise.all(Object.entries(__boards).flatMap(([k,d])=>(d.files||['boss_'+k+'_storyboard']).map(async f=>{const i=new Image();i.src='assets/source/pic/cinematics/'+f+'.png';await i.decode();})));await __game.cinematics.prepareBoss(Object.keys(__boards));return __boards;});
+ const config=await page.evaluate(async()=>{const m=await import('./js/boss-storyboards.js?v=20261120assets');window.__boards=m.BOSS_STORYBOARDS;await Promise.all(Object.entries(__boards).flatMap(([k,d])=>(d.files||['boss_'+k+'_storyboard']).map(async f=>{const i=new Image();i.src='assets/source/pic/cinematics/'+f+'.png';await i.decode();})));await __game.cinematics.prepareBoss(Object.keys(__boards));return __boards;});
  assert.equal(Object.keys(config).length,13);
  let shots=0;
  for(const locale of ['zh-Hant','en','ja']){
-  await page.evaluate(async l=>(await import('./js/i18n.js?v=20261115cinema')).setLang(l),locale);
+  await page.evaluate(async l=>(await import('./js/i18n.js?v=20261120assets')).setLang(l),locale);
   for(const [key,d]of Object.entries(config)){
    assert.deepEqual(d.cuts,[4,8]);assert.equal(d.duration,12);
    await page.evaluate(k=>{__game.game.phase='cinematic';__game.cinematics.boss([k],()=>{__game.game.phase='playing';});},key);await page.waitForTimeout(35);
    for(const [dt,beat]of [[.2,'0'],[4,'1'],[4,'2']]){await page.evaluate(dt=>__game.cinematics.update(dt),dt);assert.equal(await page.getAttribute('#cinema','data-beat'),beat,key);assert.equal(await page.getAttribute('#cinema','data-art-ready'),'true',key);shots++;}
-   assert(await page.locator('.cinema-name').isVisible());const expected=await page.evaluate(async k=>{const{BOSS_PROFILES}=await import('./js/cinematics.js?v=20261115allboss');const{t}=await import('./js/i18n.js?v=20261115cinema');return t(BOSS_PROFILES[k][0]);},key);assert.equal(await page.locator('.cinema-name').textContent(),expected);
+   assert(await page.locator('.cinema-name').isVisible());const expected=await page.evaluate(async k=>{const{BOSS_PROFILES}=await import('./js/cinematics.js?v=20261120assets');const{t}=await import('./js/i18n.js?v=20261120assets');return t(BOSS_PROFILES[k][0]);},key);assert.equal(await page.locator('.cinema-name').textContent(),expected);
    if(locale==='zh-Hant'){await page.waitForTimeout(550);await page.screenshot({path:path.join(out,key+'.png')});}
    await page.evaluate(()=>__game.cinematics.update(4));assert.equal(await page.evaluate(()=>__game.game.phase),'playing');assert.equal(await page.evaluate(()=>__game.audio.duck),1);
   }

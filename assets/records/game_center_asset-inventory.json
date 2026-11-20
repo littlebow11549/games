@@ -1,0 +1,27 @@
+[
+  {
+    "path": "assets/runtime/pic/game_center_branding01_banner_01.webp",
+    "status": "現役載入",
+    "references": [
+      "assets/css/hub.css"
+    ],
+    "sha256": "910586ee567e919886be9a32b3de895c8207050977839129908fb7fc44683556",
+    "bytes": 134066
+  },
+  {
+    "path": "assets/source/pic/banner/game_center_branding01_banner_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "6c9f12d786043d16081766514fd9bdd00e8c1f13718267de22537e7fbfc4b212",
+    "bytes": 1820990
+  },
+  {
+    "path": "assets/source/pic/banner/game_center_branding07_memory_pug_presenter_01.png",
+    "status": "現役載入",
+    "references": [
+      "assets/css/hub.css"
+    ],
+    "sha256": "6d3965eb842ec80753cdf9faadac1151b6f78dbd0e9a24eea76c7c66e400f9d6",
+    "bytes": 1679301
+  }
+]

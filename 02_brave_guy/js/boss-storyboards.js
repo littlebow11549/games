@@ -1,3 +1,4 @@
+import { assetPath } from './asset-paths.js';
 // Dedicated narrative shots. Atlas rows are selected at draw time; original pixels stay intact.
 const ROOT='assets/runtime/lossless/pic/cinematics/';
 export const BOSS_INTRO_TIMING=Object.freeze({cuts:Object.freeze([4,8]),duration:12});
@@ -23,7 +24,7 @@ for (const board of Object.values(BOSS_STORYBOARDS)) board.cues = board.cues.map
 export function createBossStoryboard(root,audioProvider){
  const canvas=document.createElement('canvas');canvas.className='cinema-storyboard';canvas.setAttribute('aria-hidden','true');root.prepend(canvas);
  const ctx=canvas.getContext('2d'),cache=new Map(),backdrop=document.createElement('canvas');let backKey=null;let key=null,definition=null,fired=new Set(),previous=-1;
- function images(k){const d=BOSS_STORYBOARDS[k];const files=d.files||[`boss_${k}_storyboard`];return files.map(file=>{if(!cache.has(file)){const im=new Image();im.src=ROOT+file+'.webp';cache.set(file,im);}return cache.get(file);});}
+ function images(k){const d=BOSS_STORYBOARDS[k];const files=d.files||[`boss_${k}_storyboard`];return files.map(file=>{if(!cache.has(file)){const im=new Image();im.src=assetPath(ROOT+file+'.webp');cache.set(file,im);}return cache.get(file);});}
  function prepare(kinds){return Promise.all(kinds.filter(k=>BOSS_STORYBOARDS[k]).flatMap(k=>images(k).map(im=>im.decode().catch(error=>{for(const [file,image] of cache)if(image===im)cache.delete(file);throw error;}))));}
  function ready(){return key&&images(key).every(im=>im.complete&&im.naturalWidth>0);}
  function start(k){key=k;definition=BOSS_STORYBOARDS[k];fired=new Set();previous=-1;images(k);root.dataset.storyboard=k;root.dataset.artReady='false';root.dataset.beat='0';audioProvider()?.stopLoops?.();audioProvider()?.duckBgm?.(.38);}

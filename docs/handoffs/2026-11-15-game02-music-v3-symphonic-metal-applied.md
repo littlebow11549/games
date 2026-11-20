@@ -2,15 +2,15 @@
 
 ## 使用者要求
 
-使用者上傳 `BraveGuy_BGM_symphonic_metal_2026-11-15_mp3.zip`（25 首 320 kbps MP3，交響金屬／吉他搖滾風，對應 MUSIC.md v3.0 方向），要求「幫我套用看看」。
+使用者上傳 `BraveGuy_BGM_symphonic_metal_2026-11-15_mp3.zip`（25 首 320 kbps MP3，交響金屬／吉他搖滾風，對應 brave_guy_record04_music.md v3.0 方向），要求「幫我套用看看」。
 
 ## 完成內容
 
 - 解壓 25 首 MP3，全部覆蓋到 `02_brave_guy/assets/source/music/` 的同名檔。
 - 每首以 `ffmpeg libvorbis -qscale:a 6` 轉出同名 `.ogg`（遊戲以 `.ogg` 為主音軌，不支援 OGG 的裝置才自動改讀 `.mp3`；見 `js/audio.js` 第 46–50 行）。兩種格式一起更新。
 - 本批新增三首**專屬曲**，取代原本的佔位來源，並更新 `assets/manifest.json`：
-  - `bgm_battle`：`bgm_campus.ogg` → `bgm_battle.ogg`
-  - `bgm_victory`：`jingle_clear.ogg` → `bgm_victory.ogg`
+  - `bgm_battle`：`brave_guy_bgm16_campus.ogg` → `brave_guy_bgm01_battle.ogg`
+  - `bgm_victory`：`brave_guy_bgm17_clear.ogg` → `brave_guy_bgm40_victory.ogg`
   - `bgm_stage_3_0`：`bgm_office_mute.ogg` → `bgm_stage_3_0.ogg`
 - 其餘 22 首為既有鍵的同名覆蓋，manifest 路徑不變。
 
@@ -28,7 +28,7 @@
 
 ## 測試結果
 
-- Node + 無頭 Chromium（swiftshader WebGL）載入 `02_brave_guy/index.html`：**console 0 error**；開場即請求新的 `bgm_title.ogg`。
+- Node + 無頭 Chromium（swiftshader WebGL）載入 `02_brave_guy/index.html`：**console 0 error**；開場即請求新的 `brave_guy_bgm38_title.ogg`。
 - manifest 驗證：24 個 audio 鍵全部對應到存在的 `.ogg`＋`.mp3` 配對，無缺檔；JSON 合法。
 - 轉出的 OGG 全部可被 ffprobe 正常解碼（抽驗 battle／victory／stage_3_0／title／boss／defeat／jingle_clear 皆 OK）。
 - **未驗證**：未逐關實際進入戰鬥聽每首曲子；未做人耳 A／B 聽感與循環接點聽測；無真人試玩。

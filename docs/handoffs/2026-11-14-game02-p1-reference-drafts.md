@@ -8,11 +8,11 @@
 
 九張PNG在 `02_brave_guy/assets/source/pic/concept/`：
 
-- `angel_front.png`、`angel_side.png`、`angel_back.png`
-- `nightmare_front.png`、`nightmare_side.png`、`nightmare_back.png`
-- `ganqiao_front.png`、`ganqiao_side.png`、`ganqiao_back.png`（只代表綠色初始型態）
+- `brave_guy_charactor02_小天使_正面.png`、`brave_guy_charactor02_小天使_側面.png`、`brave_guy_charactor02_小天使_背面.png`
+- `brave_guy_charactor11_惡夢超人_正面.png`、`brave_guy_charactor11_惡夢超人_側面.png`、`brave_guy_charactor11_惡夢超人_背面.png`
+- `brave_guy_charactor03_小幹譙_正面.png`、`brave_guy_charactor03_小幹譙_側面.png`、`brave_guy_charactor03_小幹譙_背面.png`（只代表綠色初始型態）
 
-全部為內建image_gen實際生成、原生1254×1254 RGB PNG，直接保存原始bytes；沒有插值放大、程式繪圖替代或重編碼。每張一角色一角度，正面、朝左側面、背面。提示詞與尺寸／bytes／SHA256／五點背景採樣分別記錄在 `assets/source/P1_3D_REFERENCE_PROMPTS.md` 及 `P1_3D_REFERENCE_DELIVERY.json`。
+全部為內建image_gen實際生成、原生1254×1254 RGB PNG，直接保存原始bytes；沒有插值放大、程式繪圖替代或重編碼。每張一角色一角度，正面、朝左側面、背面。提示詞與尺寸／bytes／SHA256／五點背景採樣分別記錄在 `assets/records/brave_guy_record28_p1_3d_reference_prompts.md` 及 `brave_guy_record27_p1_3d_reference_delivery.json`。
 
 ## 目視查核與製作調整
 

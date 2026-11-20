@@ -37,7 +37,7 @@
 | 四種泡泡 | `ui/bubble_sheet.png` | 小天使已接；其他有 feedback-art.css 但 index 未載入 |
 | Boss／敵人血條、連擊底、文字按鈕 | `ui/aux_hud_sheet.png` 8部件 | 都有圖；未接入不能當未製作 |
 | 情勒賓果 | `ui/bingo_card.png` | 已有25格來源 |
-| 品牌 | `branding/logo_01_review_v1.png`、`icon_01.png`、`icon_01_logo.png`、`banner_01.png` | 已有，runtime 4張 WebP；Logo寬1536低於2400。banner 已在選單引用，舊報告「未接」過時 |
+| 品牌 | `branding/logo_01_review_v1.png`、`icon_01.png`、`icon_01_logo.png`、`game_center_branding01_banner_01.png` | 已有，runtime 4張 WebP；Logo寬1536低於2400。banner 已在選單引用，舊報告「未接」過時 |
 | BGM | 29個檔名各 mp3+ogg，共58檔 | manifest 24個音樂鍵均有路徑；含舊曲/demo/別名，不能說29首全在播 |
 
 既有 UI/按鍵 PNG 共16檔：11個 ui + 5個 icons（包含頭像與賓果，不能全稱圖集）。

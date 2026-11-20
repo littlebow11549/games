@@ -24,14 +24,14 @@
 - 測試：進關 0 error、boss=qianBiz、名牌三語切換正常。
 
 ### D. ComfyUI 音效＋音樂需求 v2（文件，commit 4ad4489）
-- `02_brave_guy/assets/source/SFX_MUSIC_BRIEF_2026-11-16.md`：
+- `02_brave_guy/assets/records/brave_guy_record50_sfx_music_brief_2026-11-16.md`：
   - 全部 SFX 重做；**打擊感**依 KOF 97/98（厚脆爆、三層疊、乾短不糊）；**變身音**改寶石/水晶結晶感。
   - 音樂：新增 `bgm_boss_rage`（Boss 二段/45 秒 PRESSURE 加壓時的狂暴金屬）；各 Boss 戰給**專屬曲**（現況多數共用 `bgm_boss`）；補 `bgm_stage_1_1`（現與校園共用）與新關 `bgm_stage_3_6`。
   - 每條附英文生成提示詞；已交付使用者下載。
 
 ## 檔案
 - `js/main.js`（bossKinds、refreshLang、DIFFS、qianBiz 定義與 debuff）、`js/boss-storyboards.js`、`js/story.js`（3-6）、`js/lang_en.js`、`js/lang_ja.js`
-- 新增文件 `assets/source/SFX_MUSIC_BRIEF_2026-11-16.md`
+- 新增文件 `assets/records/brave_guy_record50_sfx_music_brief_2026-11-16.md`
 
 ## 測試結果
 - 無頭 Chromium：名牌語系、新關載入、名牌三語皆 0 error（`check_bossname.js`、`check_newstage.js`）。

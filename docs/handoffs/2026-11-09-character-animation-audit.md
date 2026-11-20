@@ -15,7 +15,7 @@
 - `char_anim_celebrate.png`：舉手與小跳躍，8 格，8fps，1 秒循環。
 - 四張動畫圖集皆 1774×887 RGBA，每張 4 欄×2 列，總共 32 格。單格 443.5×443.5；播放器直接用小數來源座標，不硬切整數導致誤差。
 - `character_animations.json`：格數、來源尺寸、播放速率與時長。
-- `COMPRESSION.json`：角色與選單新 PNG 的無損像素驗證；來源尺寸、容量與 SHA-256。
+- `game_center_record02_banner_compression.json`：角色與選單新 PNG 的無損像素驗證；來源尺寸、容量與 SHA-256。
 
 使用者後續已明確要求角色動態並套用，**取代先前「交其他 AI 做角色動態」的分工**。動態已完成本次四種狀態，沒有將它們列為等待其他 AI。
 
@@ -34,11 +34,11 @@
 
 ### 主選單字藝
 
-`01_memory_crash/assets/source/pic/titles/titles_02.png`：ARCADE、CONTINUE、EXIT、MENU、PAUSE、RESUME，3×2 透明圖集。`titles_02.json` 提供各詞 alpha 邊界。ARCADE／CONTINUE／EXIT 已用 CSS 裁圖方式接到主選單按鈕，保持來源比例及可存取名稱；禁用的 CONTINUE 會灰化。其餘詞已交付備用，沒有為了字圖額外新增暫停遊戲功能。
+`01_memory_crash/assets/source/pic/titles/memory_crash_ui27_titles_02.png`：ARCADE、CONTINUE、EXIT、MENU、PAUSE、RESUME，3×2 透明圖集。`titles_02.json` 提供各詞 alpha 邊界。ARCADE／CONTINUE／EXIT 已用 CSS 裁圖方式接到主選單按鈕，保持來源比例及可存取名稱；禁用的 CONTINUE 會灰化。其餘詞已交付備用，沒有為了字圖額外新增暫停遊戲功能。
 
 ### 穿梭影片
 
-`01_memory_crash/assets/source/video/vid_warp.webm`：原創程序生成，1080×1920、24fps、4 秒、96 格、無音訊、不透明、VP9 lossless RGB，約 21.1 MB。`vid_warp.json` 為驗證紀錄；重製程式 `tools/make_warp.py`（相對遊戲資料夾）。
+`01_memory_crash/assets/source/video/memory_crash_video03_warp.webm`：原創程序生成，1080×1920、24fps、4 秒、96 格、無音訊、不透明、VP9 lossless RGB，約 21.1 MB。`vid_warp.json` 為驗證紀錄；重製程式 `tools/make_warp.py`（相對遊戲資料夾）。
 
 驗證來源 t=0 與 t=4 秒的 RGB bytes 完全相同；編碼後第一格解碼 RGB 與來源完全一致，瀏覽器能實際播放。影片是來源素材交付，**尚未取代目前標題頁 CSS 穿梭效果**；檔案較大，不預載到遊戲，後續要套用請依裝置效能評估。不宣稱為外部影片模型生成。
 
@@ -48,7 +48,7 @@
 
 ## 全素材再次核對
 
-- 自動核對：`01_memory_crash/assets/ASSET_AUDIT.json`，重跑 `python 01_memory_crash/tools/audit_assets.py`；加 `--full` 會驗證全部來源 PNG（含首頁）與完整解碼媒體。
+- 自動核對：`01_memory_crash/assets/records/memory_crash_record01_asset_audit.json`，重跑 `python 01_memory_crash/tools/audit_assets.py`；加 `--full` 會驗證全部來源 PNG（含首頁）與完整解碼媒體。
 - 本次核對清單中的**必要來源檔案均存在**。這指來源交付，不代表所有圖片達指定像素，也不代表全部已套用。
 - **尚未製作的選做項**：`pic/branding/blade_01.png`、`pic/fx/fx_01.png`、`music/bgm_02.mp3`、`video/vid_01.webm`。
 - HOW TO 圖已交付並由 Claude 切圖接入，不再誤列為缺檔。

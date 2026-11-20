@@ -5,7 +5,7 @@ from io import BytesIO
 import json,hashlib,concurrent.futures
 ROOT=Path(__file__).resolve().parents[1]
 PIC=ROOT/'assets/source/pic'
-NAMES=['character/char_01.png','titles/titles_02.png']+['character/char_anim_'+name+'.png' for name in ['idle','happy','sad','celebrate']]
+NAMES=['character/char_01.png','titles/memory_crash_ui27_titles_02.png']+['character/char_anim_'+name+'.png' for name in ['idle','happy','sad','celebrate']]
 
 def optimize(name):
     p=PIC/name;raw=p.read_bytes();im=Image.open(BytesIO(raw));im.load()

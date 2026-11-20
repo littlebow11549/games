@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three/three.module.min.js';
-import { lang } from './i18n.js?v=20261119dialogue';
+import { lang } from './i18n.js?v=20261120assets';
 const lines=[
  ['都是為你好','It’s for your own good.','全部君のためだよ'],
  ['你想太多了','You’re overthinking it.','考えすぎだよ'],

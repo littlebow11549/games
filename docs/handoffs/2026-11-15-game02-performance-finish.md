@@ -43,7 +43,7 @@
 - 舊存檔已清關紀錄直接轉成實際可用能力；清關立即授予並保存，重試／重載保留。招式鎖頭、取得關卡提示、鍵盤技能呼叫共同檢查。
 - 首次通關之前，既有職場章暫時封印／重新找回的劇情保留；已取得 hp／qi 增益只在真正拿到時保留，終章不再無條件授予全技能。已打通最終關的存檔可自由選所有關卡，任何關卡都有全部招式，職場不再封印。
 - 新測試 progression.test.mjs 與 game02-unlocks.cjs 檢查選後關不送技能、真實清關、重試／重載、職場封印恢復。
-- 掌聲來源：Sandermotions 的 De Doelen 劇場實錄（CC0）；歡呼：starlite 的 Clapping hurray（Public domain，woo／woohoo 群眾人聲）。來源 URL、授權、母帶與 sha256 見 CROWD_SFX_DELIVERY.json 和 _archive/.../crowd-v4/SOURCES.json。不是合成／AI 人聲，也沒有重新錄製的宣稱。
+- 掌聲來源：Sandermotions 的 De Doelen 劇場實錄（CC0）；歡呼：starlite 的 Clapping hurray（Public domain，woo／woohoo 群眾人聲）。來源 URL、授權、母帶與 sha256 見 brave_guy_record11_crowd_sfx_delivery.json 和 _archive/.../crowd-v4/SOURCES.json。不是合成／AI 人聲，也沒有重新錄製的宣稱。
 - MP3 192 kbps 44.1 kHz，掌聲 6.32 秒，歡呼 11.62 秒。保留原錄音與處理後 WAV；獨立音量、EQ、淡入淡出；重疊峰值 -3.9 dBFS。勝利與結局接入，重播間隔 6.5／12 秒，避免每半秒堆疊；重試／主選單停止殘音。舊合成拍手原檔不刪除。
 
 ## 效能測量結果（同一測試腳本，390×694 軟體 WebGL）

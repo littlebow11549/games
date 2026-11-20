@@ -1,3 +1,9 @@
+# 素材入口
+
+請從 [完整素材索引](records/brave_guy_asset-index.md) 找檔案、用途和使用狀態。
+
+命名與來源對照：[歸檔紀錄](records/README.md)。
+
 # 素材接入方式（勇氣超人）
 
 遊戲啟動時讀 `assets/manifest.json`。欄位是 `null` 就用程式繪製的佔位版；填入路徑後自動改用正式素材，**不需要改程式**。
@@ -30,7 +36,7 @@
 
 ## 音訊
 
-完整需求與清單見 [`MUSIC.md`](MUSIC.md)。目前程式會播的鍵只有 `bgm_battle`、`bgm_boss`、`bgm_victory`，填入路徑即可；其餘的鍵已預留。音效目前是程式合成（`js/audio.js`），尚未支援讀檔。
+完整需求與清單見 [`brave_guy_record04_music.md`](brave_guy_record04_music.md)。目前程式會播的鍵只有 `bgm_battle`、`bgm_boss`、`bgm_victory`，填入路徑即可；其餘的鍵已預留。音效目前是程式合成（`js/audio.js`），尚未支援讀檔。
 
 ## 測試用
 

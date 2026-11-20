@@ -22,7 +22,7 @@
 |鎖定/回血|`icons/lock_heal_sheet.png`|三態按鈕、地面鎖定圈、俊熊獎勵回血圖示均已接入|地面圖集載入失敗保留原幾何圈|
 |難度|`ui/difficulty_sheet.png`|6態已有且已接|驗收，不生圖|
 |賓果卡|`ui/bingo_card.png`|已於既有賓果台詞顯示原卡；其他台詞隱藏|未新增賓果玩法或改寫故事|
-|Logo/封面/橫幅|`branding/logo_01_review_v1.png`、`branding/icon_01.png`、`branding/icon_01_logo.png`、`branding/banner_01.png`|已有，Logo寬度限制另列|既有核准設計不重畫；衍生規格與使用位置核對|
+|Logo/封面/橫幅|`branding/logo_01_review_v1.png`、`branding/icon_01.png`、`branding/icon_01_logo.png`、`branding/game_center_branding01_banner_01.png`|已有，Logo寬度限制另列|既有核准設計不重畫；衍生規格與使用位置核對|
 |主選單雙版|`branding/menu_keyart_01.png`、`branding/menu_keyart_portrait_01.png`|本聊天已生成且PR35接入|只驗收橫直裁切，不重生|
 |暫停/結算新框/標題/按鈕|`ui/panel_popup.png`、`ui/panel_title_plate.png`、`ui/btn_text.png`|本聊天已生成，PR35實作及測試通過|等待合併/視覺驗收，不重生|
 |履歷/算了計數器|`ui/resume.png`、`ui/counter_suanle.png`|本聊天已生成未提交，履歷欄數不合規|保留，先核對既有稿再決定修改|
@@ -37,7 +37,7 @@
 ## 可以執行的下一步
 
 1. 核對PR35選關、暫停、結算與等寬按鈕的交付／接入狀態，不再生圖。
-2. 既有HUD圖集本輪已接入，座標見 `02_brave_guy/assets/source/HUD_RUNTIME_REGIONS.json`；驗證及例外見最新交接。
+2. 既有HUD圖集本輪已接入，座標見 `02_brave_guy/assets/records/brave_guy_record13_hud_runtime_regions.json`；驗證及例外見最新交接。
 3. 上班族HUD頭像已取自合輯；角色其他表情仍沿用合輯，不重畫。
 4. 變身已沿用本聊天先前生成的13張，不宣稱找到更早原稿；場景與其他來源有爭議項目仍待追溯，不得因缺檔重生。
 
@@ -69,7 +69,7 @@
 
 
 ## 人體與設定複核（2026-11-16，發布狀態見最新交接）
-- 使用者指出的鎧甲手掌、藍經理前兩鏡、悶幹譙／惡夢／八卦蛇擊中鏡頭已定向修正；另檢查出藍教頭、地獄與幹譙龍的類似問題，一併修正。採用稿的生成來源、SHA256、原生尺寸與檢查狀態見 `02_brave_guy/assets/source/PICTURE_FILMS_REVIEW.json`。
+- 使用者指出的鎧甲手掌、藍經理前兩鏡、悶幹譙／惡夢／八卦蛇擊中鏡頭已定向修正；另檢查出藍教頭、地獄與幹譙龍的類似問題，一併修正。採用稿的生成來源、SHA256、原生尺寸與檢查狀態見 `02_brave_guy/assets/records/brave_guy_record45_picture_films_review.json`。
 - 每張已目視檢查角色辨識、肢體連接、手腕與握拳方向、前後鏡頭。此為製作者自審，不代表使用者批准或保證不存在任何繪圖瑕疵。
 - 所有被退回稿仍留在 `/workspace/generated_images/`，未接入。舊西裝版 victory_incubus、舊 awakening_a/b、舊缺手指 armor_a、錯誤服裝 armor_b、舊失敗／重試混合圖不加入配送清單。
 - 失敗改為三鏡（戰敗／畏縮／粉紅荷葉邊服裝）＋獨立 `defeat_retry.png`；結局定向修訂為 `ending_applause_final.png`，保留舊圖，修正藍經理、加班鬼王、怪物與鎧甲夢魘，主角保留終章紅綠雙圍巾。
@@ -94,7 +94,7 @@
 
 ## 2026-11-18 記憶水晶 Banner 專用巴哥（使用者明確要求重繪）
 
-- 已核對現有 `01_memory_crash/assets/source/pic/character/pug_idle_full.png`：8格待機圖集，先前Banner只取第一格。
+- 已核對現有 `01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle_full.png`：8格待機圖集，先前Banner只取第一格。
 - 使用者本輪明確要求重新繪製Banner主角並放大右側主視覺，授權新增一張「朝右介紹鑽石」的獨立姿勢，不覆蓋既有遊戲待機圖集。
 - 新素材歸檔於根目錄 `assets/source/pic/banner/`，生成結果、尺寸與驗證見本輪交接報告。
 
@@ -107,7 +107,7 @@
 
 ## 2026-11-19 新角色技能圖示
 
-新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
+新增小天使五張、惡夢超人四張原創透明向量 SVG，位於 `02_brave_guy/assets/source/pic/icons/skill_angel_*.svg` 與 `skill_nightmare_*.svg`（路徑相對 repo）。來源與用途見 `02_brave_guy/assets/records/brave_guy_record12_guest_skill_icons_delivery.json`。使用原生向量筆畫及漸層，無點陣縮小；僅新角色使用，保留原勇氣超人技能圖。
 
 
 ## 2026-11-19 程式模型分型
@@ -115,7 +115,7 @@
 
 
 ## 2026-11-19 客串大招藝術字
-新增 `02_brave_guy/assets/source/pic/titles/ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
+新增 `02_brave_guy/assets/source/pic/titles/brave_guy_ui10_ult_angel.svg`、`ult_nightmare.svg`（repo相對路徑），原生760×370向量，既有Noto Sans TC Black字形轉路徑、粗黑描邊／爆發底形，小天使粉紅冰藍與惡夢紫綠。僅新增角色招式標題，原超勇氣波圖集保留。詳細接入與測試見2026-11-19-game02-unlocks-combat-upgrade交接。
 
 
 ## 2026-11-19 技能圖集精修與表情接入

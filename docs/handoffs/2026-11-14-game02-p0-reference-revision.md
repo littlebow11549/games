@@ -8,8 +8,8 @@
 
 目前版本均在 `02_brave_guy/assets/source/pic/concept/`：
 
-- `student_front.png`、`student_side.png`、`student_back.png`
-- `braveguy_front.png`、`braveguy_side.png`、`braveguy_back.png`
+- `brave_guy_charactor01_主角學生_正面.png`、`brave_guy_charactor01_主角學生_側面.png`、`brave_guy_charactor01_主角學生_背面.png`
+- `brave_guy_charactor04_勇氣超人_正面.png`、`brave_guy_charactor04_勇氣超人_側面.png`、`brave_guy_charactor04_勇氣超人_背面.png`
 
 原灰底版本備份在同目錄 `history/{id}_{view}_gray_v1.png`。既有舊版 hero_* 佔位檔未動。
 
@@ -30,8 +30,8 @@
 
 ## 證據與交接
 
-- `assets/source/P0_3D_REFERENCE_DELIVERY.json`：v2尺寸、格式、背景採樣、bytes、SHA256；原檔bytes原樣存回，未重新編碼、未縮放。
-- `assets/source/P0_3D_REVISION_PROMPTS.md`：六次完整精修提示詞。
-- 舊 `P0_3D_BACKGROUND_CHECK.json` 是v1灰底歷史採樣；最新以DELIVERY內background_samples為準。
+- `assets/records/brave_guy_record21_p0_3d_reference_delivery.json`：v2尺寸、格式、背景採樣、bytes、SHA256；原檔bytes原樣存回，未重新編碼、未縮放。
+- `assets/records/brave_guy_record23_p0_3d_revision_prompts.md`：六次完整精修提示詞。
+- 舊 `brave_guy_record20_p0_3d_background_check.json` 是v1灰底歷史採樣；最新以DELIVERY內background_samples為準。
 - 更新ASSETS.md與HANDOFF入口；git diff --check通過。
 - 未提交、推送、部署、外部通知或Tripo轉換。Library既有傳輸限制未解除，無Library ID。

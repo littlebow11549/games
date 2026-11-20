@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-15",
+  "sourcePolicy": "native bytes retained; no image upscaling; atlas windows rendered at runtime",
+  "files": [
+    {
+      "path": "pic/titles/brave_guy_ui01_system_combat_en.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c9aa30b8899735d0cd7cdf0a32f9a8276cefb4ad1495f7f3a503a732e0b48a24",
+      "bytes": 2342685
+    },
+    {
+      "path": "pic/titles/brave_guy_ui02_system_combat_ja.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0bc55bc269bd40618979e6e5f6f3ec9f15c2cf2147d4298ef38868f12c2b5d47",
+      "bytes": 2223353
+    },
+    {
+      "path": "pic/titles/brave_guy_ui03_system_combat_zh.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c7f95cb91656aec02638717689cb644bc036000299386fc073c95206c64c80b7",
+      "bytes": 2286880
+    },
+    {
+      "path": "pic/titles/brave_guy_ui04_system_labels_en.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "917b2a01fe27ad7dc22da5b541057bdd2450ff4506f31a34480a5566fd84c470",
+      "bytes": 2215878
+    },
+    {
+      "path": "pic/titles/brave_guy_ui05_system_labels_ja.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7e274730b7d81bd38c4539fa516a3ab72af34f6bc362e0dbb9c2b7d9c2e50f0a",
+      "bytes": 2042073
+    },
+    {
+      "path": "pic/titles/brave_guy_ui06_system_labels_zh.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "da74cbf1bb2d83d89a4243620923427abd984ba732f3e8b41306210ce9fe7050",
+      "bytes": 2119846
+    },
+    {
+      "path": "pic/titles/brave_guy_ui07_system_outcomes_en.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "74433158a2397a8b43265afb0d9bb487b917d35d3f877d9f5fe6c51f72913a22",
+      "bytes": 2241516
+    },
+    {
+      "path": "pic/titles/brave_guy_ui08_system_outcomes_ja.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9459c7b250f2e7fd851b35ec8d9d09ec86be87b593ccf0c3a5d4abc622a051c9",
+      "bytes": 2129560
+    },
+    {
+      "path": "pic/titles/brave_guy_ui09_system_outcomes_zh.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "42916f51684c849185006cbdd03f88c0ffe005a202c3bbeac050c3c5aa8d8459",
+      "bytes": 1900942
+    },
+    {
+      "path": "pic/icons/brave_guy_ui32_語系地球.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "sha256": "02a10ed084eb33d138a70b978a851e3639e2d29c90e37eba53458d750d7b0347",
+      "bytes": 1068298
+    },
+    {
+      "path": "pic/cinematics/brave_guy_cinematic19_ending_applause.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "sha256": "750f2d2eed8e789398ec8b91e17eb897cadfcca113563482bd9c142631c8a8d5",
+      "bytes": 2800003
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-15",
+  "tool": "image_gen; approved existing logo/character sheets as references",
+  "bosses": 13,
+  "storyShots": 39,
+  "format": {
+    "durationSeconds": 8.2,
+    "cutsSeconds": [
+      2.4,
+      4.2
+    ],
+    "stages": [
+      "establish",
+      "close-up",
+      "reveal"
+    ],
+    "locales": [
+      "zh-Hant",
+      "en",
+      "ja"
+    ]
+  },
+  "files": [
+    {
+      "file": "02_brave_guy/assets/source/pic/branding/brave_guy_branding10_logo_ja.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "sha256": "61fcd672a5823e1bad93b00bd24e80ee1a11dba104ba034cdcc59f9e4c26400d",
+      "category": "localized-logo",
+      "shots": 1,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/branding/brave_guy_branding09_logo_01_review_v1.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic03_boss_baguashe_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "b7c583abebd94cf74c7021b216f0e98a299ba0cf3c248a6173bbdb27df0376d4",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor20_八卦蛇_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic04_boss_ganqiaoFull_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "405e472432e24bbb50bce6bf5f1100453bed5ca08efc708f81b446b54b8a18ab",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor03_小幹譙_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic05_boss_guan_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "3e5620b0893129e53eda35c808c863b5401e21fcd072ddc6ef4501785fe88330",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor25_冠老闆_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic06_boss_hell_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "1455b6ff93204175f7f2ce1bafa1490bf184b7534e86a5bac00fff93b7d15eb8",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor14_地獄超人_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic07_boss_incubus_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "737afd0637123e2b3ac87258d13d64219ee5e2aeec5a9a388cf918e0d657fc24",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor26_夢魘超人_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic09_boss_kabanKing_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "390af530a209436bd871a90256331e69a9a896430de0880333fb6b2ca28d9537",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic10_boss_lanMgr_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "5539adaab57fe6fe9436f7e12f53e7b49c66d1433aaaaa5954327ed1f52065c7",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor10_藍教頭_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic11_boss_lan_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "2b7bf5577daaa4d41f816d7ba22d22267cecc1654ad23c8d65563c6c1bc3dfc5",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor10_藍教頭_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic12_boss_midKing_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "3c02363ff97da5a2d14ac813db0a82c82782c8438ef9b5e0449e58c9290dfcf4",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor03_小幹譙_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic13_boss_nightmare_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "b7317384deac0e56b7bbd757f01de34e577a59f857525570fa66d12c23d85f7c",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor11_惡夢超人_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic15_boss_qian_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "635a9991a2a70db87f68962c26815d5d52af161c248b7eb6831ca8db9fdbdba0",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor09_錢大姐_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic16_boss_xinji_storyboard.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB",
+      "sha256": "0a5429c76931671efe48603b435f4ded682e60808c19d6c5eb04ce47e2d4d04d",
+      "category": "boss-cinematic",
+      "shots": 3,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor19_新雞_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic21_folaidi_corridor.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "sha256": "2e621b6094e572c78cb39b7f786f256030a3e74fc4ca992e4054535cdc5de0b5",
+      "category": "boss-cinematic",
+      "shots": 1,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic22_folaidi_eyes.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "sha256": "fcb05242140e4ae5cb073a2de2745e1026e50527bec4919fec893a88e13dcfbf",
+      "category": "boss-cinematic",
+      "shots": 1,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png"
+    },
+    {
+      "file": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic23_folaidi_reveal.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "sha256": "b414be141470520623ef6b132213205e915a4b51f5911a53b393d98dc162d348",
+      "category": "boss-cinematic",
+      "shots": 1,
+      "nativeUnmodified": true,
+      "reference": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png"
+    }
+  ]
+}

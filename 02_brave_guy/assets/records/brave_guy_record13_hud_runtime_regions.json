@@ -1,0 +1,226 @@
+{
+  ".game-art .bars .bar": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      780,
+      88,
+      744,
+      150
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.hp i": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      38,
+      379,
+      695,
+      94
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.courage i": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      804,
+      379,
+      696,
+      94
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.courage.full i,.game-art .bar.courage.burst i": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      33,
+      572,
+      704,
+      108
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.guilt i": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      801,
+      577,
+      704,
+      100
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.guilt.crack i": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      34,
+      809,
+      701,
+      147
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .portrait::after": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      234,
+      12,
+      298,
+      298
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .portrait.worker:not(.brave)": {
+    "source": "sheet/unified/brave_guy_charactor15_主角上班族_現役裁切圖集.png",
+    "rect": [
+      114,
+      174,
+      229,
+      229
+    ],
+    "atlas_size": [
+      1728,
+      1152
+    ]
+  },
+  ".game-art .act.ult em::after": {
+    "source": "ui/brave_guy_ui31_血量與能量圖集.png",
+    "rect": [
+      1005,
+      730,
+      294,
+      294
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .act.transform.ready:not(:active):not(.art-pressed)::before": {
+    "source": "ui/brave_guy_ui28_方向控制圖集.png",
+    "rect": [
+      382,
+      580,
+      772,
+      394
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .boss-bar .bar": {
+    "source": "ui/brave_guy_ui34_輔助狀態圖集.png",
+    "rect": [
+      24,
+      114,
+      490,
+      164
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .bar.boss i": {
+    "source": "ui/brave_guy_ui34_輔助狀態圖集.png",
+    "rect": [
+      577,
+      175,
+      412,
+      44
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art #boss-name": {
+    "source": "ui/brave_guy_ui34_輔助狀態圖集.png",
+    "rect": [
+      1056,
+      114,
+      447,
+      164
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .ebar i": {
+    "source": "ui/brave_guy_ui34_輔助狀態圖集.png",
+    "rect": [
+      106,
+      501,
+      537,
+      41
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  ".game-art .dmg.heal::before": {
+    "source": "icons/brave_guy_ui35_鎖定治療圖集.png",
+    "rect": [
+      1087,
+      650,
+      328,
+      300
+    ],
+    "atlas_size": [
+      1536,
+      1024
+    ]
+  },
+  "dialog": {
+    "source": "ui/brave_guy_ui17_介面面板圖集.png",
+    "rect": [
+      335,
+      632,
+      866,
+      346
+    ]
+  },
+  "ground-lock": {
+    "source": "icons/brave_guy_ui35_鎖定治療圖集.png",
+    "rect": [
+      54,
+      610,
+      884,
+      368
+    ]
+  },
+  "guilt-burst": {
+    "source": "ui/brave_guy_ui30_罪惡感爆裂圖集.png",
+    "columns": 4,
+    "rows": 2,
+    "frame_size": [
+      384,
+      512
+    ],
+    "fps": 10,
+    "loop": false
+  }
+}

@@ -1,6 +1,6 @@
-import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
-import { createRoyalArsenal } from './royal-arsenal.js?v=20261120perf';
-import { angelText, angelFont } from './angel-language.js?v=20261119dialogue';
+import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
+import { createRoyalArsenal } from './royal-arsenal.js?v=20261120assets';
+import { angelText, angelFont } from './angel-language.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Owns all guest projectiles, drones and delayed casts. Simulation time only.
 export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,arena,constrain=()=>{}}) {

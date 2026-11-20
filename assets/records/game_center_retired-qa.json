@@ -1,0 +1,37 @@
+[
+  {
+    "path": "assets/preview/game_center_branding04_hub_banner_thai.png",
+    "sha256": "0d4f1d04bb8b8552eb700076486be3d1b60ac63c2b93089892657cee72861697",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/game_center_branding03_hub_banner_mobile.png",
+    "sha256": "af1b8fbb903a1b61cd8a632df7a88e252799a7efdf5a889b47dcbd5978da5035",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/game_center_branding05_hub_compact_desktop.png",
+    "sha256": "a1af31fcd5332c007d27ab2d629a9d296147d04122cd3c227c9aa6589fee5ccc",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/game_center_branding06_hub_compact_mobile.png",
+    "sha256": "039f60c779c9dcf35f82e1839fb2ecedb8627c09d6b2c8422d4195b9a79ea72d",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/game_center_branding02_hub_banner_desktop.png",
+    "sha256": "5c8f77aad97d74489db09b4ad78643f6c423acf7f758c897b471fa6b12848b6a",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/banner/game_center_branding09_memory_pug_presenter_mobile.png",
+    "sha256": "aac527f3c32896bd6e38f396252497803f47a976e91965aa91f956e359187215",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  },
+  {
+    "path": "assets/preview/banner/game_center_branding08_memory_pug_presenter_desktop.png",
+    "sha256": "e107783a86bcee93f25116b92d82723d11ba32c2daf7e5b40eb7904ab0ca99ba",
+    "reason": "old QA screenshot; not game art; user requested no preview folders"
+  }
+]

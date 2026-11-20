@@ -1,3 +1,4 @@
+import { assetPath } from './asset-paths.js';
 // Live deformation and light over the approved source art; no new image or raster export.
 export function createMenuMotion() {
  const host=document.querySelector('#menu-art .art');
@@ -24,7 +25,7 @@ export function createMenuMotion() {
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;canvas.style.opacity=0;});
  const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
  function update(now,visible){if(!visible||document.hidden||lost||now-last<33||document.getElementById('overlay').classList.contains('stages'))return;last=now;
-  const portrait=matchMedia('(orientation:portrait)').matches, url=`assets/runtime/lossless/pic/branding/menu_keyart_${portrait?'portrait_01':'01'}.webp`;
+  const portrait=matchMedia('(orientation:portrait)').matches, url=assetPath(`assets/runtime/lossless/pic/branding/menu_keyart_${portrait?'portrait_01':'01'}.webp`);
   if(url!==source){source=url;ready=false;canvas.style.opacity=0;const img=new Image();img.onload=()=>{if(source!==url)return;gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);imageSize=[img.width,img.height];ready=true;};img.src=url;}
   if(!ready)return;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,stamp=`${source}:${box.width}:${box.height}:${devicePixelRatio}`;if(reduced&&painted===stamp)return;const ratio=Math.min(devicePixelRatio,1.5);const w=Math.round(box.width*ratio),h=Math.round(box.height*ratio);if(!w||!h)return;
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);}gl.uniform2f(uniforms.size,box.width,box.height);gl.uniform2f(uniforms.imageSize,...imageSize);gl.uniform1f(uniforms.time,matchMedia('(prefers-reduced-motion: reduce)').matches?0:now/1000);gl.uniform1f(uniforms.portrait,portrait?1:0);gl.drawArrays(gl.TRIANGLES,0,6);canvas.style.opacity=1;painted=reduced?stamp:'';

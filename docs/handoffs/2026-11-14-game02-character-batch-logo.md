@@ -7,7 +7,7 @@
 - 檔案在 02_brave_guy/assets/source/pic/sheet/sheet_{id}_draft_v1.png。
 - 7 張 Logo 修訂：worker、laichuang、hell、incubus、guanlaoban、xinji、baguashe；檔名 sheet_{id}_logo_v2.png。保留初稿，沒有覆蓋已核准 P0。
 - 共18張原生1536×1024 PNG，達合輯最低尺寸；未達建議3072×2048。未插值放大。
-- 尺寸／色彩模式：assets/source/P2_P3_BATCH_DELIVERY.json；提示詞：P2_P3_BATCH_PROMPTS.md。
+- 尺寸／色彩模式：assets/records/brave_guy_record42_p2_p3_batch_delivery.json；提示詞：brave_guy_record43_p2_p3_batch_prompts.md。
 - 審稿入口：assets/preview/p2-p3-character-review.html。頁首引用核准Logo原檔，但下方圖中標誌仍是生成版本。
 
 ## 驗收結果與限制

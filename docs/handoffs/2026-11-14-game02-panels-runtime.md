@@ -4,7 +4,7 @@
 
 ## 完成
 
-- index.html 載入 css/panel-art.css，將 panel_sheet 左上任務卡與 bubble_sheet 左上粉紅泡泡接入遊戲。原PNG未修改，僅CSS顯示指定區域，詳見 assets/source/PANEL_RUNTIME_REGIONS.json。
+- index.html 載入 css/panel-art.css，將 panel_sheet 左上任務卡與 bubble_sheet 左上粉紅泡泡接入遊戲。原PNG未修改，僅CSS顯示指定區域，詳見 assets/records/brave_guy_record44_panel_runtime_regions.json。
 - 任務卡採奶油色內文底、綠色標題區、深色內文；長標題可換行，職場「算了」計數改為深色以維持可讀性。
 - 小天使提示保留原劇本文字與顯示時序，改用原生粉紅泡泡，依文字調整高度。左右位置改用實際寬度、頂部改用實際高度限制，避免固定150／70像素在長句時截斷內容。
 - assets/preview/p1-panels-review.html 提供中文長句、英文長句、短句與英文長任務標題的閱讀檢查；明確標示測試文字不是新增劇情。

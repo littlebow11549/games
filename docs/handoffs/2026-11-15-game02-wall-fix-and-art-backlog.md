@@ -13,12 +13,12 @@
 - 絕招 `ult` 施放中主角不位移，本身不會穿牆（光束貫穿牆為攻擊判定，非角色穿牆）。
 
 ### B. 暫停頁美術
-- 現況：暫停鍵三個功能圖示（繼續/重打/回標題）已是正式美術（`function_icons_sheet.png`）；但**面板框本身、標題牌、按鈕底仍是 CSS**（`linear-gradient(#22402A,#12241A)`＋黑框黃外框），所以看起來「沒美術」。
-- `ASSETS.md §4.5` 新增展開需求：`ui/panel_popup.png`（九宮格框）、`ui/panel_title_plate.png`（標題牌）、`ui/btn_text.png`（文字按鈕三態），含尺寸、安全邊、配色、提示詞。
+- 現況：暫停鍵三個功能圖示（繼續/重打/回標題）已是正式美術（`brave_guy_ui18_功能按鈕圖集.png`）；但**面板框本身、標題牌、按鈕底仍是 CSS**（`linear-gradient(#22402A,#12241A)`＋黑框黃外框），所以看起來「沒美術」。
+- `ASSETS.md §4.5` 新增展開需求：`ui/brave_guy_ui26_彈出面板.png`（九宮格框）、`ui/brave_guy_ui38_面板標題底板.png`（標題牌）、`ui/brave_guy_ui27_文字按鈕圖集.png`（文字按鈕三態），含尺寸、安全邊、配色、提示詞。
 
 ### C. 未收到美術完整清單
-- 新增 `02_brave_guy/assets/ART_OUTSTANDING_2026-11-15.md`，分 P0/P1/P2/選做：
-  - **P0**：3D 模型全缺（manifest 7 鍵 null；MODELS_3D.md 21 角色+8 道具）、場景 §7 全缺（14+ 概念圖/貼圖/共用底）。
+- 新增 `02_brave_guy/assets/records/brave_guy_record01_art_outstanding_2026-11-15.md`，分 P0/P1/P2/選做：
+  - **P0**：3D 模型全缺（manifest 7 鍵 null；brave_guy_record03_models_3d.md 21 角色+8 道具）、場景 §7 全缺（14+ 概念圖/貼圖/共用底）。
   - **P1**：SFX 11 個全缺、UI 面板多數仍 SVG 佔位、品牌收尾（logo 高解析/menu_keyart ×2）、第一次變身演出 §6 全缺。
   - **P2**：對話頭像表情 §11（小天使 8＋主角 15）、教學圖、地圖三道具（履歷/算了計數器）。
   - 選做：字藝/特效貼圖/數字（SVG 佔位可用）。
@@ -26,7 +26,7 @@
 ## 檔案
 - `02_brave_guy/js/main.js`（`moveHeroBy` + 4 處位移改寫）
 - `02_brave_guy/assets/ASSETS.md`（§4.5）
-- `02_brave_guy/assets/ART_OUTSTANDING_2026-11-15.md`（新增）
+- `02_brave_guy/assets/records/brave_guy_record01_art_outstanding_2026-11-15.md`（新增）
 
 ## 測試結果
 - 無頭 Chromium（swiftshader）：對照組「舊式整幀衝刺」11/11 牆全穿；修正後 11/11 全擋、0 console error。

@@ -46,11 +46,11 @@ def finish(name, track, loop=False):
             subprocess.run(['ffmpeg','-y','-v','error','-i',f.name,'-codec:a','libvorbis','-q:a','6',str(OUT/'music'/name.replace('.mp3','.ogg'))],check=True)
 
 for name, notes, duration in [
- ('sfx_01.mp3',[(784,0,.23)],.32),
- ('sfx_02.mp3',[(784,0,.28),(1174.66,.10,.33)],.52),
- ('sfx_03.mp3',[(196,0,.27),(185,.055,.25)],.45),
- ('sfx_04.mp3',[(523.25,0,.5),(659.25,.12,.5),(784,.24,.5),(1046.5,.38,.8),(1568,.43,.7)],1.5),
- ('sfx_05.mp3',[(523.25,0,.5),(440,.20,.5),(349.23,.40,.6),(261.63,.64,.7)],1.6)]:
+ ('memory_crash_sfx05_點擊.mp3',[(784,0,.23)],.32),
+ ('memory_crash_sfx02_答對.mp3',[(784,0,.28),(1174.66,.10,.33)],.52),
+ ('memory_crash_sfx03_答錯.mp3',[(196,0,.27),(185,.055,.25)],.45),
+ ('memory_crash_sfx04_過關.mp3',[(523.25,0,.5),(659.25,.12,.5),(784,.24,.5),(1046.5,.38,.8),(1568,.43,.7)],1.5),
+ ('memory_crash_sfx01_失敗.mp3',[(523.25,0,.5),(440,.20,.5),(349.23,.40,.6),(261.63,.64,.7)],1.6)]:
     track=np.zeros((int(duration*RATE),2))
     for f,at,d in notes: place(track,bell(f,d),at,.62)
     finish(name,track)
@@ -74,7 +74,7 @@ for bar in range(32):
         t=np.arange(int(.13*RATE))/RATE
         kick=np.sin(2*np.pi*(49*t+3*(1-np.exp(-t*35))))*np.exp(-t*38)
         place(track,kick,(bar*4+step)*beat,.16,0,True)
-finish('bgm_01.mp3',track,True)
+finish('memory_crash_bgm01_一般關卡.mp3',track,True)
 print('Rendered original crystal BGM and five effects:', OUT)
 
 # Master/high-level score: same melodic identity, faster groove, 40 complete bars.
@@ -104,5 +104,5 @@ for bar in range(40):
             t=np.arange(int(.12*RATE))/RATE
             snare=(rng.normal(0,1,len(t))*.25+np.sin(2*np.pi*170*t)*.35)*(1-np.exp(-t*800))*np.exp(-t*35)
             place(track,snare,when,.07,-.15,True)
-finish('bgm_02.mp3',track,True)
+finish('memory_crash_bgm03_高階關卡.mp3',track,True)
 print('Master BGM plus gapless Ogg playback variants rendered.')

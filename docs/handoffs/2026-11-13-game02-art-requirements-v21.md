@@ -18,4 +18,4 @@
 
 ## 追加：3D 外包製作需求 v1.0
 
-使用者追問「還有需要外包做 3D 的部分」。新增 [`02_brave_guy/assets/MODELS_3D.md`](../../02_brave_guy/assets/MODELS_3D.md)：技術規格（`.glb`、面數、單材質、骨架、30 fps 具名動作）、動作清單（名稱對齊程式的 `visual.play()`）、21 個角色模型與 8 個道具的優先級、場景物件、驗收方式與 manifest 填法。規格依 `js/visuals.js` 的 `GltfVisual` 實際接口撰寫；**尚未用真實外包模型驗證過**，第一個試做模型進來時可能需要微調載入器（例如描邊、卡通著色）。
+使用者追問「還有需要外包做 3D 的部分」。新增 [`02_brave_guy/assets/records/brave_guy_record03_models_3d.md`](../../02_brave_guy/assets/records/brave_guy_record03_models_3d.md)：技術規格（`.glb`、面數、單材質、骨架、30 fps 具名動作）、動作清單（名稱對齊程式的 `visual.play()`）、21 個角色模型與 8 個道具的優先級、場景物件、驗收方式與 manifest 填法。規格依 `js/visuals.js` 的 `GltfVisual` 實際接口撰寫；**尚未用真實外包模型驗證過**，第一個試做模型進來時可能需要微調載入器（例如描邊、卡通著色）。

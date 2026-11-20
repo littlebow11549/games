@@ -8,8 +8,8 @@
 
 | 角色 | 正面 | 左側（面朝圖左） | 背面 |
 |---|---|---|---|
-| 大學生 | student_front.png | student_side.png | student_back.png |
-| 勇氣超人 | braveguy_front.png | braveguy_side.png | braveguy_back.png |
+| 大學生 | brave_guy_charactor01_主角學生_正面.png | brave_guy_charactor01_主角學生_側面.png | brave_guy_charactor01_主角學生_背面.png |
+| 勇氣超人 | brave_guy_charactor04_勇氣超人_正面.png | brave_guy_charactor04_勇氣超人_側面.png | brave_guy_charactor04_勇氣超人_背面.png |
 
 依原檔名規格保存，全部標為技術未驗收的暫稿，不因檔名符合就視為正式可接入素材。原有 hero_* 等舊佔位檔未覆蓋。
 
@@ -19,8 +19,8 @@
 - 所有圖都是單人、單角度、完整全身、空手、中性閉嘴表情；正背為A字站姿，側面為同姿態的側投影意圖。
 - 學生全黃上衣／袖口、反戴黃帽、黑短褲、白襪與黑白綠鞋維持。勇氣超人保留主要造型與新版胸口Logo。
 - 依既有3D需求，勇氣超人圍巾改為厚實、短尾貼上背，髮尖作塊狀。這是3D用適配，不替換合輯中的演出用長圍巾。
-- 有灰背景，無場景、光效或明顯地面投影；但四角採樣有色差，不是嚴格純#808080。採樣紀錄：`assets/source/P0_3D_BACKGROUND_CHECK.json`。
-- 實際尺寸、bytes、SHA256：`assets/source/P0_3D_REFERENCE_DELIVERY.json`；完整提示詞：`P0_3D_REFERENCE_PROMPTS.md`。
+- 有灰背景，無場景、光效或明顯地面投影；但四角採樣有色差，不是嚴格純#808080。採樣紀錄：`assets/records/brave_guy_record20_p0_3d_background_check.json`。
+- 實際尺寸、bytes、SHA256：`assets/records/brave_guy_record21_p0_3d_reference_delivery.json`；完整提示詞：`brave_guy_record22_p0_3d_reference_prompts.md`。
 
 ## 尚未通過的技術項目
 

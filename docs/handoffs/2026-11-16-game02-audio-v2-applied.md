@@ -20,7 +20,7 @@
 - 測試：無頭 Chromium 0 error；36 音訊鍵全載入；10 Boss 曲＋rage＋3_6＋1_1 皆在；jiamangKing 無專屬曲正確回退。
 
 ### B. 社會版假森音樂需求（文件，commit b39047a）
-- `assets/source/SFX_MUSIC_BRIEF_jiamang_2026-11-16.md`：請補 `bgm_stage_3_7`（3-7 關卡曲）與 `bgm_boss_jiamangKing`（假忙森主管守關者曲），附英文提示詞。已交付使用者。
+- `assets/records/brave_guy_record51_sfx_music_brief_jiamang_2026-11-16.md`：請補 `bgm_stage_3_7`（3-7 關卡曲）與 `bgm_boss_jiamangKing`（假忙森主管守關者曲），附英文提示詞。已交付使用者。
 - 現況 3-7 關卡用通用 `bgm_battle`、Boss 用通用 `bgm_boss` 暫代；補曲上傳後 Claude 接線（檔名對即自動生效）。
 
 ## 待辦

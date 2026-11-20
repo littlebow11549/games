@@ -1,7 +1,7 @@
 /* Original expression-sheet windows; retain the existing portrait frame. */
-.game-art #portrait::before{content:'';position:absolute;inset:3px;border-radius:50%;opacity:0;pointer-events:none;background-repeat:no-repeat;background-image:url('../assets/runtime/lossless/pic/sheet/unified/sheet_student.webp');background-size:987.43% 658.29%;background-position:65.16% 54.45%}
-.game-art #portrait.brave::before{background-image:url('../assets/runtime/lossless/pic/sheet/unified/sheet_braveguy.webp');background-position:77.91% 54.45%}
-.game-art #portrait.worker:not(.brave)::before{background-image:url('../assets/runtime/lossless/pic/sheet/unified/sheet_worker.webp');background-position:78.88% 59.16%}
+.game-art #portrait::before{content:'';position:absolute;inset:3px;border-radius:50%;opacity:0;pointer-events:none;background-repeat:no-repeat;background-image:url('../assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor01_主角學生_現役裁切圖集.webp');background-size:987.43% 658.29%;background-position:65.16% 54.45%}
+.game-art #portrait.brave::before{background-image:url('../assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor04_勇氣超人_現役裁切圖集.webp');background-position:77.91% 54.45%}
+.game-art #portrait.worker:not(.brave)::before{background-image:url('../assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor15_主角上班族_現役裁切圖集.webp');background-position:78.88% 59.16%}
 .game-art #portrait.hurt::before{opacity:1}
 .game-art #portrait.hurt{filter:drop-shadow(0 0 5px #ff452f)}
 #hit-feedback{box-sizing:border-box;background:radial-gradient(ellipse at center,transparent 35%,#d40a1538 70%,#ff152b99 100%);box-shadow:inset 0 0 65px #ec112f80;border:0}

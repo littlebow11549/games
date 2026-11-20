@@ -12,7 +12,7 @@
 - 惡夢玩家F直接2.4→1.8、濺射1.2→0.9、最後全場6→4.5（均-25%）；仍十門、獨立飛行、8.4秒召回、10秒全圖轟炸，範圍／擊退／時長不變。Boss版傷害不隨本次削弱。
 
 ## 素材與實作
-- 爆氣寶石復用已歸檔的1254×1254勇氣寶石原圖（source/pic/icons/btn_transform_courage_gem.png / runtime/lossless/pic/icons/btn_transform_courage_gem.webp）；CSS角色配色、光暈及心形／菱形標記。不另生成重複圖片，不改原母檔。按鈕68×68，right144/bottom224；手機與鎖定、四技能留空間。
+- 爆氣寶石復用已歸檔的1254×1254勇氣寶石原圖（source/pic/icons/brave_guy_ui19_勇氣寶石.png / runtime/lossless/pic/icons/brave_guy_ui19_勇氣寶石.webp）；CSS角色配色、光暈及心形／菱形標記。不另生成重複圖片，不改原母檔。按鈕68×68，right144/bottom224；手機與鎖定、四技能留空間。
 - 惡夢PUA對話彈由768×192提升至1536×384 Canvas：在2x座標系重新描繪路徑與字形，非舊圖插值放大。Sprite關閉tone mapping避免亮部偏淡，三語文字、尺寸比例、獨立釋放維持原規則。
 - main.js：量表、手動爆氣、倍率、常駐形態；guest-combat.js：F倍率；pua-projectile.js：原生高解析對話彈；playable-roster.css：寶石／量表外觀；game.css與三份WOFF2補字快取更新。相關模組及入口版本20261120burst。
 

@@ -1,6 +1,6 @@
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
-import { disposeOwned } from './dispose-owned.js?v=20261119dialogue';
+import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 
 const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
@@ -8,7 +8,7 @@ const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
 });
 
 const hitFrames = [];
-const hitSheetReady = new THREE.TextureLoader().loadAsync(new URL('../assets/source/pic/fx/fx_hit_arcade_8f.png', import.meta.url).href).then(sheet => {
+const hitSheetReady = new THREE.TextureLoader().loadAsync(new URL('../assets/source/pic/fx/brave_guy_fx01_fx_hit_arcade_8f.png', import.meta.url).href).then(sheet => {
   sheet.colorSpace = THREE.SRGBColorSpace;
   for (let i = 0; i < 8; i++) {
     const frame = sheet.clone();

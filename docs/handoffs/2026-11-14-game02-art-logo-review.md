@@ -20,12 +20,12 @@
 
 | 檔案 | 原生尺寸 | 背景 | 狀態 |
 |---|---|---|---|
-| 02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png | 1536×1024 | RGBA，左上 alpha=0，真透明背景 | 新版主 Logo 第一稿，未定案 |
-| 02_brave_guy/assets/source/pic/sheet/sheet_student.png | 1536×1024 | RGB 深綠黑底 | 全黃上衣修正版，審稿用 |
-| 02_brave_guy/assets/source/pic/sheet/sheet_braveguy.png | 1536×1024 | RGB 深綠黑底 | 審稿用 |
+| 02_brave_guy/assets/source/pic/branding/brave_guy_branding09_logo_01_review_v1.png | 1536×1024 | RGBA，左上 alpha=0，真透明背景 | 新版主 Logo 第一稿，未定案 |
+| 02_brave_guy/assets/source/pic/sheet/brave_guy_charactor01_主角學生_現役裁切圖集.png | 1536×1024 | RGB 深綠黑底 | 全黃上衣修正版，審稿用 |
+| 02_brave_guy/assets/source/pic/sheet/brave_guy_charactor04_勇氣超人_現役裁切圖集.png | 1536×1024 | RGB 深綠黑底 | 審稿用 |
 
-- 詳細大小、SHA256、格式：02_brave_guy/assets/source/P0_REVIEW_DELIVERY.json。
-- 提示詞：02_brave_guy/assets/source/P0_REVIEW_PROMPTS.md。
+- 詳細大小、SHA256、格式：02_brave_guy/assets/records/brave_guy_record25_p0_review_delivery.json。
+- 提示詞：02_brave_guy/assets/records/brave_guy_record26_p0_review_prompts.md。
 - 使用內建 image_gen，先親自查看封面、封底及版式範例；不沿用範例兔角色。
 - Windows 路徑參考參數不被生圖工具接受，改以已顯示的參考圖上下文完成生成。工具回傳 PNG bytes 以原樣存回 APHASEN；未重新編碼、未插值放大、未壓縮、未繪製程式佔位圖。
 

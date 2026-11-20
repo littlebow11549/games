@@ -11,7 +11,7 @@
 | [`SCRIPT.md`](SCRIPT.md) 初稿 v1.5 | 劇情腳本：主線 670 句、泡泡 52 句。遊戲內的對白是節錄（約 250 句），在 `js/story.js` |
 | [`CHARACTERS.md`](CHARACTERS.md) | 16 個角色的設定與「角色設定合輯」規格。合輯圖尚未製作 |
 | [`assets/ASSETS.md`](assets/ASSETS.md) v2.0 | 交 GPT 的美術製作需求，含優先順序 |
-| [`assets/MUSIC.md`](assets/MUSIC.md) v1.2 | 音樂與音效製作需求：每關不同的戰鬥電音。14 個關卡鍵都已接上 |
+| [`assets/records/brave_guy_record04_music.md`](assets/records/brave_guy_record04_music.md) v1.2 | 音樂與音效製作需求：每關不同的戰鬥電音。14 個關卡鍵都已接上 |
 | [`assets/README.md`](assets/README.md) | GLB 模型與音樂怎麼接進遊戲 |
 
 ## 已有的功能

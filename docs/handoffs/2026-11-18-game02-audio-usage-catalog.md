@@ -1,7 +1,7 @@
 # 音訊用途命名、完整試聽檢核及冠老闆出場曲
 
 - 使用者確認冠老闆出場使用「頂樓老闆辦公室原曲」bgm_stage_3_5。bossBgm(entrance=true) 僅套用登場對話／動畫；返回戰場仍依形態切勇氣超人／原Boss戰曲，其他Boss不變。
-- 新增 assets/audio-catalog.json、assets/AUDIO_CATALOG.md：38首BGM、85個SFX槽位，逐項中文用途與穩定B/S編號。共用音檔在試聽頁列出，舊掌聲與舊合成歡呼標記停用。
+- 新增 assets/audio-catalog.json、assets/records/brave_guy_record02_audio_catalog.md：38首BGM、85個SFX槽位，逐項中文用途與穩定B/S編號。共用音檔在試聽頁列出，舊掌聲與舊合成歡呼標記停用。
 - 新增 audio-review.html：123項可逐項播放、搜尋、單一播放、全部停止、保留／替換標記；標記只存在瀏覽器專用localStorage，不碰遊戲存檔。
 - 音訊用途檔名：16首關卡音樂補上場景名稱，含OGG／MP3；hit、ko、y2004、result、dialog版本編號改成明確事件名稱。其餘原有檔名已依用途命名，保留。程式事件ID保持穩定，manifest與現行工具引用同步更新。
 - 未重製或重新編碼任何聲音。僅整理勇氣超人目前manifest全部槽位，未整理其他遊戲或未接入的歷史音檔。

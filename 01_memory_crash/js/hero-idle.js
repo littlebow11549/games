@@ -3,7 +3,7 @@
 (() => {
   const script = document.currentScript;
   const image = new Image();
-  image.src = new URL('../assets/runtime/pic/batch3/pug_idle_full.webp', script.src).href;
+  image.src = new URL('../assets/runtime/pic/batch3/memory_crash_charactor01_太空巴哥_idle_full.webp', script.src).href;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const durations = [1500, 520, 90, 110, 90, 520, 700, 470]; // 合計 4000ms，含眨眼
   const total = durations.reduce((a, b) => a + b, 0);

@@ -8,7 +8,7 @@
   },
   "clips": {
     "idle": {
-      "image": "char_anim_idle.png",
+      "image": "memory_crash_charactor01_太空巴哥_idle.png",
       "image_size": [
         1774,
         887
@@ -22,7 +22,7 @@
       "loop": true
     },
     "happy": {
-      "image": "char_anim_happy.png",
+      "image": "memory_crash_charactor01_太空巴哥_happy.png",
       "image_size": [
         1774,
         887
@@ -36,7 +36,7 @@
       "loop": true
     },
     "sad": {
-      "image": "char_anim_sad.png",
+      "image": "memory_crash_charactor01_太空巴哥_sad.png",
       "image_size": [
         1774,
         887
@@ -50,7 +50,7 @@
       "loop": true
     },
     "celebrate": {
-      "image": "char_anim_celebrate.png",
+      "image": "memory_crash_charactor01_太空巴哥_celebrate.png",
       "image_size": [
         1774,
         887

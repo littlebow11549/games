@@ -1,6 +1,6 @@
 # 勇氣超人 Brave Guy — 變身曲 + 其餘關卡戰鬥曲（2026-11-14）
 
-製作：音樂工作階段（Claude）。依 [`02_brave_guy/assets/MUSIC.md`](../../02_brave_guy/assets/MUSIC.md) v1.3。
+製作：音樂工作階段（Claude）。依 [`02_brave_guy/assets/records/brave_guy_record04_music.md`](../../02_brave_guy/assets/records/brave_guy_record04_music.md) v1.3。
 分支：`claude/brave-guy-music`（已併入最新主線再製作）。
 
 ## 本次交付（7 首，取代暫代曲）
@@ -16,7 +16,7 @@
 | `bgm_stage_4_1` | 4-1 終章 夢魘超人（黑影三） | 前半 ambient→後半 uplifting trance ~138，主題蓋過鏡像 | 97.4s | −16.6/−1.1 |
 
 - 每首：`.ogg`（q4，無縫循環；`bgm_brave` 開頭第一拍即高潮）＋`.mp3`（128k 後備），44.1kHz，−16 LUFS／真峰 ≤ −1 dBTP。
-- 母帶 WAV 於 `_archive/02_brave_guy/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（19 項）。
+- 母帶 WAV 於 `_archive/02_brave_guy/music/`；規格總表 `assets/records/brave_guy_record09_audio_delivery.json`（19 項）。
 - manifest 這 7 鍵已從暫代/`null` 換成專屬曲；**未改 `js/`**。
 
 ## 目前整體進度
@@ -24,7 +24,7 @@
 - **所有關卡戰鬥曲皆有專屬曲**：1-0~1-4、2-1、2-2、3-0、3-2、3-3、3-4、3-5、4-1，加 `bgm_boss`、`bgm_victory`、變身曲 `bgm_brave`。
 - **尚缺（非戰鬥）**：`bgm_title`、`bgm_transform`（極認真、戛然而止，不用電音）、`bgm_defeat`、`bgm_talk`、`bgm_ending`、`bgm_credits`。
 - **仍為暫代**：`bgm_stage_3_1`（1 樓大廳，目前仍借用 `bgm_office`；v1.3 未列入必換，但風格應為 tech house 126，建議之後補專屬）。
-- 音效（MUSIC.md §4）尚未製作。
+- 音效（brave_guy_record04_music.md §4）尚未製作。
 
 ## 驗證
 

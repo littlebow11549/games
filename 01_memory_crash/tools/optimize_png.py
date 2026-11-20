@@ -32,7 +32,7 @@ def optimize():
                 'before_bytes':len(before), 'after_bytes':len(result),
                 'decoded_pixel_sha256':hashlib.sha256(original.tobytes()).hexdigest(),
                 'identical_pixels':True})
-    report = ROOT / 'assets/LOSSLESS_COMPRESSION.json'
+    report = ROOT / 'assets/records/memory_crash_record04_lossless_compression.json'
     report.write_text(json.dumps(rows, indent=2)+'\n')
     before=sum(x['before_bytes'] for x in rows)
     after=sum(x['after_bytes'] for x in rows)

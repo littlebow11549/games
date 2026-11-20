@@ -1,0 +1,1074 @@
+[
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_fx01_ambient_plate.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "cf835ec7b28588b3787a5c779bbcf83a99968c7b64475c509837e3833ff9ae76",
+    "bytes": 907430
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui49_計量條填色.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "d653fe27e20cca9554d236456808abcd3ff0212ed50d1399c6bd366194a68b2f",
+    "bytes": 228902
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui47_計量條低量.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "036191686e24b7d842f6f4921f2abd0d7c1d44ed6bfbc05dd7ebfa67dba7991c",
+    "bytes": 220902
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui50_計量條框.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "4910b24d4e2c45b1cc3f137172c45a891d9dd401317abeac5cd364d545fb1dbe",
+    "bytes": 198344
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui08_logo_shine.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "a3d8dfa60e65e5b82d4440a098c0bf12c9cf8c194d95fb814554eeda70ccee9d",
+    "bytes": 659426
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui28_titles_fx_again.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "f6417e536e7d58c5821a442e83677c88af171751fe35f4b62bf6a51cf0855016",
+    "bytes": 1579900
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui30_titles_fx_combo.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "8e0fa28343f913e434d25605b16bfae0280a816a16e335fcab3cd6b8859c4aca",
+    "bytes": 1626602
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui31_titles_fx_miss.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5ab263b2e4590bed1270a088f4e3ada17f10e6bad2e757457943d5367fd7048f",
+    "bytes": 1536804
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui33_titles_fx_perfect.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "7c37519468921bf1cea48a746ffd37a268da3d4c43b77c6abb199efcc70f2778",
+    "bytes": 1728838
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui35_titles_fx_ready.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "64c86128a220b1563ff7897458e30d860136b1c20391f0ecb232abd96d614b9a",
+    "bytes": 1520128
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui37_titles_fx_your_turn.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "6a453cdf4bab0163bb8f98eccac43fa83cb6d2643def3ac412632ceae3573756",
+    "bytes": 1561368
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui03_gameover_hero.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "b73fd6e660700375e8a5b3340ad7d960c7d51edbc31585573314a446db41c979",
+    "bytes": 68104
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui07_howto_hero.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "3c13a695979577ff5362b95026511df199253c924a2f401f9db037a1084ec843",
+    "bytes": 64770
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui21_option_hero.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "4201b8d32ef4c409cb9cfc2a457f834a3560feb0e785b8ac1eed036904d92567",
+    "bytes": 67766
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_charactor01_太空巴哥_idle_full.webp",
+    "status": "現役載入",
+    "references": [
+      "assets/css/hub.css",
+      "01_memory_crash/js/hero-idle.js"
+    ],
+    "sha256": "5e8a0b0873ed4b8511922444f9ad5d162f3c3af11d2b4f50a107c7ac563088d7",
+    "bytes": 433474
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui22_start_hero.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "888844a3b9ebd849048df043e6cbeab4ad3e7a4f59cfa8975db253069946dd0c",
+    "bytes": 53562
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui29_titles_fx_again_v3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "131b5da3c8be14404489cac952ea1ba35c9ef201869d37ad9fdfd408085b9edc",
+    "bytes": 101858
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui32_titles_fx_miss_v3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "71b54311fcdd7d0429bcfc1addf3bb58b3db30de05cae052e9b43920b43996c1",
+    "bytes": 115768
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui34_titles_fx_perfect_v3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "f83e134196b14f7ee35335a0fd73098c0c7a445f15f7b9bae2c266d793da56f2",
+    "bytes": 87960
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui36_titles_fx_ready_v3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "1b6b8deff3df8488725f175d01afca5a3aa7dcaa8dd7ae89607b673571faf455",
+    "bytes": 96600
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui38_titles_fx_your_turn_v3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5f7432ba5573eb4aaf294f7c878d0f78f53cea1902c0ce5b507aa5bf1ce50f46",
+    "bytes": 89600
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/branding/memory_crash_branding04_icon_02.webp",
+    "status": "現役載入",
+    "references": [
+      "assets/js/hub.js"
+    ],
+    "sha256": "6b8a9f67e04ef731a24f93a92ea7d64704e9f96ad5ce83393c535b9aa077a18a",
+    "bytes": 78104
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/pic/memory_crash_fx02_fx_01.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/presentation.js",
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "5afddaabab0b2377d21f47d82994a40b00c6b4c986655ccf6b867dad598b0fdf",
+    "bytes": 225504
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/video/memory_crash_video01_01.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "33389757ddf0961d8b9282c3c6a424e9f1a72e42e1619ee7fc54324fc74fd5e0",
+    "bytes": 212047
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/video/memory_crash_video02_ambient.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "40a7e01fd91dba9c54f51b54415a7518c511dfb069b06e39a4ff521628426253",
+    "bytes": 47259
+  },
+  {
+    "path": "01_memory_crash/assets/runtime/video/memory_crash_video03_warp.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "b3b94b0eaab1aa85eebd2fecc1618f9ab685d8f1f46e908363978a417a647436",
+    "bytes": 149315
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm01_一般關卡.mp3",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "31e4b738bc0bc7d7dbd5e3fdf62f9a8b018d816cc6b13cd1ef8cbd822a8a8abe",
+    "bytes": 411315
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm01_一般關卡.ogg",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "95077a806906f81e0e2e38dd4f28b1befe686c2c2c473e3fb8e674b59eb979b8",
+    "bytes": 347962
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm03_高階關卡.mp3",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "2b29a296e9e68d6a64f2c4507bef1ff3512c5a6e4bba9cc972417cbdd0596e54",
+    "bytes": 1182450
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm03_高階關卡.ogg",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "17bb6502b858d7c833fd98afa49adc1f3ad9651cb7106ed3f0ab00e01c54dc81",
+    "bytes": 968470
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm02_主選單.mp3",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "1a10b52d992a7d8986c8e6eec1adc89b65a331f4ce1a6dde2650f3bd04e06f7d",
+    "bytes": 411315
+  },
+  {
+    "path": "01_memory_crash/assets/source/music/memory_crash_bgm02_主選單.ogg",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "03a81a52815dd28c2acb5183af8b4bad0201f2876d252b2c82fae203f0c7484f",
+    "bytes": 342263
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/background/memory_crash_background01_水晶大廳.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "e56390107d1de659a7104c4621efe0b2146a53504ba93abd28270aedc5dcd1ff",
+    "bytes": 1315646
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/background/memory_crash_background01_水晶大廳.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "4f2b8875a6cbbab79aa62e5b7c4202b6fb8445a9ec922159705f73e2e9e94a40",
+    "bytes": 87540
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding01_blade_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "27f87f001c625e85511a0d970981767fc129ab67d3817c8eb096267949fc97c0",
+    "bytes": 703931
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding02_favicon.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "3d43eade78aae995c5f254cee13ce1ac093c2820302ef92d87d9d6fd9a1277c5",
+    "bytes": 11612
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding03_icon_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "bc412947cf2c99b9e29c2c88391c4cf8ecbb63dba6eac9d2bf31b9347d8f154f",
+    "bytes": 1299646
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding03_icon_01.svg",
+    "status": "現役載入",
+    "references": [
+      "index.html"
+    ],
+    "sha256": "c50690d77e646afd6959f7601fde914e41a6566b410ef6dfe6cf89e7c29e6393",
+    "bytes": 2164
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding04_icon_02.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "ccea1c27bd6d7b23a1f55a8657f8c054a91eb39b265f7aedd77a0dfdf2996127",
+    "bytes": 2456311
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding05_logo_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "ee239f00239318a0c1d48f0da23c6e8662e1544487c2daeb4d1501f339ae8194",
+    "bytes": 1284111
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding05_logo_01.webp",
+    "status": "現役載入",
+    "references": [
+      "index.html",
+      "01_memory_crash/index.html",
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "bc8ca219d58b0350e930926a4df2f68c9318df4041be3e022d4fa8524d7ad6d2",
+    "bytes": 222152
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding06_logo_02.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "277290b3bf089b88115f6f2eda89b098fd87bdaeb246067a117e02b3fd12e038",
+    "bytes": 1856327
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding07_logo_shine.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "aadf3eee63267a5c2fdd7d5ad62c6c6a5d89c8253e015ce60ccfb1ab65d48ebb",
+    "bytes": 993827
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_celebrate.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "be10973ee0674bb6660f2271dccb156e2fb1cc6ab09734f179946cb9b3257012",
+    "bytes": 1276872
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_celebrate.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/mascot.js"
+    ],
+    "sha256": "817353e1a09538be4fdc8ec25d8d1e1723aae274fb84133aa41b96359429a093",
+    "bytes": 312840
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_happy.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "2878b2b834f76b42125a48dcd3352328660d76db3365a77336aef3d3f62e146c",
+    "bytes": 1444753
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_happy.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/mascot.js"
+    ],
+    "sha256": "3182534e23ba1d2911adc88d218eb538d323204f50c4cb6fa5de382b908d15e9",
+    "bytes": 303684
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "518046de379018eac46bce1ad1ce9f4c16e408ea855c6f61707eccd65b16c9f8",
+    "bytes": 1431490
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/mascot.js"
+    ],
+    "sha256": "9370a6baf9d67000360241d2b69bc74e95a1d2d1f0bb564ba741643fd2e17e98",
+    "bytes": 334090
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_sad.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "deeeac64a4867ff24526c94b09666d2e155b0dd1625dfc6531bd0cc0ca7c6a9e",
+    "bytes": 1369431
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_sad.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/mascot.js"
+    ],
+    "sha256": "b8bb015a6e2fd6510d7127193ffbf86956ce1263382dde73d9c313c9168a3d60",
+    "bytes": 279278
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle_full.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3a49e180a333e4f43b8026e9a4d1ea2bfb08b49386282e4573ed15a96791eafa",
+    "bytes": 2359139
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/font/memory_crash_ui02_font_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "be585b301bdb239afb8bc198cf9f6c3fa7f22163fdd69429e914ba2825976c99",
+    "bytes": 1228488
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/font/memory_crash_ui02_font_01.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/presentation.js"
+    ],
+    "sha256": "72fd0bb36b80ad0e2248ab8b8181d3d06d651324e1891ee27ac5bf72be0ac44a",
+    "bytes": 1017772
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/fx/memory_crash_fx01_ambient_plate.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "6eefbb9a42a069b6aaea949e3acfc1623fbde5f38c2787803c91d4e21cd93cd9",
+    "bytes": 1330072
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/fx/memory_crash_fx02_fx_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5a0c2406b806e25c269cc988b750fe98b8ff64663d9102b9f6cb1ab34775e088",
+    "bytes": 1584568
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui04_gems_01.png",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/floatgems.js"
+    ],
+    "sha256": "10549b71c251d493a87e3b5de820dabe690c81811af4e88c70eeb3f09e7e3e1b",
+    "bytes": 1272561
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui04_gems_01.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "46fe7e31b0417213598cd71b868181c3efdfbf47eaf813f5e20a24e76c05881c",
+    "bytes": 315698
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui05_gems_02.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "2426f7ae12d4f5d212f9193e1c6fa422d7ef938b6227ade8c9c49cd91c5ac805",
+    "bytes": 1301385
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui06_howto_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "55d4691e2132d104db15d677c6accb1abd798fe566e5cf005de1e04dece2106b",
+    "bytes": 989994
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui23_step1.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "93329089f3a63f48c27bb143967871a1bb5721b14df3fbacc92902e67d87b4a0",
+    "bytes": 247975
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui23_step1.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "979d43e38527ad10c1ccfacdb66208e7d64ed2a89391d9f41a198ec6b4b2d8b2",
+    "bytes": 34714
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui24_step2.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "106062a92d105c8749a13b8f0425e6cc374d134755f13189c606ab635bd09f5c",
+    "bytes": 278699
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui24_step2.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "9b7d6b8602a5cb2c1492295423d961d486f6d6de353788c60261d952bd544b8e",
+    "bytes": 39354
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui25_step3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5cf3a79b116f086fab86bf1a5a89dffef0b0fa9f34c413d5fb3aefdbbafdad53",
+    "bytes": 280048
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui25_step3.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "e85fd0034b9b5f0c34636af9753ed7bbfa6a4e32f16588b1f6d316c4f8a99a4f",
+    "bytes": 53192
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui26_step4.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "4d9ba8f812a2e962ef4d3ade55fdbc34670e0db4f846942b53114a0d3fe822e8",
+    "bytes": 134721
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui26_step4.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "141863e565d59e76484be5b5e531271dcfbc38816e605a227462453d50ef348e",
+    "bytes": 26944
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui01_colon.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "1a6ff736a51dfc707decc9ac66c888a4df189a7f2ce25e335821e4a27e8aebc6",
+    "bytes": 64366
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui01_colon.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "6cd6cabf9833d10461442ecb4e182cb201bae600050bd95569b3512444cad6fd",
+    "bytes": 11924
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui09_lv.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "01ae0de1473c3417a938e7c191eb4c0e997342cb5051a17639c81a69b5890562",
+    "bytes": 123427
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui09_lv.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "3f4f936adee284f34755cc4a6d51c8f6edbae45fb34660e336c0e3e9f49e9c8e",
+    "bytes": 21678
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui10_n0.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3050d7fcea0800eb74579f2f76ae4093050ac49d0eacd9a9ffe5de5eed279ee7",
+    "bytes": 132405
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui10_n0.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3fd9b073feb964df24528712c87e8fb8b5e4c7130ec73acc4aabf19501677a1d",
+    "bytes": 20712
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui11_n1.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "34357404035ac39de976dd645f48bd132eff653a6a4d576bf37095b76e2583e6",
+    "bytes": 97587
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui11_n1.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "44abd320108a214fb5123092af27a571afcf70a2b05fc50e260912bad94cd529",
+    "bytes": 16618
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui12_n2.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "ee7367876f472910f227f0e7ddf4927e5c04cf17f71ad014f00bdc4557aefe35",
+    "bytes": 132818
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui12_n2.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "32e7c78ab9f321b325b2e7f8562a869e04a3e6050cfc88a374b0e102c84933b3",
+    "bytes": 21598
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui13_n3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "c5b0afbacbfae94e4967efaed30b7128866bc6fdb36b9e7f2097410807f668b2",
+    "bytes": 135117
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui13_n3.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "915068059d020baff3cc56d37288541eb5fcc8f736492909d12db56ba719800a",
+    "bytes": 21316
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui14_n4.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "1e544ac38f799210751a5245fc5c445f6f84641fd3a386858585242bb4476e31",
+    "bytes": 120440
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui14_n4.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "481a8f0616196ce22d2aadf577e7dd95d4237d6d8a90e6192a1f0fbe637f6432",
+    "bytes": 18990
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui15_n5.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "f4476da3942a6fb1fb76624eee3f95ca58f90dfa498f69b6ddaf42a3f34a14b5",
+    "bytes": 130248
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui15_n5.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "c060c67a1b608a347d428ceee692fd759a9c0bc36cf120fb7f20288eb230002a",
+    "bytes": 20956
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui16_n6.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5a8486bccbea2a88baedb81a669e62e0cf56c0ae049f8e5bd7e92e6c86e80879",
+    "bytes": 132137
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui16_n6.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "dd02cdf8535179b66e55c052cab04fac929bc18719c489cde0b0a145172c2519",
+    "bytes": 21216
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui17_n7.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "e53adae21b18f58e5e63aa7b905e5f8d4d7919db41a4777bb0986ceae8a68c8c",
+    "bytes": 108853
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui17_n7.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5ca13a0bb94acf659aa60794c2c6851ab08fef552cd1915af18c40f239ef3c3a",
+    "bytes": 17774
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui18_n8.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "2b530a6d7a1c099f0a663d44d03c9957f8a808b6a603ed2ea5277576e33af5e8",
+    "bytes": 138781
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui18_n8.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "0c1306ef99258dc636bbca2d7c03c230783de95fcba929d1e0ae0739c71c5385",
+    "bytes": 21750
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui19_n9.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "8d3aa45dba98d26ba6947f4c69dd56123cbd4ef8dcc4b183d882d4bce863d6c1",
+    "bytes": 131671
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui19_n9.webp",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3a8b10890b0449af1b45a701e7998bcb288ce962eec62f016d690fbfbf967fad",
+    "bytes": 20734
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui20_numbers_01.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "65f047dc38620c1217a8aee649857de4f5aee2c3f31be4f9356b637a61e93a28",
+    "bytes": 1514559
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui03_gameover_hero.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "86b9bb54043b5fb2437a204147d9ae5214861c0c50af52e18771586525f85d71",
+    "bytes": 987412
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui07_howto_hero.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "469a579f543c9766d80aaa22774646a21d5a33218bd207f133d63d8c0967e8d4",
+    "bytes": 897317
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui21_option_hero.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "7121e0e8518a4a86fa9129e3a34d47f7d6bea3244f0d9704a553a1753dcdd1ca",
+    "bytes": 1037190
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui22_start_hero.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "a875f02091f62c5b5c65ae23a930da013b6de772fc6d38a26fbe5157ba79754e",
+    "bytes": 1251284
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui27_titles_02.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "5dad4959c2677565f6f612c0863b1a0a5763ba7e19ae1132290fbf7eea5ea85f",
+    "bytes": 905479
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui27_titles_02.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "feceb0019b824fd8419e8d539dc19604d0209d744aba4fe235259188c2d0c084",
+    "bytes": 224496
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui29_titles_fx_again_v3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "521f95fa7c8faf46f0a2c0ea49143c5029d2e0022af1d8bf4c5bb2528d8cb2d3",
+    "bytes": 1360769
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui32_titles_fx_miss_v3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "065015429756148a7cd71b923b004f0b5fb2b20995d8f22ef73e075acc8dbefa",
+    "bytes": 1402859
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui34_titles_fx_perfect_v3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "e5a2bd9a8769cbf7072053d75b24c3bc0d38d7bd88eec96d031875a3c04d61c1",
+    "bytes": 1513497
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui36_titles_fx_ready_v3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "0334afa593a8a6d60e8edd37b9bf183248148d97cb2c8cc11fdca7471062872b",
+    "bytes": 1390793
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui38_titles_fx_your_turn_v3.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "599310fc1e79c457f75e4da024c9a34108febafa3a74e308d13669874aa3769f",
+    "bytes": 1229818
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui40_按鈕停用.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "ad6b5fddd0fe41dd32c18b6c9aff6a4cafb2fdda310c329e4430801222f24eb4",
+    "bytes": 88467
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui40_按鈕停用.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "0e72631fb82daa1dd239cc67418586551b9a8d337949f36eb6e6df3414dbe951",
+    "bytes": 12886
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui42_按鈕正常.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "d1089091a96c80f7b40ca8cf34203d3ce7ab111feedeac6600fd3a3c61f987df",
+    "bytes": 87997
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui42_按鈕正常.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "96eb618dba4313e36e1a4eebf7c36df8c3e312d0fadf6cc78be528e46c744d5a",
+    "bytes": 13578
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui41_按鈕按下.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "4a9905626acaa0aa133e39798c32b6382af1fc81d494b6f2ae740d5d7edb2860",
+    "bytes": 87455
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui41_按鈕按下.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "d4d224a787049e8957f1dc05dd99fdae5a2b5c74fe476a3b6aca7ccecc2362ad",
+    "bytes": 13600
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui48_計量條圖集.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "6a83e9973052ab8f330311a1b7b4b6de00faa4c958a56b5e75669c921440559a",
+    "bytes": 853036
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui49_計量條填色.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "c232b01914092db9c792423852fe53b5950e63866470910ff8778bc2deabf7a3",
+    "bytes": 301010
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui49_計量條填色.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "5e4492d435a1150da9c91c6c8dbe9248e4b315fa7b7f643a6d96d4d4a01a53db",
+    "bytes": 53906
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui47_計量條低量.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3f7844b21f76032084ea1e16fc88662e4870d8411059713cef03970eb7d55a44",
+    "bytes": 293873
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui47_計量條低量.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "8d5215a6f3f6d35aebb8f9da61cec3e7647ef1c34ad3cbbd5a876c4ffec28907",
+    "bytes": 51710
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui50_計量條框.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "627579e3094213ab162ff5aac27a086049a60a7346bd80345c5e084cd6424347",
+    "bytes": 257987
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui50_計量條框.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "2901b79e551518796ce485b07e0fdf2f0d21c56034244c734f5e349e3d197aad",
+    "bytes": 73588
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui51_設定.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "723c98073faf6d892a3774f98369d66441351a76cc5de4a8f2200cd956dcc2ce",
+    "bytes": 165991
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui51_設定.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "44bcd4236dac61a2456c480963de9f6ef85ba4ed484bf9dcebd7ecdf8dd26345",
+    "bytes": 29772
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui46_空心血量.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "bc447615c7a0010dc4739ee6b399a8d0d734e0f050aeef73d020a681f4453882",
+    "bytes": 142905
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui46_空心血量.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "9cecb64492eda7164149f19e22f7cc6af6f49b88460eb9e6ca6b4fc84e59d7a0",
+    "bytes": 20744
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui44_滿心血量.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "f8a178fdf908ba994ed28c39e2830345969ece4630497089a8f38504fec919fb",
+    "bytes": 149896
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui44_滿心血量.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "363bf67a2676af602bc083a80cd6657c706905aa7c9a8691ed33faefa1e7f945",
+    "bytes": 25180
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui52_面板.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "bbc2a63eb7f473465376aae026c83f0ac29e1d13d42939517b946718df12d90b",
+    "bytes": 84202
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui52_面板.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "2d8a7e1a7e112ea6db57a3a4564df07873e39a0c3a0b46acdf8d058019d6deda",
+    "bytes": 18754
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui43_插槽.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "3416c6e5720caeee8a87c217ff73792b67133a7a7139b06587eb05ae6114d920",
+    "bytes": 66279
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui43_插槽.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "d8e9dac51cec0b3b50a74890e7f8a546838b75551ef6fb89b727fe7cbfccdd16",
+    "bytes": 15762
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui45_發光插槽.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "4fa14bd1add79ac653a8dfd14b45fe37161cc51cb0d37b101d822cb74812ca9f",
+    "bytes": 129006
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui45_發光插槽.webp",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/css/style.css"
+    ],
+    "sha256": "b493847bd0c0c20082f5841977a43eecb7c597418d6f5c57e6a54f79ba148d1a",
+    "bytes": 17392
+  },
+  {
+    "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui39_介面總圖集.png",
+    "status": "正式母檔／設計參考",
+    "references": [],
+    "sha256": "4416912df24710cfee7fa420bd2f3237bd6a6d5f4ae7e93c8ee245ca3532a448",
+    "bytes": 1073866
+  },
+  {
+    "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx05_點擊.mp3",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "7df0b5b6677b7e1dafa42ce305aa07db098b24362bccbfedfc2c86abf15b0bec",
+    "bytes": 9447
+  },
+  {
+    "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx02_答對.mp3",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "cfed5d07b6bf66830b4815b2d1b5e6f232c73c4d9865743aaf5387731c956f96",
+    "bytes": 13835
+  },
+  {
+    "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx03_答錯.mp3",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "1caea375683b75c10258b4a7e0c23ff827d141a94eb6e5268fbfa7ca0f0e0b36",
+    "bytes": 12581
+  },
+  {
+    "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx04_過關.mp3",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "b47df82683df65a7b03b5e0d45d6ea0eda4b6a3fd4425cfebc809f1424691793",
+    "bytes": 37659
+  },
+  {
+    "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx01_失敗.mp3",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/js/game.js"
+    ],
+    "sha256": "8bacc097f1c2aeb07a65f6a100ea8cb50dbc17e9abdfe0f8203fc6775c306dc3",
+    "bytes": 40167
+  },
+  {
+    "path": "01_memory_crash/assets/source/video/memory_crash_video01_01.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "f63e1b88347b3497d743c88863906daeb0834d50b5afd687e3db62adc6ca3cd1",
+    "bytes": 25025329
+  },
+  {
+    "path": "01_memory_crash/assets/source/video/memory_crash_video02_ambient.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "a6adeef26db80ab707fcca50538d11977335a3ddd067af4a02f11c37ce1daf5a",
+    "bytes": 5809605
+  },
+  {
+    "path": "01_memory_crash/assets/source/video/memory_crash_video03_warp.webm",
+    "status": "現役載入",
+    "references": [
+      "01_memory_crash/index.html"
+    ],
+    "sha256": "e09f5c15bdd603b454649e124381fdb34ba9072ab5300f7de1ea5bbbacb57276",
+    "bytes": 21143016
+  }
+]

@@ -1,4 +1,4 @@
-import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
+import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Purple/gold portals launch independently targeted PUA dialogue; all time is simulation time.
 const UP=new THREE.Vector3(0,0,1);

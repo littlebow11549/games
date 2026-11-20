@@ -14,7 +14,7 @@
 ## 檔案與來源
 - js/playable-roster.js：門檻、選角及解鎖通知；js/main.js：輪數、通知時機、角色普攻及Boss整合。
 - js/guest-combat.js：三段文字與重置；js/nightmare-boss-skills.js：四招敵方版本與子機生命週期。
-- js/system-art.js、assets/source/pic/titles/ult_angel.svg、ult_nightmare.svg：大招藝術字。
+- js/system-art.js、assets/source/pic/titles/brave_guy_ui10_ult_angel.svg、brave_guy_ui13_ult_nightmare.svg：大招藝術字。
 - css/secret-toggle.css、playable-roster.css、game.css、play.html：對話、隱藏未解鎖、快取；assets/fonts兩份中文字型重新子集。
 - 不新增圖片預覽HTML或截圖資料夾；沿用原角色頭像與音效。
 

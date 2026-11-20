@@ -20,4 +20,4 @@ for name,length,notes in [('tap',.115,[(0,1700,.7),(0,3000,.18)]),('confirm',.20
 p=R/'assets/manifest.json';d=json.loads(p.read_text());
 for name in ['tap','confirm','back']:d['sfx']['ui_'+name]=f'assets/source/sfx/sfx_ui_{name}_crisp_v3.wav'
 d['sfx']['ui']=d['sfx']['ui_tap'];p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
-(R/'assets/source/UI_CRISP_V3.json').write_text(json.dumps(report,indent=2)+'\n');print(report)
+(R/'assets/records/brave_guy_record52_ui_crisp_v3.json').write_text(json.dumps(report,indent=2)+'\n');print(report)

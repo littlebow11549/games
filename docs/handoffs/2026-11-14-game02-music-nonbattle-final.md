@@ -1,6 +1,6 @@
 # 勇氣超人 Brave Guy — 非戰鬥曲 + 3-1，音樂全數完成（2026-11-14）
 
-製作：音樂工作階段（Claude）。依 [`02_brave_guy/assets/MUSIC.md`](../../02_brave_guy/assets/MUSIC.md) v1.3。
+製作：音樂工作階段（Claude）。依 [`02_brave_guy/assets/records/brave_guy_record04_music.md`](../../02_brave_guy/assets/records/brave_guy_record04_music.md) v1.3。
 分支：`claude/brave-guy-music`（已併最新主線）。
 
 ## 本次交付（7 首）
@@ -18,7 +18,7 @@
 - 每首：`.ogg`（q4）＋`.mp3`（128k），44.1kHz，−16 LUFS／真峰 ≤ −1 dBTP。
 - `bgm_transform` 依需求**刻意不用電音**、結尾硬切無尾音。
 - `bgm_stage_3_1` 補上專屬曲，取代原本借用的 `bgm_office`。
-- 母帶 `_archive/02_brave_guy/music/`；規格總表 `assets/source/AUDIO_DELIVERY.json`（26 項）。
+- 母帶 `_archive/02_brave_guy/music/`；規格總表 `assets/records/brave_guy_record09_audio_delivery.json`（26 項）。
 
 ## 🎉 音樂全數完成
 
@@ -35,7 +35,7 @@
 
 ## 尚未處理（非本階段音樂範圍）
 
-- **音效 SFX**（`MUSIC.md` §4 一大串）尚未製作；交付後由 Claude 接入 `js/audio.js`。
+- **音效 SFX**（`brave_guy_record04_music.md` §4 一大串）尚未製作；交付後由 Claude 接入 `js/audio.js`。
 - **配音 VO**（§5）未做。
 - 所有 BGM 目前為程式合成 demo 品質；若要更高音質可用外部音樂模型重製後覆蓋同名檔。
 

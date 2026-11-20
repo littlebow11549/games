@@ -19,7 +19,7 @@
 
 三語標題／敘述／控制；首次載入自動開啟，按開始故事解鎖音訊後每幕6秒、共約42秒，也可手動下一幕／跳過；完成或跳過保存 seenOpening，之後不自動重播，選單提供重播。背景分頁不推進，減少動態設定停止裝飾動畫。開場期間不渲染戰鬥畫面、不更新敵人；離開時清除輸入佇列。
 
-開場只復用 ui/portrait_student.png、sheet/unified/sheet_angel.png 與 sheet_ganqiao.png，CSS 在執行時取景，不改原圖。宿舍窗、書桌、異常門、光環是 CSS 圖形；未使用待追溯 scene_* 草稿、未重新生成場景。屬 H5 動態故事卡與圖像演出，不宣稱新增完整逐格動畫。
+開場只復用 ui/brave_guy_ui16_主角頭像.png、sheet/unified/brave_guy_charactor02_小天使_現役裁切圖集.png 與 brave_guy_charactor03_小幹譙_現役裁切圖集.png，CSS 在執行時取景，不改原圖。宿舍窗、書桌、異常門、光環是 CSS 圖形；未使用待追溯 scene_* 草稿、未重新生成場景。屬 H5 動態故事卡與圖像演出，不宣稱新增完整逐格動畫。
 
 ### Boss 以對嗆為主
 - boss-banter.js：13 位 Boss，每位「Boss挑釁→主角回嗆→Boss接話」三句，中英日共117句。

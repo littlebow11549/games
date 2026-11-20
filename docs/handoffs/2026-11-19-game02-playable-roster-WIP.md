@@ -37,10 +37,10 @@
 - 小天使：外表可愛、毒舌、絕不直接稱讚，最高評價「還行」；粉長髮、雙尖紅小丑帽、白翅膀、紅白衣藍裙。原設定是不出手的引導者，新可玩模式是天下無敵後的夢境換角特例，正常劇情仍維持原設定。
 - 惡夢超人：主角反面、裝可憐型情勒、發抖會哭、綠圍巾／紫綠衣、紅眼；代表「忍一下就過了」「我這麼做都是為你好」。不是後期夢魘超人。
 - 已直接看過兩張設定集：
-  - `assets/runtime/lossless/pic/sheet/unified/sheet_angel.webp`（1728×1152）
-  - `assets/runtime/lossless/pic/sheet/unified/sheet_nightmare.webp`（1728×1152）
+  - `assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor02_小天使_現役裁切圖集.webp`（1728×1152）
+  - `assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor11_惡夢超人_現役裁切圖集.webp`（1728×1152）
 - 兩張上半部有正面全身、下半部表情特寫；草稿以CSS裁切表情（小天使壞笑／惡夢冷笑），需瀏覽器確認裁切準確。
-- 勇氣超人草稿沿用 `assets/runtime/pic/ui/portrait_brave.webp`。
+- 勇氣超人草稿沿用 `assets/runtime/pic/ui/brave_guy_ui21_勇氣超人頭像.webp`。
 - `js/visuals.js`已支援 `createVisual('angel')` 與 `createVisual('nightmare')`，可復用既有3D程式模型，不必新建模型或生圖。
 - 遵循AGENTS：不得新增驗收HTML或repo截圖資料夾；預覽放對話／/tmp。未用素材集中各遊戲assets/_alternate，不任意搬現役母檔。
 

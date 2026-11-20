@@ -27,15 +27,15 @@
 
 ### 頭像（`css/game.css`）
 
-- 左上角頭像改用 `portrait_student.png`、`portrait_brave.png`。網頁用衍生檔 `assets/runtime/pic/ui/portrait_{student,brave}.webp`（256×256 無損 WebP、保留透明，由來源縮小；來源未動）。
+- 左上角頭像改用 `brave_guy_ui16_主角頭像.png`、`brave_guy_ui21_勇氣超人頭像.png`。網頁用衍生檔 `assets/runtime/pic/ui/portrait_{student,brave}.webp`（256×256 無損 WebP、保留透明，由來源縮小；來源未動）。
 - 上班族型態沒有頭像圖（角色未定案），暫時沿用大學生的。
 - 順手修正計量條上「勇氣」「罪惡感」的字被條的高度裁掉。
 
 ### 還沒接的美術
 
-- `hud_core_sheet.png`（頭像框、計量條外框與四色填充、氣環）：八個部件畫在同一張圖上，彼此的光暈互相重疊，交付報告也註明裁切框只是目視估計。直接切會帶到隔壁的光，需要逐件去光暈或請 Codex 改交單件透明圖，這次沒接。
-- `guilt_explode_sheet.png`（罪惡感爆炸 8 格）：尚未接。
-- `banner_01.png`、5 張角色合輯、15 張 3D 參考圖：未接。
+- `brave_guy_ui31_血量與能量圖集.png`（頭像框、計量條外框與四色填充、氣環）：八個部件畫在同一張圖上，彼此的光暈互相重疊，交付報告也註明裁切框只是目視估計。直接切會帶到隔壁的光，需要逐件去光暈或請 Codex 改交單件透明圖，這次沒接。
+- `brave_guy_ui30_罪惡感爆裂圖集.png`（罪惡感爆炸 8 格）：尚未接。
+- `brave_guy_branding01_banner_01.png`、5 張角色合輯、15 張 3D 參考圖：未接。
 
 ## 測試
 

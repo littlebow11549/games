@@ -83,5 +83,5 @@ if __name__ == '__main__':
     MAX_EFFORT = parser.parse_args().max_effort
     with ThreadPoolExecutor(max_workers=3) as executor:
         rows = [row for row in executor.map(convert, urls) if row]
-    (ROOT / 'assets/runtime/lossless/report.json').write_text(json.dumps(rows, indent=2) + '\n')
+    (ROOT / 'assets/records/brave_guy_record06_report.json').write_text(json.dumps(rows, indent=2) + '\n')
     print(json.dumps(dict(files=len(rows), before=sum(r['before'] for r in rows), after=sum(r['after'] for r in rows))))

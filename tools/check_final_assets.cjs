@@ -12,18 +12,18 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
  await p.locator('#skipIntro').click();await p.waitForSelector('#screen-menu.active');assert.equal(await p.locator('#introVideo').evaluate(v=>v.paused),true);
  await p.locator('#btnMenuOption').click();assert.equal(await p.locator('#warpVideo').evaluate(v=>v.paused),true);await p.screenshot({path:'/tmp/game01-qa/final_bitmap_options.png'});
  await p.locator('#btnSound').click();assert.ok(await p.locator('#soundState').evaluate(e=>e.classList.contains('muted')));await p.locator('#btnSound').click();
- await p.locator('#btnMaster').click();await p.waitForSelector('#screen-game.active');await p.waitForFunction(()=>window.__testAudio.some(a=>/bgm_02/.test(a.src)&&!a.paused));
- assert.ok(await p.locator('.gem').first().evaluate(e=>getComputedStyle(e).backgroundImage.includes('slot.png')));
+ await p.locator('#btnMaster').click();await p.waitForSelector('#screen-game.active');await p.waitForFunction(()=>window.__testAudio.some(a=>decodeURI(a.src).includes('memory_crash_bgm02_高階關卡')&&!a.paused));
+ assert.ok(await p.locator('.gem').first().evaluate(e=>decodeURI(getComputedStyle(e).backgroundImage).includes('memory_crash_ui43_插槽.png')));
  await p.waitForFunction(()=>!document.querySelector('#board').classList.contains('locked'));for(let i=0;i<5;i++)await p.locator('.gem').nth(i).click();
  await p.waitForSelector('.fx-burst');await p.screenshot({path:'/tmp/game01-qa/final_perfect_fx.png'});
  for(let miss=0;miss<3;miss++){await p.waitForFunction(()=>!document.querySelector('#board').classList.contains('locked'));await p.locator('.gem').nth(11).click();assert.ok(await p.locator('.fx-shatter').count());}
  await p.waitForSelector('#screen-over.active');await p.waitForSelector('.fx-crack');await p.screenshot({path:'/tmp/game01-qa/final_over_fx.png'});
- await p.locator('#btnHomeOver').click();await p.locator('#btnArcade').click();await p.waitForFunction(()=>window.__testAudio.some(a=>/bgm_01/.test(a.src)&&!a.paused));
+ await p.locator('#btnHomeOver').click();await p.locator('#btnArcade').click();await p.waitForFunction(()=>window.__testAudio.some(a=>decodeURI(a.src).includes('memory_crash_bgm01_一般關卡')&&!a.paused));
  assert.equal(await p.evaluate(()=>window.__testAudio.filter(a=>/bgm_0[12]/.test(a.src)&&!a.paused).length),1);
  await p.locator('#btnOptionTop').click();await p.locator('#btnMusic').click();assert.equal(await p.evaluate(()=>window.__testAudio.filter(a=>/bgm_0[12]/.test(a.src)&&!a.paused).length),0);
  await p.waitForTimeout(800);assert.equal(await p.locator('.gem.lit').count(),0);assert.equal(await p.locator('#board').evaluate(e=>e.classList.contains('locked')),true);
- await p.locator('#btnMusic').click();await p.waitForFunction(()=>window.__testAudio.some(a=>/bgm_01/.test(a.src)&&!a.paused&&Number.isFinite(a.duration)));
- await p.evaluate(()=>{const a=window.__testAudio.find(a=>/bgm_01/.test(a.src)&&!a.paused);a.currentTime=a.duration-.15;});await p.waitForFunction(()=>window.__testAudio.some(a=>/bgm_01/.test(a.src)&&!a.paused&&a.currentTime<1));
+ await p.locator('#btnMusic').click();await p.waitForFunction(()=>window.__testAudio.some(a=>decodeURI(a.src).includes('memory_crash_bgm01_一般關卡')&&!a.paused&&Number.isFinite(a.duration)));
+ await p.evaluate(()=>{const a=window.__testAudio.find(a=>decodeURI(a.src).includes('memory_crash_bgm01_一般關卡')&&!a.paused);a.currentTime=a.duration-.15;});await p.waitForFunction(()=>window.__testAudio.some(a=>decodeURI(a.src).includes('memory_crash_bgm01_一般關卡')&&!a.paused&&a.currentTime<1));
  // The natural completion path also reaches the menu without a skip click.
  const natural=await context.newPage();await natural.goto(url);await clickStart(natural);await natural.waitForSelector('#screen-menu.active',{timeout:12000});assert.equal(await natural.locator('#introVideo').evaluate(v=>v.ended),true);await natural.close();
  const small=await b.newContext({viewport:{width:320,height:568},hasTouch:true,isMobile:true,reducedMotion:'reduce'});await small.addInitScript(()=>{localStorage.setItem('mc_seen_howto','1');localStorage.setItem('mc_music','0');});const sp=await small.newPage();await sp.goto(url);await sp.evaluate(()=>MemoryCrashPresentation.fontReady);await clickStart(sp);await sp.waitForSelector('#screen-menu.active');assert.equal(await sp.locator('#introLayer').evaluate(e=>e.hidden),true);assert.equal(await sp.locator('#warpVideo').evaluate(v=>v.paused),true);

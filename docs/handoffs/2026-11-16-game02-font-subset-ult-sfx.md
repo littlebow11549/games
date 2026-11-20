@@ -17,7 +17,7 @@
 
 ## 檔案
 - `tools/make_game02_fonts.py`（加掃 play.html）、`02_brave_guy/assets/fonts/*.woff2`（三檔重生）
-- `02_brave_guy/js/main.js`（tally quiet、ult tick）、`assets/manifest.json`（beam_hit）、`assets/source/sfx/sfx_beam_hit.wav`（新）
+- `02_brave_guy/js/main.js`（tally quiet、ult tick）、`assets/manifest.json`（beam_hit）、`assets/source/sfx/brave_guy_sfx05_beam_hit.wav`（新）
 
 ## 測試
 - 字型：cmap 覆蓋驗證全過。

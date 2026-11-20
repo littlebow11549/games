@@ -22,7 +22,7 @@ const COPY = {
 };
 const LANGUAGE_KEY='gamehub_language';
 const FAVORITES_KEY='gamehub_favorites';
-const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'記憶水晶 Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/branding/icon_02.webp',categories:['puzzle','memory'],status:'ready'},{id:'brave-guy',folder:'02_brave_guy',name:'勇氣超人 Brave Guy',descriptionKey:'description2',icon:'02_brave_guy/assets/runtime/pic/branding/icon_01.webp',categories:['action'],status:'ready'}];
+const GAMES=[{id:'memory-crash',folder:'01_memory_crash',name:'記憶水晶 Memory Crash',descriptionKey:'description',icon:'01_memory_crash/assets/runtime/pic/branding/memory_crash_branding04_icon_02.webp',categories:['puzzle','memory'],status:'ready'},{id:'brave-guy',folder:'02_brave_guy',name:'勇氣超人 Brave Guy',descriptionKey:'description2',icon:'02_brave_guy/assets/runtime/pic/branding/brave_guy_branding04_icon_01.webp',categories:['action'],status:'ready'}];
 const grid=document.getElementById('grid');
 const status=document.getElementById('result-status');
 const select=document.getElementById('language');

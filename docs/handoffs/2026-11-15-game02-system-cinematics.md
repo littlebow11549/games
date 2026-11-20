@@ -17,7 +17,7 @@
 - `02_brave_guy/css/{cinematics,system-art}.css`
 - `main.js`：Boss／終章流程、連擊、計量、語系與換目標接入。
 - `audio.js`：掌聲合成音，遵守原靜音設定。
-- `assets/source/system_cinematics_manifest.json`：本輪正式新增圖來源 SHA、規格。
+- `assets/records/brave_guy_record56_system_cinematics_manifest.json`：本輪正式新增圖來源 SHA、規格。
 - `tools/tests/game02-cinematics.cjs`：可重跑整合驗證；`assets/preview/cinema-review/`：實際畫面與 checks.json。
 
 ## 防重工／規格

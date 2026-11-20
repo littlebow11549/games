@@ -18,7 +18,7 @@
 - `tools/check_navigation.cjs` 新增首屏及分頁行為檢查：1440×900、1366×768、1280×720、390×844、375×667、320×667，各六語共 36 組，第一款遊戲名稱完整位於首屏，無橫向溢出。
 - 三種實際遊戲入口皆開啟新分頁，opener 為 null，原首頁保留；關閉按鈕能關閉新分頁。
 - 模擬瀏覽器拒絕 window.close 時，回到遊戲中心正常；新按鈕日文翻譯正確。
-- 預覽：`assets/preview/hub_compact_desktop.png` 與 `assets/preview/hub_compact_mobile.png`。
+- 預覽：`assets/preview/game_center_branding05_hub_compact_desktop.png` 與 `assets/preview/game_center_branding06_hub_compact_mobile.png`。
 - JS 語法與 git diff --check 通過。
 
 ## 後續與限制

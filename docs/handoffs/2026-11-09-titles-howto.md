@@ -7,8 +7,8 @@
 已製作並放到 repo 的正確分類位置：
 
 1. `01_memory_crash/assets/source/pic/titles/titles_01.png`：十一組主視覺文字，透明 PNG。
-2. `01_memory_crash/assets/source/pic/howto/howto_01.png`：四步驟教學圖示，透明 PNG。
-3. `01_memory_crash/assets/source/pic/NEW_ART_COMPRESSION.json`：原生尺寸、容量、像素 SHA-256 與無損比對結果。
+2. `01_memory_crash/assets/source/pic/howto/memory_crash_ui06_howto_01.png`：四步驟教學圖示，透明 PNG。
+3. `01_memory_crash/assets/records/memory_crash_record09_new_art_compression.json`：原生尺寸、容量、像素 SHA-256 與無損比對結果。
 
 兩張均沿用深藍、金色、青光與 glossy cartoon 3D。這次為素材交付，尚未切成單件或替換遊戲中的 CSS／SVG，由 Claude 接續接入。
 

@@ -3,7 +3,7 @@
 ## 需求
 使用者上傳兩包音效：
 1. `SealOnline_..._2026-11-18.zip`（41 檔，檔名清楚標示用途）→「請套用」。
-2. `brave_guy_sound.zip`（s03~s13 等，檔名無語意；temp/ 內為 10~18s 長檔）→「這些也是備選。請你斟酌套用」。
+2. `brave_guy_archive01_import_brave_guy_sound.zip`（s03~s13 等，檔名無語意；temp/ 內為 10~18s 長檔）→「這些也是備選。請你斟酌套用」。
 
 ## 做法
 以**命名清楚的 Seal Online 組**為主，對應到遊戲既有的 SFX 鍵；`brave_guy_sound` 組因檔名無法辨識用途，暫作備選未套用（詳見文末）。
@@ -54,7 +54,7 @@ Headless 載入解碼測試：41 個 seal 鍵（陣列展開 49 檔）全部解�
 
 ### 保留未用（備選）
 - Seal 組內：`治療_button3018`、`治療回血_Heal`（revive 已用「得到救援」）、`按鍵B_button3002`（4.4s 偏長）、`光束B_Stream1`（beam_loop 是無縫循環，不動以免爆點）。
-- `brave_guy_sound.zip`：`s03~s13`、`temp/*`（長檔）—— 檔名無語意、無法以聽感辨識用途，暫未套用；若使用者標註各檔用途可再對應。
+- `brave_guy_archive01_import_brave_guy_sound.zip`：`s03~s13`、`temp/*`（長檔）—— 檔名無語意、無法以聽感辨識用途，暫未套用；若使用者標註各檔用途可再對應。
 
 ## 相關檔案
 `assets/source/sfx/seal/*.wav`、`assets/manifest.json`、`js/main.js`、`play.html`、`js/*.js`、`css/*.css`（?v）

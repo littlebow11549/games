@@ -9,7 +9,7 @@ const assert=require('node:assert/strict');
  await page.evaluate(async()=>{
   document.body.className='game-art';
   document.body.innerHTML='<canvas id="scene"></canvas><div id="hud"><div id="stick-zone"><div id="stick-base"><div id="stick-knob"></div></div></div><div class="actions base-form"></div></div>';
-  const {Input}=await import('./js/input.js?v=20261118stick');window.testInput=new Input();
+  const {Input}=await import('./js/input.js?v=20261120assets');window.testInput=new Input();
  });
  for(const [width,height] of [[360,780],[390,844],[844,390],[1280,800]]){
   await page.setViewportSize({width,height});

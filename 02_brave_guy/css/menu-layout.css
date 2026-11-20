@@ -82,11 +82,11 @@
   pointer-events:none;
  }
  .game-art .overlay.menu:not(.stages) .menu-logo-fx{
-  --logo-mask:url('../assets/runtime/pic/branding/logo_01.webp');display:block;grid-area:2/1/3/3;
+  --logo-mask:url('../assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp');display:block;grid-area:2/1/3/3;
   position:relative;z-index:3;width:calc(var(--menu-logo)*1.5);height:100%;
   transform:translateY(-6px) scale(1.7);transform-origin:50% 100%;
  }
- html[lang=ja] .game-art .overlay.menu:not(.stages) .menu-logo-fx{--logo-mask:url('../assets/runtime/lossless/pic/branding/logo_ja.webp')}
+ html[lang=ja] .game-art .overlay.menu:not(.stages) .menu-logo-fx{--logo-mask:url('../assets/runtime/lossless/pic/branding/brave_guy_branding10_logo_ja.webp')}
  .menu-logo-fx::before{content:'';position:absolute;inset:12% -16% -8%;z-index:-1;
   background:radial-gradient(ellipse,#d9ff6b40, #66ff2324 38%,transparent 70%);
   animation:menu-logo-aura 2.8s ease-in-out infinite;mix-blend-mode:screen;

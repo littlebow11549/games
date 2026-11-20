@@ -4,10 +4,10 @@
 
 使用者指定以衝鋒巴哥主視覺搭配 MEMORY CRASH Logo 做遊戲 icon，要求 OPTION 文字也經過設計，首頁 Banner 改採同組主視覺。
 
-- `01_memory_crash/assets/source/pic/branding/icon_02.png`：1254×1254 方形合成主視覺，衝鋒角色完整入鏡、十二色寶石與 Logo。依原 KV 和 Logo 參考重新構圖生成，不是來源素材逐像素拼貼。
-- `01_memory_crash/assets/source/pic/titles/option_hero.png`：1774×887 透明金色立體字，深藍厚邊、青色光線與水晶點綴。
+- `01_memory_crash/assets/source/pic/branding/memory_crash_branding04_icon_02.png`：1254×1254 方形合成主視覺，衝鋒角色完整入鏡、十二色寶石與 Logo。依原 KV 和 Logo 參考重新構圖生成，不是來源素材逐像素拼貼。
+- `01_memory_crash/assets/source/pic/titles/memory_crash_ui21_option_hero.png`：1774×887 透明金色立體字，深藍厚邊、青色光線與水晶點綴。
 - `assets/source/pic/banner/banner_02.png`：2172×724 橫幅，左側留給六語系 HTML 文案，右側是衝鋒角色、寶石與 Logo。
-- 三張來源保留生成原始 PNG 與原生尺寸；對應 `runtime` 的 WebP 使用 lossless + exact，RGBA 逐像素一致。路徑、尺寸與像素 SHA256 見 `assets/source/BRAND_REFRESH_DELIVERY.json`，路徑相對 repo 根目錄。
+- 三張來源保留生成原始 PNG 與原生尺寸；對應 `runtime` 的 WebP 使用 lossless + exact，RGBA 逐像素一致。路徑、尺寸與像素 SHA256 見 `assets/records/game_center_record01_brand_refresh_delivery.json`，路徑相對 repo 根目錄。
 
 ## 接入
 

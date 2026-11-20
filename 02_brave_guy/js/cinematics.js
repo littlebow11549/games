@@ -1,10 +1,10 @@
-import { createVictoryStoryboard } from './victory-storyboard.js?v=20261119dialogue';
-import { createPictureFilm } from './picture-film.js?v=20261119dialogue';
-import { waitForArtwork, cancelArtwork } from './loading.js?v=20261119dialogue';
-import { words } from './run-records.js?v=20261119dialogue';
-import { BOSS_BANTER } from './boss-banter.js?v=20261119dialogue';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261119dialogue';
-import { t, lang } from './i18n.js?v=20261119dialogue';
+import { createVictoryStoryboard } from './victory-storyboard.js?v=20261120assets';
+import { createPictureFilm } from './picture-film.js?v=20261120assets';
+import { waitForArtwork, cancelArtwork } from './loading.js?v=20261120assets';
+import { words } from './run-records.js?v=20261120assets';
+import { BOSS_BANTER } from './boss-banter.js?v=20261120assets';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261120assets';
+import { t, lang } from './i18n.js?v=20261120assets';
 export const BOSS_PROFILES = {
  jiamangKing:['假忙森主管','jiamang','#71dfdc','papers','你的鍋，接回去！','zhuangxiong'],
  qianBiz:['錢經理','qian','#ffd84d','coins','妳的帳，別算在我頭上。','qian'],

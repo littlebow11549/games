@@ -31,7 +31,7 @@ NN_game/
     ├── fonts/                   內嵌字型
     ├── source/                  原始高品質母檔（masters）
     │   ├── pic/ music/ sfx/ (video/)
-    │   └── *_DELIVERY.json / *_PROMPTS.md  交付紀錄與提示詞
+    ├── records/                 交付紀錄、提示詞、檢查與新舊檔名對照
     ├── runtime/                 遊戲實際載入的壓縮交付版（webp/ogg…）
     └── _alternate/              備選：未使用素材＋歷史舊圖，統一收這裡
 ```
@@ -62,3 +62,13 @@ NN_game/
 
 ## 已找回定案原附件（最新狀態）
 四張VISUAL REVISION 02已從聊天附件暫存區原樣歸檔到02_brave_guy/assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg；清單APPROVED_VISUAL_REVISION_02.json。此前「未定位」已解除。四張JPEG逐byte一致，不可改用舊深綠底圖。停止生圖仍有效；其他職場版附件已有線索，先盤點不可重生。
+
+## 2026-11-20 三專案素材統一歸檔（最新，優先於歷史命名要求）
+- 三者前綴：`brave_guy_`、`memory_crash_`、`game_center_`。
+- 素材檔名：`前綴_類別NN_用途.副檔名`；角色沿用使用者指定拼法 `charactor`，依劇情首次出場順序編號，同角色的正面／表情／設定集共用角色編號。
+- 不要改遊戲內邏輯角色ID、音效事件ID或存檔鍵；實體檔案改名以各專案 `assets/records/*_asset-renames.json` 為準。
+- 交付JSON、提示詞、檢查報告集中 `assets/records/`。`manifest.json`、`runtime-images.json`、執行期字型metrics與授權文件保留技術用途名稱。
+- 正式定案設定集：`source/pic/sheet/`；獨立表情特輯：`source/pic/expressions/`；現役裁切用舊圖集留 `sheet/unified/`，不能冒稱最新定案。
+- 查素材先看 `assets/records/*_asset-index.md` 和 `*_asset-inventory.json`。已收錄並不代表遊戲有使用，索引分開列載入、母檔參考與未使用備選。
+- 暫存找回原圖原樣保存，不重新編碼、不插值放大。無法找到的惡夢超人獨立表情特輯保持待追查，不以設定集或新圖冒充。
+- 使用者新授權重繪三角色技能圖集，但明確要求先完成歸檔驗證；完成前禁止開始生圖。角色設定集仍禁止擅自重繪。

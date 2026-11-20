@@ -40,7 +40,7 @@ def frame(n):
 
 def main():
     first=frame(0);assert first==frame(FRAMES),'Loop endpoint mismatch'
-    cmd=['ffmpeg','-y','-v','error','-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','pipe:0','-an','-c:v','libvpx-vp9','-lossless','1','-pix_fmt','gbrp','-deadline','good','-cpu-used','4','-row-mt','1',str(OUT/'vid_warp.webm')]
+    cmd=['ffmpeg','-y','-v','error','-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','pipe:0','-an','-c:v','libvpx-vp9','-lossless','1','-pix_fmt','gbrp','-deadline','good','-cpu-used','4','-row-mt','1',str(OUT/'memory_crash_video03_warp.webm')]
     p=subprocess.Popen(cmd,stdin=subprocess.PIPE)
     try:
         for n in range(FRAMES):
@@ -49,10 +49,10 @@ def main():
     finally:p.stdin.close()
     if p.wait()!=0:raise RuntimeError('ffmpeg failed')
     # Decode the first encoded frame and compare RGB bytes to the source.
-    check=subprocess.check_output(['ffmpeg','-v','error','-i',str(OUT/'vid_warp.webm'),'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'])
+    check=subprocess.check_output(['ffmpeg','-v','error','-i',str(OUT/'memory_crash_video03_warp.webm'),'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'])
     assert first==check,'Encoded RGB differs from source'
-    report={'file':'vid_warp.webm','width':W,'height':H,'fps':FPS,'frames':FRAMES,'seconds':SECONDS,'codec':'VP9 lossless RGB','opaque':True,'audio':False,'source':'Original procedural animation','loop_endpoint_identical':True,'decoded_first_frame_matches_source':True,'first_frame_sha256':hashlib.sha256(first).hexdigest(),'bytes':(OUT/'vid_warp.webm').stat().st_size}
-    (OUT/'vid_warp.json').write_text(json.dumps(report,indent=2)+'\n');print(report,flush=True)
+    report={'file':'memory_crash_video03_warp.webm','width':W,'height':H,'fps':FPS,'frames':FRAMES,'seconds':SECONDS,'codec':'VP9 lossless RGB','opaque':True,'audio':False,'source':'Original procedural animation','loop_endpoint_identical':True,'decoded_first_frame_matches_source':True,'first_frame_sha256':hashlib.sha256(first).hexdigest(),'bytes':(OUT/'memory_crash_video03_warp.webm').stat().st_size}
+    (OUT/'memory_crash_record15_vid_warp.json').write_text(json.dumps(report,indent=2)+'\n');print(report,flush=True)
 
 if __name__ == "__main__":
     main()

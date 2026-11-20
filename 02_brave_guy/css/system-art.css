@@ -17,7 +17,7 @@
 .system-lettering{font-weight:900;paint-order:stroke fill;text-shadow:1px 2px #102917,0 0 8px #baff6555}
 .game-art .dmg.system-lettering{-webkit-text-stroke:1px #132216;font-weight:900;text-shadow:1px 2px #122616,2px 3px #0009}
 .game-art .debuffs b,.game-art #boss-name{color:#fff1af;font-weight:900;text-shadow:1px 2px #813415,0 0 7px #e2bc45}
-.game-art .lang-btn i{display:block!important;width:30px;height:30px;flex:0 0 30px;background:url('../assets/runtime/lossless/pic/icons/language_globe.webp') center/130% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+.game-art .lang-btn i{display:block!important;width:30px;height:30px;flex:0 0 30px;background:url('../assets/runtime/lossless/pic/icons/brave_guy_ui32_語系地球.webp') center/130% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important}
 .game-art .lang-btn i::before,.game-art .lang-btn i::after{display:none!important}
 .game-art .lang-btn span{font-size:14px;padding:6px 10px}.game-art .lang-btn{gap:3px;max-width:100%;box-sizing:border-box}
 @media(max-width:600px){
@@ -45,7 +45,7 @@
 @media(prefers-reduced-motion:reduce){.game-art .bars .bar.full,.game-art .bars .bar.burst,.game-art .bars .bar::after{animation:none!important}.game-art .bars .bar.meter-exploding{animation:none!important;box-shadow:0 0 12px #efb4ff}}
 #menu-art .menu-live-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
 .game-art #pause-menu .lang-btn::before{display:none!important}.game-art #pause-menu .lang-btn{padding-left:8px!important}
-@font-face{font-family:'BG Japanese';src:url('../assets/fonts/notosansjp-subset.woff2?v=20261120secret') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'BG Japanese';src:url('../assets/fonts/brave_guy_font02_notosansjp-subset.woff2?v=20261120assets') format('woff2');font-weight:100 900;font-display:swap}
 :lang(ja){--font-body:'BG Japanese',sans-serif;--font-display:'BG Japanese',sans-serif}
 .game-art #ov-local-logo[hidden]{display:none}
 .game-art .act.ult{filter:drop-shadow(0 0 4px #78ff5d66)}

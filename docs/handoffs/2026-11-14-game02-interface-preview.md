@@ -6,8 +6,8 @@
 
 - 延續戰鬥按鍵批次的 4 張圖集／24 個狀態或元件，再完成 8 張介面 PNG／42 個設計項目，合計 12 張／66 項。這是圖集內項目數，不是 66 個獨立成品檔。
 - 新增 `assets/source/pic/ui/` 的 bubble_sheet、panel_sheet、minimap_sheet、difficulty_sheet、aux_hud_sheet、bingo_card，以及 `pic/icons/` 的 function_icons_sheet、lock_heal_sheet。
-- 除 bingo_card 為 1254×1254，其餘新增八張中的七張皆 1536×1024；均原生 RGBA PNG、未插值放大。實際尺寸、bytes、SHA256 與角落 alpha 記錄在 `assets/source/P1_INTERFACE_DELIVERY.json`。
-- 生成提示詞與版式起點分別在 `P1_INTERFACE_PROMPTS.md`、`P1_INTERFACE_SLICE_GUIDE.json`。精準裁切座標、元件透明度和正式衍生檔尚未全部驗收。
+- 除 bingo_card 為 1254×1254，其餘新增八張中的七張皆 1536×1024；均原生 RGBA PNG、未插值放大。實際尺寸、bytes、SHA256 與角落 alpha 記錄在 `assets/records/brave_guy_record37_p1_interface_delivery.json`。
+- 生成提示詞與版式起點分別在 `brave_guy_record38_p1_interface_prompts.md`、`brave_guy_record39_p1_interface_slice_guide.json`。精準裁切座標、元件透明度和正式衍生檔尚未全部驗收。
 - `assets/preview/p1-interface-review.html` 展示全部八張，可連至戰鬥按鍵和 HUD 總覽。
 
 ## 已套用的試看入口

@@ -9,7 +9,7 @@
 
 ## 載入壓縮與分類
 - 原圖完整保留於 `assets/source/pic/`；75 張實際配送圖新增於 `assets/runtime/lossless/pic/`，不是新增美術設計。保留原生尺寸與透明度。
-- `tools/compress_runtime.py` 使用 Pillow lossless WebP，重新解碼比對每個 RGBA 像素（包含透明像素）及尺寸；所有來源 SHA256／尺寸／前後大小在 `assets/runtime/lossless/report.json`。執行 `python 02_brave_guy/tools/compress_runtime.py` 可重建及驗證。
+- `tools/compress_runtime.py` 使用 Pillow lossless WebP，重新解碼比對每個 RGBA 像素（包含透明像素）及尺寸；所有來源 SHA256／尺寸／前後大小在 `assets/records/brave_guy_record06_report.json`。執行 `python 02_brave_guy/tools/compress_runtime.py` 可重建及驗證。
 - 75 檔合計 **144,867,890 → 108,505,414 bytes**，降低 25.1%；沒有降解析度或有損壓縮。
 - CSS、Canvas、Three 貼圖、動態圖片 URL 與 `runtime-images.json` 一致改用配送版。Apple touch icon 仍保留 PNG。模組及入口版本鍵統一 `20261115fast`，避免同時載入兩份 i18n／loading 模組。
 - `js/loading.js` 首屏只預載符合當前畫面方向的主視覺，略過未使用 branding 圖；其餘開場／選單必需圖仍 decode 後才放行。戰鬥與個別 Boss／結局維持各自準備閘門，不一次下載全遊戲。

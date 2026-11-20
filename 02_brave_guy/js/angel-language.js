@@ -1,4 +1,4 @@
-import { lang } from './i18n.js?v=20261119dialogue';
+import { lang } from './i18n.js?v=20261120assets';
 const lines={
  '王之嘴炮':['Royal Barrage!','王の口撃！'],
  '笨蛋！':['Dummy!','バカ！'],

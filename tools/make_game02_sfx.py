@@ -152,4 +152,4 @@ def encode(r):
  return r
 with concurrent.futures.ThreadPoolExecutor(4) as ex:rows=list(ex.map(encode,rows))
 report={'date':'2026-11-15','combatRevision':3,'enhanced':sorted(enhanced),'revision3':sorted(revision3),'tool':'Original layered DSP: Python/numpy/scipy + ffmpeg; reproducible tools/make_game02_sfx.py','rights':'Original synthesis; no recordings, third-party samples, cloned voices or commercial sound packs.','encoding':'MP3 96kbps mono 44.1kHz; seamless beam also OGG q4','files':rows,'runtimeBytes':sum(p.stat().st_size for p in OUT.iterdir())}
-(ROOT/'02_brave_guy/assets/source/SFX_DELIVERY.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(len(rows),'SFX;',report['runtimeBytes'],'runtime bytes')
+(ROOT/'02_brave_guy/assets/records/brave_guy_record49_sfx_delivery.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(len(rows),'SFX;',report['runtimeBytes'],'runtime bytes')

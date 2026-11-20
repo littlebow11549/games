@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "date": "2026-11-20",
+  "files": [
+    {
+      "old": "assets/preview/banner/memory_pug_presenter_desktop.png",
+      "new": "assets/preview/banner/game_center_branding08_memory_pug_presenter_desktop.png",
+      "sha256": "e107783a86bcee93f25116b92d82723d11ba32c2daf7e5b40eb7904ab0ca99ba",
+      "bytes": 783039,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/banner/memory_pug_presenter_mobile.png",
+      "new": "assets/preview/banner/game_center_branding09_memory_pug_presenter_mobile.png",
+      "sha256": "aac527f3c32896bd6e38f396252497803f47a976e91965aa91f956e359187215",
+      "bytes": 284159,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/hub_banner_desktop.png",
+      "new": "assets/preview/game_center_branding02_hub_banner_desktop.png",
+      "sha256": "5c8f77aad97d74489db09b4ad78643f6c423acf7f758c897b471fa6b12848b6a",
+      "bytes": 688428,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/hub_banner_mobile.png",
+      "new": "assets/preview/game_center_branding03_hub_banner_mobile.png",
+      "sha256": "af1b8fbb903a1b61cd8a632df7a88e252799a7efdf5a889b47dcbd5978da5035",
+      "bytes": 217696,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/hub_banner_thai.png",
+      "new": "assets/preview/game_center_branding04_hub_banner_thai.png",
+      "sha256": "0d4f1d04bb8b8552eb700076486be3d1b60ac63c2b93089892657cee72861697",
+      "bytes": 226795,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/hub_compact_desktop.png",
+      "new": "assets/preview/game_center_branding05_hub_compact_desktop.png",
+      "sha256": "a1af31fcd5332c007d27ab2d629a9d296147d04122cd3c227c9aa6589fee5ccc",
+      "bytes": 601979,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/preview/hub_compact_mobile.png",
+      "new": "assets/preview/game_center_branding06_hub_compact_mobile.png",
+      "sha256": "039f60c779c9dcf35f82e1839fb2ecedb8627c09d6b2c8422d4195b9a79ea72d",
+      "bytes": 168614,
+      "media": true,
+      "disposition": "retired-qa"
+    },
+    {
+      "old": "assets/runtime/pic/banner_01.webp",
+      "new": "assets/runtime/pic/game_center_branding01_banner_01.webp",
+      "sha256": "910586ee567e919886be9a32b3de895c8207050977839129908fb7fc44683556",
+      "bytes": 134066,
+      "media": true
+    },
+    {
+      "old": "assets/source/pic/banner/banner_01.png",
+      "new": "assets/source/pic/banner/game_center_branding01_banner_01.png",
+      "sha256": "6c9f12d786043d16081766514fd9bdd00e8c1f13718267de22537e7fbfc4b212",
+      "bytes": 1820990,
+      "media": true
+    },
+    {
+      "old": "assets/source/pic/banner/memory_pug_presenter_01.png",
+      "new": "assets/source/pic/banner/game_center_branding07_memory_pug_presenter_01.png",
+      "sha256": "6d3965eb842ec80753cdf9faadac1151b6f78dbd0e9a24eea76c7c66e400f9d6",
+      "bytes": 1679301,
+      "media": true
+    },
+    {
+      "old": "assets/source/BRAND_REFRESH_DELIVERY.json",
+      "new": "assets/records/game_center_record01_brand_refresh_delivery.json",
+      "sha256": "a530841bce59ac291907d581721d59e58e84c03fdfed94fb1fbb8ea2ee270d6f",
+      "bytes": 911,
+      "media": false
+    },
+    {
+      "old": "assets/source/pic/banner/COMPRESSION.json",
+      "new": "assets/records/game_center_record02_banner_compression.json",
+      "sha256": "bf536bffb84f69387bfa01ea27b48e99aeb3bdfa5738a3b621b928fb4adca364",
+      "bytes": 274,
+      "media": false
+    }
+  ]
+}

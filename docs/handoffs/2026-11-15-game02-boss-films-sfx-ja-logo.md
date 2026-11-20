@@ -8,17 +8,17 @@
 - `js/boss-storyboards.js` 管理時間、圖源、粒子及音效節點；`js/cinematics.js` 串接既有遭遇流程。以三鏡漫畫動態演出、鏡頭運動、角色情境與粒子特效呈現，**不是逐格角色骨架動畫或配音影片**。降低動態設定保留分鏡，關閉鏡頭晃動、粒子及文字彈出。
 - 每位有各自情境：佛賴弟走廊／帽簷／逼近；錢大姐校門／開扇／金幣旋風；藍教頭球場／哨子／震場；惡夢超人鏡廊／紅眼／破鏡；悶幹譙庭院／握爪／砸地；地獄超人火圈／燃拳／火柱；加班鬼王深夜辦公室／打卡／紙張風暴；新雞假笑／背後手機／訊息羽毛；八卦蛇茶水間／耳語／流言旋渦；藍經理會議室／印章／蓋章震波；幹譙龍屋頂／吸氣／怒吼；冠老闆辦公室／敲桌／王冠壓迫；夢魘超人黑鏡空間／冷眼／現實碎裂。
 - 進關預載當關過場；未載好時最多等 5 秒，錯誤時沿用已有設定圖回退，不使戰鬥卡住。跳過、取消恢復音樂音量，不延遲觸發舊音效。
-- 日文 `pic/branding/logo_ja.png` 直接參照 `logo_01_review_v1.png`，保留綠環、BRAVEGUY 金紅字及紅圍巾，上排變成「ブレイブガイ」。日文選單現在顯示此原圖，不再使用系統字藝代替 Logo。
+- 日文 `pic/branding/brave_guy_branding10_logo_ja.png` 直接參照 `brave_guy_branding09_logo_01_review_v1.png`，保留綠環、BRAVEGUY 金紅字及紅圍巾，上排變成「ブレイブガイ」。日文選單現在顯示此原圖，不再使用系統字藝代替 Logo。
 - 音效需求表 54 個名稱全部補齊，總共 63 個原創分層 DSP 音效（含三組拳／命中／倒地變體、技能、充能、氣功循環、罪惡、連擊、UI、敵人與過場）。程式實際接到對應事件；無第三方音效採樣、錄音或人聲。BGM 沒有重製。
 - 音訊有預載、同類事件節流、最多 16 個單發音、動態壓縮、靜音與暫停停止持續音、非同步載入取消保護、切換背景音量。氣功循環另有 OGG 及 MP3 回退；音檔失敗保留既有合成聲回退。
 
 ## 檔案與規格
 - `assets/source/pic/cinematics/folaidi_{corridor,eyes,reveal}.png`：3 張原生 1536×1024。
 - `assets/source/pic/cinematics/boss_*_storyboard.png`：其餘 12 組，各為原生 1024×1536，三個等高橫向鏡頭。以 Canvas 選取圖集區域，不裁切、放大或重壓來源檔。
-- `assets/source/pic/branding/logo_ja.png`：原生 1536×1024 RGBA，保留透明度。
-- `assets/source/BOSS_CINEMATIC_DELIVERY.json`：所有新圖尺寸、分類、SHA256、統一時間規格。
+- `assets/source/pic/branding/brave_guy_branding10_logo_ja.png`：原生 1536×1024 RGBA，保留透明度。
+- `assets/records/brave_guy_record10_boss_cinematic_delivery.json`：所有新圖尺寸、分類、SHA256、統一時間規格。
 - `assets/source/sfx/`：63 MP3（單聲道 44.1kHz、96kbps）＋1 OGG 循環檔，共 468,300 bytes。
-- `_archive/game02/sfx/2026-11-15/`：63 WAV 母帶，16bit／44.1kHz／mono。重製腳本 `tools/make_game02_sfx.py`；交付資訊 `assets/source/SFX_DELIVERY.json`。
+- `_archive/game02/sfx/2026-11-15/`：63 WAV 母帶，16bit／44.1kHz／mono。重製腳本 `tools/make_game02_sfx.py`；交付資訊 `assets/records/brave_guy_record49_sfx_delivery.json`。
 
 ## 驗證
 - `node --test 02_brave_guy/tools/audio-sfx.test.mjs`：7/7，涵蓋快取疊音、載入失敗、靜音、取消後不得延遲播放、非循環蓄力不重複啟動、三變體及群怪疊音上限。

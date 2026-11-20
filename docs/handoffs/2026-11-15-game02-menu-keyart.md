@@ -1,12 +1,12 @@
 # 主選單雙版主視覺與最新清單確認
 
-使用者要求立即製作 Claude 的需求，並再次確認清單。已同步遠端 3228adf，依 ART_OUTSTANDING_2026-11-15.md 作為最新優先序；不是只有兩張選單圖。
+使用者要求立即製作 Claude 的需求，並再次確認清單。已同步遠端 3228adf，依 brave_guy_record01_art_outstanding_2026-11-15.md 作為最新優先序；不是只有兩張選單圖。
 
 ## 本輪產出
 
-- `02_brave_guy/assets/source/pic/branding/menu_keyart_01.png`：橫向選單用近方形構圖，原生 1330×1182 RGB PNG。
-- `02_brave_guy/assets/source/pic/branding/menu_keyart_portrait_01.png`：直向選單頂部用橫長構圖，原生 1448×1086 RGB PNG。
-- `02_brave_guy/assets/source/MENU_KEYART_DELIVERY.json`：實際尺寸、目標尺寸、色彩模式與 SHA256。
+- `02_brave_guy/assets/source/pic/branding/brave_guy_branding11_menu_keyart_01.png`：橫向選單用近方形構圖，原生 1330×1182 RGB PNG。
+- `02_brave_guy/assets/source/pic/branding/brave_guy_branding12_menu_keyart_portrait_01.png`：直向選單頂部用橫長構圖，原生 1448×1086 RGB PNG。
+- `02_brave_guy/assets/records/brave_guy_record17_menu_keyart_delivery.json`：實際尺寸、目標尺寸、色彩模式與 SHA256。
 
 使用 imagegen，參照 unified 的 braveguy / angel / nightmare 合輯。兩張包含勇氣超人出拳、小天使叉腰與後方惡夢超人紫影、綠色能量背景；沒有文字或 Logo。第二張參照第一張並重新構圖。原檔直接複製，PNG 無損，沒有縮放、插值或程式改圖。
 
@@ -19,9 +19,9 @@
 
 ## Claude 接續
 
-目前 game.css 的 #menu-art .art 仍直接引用 runtime/pic/branding/banner_01.webp，沒有自動偵測新檔。需要產生網頁衍生檔、設定橫直版媒體查詢引用及 background-size/position，再驗證斜切、語系按鈕與泡泡遮擋。不能把「放入來源檔」視為已接入。
+目前 game.css 的 #menu-art .art 仍直接引用 runtime/pic/branding/brave_guy_branding01_banner_01.webp，沒有自動偵測新檔。需要產生網頁衍生檔、設定橫直版媒體查詢引用及 background-size/position，再驗證斜切、語系按鈕與泡泡遮擋。不能把「放入來源檔」視為已接入。
 
-最新缺件優先序：P0 模型與場景；P1 UI/品牌/變身演出及 SFX；P2 表情/教學/職場道具；數字、字藝與特效貼圖選做。既有 UI 圖集先核對再補件。模型依 MODELS_3D.md，由 3D 工作流程處理，兩張插圖不是模型交付。
+最新缺件優先序：P0 模型與場景；P1 UI/品牌/變身演出及 SFX；P2 表情/教學/職場道具；數字、字藝與特效貼圖選做。既有 UI 圖集先核對再補件。模型依 brave_guy_record03_models_3d.md，由 3D 工作流程處理，兩張插圖不是模型交付。
 
 ## 發布狀態
 

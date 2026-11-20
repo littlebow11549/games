@@ -3,7 +3,7 @@
 ## 本輪授權與來源
 - 使用者補傳brave_guy_sound.zip，要求從中找揮空與打擊音效，並修復黏住單一目標、方向切換與倒退出拳。
 - 原ZIP與全部12個WAV（含temp長檔）完整歸檔於 `02_brave_guy/assets/source/sfx/imports/brave_guy/`。不再僅留暫存目錄。
-- `USAGE.json`記錄輸出對照、來源SHA256、時長、峰值與削波樣本數。s04與先前使用者提供的hit.wav位元組相同。
+- `brave_guy_record55_brave_guy_usage.json`記錄輸出對照、來源SHA256、時長、峰值與削波樣本數。s04與先前使用者提供的hit.wav位元組相同。
 
 ## 音效配置
 - s13 → swing_whoosh（0.182秒，峰值-10dBFS），所有普攻出手就播，揮空也有。

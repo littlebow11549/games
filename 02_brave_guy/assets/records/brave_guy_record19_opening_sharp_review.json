@@ -1,0 +1,24 @@
+[
+  {
+    "source": "assets/source/pic/concept/brave_guy_charactor02_小天使_正面.png",
+    "runtime": "assets/runtime/lossless/pic/concept/brave_guy_charactor02_小天使_正面.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 794268,
+    "pixelIdentical": true,
+    "sha256": "dbc7db51807ea38dc22f6f321e742b92c6f08a8ec845ba8bd473b3ebb6d2edef"
+  },
+  {
+    "source": "assets/source/pic/concept/brave_guy_charactor03_小幹譙_正面.png",
+    "runtime": "assets/runtime/lossless/pic/concept/brave_guy_charactor03_小幹譙_正面.webp",
+    "size": [
+      1254,
+      1254
+    ],
+    "bytes": 829628,
+    "pixelIdentical": true,
+    "sha256": "7fff3dda138e6172eaaae6070a70c537def95cc1a61b5fd0e25cdc684fef2b9c"
+  }
+]

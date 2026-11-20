@@ -53,8 +53,8 @@
   const levelTag    = $("#levelTag");
   const NUMDIR = "assets/source/pic/numbers/";
   function lvHTML(n) {
-    let h = `<img class="nimg" src="${NUMDIR}lv.webp" alt="LV"><img class="nimg ncolon" src="${NUMDIR}colon.webp" alt=":">`;
-    for (const d of String(n)) h += `<img class="nimg" src="${NUMDIR}n${d}.webp" alt="${d}">`;
+    let h = `<img class="nimg" src="${NUMDIR}memory_crash_ui09_lv.webp" alt="LV"><img class="nimg ncolon" src="${NUMDIR}memory_crash_ui01_colon.webp" alt=":">`;
+    for (const d of String(n)) h += `<img class="nimg" src="${window.memoryAssetPath(`${NUMDIR}n${d}.webp`)}" alt="${d}">`;
     return h;
   }
   const perfectBan  = $("#perfectBanner");
@@ -93,11 +93,11 @@
   }
   // ---------- 音效（mp3 音檔） ----------
   const SFX = {
-    tap:   new Audio("assets/source/sfx/sfx_01.mp3"),
-    good:  new Audio("assets/source/sfx/sfx_02.mp3"),
-    wrong: new Audio("assets/source/sfx/sfx_03.mp3"),
-    win:   new Audio("assets/source/sfx/sfx_04.mp3"),
-    over:  new Audio("assets/source/sfx/sfx_05.mp3"),
+    tap:   new Audio("assets/source/sfx/memory_crash_sfx05_點擊.mp3"),
+    good:  new Audio("assets/source/sfx/memory_crash_sfx02_答對.mp3"),
+    wrong: new Audio("assets/source/sfx/memory_crash_sfx03_答錯.mp3"),
+    win:   new Audio("assets/source/sfx/memory_crash_sfx04_過關.mp3"),
+    over:  new Audio("assets/source/sfx/memory_crash_sfx01_失敗.mp3"),
   };
   Object.values(SFX).forEach(a => { a.preload = "auto"; a.volume = 0.55; });
   function playSfx(name) {
@@ -115,9 +115,9 @@
   const audioProbe = new Audio();
   const musicFormat = audioProbe.canPlayType('audio/ogg; codecs="vorbis"') ? "ogg" : "mp3";
   const bgmTracks = {
-    entry: new Audio(`assets/source/music/bgm_entry.${musicFormat}`),   // 進場/選單
-    normal: new Audio(`assets/source/music/bgm_01.${musicFormat}`),     // 遊戲中
-    intense: new Audio(`assets/source/music/bgm_02.${musicFormat}`),    // 高關/大師
+    entry: new Audio(window.memoryAssetPath(`assets/source/music/bgm_entry.${musicFormat}`)),   // 進場/選單
+    normal: new Audio(window.memoryAssetPath(`assets/source/music/bgm_01.${musicFormat}`)),     // 遊戲中
+    intense: new Audio(window.memoryAssetPath(`assets/source/music/bgm_02.${musicFormat}`)),    // 高關/大師
   };
   Object.values(bgmTracks).forEach(audio => { audio.loop = true; audio.volume = 0.38; audio.preload = "none"; });
   let bgm = bgmTracks.entry;
@@ -232,7 +232,7 @@
     else window.MemoryCrashMascot?.play("idle");
     const f = BANNER_IMG[text];
     perfectBan.innerHTML = f
-      ? `<img class="word" src="assets/runtime/pic/batch3/titles_fx_${f}_v3.webp" alt="${text}">`
+      ? `<img class="word" src="${window.memoryAssetPath(`assets/runtime/pic/batch3/titles_fx_${f}_v3.webp`)}" alt="${text}">`
       : text;
     perfectBan.className = "banner game-banner " + cls;
     // 觸發動畫

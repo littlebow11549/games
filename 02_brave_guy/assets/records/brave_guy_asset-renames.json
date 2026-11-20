@@ -1,0 +1,4157 @@
+{
+  "version": 1,
+  "date": "2026-11-20",
+  "files": [
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/music/bgm_campus.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/music/brave_guy_bgm16_campus.mp3",
+      "sha256": "25d5a9b69dd825e130afba10c09499f896e50fec8c94c49083cd0bd4d8b899fa",
+      "bytes": 923733,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/music/bgm_campus.ogg",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/music/brave_guy_bgm16_campus.ogg",
+      "sha256": "6910ec98af94a9791ced4602dfd45cd8faa4e918ced050d107ce14397ff127b9",
+      "bytes": 578069,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/music/jingle_clear.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/music/brave_guy_bgm17_clear.mp3",
+      "sha256": "82da9dc000ede056622308d134397b5e1b3ee773cbff34ba28d990a1a473aa23",
+      "bytes": 242460,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/music/jingle_clear.ogg",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/music/brave_guy_bgm17_clear.ogg",
+      "sha256": "8f6e73900f87d92c9bf829418acebfe9deb559da6d1710cc4a3bf68e05b964b1",
+      "bytes": 142492,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_beam_end_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx04_beam_end_clean.wav",
+      "sha256": "69e7fd0a28123ace425738fa084eacb503a72db8484b74242bfae2b4dbcb73f1",
+      "bytes": 105884,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_beam_start_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx09_beam_start_clean.wav",
+      "sha256": "9189cb98d9a9c9bb222b18612be599097c84be98b8f63ff1d111723e348e176d",
+      "bytes": 105884,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_combo_100_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx25_combo_100_clean.wav",
+      "sha256": "8139274c5ac5b333d57783ffe8c674ef5e505d3fce520edd35e82e3eb9a1a9e3",
+      "bytes": 88244,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_courage_full_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx28_courage_full_clean.wav",
+      "sha256": "ca07bfc108eb3155128a3b63ce9e18bccef26cd35765a99ef3cacf748c768f98",
+      "bytes": 88244,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_dash_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx32_dash_clean.wav",
+      "sha256": "fd72906fa6747a7b4f574e64564f43ffa4fb9535266137387adb9f2a9e5b4c57",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_enemy_down_1_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx40_enemy_down_1_clean.wav",
+      "sha256": "f3e6533b3d77320b9366eb2215f42ddb42101b96005337dd713ae38b119829a8",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_enemy_down_2_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx42_enemy_down_2_clean.wav",
+      "sha256": "6f055fe7e227540b3dde279a2877f815fcd3442d09124616651dc0687a4c435d",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_enemy_down_3_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx44_enemy_down_3_clean.wav",
+      "sha256": "81d9ffc2e09febc8abe5256750cf07c6b1fe523e1f1e76e4ae64c1fed081e410",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_hit_1_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx62_hit_1_clean.wav",
+      "sha256": "37c7d0cf1d71cb21609bef77a3e25eeb72dd35f103046ef05b62619d04ad75f4",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_hit_2_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx64_hit_2_clean.wav",
+      "sha256": "9e2acc60a4b1cb76077da024c222bf917224f73adfadf2391df8056ee1e25905",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_hit_3_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx66_hit_3_clean.wav",
+      "sha256": "9a88cdddc0809e71bb3b8e8d68d219f54bae29bdcf2d7529a392ac612705fe2d",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_hit_heavy_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx68_hit_heavy_clean.wav",
+      "sha256": "c4a4bcd41daf29743730dd20c6f7892767e488c8398a02d4f7edcc64294be4c6",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_ki_blast_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx85_ki_blast_clean.wav",
+      "sha256": "266dc66b5a6e86c0ee1ab9de5fea750d6175d1812d09f007ee9f897eeb642e53",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_kick_spin_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx88_kick_spin_clean.wav",
+      "sha256": "f8db02378124e4cabdee7dabadcd0faa84e6b22c136ced526e632c7093118597",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_lock_switch_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx90_lock_switch_clean.wav",
+      "sha256": "a46a67b7b470d59d287daeafe44ec747dbab3ab29b47f2d818c80318f63d11fe",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_lose_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx92_lose_clean.wav",
+      "sha256": "95b548b47e825f76481b89b7dd1c57f5958593892974f2f2b36eab9421927718",
+      "bytes": 105884,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_notify_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx95_notify_clean.wav",
+      "sha256": "cd785b8697b1fd9b8efa122a49ba715afc491dbbf7759b30bd0dd20843ef7316",
+      "bytes": 52964,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_punch_1_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx101_punch_1_clean.wav",
+      "sha256": "663e1c36d0b4e31f38c86f1f255db7a1032f06b742689e0182fd4c4f6e3321ca",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_punch_2_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx103_punch_2_clean.wav",
+      "sha256": "ccc17cfeb2aabe0bff36fb7e125dde1791818ccbf0d47844a790759dfc2d0351",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_punch_3_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx105_punch_3_clean.wav",
+      "sha256": "bc4bf2116aa583b967785ccf9b7edf71e4019af0c8894b64e71d93372d94e417",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_qi_full_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx109_qi_full_clean.wav",
+      "sha256": "a34a26fbbd0bb2562e05ab8578852755644d1b9073551f911739f051649f5ef2",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_ui_back_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx167_ui_back_clean.wav",
+      "sha256": "a824616b55194bbd335eef0564da8fa0b574cba1eacc2f9471aec47a1b6a551e",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_ui_confirm_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx170_ui_confirm_clean.wav",
+      "sha256": "664e89549cf5d4f188a5bd5743b9e6c9a79a8aecede81ac6ee97c9af0c911d39",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/sfx_ui_tap_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/clean/brave_guy_sfx173_ui_tap_clean.wav",
+      "sha256": "e66ea5e6a4b418ac394807f53a3656b70911293da70ae558b95d4ab9e5cf7bff",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s03.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx73_import_s03.wav",
+      "sha256": "660cd87f98b2ca2447fab0972f2db7cc49465641bc3e7fc06707d414d1b81988",
+      "bytes": 90044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s04.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx74_import_s04.wav",
+      "sha256": "a546d55d9c4c02a229a0f8f9ccb24df6575739ca6f05713d6396cadb5ccdf9cc",
+      "bytes": 130044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s05.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx75_import_s05.wav",
+      "sha256": "90ae007a150f248386ced049454f0d53fe244a7b6f54165d4cfb50ddbe8176a5",
+      "bytes": 30044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s07.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx76_import_s07.wav",
+      "sha256": "7332f627b6fc0b4a124868601420e52d50a74ecfb23f01ab3f0e84600bd6304a",
+      "bytes": 110044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s08.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx77_import_s08.wav",
+      "sha256": "b0639107aab007eed47e3a23dc1c994017a94e85d70ced8a01aca95888102fcf",
+      "bytes": 92238,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s10.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx78_import_s10.wav",
+      "sha256": "c079af8a3a88525ab29ebbdebfa991a8f2739617d0188a32e55a7f6eb2ec11e1",
+      "bytes": 59848,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/s13.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/brave_guy_sfx79_import_s13.wav",
+      "sha256": "5d698144266ac391618bc9b98b733b71c418fad4fa532fd9c300f5fd63dc8786",
+      "bytes": 10044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/14613.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/brave_guy_sfx70_import_14613.wav",
+      "sha256": "b2108b2e20a05c2e57dec39a070c59cac0f285d824ffb7a45455bbcc9eb61b7a",
+      "bytes": 3270044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/241.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/brave_guy_sfx71_import_241.wav",
+      "sha256": "3e06a7d73794e3559fd80b9d39c08e0c61ca2cad4ba0874d880285b98c637cfa",
+      "bytes": 1830044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/hit.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/brave_guy_sfx72_import_hit.wav",
+      "sha256": "468f88f9c69a15a3076835bb33ad61b624a4eae08749853e6a7786b894917a07",
+      "bytes": 750044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/y2193.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/brave_guy_sfx80_import_y2193.wav",
+      "sha256": "96c63257cc116a53b9d52c1779bdcd1b9f4f803070234d8960b955267fa9d961",
+      "bytes": 50044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/y720.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/imports/brave_guy/temp/brave_guy_sfx81_import_y720.wav",
+      "sha256": "292c30af5dfc542c098d94ddb23ef6f31a6023acccf35922f829bfe93569af78",
+      "bytes": 1560044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_hit_1.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx129_seal_hit_1.wav",
+      "sha256": "28a39f481949a5d2ace7608a7300dc768b31f29a5ebe259145a77b5b2c86178d",
+      "bytes": 89120,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_hit_2.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx130_seal_hit_2.wav",
+      "sha256": "a3f45d089bb84927b4641fd6811545449797e0bd8ceacda04f9addf0faf78e9d",
+      "bytes": 130812,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_hit_3.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx131_seal_hit_3.wav",
+      "sha256": "26b6d6ac35aa95b6b94cbdb1effeb999fe48694b5e42a20c33133b7a604b6bcb",
+      "bytes": 107732,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_hit_heavy.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx132_seal_hit_heavy.wav",
+      "sha256": "320e2f9b2d9891d6a9c68af25eaa6024fc86576497a343a7a4dd58efffda9a71",
+      "bytes": 141472,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_kick_spin.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx135_seal_kick_spin.wav",
+      "sha256": "eed402dd26831f6456f28ff2c6c3ef7ffaa6d2fbd3021ada2d881629fc09b9ac",
+      "bytes": 193872,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_punch_1.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx139_seal_punch_1.wav",
+      "sha256": "e857c7bcf855153f5bf8699a897ea9f03dd7f8ea2a64098cd955d25e0d69bebd",
+      "bytes": 28418,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_punch_2.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx140_seal_punch_2.wav",
+      "sha256": "be87a75a6d1f9ee885a6e699df798059e7c062bbc79dc5c0521a62f7a310fd09",
+      "bytes": 83396,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_punch_3.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx141_seal_punch_3.wav",
+      "sha256": "8f7d89c1a00fafe91452d766819d2fc03ae7d7baef048311630d35bf45a918da",
+      "bytes": 149704,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/sfx_student_punch.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/seal/brave_guy_sfx145_seal_student_punch.wav",
+      "sha256": "85fa66533e9999acb7ce3f0c85fd46340db7f9f7822df31b12c99a3aea2d4068",
+      "bytes": 32442,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_applause.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx01_applause.mp3",
+      "sha256": "b3766726cfd928522debf7b9317056198c0e71950abe49c5e7208d3a574437d5",
+      "bytes": 7880,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_beam_end.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx03_beam_end.mp3",
+      "sha256": "7c50a333f048eeed2fb1949d0461b84d7e947326c6e8a7d4d6b27bfc0b4fac21",
+      "bytes": 23450,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_beam_loop.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx06_beam_loop.mp3",
+      "sha256": "f8550a6f92d68bd3b4f33dc90f60873aee06198e7ca4418870371c9f6d719bf1",
+      "bytes": 42675,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_beam_loop.ogg",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx06_beam_loop.ogg",
+      "sha256": "e173dd4b7166623bc4586f9898fceb6fa88a8ac40c9674e70ec59b1812245a8d",
+      "bytes": 10722,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_beam_start.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx08_beam_start.mp3",
+      "sha256": "652bbddfa272ddde44e41b4b114a7d4090a2be96f953b2c8a620a5aa20a28fa9",
+      "bytes": 23450,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_boss_slam.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx11_boss_slam.mp3",
+      "sha256": "61efcfa7e20a3d535ec4e8e83fc6e8d46907f31a1da341026d4b95be74303f28",
+      "bytes": 25122,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_boss_warn.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx12_boss_warn.mp3",
+      "sha256": "b953b5d1ef910637571cdc7d003bd65cf755b733a771f694c6f27e1b0200241d",
+      "bytes": 21465,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_bubble.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx18_bubble.mp3",
+      "sha256": "d1233b5496e1662a1254b748635aacebd8ccc3143b5af36afd5e6bbe5e188bfd",
+      "bytes": 5895,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_chips.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx20_chips.mp3",
+      "sha256": "9ec1a7bfbd3e6def85da69afe5041adec3b92d2dab0d322f43840d48b72e550f",
+      "bytes": 12113,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_combat_hit_user.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx22_combat_hit_user.wav",
+      "sha256": "a546d55d9c4c02a229a0f8f9ccb24df6575739ca6f05713d6396cadb5ccdf9cc",
+      "bytes": 130044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_combo_100.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx24_combo_100.mp3",
+      "sha256": "e143ce723a491dda8d5e8623b7bfd39d2fa19851eb5d7ad7ddfa61b10e08e514",
+      "bytes": 15038,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_courage_full.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx27_courage_full.mp3",
+      "sha256": "0463a2504b9e4dbf84e4006d22db7e4487b815669f16226b526b25dee5929878",
+      "bytes": 16501,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_crowd_cheer.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx29_crowd_cheer.mp3",
+      "sha256": "816a5608615e85ada1d4e28df8e09c761d6e4bcf5ed2e723f665d17a8b3fa11e",
+      "bytes": 23450,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_dash.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx31_dash.mp3",
+      "sha256": "4968fd5a6f717cae0e52ced51679164c00845e0f1bfc7808a4e6e6f941e4473c",
+      "bytes": 15038,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_dialog_next_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx34_dialog_next_clean.wav",
+      "sha256": "fdabe2362f1ce22e66b5fc6a66ed45ec8bc0b6d19f437f3535ba953b067f8339",
+      "bytes": 22094,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_dodge.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx35_dodge.mp3",
+      "sha256": "375f521fcbc5862ebe3476e1c046120dd39df0792b830d3e5163e3c11c52d50e",
+      "bytes": 7358,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_dodge_perfect.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx37_dodge_perfect.mp3",
+      "sha256": "424c16939effc58253a25a9ab4f8563992b3383c14e8dba6bb9fe01219207aca",
+      "bytes": 13575,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_enemy_down_1.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx39_enemy_down_1.mp3",
+      "sha256": "541651a6a8de002fe505554c12945986709d3687f0afb47e834097625b4d834f",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_enemy_down_2.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx41_enemy_down_2.mp3",
+      "sha256": "c87bba54f1c8fd752b609d233daffd8e7ffcb755dc6f118f4592d7c21e3f141d",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_enemy_down_3.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx43_enemy_down_3.mp3",
+      "sha256": "ba04bd9ce54435a383b5dce78e83f1363a697a7820dab22b61969d371e0d65ae",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_folaidi_reveal.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx49_folaidi_reveal.mp3",
+      "sha256": "98f7cd4c10e20e1da4ecb95729d41a3e31d1bd600bad126e5a4cdae24933205a",
+      "bytes": 15038,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_folaidi_tick.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx52_folaidi_tick.mp3",
+      "sha256": "172b95c816ed86a5b5d0a8356e7ffabf338b5fc24813cea91a97888da7c3d18c",
+      "bytes": 9187,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_guard.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx54_guard.mp3",
+      "sha256": "945d838693ac3726de46514cfe4203e5eaa31056d6fc3c984b878cb68f1b09e8",
+      "bytes": 9449,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_guilt_burst.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx55_guilt_burst.mp3",
+      "sha256": "0fd97faa4caac43a41f08a8cd9306ded17c32ae8401f33d08226c8e58eac19bc",
+      "bytes": 20524,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_guilt_crack.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx57_guilt_crack.mp3",
+      "sha256": "99d0924e19375f150f1dd78740fbb731808854f7fcb7db1bb8641490ab32b533",
+      "bytes": 12113,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_guilt_tick.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx59_guilt_tick.mp3",
+      "sha256": "1a88a804baeba0a3289fa7f93480938368909096867b9cbde51c21522146f105",
+      "bytes": 6627,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_hit_1.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx61_hit_1.mp3",
+      "sha256": "7903a958f0ae956090cb4208ccd59328352a97c6abdbbc33d49897908d0914c2",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_hit_2.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx63_hit_2.mp3",
+      "sha256": "492cb19330870555d3eebc8edddcb7f2d4dee2458fcdacb47b2537eb5f7c1070",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_hit_3.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx65_hit_3.mp3",
+      "sha256": "33db0357df9a456cce3e61f39c984d9f118098890055ea4943011074575116cb",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_hit_heavy.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx67_hit_heavy.mp3",
+      "sha256": "dcba16ca1af706be8d812d4e19442fe70b66015f912bbd3568fbf77ee7931e16",
+      "bytes": 12113,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_junxiong_pop.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx82_junxiong_pop.mp3",
+      "sha256": "54fcbaeb4a190d3e8cb9662d0a40b83ee10fccfb8467ae89db353612845db60e",
+      "bytes": 17598,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ki_blast.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx84_ki_blast.mp3",
+      "sha256": "3af1e829b4dada61a08f81e3ede829c1d2fe4b88092d7e8c55449937d6b70735",
+      "bytes": 15038,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ki_shot.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx86_ki_shot.mp3",
+      "sha256": "592612b64cde7fe6f820c954e186712c45c388a26db3da9768c7b8d173f5f347",
+      "bytes": 17285,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_kick_spin.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx87_kick_spin.mp3",
+      "sha256": "6b37a4932782ced05b49de39bff0db6a3167090d5865c657a588b5131a064af6",
+      "bytes": 12113,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_lock_switch.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx89_lock_switch.mp3",
+      "sha256": "ae5687b42771b06aa35fe02358b716edb59355c295858a64557b6b5873cd6ab2",
+      "bytes": 5164,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_lose.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx91_lose.mp3",
+      "sha256": "17b4fe5ed02990d490b345001a827536650296c164a43ac871ae47994a01db8a",
+      "bytes": 17598,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_notify.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx94_notify.mp3",
+      "sha256": "9cb784a0eb8794b896da996f7883ff479800563bc0ea9745f3a858395b7024d2",
+      "bytes": 9187,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_pan_fly.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx96_pan_fly.mp3",
+      "sha256": "0e9a62737b2d59bd835157457eb904a54d7ecd25543ce69fc2fabd99858955f9",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_punch_1.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx100_punch_1.mp3",
+      "sha256": "72122eb1778ba71ad015dea3df1ec3eb0aa6b93a7d67545b144eafff024f3a4d",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_punch_2.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx102_punch_2.mp3",
+      "sha256": "455152efac46ddb8cf36c55ce669b410c2e6ea34d75ff03fda6744f64bf2186a",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_punch_3.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx104_punch_3.mp3",
+      "sha256": "c10becbf502fba5061e2aec705d7669273bef7c57b66653e484555968254a825",
+      "bytes": 8090,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_punch_clock.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx106_punch_clock.mp3",
+      "sha256": "0c655b1a7a0172b9d5b1056af1b573bfa63b5d9252b57b1437b9abe1c4838b0c",
+      "bytes": 6627,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_qi_full.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx108_qi_full.mp3",
+      "sha256": "3b6a0023416b2599b95db28553340bcf4f9028926639702ffae8a9578f82563a",
+      "bytes": 13575,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_revive.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx112_revive.mp3",
+      "sha256": "8f680ab5410a236bdd94c5d2b81e755f1c5f4304ba0514886bfc4f6536f6612d",
+      "bytes": 19375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_score_result.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx113_score_result.wav",
+      "sha256": "8d1572f29628d48adcea78846e7a39f62d4f12bf3f4be21c9fefd18604878314",
+      "bytes": 132344,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_stage_select_clean.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx152_stage_select_clean.wav",
+      "sha256": "b0dbfe9d65678ae670326d7ffee7a0d40f7f53e6782822b6eae17a915f2f46e9",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_student_punch.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx153_student_punch.mp3",
+      "sha256": "0f8497319702934fc6f3c9e706669ac992d6830560c883f56720045bef9c58be",
+      "bytes": 11538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_tf_hair.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx155_tf_hair.mp3",
+      "sha256": "8a50525ac09578b8131cd3cbc9442ac42ecfa4fda1970e7402af3a66a416e276",
+      "bytes": 13575,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_tf_silhouette.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx161_tf_silhouette.mp3",
+      "sha256": "593778587fba5d56da72902f1839c7b0603d8e8ef2bc011e166e263d8c7eef1c",
+      "bytes": 23450,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_back.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx166_ui_back.mp3",
+      "sha256": "f668f7f9f257aaa4d57624a42e2baa3835b5aead79130ef9f552e9b1eff221b0",
+      "bytes": 1715,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_back_crisp_v3.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx168_ui_back_crisp_v3.wav",
+      "sha256": "981e84e770e18eb1f74b05568844eec4ed9fd5f7fec48d9d299de7f1385bf726",
+      "bytes": 12832,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_confirm.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx169_ui_confirm.mp3",
+      "sha256": "0653c4a6e6df50fbf7fced0c1a0c83a8273d2828af900379b4441872b36e6a72",
+      "bytes": 1715,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_confirm_crisp_v3.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx171_ui_confirm_crisp_v3.wav",
+      "sha256": "da73e6903ef26f3d51c8d53b3fbbf4c26e3f097414985b1afd1857b02269a7dc",
+      "bytes": 18124,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_tap.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx172_ui_tap.mp3",
+      "sha256": "931ada871eff07db1a44faba53985d35ece1b0e5f27f67af4e94f016fb2743ab",
+      "bytes": 1715,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_ui_tap_crisp_v3.wav",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx174_ui_tap_crisp_v3.wav",
+      "sha256": "6fb27a8f7822067f2ac5a63fa67bd0ec4d9babb22fd63eb7722e29d0504ae7dd",
+      "bytes": 10188,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/audio-unused/sfx/sfx_win.mp3",
+      "new": "02_brave_guy/assets/_alternate/audio-unused/sfx/brave_guy_sfx178_win.mp3",
+      "sha256": "da67268f77c267b2643f71b087e9bac3b9ee5558d493859b0bd57b18e5caa79a",
+      "bytes": 21987,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/_alternate/recovered-art/fx/hit_arcade_source_unused.png",
+      "new": "02_brave_guy/assets/_alternate/recovered-art/fx/brave_guy_fx02_hit_arcade_source_unused.png",
+      "sha256": "fcd3ecc71a250c7c150f404e6596676f082e4f69fe47d15ca5bc50875ba6ccb1",
+      "bytes": 1876010,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/fonts/huninn-subset.woff2",
+      "new": "02_brave_guy/assets/fonts/brave_guy_font01_huninn-subset.woff2",
+      "sha256": "d475611fd865401494e140d757ffd4cbe9c532f92376000b44ba9eec9ecc5f78",
+      "bytes": 376668,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/fonts/notosansjp-subset.woff2",
+      "new": "02_brave_guy/assets/fonts/brave_guy_font02_notosansjp-subset.woff2",
+      "sha256": "8611f370d01dd3f5f6c2d9ab0c23b5a715faffa0ecb708e77665ff81a3924679",
+      "bytes": 658636,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/fonts/notosanstc-black-subset.woff2",
+      "new": "02_brave_guy/assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2",
+      "sha256": "ec396ac923a833ec82dcf8bbfa3446ec236abdd0ebef3e06c829800a583a0b55",
+      "bytes": 330196,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/branding/icon_01_logo.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/branding/brave_guy_branding05_icon_01_logo.webp",
+      "sha256": "eacc4c5811ce9caa180e7c2dab3745f7f4155e4887a01cab0f40c51ae1d7adee",
+      "bytes": 1407970,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/branding/logo_ja.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/branding/brave_guy_branding10_logo_ja.webp",
+      "sha256": "b21b965ca310667147dba71753fbef732e8a2706baed67afb2431fb051515f14",
+      "bytes": 1118748,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/branding/menu_keyart_01.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/branding/brave_guy_branding11_menu_keyart_01.webp",
+      "sha256": "a8df562326a5277b8e0251f9dfebe1d84c07a83c517a57cc3ff267152ca9e975",
+      "bytes": 1656730,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/branding/menu_keyart_portrait_01.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/branding/brave_guy_branding12_menu_keyart_portrait_01.webp",
+      "sha256": "c3f072f03df9ae87bad20a8b4326319a335205d2028ee343c87b8f75bcf33a85",
+      "bytes": 1582824,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/awakening_armor_a.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic01_awakening_armor_a.webp",
+      "sha256": "52c7f20f34fb248bd9130f26f3bce9e3d3f85eeb92aec360f2d7b4005e9fae8f",
+      "bytes": 435814,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/awakening_armor_b.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic02_awakening_armor_b.webp",
+      "sha256": "d5e7a35051b5c6e6f19e1f6c64b3b7bfc94c941ae191a70a099ba769832d7598",
+      "bytes": 463170,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_baguashe_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic03_boss_baguashe_storyboard.webp",
+      "sha256": "24fb8a11f150d194d1a62e8b46a8a62fd6b057304c49978152e09dc339ad818c",
+      "bytes": 329834,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_ganqiaoFull_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic04_boss_ganqiaoFull_storyboard.webp",
+      "sha256": "f80c9d6e78054a4044d77978c0dc599d50f1690e5ff74fe276b127963c54255a",
+      "bytes": 490186,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_guan_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic05_boss_guan_storyboard.webp",
+      "sha256": "93a3893fe16d590da8948f3529c69b8ad213b05b1c391bc502534ccf1cadcd0a",
+      "bytes": 441472,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_hell_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic06_boss_hell_storyboard.webp",
+      "sha256": "5e5ed29e47b863b3ba1e60d04fa410d12f5a383e43d2b8ac6e78b5ed61b17f37",
+      "bytes": 524528,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_incubus_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic07_boss_incubus_storyboard.webp",
+      "sha256": "f155447da680f3ebe9700b9bb5959014a4e81e03156edec82d3c5ec282447deb",
+      "bytes": 306266,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_jiamangKing_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic08_boss_jiamangKing_storyboard.webp",
+      "sha256": "a4bf6b25cfaa778c8b47d158b869a05b4047cb76884727a95c5faa432262208b",
+      "bytes": 310110,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_kabanKing_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic09_boss_kabanKing_storyboard.webp",
+      "sha256": "33d6d63977fec0c7fd7ba4886a3fa3a5fb64df2b65dd0a704a473c772da07e1f",
+      "bytes": 374658,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_lanMgr_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic10_boss_lanMgr_storyboard.webp",
+      "sha256": "20d13fe7bf822f5c1f05aa4bf0fa1e3879d043f30fa8c99629aeb80705b9255c",
+      "bytes": 387068,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_lan_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic11_boss_lan_storyboard.webp",
+      "sha256": "c7c768b493f79e3c1b09ffecd57a204a36216df8dd165b95732f30fd3851234a",
+      "bytes": 416766,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_midKing_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic12_boss_midKing_storyboard.webp",
+      "sha256": "41d6a0e6a3184399fb3a926395d9dd9e18a2b9e849ee0e441aba1bcccffb91b9",
+      "bytes": 469562,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_nightmare_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic13_boss_nightmare_storyboard.webp",
+      "sha256": "f17fe8eb8476159d5a662108fe83e9ad13632fcc473c12cd0408c9c43060b127",
+      "bytes": 454348,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_qianBiz_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic14_boss_qianBiz_storyboard.webp",
+      "sha256": "1dbcfe9d9c6c21a72221c8c8fa91fa008382169e53b4c91e231eafc13b3e17e2",
+      "bytes": 434146,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_qian_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic15_boss_qian_storyboard.webp",
+      "sha256": "0f6e85394c933e3a0a5e20215f4e54a01cc96c2af0521597e9df62214cfa2a9d",
+      "bytes": 526274,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/boss_xinji_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic16_boss_xinji_storyboard.webp",
+      "sha256": "9b79851dd8ea35f61cca55a473dfc07f4b036b651092fa7617c0d3dcf24bada5",
+      "bytes": 294036,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/defeat_retry.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic17_defeat_retry.webp",
+      "sha256": "fbc07df180b8cda2d2a5edfd01a033736fffc6a58621b1be5b985a3528ce6345",
+      "bytes": 327228,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/defeat_storyboard.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic18_defeat_storyboard.webp",
+      "sha256": "df02f6604021e292d637b207ea3b627399c6414748c127a31fc608b3eeed3f65",
+      "bytes": 323538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/ending_applause.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic19_ending_applause.webp",
+      "sha256": "3250a6960f7e70f6656ad1e1b80aa35ccad33190811d70d492dda14192fe9a18",
+      "bytes": 487430,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/ending_applause_final.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic20_ending_applause_final.webp",
+      "sha256": "5b27d28c9d04fb4a914baf5e5ec140d293e56ee6868e3b091665d6de4bd17e2c",
+      "bytes": 524778,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/folaidi_corridor.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic21_folaidi_corridor.webp",
+      "sha256": "f442c1d54c3a5ca871e54f687c82b4612ba595b70849d995dc39536d68a6a815",
+      "bytes": 235688,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/folaidi_eyes.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic22_folaidi_eyes.webp",
+      "sha256": "01a60de9672b5b9c52af296a192aca06f5e9380e4b854834de82043704248e04",
+      "bytes": 181186,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/folaidi_reveal.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic23_folaidi_reveal.webp",
+      "sha256": "5f55b8d1071e4664a6289ab5d6dfc6abf62a9948ff7eb8dc562519bdf74b8287",
+      "bytes": 291718,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/incubus_firststrike.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic24_incubus_firststrike.webp",
+      "sha256": "b8aa79899c8e808d38605c0760f2a9c4156355c6f208ac66b4038fe37de17fa5",
+      "bytes": 511464,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_baguashe.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic38_victory_baguashe.webp",
+      "sha256": "63ceda38c1eb315f7bea02fd997cbfdf942b6efc5a200d71edf7356572d540f8",
+      "bytes": 483086,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_folaidiKing.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic39_victory_folaidiKing.webp",
+      "sha256": "93056aa1f5080f87fa3e6f93bbd7045f61c135c6a93c388488c4ed61d4c04923",
+      "bytes": 554866,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_ganqiaoFull.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic40_victory_ganqiaoFull.webp",
+      "sha256": "908569e333770f7a70c4e41c1eb64d2d412a4c4cd2e0cd7e6a9c6dde173e19bc",
+      "bytes": 588972,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_guan.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic41_victory_guan.webp",
+      "sha256": "d4afb1cd9c590409498b8922a3b610e05b6ab52e53daac6db3b4ef072509e956",
+      "bytes": 580224,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_hell.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic42_victory_hell.webp",
+      "sha256": "8f8595969dcf43eeacc8104d00e37b3eb2a5e08aa3288ba8ed43cd2b6d59f9ad",
+      "bytes": 590108,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_incubus.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic43_victory_incubus.webp",
+      "sha256": "08c7438f74e1b74fea212bee66d1be14d1214abf32de396d8fe3e892c1f0156e",
+      "bytes": 586418,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_jiamangKing.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic44_victory_jiamangKing.webp",
+      "sha256": "f23785bf5442929500dc38c6827552f436eae5ed0a5a61edfa63ad5fe88378dd",
+      "bytes": 350868,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_kabanKing.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic45_victory_kabanKing.webp",
+      "sha256": "624396966a5e3b813784704c3ff133e002e176510fe330fca638b1acd4726a64",
+      "bytes": 551360,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_lan.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic46_victory_lan.webp",
+      "sha256": "8a0b2b2a2070fe2213ea98cfccc8e790d05ae7fd00f9013508664ac9c8110bed",
+      "bytes": 557208,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_lanMgr.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic47_victory_lanMgr.webp",
+      "sha256": "9888b433f46f223a0ceeae1b9538b94af35bf2d7ea50215c15d18c55724e21fa",
+      "bytes": 482886,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_midKing.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic48_victory_midKing.webp",
+      "sha256": "184dd0cce995fb45eda6aabccdc128917a5f75bb24f9318bec9484d975c4c0df",
+      "bytes": 590976,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_nightmare.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic49_victory_nightmare.webp",
+      "sha256": "9f3bedb1bb48bea63afe02aa045ff36d329ca2b63cad7b102007e8d8e3155178",
+      "bytes": 580582,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_qian.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic50_victory_qian.webp",
+      "sha256": "f49019a7d3e9cf362e9d80f3f108f9bfd96e2e5fb375a52f66d4bbca1572d0c7",
+      "bytes": 649840,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_qianBiz.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic51_victory_qianBiz.webp",
+      "sha256": "d1bbca70126b7c575c781eb47ca09e50789acb41477105b87f5bcb64dd0dc036",
+      "bytes": 416062,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/cinematics/victory_xinji.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/cinematics/brave_guy_cinematic52_victory_xinji.webp",
+      "sha256": "fa78158af4578577737298e1adbb1e8c9d414b9fec72d9ab9a257b0b2da21721",
+      "bytes": 469644,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/concept/angel_front.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/concept/brave_guy_charactor02_小天使_正面.webp",
+      "sha256": "dbc7db51807ea38dc22f6f321e742b92c6f08a8ec845ba8bd473b3ebb6d2edef",
+      "bytes": 794268,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/concept/ganqiao_front.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/concept/brave_guy_charactor03_小幹譙_正面.webp",
+      "sha256": "7fff3dda138e6172eaaae6070a70c537def95cc1a61b5fd0e25cdc684fef2b9c",
+      "bytes": 829628,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/angel_guard_bombardment.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui24_小天使五點結界.webp",
+      "sha256": "69e0bbbb2843d485655cc73876c2309d4ac3d912482d83bbf1b195e0943b2d43",
+      "bytes": 1869910,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/btn_attack_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui29_普攻按鈕圖集.webp",
+      "sha256": "d1237a60bd06dd5b2460f44720ea22b0550f615bbcfe58229359f8a0be894e96",
+      "bytes": 697840,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/btn_dodge_transform_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui36_閃避變身按鈕圖集.webp",
+      "sha256": "42f4ba73c696308f6175746419c7fb48022a3831fb243547ae6dbcb97f08c819",
+      "bytes": 1036274,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/btn_transform_courage_gem.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui19_勇氣寶石.webp",
+      "sha256": "6af377adfa04fae31c439c80d2b83d50bd4f3560fb1cb3ab2cfdb858ca153e22",
+      "bytes": 986416,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/function_icons_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui18_功能按鈕圖集.webp",
+      "sha256": "bb0355da49bed1b8032e4ce72bce58d60c6839237bfcb7b37cb2e0692aa9d981",
+      "bytes": 1084464,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/language_globe.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui32_語系地球.webp",
+      "sha256": "c49a687b2eeb812036cdd786761888bcacb4f0ee9266e34228ed45cb9df3c670",
+      "bytes": 682216,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/lock_heal_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui35_鎖定治療圖集.webp",
+      "sha256": "af95189b2b43b7fe6ea94fc0db4b0e9634bb64a21c655cfb6e1178a124e20130",
+      "bytes": 975476,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/icons/skill_buttons_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_ui20_勇氣超人技能圖集.webp",
+      "sha256": "e3410b883b2d2726ef30fe4e4928d28e1192560ba83a0d52efe149bb612e481c",
+      "bytes": 1305234,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_angel.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor02_小天使_現役裁切圖集.webp",
+      "sha256": "1b2ea065d10c38d66e62cdd0942ade168229b15b1f73be422e1e6865d451e874",
+      "bytes": 1443474,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_baguashe.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor20_八卦蛇_現役裁切圖集.webp",
+      "sha256": "48313cae9ab444257464a5b759547dae080fe11ea581293776a9b262659be542",
+      "bytes": 1467126,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_braveguy.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor04_勇氣超人_現役裁切圖集.webp",
+      "sha256": "58786d58571a1341e9baf2e41d16b7311553cf55dc64040ab33eaf98ffdda39d",
+      "bytes": 1423256,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_ganqiao.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor03_小幹譙_現役裁切圖集.webp",
+      "sha256": "3eb894996aab78aa57df598a95ac6a2937b38ba47eb6ce3a7aaf539579037fad",
+      "bytes": 1456772,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_guanlaoban.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor25_冠老闆_現役裁切圖集.webp",
+      "sha256": "f676089df49d2bc2746a64a69073766e1dba6aed4af96145443a3aaff53848bc",
+      "bytes": 1358926,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_hell.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor14_地獄超人_現役裁切圖集.webp",
+      "sha256": "6f13071e1247f6841c9bce1cbaf0250ce95e013a01d1ecb52855302473e40ef1",
+      "bytes": 1591724,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_incubus.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor26_夢魘超人_現役裁切圖集.webp",
+      "sha256": "d33e112cd17a6c47cc7ddb77b01773c076b0f40dedfac1e47d5035e66cb82991",
+      "bytes": 1365544,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_laichuang.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.webp",
+      "sha256": "43a830e3a4077e9fb432c87ccdffa6e5ed5a5ee3c3995cf2447ff2b54b643fb5",
+      "bytes": 1269524,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_lan.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor10_藍教頭_現役裁切圖集.webp",
+      "sha256": "2fea8e30d494216faccc66bf73612e5b9b77c94774bda0d4e4bed214370f7fad",
+      "bytes": 1434852,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_nightmare.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor11_惡夢超人_現役裁切圖集.webp",
+      "sha256": "e77c7deec1cb2f5e1db8df846adc43e02d31544d9c5d4fe6ed2cd2c7d475869c",
+      "bytes": 1376516,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_qian.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor09_錢大姐_現役裁切圖集.webp",
+      "sha256": "b73b4bb5b6cfbe2629300079b5d194f0abd563885badd7cf6c787d087d75af1f",
+      "bytes": 1447854,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_student.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor01_主角學生_現役裁切圖集.webp",
+      "sha256": "960685c5ae82a7eb43c08f1f641497d91afc7513ac6c29bf9a5a0a982123caf3",
+      "bytes": 1280508,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_worker.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor15_主角上班族_現役裁切圖集.webp",
+      "sha256": "e01909fa37bb0760ee293525c307a408c1af500dbe4218e956db1d4f143ae044",
+      "bytes": 1375542,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/sheet_xinji.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/sheet/unified/brave_guy_charactor19_新雞_現役裁切圖集.webp",
+      "sha256": "6f87b5f07d90dbeef03ff08c0b2a6504b4c4ff7563fb297bcded86a8f10121dd",
+      "bytes": 1416948,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_combat_en.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui01_system_combat_en.webp",
+      "sha256": "29163f5379e58871c2b2954430dd8b6174ba292ba9b3c972149cdb7bb5d78705",
+      "bytes": 466452,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_combat_ja.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui02_system_combat_ja.webp",
+      "sha256": "bf7b27fb08621d8f6cff6c215c71d5189181abd979563d3b0e703b9735274fdb",
+      "bytes": 460612,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_combat_zh.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui03_system_combat_zh.webp",
+      "sha256": "54803f76ddfcb169c556d001c5a0bdb4b859dea8be7290869f2d399666ebf4a4",
+      "bytes": 457236,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_labels_en.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui04_system_labels_en.webp",
+      "sha256": "631d886d4b9fa04d61282cc47c0573b535b65cfc86a63df9c5235bf5854371e9",
+      "bytes": 432342,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_labels_ja.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui05_system_labels_ja.webp",
+      "sha256": "c6d31889dc95ad10b391af80639e59278814829c295f8b727f13f4de70c24046",
+      "bytes": 382372,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_labels_zh.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui06_system_labels_zh.webp",
+      "sha256": "f72cf847318fe0fc9adb5c470766744eb0e5c207f3d7d78c080b1c713c5a0140",
+      "bytes": 392712,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_outcomes_en.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui07_system_outcomes_en.webp",
+      "sha256": "42169d080ea73e34bd699267c3085b81068a19241ef899d63ec959b2d0d79c14",
+      "bytes": 418812,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_outcomes_ja.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui08_system_outcomes_ja.webp",
+      "sha256": "e3f5f799db6288bc14632504bbf417204b14290ccd7d058649437b828ece993b",
+      "bytes": 386574,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/titles/system_outcomes_zh.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_ui09_system_outcomes_zh.webp",
+      "sha256": "5b33937e56c9d05ea0a28b3223dd299a9213cc00909cb022b11e79e8d45a636e",
+      "bytes": 325284,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_bg_stars.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic25_tf_bg_stars.webp",
+      "sha256": "e03103261e140956ced1f471bbd5283af6dc4a790c1e9ff2e3a20877774deede",
+      "bytes": 205572,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_glove.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic26_tf_glove.webp",
+      "sha256": "0e3fd555ca5c089f3ea3807a1ac230fe0a1c6f9c63252b40f9d8f1180a9bcd59",
+      "bytes": 213714,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_hair.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic27_tf_hair.webp",
+      "sha256": "f4bc8b0ba93aa6e87fde3ab9ae0f30dac3aa5316b3876eaa3c04a5167b85618b",
+      "bytes": 242340,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_jacket.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic28_tf_jacket.webp",
+      "sha256": "976e914969525fea19d5767e6fcc7b883fc421083079bc990feb8fa91635ecaa",
+      "bytes": 223138,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_knee.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic29_tf_knee.webp",
+      "sha256": "8fc3481bcd7ad850cf96f8cc4f9e882c90bd69ed5d9c3d2a7c4b70cadc72c5b9",
+      "bytes": 193174,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_pose.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic30_tf_pose.webp",
+      "sha256": "7ecdb0adb7f7e1a6f58de971fe80cd2636f809b9a6b5044b99d75347f777dc8d",
+      "bytes": 307334,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_scarf.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic31_tf_scarf.webp",
+      "sha256": "a0b049bc6f6382a302fe1c73aa18f2765a3d3e0b451359bd82abfbe72b3ac81d",
+      "bytes": 272786,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_sign.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic32_tf_sign.webp",
+      "sha256": "b89751ecfbaa923038e2d69fec326b29770ff90e1b4432f4cd2c9bc7ea9b99cc",
+      "bytes": 1101554,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_silhouette.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic33_tf_silhouette.webp",
+      "sha256": "393552c029199cdf4a9b8e2e00ef7d3a7adebda1a199107e61966657b4329db4",
+      "bytes": 411290,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_waiting_1.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic34_tf_waiting_1.webp",
+      "sha256": "e319c4d3f078b36bfa6c5008b4283a9322dc089fcd5abf5f73cbd042a72a1fb1",
+      "bytes": 258148,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_waiting_2.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic35_tf_waiting_2.webp",
+      "sha256": "fa9d9fb16cef1ae6e4858bfca4cec5c10f1c12379bf8ae76182b7c9357043f1d",
+      "bytes": 286156,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_waiting_3.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic36_tf_waiting_3.webp",
+      "sha256": "6021f2efb9affafcd4b3c9f27c1e1904fc47b83d896786c0c2769fbc3ea7bc4b",
+      "bytes": 271164,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/transform/tf_waiting_4.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/transform/brave_guy_cinematic37_tf_waiting_4.webp",
+      "sha256": "64dbfd44d7b4b99d8a4ccda1c415b6e621854df8b8f9a2ec32b553f5402369af",
+      "bytes": 261046,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/aux_hud_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui34_輔助狀態圖集.webp",
+      "sha256": "98c1923871c8b091f10e36386d7f9e5dc26c70cb27629b34a6f374ea0b303789",
+      "bytes": 752056,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/bingo_card.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui33_賓果卡.webp",
+      "sha256": "e116a0271f3b4a95b9a9f0b174c2d51ec97761bdcf70acbf53c8e1b5be18b1c1",
+      "bytes": 608530,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/btn_text.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui27_文字按鈕圖集.webp",
+      "sha256": "eabeb282d75ffb8a54040b1f8760d36c227562aa480d74cbb46c0a8dde521554",
+      "bytes": 555754,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/bubble_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui22_對話框圖集.webp",
+      "sha256": "2da5fe5782e61249e8f8e8d21bebafcc4880ce6c3c44f618bd2e136fe4ecb96a",
+      "bytes": 777204,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/control_extras_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui28_方向控制圖集.webp",
+      "sha256": "cb9e6701f955981ca282c9888bfc0052893edfcf1275b87afa8e905f753ca024",
+      "bytes": 845578,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/difficulty_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui37_難度選擇圖集.webp",
+      "sha256": "9960b88907c695823ee888de898b0976dbcb9aca9e712b3a91ca0cc67c5d6fe3",
+      "bytes": 1397988,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/guilt_explode_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui30_罪惡感爆裂圖集.webp",
+      "sha256": "29042c97c78970f8ca174e80a2aa69aa28a6828fd5e6b8bd4a7efe44d7593da7",
+      "bytes": 826480,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/hud_core_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui31_血量與能量圖集.webp",
+      "sha256": "824853484f68ad74613c918ad7a6279dfb3df49fc3c635fc94ab9b6ceb45006e",
+      "bytes": 864460,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/minimap_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui23_小地圖圖集.webp",
+      "sha256": "e289dff6ee01e00852c02a40636e5942be3b74fdc15e76a05d490fc56f1192da",
+      "bytes": 909190,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/panel_popup.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui26_彈出面板.webp",
+      "sha256": "9569b9aac7ccdc5e57e8a907929722df9a76996e29142f8ac03b810a9279cfae",
+      "bytes": 876734,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/panel_sheet.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui17_介面面板圖集.webp",
+      "sha256": "0529a68e5d0aa373e197c15bd64fec6c093a9820e181f4dc47cf62eb88f8f0fe",
+      "bytes": 736692,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/panel_title_plate.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui38_面板標題底板.webp",
+      "sha256": "50b8accb6f84e8ca24784ca1e8e6367be3919a08658a21b087f1affc0464934f",
+      "bytes": 454936,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/pic/ui/portrait_student.webp",
+      "new": "02_brave_guy/assets/runtime/lossless/pic/ui/brave_guy_ui16_主角頭像.webp",
+      "sha256": "336b0607d8a2ae74f60f5dfaafc8f330efe8d49d3e72d2438663ae67a071b7d4",
+      "bytes": 623038,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/branding/banner_01.webp",
+      "new": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding01_banner_01.webp",
+      "sha256": "a68bc142527c100568ba342b17272245f3d986658d91677b95bf51af72b934fb",
+      "bytes": 672078,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/branding/favicon.webp",
+      "new": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding03_favicon.webp",
+      "sha256": "c3c33d0881535b7931f10bea9df8b2df08924f776014fc48193518aa3213f5eb",
+      "bytes": 98544,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/branding/icon_01.webp",
+      "new": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding04_icon_01.webp",
+      "sha256": "27b500811d54e8565c96cdff3537f35aa7661b2ea328159cdaeb1200ecd29a46",
+      "bytes": 316466,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/branding/logo_01.webp",
+      "new": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp",
+      "sha256": "d04511e17a5a059e5d8c62d1a550477dd340d74ddd9cdce149fd1248cfb6b789",
+      "bytes": 295292,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/ui/portrait_brave.webp",
+      "new": "02_brave_guy/assets/runtime/pic/ui/brave_guy_ui21_勇氣超人頭像.webp",
+      "sha256": "484c3cda0db6d5798cec99dd2bf3869b7fffff7469ae234e91df4dfb9110bbd8",
+      "bytes": 52936,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/pic/ui/portrait_student.webp",
+      "new": "02_brave_guy/assets/runtime/pic/ui/brave_guy_ui16_主角頭像.webp",
+      "sha256": "f77747e9248842b0b0a7a0a4d629b7309fa2d09d93555b23e349a383fad1bcff",
+      "bytes": 43030,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_battle.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm01_battle.mp3",
+      "sha256": "25d5a9b69dd825e130afba10c09499f896e50fec8c94c49083cd0bd4d8b899fa",
+      "bytes": 923733,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_battle.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm01_battle.ogg",
+      "sha256": "dc151f9a0605b5bea5f18a9f6abc5d8736336e371da26b2cbe35cea22b47c650",
+      "bytes": 578069,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm02_boss.mp3",
+      "sha256": "76938c81a993c1f87b0ea41034b316f7b8fc1e180502bf1d0ef6736caf961239",
+      "bytes": 1013595,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm02_boss.ogg",
+      "sha256": "d007a2a8d27493ef2397d17e79352e9c931065aec58e917ac78161493dd9e198",
+      "bytes": 651865,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_duo.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm03_boss_duo.mp3",
+      "sha256": "c3f5cb1ab83546fc0d018b75bba582e378d2ee500aadc1fe5ad3f0ef627c9eb7",
+      "bytes": 1142326,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_duo.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm03_boss_duo.ogg",
+      "sha256": "2e64d9c75a8f9b997af6c11657642cbd69255977a4034930d1885dd3749550a8",
+      "bytes": 1415239,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_folaidiKing.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm04_boss_folaidiKing.mp3",
+      "sha256": "a3ee3b693952d4f8c1d883d2e04d83c05dfa771cd48f830d1bbc827900567874",
+      "bytes": 1189973,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_folaidiKing.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm04_boss_folaidiKing.ogg",
+      "sha256": "24cce00075f11d07562ec30c7bfd6b37dd789f49473374de8c453308f1e4cff7",
+      "bytes": 1603420,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_ganqiaoFull.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm05_boss_ganqiaoFull.mp3",
+      "sha256": "8f9dd5525eb58621d427fcaf5617f447e9b6e1cc9cefa9267dcd90c5ac7de9fb",
+      "bytes": 1472096,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_ganqiaoFull.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm05_boss_ganqiaoFull.ogg",
+      "sha256": "5b8d4ed8d2f4963869b5e87f069f6088d9df56d1f5c54190458e2a63c6446621",
+      "bytes": 1965871,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_guan.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm06_boss_guan.mp3",
+      "sha256": "936d533e4c592bf8ce58b9030887a3cb05b23357604db0deebde63297ee88e59",
+      "bytes": 1320795,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_guan.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm06_boss_guan.ogg",
+      "sha256": "1cbdb0056ff5e50f00dc9ee7263c9dbcbe287dc71a8507573fac27dca614a885",
+      "bytes": 1718339,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_jiamangKing.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm07_boss_jiamangKing.mp3",
+      "sha256": "8ff6ec0359749f1aa0e10c6c7bddf68abe77a53f368fc509df375961b82a3513",
+      "bytes": 1320795,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_jiamangKing.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm07_boss_jiamangKing.ogg",
+      "sha256": "f782113e51f00acc51ba021e4079da06a27ac92eccf4e7678ad0c2ac103a853b",
+      "bytes": 1884301,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_kabanKing.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm08_boss_kabanKing.mp3",
+      "sha256": "438b50d7274560359a6da0dea1668413e678a16b8f1f58f272baadbeaf982f5f",
+      "bytes": 1320795,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_kabanKing.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm08_boss_kabanKing.ogg",
+      "sha256": "ed948d409af465c9271c6d0603e325c599c46fead4061906d8851de9546ed310",
+      "bytes": 1621227,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_lan.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm09_boss_lan.mp3",
+      "sha256": "541ff46b0e759bd0570d66a670c767c06b8d996e06c52ba1faf2cea84f44a570",
+      "bytes": 1213797,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_lan.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm09_boss_lan.ogg",
+      "sha256": "045a40189ac52e94243803e2d712fc3f23fb0bebc37deb5d3d4e66785dc66931",
+      "bytes": 1623407,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_lanMgr.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm10_boss_lanMgr.mp3",
+      "sha256": "3c2eb3871b7e2794a744a8dc2b165f4a3694f745d1637a815b4319f7a88f193c",
+      "bytes": 1320795,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_lanMgr.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm10_boss_lanMgr.ogg",
+      "sha256": "d93c1e0626a0438bd6bfac43ff1e9b50e8b4e40bf959e3a9f5cb20e3fbef2698",
+      "bytes": 2067909,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_midKing.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm11_boss_midKing.mp3",
+      "sha256": "2d6ce8dedb913655fea4def695ff607e08d5ab41b8589d67699b4428e1cadba4",
+      "bytes": 1142326,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_midKing.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm11_boss_midKing.ogg",
+      "sha256": "39909e129e787d482fab5cc84eecbf5b0a45a9d9dcd6ad9dcdb01ec9590028c6",
+      "bytes": 1596938,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_qian.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm12_boss_qian.mp3",
+      "sha256": "323b9532bf373f0f609d2aa096cec3623eba837247f3829e3187964395427929",
+      "bytes": 1213797,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_qian.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm12_boss_qian.ogg",
+      "sha256": "cb025cd9e59244381868fa4dcfbd029b45da5674507452dcd50a3004a83d539d",
+      "bytes": 1474459,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_qianBiz.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm13_boss_qianBiz.mp3",
+      "sha256": "1c20fa27f6d62b52bfecab99add0dc667162facd2e155bfa38edd53e8c89f3da",
+      "bytes": 1284850,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_qianBiz.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm13_boss_qianBiz.ogg",
+      "sha256": "e24211844f5b9560f562700ffd2ea74dbb9b51ec808a6dbfda25f42c44897046",
+      "bytes": 1662634,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_rage.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm14_boss_rage.mp3",
+      "sha256": "0b9c666c506c39777a904f26a8c3a59a4b342cf8caa0ae52d5d4391d148cbd64",
+      "bytes": 1106799,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_boss_rage.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm14_boss_rage.ogg",
+      "sha256": "1e5e8c589a86306e3dd464026648fed44ae2b9c6c6b1a8fa26091af6396e3815",
+      "bytes": 1567032,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_brave.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm15_brave.mp3",
+      "sha256": "adad4a1f7fc5a436a0e8e29a50573cb9a74b8d12a722b9044628cd56fe951bd3",
+      "bytes": 1295717,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_brave.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm15_brave.ogg",
+      "sha256": "186ea0f65d66196dc1c9b872d6fe0c606092775bd89ba134f83434bfb85f6672",
+      "bytes": 779163,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_credits.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm18_credits.mp3",
+      "sha256": "8f989e6517017c4fad013b35ed1f284440f7b52f7b55f1c33d0c947a5249f474",
+      "bytes": 1882950,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_credits.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm18_credits.ogg",
+      "sha256": "e809fb80ba1777f309fc7a998b3c649ca815e3fad9b70e9844329c5e365a3aad",
+      "bytes": 1092985,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_defeat.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm19_defeat.mp3",
+      "sha256": "d22a6728736cde87f7f57180caf81730fcfa78c8966be526c372e2c1d8d3921d",
+      "bytes": 130656,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_defeat.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm19_defeat.ogg",
+      "sha256": "7c10b11b6a08a9fad80aa440eaf6c6a425f23269fe24dd6d869118a766ffc068",
+      "bytes": 84876,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_ending.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm20_ending.mp3",
+      "sha256": "0d5ecb482694dd2a15f5a4ca7f24de8800314402e375adf8b09f9c819043dc2d",
+      "bytes": 1603962,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_ending.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm20_ending.ogg",
+      "sha256": "3cf23b10e843fcfcf9a123715fed33166c0b6ebb9017bd4e267c592f93f71533",
+      "bytes": 907406,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_0_dorm.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm21_stage_1_0_dorm.mp3",
+      "sha256": "a1bfce8498193f6897bf33adde87969d079a43ac6d58d53c2647c75916c2d41b",
+      "bytes": 1072109,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_0_dorm.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm21_stage_1_0_dorm.ogg",
+      "sha256": "d144369dd8db5507b29b3d0d7d086b9082992d8092146465dc977af1dce91ee7",
+      "bytes": 620136,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_1_school_corridor.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm22_stage_1_1_school_corridor.mp3",
+      "sha256": "ae8a7965e3cace57b7a6b2d99703ca858019f96eced39450faceb457c9a13b48",
+      "bytes": 1213797,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_1_school_corridor.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm22_stage_1_1_school_corridor.ogg",
+      "sha256": "e86937aafaf4c900f57fad43c047c588288042f956de3f8cd14654ae8920d62a",
+      "bytes": 1718554,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_2_basketball_court.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm23_stage_1_2_basketball_court.mp3",
+      "sha256": "54d5cb71e95ce53839383d2ecbbc571dcdfbf26743f28c49df3e98f9e23f76ca",
+      "bytes": 1377219,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_2_basketball_court.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm23_stage_1_2_basketball_court.ogg",
+      "sha256": "95b6c0886646621add935756e6c6d0845d051cf26c78a80690f9d0dca1009bf1",
+      "bytes": 788293,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_3_instructor_office.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm24_stage_1_3_instructor_office.mp3",
+      "sha256": "021a699d4dd14ffde39f2376966d8e5ddcdd0531f99ad68b03040503e19eeb22",
+      "bytes": 567423,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_3_instructor_office.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm24_stage_1_3_instructor_office.ogg",
+      "sha256": "f5157b51e4147f0511b550dbcc4302463b7da1c7c77c3b3bf50ff6112e1f58e1",
+      "bytes": 330637,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_4_nightmare_gate.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm25_stage_1_4_nightmare_gate.mp3",
+      "sha256": "abeb423acaa92bebcfee6383d46f0cd6597ff459cf9b23448392abbcea52399e",
+      "bytes": 923733,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_1_4_nightmare_gate.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm25_stage_1_4_nightmare_gate.ogg",
+      "sha256": "198a60ac67e7ae26b3694ef5dffcf7f4f88e002af6061306e891c18376b8f8a8",
+      "bytes": 543636,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_2_1_dark_forest.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm26_stage_2_1_dark_forest.mp3",
+      "sha256": "5c7f3cf78b5e1a4f32a7cb34eb98b04593004f34b249f91d263b938ba4ada1dd",
+      "bytes": 1072109,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_2_1_dark_forest.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm26_stage_2_1_dark_forest.ogg",
+      "sha256": "3c021c1826b27faf2fb9bc1644c5310f795107f73ada86a070281a578613af14",
+      "bytes": 619815,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_2_2_hell_village.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm27_stage_2_2_hell_village.mp3",
+      "sha256": "00ce1c513e148623bbec5050c70934040a4778e7f014420cfc36a504ed8c7bdb",
+      "bytes": 715799,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_2_2_hell_village.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm27_stage_2_2_hell_village.ogg",
+      "sha256": "7dcf98318247f1990b46a5b9cd5f217c269087025c8a1f41199a9d22b0967113",
+      "bytes": 413218,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_0_overtime_desk.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm28_stage_3_0_overtime_desk.mp3",
+      "sha256": "d9cdca630d1391269fcfeb44b99320fb3a4e026f69a739ef76ad09977b087358",
+      "bytes": 804615,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_0_overtime_desk.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm28_stage_3_0_overtime_desk.ogg",
+      "sha256": "608eeed372506a3edde0c07f5db2214a0e196bec5ba060c59974643f2a54dda8",
+      "bytes": 486599,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_1_clockin_lobby.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm29_stage_3_1_clockin_lobby.mp3",
+      "sha256": "bb327ed4c2b0dba67f1f629368436b09042ea198e41fec5c0218ab059549fb8e",
+      "bytes": 1414836,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_1_clockin_lobby.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm29_stage_3_1_clockin_lobby.ogg",
+      "sha256": "bf6905c878049f27d8d89ff1fe1cfa84193bf3109597f02c706a875555e267ff",
+      "bytes": 881472,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_2_office_pantry.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm30_stage_3_2_office_pantry.mp3",
+      "sha256": "2aedc3c74fb4f1e3954d0e6ed143ea32f88801ba659dd1e3f5dd9b7a29824bb3",
+      "bytes": 1518280,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_2_office_pantry.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm30_stage_3_2_office_pantry.ogg",
+      "sha256": "46908b703af1d5a4fcab4354a99420b5be98816851293bb82cf7fbced747a988",
+      "bytes": 784093,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_3_meeting_room.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm31_stage_3_3_meeting_room.mp3",
+      "sha256": "28f4a2bc6d17813a1bccc1bbeb5dbdc00052ec4442a08fa216c375ac96ee457a",
+      "bytes": 693856,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_3_meeting_room.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm31_stage_3_3_meeting_room.ogg",
+      "sha256": "9e465271451fb6510fbc46ec4b282ace8acf6a767878fab9ac41db087f484346",
+      "bytes": 374223,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_4_customer_service.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm32_stage_3_4_customer_service.mp3",
+      "sha256": "127e145b81d002e7ed8b1ee4ff2c013c88ffd963fb71018f491929f30a0f22af",
+      "bytes": 1384533,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_4_customer_service.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm32_stage_3_4_customer_service.ogg",
+      "sha256": "94890e89c7d2fb7fb3191ba194ed692e8bdeca015a03b1866f10fd8bfbdbc41c",
+      "bytes": 820762,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_5_rooftop_office_guan_entrance.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm33_stage_3_5_rooftop_office_guan_entrance.mp3",
+      "sha256": "a64cfdb310b493b1b523b68dff7c25200f3396d315efd18ddd9881980830840b",
+      "bytes": 1377219,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_5_rooftop_office_guan_entrance.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm33_stage_3_5_rooftop_office_guan_entrance.ogg",
+      "sha256": "c1efd0d5b187591ed245e0362f92162e47c2f9b88d67a1fe8e5e9f237f4293a9",
+      "bytes": 832767,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_6_finance.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm34_stage_3_6_finance.mp3",
+      "sha256": "8eb9cd02252aa3464c5eba75dd61fe9ff80a0b28d4cdb9803e9e1ab1f0d505c7",
+      "bytes": 1320795,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_6_finance.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm34_stage_3_6_finance.ogg",
+      "sha256": "febaba1cbed638efcb8b4243ce8706eb50dcc851e183a17bb1d62797c427ed8c",
+      "bytes": 1699441,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_7_blame_meeting.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm35_stage_3_7_blame_meeting.mp3",
+      "sha256": "417399377291e0671d6a930e906e3abc50aef9458d5a35df47b12d782dd900dd",
+      "bytes": 1100948,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_3_7_blame_meeting.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm35_stage_3_7_blame_meeting.ogg",
+      "sha256": "e8079d12c7a66199ca79d89feac3a67762cbc7e75a624bf055f1ae555290f61d",
+      "bytes": 1324565,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_4_1_chairman_incubus.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm36_stage_4_1_chairman_incubus.mp3",
+      "sha256": "1a4ba6c3d6aac7041e354152a7cb6222a2d6855d48b09ec1351f9c922c1a28c9",
+      "bytes": 1882950,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_stage_4_1_chairman_incubus.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm36_stage_4_1_chairman_incubus.ogg",
+      "sha256": "f5e1a9dc0679b996312f78e3bb47bb1c88acb4aee8cb6d21800cc60462a4cd52",
+      "bytes": 1129081,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_talk.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm37_talk.mp3",
+      "sha256": "e2f507981541798815769f07f54cf08290c06d88fa31eb4a7319780dbd217ecf",
+      "bytes": 1072109,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_talk.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm37_talk.ogg",
+      "sha256": "2b61818ad0e3553cb389dcead1aa28fbe331d4e8a5863f7cb03083f1226ca155",
+      "bytes": 627569,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_title.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm38_title.mp3",
+      "sha256": "d18d05c02ffe930deb00c124a07ec576442e77ececc2c7fe4de3d1bd6e74a2aa",
+      "bytes": 983293,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_title.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm38_title.ogg",
+      "sha256": "62f3d7d1886ee6651211b59fc8a5a31527c52d820243fac8868fb1a674db1e10",
+      "bytes": 570530,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_transform.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm39_transform.mp3",
+      "sha256": "f69872530ff93fbb383026b1305c499970832dacf9fd05a13ff0aad07d7ded16",
+      "bytes": 602950,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_transform.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm39_transform.ogg",
+      "sha256": "e86b588cb4d4de6c956e9e17d4a49ecee9c9d039e311fed5c9ee49c339a59f28",
+      "bytes": 339401,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_victory.mp3",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm40_victory.mp3",
+      "sha256": "82da9dc000ede056622308d134397b5e1b3ee773cbff34ba28d990a1a473aa23",
+      "bytes": 242460,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/music/bgm_victory.ogg",
+      "new": "02_brave_guy/assets/source/music/brave_guy_bgm40_victory.ogg",
+      "sha256": "87f35758123d9bd78d1c0b8bfaf0eab076420411c07c9eba258a384ace9d8ca2",
+      "bytes": 142492,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/banner_01.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding01_banner_01.png",
+      "sha256": "30e848aac7ade6e7c236e067cdde1ccf72ff47105a3b4fb08e2b5441bb047a0c",
+      "bytes": 1849785,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/braveguy_closeup.jpg",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding02_braveguy_closeup.jpg",
+      "sha256": "4e08e378eb7fdcc601cb111aa9aadabb1f752edee3e46f868732528ef44b76f4",
+      "bytes": 316700,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/icon_01.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding04_icon_01.png",
+      "sha256": "bbd1f5d5415edaa1d3c2c9bac75952110176716cd5c523f6d8f6e388bb38b5de",
+      "bytes": 1808368,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/icon_01_logo.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding05_icon_01_logo.png",
+      "sha256": "c890dc0dd6162c8082b384f025362f57a735c3d5782761d35856da7101fc013b",
+      "bytes": 1924355,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/keyart_landscape_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding06_keyart_landscape_recovered.jpg",
+      "sha256": "a55ab913de59105f443e62898603179c023a65f11b31fa46e1330fe21ebbd8d8",
+      "bytes": 268928,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/keyart_portrait_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding07_keyart_portrait_recovered.jpg",
+      "sha256": "8965b3492abf70628fec013ad7a310cb0a8a2abecdacf9a6447b6b2c411c6d57",
+      "bytes": 412911,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding09_logo_01_review_v1.png",
+      "sha256": "117520eb3a2f51502377089a37e15277c18ac96b7f0d9434a363efb17cc6159f",
+      "bytes": 1620366,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/logo_ja.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding10_logo_ja.png",
+      "sha256": "61fcd672a5823e1bad93b00bd24e80ee1a11dba104ba034cdcc59f9e4c26400d",
+      "bytes": 1627960,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/menu_keyart_01.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding11_menu_keyart_01.png",
+      "sha256": "74c52a2f904ee48d49cd9dcd4255434e15c2755bb15ac156d2ac4f0626f1fe7c",
+      "bytes": 2216099,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/branding/menu_keyart_portrait_01.png",
+      "new": "02_brave_guy/assets/source/pic/branding/brave_guy_branding12_menu_keyart_portrait_01.png",
+      "sha256": "5f9d9e15034557b7b412485d3ee6f2c388d8a3e49df945d30aca1aeae038148c",
+      "bytes": 2113507,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/awakening_armor_a.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic01_awakening_armor_a.png",
+      "sha256": "ec7d5ffcae6f8af76b48b8f154df8b92ac30bd6031075ea89c7c7cab332320ee",
+      "bytes": 2724570,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/awakening_armor_b.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic02_awakening_armor_b.png",
+      "sha256": "ac8b31cf9461c5955e097c6c8dc92be9aebd7c7d5291e67fc67dc04349739760",
+      "bytes": 2812102,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_baguashe_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic03_boss_baguashe_storyboard.png",
+      "sha256": "b7c583abebd94cf74c7021b216f0e98a299ba0cf3c248a6173bbdb27df0376d4",
+      "bytes": 2457285,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_ganqiaoFull_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic04_boss_ganqiaoFull_storyboard.png",
+      "sha256": "405e472432e24bbb50bce6bf5f1100453bed5ca08efc708f81b446b54b8a18ab",
+      "bytes": 3044394,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_guan_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic05_boss_guan_storyboard.png",
+      "sha256": "3e5620b0893129e53eda35c808c863b5401e21fcd072ddc6ef4501785fe88330",
+      "bytes": 2725699,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_hell_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic06_boss_hell_storyboard.png",
+      "sha256": "1455b6ff93204175f7f2ce1bafa1490bf184b7534e86a5bac00fff93b7d15eb8",
+      "bytes": 2948218,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_incubus_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic07_boss_incubus_storyboard.png",
+      "sha256": "737afd0637123e2b3ac87258d13d64219ee5e2aeec5a9a388cf918e0d657fc24",
+      "bytes": 2429759,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_jiamangKing_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic08_boss_jiamangKing_storyboard.png",
+      "sha256": "60a9e4632bd6723124aa819b2520a82e85e4affcce1ba3941ce443ab3df517da",
+      "bytes": 2304849,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_kabanKing_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic09_boss_kabanKing_storyboard.png",
+      "sha256": "390af530a209436bd871a90256331e69a9a896430de0880333fb6b2ca28d9537",
+      "bytes": 2604443,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_lanMgr_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic10_boss_lanMgr_storyboard.png",
+      "sha256": "5539adaab57fe6fe9436f7e12f53e7b49c66d1433aaaaa5954327ed1f52065c7",
+      "bytes": 2563764,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_lan_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic11_boss_lan_storyboard.png",
+      "sha256": "2b7bf5577daaa4d41f816d7ba22d22267cecc1654ad23c8d65563c6c1bc3dfc5",
+      "bytes": 2726321,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_midKing_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic12_boss_midKing_storyboard.png",
+      "sha256": "3c02363ff97da5a2d14ac813db0a82c82782c8438ef9b5e0449e58c9290dfcf4",
+      "bytes": 3000022,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_nightmare_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic13_boss_nightmare_storyboard.png",
+      "sha256": "b7317384deac0e56b7bbd757f01de34e577a59f857525570fa66d12c23d85f7c",
+      "bytes": 2912012,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_qianBiz_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic14_boss_qianBiz_storyboard.png",
+      "sha256": "7e5af9a4938ce4a8c7031a38ebdb2dc602a191b122401546942e0a335b798606",
+      "bytes": 2658023,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_qian_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic15_boss_qian_storyboard.png",
+      "sha256": "635a9991a2a70db87f68962c26815d5d52af161c248b7eb6831ca8db9fdbdba0",
+      "bytes": 3003093,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/boss_xinji_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic16_boss_xinji_storyboard.png",
+      "sha256": "0a5429c76931671efe48603b435f4ded682e60808c19d6c5eb04ce47e2d4d04d",
+      "bytes": 2170911,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/defeat_retry.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic17_defeat_retry.png",
+      "sha256": "016c8ab65fb7ac82d60f1b8199749d59f3b951ae081d9465135c9259f526c460",
+      "bytes": 2484562,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/defeat_storyboard.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic18_defeat_storyboard.png",
+      "sha256": "fa08522cdbcbb8cb289f85bf083a77df273b4743d15ed2559bc89e172cc000e9",
+      "bytes": 2396626,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/ending_applause.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic19_ending_applause.png",
+      "sha256": "8ed99a8edfd9634cedd9f8bb9b86be70eb9124a175e9cf6b3d9d39a87154b068",
+      "bytes": 2767333,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/ending_applause_final.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic20_ending_applause_final.png",
+      "sha256": "a46416d1be5f977ca94b7100751b31f9f0816631e38d99a1487e7c6c05ed0c3b",
+      "bytes": 2842984,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/folaidi_corridor.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic21_folaidi_corridor.png",
+      "sha256": "2e621b6094e572c78cb39b7f786f256030a3e74fc4ca992e4054535cdc5de0b5",
+      "bytes": 2001677,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/folaidi_eyes.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic22_folaidi_eyes.png",
+      "sha256": "fcb05242140e4ae5cb073a2de2745e1026e50527bec4919fec893a88e13dcfbf",
+      "bytes": 1772961,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/folaidi_reveal.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic23_folaidi_reveal.png",
+      "sha256": "b414be141470520623ef6b132213205e915a4b51f5911a53b393d98dc162d348",
+      "bytes": 2267375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/incubus_firststrike.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic24_incubus_firststrike.png",
+      "sha256": "c4c724a101cf6aa01ef4374c8ce5239b57ea6e56faf7d722a6b6f0ad944fbe9b",
+      "bytes": 2954230,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_baguashe.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic38_victory_baguashe.png",
+      "sha256": "929c3e27205f3362392ef8c056e2ad42d68828e60b8e3aae9daef183d5df2942",
+      "bytes": 2856512,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_folaidiKing.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic39_victory_folaidiKing.png",
+      "sha256": "f13e5a0711e3c9b2528b0a2fd14996c021904e6e814fb005ef6bdf33fb18594d",
+      "bytes": 3061505,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_ganqiaoFull.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic40_victory_ganqiaoFull.png",
+      "sha256": "d5b64b92cd745894fc1c966b43955dad96b336be50445236bfe19ff226e94330",
+      "bytes": 3300192,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_guan.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic41_victory_guan.png",
+      "sha256": "64de1341cd5bd63a5d7908d1169a641b2cff63e09127b50e82a73384cb4f4a15",
+      "bytes": 3033146,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_hell.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic42_victory_hell.png",
+      "sha256": "e842fd920a4c88128f6e8d244673617bfe79ffb0e8d4ad5dc8ed964ae1b292d6",
+      "bytes": 3112365,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_incubus.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic43_victory_incubus.png",
+      "sha256": "924088ff04fad251aca67162b0721ad933aaa6a76237d9c71329d6853e0fbde0",
+      "bytes": 3199879,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_jiamangKing.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic44_victory_jiamangKing.png",
+      "sha256": "f7df70b6420531cfe92081b0023e5717f1985a5e8eb159755962728537e512d1",
+      "bytes": 2317879,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_kabanKing.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic45_victory_kabanKing.png",
+      "sha256": "f9572d7b738dae77aeb75a55167a4301774c995244812a1cd85b7e4ef97dfb34",
+      "bytes": 3055246,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_lan.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic46_victory_lan.png",
+      "sha256": "1e1f892bb3e06df5e2414ce65999c7a90dbc34a61fb12da6d132800134dbbec3",
+      "bytes": 3049045,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_lanMgr.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic47_victory_lanMgr.png",
+      "sha256": "ea0c74c1ec0123b3eada0da7acbc9010feb44fb0ceaafc2fda896a71c6767f66",
+      "bytes": 2822188,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_midKing.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic48_victory_midKing.png",
+      "sha256": "76e1ecc14f171466419bec57793ed974c589765d735036ec0f868bd9b61fa3c4",
+      "bytes": 3221922,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_nightmare.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic49_victory_nightmare.png",
+      "sha256": "eb3b9d344da9f08e4bcc5d4c1cfa779e523975d264511b0de5b772291428d4e7",
+      "bytes": 3149385,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_qian.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic50_victory_qian.png",
+      "sha256": "2cb5f36b1023a0d8146ed8e0696aa6ec927c75a42ed90bede69b8bd5779a7a33",
+      "bytes": 3261318,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_qianBiz.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic51_victory_qianBiz.png",
+      "sha256": "27e872cbd0c28909e1d1540ef526a7b942ef88b3c68a015e438b80dce8f083f6",
+      "bytes": 2572232,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/cinematics/victory_xinji.png",
+      "new": "02_brave_guy/assets/source/pic/cinematics/brave_guy_cinematic52_victory_xinji.png",
+      "sha256": "019dfd5285c704e10c2361a503c09530b6857f584e88b54abbf8269d719bc1cf",
+      "bytes": 2698307,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/angel_back.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_背面.png",
+      "sha256": "b6d64a6ebfb9edef0413fd28e22c31e33c5844edff7e1466086c3e9de3616070",
+      "bytes": 1249027,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/angel_front.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_正面.png",
+      "sha256": "eb3f157909a246e4e7b358c055fd4635af9742b28fd8d6fb2b0996b9d964ce51",
+      "bytes": 1366056,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/angel_side.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_側面.png",
+      "sha256": "d54160bb2a6acd589e74551bc6f66dbcc5ad5d6419206cecf9a5912df4b6c6fa",
+      "bytes": 1143650,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/braveguy_back.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_背面.png",
+      "sha256": "03528deed3084150c2fc87a31ff8a183022047568d150db545c3642ed7b13cd0",
+      "bytes": 1185000,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/braveguy_front.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_正面.png",
+      "sha256": "530cf401d1db9b1f5635c9ad92a7cef96e64ca60cbdb6aeeb70cc13cd32430e8",
+      "bytes": 1267407,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/braveguy_side.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_側面.png",
+      "sha256": "1f993869281bdde6788f84c6c4854336ec2503b2de39fba3ba2e1609049bb2f7",
+      "bytes": 1157610,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/ganqiao_back.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_背面.png",
+      "sha256": "97b9de634500e0d974c45bfb331961c5bb081cd67fed534198f574d65751a16f",
+      "bytes": 1348765,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/ganqiao_front.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_正面.png",
+      "sha256": "3d8440d92bd3cfbe250c30f538368aef8b28aa312d441851c37cb5bfcb2cc691",
+      "bytes": 1361554,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/ganqiao_side.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_側面.png",
+      "sha256": "9caa0acd07f516aa430edf282e9ab5f99d5d2ecea8870c3385e9320219dca068",
+      "bytes": 1212599,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/nightmare_back.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_背面.png",
+      "sha256": "830ed44e43aa9860c77474472e566f158e4c373640d724fa624759facb519934",
+      "bytes": 1225162,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/nightmare_front.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_正面.png",
+      "sha256": "4bb11eb547763d89112f736ffdfe7838da1c374fc293fc2b0289f30ec17f3c7a",
+      "bytes": 1684563,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/nightmare_side.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_側面.png",
+      "sha256": "d891ab2630c9565706f05a2b654ffd02619071ece0dee877c52e214f987782cb",
+      "bytes": 1181409,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/student_back.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_背面.png",
+      "sha256": "526bac7d52e8dd559a000f499518f901bf071da8f572603f5ba1548676445fb3",
+      "bytes": 1125852,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/student_front.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_正面.png",
+      "sha256": "a2fd4b335e81e48288544303e738917655bfbbd27588ea254defd2a0748eb778",
+      "bytes": 1211478,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/concept/student_side.png",
+      "new": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_側面.png",
+      "sha256": "a8425099aed93421d002415b048f010426cf0bf50f5a46c5c9212d594f571089",
+      "bytes": 1150932,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/expressions/angel_expressions.jpg",
+      "new": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor02_小天使_表情特輯.jpg",
+      "sha256": "97accabb4721368d8e3a2e8ad613107fffcd97f7b5bd6e7c313316881d5eb9fa",
+      "bytes": 347678,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/expressions/braveguy_expressions.jpg",
+      "new": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor04_勇氣超人_表情特輯.jpg",
+      "sha256": "208a8b52a2eee2698c9e2af2872871329a0bacc01ec353ddb6c6c37f06eb3c45",
+      "bytes": 298282,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/expressions/ganqiao_expressions.jpg",
+      "new": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor03_小幹譙_表情特輯.jpg",
+      "sha256": "65400a31bb025eabc125b8a2b77c9d72978d060b683d62816ac2f360cb7437b9",
+      "bytes": 205277,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/expressions/student_expressions.jpg",
+      "new": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor01_主角學生_表情特輯.jpg",
+      "sha256": "3d8cd3234639c697206693242f549a41403e5f7b6cf8c56571d8c990ee4e2e02",
+      "bytes": 227027,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/fx/fx_hit_arcade_8f.png",
+      "new": "02_brave_guy/assets/source/pic/fx/brave_guy_fx01_fx_hit_arcade_8f.png",
+      "sha256": "5364599392d421a055a4d3ccbd6ee33d28c38f80353493b72864af5cbaa23734",
+      "bytes": 497865,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/angel_guard_bombardment.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui24_小天使五點結界.png",
+      "sha256": "8cc27606d784780b5c1b277bf629a454db08f042b0b53e73372d65f0569b264f",
+      "bytes": 2403691,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/btn_attack_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui29_普攻按鈕圖集.png",
+      "sha256": "470a1cf7f482f97a417d61ac3da49932a02dc8eefeede2baefce43a621f3f4c2",
+      "bytes": 1085326,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/btn_dodge_transform_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui36_閃避變身按鈕圖集.png",
+      "sha256": "4b26867ea2ee5b1a8898ef55f374762695669c3636abe71272cd808b946ee009",
+      "bytes": 1574857,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/btn_transform_courage_gem.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui19_勇氣寶石.png",
+      "sha256": "c72a2fb00927aa57674c06091a950239d210d42072de3be2e84b986c6d630434",
+      "bytes": 1501094,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/function_icons_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui18_功能按鈕圖集.png",
+      "sha256": "3084442c98af9335a873145f34ba9d5b9b151d2b2fb81959cc2c07ef35eb1471",
+      "bytes": 1566675,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/guest_skill_atlas.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui25_小天使惡夢技能舊圖集.png",
+      "sha256": "306d3f6f33ccedc0e8ab255ed77288f78881416667e0333ed1649e584f6a5b48",
+      "bytes": 2876484,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/language_globe.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui32_語系地球.png",
+      "sha256": "02a10ed084eb33d138a70b978a851e3639e2d29c90e37eba53458d750d7b0347",
+      "bytes": 1068298,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/lock_heal_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui35_鎖定治療圖集.png",
+      "sha256": "f4b4e2e9b85141465e42773f901633f10a5fa15cb09261cb572efe0517c30a32",
+      "bytes": 1465288,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/icons/skill_buttons_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/icons/brave_guy_ui20_勇氣超人技能圖集.png",
+      "sha256": "32b1d7160ba5fa141cdd7c665de9c3a68df5d8e7b7090f898b2f40c7cb21c19f",
+      "bytes": 1935128,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_cover_back.jpg",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference01_braveguy_cover_back.jpg",
+      "sha256": "d1375f5a122360e04fef8c3de691ce80cdc08d085716d3ef13dfabcdf851bab7",
+      "bytes": 433708,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_cover_front.jpg",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference02_braveguy_cover_front.jpg",
+      "sha256": "29a2bbcc023dde06311b864774a6350270d778f0c7d5231fc9fafb88440d9da6",
+      "bytes": 479980,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_folaidi.png",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference03_braveguy_folaidi.png",
+      "sha256": "d093043e64827d46753686b23ada330c2765f5652074d3f261f99e67f6f2522e",
+      "bytes": 20250,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_full.png",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference04_braveguy_ganqiaolong_full.png",
+      "sha256": "f3b939d4868afa9beed2318ebcb483663a5796eaf6d478fee71b9c5883f30655",
+      "bytes": 129925,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_initial_mid.png",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference05_braveguy_ganqiaolong_initial_mid.png",
+      "sha256": "968dfc4902922acc3795cd967525aeb480055926afc192b164e93bb293a6384c",
+      "bytes": 155545,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/braveguy_jiasen.png",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference06_braveguy_jiasen.png",
+      "sha256": "4a46e311303cc91ee10d49635300eedc9a9783f7d46f346a74b4932c41e52006",
+      "bytes": 57477,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/reference/sheet_layout_example.webp",
+      "new": "02_brave_guy/assets/source/pic/reference/brave_guy_reference07_sheet_layout_example.webp",
+      "sha256": "fa5a31b8ebe01a0dec3ceb11829c5ac661f4cf56503b3725fa3d7e43c4d3d167",
+      "bytes": 273862,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/baguashe_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor20_八卦蛇_設定集.jpg",
+      "sha256": "7e860510be8c84b5f0fb781fdc3b9888251877c1eb3eca2c400b56d3c339d128",
+      "bytes": 363008,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/folaidi_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor05_佛賴弟_設定集.jpg",
+      "sha256": "d3b5227e3ca40152abe7ca0a84733441abbb5cc44beb4ecad166479b6a079162",
+      "bytes": 333628,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/ganqiao_forms_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_三型態設定集.jpg",
+      "sha256": "d2115301251f5a7f83285b77a70fd6dec3e7cf518f7eaef9a816b84e61b2ab0b",
+      "bytes": 416699,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/ganqiao_mid_office_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor12_悶幹譙_職場版設定集.jpg",
+      "sha256": "528422c22fdf44097646241c92ca4542fbe45ff03fe8e7923dfcce8755386f30",
+      "bytes": 375628,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/ganqiao_office_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_職場版設定集.jpg",
+      "sha256": "5142167afe52e5ed82b0ead60c1ee9a84f5a1e4c4433f2138814956969ecea04",
+      "bytes": 401961,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/guan_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor25_冠老闆_設定集.jpg",
+      "sha256": "e555947358523b7631d71344e025969944445f258c98b403f761827063f16d08",
+      "bytes": 373755,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/hell_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor14_地獄超人_設定集.jpg",
+      "sha256": "a9042c2f4ee676fad06a20afc61886d72ff58345da99bab5f7bba564db8ba222",
+      "bytes": 414070,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/incubus_ascended_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor27_夢魘超人最終覺醒_設定集.jpg",
+      "sha256": "83d6748741039f00d348bc792b09504136fe7f5c0439e346e9cfc3c737cc0298",
+      "bytes": 466758,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/incubus_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor26_夢魘超人_設定集.jpg",
+      "sha256": "9af9622519cb8beec1556943ceb56eedfef8733870204387901ce51c85534919",
+      "bytes": 317877,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/jiamang_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor17_假忙森_設定集.jpg",
+      "sha256": "015d2ca634ecba9d345601f0161279ce0771f654877ce4399f6ae7ea297cd579",
+      "bytes": 359260,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/jiasen_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor08_假森_設定集.jpg",
+      "sha256": "05227f53670062c23c042b032754f14c2f6c0fce3d87d98122ce189172c23f1c",
+      "bytes": 380298,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/junxiong_office_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_職場版設定集.jpg",
+      "sha256": "e17cfcfe0254023f4a3327dc73bce7a897cc35520048d8ce0367bf512e3271e7",
+      "bytes": 351041,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/junxiong_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_設定集.jpg",
+      "sha256": "98fc0e28aca4d67f064df10dcd25a4977b0c3508d73d7ab9206fed415803c50c",
+      "bytes": 333198,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/kaban_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor16_加班鬼_設定集.jpg",
+      "sha256": "d5e85335e994e6c044fab6f6ab769ae3744aa0b2ab12255ab3bf0deafaad40c9",
+      "bytes": 332778,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/lanMgr_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor21_藍經理_設定集.jpg",
+      "sha256": "b598103c5bac336fad85cc770f9e0be1329ab6b5d6ce24be0a758dd9fc8687af",
+      "bytes": 351898,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/qianBiz_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor23_錢經理_設定集.jpg",
+      "sha256": "a353b436cf95a77bc57ac729d8bbfefd243c4bd57cf5cf7a7e27077b3dd22407",
+      "bytes": 375120,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/sheet_angel_approved_v02.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor02_小天使.jpg",
+      "sha256": "afae9831f7a2acf3ad6a62912acecd9d372faee654386d0b2cf47045b7c555be",
+      "bytes": 387210,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/sheet_braveguy_approved_v02.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor04_勇氣超人.jpg",
+      "sha256": "3b38cb52afd048601db4b8ad9e531fd0ba61bb1796e2ffdb7cd72068fc83ddc2",
+      "bytes": 421270,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/sheet_nightmare_approved_v02.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor11_惡夢超人.jpg",
+      "sha256": "c32fceb995a0028c6b083ed1c123d8697a1f5723f944cfd71e40e330453ee7d0",
+      "bytes": 380804,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/sheet_student_approved_v02.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor01_主角學生.jpg",
+      "sha256": "1de6d6c187c4f08649971faf15c9cb56476db4baf612aa7e980c4b6d110da6e8",
+      "bytes": 342852,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_angel.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor02_小天使_現役裁切圖集.png",
+      "sha256": "e98b21d124b293f115fa109606199bc00cab4ba9feba2ec7a67af9ef2efeb5d9",
+      "bytes": 1978981,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_baguashe.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor20_八卦蛇_現役裁切圖集.png",
+      "sha256": "e35e1502e1c8d4d6ba1783d0bfa95ee0f3e9740ba20699cecdf11b209445d690",
+      "bytes": 2078828,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_braveguy.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor04_勇氣超人_現役裁切圖集.png",
+      "sha256": "274114701d8f7734293c19c8dce854e0c4af43970c8696a477eca517e97fc1f5",
+      "bytes": 1918544,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_ganqiao.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor03_小幹譙_現役裁切圖集.png",
+      "sha256": "56e7fb053a39a9827f3c217fe306965df478303270f58c943f0a0513ccdb1d6b",
+      "bytes": 1977720,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_guanlaoban.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor25_冠老闆_現役裁切圖集.png",
+      "sha256": "a2e7ed8020d3f7a9274a18bac9a97c041ace8e4b956634028fbfd486aebf42d0",
+      "bytes": 1887834,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_hell.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor14_地獄超人_現役裁切圖集.png",
+      "sha256": "6e347b4904bb3eae8ad75ed6a9400774584f50468115779513af536d2fa2fbc5",
+      "bytes": 2142768,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_incubus.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor26_夢魘超人_現役裁切圖集.png",
+      "sha256": "7d02deacd480ccd8873fca6e4a4e8901226e40172894ebad6f7abd84ff15017c",
+      "bytes": 1968245,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_junxiong.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor06_俊熊_現役裁切圖集.png",
+      "sha256": "6e0eebfb795ce50994bfcab6220d3eb1b8053855952fcfd44933d42cae4d441e",
+      "bytes": 1865061,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_laichuang.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png",
+      "sha256": "8307795691e42a44e0cea6d5adc2c84a4c0f8b2fb4cc77e32c6d104a0a35bcca",
+      "bytes": 1783875,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_lan.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor10_藍教頭_現役裁切圖集.png",
+      "sha256": "3b4b9d225c1be92697e5fc99e48093151f4660bf2a775fca409c3a907ccd926c",
+      "bytes": 1973791,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_nightmare.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor11_惡夢超人_現役裁切圖集.png",
+      "sha256": "e3408b1dc803a2d10186278238718961169876bbba9f38c7501db4e701279767",
+      "bytes": 1876128,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_qian.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor09_錢大姐_現役裁切圖集.png",
+      "sha256": "6c91911078b2057326d0a513d81f2806d8218ac2992043cb1e61569093851e99",
+      "bytes": 1966399,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_student.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor01_主角學生_現役裁切圖集.png",
+      "sha256": "569cf45f4beaee5ede67f05e7d736dfa48d63405e32f06dad5d5883933102403",
+      "bytes": 1762063,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_worker.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor15_主角上班族_現役裁切圖集.png",
+      "sha256": "d7c17a96222539dedb5e407436435c534a4dbadc858d005ed5e82ee357f795ad",
+      "bytes": 1967643,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_xinji.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor19_新雞_現役裁切圖集.png",
+      "sha256": "af48b29e4f7e8ed0019b00545476a3405a5e5e4f85cdbddb040d53aba617cf08",
+      "bytes": 1917202,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/unified/sheet_zhuangxiong.png",
+      "new": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor08_假森_現役裁切圖集.png",
+      "sha256": "e52faa91f564f8ffb0f56d0b1a548c45065bd6cece961b869f759b92dfe5dd76",
+      "bytes": 1879714,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/worker_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor15_主角上班族_設定集.jpg",
+      "sha256": "859ddf64b99275a2723cf251b60da74c0f054b361972ff01e563da77af20980d",
+      "bytes": 351540,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/sheet/xinji_recovered.jpg",
+      "new": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor19_新雞_設定集.jpg",
+      "sha256": "2450d8668aa04fa66ac932695d5ae3e2f8ec6e03f19cd94ce33606015a6ff35d",
+      "bytes": 358763,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_combat_en.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui01_system_combat_en.png",
+      "sha256": "c9aa30b8899735d0cd7cdf0a32f9a8276cefb4ad1495f7f3a503a732e0b48a24",
+      "bytes": 2342685,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_combat_ja.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui02_system_combat_ja.png",
+      "sha256": "0bc55bc269bd40618979e6e5f6f3ec9f15c2cf2147d4298ef38868f12c2b5d47",
+      "bytes": 2223353,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_combat_zh.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui03_system_combat_zh.png",
+      "sha256": "c7f95cb91656aec02638717689cb644bc036000299386fc073c95206c64c80b7",
+      "bytes": 2286880,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_labels_en.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui04_system_labels_en.png",
+      "sha256": "917b2a01fe27ad7dc22da5b541057bdd2450ff4506f31a34480a5566fd84c470",
+      "bytes": 2215878,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_labels_ja.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui05_system_labels_ja.png",
+      "sha256": "7e274730b7d81bd38c4539fa516a3ab72af34f6bc362e0dbb9c2b7d9c2e50f0a",
+      "bytes": 2042073,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_labels_zh.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui06_system_labels_zh.png",
+      "sha256": "da74cbf1bb2d83d89a4243620923427abd984ba732f3e8b41306210ce9fe7050",
+      "bytes": 2119846,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_outcomes_en.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui07_system_outcomes_en.png",
+      "sha256": "74433158a2397a8b43265afb0d9bb487b917d35d3f877d9f5fe6c51f72913a22",
+      "bytes": 2241516,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_outcomes_ja.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui08_system_outcomes_ja.png",
+      "sha256": "9459c7b250f2e7fd851b35ec8d9d09ec86be87b593ccf0c3a5d4abc622a051c9",
+      "bytes": 2129560,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/system_outcomes_zh.png",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui09_system_outcomes_zh.png",
+      "sha256": "42916f51684c849185006cbdd03f88c0ffe005a202c3bbeac050c3c5aa8d8459",
+      "bytes": 1900942,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_angel.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui10_ult_angel.svg",
+      "sha256": "6158023e96e8cff8c2acc094241f3dfdcd264a7f76121be3d0d142452bab7ca4",
+      "bytes": 32020,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_angel_en.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui11_ult_angel_en.svg",
+      "sha256": "12f5e417fe3339f28385a0e841b71fef3d25f6a89bb31aede65adc13059736d9",
+      "bytes": 16688,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_angel_ja.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui12_ult_angel_ja.svg",
+      "sha256": "6972bd451721bc427b3b3e955b4730c41e3e16157c738743ac456db7505cd05a",
+      "bytes": 47427,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_nightmare.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui13_ult_nightmare.svg",
+      "sha256": "fdf5a9a608f15f1b1cce805544297cd0bf177ef12f9edc5659c20296f6dc653e",
+      "bytes": 17969,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_nightmare_en.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg",
+      "sha256": "5bb9229cbf53db5346bfe54f97420aa25b8bbce48550093302ac98afa35b7f5b",
+      "bytes": 22186,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/titles/ult_nightmare_ja.svg",
+      "new": "02_brave_guy/assets/source/pic/titles/brave_guy_ui15_ult_nightmare_ja.svg",
+      "sha256": "80ffe23900fa6540f3ff8856b53b23f4cab97802928eceb6e7ded552b09242a4",
+      "bytes": 12526,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_bg_stars.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic25_tf_bg_stars.png",
+      "sha256": "866873c7de07dcdbd80ff20e2badc669cecb8b40cab3f2dd705a1fc229e27a59",
+      "bytes": 1907036,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_glove.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic26_tf_glove.png",
+      "sha256": "6404358c3481590b80920f3243376102aaeb3dffa49f7756f8a6fa4de65c24c9",
+      "bytes": 1839631,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_hair.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic27_tf_hair.png",
+      "sha256": "c47f1f2282d25c7bdff8b2a56e8bb91e34db13c45d46738ed25b560e24136444",
+      "bytes": 1923802,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_jacket.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic28_tf_jacket.png",
+      "sha256": "d975d70299097bb4c1792abf72003d7ba4265b11b74aacbe0fb4cb4723753488",
+      "bytes": 1870709,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_knee.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic29_tf_knee.png",
+      "sha256": "1ba89e338136fc2db8c4fd19204cf50ef7cd1ae59c3d9c9238f3119dd8a361aa",
+      "bytes": 1818021,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_pose.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic30_tf_pose.png",
+      "sha256": "ca320f659b0ff9024b4e8dc5f7dfd9e19bff877d2dad446f1b7216651e0de383",
+      "bytes": 2197853,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_scarf.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic31_tf_scarf.png",
+      "sha256": "b56009536f59685fd42d0d45b6ea8e03eaea10a00b8b31648beed499b2adad71",
+      "bytes": 1991178,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_sign.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic32_tf_sign.png",
+      "sha256": "2a64ca219d559dbe801174cd04805463fbc892256ad1b46fd7e3081c79d1f2dd",
+      "bytes": 1667644,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_silhouette.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic33_tf_silhouette.png",
+      "sha256": "980c10e8828fdee8acc653b1e139c16279dcfe8542bd5396b24b375deedc847e",
+      "bytes": 568100,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_waiting_1.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic34_tf_waiting_1.png",
+      "sha256": "0e351cdad38a86276435b3cf8f851baa5762aa0495091bb43c297189676f5daa",
+      "bytes": 1987158,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_waiting_2.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic35_tf_waiting_2.png",
+      "sha256": "9481a0076d7390d17748d3220ab28f562a512c6b52a71220b248ca791ff8fe2e",
+      "bytes": 2047233,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_waiting_3.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic36_tf_waiting_3.png",
+      "sha256": "635812bdf954b7f2c0531da31199ecf61dd747674f99b93d7e7993080f5bd801",
+      "bytes": 1999850,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/transform/tf_waiting_4.png",
+      "new": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic37_tf_waiting_4.png",
+      "sha256": "06bce845267128d0a69cf8a71912d913ecc496427441ada5e2731573a4a33c4e",
+      "bytes": 1985683,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/aux_hud_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui34_輔助狀態圖集.png",
+      "sha256": "6a0d376da656ad8a31d95f6754b124ed773dd2b3c7de615fb6c7683e36f72d68",
+      "bytes": 1132310,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/bingo_card.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui33_賓果卡.png",
+      "sha256": "f1fcd33f488c32453642e6c6e732b3865d666d85b86b4bfac9c54c6ea16a199d",
+      "bytes": 1159164,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/btn_text.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui27_文字按鈕圖集.png",
+      "sha256": "43c4d2e857a1f2ebea54d25eca38e5665f36e7ea2bb6e2ef36ade6b2b67a039c",
+      "bytes": 1034564,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/bubble_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui22_對話框圖集.png",
+      "sha256": "482456b30f9b1864b99dc1ad829830f55d40b541665a057d7839a0045acdd385",
+      "bytes": 1188709,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/control_extras_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui28_方向控制圖集.png",
+      "sha256": "e03d9614b421bf4292dd2d4ff892d4a26a4a289523073a503ef87edd5356678f",
+      "bytes": 1317563,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/difficulty_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui37_難度選擇圖集.png",
+      "sha256": "be3543c9b976f4cf08b838da8557dfce355c2c2c4060745a67f56471660e746c",
+      "bytes": 2005063,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/guilt_explode_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui30_罪惡感爆裂圖集.png",
+      "sha256": "b4b60d977ee377e62b9a7deb0ff2f3286b7836dbceee0e8281a7b7b2ee1b4488",
+      "bytes": 1245869,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/hud_core_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui31_血量與能量圖集.png",
+      "sha256": "6bda61f6aa7d5191fac0ae06d9c3088946f32cf3108a497d916c9d2adec97c14",
+      "bytes": 1332630,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/minimap_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui23_小地圖圖集.png",
+      "sha256": "5a9d0281a669fb235934d74ed5dba661a88378a1c55565aca98d23666410060f",
+      "bytes": 1411399,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/panel_popup.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui26_彈出面板.png",
+      "sha256": "9e03102946be684669423a23c6f995f46ad4c80ff209dc5694cc5305fa73f59d",
+      "bytes": 1542448,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/panel_sheet.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui17_介面面板圖集.png",
+      "sha256": "046754aa02a7131c018e046b25037c852d437de0e7acc00f61deac04409449ec",
+      "bytes": 1134682,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/panel_title_plate.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui38_面板標題底板.png",
+      "sha256": "73b6199e2680a861a5e6d67971c534e0b3ffef9e3691440146b8bd80a1c4c0be",
+      "bytes": 855778,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/portrait_brave.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui21_勇氣超人頭像.png",
+      "sha256": "bbb5b3596d8f82327237eae6c75ead0e999eb33437682991571d92dae9e4b03b",
+      "bytes": 1110602,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/pic/ui/portrait_student.png",
+      "new": "02_brave_guy/assets/source/pic/ui/brave_guy_ui16_主角頭像.png",
+      "sha256": "923aeff59c4d0eacca1eadb62e8eac79a457f8a9269a0b9d5d87322206363483",
+      "bytes": 1028299,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/brave/sfx_hit_heavy.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave/brave_guy_sfx13_brave_hit_heavy.wav",
+      "sha256": "7521bcf4b677d5560e030c0d3edc250205f162b17bd97e9649f4401082ace728",
+      "bytes": 27434,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/brave/sfx_hit_light.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave/brave_guy_sfx14_brave_hit_light.wav",
+      "sha256": "5ede8427926ce9c6368d4f31032ece27f7d66b701866c875e0ad044b765cff47",
+      "bytes": 25582,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/brave/sfx_hit_sharp.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave/brave_guy_sfx15_brave_hit_sharp.wav",
+      "sha256": "f353131bd991d6be131abc112cb3241b1d963f8d10caab0ea181329458bceab7",
+      "bytes": 25194,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/brave/sfx_hit_snap.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave/brave_guy_sfx16_brave_hit_snap.wav",
+      "sha256": "ad9d6462c7509c2b4a917a8f154b7b6906f253e8f6cd68089628c3633f85f4b3",
+      "bytes": 19596,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/brave/sfx_swing_whoosh.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave/brave_guy_sfx17_brave_swing_whoosh.wav",
+      "sha256": "86e28d540d28b6793c89bdd39fbe9476b21365431ee41cc1d1e37bbead63e8d8",
+      "bytes": 16094,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_beam_loop_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx07_beam_loop_clean.wav",
+      "sha256": "184d976d01edf08d90ccaa2676f2d448b16f79b38fb4ca96ffa927fab61c2a4f",
+      "bytes": 229364,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_bubble_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx19_bubble_clean.wav",
+      "sha256": "54388d6eeba14d81cc633a41e1bf7def6785afe9669d79bb5ac99bc63180c3db",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_chips_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx21_chips_clean.wav",
+      "sha256": "f339f3569999d49547899fc557b70937211b67054db2cba3c6e6ded86bccadf9",
+      "bytes": 70604,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_crowd_cheer_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx30_crowd_cheer_clean.wav",
+      "sha256": "0784d5cc7df2f15c7b411231b66d08b2de0a710568c02bf39df9a33a61dda657",
+      "bytes": 141164,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_dodge_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx36_dodge_clean.wav",
+      "sha256": "b9ed5cb0b4acc947da7e02d3bbaa1ba2cbf99955fd6f94322017001bbcace0c6",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_dodge_perfect_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx38_dodge_perfect_clean.wav",
+      "sha256": "35dcf170a077ec3247c8e577790ecaaca667b0770a4f71592874beba095e853f",
+      "bytes": 52964,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_folaidi_reveal_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx50_folaidi_reveal_clean.wav",
+      "sha256": "51e031fb866f4cef4c5b7cfc79efc3ee3bc08fa38cf6a93d1b889dd5198fa3a2",
+      "bytes": 88244,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_folaidi_tick_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx53_folaidi_tick_clean.wav",
+      "sha256": "6bcd8b35b4f6abbff287ebe6715ceb9d3a7c73a353cd6b64f195563c91b3430b",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_guilt_burst_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx56_guilt_burst_clean.wav",
+      "sha256": "a20f71b046fae74e05095b130fed95250dbc5ee827f674bab694b05d469e3fc2",
+      "bytes": 105884,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_guilt_crack_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx58_guilt_crack_clean.wav",
+      "sha256": "5e807542cb602a8c038a81b9fdc9c628791ef31d026e1a65ae6968a44e0abb6f",
+      "bytes": 52964,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_guilt_tick_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx60_guilt_tick_clean.wav",
+      "sha256": "f15169364a9ad63f35154c052e97e569d8f89a4f77b5016f0d8180caef047953",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_junxiong_pop_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx83_junxiong_pop_clean.wav",
+      "sha256": "a39a4f7695454de86cd6a92a9d2afe4ceabc480976add92d8da7c528195ac8c9",
+      "bytes": 88244,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_pan_fly_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx97_pan_fly_clean.wav",
+      "sha256": "460d7799b2c6ea46fc10238712cdeafd4aa1fc2e60ce946807aca0f352c965b6",
+      "bytes": 44144,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_punch_clock_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx107_punch_clock_clean.wav",
+      "sha256": "8159e1c0bde3207805ac16715c07da4272deda90e16ae22ada6c5e40d06397e1",
+      "bytes": 35324,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_tf_hair_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx156_tf_hair_clean.wav",
+      "sha256": "2d6805fa2849749917b1f5e48ee76c0725d7242bedbb9a9a4715fae6bae2e12b",
+      "bytes": 79424,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/clean/sfx_tf_silhouette_clean.wav",
+      "new": "02_brave_guy/assets/source/sfx/clean/brave_guy_sfx162_tf_silhouette_clean.wav",
+      "sha256": "711861534c1b6100c425541b0e897f7aa9c0fcd5703c41377463a4b4e78da385",
+      "bytes": 141164,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/imports/brave_guy/brave_guy_sound.zip",
+      "new": "02_brave_guy/assets/source/sfx/imports/brave_guy/brave_guy_archive01_import_brave_guy_sound.zip",
+      "sha256": "d1c791a1d48e9ce1fb9c572fbad8d88472029dc287797eec8f6b7cb692d8b805",
+      "bytes": 1513992,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_beam_end.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx114_seal_beam_end.wav",
+      "sha256": "1ab2f14fb863d02d39daa9ae16d6b2b6fd521a2e2f3f5f20275fd988cb0a6f77",
+      "bytes": 179150,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_beam_start.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx115_seal_beam_start.wav",
+      "sha256": "f02f0d5de2b21193e76b01fb21396f7728cd45018dfc09909da4c27c0923902d",
+      "bytes": 117704,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_boom.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx116_seal_boom.wav",
+      "sha256": "cc6f71bd45707fde216e3526a090acc2664e76c8581e8e033e64b777d2783f54",
+      "bytes": 359082,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_boss_appear.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx117_seal_boss_appear.wav",
+      "sha256": "58a7200222ebfebb305f8d7e0c495a8c6f24cca2b23648c1ac7c6801b9c021b8",
+      "bytes": 102962,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_boss_slam.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx118_seal_boss_slam.wav",
+      "sha256": "0e5e809beff81b0a97c4fbe452a49ea7a6102d7ee94b79ceb6c0e8ab6a2d1a68",
+      "bytes": 204424,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_boss_warn.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx119_seal_boss_warn.wav",
+      "sha256": "d060b5b91185ab210c97b12303427ecdad3206046f4845f869e941ea513f0cd0",
+      "bytes": 91032,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_combo_100.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx120_seal_combo_100.wav",
+      "sha256": "c436b8c83ce5ba8d369cf4a5dd5e7792ab2ba4022b077ca6f4c5af703ee12cf2",
+      "bytes": 109642,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_courage_full.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx121_seal_courage_full.wav",
+      "sha256": "9b44be061e724db4ab2df870af152bf462b4c782f25281acfebcdbeb75a30148",
+      "bytes": 35040,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_dash.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx122_seal_dash.wav",
+      "sha256": "25fe1da1b8aa0bdb0914215f72cc05321a90d9edfd3296d1c47af31ee2f8f9d7",
+      "bytes": 96754,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_enemy_down_1.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx123_seal_enemy_down_1.wav",
+      "sha256": "f6fb6d1c5dfb20bf988251963dc224950b15ddf0775965a8f70dfd4722a2c0c4",
+      "bytes": 215504,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_enemy_down_2.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx124_seal_enemy_down_2.wav",
+      "sha256": "5eb502d020b4da508965b3fed5603521462a7836899a8991d567c8656c150370",
+      "bytes": 188716,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_enemy_down_3.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx125_seal_enemy_down_3.wav",
+      "sha256": "ab03e2aab80e680314ffbaa199fcaf4433201c352b6c857d7c80626fe2590b7b",
+      "bytes": 55662,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_enemy_down_4.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx126_seal_enemy_down_4.wav",
+      "sha256": "686b0f1d477fa787b1641f3648f29fa905242d4546b85002abebaabfe516ff3f",
+      "bytes": 87112,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_enemy_down_5.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx127_seal_enemy_down_5.wav",
+      "sha256": "9874790c526e08017cf0137759c4d6807917f66259ac6a5925431ca6825b0f56",
+      "bytes": 244564,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_guard.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx128_seal_guard.wav",
+      "sha256": "601a3707073c41883aa999c47a190fe1d7a1b2fe8321c9a3b044c29c92b7f245",
+      "bytes": 176856,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ki_blast.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx133_seal_ki_blast.wav",
+      "sha256": "f0b4ecb425eabb4f9c685b8cec353a13c68beff3ae86163280920a47ef05956f",
+      "bytes": 115744,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ki_shot.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx134_seal_ki_shot.wav",
+      "sha256": "774b7a0902f9c04e48186e454cd25d047f8f9aa98e9fbfd2d999c1a46633b327",
+      "bytes": 123480,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_lock_switch.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx136_seal_lock_switch.wav",
+      "sha256": "da346a7c9ff26d36eacccfd13b5c3073537545269790c190b89a707f5fa728a4",
+      "bytes": 42152,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_lose.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx137_seal_lose.wav",
+      "sha256": "24bf9a2587eac52ed834ad4e251216c1e9291cf090ca22a1dacb7448e9cb361c",
+      "bytes": 237482,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_notify.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx138_seal_notify.wav",
+      "sha256": "4eb9af8665fb501c76ad6fa923f75f50b5c52201c935bded517286bc68787082",
+      "bytes": 89620,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_qi_full.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx142_seal_qi_full.wav",
+      "sha256": "345242c2396675d8cdb1160f16fb7303b00b13950bd13c0fb49c121b4eb68a1c",
+      "bytes": 320958,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_revive.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx143_seal_revive.wav",
+      "sha256": "8dc8d4706d22e666d9f35131ce7ae1cde268d740d2b422f8024cbf32cf212e9b",
+      "bytes": 173380,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_stage_select.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx144_seal_stage_select.wav",
+      "sha256": "8ef972dace50f8b45e1526f7440f946543063578ff014a9eb6d683bb00467623",
+      "bytes": 74294,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ui.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx146_seal_ui.wav",
+      "sha256": "269625f3da51fc1b2a451a781114b0361eff3d7193117cbaa8f17b2d15706463",
+      "bytes": 46222,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ui_back.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx147_seal_ui_back.wav",
+      "sha256": "0fe5877505d1aabeae5184a8545345be6c2f65cbc897dbd74f4992f2e2a4da90",
+      "bytes": 21912,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ui_confirm.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx148_seal_ui_confirm.wav",
+      "sha256": "151d08c0868816c50d43f6a7fdf0de2c78626c7a1d097f02e2bf5cfa241bff09",
+      "bytes": 84226,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_ui_tap.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx149_seal_ui_tap.wav",
+      "sha256": "bb666dc464ada584cb1058836220179a1d3b8cc0ab4e39366ce19f600ea185ff",
+      "bytes": 28352,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/seal/sfx_win.wav",
+      "new": "02_brave_guy/assets/source/sfx/seal/brave_guy_sfx150_seal_win.wav",
+      "sha256": "6e8191a8ac2ca23fcba74714ab74d87921698112be373846c10a9e60d9982cff",
+      "bytes": 308782,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_applause_crowd.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx02_applause_crowd.mp3",
+      "sha256": "c8d1bb5d1ad145a0ba1ddba4b55cbc65d874f0e44a7968aa30e47f7cf8b0914c",
+      "bytes": 33481,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_beam_hit.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx05_beam_hit.wav",
+      "sha256": "bc265a841f07614fad4b71687377a3fe22dce5c7a0e69f38af0fee687738ffc9",
+      "bytes": 12426,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_boss_defeat_ko_user.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx10_boss_defeat_ko_user.wav",
+      "sha256": "4a27ea142c5bb439c62e96c2f6e9fe40a6ce549ceadda32b7ee57cf923723662",
+      "bytes": 67716,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_combo_10.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx23_combo_10.mp3",
+      "sha256": "75239d33e6909e5dbbca182053383cf31917a1fe7b3702bb02830dae2470dbb0",
+      "bytes": 13106,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_combo_50.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx26_combo_50.mp3",
+      "sha256": "15dffb2fa8ef30c70ea391632de6e44aa0786f0f2c0cad78c711281b5d68b34f",
+      "bytes": 17285,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_dialog_next.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx33_dialog_next.wav",
+      "sha256": "ef5fbcdb7a1a5c0c3690c81be9af8db84cf2e8a1eb79361027149591f2c81fc5",
+      "bytes": 7542,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_enemy_fly.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx45_enemy_fly.mp3",
+      "sha256": "13ac335abc51debcd6af0318b9575a4855666b4cb89870b53a8d27f98b4e1982",
+      "bytes": 13106,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_enemy_shot.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx46_enemy_shot.mp3",
+      "sha256": "5dde3c383d1bee2edb38cd9f181ee4114961d8f4b87a648d4387d539722bb39b",
+      "bytes": 9449,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_fan.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx47_fan.mp3",
+      "sha256": "38e8cbac7e72755f2fb2958bd3277b0239c420d5f7daae7e7dcd30de3b375665",
+      "bytes": 15196,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_folaidi_flicker.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx48_folaidi_flicker.mp3",
+      "sha256": "26332eb319b86aaff821f5a7ada339b25842ad1754c7c8307f37723633e12221",
+      "bytes": 11538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_folaidi_rise.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx51_folaidi_rise.mp3",
+      "sha256": "8c8c45f643c6e4ba0839828095bcf8b293c78424ee5e3cb9d3c753c9555a9812",
+      "bytes": 25122,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_hurt.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx69_hurt.mp3",
+      "sha256": "899b893e7ff690b453bf603f15aae6b3d74ef2f6389c1fdfb2eeac5d42a14fae",
+      "bytes": 11538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_mask_off.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx93_mask_off.mp3",
+      "sha256": "ab49f644ce2155ed70065058e49e413e1ce372100bffaa62dc4a57043fe5216f",
+      "bytes": 9449,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_pan_hit.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx98_pan_hit.mp3",
+      "sha256": "1552d97dca9e3ded460c050fdff89fc04597ade1287aa0f5160523510daac9df",
+      "bytes": 11538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_pie.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx99_pie.mp3",
+      "sha256": "da00ebeefbe90c6d7598740eef2636c28f6b87282fe05353f0a92b17945cac68",
+      "bytes": 25122,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_quake.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx110_quake.mp3",
+      "sha256": "5dd4c800cb4a598fc5439846887f471abc74a4f2f767689fed1f619f1229d4c3",
+      "bytes": 21465,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_revert.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx111_revert.mp3",
+      "sha256": "0250f53bb92ef5e141df8c1fb51f87832372fb49d115b41c7064fbb526da0a02",
+      "bytes": 21465,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_spawn.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx151_spawn.mp3",
+      "sha256": "ecf57e3208df5559822a8ad0f599a002ad95ea57bcb2ac2a43acca984254624d",
+      "bytes": 11538,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_glove.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx154_tf_glove.mp3",
+      "sha256": "b77cd5807432447f9d3d7fe93b96ae0adbec1d535e74cf6a1243583472a1b8cf",
+      "bytes": 19375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_jacket.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx157_tf_jacket.mp3",
+      "sha256": "47202e8952ee5f132f025760710dadb8610c90af654892315875516e5e2b1b49",
+      "bytes": 19375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_knee.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx158_tf_knee.mp3",
+      "sha256": "f11aab33d7c01f011cd11268e88002ec9ce75ea14116cb81460eb1ffab0390fa",
+      "bytes": 19375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_pose.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx159_tf_pose.mp3",
+      "sha256": "c1ed3941c7291fce3ec4062d284953cd1e9d0321708ed8f4d0787c613041252c",
+      "bytes": 33481,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_scarf.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx160_tf_scarf.mp3",
+      "sha256": "52a4fdf4363f24bb91c4a4d1fde21d6b53bee69fa37f2ceb55f6ee3c8a1811ca",
+      "bytes": 19375,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_tf_stars.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx163_tf_stars.mp3",
+      "sha256": "f4b6165619a8fe1d83bdcdf4132e62ba6c07f9cf18b64cc1d563c6307990b525",
+      "bytes": 33481,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_transform_charge.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx164_transform_charge.mp3",
+      "sha256": "5fc6a449dc568333e938996eb21fde171ad17d8d868da3c2e158c3c0e5a2e688",
+      "bytes": 53334,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_transform_done.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx165_transform_done.mp3",
+      "sha256": "27c22d65567cc3f81980432f4e011ec9e5c2a02e5cc1b30435f8912781a89c10",
+      "bytes": 29302,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_victory_human_cheer_user.wav",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx175_victory_human_cheer_user.wav",
+      "sha256": "5e03fe5ab7cc8f5ff4d95d164b24b7b4df0c60d2fcd34112f307831b005be1fc",
+      "bytes": 3600044,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_wave.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx176_wave.mp3",
+      "sha256": "3013078b2bf47b24a0fdad9306d79611738ae3b248e8cd991a0ba3518b66021c",
+      "bytes": 21465,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/sfx_whistle.mp3",
+      "new": "02_brave_guy/assets/source/sfx/brave_guy_sfx177_whistle.mp3",
+      "sha256": "7c6105062e811364a736883a183ca12185658386bcaaeafed7f1d186dcbceb76",
+      "bytes": 13106,
+      "media": true
+    },
+    {
+      "old": "02_brave_guy/assets/ART_OUTSTANDING_2026-11-15.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record01_art_outstanding_2026-11-15.md",
+      "sha256": "f1b894289fdf27139c6d17ba998f90a2f6ab29e7e9d68529141d19ec7f175251",
+      "bytes": 4154,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/AUDIO_CATALOG.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record02_audio_catalog.md",
+      "sha256": "8af5e75cbea9a3eb906f2a2e0fd298b3dbee05f98eab6573cc1fc8e50a004ac9",
+      "bytes": 10512,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/MODELS_3D.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record03_models_3d.md",
+      "sha256": "c6895c09d3585e83389c0a361fb41922e017417b9eacd43e15aa7fc0bd2a3db1",
+      "bytes": 10609,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/MUSIC.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record04_music.md",
+      "sha256": "d08c813ec4984566ba1d4cc43074d02e02dda456e9cc9d3f5bdffbee93c68ed7",
+      "bytes": 35416,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/records/recovered-art.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record05_recovered-art.json",
+      "sha256": "a584e763d9bbff6ba95f89f574968d3f93e15feb743c43beee5bad7d539a361e",
+      "bytes": 13219,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/runtime/lossless/report.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record06_report.json",
+      "sha256": "505ea66de19407f8706e1575a6bcbdd86cec75b940265642505f5e70d50842ee",
+      "bytes": 43949,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/ANGEL_GUARD_ICON_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record07_angel_guard_icon_delivery.json",
+      "sha256": "cc85a2a912f9dfbf4ad9b419ac1ae5caeb6543b1ad8422b284510240ce0e0c15",
+      "bytes": 613,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/APPROVED_VISUAL_REVISION_02.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record08_approved_visual_revision_02.json",
+      "sha256": "3290d93864e67371ab58eb98c24a55682b96d7b56c10d057fe7030517e1ce6b3",
+      "bytes": 1992,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/AUDIO_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record09_audio_delivery.json",
+      "sha256": "dd05bdf67aee7163b50abf6434c94f0c6b8887956a3921433f252af7c79220f3",
+      "bytes": 25134,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/BOSS_CINEMATIC_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record10_boss_cinematic_delivery.json",
+      "sha256": "ceea6c71de7825646debd92faf29774cd9ba44d7d45d4aba525136f4c012ac76",
+      "bytes": 7026,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/CROWD_SFX_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record11_crowd_sfx_delivery.json",
+      "sha256": "1fb314478996669f8049cdecf64fbd9302546d20f366de259ed488fefd17a999",
+      "bytes": 2679,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/GUEST_SKILL_ICONS_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record12_guest_skill_icons_delivery.json",
+      "sha256": "4d9e0d7042b81d095e04dd97844938e41d6475cb165e9963d0959b1b82dee4f4",
+      "bytes": 646,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/HUD_RUNTIME_REGIONS.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record13_hud_runtime_regions.json",
+      "sha256": "8562bac85c813a135f74e225022cba67be0223e762c058b13b125ba9d7de756f",
+      "bytes": 3358,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/ICON_LOGO_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record14_icon_logo_delivery.json",
+      "sha256": "e043aa31784c61b39e52eb5f911d83e808967617de21db8fa2a5626e6a551de1",
+      "bytes": 367,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/ICON_LOGO_PROMPT.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record15_icon_logo_prompt.md",
+      "sha256": "9510ffed4904c2266ef5d4fce62cd6cb9db5dfb4f5d51d69422939e1c49659e2",
+      "bytes": 1001,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/JIAMANG_FILMS_REVIEW.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record16_jiamang_films_review.json",
+      "sha256": "c0f01da841b47160ab29561ab7f5d63e5a24240bdf49efb8df90fdf2adbd8ad2",
+      "bytes": 1299,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/MENU_KEYART_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record17_menu_keyart_delivery.json",
+      "sha256": "637bb81d03756ff092636f5f072e9600c920e0788a9b10631e494e419d09524e",
+      "bytes": 846,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/MENU_RUNTIME_REGIONS.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record18_menu_runtime_regions.json",
+      "sha256": "081dd5b9f8858e7b4c699d880d9dd5aede5a42e3ea62342f99c5d48085034cc3",
+      "bytes": 2573,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/OPENING_SHARP_REVIEW.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record19_opening_sharp_review.json",
+      "sha256": "d87bf087792871ab4f995c6e6c2971386a737f7f0394c4e18e92016a0c60bcc5",
+      "bytes": 633,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_3D_BACKGROUND_CHECK.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record20_p0_3d_background_check.json",
+      "sha256": "c61be112aea5958eebba734bfe9126bf41e8085bdd4793f760e5d55c007f2818",
+      "bytes": 890,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_3D_REFERENCE_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record21_p0_3d_reference_delivery.json",
+      "sha256": "1c3dc4c4a7b090ac519d83081c75fea4822e432423bc6f81a5c36cc7c5c366e2",
+      "bytes": 3392,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_3D_REFERENCE_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record22_p0_3d_reference_prompts.md",
+      "sha256": "4f7578b52d578692aea84d89a4624b87d44e8d90487e72f86e076dec8dce0a89",
+      "bytes": 9746,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_3D_REVISION_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record23_p0_3d_revision_prompts.md",
+      "sha256": "60b7dcd2728538677fd902f6b97ddcd271c0e19c00bac19b3757fc4af7707c34",
+      "bytes": 4640,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_LOGO_UPDATE_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record24_p0_logo_update_prompts.md",
+      "sha256": "61d1d1cc4dee744ba5ae96147909574c4842d0a008d2b2d6ad6f6137d38b5764",
+      "bytes": 2139,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_REVIEW_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record25_p0_review_delivery.json",
+      "sha256": "21608348e374c494dc3f081dcafde93e96a4f87e783b5fe387f463038bf4fc0c",
+      "bytes": 1344,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P0_REVIEW_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record26_p0_review_prompts.md",
+      "sha256": "365c1d197fda0839b0458e8c456550b77fefa74871f29f458adeaa68555712a0",
+      "bytes": 9818,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_3D_REFERENCE_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record27_p1_3d_reference_delivery.json",
+      "sha256": "1e68fa5574abfcd98937463a9c65882e71b7d5510924ace29645e638b2c4ec9f",
+      "bytes": 10230,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_3D_REFERENCE_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record28_p1_3d_reference_prompts.md",
+      "sha256": "31b2037ac83115c5292d55227ff58a9773ef86a36200451c6c6452de0d38343f",
+      "bytes": 19064,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_BRANDING_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record29_p1_branding_delivery.json",
+      "sha256": "3612dd4ee4192bd6b13fec592a657c7d6ec74cbe500344ceedf6def1ef3dda7f",
+      "bytes": 852,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_BRANDING_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record30_p1_branding_prompts.md",
+      "sha256": "cd29eff0beac1ddbc1dff959831872a5418e58a6dff2821fb317bc95645d3720",
+      "bytes": 3641,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_BUTTONS_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record31_p1_buttons_delivery.json",
+      "sha256": "0598de077477fb654699225437bed345d26c8921decef54a4ee81a0dd1a1b675",
+      "bytes": 3077,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_BUTTONS_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record32_p1_buttons_prompts.md",
+      "sha256": "0c939b119e830d5d380a4d0812549e94bdc902a4498b0477c4627e56925593aa",
+      "bytes": 5698,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_BUTTONS_SLICE_GUIDE.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record33_p1_buttons_slice_guide.json",
+      "sha256": "5e2431e07262ae05272b21ee7f92032f4c2d6575e54882ff74f30d5137e671da",
+      "bytes": 2494,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_HUD_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record34_p1_hud_delivery.json",
+      "sha256": "0dc45a840a3f7270fcc20aacdadddaf22b0a54b236821859ad52a6709e8fd10e",
+      "bytes": 2981,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_HUD_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record35_p1_hud_prompts.md",
+      "sha256": "d1223773adaef499be39282690fbef87a84d352aa8e68fbce810f137a11bcf24",
+      "bytes": 5939,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_HUD_SLICE_GUIDE.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record36_p1_hud_slice_guide.json",
+      "sha256": "55714e140e549fefcc5f0b3b668cbc70c70f4fcdf33a08cb4ac8651c44534c33",
+      "bytes": 1558,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_INTERFACE_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record37_p1_interface_delivery.json",
+      "sha256": "992b05b5b42a08c7a3d52314fd8ce79dc3d818f4055f2313be9a7f20db504679",
+      "bytes": 2719,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_INTERFACE_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record38_p1_interface_prompts.md",
+      "sha256": "5ccaa0c52d296f0fb77a6bd5b092f3b57c5ecf7fd184a8fb8c565f3cbbe38b42",
+      "bytes": 9380,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_INTERFACE_SLICE_GUIDE.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record39_p1_interface_slice_guide.json",
+      "sha256": "375b8db49d17fb824aec6d8cb9f76f7e7d7a3ee08eab5fa0ffc224932a8df048",
+      "bytes": 1203,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_REVIEW_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record40_p1_review_delivery.json",
+      "sha256": "f7b1372429cad5c7bdc82784271de3cb933ea04cc0e8f231d3d87dedccf9443a",
+      "bytes": 1482,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P1_REVIEW_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record41_p1_review_prompts.md",
+      "sha256": "4935dccee5d25a5d624a7cd9f442dab5c5ec5634c2441ad2dd5e7468f9c689b0",
+      "bytes": 10347,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P2_P3_BATCH_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record42_p2_p3_batch_delivery.json",
+      "sha256": "f3bca6244d82179134531e5b9bc73aeb8ac434bb4b5031313d1caf503e1bdbe6",
+      "bytes": 2693,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/P2_P3_BATCH_PROMPTS.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record43_p2_p3_batch_prompts.md",
+      "sha256": "6ed6cf390384af7cfe20d9d7ce49f2f7985d5a4b9b81d2e1f05df287d1893aa7",
+      "bytes": 19185,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/PANEL_RUNTIME_REGIONS.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record44_panel_runtime_regions.json",
+      "sha256": "38b8ceac56d43f8180df0aafd1852e405e26839db42538a6976776a9b795d19a",
+      "bytes": 513,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/PICTURE_FILMS_REVIEW.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record45_picture_films_review.json",
+      "sha256": "b6a8c9bbcb207250e6efc4bf952a02c790e5b7cbe5593972b8d5ffdea4d98bcf",
+      "bytes": 10962,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/QIAN_BIZ_FILMS_REVIEW.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record46_qian_biz_films_review.json",
+      "sha256": "da0d7274903f618e7f6c5923d60e1e4766fd70c7f08a98c60807f096279c5e7b",
+      "bytes": 1900,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/SFX_BRIEF_2026-11-15.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record47_sfx_brief_2026-11-15.md",
+      "sha256": "803cc8d0bcc148f1b20eeed7e8802a7487e2af05017b79bd51442b825ef9cacf",
+      "bytes": 7090,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/SFX_BRIEF_v3_combat_2026-11-16.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record48_sfx_brief_v3_combat_2026-11-16.md",
+      "sha256": "f8b19eeccede566aeaa42f92103d917149054219abd5c68c18431c1384b18862",
+      "bytes": 7885,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/SFX_DELIVERY.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record49_sfx_delivery.json",
+      "sha256": "73472c40769a46f83f91aec5bb6f1ccf366303e5205ac1f1d51e7909e49bb37e",
+      "bytes": 34165,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/SFX_MUSIC_BRIEF_2026-11-16.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record50_sfx_music_brief_2026-11-16.md",
+      "sha256": "3c37bcd205ad47dbdb5a02102f35efde80a66764fe3de22f9c1b50ee5d2c8778",
+      "bytes": 9755,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/SFX_MUSIC_BRIEF_jiamang_2026-11-16.md",
+      "new": "02_brave_guy/assets/records/brave_guy_record51_sfx_music_brief_jiamang_2026-11-16.md",
+      "sha256": "a1257c7953912db4633b39f5686d261be3a567d45ffb1abf1202878b136778ee",
+      "bytes": 1799,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/UI_CRISP_V3.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record52_ui_crisp_v3.json",
+      "sha256": "db1eb09eb8a2f29dec60d20f769960652fd58b12fe600d209ec471ebbad9344c",
+      "bytes": 535,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/UI_RUNTIME_REGIONS.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record53_ui_runtime_regions.json",
+      "sha256": "41482ba9d685fc2e65c67919834d35d69b96cf49a153e4ad92a9d6f07cc3a1cd",
+      "bytes": 7321,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/UNIFIED_SHEET_HEADERS.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record54_unified_sheet_headers.json",
+      "sha256": "0b0f399cf089eb8309513d7045ba706c3e282d56f74d6c023a0364e5ed93fde2",
+      "bytes": 12335,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/sfx/imports/brave_guy/USAGE.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record55_brave_guy_usage.json",
+      "sha256": "7c83211aea2679c92eeb42c6febdeac09ac15cc78025d0b86efa553121df3b83",
+      "bytes": 1270,
+      "media": false
+    },
+    {
+      "old": "02_brave_guy/assets/source/system_cinematics_manifest.json",
+      "new": "02_brave_guy/assets/records/brave_guy_record56_system_cinematics_manifest.json",
+      "sha256": "24cfc93454525bc19a70c6cc690ff9758a3d1dfaee9d0c6385ae40212f9e0dfd",
+      "bytes": 2820,
+      "media": false
+    }
+  ]
+}

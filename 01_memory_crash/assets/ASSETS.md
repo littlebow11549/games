@@ -1,3 +1,5 @@
+> **2026-11-20 命名與現況以 [素材索引](records/memory_crash_asset-index.md) 為準。以下是歷史製作規格；舊檔名、待製作及遺失敘述不得當作現況。**
+
 # 🎨 Memory Crash — 素材製作列表（完整規格）
 
 > 依全專案標準範本（`/ASSETS_TEMPLATE.md`）。本款風格：**深藍科技感**。
@@ -11,19 +13,19 @@
 ```
 assets/source/
 ├── pic/                  # 圖片
-│   ├── background/  bg_01.png
-│   ├── branding/    logo_01.png · blade_01.png · icon_01.png (icon_01.svg 已有)
+│   ├── background/  memory_crash_background01_水晶大廳.png
+│   ├── branding/    memory_crash_branding05_logo_01.png · memory_crash_branding01_blade_01.png · memory_crash_branding03_icon_01.png (memory_crash_branding03_icon_01.svg 已有)
 │   ├── character/   char_01.png            # 主角（太空巴哥）；char_placeholder.svg 墊底
-│   ├── titles/      titles_01.png · titles_02.png   # 主視覺文字 + 主選單字
-│   ├── ui/          ui_01.png
-│   ├── gems/        gems_01.png
-│   ├── numbers/     numbers_01.png         # 數字 0–9 + LV + :
-│   ├── font/        font_01.png            # 字型 A–Z / a–z / 符號
-│   ├── fx/          fx_01.png
-│   └── howto/       howto_01.png           # 教學步驟圖示
-├── music/           bgm_01.mp3 · bgm_02.mp3     # 背景音樂
-├── sfx/             sfx_01.mp3 … sfx_05.mp3     # 音效
-└── video/           vid_01.webm（選做）
+│   ├── titles/      titles_01.png · memory_crash_ui27_titles_02.png   # 主視覺文字 + 主選單字
+│   ├── ui/          memory_crash_ui39_介面總圖集.png
+│   ├── gems/        memory_crash_ui04_gems_01.png
+│   ├── numbers/     memory_crash_ui20_numbers_01.png         # 數字 0–9 + LV + :
+│   ├── font/        memory_crash_ui02_font_01.png            # 字型 A–Z / a–z / 符號
+│   ├── fx/          memory_crash_fx02_fx_01.png
+│   └── howto/       memory_crash_ui06_howto_01.png           # 教學步驟圖示
+├── music/           memory_crash_bgm01_一般關卡.mp3 · memory_crash_bgm03_高階關卡.mp3     # 背景音樂
+├── sfx/             memory_crash_sfx05_點擊.mp3 … memory_crash_sfx01_失敗.mp3     # 音效
+└── video/           memory_crash_video01_01.webm（選做）
 ```
 > 同類型多檔就遞增編號（`bg_01`、`bg_02`…）。
 
@@ -45,7 +47,7 @@ assets/source/
 ## 1. 背景　`pic/background/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `bg_01.png` | 主背景（全畫面共用） | 941×1672（原建議 1080×1920） | 不透明 |
+| `memory_crash_background01_水晶大廳.png` | 主背景（全畫面共用） | 941×1672（原建議 1080×1920） | 不透明 |
 ```
 mobile puzzle game background, vertical 9:16, deep navy-blue sci-fi scene, glowing cyan
 perspective grid floor fading into darkness at the bottom, soft radial blue glow from top
@@ -56,9 +58,9 @@ characters, high detail. Opaque. 1080x1920.
 ## 2. 品牌　`pic/branding/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `logo_01.png` | 遊戲 LOGO「MEMORY CRASH」 | 1422×1106（原建議 900×700） | 去背 |
-| `blade_01.png` | 標題裝飾：能量劍刃 | 845×1862（原建議 400×900） | 去背 |
-| `icon_01.png` | App Icon（點陣版；向量版 `icon_01.svg` 已有） | 1254×1254（原建議 512×512） | 圓角方形 |
+| `memory_crash_branding05_logo_01.png` | 遊戲 LOGO「MEMORY CRASH」 | 1422×1106（原建議 900×700） | 去背 |
+| `memory_crash_branding01_blade_01.png` | 標題裝飾：能量劍刃 | 845×1862（原建議 400×900） | 去背 |
+| `memory_crash_branding03_icon_01.png` | App Icon（點陣版；向量版 `memory_crash_branding03_icon_01.svg` 已有） | 1254×1254（原建議 512×512） | 圓角方形 |
 
 **logo_01**
 ```
@@ -85,7 +87,7 @@ high detail. 512x512 PNG.
 | 檔案 | 內含文字 | 尺寸 | 背景 |
 |------|----------|------|------|
 | `titles_01.png` | START · OPTION · READY · YOUR TURN · PERFECT · MISS · GAMEOVER · MASTER MODE · HOW TO PLAY · HOME · AGAIN | 1254×1254（原建議 2048×2048） | 去背 |
-| `titles_02.png` | **（主選單）** ARCADE · CONTINUE · EXIT · MENU · PAUSE · RESUME | 1774×887（原建議 2048×1024） | 去背 |
+| `memory_crash_ui27_titles_02.png` | **（主選單）** ARCADE · CONTINUE · EXIT · MENU · PAUSE · RESUME | 1774×887（原建議 2048×1024） | 去背 |
 ```
 sprite sheet of game word-art phrases, transparent background, laid out in a neat grid with
 clear spacing, consistent chunky cartoon 3D style matching the game logo: glossy GOLD letters
@@ -106,7 +108,7 @@ background, clear spacing, each phrase separate and not overlapping:
 ## 4. 介面 UI　`pic/ui/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `ui_01.png` | UI 圖集（按鈕三態／面板／愛心／齒輪／格子框） | 1254×1254（原建議 2048×2048） | 去背 |
+| `memory_crash_ui39_介面總圖集.png` | UI 圖集（按鈕三態／面板／愛心／齒輪／格子框） | 1254×1254（原建議 2048×2048） | 去背 |
 ```
 UI kit sprite sheet for a mobile puzzle game, transparent background, items neatly laid out
 with clear spacing, consistent glossy cartoon 3D style, deep navy-blue + cyan glow + gold.
@@ -125,7 +127,7 @@ High detail, not overlapping, not cropped. 2048x2048 PNG, transparent.
 ## 5. 遊戲元件（寶石）　`pic/gems/`
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `gems_01.png` | 12 顆寶石圖集（4欄×3列） | 1448×1086（原建議 2048×1536） | 去背 |
+| `memory_crash_ui04_gems_01.png` | 12 顆寶石圖集（4欄×3列） | 1448×1086（原建議 2048×1536） | 去背 |
 ```
 sprite sheet of 12 faceted gemstones in a neat 4x3 grid, evenly spaced with clear gaps,
 each gem centered in its own equal cell, transparent background, glossy cartoon 3D crystal
@@ -143,8 +145,8 @@ High detail. 2048x1536 PNG, transparent.
 
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `numbers_01.png` | 數字 0–9 ＋「LV」＋「:」（分數/等級用） | 2172×724（原建議 2048×512） | 去背 |
-| `font_01.png` | 字型：A–Z、a–z、常用符號（一般文字用） | 1254×1254（原建議 2048×2048） | 去背 |
+| `memory_crash_ui20_numbers_01.png` | 數字 0–9 ＋「LV」＋「:」（分數/等級用） | 2172×724（原建議 2048×512） | 去背 |
+| `memory_crash_ui02_font_01.png` | 字型：A–Z、a–z、常用符號（一般文字用） | 1254×1254（原建議 2048×2048） | 去背 |
 
 **numbers_01**
 ```
@@ -165,7 +167,7 @@ size, transparent background, not overlapping. High detail. 2048x2048 PNG, trans
 ## 7. 特效　`pic/fx/`（選做）
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `fx_01.png` | 特效圖集（PERFECT 爆閃／寶石碎裂／GAME OVER 裂痕） | 2172×724（原建議 1536×512） | 透明 |
+| `memory_crash_fx02_fx_01.png` | 特效圖集（PERFECT 爆閃／寶石碎裂／GAME OVER 裂痕） | 2172×724（原建議 1536×512） | 透明 |
 ```
 VFX sprite sheet, transparent background, 3 effects side by side with clear gaps, consistent
 style: 1) golden celebration burst with light rays and sparkles; 2) shattering gemstone into
@@ -177,7 +179,7 @@ glowing shards; 3) cracked glass overlay in dark-blue tint. High detail. 1536x51
 
 | 檔案 | 用途 | 尺寸 | 背景 |
 |------|------|------|------|
-| `howto_01.png` | 4 格教學圖示（記住順序／照順序點／PERFECT／小心愛心） | 2172×724（原建議 2048×512） | 去背 |
+| `memory_crash_ui06_howto_01.png` | 4 格教學圖示（記住順序／照順序點／PERFECT／小心愛心） | 2172×724（原建議 2048×512） | 去背 |
 ```
 sprite sheet of 4 small tutorial step icons in a row, transparent background, clear gaps,
 consistent glossy cartoon style, deep navy-blue + cyan + gold:
@@ -191,8 +193,8 @@ High detail, not overlapping. 2048x512 PNG, transparent.
 ## 9. 音樂　`music/`
 | 檔案 | 用途 | 長度 | 循環 |
 |------|------|------|------|
-| `bgm_01.mp3` | 背景音樂（主） | 60–120s | 可無縫循環 |
-| `bgm_02.mp3` | 大師模式/高關（選做） | 60–120s | 循環 |
+| `memory_crash_bgm01_一般關卡.mp3` | 背景音樂（主） | 60–120s | 可無縫循環 |
+| `memory_crash_bgm03_高階關卡.mp3` | 大師模式/高關（選做） | 60–120s | 循環 |
 
 **bgm_01**
 ```
@@ -209,17 +211,17 @@ still bright and electronic, seamless loop, no vocals.
 ## 10. 音效　`sfx/`
 | 檔案 | 用途 | 長度 | 說明 |
 |------|------|------|------|
-| `sfx_01.mp3` | 點擊 | <0.4s | 清脆短「叮」(bright blip) |
-| `sfx_02.mp3` | 正確 | <0.6s | 悅耳上揚兩音 (positive chime) |
-| `sfx_03.mp3` | 點錯 | <0.6s | 低沉錯誤 buzz (soft error) |
-| `sfx_04.mp3` | 過關 PERFECT | 1–2s | 歡樂上行琶音 (success fanfare) |
-| `sfx_05.mp3` | GAME OVER | 1–2s | 下行失落音 (game-over descend) |
+| `memory_crash_sfx05_點擊.mp3` | 點擊 | <0.4s | 清脆短「叮」(bright blip) |
+| `memory_crash_sfx02_答對.mp3` | 正確 | <0.6s | 悅耳上揚兩音 (positive chime) |
+| `memory_crash_sfx03_答錯.mp3` | 點錯 | <0.6s | 低沉錯誤 buzz (soft error) |
+| `memory_crash_sfx04_過關.mp3` | 過關 PERFECT | 1–2s | 歡樂上行琶音 (success fanfare) |
+| `memory_crash_sfx01_失敗.mp3` | GAME OVER | 1–2s | 下行失落音 (game-over descend) |
 
 ## 11. 影片　`video/`（選做）
 | 檔案 | 用途 | 規格 |
 |------|------|------|
-| `vid_01.webm` | 開場/背景動態（透明或不透明） | 1080×1920, WebM |
-| `vid_warp.webm` | **穿梭次元背景動畫**（循環，疊在背景上） | 1080×1920, WebM alpha 或不透明循環 |
+| `memory_crash_video01_01.webm` | 開場/背景動態（透明或不透明） | 1080×1920, WebM |
+| `memory_crash_video03_warp.webm` | **穿梭次元背景動畫**（循環，疊在背景上） | 1080×1920, WebM alpha 或不透明循環 |
 
 **vid_warp（穿梭次元）提示詞**
 ```
@@ -275,24 +277,24 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 ---
 
 ## ✅ 交付清單（越前面越重要）
-- [x] `pic/background/bg_01.png`（來源已交付／已接入，原生尺寸見 audit）
-- [x] `pic/branding/logo_01.png`（已交付／已接入）
+- [x] `pic/background/memory_crash_background01_水晶大廳.png`（來源已交付／已接入，原生尺寸見 audit）
+- [x] `pic/branding/memory_crash_branding05_logo_01.png`（已交付／已接入）
 - [x] `pic/titles/titles_01.png`（已交付／已切圖接入；原生 1254×1254，非 2048×2048）
-- [x] `pic/ui/ui_01.png`（按鈕、愛心、齒輪、面板、一般／發光格子框皆已接入）
-- [x] `pic/gems/gems_01.png`（已交付／已接入）
-- [x] `pic/numbers/numbers_01.png`（已交付，已接 LV）
-- [x] `pic/font/font_01.png`（68 字元 metrics 已校正，bitmap 短標籤已接入，含原圖與 JSON）
-- [x] `music/bgm_01.mp3`（已交付／已接入）
-- [x] `sfx/sfx_01.mp3` … `sfx_05.mp3`（已交付／已接入）
-- [x] `pic/branding/icon_01.png`（已交付／已接入）
+- [x] `pic/ui/memory_crash_ui39_介面總圖集.png`（按鈕、愛心、齒輪、面板、一般／發光格子框皆已接入）
+- [x] `pic/gems/memory_crash_ui04_gems_01.png`（已交付／已接入）
+- [x] `pic/numbers/memory_crash_ui20_numbers_01.png`（已交付，已接 LV）
+- [x] `pic/font/memory_crash_ui02_font_01.png`（68 字元 metrics 已校正，bitmap 短標籤已接入，含原圖與 JSON）
+- [x] `music/memory_crash_bgm01_一般關卡.mp3`（已交付／已接入）
+- [x] `sfx/memory_crash_sfx05_點擊.mp3` … `memory_crash_sfx01_失敗.mp3`（已交付／已接入）
+- [x] `pic/branding/memory_crash_branding03_icon_01.png`（已交付／已接入）
 - [x] `pic/character/char_01.png`（6 姿態來源）與 `char_anim_idle/happy/sad/celebrate.png`（32 格，四種動態已套用）
-- [x] `pic/titles/titles_02.png`（六詞已交付；ARCADE／CONTINUE／EXIT 已套用）
-- [x] `video/vid_warp.webm`（無損母檔已交付，輕量播放版已接標題與選單）
-- [x] 選做：`pic/howto/howto_01.png`（已交付／已接入）
-- [x] `pic/branding/blade_01.png`（已接標題）
-- [x] `pic/fx/fx_01.png`（已接過關／失誤／結束）
-- [x] `music/bgm_02.mp3`（已接 Master／LV10+，含 Ogg）
-- [x] `video/vid_01.webm`（已接可跳過開場，無損母檔保留）
+- [x] `pic/titles/memory_crash_ui27_titles_02.png`（六詞已交付；ARCADE／CONTINUE／EXIT 已套用）
+- [x] `video/memory_crash_video03_warp.webm`（無損母檔已交付，輕量播放版已接標題與選單）
+- [x] 選做：`pic/howto/memory_crash_ui06_howto_01.png`（已交付／已接入）
+- [x] `pic/branding/memory_crash_branding01_blade_01.png`（已接標題）
+- [x] `pic/fx/memory_crash_fx02_fx_01.png`（已接過關／失誤／結束）
+- [x] `music/memory_crash_bgm03_高階關卡.mp3`（已接 Master／LV10+，含 Ogg）
+- [x] `video/memory_crash_video01_01.webm`（已接可跳過開場，無損母檔保留）
 
 > 給 GPT 的總指示：「請依這份清單做一套**風格統一**（深藍科技＋青光＋金色）的手機益智遊戲素材，
 > 圖片透明背景、元件排整齊等距方便切圖。」
@@ -302,21 +304,21 @@ thumbs-up, 6 pointing. Each pose separate, not overlapping, not cropped. High de
 - 圖片須大而清晰：後續生成或重新繪製以本表原定尺寸為交付目標；不得以放大小圖宣稱增加細節。
 - 來源圖保留完整原始解析度、RGBA 透明度；禁止有損量化、減色或 JPEG 壓縮。
 - PNG 僅接受無損壓縮，解碼後尺寸、色彩模式與每個像素必須完全相同；色彩描述資訊需保留。
-- 現有圖保留原生尺寸；實際像素仍以 DELIVERY_V2.md 為準，部分尚未達本表指定尺寸。
-- 已對現有八張 PNG 執行無損最佳化；逐張驗證見 LOSSLESS_COMPRESSION.json，重跑工具為 ../tools/optimize_png.py。
+- 現有圖保留原生尺寸；實際像素仍以 memory_crash_record03_delivery_v2.md 為準，部分尚未達本表指定尺寸。
+- 已對現有八張 PNG 執行無損最佳化；逐張驗證見 memory_crash_record04_lossless_compression.json，重跑工具為 ../tools/optimize_png.py。
 - 接手切圖時保留來源原圖，另產遊戲使用尺寸，避免重複縮放與失真。
 
 ## 最新新增素材交付（2026-11-09）
 - `pic/titles/titles_01.png`：已交付，3 欄×4 列、十一組字與一格留白。
-- `pic/howto/howto_01.png`：已交付，4 欄×1 列，原生 2172×724。
+- `pic/howto/memory_crash_ui06_howto_01.png`：已交付，4 欄×1 列，原生 2172×724。
 - 兩者皆透明 PNG，已完成無損壓縮、逐像素驗證及切圖接入。
 - 原生尺寸與原訂規格不同，保留真實解析度，不插值放大；詳見 repo 根目錄 docs/handoffs/2026-11-09-titles-howto.md。
 
 ## 字型單張交付（2026-11-09）
-`pic/font/font_01.png` 已依使用者要求合併為一整張透明 PNG，包含大寫、小寫與常用符號；實際切圖座標見同資料夾 font_01.json，無損壓縮見 COMPRESSION.json。原生解析度未達原訂 2048×2048，未插值放大。基線／字距現已校正並接入，舊交付報告保留歷史，最新狀態見根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。
+`pic/font/memory_crash_ui02_font_01.png` 已依使用者要求合併為一整張透明 PNG，包含大寫、小寫與常用符號；實際切圖座標見同資料夾 font_01.json，無損壓縮見 COMPRESSION.json。原生解析度未達原訂 2048×2048，未插值放大。基線／字距現已校正並接入，舊交付報告保留歷史，最新狀態見根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。
 
 ## 最新素材核對與角色動態（2026-11-09）
-勾選代表來源檔案已交付，並非每張圖片都符合原訂精確像素；實際尺寸與缺檔見 `assets/ASSET_AUDIT.json`（相對遊戲根目錄）。四種巴哥動態已按使用者要求製作並套用；32 格在 `pic/character/char_anim_*.png`。完整驗證、待接入項及四項尚缺選做素材見 repo 根目錄 `docs/handoffs/2026-11-09-character-animation-audit.md`。
+勾選代表來源檔案已交付，並非每張圖片都符合原訂精確像素；實際尺寸與缺檔見 `assets/records/memory_crash_record01_asset_audit.json`（相對遊戲根目錄）。四種巴哥動態已按使用者要求製作並套用；32 格在 `pic/character/char_anim_*.png`。完整驗證、待接入項及四項尚缺選做素材見 repo 根目錄 `docs/handoffs/2026-11-09-character-animation-audit.md`。
 
 ## 清單收尾完成（2026-11-09）
 前述四項選做素材已補齊並接入；字型 metrics、穿梭影片、格子框已完成接入。來源表尺寸已如實列原生值，保留原建議作對照，沒有插值假放大。標題與選單使用輕量視訊播放版，RGB 無損母檔仍保留。完整收尾與驗證報告：repo 根目錄 docs/handoffs/2026-11-09-finish-assets-integration.md。舊段落提到的待辦以此及勾選清單為準。
@@ -340,9 +342,9 @@ MISS/GAMEOVER=red alert burst. 1200x700 PNG (or 6-8 frame sprite sheet for the s
 
 ### D2. 計量表 / 倒數進度條　`pic/ui/`
 目前倒數條是純 CSS，需要有質感的框與填充。
-- `gauge_frame.png`：進度條外框（膠囊狀，金屬/能量框，兩端有端蓋），約 1000×160，去背，九宮格可拉伸。
-- `gauge_fill.png`：填充條（青→金漸層、帶流動高光），約 1000×120，可水平裁切顯示。
-- `gauge_fill_low.png`：剩餘不多時的紅色警示填充（帶脈動光）。
+- `memory_crash_ui50_計量條框.png`：進度條外框（膠囊狀，金屬/能量框，兩端有端蓋），約 1000×160，去背，九宮格可拉伸。
+- `memory_crash_ui49_計量條填色.png`：填充條（青→金漸層、帶流動高光），約 1000×120，可水平裁切顯示。
+- `memory_crash_ui47_計量條低量.png`：剩餘不多時的紅色警示填充（帶脈動光）。
 ```
 sci-fi game progress/timer bar, horizontal capsule, glossy metal-and-energy frame with glowing
 cyan rim and gold end-caps (empty inside), plus a separate fill bar (cyan-to-gold gradient with
@@ -352,7 +354,7 @@ background. Frame 1000x160, fills 1000x120 PNG, 9-slice friendly.
 
 ### D3. 場景氣氛（光線 / 次元風暴）　`video/` 或 `pic/fx/`
 畫面要有動態場景氣氛（目前 CSS 暫代）。
-- 首選影片：`video/vid_ambient.webm`（1080×1920，無縫循環，可疊在背景上）：緩慢流動的**次元風暴**、光束、漂浮粒子、能量波紋。
+- 首選影片：`video/memory_crash_video02_ambient.webm`（1080×1920，無縫循環，可疊在背景上）：緩慢流動的**次元風暴**、光束、漂浮粒子、能量波紋。
 - 或序列/透明疊圖：`pic/fx/ambient_sheet.png`（光束掃動＋粒子，多格）。
 ```
 seamless looping atmospheric overlay for a deep-blue sci-fi puzzle game, vertical 9:16:
@@ -362,7 +364,7 @@ transparent/dark. 1080x1920 WebM (alpha preferred) or a particle+rays sprite she
 ```
 
 ### D4. Logo 流光（選做）　`pic/branding/`
-- `logo_shine.png`：可疊在 logo 上掃過的高光帶（白色柔光斜帶，去背），或直接交付**已內建流光的 logo 動態** `logo_anim.webm`（透明循環，光帶定時掃過字面）。
+- `memory_crash_branding07_logo_shine.png`：可疊在 logo 上掃過的高光帶（白色柔光斜帶，去背），或直接交付**已內建流光的 logo 動態** `logo_anim.webm`（透明循環，光帶定時掃過字面）。
 ```
 glossy sweeping light streak / shine band overlay (soft white diagonal highlight) to animate
 across the game logo, transparent background; OR a transparent looping WebM of the "MEMORY
@@ -374,10 +376,10 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 
 ### 第二批交付更新（Codex，2026-11-09）
 - [x] D1 六組高解析獨立透明衝擊字藝 `titles_fx_{ready,your_turn,perfect,miss,again,combo}.png`。
-- [x] D2 `gauge_frame.png`／`gauge_fill.png`／`gauge_fill_low.png`。
-- [x] D3 `video/vid_ambient.webm` 六秒24fps循環，原生941×1672；無 alpha，RGB無損母檔＋940×1672輕量播放版。不是1080×1920，未插值放大。
-- [x] D4 `branding/logo_shine.png` 1024×1536透明斜光帶。
-- 以上勾選代表素材交付，**正式遊戲尚待 Claude 接入**。圖片真實原生尺寸、無損核對與容量：`source/BATCH2_DELIVERY.json`。
+- [x] D2 `memory_crash_ui50_計量條框.png`／`memory_crash_ui49_計量條填色.png`／`memory_crash_ui47_計量條低量.png`。
+- [x] D3 `video/memory_crash_video02_ambient.webm` 六秒24fps循環，原生941×1672；無 alpha，RGB無損母檔＋940×1672輕量播放版。不是1080×1920，未插值放大。
+- [x] D4 `branding/memory_crash_branding07_logo_shine.png` 1024×1536透明斜光帶。
+- 以上勾選代表素材交付，**正式遊戲尚待 Claude 接入**。圖片真實原生尺寸、無損核對與容量：`records/memory_crash_record05_batch2_delivery.json`。
 - 獨立動態展示：`assets/preview/batch2.html`（相對遊戲根目錄）；完整交接：根目錄 `docs/handoffs/2026-11-09-batch2-art.md`。
 
 ---
@@ -395,7 +397,7 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 ### KV2. 主角大頭像（選單用，備案）　`pic/character/pug_head.png`
 - 若不做整張 KV，至少給一張**去背大頭像半身**（頭大、清晰、英雄表情），1024×1024，供選單置中大圖。
 
-### KV3. START 立體字（重新設計）　`pic/titles/start_hero.png`
+### KV3. START 立體字（重新設計）　`pic/titles/memory_crash_ui22_start_hero.png`
 - 高級、乾淨俐落、有份量的「START」立體字（金屬金＋藍描邊或能量感），去背 PNG，約 1200×600。目前 CSS 字與舊字藝都不夠好。
 
 ### KV4. 彈出精靈特效優化　`pic/titles/` 或 `pic/fx/`
@@ -407,9 +409,9 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 ### 第三批交付更新（Codex，2026-11-09）
 - [x] KV1 `pic/kv/kv_main.png`（941×1672 不透明，未達原建議1080×1920）及 `kv_pug.png`（1090×1443去背角色）。
 - [x] KV2 `pic/character/pug_head.png`（1254×1254透明半身像）。
-- [x] KV3 `pic/titles/start_hero.png`（1774×887透明）。
+- [x] KV3 `pic/titles/memory_crash_ui22_start_hero.png`（1774×887透明）。
 - [x] KV4 `pic/titles/titles_fx_{ready,your_turn,perfect,miss,again,combo}_v3.png`（各1774×887透明高品質單張，非序列幀）。
-- 全數有同原生解析度、逐像素相同的無損 WebP，見 `runtime/pic/batch3/`；容量／雜湊／alpha 見 `source/BATCH3_DELIVERY.json`。
+- 全數有同原生解析度、逐像素相同的無損 WebP，見 `runtime/pic/batch3/`；容量／雜湊／alpha 見 `records/memory_crash_record06_batch3_delivery.json`。
 - 獨立預覽 `preview/batch3.html`，12顆漂浮寶石重用既有圖集；選配新寶石獨立圖未製作。
 - **勾選代表素材交付，正式遊戲尚未接入。** 接入說明、驗證與限制見根目錄 `docs/handoffs/2026-11-09-batch3-hero-art.md`。
 
@@ -437,16 +439,16 @@ CRASH" logo with a light sweep crossing the letters every few seconds.
 
 使用者要求：GAME OVER 文字要像 OPTION 一樣「設計過」（立體金字藝圖，取代純文字）。沿用 `start_hero` / `option_hero` / `titles_fx_*_v3` 同一套字藝風格，確保整體一致。
 
-### T1. GAME OVER 字藝　`pic/titles/gameover_hero.png`
+### T1. GAME OVER 字藝　`pic/titles/memory_crash_ui03_gameover_hero.png`
 - **用途**：GAME OVER 畫面標題（`#screen-over` 的 `GAME OVER`），取代現有純文字。
 - **風格**：與 OPTION/START 一致的金色立體卡通字 —— 金色漸層字面、深藍立體邊與描邊、頂部高光、底部可帶一條青色能量光帶與小寶石點綴（與 OPTION 的裝飾一致）。可在金字上加「破裂/裂痕」質感呼應 GAME OVER 失敗感，但仍須可讀、維持同色系（勿變紅變暗到不協調）。
 - **字**：兩個單字 `GAME OVER`，建議兩行（GAME 上、OVER 下）或一行皆可；以可讀、置中為準。
 - **尺寸 / 格式**：**1774×887 PNG，透明去背（RGBA，含完整 alpha）**；原生輸出、不插值放大、不減色。字體內容**水平置中**（實心字質心接近 50%），方便程式直接置中。
-- **交付**：來源 `pic/titles/gameover_hero.png` + 對應 `runtime/pic/batch3/gameover_hero.webp`；附尺寸/雜湊/alpha 範圍於交付 JSON。
+- **交付**：來源 `pic/titles/memory_crash_ui03_gameover_hero.png` + 對應 `runtime/pic/batch3/memory_crash_ui03_gameover_hero.webp`；附尺寸/雜湊/alpha 範圍於交付 JSON。
 
-### T2. HOW TO PLAY 字藝　`pic/titles/howto_hero.png`
+### T2. HOW TO PLAY 字藝　`pic/titles/memory_crash_ui07_howto_hero.png`
 - **用途**：說明彈窗標題（`#modal` 的 `HOW TO PLAY`），取代現有純文字 `h3`。
-- **風格 / 格式**：同 OPTION/START 金色立體字，**1774×887 透明去背 PNG**，水平置中；交付來源 PNG + `runtime/pic/batch3/howto_hero.webp` + 交付 JSON。
+- **風格 / 格式**：同 OPTION/START 金色立體字，**1774×887 透明去背 PNG**，水平置中；交付來源 PNG + `runtime/pic/batch3/memory_crash_ui07_howto_hero.webp` + 交付 JSON。
 - 這是與 OPTION/GAME OVER 同類型的畫面標題，需一併設計以求一致。
 
 ### T3.（選做）按鈕字藝化

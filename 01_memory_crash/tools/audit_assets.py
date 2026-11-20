@@ -5,14 +5,14 @@ import subprocess,json
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'assets/source'
 entries=[
- ('pic/background/bg_01.png',True,[1080,1920]),('pic/branding/logo_01.png',True,[900,700]),('pic/branding/icon_01.png',True,[512,512]),
- ('pic/titles/titles_01.png',True,[2048,2048]),('pic/titles/titles_02.png',True,[2048,1024]),('pic/ui/ui_01.png',True,[2048,2048]),
- ('pic/gems/gems_01.png',True,[2048,1536]),('pic/numbers/numbers_01.png',True,[2048,512]),('pic/font/font_01.png',True,[2048,2048]),
- ('pic/howto/howto_01.png',False,[2048,512]),('pic/character/char_01.png',True,[2048,2048]),
+ ('pic/background/memory_crash_background01_水晶大廳.png',True,[1080,1920]),('pic/branding/memory_crash_branding05_logo_01.png',True,[900,700]),('pic/branding/memory_crash_branding03_icon_01.png',True,[512,512]),
+ ('pic/titles/titles_01.png',True,[2048,2048]),('pic/titles/memory_crash_ui27_titles_02.png',True,[2048,1024]),('pic/ui/memory_crash_ui39_介面總圖集.png',True,[2048,2048]),
+ ('pic/gems/memory_crash_ui04_gems_01.png',True,[2048,1536]),('pic/numbers/memory_crash_ui20_numbers_01.png',True,[2048,512]),('pic/font/memory_crash_ui02_font_01.png',True,[2048,2048]),
+ ('pic/howto/memory_crash_ui06_howto_01.png',False,[2048,512]),('pic/character/char_01.png',True,[2048,2048]),
  *[(f'pic/character/char_anim_{s}.png',True,None) for s in ['idle','happy','sad','celebrate']],
- ('music/bgm_01.mp3',True,None),*[(f'sfx/sfx_{n:02}.mp3',True,None) for n in range(1,6)],
- ('video/vid_warp.webm',True,[1080,1920]),('pic/branding/blade_01.png',False,[400,900]),('pic/fx/fx_01.png',False,[1536,512]),
- ('music/bgm_02.mp3',False,None),('video/vid_01.webm',False,[1080,1920]),
+ ('music/memory_crash_bgm01_一般關卡.mp3',True,None),*[(f'sfx/sfx_{n:02}.mp3',True,None) for n in range(1,6)],
+ ('video/memory_crash_video03_warp.webm',True,[1080,1920]),('pic/branding/memory_crash_branding01_blade_01.png',False,[400,900]),('pic/fx/memory_crash_fx02_fx_01.png',False,[1536,512]),
+ ('music/memory_crash_bgm03_高階關卡.mp3',False,None),('video/memory_crash_video01_01.webm',False,[1080,1920]),
 ]
 rows=[]
 for name,required,target in entries:
@@ -30,7 +30,7 @@ for name,required,target in entries:
   if target:row['exact_target_dimensions']=row.get('dimensions')==target
  rows.append(row)
 summary={'required_missing':[r['path'] for r in rows if r['required'] and not r['present']], 'optional_missing':[r['path'] for r in rows if not r['required'] and not r['present']], 'dimension_mismatches':[r['path'] for r in rows if r.get('exact_target_dimensions') is False], 'source_inventory_complete':all(row['present'] for row in rows), 'dimension_note':'Actual native dimensions versus initial design suggestions; ASSETS.md now records both. No upscaling used to claim added detail.','runtime_integration':'See docs/handoffs/2026-11-09-finish-assets-integration.md'}
-report={'summary':summary,'assets':rows};(ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(summary,indent=2))
+report={'summary':summary,'assets':rows};(ROOT/'assets/records/memory_crash_record01_asset_audit.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(summary,indent=2))
 
 # Optional full decode audit, including homepage source images.
 import sys
@@ -47,7 +47,7 @@ if '--full' in sys.argv:
   return str(path.relative_to(SOURCE))
  with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:decoded=list(pool.map(full_decode,media))
  report['full_source_validation']={'game_png_files_verified':len(source_png),'homepage_png_files_verified':len(hub_png),'total_source_png_verified':len(source_png)+len(hub_png),'media_files_fully_decoded':decoded,'failed_files':[]}
- (ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n')
+ (ROOT/'assets/records/memory_crash_record01_asset_audit.json').write_text(json.dumps(report,indent=2)+'\n')
  print(json.dumps(report['full_source_validation'],indent=2))
 
 if '--full' in sys.argv:
@@ -63,5 +63,5 @@ if '--full' in sys.argv:
     subprocess.run(['ffmpeg','-v','error','-i',str(path),'-f','null','-'],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
     checks.append({'file':entry['file'],'fully_decoded':True})
  report['runtime_validation']=checks
- (ROOT/'assets/ASSET_AUDIT.json').write_text(json.dumps(report,indent=2)+'\n')
+ (ROOT/'assets/records/memory_crash_record01_asset_audit.json').write_text(json.dumps(report,indent=2)+'\n')
  print('Runtime playback variants verified:',len(checks))

@@ -8,9 +8,9 @@
 - `css/feedback-art.css`：載入既有三種嘲諷泡泡及連擊底板；移除連擊文字重描邊，直向避開任務欄，小高度縮小。
 - `js/main.js`：上班族狀態切換；罪惡爆炸原8格序列10fps單次播放／結束清理／減少動態模式；原地面鎖定圈改圖集材質，失敗仍保留幾何圈；俊熊獎勵回血沿用心形圖。未改傷害、獎勵、變身門檻或敵人AI。
 - `js/minimap-art.js`：加入原底圖及俊熊標記，五種標記均有用途。俊熊在實際埋伏出現且未結束時顯示。
-- 劇情框沿用 `panel_sheet.png` 下方中央區，側邊用CSS框線，避免把左右人物槽擠到手機文字。既有賓果台詞顯示 `bingo_card.png`，下一句自動隱藏；未新增賓果玩法。
+- 劇情框沿用 `brave_guy_ui17_介面面板圖集.png` 下方中央區，側邊用CSS框線，避免把左右人物槽擠到手機文字。既有賓果台詞顯示 `brave_guy_ui33_賓果卡.png`，下一句自動隱藏；未新增賓果玩法。
 - `index.html`：載入樣式、爆炸圖預載、賓果圖片與程式版本更新。
-- 座標對照：`assets/source/HUD_RUNTIME_REGIONS.json`。主要圖集原生1536×1024 RGBA；上班族合輯1728×1152。僅CSS／Canvas／Three.js顯示窗口，不輸出新素材、不放大宣稱細節增加。
+- 座標對照：`assets/records/brave_guy_record13_hud_runtime_regions.json`。主要圖集原生1536×1024 RGBA；上班族合輯1728×1152。僅CSS／Canvas／Three.js顯示窗口，不輸出新素材、不放大宣稱細節增加。
 
 ## 驗證
 

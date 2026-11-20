@@ -691,7 +691,7 @@
       "sha256": "5dc4f2898af9c983fd9acada90d43d6e9b2c676521ca3f8d7ea37e69e8343fe5"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/ambient_plate.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_fx01_ambient_plate.webp",
       "category": "網頁衍生檔",
       "bytes": 907430,
       "dimensions": "941x1672",
@@ -699,7 +699,7 @@
       "sha256": "cf835ec7b28588b3787a5c779bbcf83a99968c7b64475c509837e3833ff9ae76"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_fill.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui49_計量條填色.webp",
       "category": "網頁衍生檔",
       "bytes": 228902,
       "dimensions": "1672x290",
@@ -707,7 +707,7 @@
       "sha256": "d653fe27e20cca9554d236456808abcd3ff0212ed50d1399c6bd366194a68b2f"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_fill_low.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui47_計量條低量.webp",
       "category": "網頁衍生檔",
       "bytes": 220902,
       "dimensions": "1672x311",
@@ -715,7 +715,7 @@
       "sha256": "036191686e24b7d842f6f4921f2abd0d7c1d44ed6bfbc05dd7ebfa67dba7991c"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/gauge_frame.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui50_計量條框.webp",
       "category": "網頁衍生檔",
       "bytes": 198344,
       "dimensions": "1672x340",
@@ -723,7 +723,7 @@
       "sha256": "4910b24d4e2c45b1cc3f137172c45a891d9dd401317abeac5cd364d545fb1dbe"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/logo_shine.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui08_logo_shine.webp",
       "category": "網頁衍生檔",
       "bytes": 659426,
       "dimensions": "1024x1536",
@@ -731,7 +731,7 @@
       "sha256": "a3d8dfa60e65e5b82d4440a098c0bf12c9cf8c194d95fb814554eeda70ccee9d"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_again.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui28_titles_fx_again.webp",
       "category": "網頁衍生檔",
       "bytes": 1579900,
       "dimensions": "1774x887",
@@ -739,7 +739,7 @@
       "sha256": "f6417e536e7d58c5821a442e83677c88af171751fe35f4b62bf6a51cf0855016"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_combo.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui30_titles_fx_combo.webp",
       "category": "網頁衍生檔",
       "bytes": 1626602,
       "dimensions": "1774x887",
@@ -747,7 +747,7 @@
       "sha256": "8e0fa28343f913e434d25605b16bfae0280a816a16e335fcab3cd6b8859c4aca"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_miss.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui31_titles_fx_miss.webp",
       "category": "網頁衍生檔",
       "bytes": 1536804,
       "dimensions": "1774x887",
@@ -755,7 +755,7 @@
       "sha256": "5ab263b2e4590bed1270a088f4e3ada17f10e6bad2e757457943d5367fd7048f"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_perfect.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui33_titles_fx_perfect.webp",
       "category": "網頁衍生檔",
       "bytes": 1728838,
       "dimensions": "1774x887",
@@ -763,7 +763,7 @@
       "sha256": "7c37519468921bf1cea48a746ffd37a268da3d4c43b77c6abb199efcc70f2778"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_ready.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui35_titles_fx_ready.webp",
       "category": "網頁衍生檔",
       "bytes": 1520128,
       "dimensions": "1774x887",
@@ -771,7 +771,7 @@
       "sha256": "64c86128a220b1563ff7897458e30d860136b1c20391f0ecb232abd96d614b9a"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch2/titles_fx_your_turn.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch2/memory_crash_ui37_titles_fx_your_turn.webp",
       "category": "網頁衍生檔",
       "bytes": 1561368,
       "dimensions": "1774x887",
@@ -779,7 +779,7 @@
       "sha256": "6a453cdf4bab0163bb8f98eccac43fa83cb6d2643def3ac412632ceae3573756"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/gameover_hero.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui03_gameover_hero.webp",
       "category": "網頁衍生檔",
       "bytes": 68104,
       "dimensions": "1000x500",
@@ -787,7 +787,7 @@
       "sha256": "b73fd6e660700375e8a5b3340ad7d960c7d51edbc31585573314a446db41c979"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/howto_hero.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui07_howto_hero.webp",
       "category": "網頁衍生檔",
       "bytes": 64770,
       "dimensions": "1000x500",
@@ -795,7 +795,7 @@
       "sha256": "3c13a695979577ff5362b95026511df199253c924a2f401f9db037a1084ec843"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/option_hero.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui21_option_hero.webp",
       "category": "網頁衍生檔",
       "bytes": 67766,
       "dimensions": "1000x500",
@@ -803,7 +803,7 @@
       "sha256": "4201b8d32ef4c409cb9cfc2a457f834a3560feb0e785b8ac1eed036904d92567"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/pug_idle_full.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_charactor01_太空巴哥_idle_full.webp",
       "category": "網頁衍生檔",
       "bytes": 433474,
       "dimensions": "1774x887",
@@ -811,7 +811,7 @@
       "sha256": "5e8a0b0873ed4b8511922444f9ad5d162f3c3af11d2b4f50a107c7ac563088d7"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/start_hero.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui22_start_hero.webp",
       "category": "網頁衍生檔",
       "bytes": 53562,
       "dimensions": "760x380",
@@ -819,7 +819,7 @@
       "sha256": "888844a3b9ebd849048df043e6cbeab4ad3e7a4f59cfa8975db253069946dd0c"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_again_v3.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui29_titles_fx_again_v3.webp",
       "category": "網頁衍生檔",
       "bytes": 101858,
       "dimensions": "1000x500",
@@ -827,7 +827,7 @@
       "sha256": "131b5da3c8be14404489cac952ea1ba35c9ef201869d37ad9fdfd408085b9edc"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_miss_v3.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui32_titles_fx_miss_v3.webp",
       "category": "網頁衍生檔",
       "bytes": 115768,
       "dimensions": "1000x500",
@@ -835,7 +835,7 @@
       "sha256": "71b54311fcdd7d0429bcfc1addf3bb58b3db30de05cae052e9b43920b43996c1"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_perfect_v3.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui34_titles_fx_perfect_v3.webp",
       "category": "網頁衍生檔",
       "bytes": 87960,
       "dimensions": "1000x500",
@@ -843,7 +843,7 @@
       "sha256": "f83e134196b14f7ee35335a0fd73098c0c7a445f15f7b9bae2c266d793da56f2"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_ready_v3.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui36_titles_fx_ready_v3.webp",
       "category": "網頁衍生檔",
       "bytes": 96600,
       "dimensions": "1000x500",
@@ -851,7 +851,7 @@
       "sha256": "1b6b8deff3df8488725f175d01afca5a3aa7dcaa8dd7ae89607b673571faf455"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/batch3/titles_fx_your_turn_v3.webp",
+      "path": "01_memory_crash/assets/runtime/pic/batch3/memory_crash_ui38_titles_fx_your_turn_v3.webp",
       "category": "網頁衍生檔",
       "bytes": 89600,
       "dimensions": "1000x500",
@@ -859,7 +859,7 @@
       "sha256": "5f7432ba5573eb4aaf294f7c878d0f78f53cea1902c0ce5b507aa5bf1ce50f46"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/branding/icon_02.webp",
+      "path": "01_memory_crash/assets/runtime/pic/branding/memory_crash_branding04_icon_02.webp",
       "category": "網頁衍生檔",
       "bytes": 78104,
       "dimensions": "512x512",
@@ -867,7 +867,7 @@
       "sha256": "6b8a9f67e04ef731a24f93a92ea7d64704e9f96ad5ce83393c535b9aa077a18a"
     },
     {
-      "path": "01_memory_crash/assets/runtime/pic/fx_01.webp",
+      "path": "01_memory_crash/assets/runtime/pic/memory_crash_fx02_fx_01.webp",
       "category": "網頁衍生檔",
       "bytes": 225504,
       "dimensions": "1200x400",
@@ -875,7 +875,7 @@
       "sha256": "5afddaabab0b2377d21f47d82994a40b00c6b4c986655ccf6b867dad598b0fdf"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_01.mp3",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm01_一般關卡.mp3",
       "category": "既有來源",
       "bytes": 411315,
       "dimensions": "",
@@ -883,7 +883,7 @@
       "sha256": "31e4b738bc0bc7d7dbd5e3fdf62f9a8b018d816cc6b13cd1ef8cbd822a8a8abe"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_01.ogg",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm01_一般關卡.ogg",
       "category": "既有來源",
       "bytes": 347962,
       "dimensions": "",
@@ -891,7 +891,7 @@
       "sha256": "95077a806906f81e0e2e38dd4f28b1befe686c2c2c473e3fb8e674b59eb979b8"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_02.mp3",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm03_高階關卡.mp3",
       "category": "既有來源",
       "bytes": 1182450,
       "dimensions": "",
@@ -899,7 +899,7 @@
       "sha256": "2b29a296e9e68d6a64f2c4507bef1ff3512c5a6e4bba9cc972417cbdd0596e54"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_02.ogg",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm03_高階關卡.ogg",
       "category": "既有來源",
       "bytes": 968470,
       "dimensions": "",
@@ -907,7 +907,7 @@
       "sha256": "17bb6502b858d7c833fd98afa49adc1f3ad9651cb7106ed3f0ab00e01c54dc81"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_entry.mp3",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm02_主選單.mp3",
       "category": "既有來源",
       "bytes": 411315,
       "dimensions": "",
@@ -915,7 +915,7 @@
       "sha256": "1a10b52d992a7d8986c8e6eec1adc89b65a331f4ce1a6dde2650f3bd04e06f7d"
     },
     {
-      "path": "01_memory_crash/assets/source/music/bgm_entry.ogg",
+      "path": "01_memory_crash/assets/source/music/memory_crash_bgm02_主選單.ogg",
       "category": "既有來源",
       "bytes": 342263,
       "dimensions": "",
@@ -923,7 +923,7 @@
       "sha256": "03a81a52815dd28c2acb5183af8b4bad0201f2876d252b2c82fae203f0c7484f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/background/bg_01.png",
+      "path": "01_memory_crash/assets/source/pic/background/memory_crash_background01_水晶大廳.png",
       "category": "既有來源",
       "bytes": 1315646,
       "dimensions": "941x1672",
@@ -931,7 +931,7 @@
       "sha256": "e56390107d1de659a7104c4621efe0b2146a53504ba93abd28270aedc5dcd1ff"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/background/bg_01.webp",
+      "path": "01_memory_crash/assets/source/pic/background/memory_crash_background01_水晶大廳.webp",
       "category": "既有來源",
       "bytes": 87540,
       "dimensions": "941x1672",
@@ -939,7 +939,7 @@
       "sha256": "4f2b8875a6cbbab79aa62e5b7c4202b6fb8445a9ec922159705f73e2e9e94a40"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/blade_01.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding01_blade_01.png",
       "category": "既有來源",
       "bytes": 703931,
       "dimensions": "845x1862",
@@ -947,7 +947,7 @@
       "sha256": "27f87f001c625e85511a0d970981767fc129ab67d3817c8eb096267949fc97c0"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/favicon.webp",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding02_favicon.webp",
       "category": "既有來源",
       "bytes": 11612,
       "dimensions": "256x256",
@@ -955,7 +955,7 @@
       "sha256": "3d43eade78aae995c5f254cee13ce1ac093c2820302ef92d87d9d6fd9a1277c5"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/icon_01.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding03_icon_01.png",
       "category": "既有來源",
       "bytes": 1299646,
       "dimensions": "1254x1254",
@@ -963,7 +963,7 @@
       "sha256": "bc412947cf2c99b9e29c2c88391c4cf8ecbb63dba6eac9d2bf31b9347d8f154f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/icon_01.svg",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding03_icon_01.svg",
       "category": "既有來源",
       "bytes": 2164,
       "dimensions": "",
@@ -971,7 +971,7 @@
       "sha256": "c50690d77e646afd6959f7601fde914e41a6566b410ef6dfe6cf89e7c29e6393"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/icon_02.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding04_icon_02.png",
       "category": "既有來源",
       "bytes": 2456311,
       "dimensions": "1254x1254",
@@ -979,7 +979,7 @@
       "sha256": "ccea1c27bd6d7b23a1f55a8657f8c054a91eb39b265f7aedd77a0dfdf2996127"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/logo_01.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding05_logo_01.png",
       "category": "既有來源",
       "bytes": 1284111,
       "dimensions": "1422x1106",
@@ -987,7 +987,7 @@
       "sha256": "ee239f00239318a0c1d48f0da23c6e8662e1544487c2daeb4d1501f339ae8194"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/logo_01.webp",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding05_logo_01.webp",
       "category": "既有來源",
       "bytes": 222152,
       "dimensions": "1422x1106",
@@ -995,7 +995,7 @@
       "sha256": "bc8ca219d58b0350e930926a4df2f68c9318df4041be3e022d4fa8524d7ad6d2"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/logo_02.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding06_logo_02.png",
       "category": "既有來源",
       "bytes": 1856327,
       "dimensions": "1536x1024",
@@ -1003,7 +1003,7 @@
       "sha256": "277290b3bf089b88115f6f2eda89b098fd87bdaeb246067a117e02b3fd12e038"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/branding/logo_shine.png",
+      "path": "01_memory_crash/assets/source/pic/branding/memory_crash_branding07_logo_shine.png",
       "category": "既有來源",
       "bytes": 993827,
       "dimensions": "1024x1536",
@@ -1011,7 +1011,7 @@
       "sha256": "aadf3eee63267a5c2fdd7d5ad62c6c6a5d89c8253e015ce60ccfb1ab65d48ebb"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_celebrate.png",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_celebrate.png",
       "category": "既有來源",
       "bytes": 1276872,
       "dimensions": "1774x887",
@@ -1019,7 +1019,7 @@
       "sha256": "be10973ee0674bb6660f2271dccb156e2fb1cc6ab09734f179946cb9b3257012"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_celebrate.webp",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_celebrate.webp",
       "category": "既有來源",
       "bytes": 312840,
       "dimensions": "1774x887",
@@ -1027,7 +1027,7 @@
       "sha256": "817353e1a09538be4fdc8ec25d8d1e1723aae274fb84133aa41b96359429a093"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_happy.png",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_happy.png",
       "category": "既有來源",
       "bytes": 1444753,
       "dimensions": "1774x887",
@@ -1035,7 +1035,7 @@
       "sha256": "2878b2b834f76b42125a48dcd3352328660d76db3365a77336aef3d3f62e146c"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_happy.webp",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_happy.webp",
       "category": "既有來源",
       "bytes": 303684,
       "dimensions": "1774x887",
@@ -1043,7 +1043,7 @@
       "sha256": "3182534e23ba1d2911adc88d218eb538d323204f50c4cb6fa5de382b908d15e9"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_idle.png",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle.png",
       "category": "既有來源",
       "bytes": 1431490,
       "dimensions": "1774x887",
@@ -1051,7 +1051,7 @@
       "sha256": "518046de379018eac46bce1ad1ce9f4c16e408ea855c6f61707eccd65b16c9f8"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_idle.webp",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle.webp",
       "category": "既有來源",
       "bytes": 334090,
       "dimensions": "1774x887",
@@ -1059,7 +1059,7 @@
       "sha256": "9370a6baf9d67000360241d2b69bc74e95a1d2d1f0bb564ba741643fd2e17e98"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_sad.png",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_sad.png",
       "category": "既有來源",
       "bytes": 1369431,
       "dimensions": "1774x887",
@@ -1067,7 +1067,7 @@
       "sha256": "deeeac64a4867ff24526c94b09666d2e155b0dd1625dfc6531bd0cc0ca7c6a9e"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/char_anim_sad.webp",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_sad.webp",
       "category": "既有來源",
       "bytes": 279278,
       "dimensions": "1774x887",
@@ -1075,7 +1075,7 @@
       "sha256": "b8bb015a6e2fd6510d7127193ffbf86956ce1263382dde73d9c313c9168a3d60"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/character/pug_idle_full.png",
+      "path": "01_memory_crash/assets/source/pic/character/memory_crash_charactor01_太空巴哥_idle_full.png",
       "category": "既有來源",
       "bytes": 2359139,
       "dimensions": "1774x887",
@@ -1083,7 +1083,7 @@
       "sha256": "3a49e180a333e4f43b8026e9a4d1ea2bfb08b49386282e4573ed15a96791eafa"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/font/font_01.png",
+      "path": "01_memory_crash/assets/source/pic/font/memory_crash_ui02_font_01.png",
       "category": "既有來源",
       "bytes": 1228488,
       "dimensions": "1254x1254",
@@ -1091,7 +1091,7 @@
       "sha256": "be585b301bdb239afb8bc198cf9f6c3fa7f22163fdd69429e914ba2825976c99"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/font/font_01.webp",
+      "path": "01_memory_crash/assets/source/pic/font/memory_crash_ui02_font_01.webp",
       "category": "既有來源",
       "bytes": 1017772,
       "dimensions": "1254x1254",
@@ -1099,7 +1099,7 @@
       "sha256": "72fd0bb36b80ad0e2248ab8b8181d3d06d651324e1891ee27ac5bf72be0ac44a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/fx/ambient_plate.png",
+      "path": "01_memory_crash/assets/source/pic/fx/memory_crash_fx01_ambient_plate.png",
       "category": "既有來源",
       "bytes": 1330072,
       "dimensions": "941x1672",
@@ -1107,7 +1107,7 @@
       "sha256": "6eefbb9a42a069b6aaea949e3acfc1623fbde5f38c2787803c91d4e21cd93cd9"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/fx/fx_01.png",
+      "path": "01_memory_crash/assets/source/pic/fx/memory_crash_fx02_fx_01.png",
       "category": "既有來源",
       "bytes": 1584568,
       "dimensions": "2172x724",
@@ -1115,7 +1115,7 @@
       "sha256": "5a0c2406b806e25c269cc988b750fe98b8ff64663d9102b9f6cb1ab34775e088"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/gems/gems_01.png",
+      "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui04_gems_01.png",
       "category": "既有來源",
       "bytes": 1272561,
       "dimensions": "1448x1086",
@@ -1123,7 +1123,7 @@
       "sha256": "10549b71c251d493a87e3b5de820dabe690c81811af4e88c70eeb3f09e7e3e1b"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/gems/gems_01.webp",
+      "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui04_gems_01.webp",
       "category": "既有來源",
       "bytes": 315698,
       "dimensions": "1448x1086",
@@ -1131,7 +1131,7 @@
       "sha256": "46fe7e31b0417213598cd71b868181c3efdfbf47eaf813f5e20a24e76c05881c"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/gems/gems_02.png",
+      "path": "01_memory_crash/assets/source/pic/gems/memory_crash_ui05_gems_02.png",
       "category": "既有來源",
       "bytes": 1301385,
       "dimensions": "1448x1086",
@@ -1139,7 +1139,7 @@
       "sha256": "2426f7ae12d4f5d212f9193e1c6fa422d7ef938b6227ade8c9c49cd91c5ac805"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/howto_01.png",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui06_howto_01.png",
       "category": "既有來源",
       "bytes": 989994,
       "dimensions": "2172x724",
@@ -1147,7 +1147,7 @@
       "sha256": "55d4691e2132d104db15d677c6accb1abd798fe566e5cf005de1e04dece2106b"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step1.png",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui23_step1.png",
       "category": "既有來源",
       "bytes": 247975,
       "dimensions": "435x440",
@@ -1155,7 +1155,7 @@
       "sha256": "93329089f3a63f48c27bb143967871a1bb5721b14df3fbacc92902e67d87b4a0"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step1.webp",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui23_step1.webp",
       "category": "既有來源",
       "bytes": 34714,
       "dimensions": "435x440",
@@ -1163,7 +1163,7 @@
       "sha256": "979d43e38527ad10c1ccfacdb66208e7d64ed2a89391d9f41a198ec6b4b2d8b2"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step2.png",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui24_step2.png",
       "category": "既有來源",
       "bytes": 278699,
       "dimensions": "487x544",
@@ -1171,7 +1171,7 @@
       "sha256": "106062a92d105c8749a13b8f0425e6cc374d134755f13189c606ab635bd09f5c"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step2.webp",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui24_step2.webp",
       "category": "既有來源",
       "bytes": 39354,
       "dimensions": "487x544",
@@ -1179,7 +1179,7 @@
       "sha256": "9b7d6b8602a5cb2c1492295423d961d486f6d6de353788c60261d952bd544b8e"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step3.png",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui25_step3.png",
       "category": "既有來源",
       "bytes": 280048,
       "dimensions": "462x467",
@@ -1187,7 +1187,7 @@
       "sha256": "5cf3a79b116f086fab86bf1a5a89dffef0b0fa9f34c413d5fb3aefdbbafdad53"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step3.webp",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui25_step3.webp",
       "category": "既有來源",
       "bytes": 53192,
       "dimensions": "462x467",
@@ -1195,7 +1195,7 @@
       "sha256": "e85fd0034b9b5f0c34636af9753ed7bbfa6a4e32f16588b1f6d316c4f8a99a4f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step4.png",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui26_step4.png",
       "category": "既有來源",
       "bytes": 134721,
       "dimensions": "510x241",
@@ -1203,7 +1203,7 @@
       "sha256": "4d9ba8f812a2e962ef4d3ade55fdbc34670e0db4f846942b53114a0d3fe822e8"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/howto/step4.webp",
+      "path": "01_memory_crash/assets/source/pic/howto/memory_crash_ui26_step4.webp",
       "category": "既有來源",
       "bytes": 26944,
       "dimensions": "510x241",
@@ -1211,7 +1211,7 @@
       "sha256": "141863e565d59e76484be5b5e531271dcfbc38816e605a227462453d50ef348e"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/colon.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui01_colon.png",
       "category": "既有來源",
       "bytes": 64366,
       "dimensions": "156x279",
@@ -1219,7 +1219,7 @@
       "sha256": "1a6ff736a51dfc707decc9ac66c888a4df189a7f2ce25e335821e4a27e8aebc6"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/colon.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui01_colon.webp",
       "category": "既有來源",
       "bytes": 11924,
       "dimensions": "156x279",
@@ -1227,7 +1227,7 @@
       "sha256": "6cd6cabf9833d10461442ecb4e182cb201bae600050bd95569b3512444cad6fd"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/lv.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui09_lv.png",
       "category": "既有來源",
       "bytes": 123427,
       "dimensions": "333x262",
@@ -1235,7 +1235,7 @@
       "sha256": "01ae0de1473c3417a938e7c191eb4c0e997342cb5051a17639c81a69b5890562"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/lv.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui09_lv.webp",
       "category": "既有來源",
       "bytes": 21678,
       "dimensions": "333x262",
@@ -1243,7 +1243,7 @@
       "sha256": "3f4f936adee284f34755cc4a6d51c8f6edbae45fb34660e336c0e3e9f49e9c8e"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n0.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui10_n0.png",
       "category": "既有來源",
       "bytes": 132405,
       "dimensions": "310x322",
@@ -1251,7 +1251,7 @@
       "sha256": "3050d7fcea0800eb74579f2f76ae4093050ac49d0eacd9a9ffe5de5eed279ee7"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n0.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui10_n0.webp",
       "category": "既有來源",
       "bytes": 20712,
       "dimensions": "310x322",
@@ -1259,7 +1259,7 @@
       "sha256": "3fd9b073feb964df24528712c87e8fb8b5e4c7130ec73acc4aabf19501677a1d"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n1.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui11_n1.png",
       "category": "既有來源",
       "bytes": 97587,
       "dimensions": "231x324",
@@ -1267,7 +1267,7 @@
       "sha256": "34357404035ac39de976dd645f48bd132eff653a6a4d576bf37095b76e2583e6"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n1.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui11_n1.webp",
       "category": "既有來源",
       "bytes": 16618,
       "dimensions": "231x324",
@@ -1275,7 +1275,7 @@
       "sha256": "44abd320108a214fb5123092af27a571afcf70a2b05fc50e260912bad94cd529"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n2.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui12_n2.png",
       "category": "既有來源",
       "bytes": 132818,
       "dimensions": "290x322",
@@ -1283,7 +1283,7 @@
       "sha256": "ee7367876f472910f227f0e7ddf4927e5c04cf17f71ad014f00bdc4557aefe35"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n2.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui12_n2.webp",
       "category": "既有來源",
       "bytes": 21598,
       "dimensions": "290x322",
@@ -1291,7 +1291,7 @@
       "sha256": "32e7c78ab9f321b325b2e7f8562a869e04a3e6050cfc88a374b0e102c84933b3"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n3.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui13_n3.png",
       "category": "既有來源",
       "bytes": 135117,
       "dimensions": "293x324",
@@ -1299,7 +1299,7 @@
       "sha256": "c5b0afbacbfae94e4967efaed30b7128866bc6fdb36b9e7f2097410807f668b2"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n3.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui13_n3.webp",
       "category": "既有來源",
       "bytes": 21316,
       "dimensions": "293x324",
@@ -1307,7 +1307,7 @@
       "sha256": "915068059d020baff3cc56d37288541eb5fcc8f736492909d12db56ba719800a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n4.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui14_n4.png",
       "category": "既有來源",
       "bytes": 120440,
       "dimensions": "316x321",
@@ -1315,7 +1315,7 @@
       "sha256": "1e544ac38f799210751a5245fc5c445f6f84641fd3a386858585242bb4476e31"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n4.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui14_n4.webp",
       "category": "既有來源",
       "bytes": 18990,
       "dimensions": "316x321",
@@ -1323,7 +1323,7 @@
       "sha256": "481a8f0616196ce22d2aadf577e7dd95d4237d6d8a90e6192a1f0fbe637f6432"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n5.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui15_n5.png",
       "category": "既有來源",
       "bytes": 130248,
       "dimensions": "294x322",
@@ -1331,7 +1331,7 @@
       "sha256": "f4476da3942a6fb1fb76624eee3f95ca58f90dfa498f69b6ddaf42a3f34a14b5"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n5.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui15_n5.webp",
       "category": "既有來源",
       "bytes": 20956,
       "dimensions": "294x322",
@@ -1339,7 +1339,7 @@
       "sha256": "c060c67a1b608a347d428ceee692fd759a9c0bc36cf120fb7f20288eb230002a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n6.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui16_n6.png",
       "category": "既有來源",
       "bytes": 132137,
       "dimensions": "303x323",
@@ -1347,7 +1347,7 @@
       "sha256": "5a8486bccbea2a88baedb81a669e62e0cf56c0ae049f8e5bd7e92e6c86e80879"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n6.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui16_n6.webp",
       "category": "既有來源",
       "bytes": 21216,
       "dimensions": "303x323",
@@ -1355,7 +1355,7 @@
       "sha256": "dd02cdf8535179b66e55c052cab04fac929bc18719c489cde0b0a145172c2519"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n7.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui17_n7.png",
       "category": "既有來源",
       "bytes": 108853,
       "dimensions": "294x320",
@@ -1363,7 +1363,7 @@
       "sha256": "e53adae21b18f58e5e63aa7b905e5f8d4d7919db41a4777bb0986ceae8a68c8c"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n7.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui17_n7.webp",
       "category": "既有來源",
       "bytes": 17774,
       "dimensions": "294x320",
@@ -1371,7 +1371,7 @@
       "sha256": "5ca13a0bb94acf659aa60794c2c6851ab08fef552cd1915af18c40f239ef3c3a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n8.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui18_n8.png",
       "category": "既有來源",
       "bytes": 138781,
       "dimensions": "308x322",
@@ -1379,7 +1379,7 @@
       "sha256": "2b530a6d7a1c099f0a663d44d03c9957f8a808b6a603ed2ea5277576e33af5e8"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n8.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui18_n8.webp",
       "category": "既有來源",
       "bytes": 21750,
       "dimensions": "308x322",
@@ -1387,7 +1387,7 @@
       "sha256": "0c1306ef99258dc636bbca2d7c03c230783de95fcba929d1e0ae0739c71c5385"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n9.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui19_n9.png",
       "category": "既有來源",
       "bytes": 131671,
       "dimensions": "297x323",
@@ -1395,7 +1395,7 @@
       "sha256": "8d3aa45dba98d26ba6947f4c69dd56123cbd4ef8dcc4b183d882d4bce863d6c1"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/n9.webp",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui19_n9.webp",
       "category": "既有來源",
       "bytes": 20734,
       "dimensions": "297x323",
@@ -1403,7 +1403,7 @@
       "sha256": "3a8b10890b0449af1b45a701e7998bcb288ce962eec62f016d690fbfbf967fad"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/numbers/numbers_01.png",
+      "path": "01_memory_crash/assets/source/pic/numbers/memory_crash_ui20_numbers_01.png",
       "category": "既有來源",
       "bytes": 1514559,
       "dimensions": "2172x724",
@@ -1411,7 +1411,7 @@
       "sha256": "65f047dc38620c1217a8aee649857de4f5aee2c3f31be4f9356b637a61e93a28"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/gameover_hero.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui03_gameover_hero.png",
       "category": "既有來源",
       "bytes": 987412,
       "dimensions": "1774x887",
@@ -1419,7 +1419,7 @@
       "sha256": "86b9bb54043b5fb2437a204147d9ae5214861c0c50af52e18771586525f85d71"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/howto_hero.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui07_howto_hero.png",
       "category": "既有來源",
       "bytes": 897317,
       "dimensions": "1774x887",
@@ -1427,7 +1427,7 @@
       "sha256": "469a579f543c9766d80aaa22774646a21d5a33218bd207f133d63d8c0967e8d4"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/option_hero.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui21_option_hero.png",
       "category": "既有來源",
       "bytes": 1037190,
       "dimensions": "1774x887",
@@ -1435,7 +1435,7 @@
       "sha256": "7121e0e8518a4a86fa9129e3a34d47f7d6bea3244f0d9704a553a1753dcdd1ca"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/start_hero.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui22_start_hero.png",
       "category": "既有來源",
       "bytes": 1251284,
       "dimensions": "1774x887",
@@ -1443,7 +1443,7 @@
       "sha256": "a875f02091f62c5b5c65ae23a930da013b6de772fc6d38a26fbe5157ba79754e"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_02.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui27_titles_02.png",
       "category": "既有來源",
       "bytes": 905479,
       "dimensions": "1774x887",
@@ -1451,7 +1451,7 @@
       "sha256": "5dad4959c2677565f6f612c0863b1a0a5763ba7e19ae1132290fbf7eea5ea85f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_02.webp",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui27_titles_02.webp",
       "category": "既有來源",
       "bytes": 224496,
       "dimensions": "1774x887",
@@ -1459,7 +1459,7 @@
       "sha256": "feceb0019b824fd8419e8d539dc19604d0209d744aba4fe235259188c2d0c084"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_again_v3.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui29_titles_fx_again_v3.png",
       "category": "既有來源",
       "bytes": 1360769,
       "dimensions": "1774x887",
@@ -1467,7 +1467,7 @@
       "sha256": "521f95fa7c8faf46f0a2c0ea49143c5029d2e0022af1d8bf4c5bb2528d8cb2d3"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_miss_v3.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui32_titles_fx_miss_v3.png",
       "category": "既有來源",
       "bytes": 1402859,
       "dimensions": "1774x887",
@@ -1475,7 +1475,7 @@
       "sha256": "065015429756148a7cd71b923b004f0b5fb2b20995d8f22ef73e075acc8dbefa"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_perfect_v3.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui34_titles_fx_perfect_v3.png",
       "category": "既有來源",
       "bytes": 1513497,
       "dimensions": "1774x887",
@@ -1483,7 +1483,7 @@
       "sha256": "e5a2bd9a8769cbf7072053d75b24c3bc0d38d7bd88eec96d031875a3c04d61c1"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_ready_v3.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui36_titles_fx_ready_v3.png",
       "category": "既有來源",
       "bytes": 1390793,
       "dimensions": "1774x887",
@@ -1491,7 +1491,7 @@
       "sha256": "0334afa593a8a6d60e8edd37b9bf183248148d97cb2c8cc11fdca7471062872b"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/titles/titles_fx_your_turn_v3.png",
+      "path": "01_memory_crash/assets/source/pic/titles/memory_crash_ui38_titles_fx_your_turn_v3.png",
       "category": "既有來源",
       "bytes": 1229818,
       "dimensions": "1774x887",
@@ -1499,7 +1499,7 @@
       "sha256": "599310fc1e79c457f75e4da024c9a34108febafa3a74e308d13669874aa3769f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_disabled.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui40_按鈕停用.png",
       "category": "既有來源",
       "bytes": 88467,
       "dimensions": "377x207",
@@ -1507,7 +1507,7 @@
       "sha256": "ad6b5fddd0fe41dd32c18b6c9aff6a4cafb2fdda310c329e4430801222f24eb4"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_disabled.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui40_按鈕停用.webp",
       "category": "既有來源",
       "bytes": 12886,
       "dimensions": "377x207",
@@ -1515,7 +1515,7 @@
       "sha256": "0e72631fb82daa1dd239cc67418586551b9a8d337949f36eb6e6df3414dbe951"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_normal.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui42_按鈕正常.png",
       "category": "既有來源",
       "bytes": 87997,
       "dimensions": "377x207",
@@ -1523,7 +1523,7 @@
       "sha256": "d1089091a96c80f7b40ca8cf34203d3ce7ab111feedeac6600fd3a3c61f987df"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_normal.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui42_按鈕正常.webp",
       "category": "既有來源",
       "bytes": 13578,
       "dimensions": "377x207",
@@ -1531,7 +1531,7 @@
       "sha256": "96eb618dba4313e36e1a4eebf7c36df8c3e312d0fadf6cc78be528e46c744d5a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_pressed.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui41_按鈕按下.png",
       "category": "既有來源",
       "bytes": 87455,
       "dimensions": "377x207",
@@ -1539,7 +1539,7 @@
       "sha256": "4a9905626acaa0aa133e39798c32b6382af1fc81d494b6f2ae740d5d7edb2860"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/btn_pressed.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui41_按鈕按下.webp",
       "category": "既有來源",
       "bytes": 13600,
       "dimensions": "377x207",
@@ -1547,7 +1547,7 @@
       "sha256": "d4d224a787049e8957f1dc05dd99fdae5a2b5c74fe476a3b6aca7ccecc2362ad"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_atlas.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui48_計量條圖集.png",
       "category": "既有來源",
       "bytes": 853036,
       "dimensions": "1672x941",
@@ -1555,7 +1555,7 @@
       "sha256": "6a83e9973052ab8f330311a1b7b4b6de00faa4c958a56b5e75669c921440559a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui49_計量條填色.png",
       "category": "既有來源",
       "bytes": 301010,
       "dimensions": "1672x290",
@@ -1563,7 +1563,7 @@
       "sha256": "c232b01914092db9c792423852fe53b5950e63866470910ff8778bc2deabf7a3"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui49_計量條填色.webp",
       "category": "既有來源",
       "bytes": 53906,
       "dimensions": "1672x290",
@@ -1571,7 +1571,7 @@
       "sha256": "5e4492d435a1150da9c91c6c8dbe9248e4b315fa7b7f643a6d96d4d4a01a53db"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill_low.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui47_計量條低量.png",
       "category": "既有來源",
       "bytes": 293873,
       "dimensions": "1672x311",
@@ -1579,7 +1579,7 @@
       "sha256": "3f7844b21f76032084ea1e16fc88662e4870d8411059713cef03970eb7d55a44"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_fill_low.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui47_計量條低量.webp",
       "category": "既有來源",
       "bytes": 51710,
       "dimensions": "1672x311",
@@ -1587,7 +1587,7 @@
       "sha256": "8d5215a6f3f6d35aebb8f9da61cec3e7647ef1c34ad3cbbd5a876c4ffec28907"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_frame.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui50_計量條框.png",
       "category": "既有來源",
       "bytes": 257987,
       "dimensions": "1672x340",
@@ -1595,7 +1595,7 @@
       "sha256": "627579e3094213ab162ff5aac27a086049a60a7346bd80345c5e084cd6424347"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gauge_frame.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui50_計量條框.webp",
       "category": "既有來源",
       "bytes": 73588,
       "dimensions": "1672x340",
@@ -1603,7 +1603,7 @@
       "sha256": "2901b79e551518796ce485b07e0fdf2f0d21c56034244c734f5e349e3d197aad"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gear.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui51_設定.png",
       "category": "既有來源",
       "bytes": 165991,
       "dimensions": "349x351",
@@ -1611,7 +1611,7 @@
       "sha256": "723c98073faf6d892a3774f98369d66441351a76cc5de4a8f2200cd956dcc2ce"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/gear.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui51_設定.webp",
       "category": "既有來源",
       "bytes": 29772,
       "dimensions": "349x351",
@@ -1619,7 +1619,7 @@
       "sha256": "44bcd4236dac61a2456c480963de9f6ef85ba4ed484bf9dcebd7ecdf8dd26345"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/heart_empty.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui46_空心血量.png",
       "category": "既有來源",
       "bytes": 142905,
       "dimensions": "364x318",
@@ -1627,7 +1627,7 @@
       "sha256": "bc447615c7a0010dc4739ee6b399a8d0d734e0f050aeef73d020a681f4453882"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/heart_empty.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui46_空心血量.webp",
       "category": "既有來源",
       "bytes": 20744,
       "dimensions": "364x318",
@@ -1635,7 +1635,7 @@
       "sha256": "9cecb64492eda7164149f19e22f7cc6af6f49b88460eb9e6ca6b4fc84e59d7a0"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/heart_full.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui44_滿心血量.png",
       "category": "既有來源",
       "bytes": 149896,
       "dimensions": "363x318",
@@ -1643,7 +1643,7 @@
       "sha256": "f8a178fdf908ba994ed28c39e2830345969ece4630497089a8f38504fec919fb"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/heart_full.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui44_滿心血量.webp",
       "category": "既有來源",
       "bytes": 25180,
       "dimensions": "363x318",
@@ -1651,7 +1651,7 @@
       "sha256": "363bf67a2676af602bc083a80cd6657c706905aa7c9a8691ed33faefa1e7f945"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/panel.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui52_面板.png",
       "category": "既有來源",
       "bytes": 84202,
       "dimensions": "377x250",
@@ -1659,7 +1659,7 @@
       "sha256": "bbc2a63eb7f473465376aae026c83f0ac29e1d13d42939517b946718df12d90b"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/panel.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui52_面板.webp",
       "category": "既有來源",
       "bytes": 18754,
       "dimensions": "377x250",
@@ -1667,7 +1667,7 @@
       "sha256": "2d8a7e1a7e112ea6db57a3a4564df07873e39a0c3a0b46acdf8d058019d6deda"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/slot.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui43_插槽.png",
       "category": "既有來源",
       "bytes": 66279,
       "dimensions": "338x335",
@@ -1675,7 +1675,7 @@
       "sha256": "3416c6e5720caeee8a87c217ff73792b67133a7a7139b06587eb05ae6114d920"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/slot.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui43_插槽.webp",
       "category": "既有來源",
       "bytes": 15762,
       "dimensions": "338x335",
@@ -1683,7 +1683,7 @@
       "sha256": "d8e9dac51cec0b3b50a74890e7f8a546838b75551ef6fb89b727fe7cbfccdd16"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/slot_lit.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui45_發光插槽.png",
       "category": "既有來源",
       "bytes": 129006,
       "dimensions": "365x360",
@@ -1691,7 +1691,7 @@
       "sha256": "4fa14bd1add79ac653a8dfd14b45fe37161cc51cb0d37b101d822cb74812ca9f"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/slot_lit.webp",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui45_發光插槽.webp",
       "category": "既有來源",
       "bytes": 17392,
       "dimensions": "365x360",
@@ -1699,7 +1699,7 @@
       "sha256": "b493847bd0c0c20082f5841977a43eecb7c597418d6f5c57e6a54f79ba148d1a"
     },
     {
-      "path": "01_memory_crash/assets/source/pic/ui/ui_01.png",
+      "path": "01_memory_crash/assets/source/pic/ui/memory_crash_ui39_介面總圖集.png",
       "category": "既有來源",
       "bytes": 1073866,
       "dimensions": "1254x1254",
@@ -1707,7 +1707,7 @@
       "sha256": "4416912df24710cfee7fa420bd2f3237bd6a6d5f4ae7e93c8ee245ca3532a448"
     },
     {
-      "path": "01_memory_crash/assets/source/sfx/sfx_01.mp3",
+      "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx05_點擊.mp3",
       "category": "既有來源",
       "bytes": 9447,
       "dimensions": "",
@@ -1715,7 +1715,7 @@
       "sha256": "7df0b5b6677b7e1dafa42ce305aa07db098b24362bccbfedfc2c86abf15b0bec"
     },
     {
-      "path": "01_memory_crash/assets/source/sfx/sfx_02.mp3",
+      "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx02_答對.mp3",
       "category": "既有來源",
       "bytes": 13835,
       "dimensions": "",
@@ -1723,7 +1723,7 @@
       "sha256": "cfed5d07b6bf66830b4815b2d1b5e6f232c73c4d9865743aaf5387731c956f96"
     },
     {
-      "path": "01_memory_crash/assets/source/sfx/sfx_03.mp3",
+      "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx03_答錯.mp3",
       "category": "既有來源",
       "bytes": 12581,
       "dimensions": "",
@@ -1731,7 +1731,7 @@
       "sha256": "1caea375683b75c10258b4a7e0c23ff827d141a94eb6e5268fbfa7ca0f0e0b36"
     },
     {
-      "path": "01_memory_crash/assets/source/sfx/sfx_04.mp3",
+      "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx04_過關.mp3",
       "category": "既有來源",
       "bytes": 37659,
       "dimensions": "",
@@ -1739,7 +1739,7 @@
       "sha256": "b47df82683df65a7b03b5e0d45d6ea0eda4b6a3fd4425cfebc809f1424691793"
     },
     {
-      "path": "01_memory_crash/assets/source/sfx/sfx_05.mp3",
+      "path": "01_memory_crash/assets/source/sfx/memory_crash_sfx01_失敗.mp3",
       "category": "既有來源",
       "bytes": 40167,
       "dimensions": "",
@@ -1747,7 +1747,7 @@
       "sha256": "8bacc097f1c2aeb07a65f6a100ea8cb50dbc17e9abdfe0f8203fc6775c306dc3"
     },
     {
-      "path": "02_brave_guy/assets/fonts/huninn-subset.woff2",
+      "path": "02_brave_guy/assets/fonts/brave_guy_font01_huninn-subset.woff2",
       "category": "既有來源",
       "bytes": 291044,
       "dimensions": "",
@@ -1755,7 +1755,7 @@
       "sha256": "b4d2fc9f7c1b343218a6b866a16ef4eb7d3966224e0ef059eba587cac5c2a6a1"
     },
     {
-      "path": "02_brave_guy/assets/fonts/notosanstc-black-subset.woff2",
+      "path": "02_brave_guy/assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2",
       "category": "既有來源",
       "bytes": 242208,
       "dimensions": "",
@@ -1771,7 +1771,7 @@
       "sha256": "1c61b75e26013bce950ecfd2bbdac696bb5f70258f32cbfb6c5e14dae15f3269"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/branding/banner_01.webp",
+      "path": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding01_banner_01.webp",
       "category": "網頁衍生檔",
       "bytes": 672078,
       "dimensions": "1448x483",
@@ -1779,7 +1779,7 @@
       "sha256": "a68bc142527c100568ba342b17272245f3d986658d91677b95bf51af72b934fb"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/branding/favicon.webp",
+      "path": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding03_favicon.webp",
       "category": "網頁衍生檔",
       "bytes": 98544,
       "dimensions": "256x256",
@@ -1787,7 +1787,7 @@
       "sha256": "c3c33d0881535b7931f10bea9df8b2df08924f776014fc48193518aa3213f5eb"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/branding/icon_01.webp",
+      "path": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding04_icon_01.webp",
       "category": "網頁衍生檔",
       "bytes": 316466,
       "dimensions": "512x512",
@@ -1795,7 +1795,7 @@
       "sha256": "27b500811d54e8565c96cdff3537f35aa7661b2ea328159cdaeb1200ecd29a46"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/branding/logo_01.webp",
+      "path": "02_brave_guy/assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp",
       "category": "網頁衍生檔",
       "bytes": 295292,
       "dimensions": "768x512",
@@ -1803,7 +1803,7 @@
       "sha256": "d04511e17a5a059e5d8c62d1a550477dd340d74ddd9cdce149fd1248cfb6b789"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/ui/portrait_brave.webp",
+      "path": "02_brave_guy/assets/runtime/pic/ui/brave_guy_ui21_勇氣超人頭像.webp",
       "category": "網頁衍生檔",
       "bytes": 52936,
       "dimensions": "256x256",
@@ -1811,7 +1811,7 @@
       "sha256": "484c3cda0db6d5798cec99dd2bf3869b7fffff7469ae234e91df4dfb9110bbd8"
     },
     {
-      "path": "02_brave_guy/assets/runtime/pic/ui/portrait_student.webp",
+      "path": "02_brave_guy/assets/runtime/pic/ui/brave_guy_ui16_主角頭像.webp",
       "category": "網頁衍生檔",
       "bytes": 43030,
       "dimensions": "256x256",
@@ -1819,7 +1819,7 @@
       "sha256": "f77747e9248842b0b0a7a0a4d629b7309fa2d09d93555b23e349a383fad1bcff"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_battle.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm01_battle.mp3",
       "category": "既有來源",
       "bytes": 923733,
       "dimensions": "",
@@ -1827,7 +1827,7 @@
       "sha256": "25d5a9b69dd825e130afba10c09499f896e50fec8c94c49083cd0bd4d8b899fa"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_battle.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm01_battle.ogg",
       "category": "既有來源",
       "bytes": 578069,
       "dimensions": "",
@@ -1835,7 +1835,7 @@
       "sha256": "dc151f9a0605b5bea5f18a9f6abc5d8736336e371da26b2cbe35cea22b47c650"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_boss.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm02_boss.mp3",
       "category": "既有來源",
       "bytes": 1013595,
       "dimensions": "",
@@ -1843,7 +1843,7 @@
       "sha256": "76938c81a993c1f87b0ea41034b316f7b8fc1e180502bf1d0ef6736caf961239"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_boss.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm02_boss.ogg",
       "category": "既有來源",
       "bytes": 651865,
       "dimensions": "",
@@ -1851,7 +1851,7 @@
       "sha256": "d007a2a8d27493ef2397d17e79352e9c931065aec58e917ac78161493dd9e198"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_brave.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm15_brave.mp3",
       "category": "既有來源",
       "bytes": 1295717,
       "dimensions": "",
@@ -1859,7 +1859,7 @@
       "sha256": "adad4a1f7fc5a436a0e8e29a50573cb9a74b8d12a722b9044628cd56fe951bd3"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_brave.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm15_brave.ogg",
       "category": "既有來源",
       "bytes": 779163,
       "dimensions": "",
@@ -1883,7 +1883,7 @@
       "sha256": "6910ec98af94a9791ced4602dfd45cd8faa4e918ced050d107ce14397ff127b9"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_credits.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm18_credits.mp3",
       "category": "既有來源",
       "bytes": 1882950,
       "dimensions": "",
@@ -1891,7 +1891,7 @@
       "sha256": "8f989e6517017c4fad013b35ed1f284440f7b52f7b55f1c33d0c947a5249f474"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_credits.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm18_credits.ogg",
       "category": "既有來源",
       "bytes": 1092985,
       "dimensions": "",
@@ -1899,7 +1899,7 @@
       "sha256": "e809fb80ba1777f309fc7a998b3c649ca815e3fad9b70e9844329c5e365a3aad"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_defeat.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm19_defeat.mp3",
       "category": "既有來源",
       "bytes": 130656,
       "dimensions": "",
@@ -1907,7 +1907,7 @@
       "sha256": "d22a6728736cde87f7f57180caf81730fcfa78c8966be526c372e2c1d8d3921d"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_defeat.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm19_defeat.ogg",
       "category": "既有來源",
       "bytes": 84876,
       "dimensions": "",
@@ -1915,7 +1915,7 @@
       "sha256": "7c10b11b6a08a9fad80aa440eaf6c6a425f23269fe24dd6d869118a766ffc068"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_ending.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm20_ending.mp3",
       "category": "既有來源",
       "bytes": 1603962,
       "dimensions": "",
@@ -1923,7 +1923,7 @@
       "sha256": "0d5ecb482694dd2a15f5a4ca7f24de8800314402e375adf8b09f9c819043dc2d"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_ending.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm20_ending.ogg",
       "category": "既有來源",
       "bytes": 907406,
       "dimensions": "",
@@ -2171,7 +2171,7 @@
       "sha256": "f5e1a9dc0679b996312f78e3bb47bb1c88acb4aee8cb6d21800cc60462a4cd52"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_talk.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm37_talk.mp3",
       "category": "既有來源",
       "bytes": 1072109,
       "dimensions": "",
@@ -2179,7 +2179,7 @@
       "sha256": "e2f507981541798815769f07f54cf08290c06d88fa31eb4a7319780dbd217ecf"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_talk.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm37_talk.ogg",
       "category": "既有來源",
       "bytes": 627569,
       "dimensions": "",
@@ -2187,7 +2187,7 @@
       "sha256": "2b61818ad0e3553cb389dcead1aa28fbe331d4e8a5863f7cb03083f1226ca155"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_title.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm38_title.mp3",
       "category": "既有來源",
       "bytes": 983293,
       "dimensions": "",
@@ -2195,7 +2195,7 @@
       "sha256": "d18d05c02ffe930deb00c124a07ec576442e77ececc2c7fe4de3d1bd6e74a2aa"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_title.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm38_title.ogg",
       "category": "既有來源",
       "bytes": 570530,
       "dimensions": "",
@@ -2203,7 +2203,7 @@
       "sha256": "62f3d7d1886ee6651211b59fc8a5a31527c52d820243fac8868fb1a674db1e10"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_transform.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm39_transform.mp3",
       "category": "既有來源",
       "bytes": 602950,
       "dimensions": "",
@@ -2211,7 +2211,7 @@
       "sha256": "f69872530ff93fbb383026b1305c499970832dacf9fd05a13ff0aad07d7ded16"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_transform.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm39_transform.ogg",
       "category": "既有來源",
       "bytes": 339401,
       "dimensions": "",
@@ -2219,7 +2219,7 @@
       "sha256": "e86b588cb4d4de6c956e9e17d4a49ecee9c9d039e311fed5c9ee49c339a59f28"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_victory.mp3",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm40_victory.mp3",
       "category": "既有來源",
       "bytes": 242460,
       "dimensions": "",
@@ -2227,7 +2227,7 @@
       "sha256": "82da9dc000ede056622308d134397b5e1b3ee773cbff34ba28d990a1a473aa23"
     },
     {
-      "path": "02_brave_guy/assets/source/music/bgm_victory.ogg",
+      "path": "02_brave_guy/assets/source/music/brave_guy_bgm40_victory.ogg",
       "category": "既有來源",
       "bytes": 142492,
       "dimensions": "",
@@ -2387,7 +2387,7 @@
       "sha256": "3e94b7991f8161cb0c32853031ed3cb270acace0cce38f38a403d0ea1acb5317"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/banner_01.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding01_banner_01.png",
       "category": "既有來源",
       "bytes": 1849785,
       "dimensions": "2172x724",
@@ -2403,7 +2403,7 @@
       "sha256": "633ea9ae33e05571fe74c5072daa23431397e2cb2bdb65da1f4d311026d79a28"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/icon_01.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding04_icon_01.png",
       "category": "既有來源",
       "bytes": 1808368,
       "dimensions": "1254x1254",
@@ -2419,7 +2419,7 @@
       "sha256": "49505216e3ced19f1527db0c4f762e7435b39d86dfe3bcabb7788eea2c5ad948"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/icon_01_logo.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding05_icon_01_logo.png",
       "category": "既有來源",
       "bytes": 1924355,
       "dimensions": "1254x1254",
@@ -2435,7 +2435,7 @@
       "sha256": "5461983241d451ac8f5e4c4b158cc27a9baf19ee609efbe0e1898b7c5d2ca21d"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/logo_01_review_v1.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding09_logo_01_review_v1.png",
       "category": "既有來源",
       "bytes": 1620366,
       "dimensions": "1536x1024",
@@ -2443,7 +2443,7 @@
       "sha256": "117520eb3a2f51502377089a37e15277c18ac96b7f0d9434a363efb17cc6159f"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/menu_keyart_01.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding11_menu_keyart_01.png",
       "category": "本輪新增，尚未驗收",
       "bytes": 2216099,
       "dimensions": "1330x1182",
@@ -2451,7 +2451,7 @@
       "sha256": "74c52a2f904ee48d49cd9dcd4255434e15c2755bb15ac156d2ac4f0626f1fe7c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/branding/menu_keyart_portrait_01.png",
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding12_menu_keyart_portrait_01.png",
       "category": "本輪新增，尚未驗收",
       "bytes": 2113507,
       "dimensions": "1448x1086",
@@ -2459,7 +2459,7 @@
       "sha256": "5f9d9e15034557b7b412485d3ee6f2c388d8a3e49df945d30aca1aeae038148c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/angel_back.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_背面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1249027,
       "dimensions": "1254x1254",
@@ -2467,7 +2467,7 @@
       "sha256": "b6d64a6ebfb9edef0413fd28e22c31e33c5844edff7e1466086c3e9de3616070"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/angel_front.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_正面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1366056,
       "dimensions": "1254x1254",
@@ -2475,7 +2475,7 @@
       "sha256": "eb3f157909a246e4e7b358c055fd4635af9742b28fd8d6fb2b0996b9d964ce51"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/angel_side.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor02_小天使_側面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1143650,
       "dimensions": "1254x1254",
@@ -2507,7 +2507,7 @@
       "sha256": "69c364d17e0b8154cf55cb031406a7abd2ea40b35dbf1d231aaf8362bf0c66e3"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/braveguy_back.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_背面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1185000,
       "dimensions": "1254x1254",
@@ -2515,7 +2515,7 @@
       "sha256": "03528deed3084150c2fc87a31ff8a183022047568d150db545c3642ed7b13cd0"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/braveguy_front.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_正面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1267407,
       "dimensions": "1254x1254",
@@ -2523,7 +2523,7 @@
       "sha256": "530cf401d1db9b1f5635c9ad92a7cef96e64ca60cbdb6aeeb70cc13cd32430e8"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/braveguy_side.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor04_勇氣超人_側面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1157610,
       "dimensions": "1254x1254",
@@ -2531,7 +2531,7 @@
       "sha256": "1f993869281bdde6788f84c6c4854336ec2503b2de39fba3ba2e1609049bb2f7"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_back.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_背面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1348765,
       "dimensions": "1254x1254",
@@ -2539,7 +2539,7 @@
       "sha256": "97b9de634500e0d974c45bfb331961c5bb081cd67fed534198f574d65751a16f"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_front.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_正面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1361554,
       "dimensions": "1254x1254",
@@ -2547,7 +2547,7 @@
       "sha256": "3d8440d92bd3cfbe250c30f538368aef8b28aa312d441851c37cb5bfcb2cc691"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/ganqiao_side.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor03_小幹譙_側面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1212599,
       "dimensions": "1254x1254",
@@ -2707,7 +2707,7 @@
       "sha256": "17ecdac923f12785c931b5073fe88c2587033ff51257172c5aa593e549499cae"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/nightmare_back.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_背面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1225162,
       "dimensions": "1254x1254",
@@ -2715,7 +2715,7 @@
       "sha256": "830ed44e43aa9860c77474472e566f158e4c373640d724fa624759facb519934"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/nightmare_front.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_正面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1684563,
       "dimensions": "1254x1254",
@@ -2723,7 +2723,7 @@
       "sha256": "4bb11eb547763d89112f736ffdfe7838da1c374fc293fc2b0289f30ec17f3c7a"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/nightmare_side.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor11_惡夢超人_側面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1181409,
       "dimensions": "1254x1254",
@@ -2731,7 +2731,7 @@
       "sha256": "d891ab2630c9565706f05a2b654ffd02619071ece0dee877c52e214f987782cb"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/student_back.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_背面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1125852,
       "dimensions": "1254x1254",
@@ -2739,7 +2739,7 @@
       "sha256": "526bac7d52e8dd559a000f499518f901bf071da8f572603f5ba1548676445fb3"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/student_front.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_正面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1211478,
       "dimensions": "1254x1254",
@@ -2747,7 +2747,7 @@
       "sha256": "a2fd4b335e81e48288544303e738917655bfbbd27588ea254defd2a0748eb778"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/concept/student_side.png",
+      "path": "02_brave_guy/assets/source/pic/concept/brave_guy_charactor01_主角學生_側面.png",
       "category": "角色參考（須區分新版15張與舊佔位）",
       "bytes": 1150932,
       "dimensions": "1254x1254",
@@ -2843,7 +2843,7 @@
       "sha256": "5bc3f224898b0f5e33f395ddd1643d30d77f4ad5bd04d97fea14ca1a7831db6b"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/icons/btn_attack_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/icons/brave_guy_ui29_普攻按鈕圖集.png",
       "category": "既有來源",
       "bytes": 1085326,
       "dimensions": "2172x724",
@@ -2851,7 +2851,7 @@
       "sha256": "470a1cf7f482f97a417d61ac3da49932a02dc8eefeede2baefce43a621f3f4c2"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/icons/btn_dodge_transform_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/icons/brave_guy_ui36_閃避變身按鈕圖集.png",
       "category": "既有來源",
       "bytes": 1574857,
       "dimensions": "1536x1024",
@@ -2963,7 +2963,7 @@
       "sha256": "6de4ee4ea61777cdd6fe55fe169b90d450980241e7aa7787d560c36eddc8db79"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/icons/function_icons_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/icons/brave_guy_ui18_功能按鈕圖集.png",
       "category": "既有來源",
       "bytes": 1566675,
       "dimensions": "1536x1024",
@@ -2971,7 +2971,7 @@
       "sha256": "3084442c98af9335a873145f34ba9d5b9b151d2b2fb81959cc2c07ef35eb1471"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/icons/lock_heal_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/icons/brave_guy_ui35_鎖定治療圖集.png",
       "category": "既有來源",
       "bytes": 1465288,
       "dimensions": "1536x1024",
@@ -3027,7 +3027,7 @@
       "sha256": "24816168b7a77912c6318e7a4230f4ef47b1ae631d0d78bb904d434774c0538e"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/icons/skill_buttons_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/icons/brave_guy_ui20_勇氣超人技能圖集.png",
       "category": "既有來源",
       "bytes": 1935128,
       "dimensions": "1536x1024",
@@ -3067,7 +3067,7 @@
       "sha256": "c5b4f7a15991547fc5469a94e34bc753ef406f8e415eee729b48e3d4fdb3f202"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_cover_back.jpg",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference01_braveguy_cover_back.jpg",
       "category": "原始參考，不是交付成品",
       "bytes": 433708,
       "dimensions": "2000x1924",
@@ -3075,7 +3075,7 @@
       "sha256": "d1375f5a122360e04fef8c3de691ce80cdc08d085716d3ef13dfabcdf851bab7"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_cover_front.jpg",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference02_braveguy_cover_front.jpg",
       "category": "原始參考，不是交付成品",
       "bytes": 479980,
       "dimensions": "2000x1923",
@@ -3083,7 +3083,7 @@
       "sha256": "29a2bbcc023dde06311b864774a6350270d778f0c7d5231fc9fafb88440d9da6"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_folaidi.png",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference03_braveguy_folaidi.png",
       "category": "原始參考，不是交付成品",
       "bytes": 20250,
       "dimensions": "89x106",
@@ -3091,7 +3091,7 @@
       "sha256": "d093043e64827d46753686b23ada330c2765f5652074d3f261f99e67f6f2522e"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_full.png",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference04_braveguy_ganqiaolong_full.png",
       "category": "原始參考，不是交付成品",
       "bytes": 129925,
       "dimensions": "382x218",
@@ -3099,7 +3099,7 @@
       "sha256": "f3b939d4868afa9beed2318ebcb483663a5796eaf6d478fee71b9c5883f30655"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_ganqiaolong_initial_mid.png",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference05_braveguy_ganqiaolong_initial_mid.png",
       "category": "原始參考，不是交付成品",
       "bytes": 155545,
       "dimensions": "332x330",
@@ -3107,7 +3107,7 @@
       "sha256": "968dfc4902922acc3795cd967525aeb480055926afc192b164e93bb293a6384c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/braveguy_jiasen.png",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference06_braveguy_jiasen.png",
       "category": "原始參考，不是交付成品",
       "bytes": 57477,
       "dimensions": "166x224",
@@ -3115,7 +3115,7 @@
       "sha256": "4a46e311303cc91ee10d49635300eedc9a9783f7d46f346a74b4932c41e52006"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/reference/sheet_layout_example.webp",
+      "path": "02_brave_guy/assets/source/pic/reference/brave_guy_reference07_sheet_layout_example.webp",
       "category": "原始參考，不是交付成品",
       "bytes": 273862,
       "dimensions": "1536x1024",
@@ -3323,7 +3323,7 @@
       "sha256": "07f485504aa06329d0fa6cf5df59483ffce05c2719bf4f5ac31e1ac1eb874602"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_angel.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor02_小天使_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1978981,
       "dimensions": "1728x1152",
@@ -3331,7 +3331,7 @@
       "sha256": "e98b21d124b293f115fa109606199bc00cab4ba9feba2ec7a67af9ef2efeb5d9"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_baguashe.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor20_八卦蛇_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 2078828,
       "dimensions": "1728x1152",
@@ -3339,7 +3339,7 @@
       "sha256": "e35e1502e1c8d4d6ba1783d0bfa95ee0f3e9740ba20699cecdf11b209445d690"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_braveguy.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor04_勇氣超人_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1918544,
       "dimensions": "1728x1152",
@@ -3347,7 +3347,7 @@
       "sha256": "274114701d8f7734293c19c8dce854e0c4af43970c8696a477eca517e97fc1f5"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_ganqiao.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor03_小幹譙_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1977720,
       "dimensions": "1728x1152",
@@ -3355,7 +3355,7 @@
       "sha256": "56e7fb053a39a9827f3c217fe306965df478303270f58c943f0a0513ccdb1d6b"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_guanlaoban.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor25_冠老闆_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1887834,
       "dimensions": "1728x1152",
@@ -3363,7 +3363,7 @@
       "sha256": "a2e7ed8020d3f7a9274a18bac9a97c041ace8e4b956634028fbfd486aebf42d0"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_hell.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor14_地獄超人_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 2142768,
       "dimensions": "1728x1152",
@@ -3371,7 +3371,7 @@
       "sha256": "6e347b4904bb3eae8ad75ed6a9400774584f50468115779513af536d2fa2fbc5"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_incubus.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor26_夢魘超人_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1968245,
       "dimensions": "1728x1152",
@@ -3379,7 +3379,7 @@
       "sha256": "7d02deacd480ccd8873fca6e4a4e8901226e40172894ebad6f7abd84ff15017c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_junxiong.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor06_俊熊_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1865061,
       "dimensions": "1728x1152",
@@ -3387,7 +3387,7 @@
       "sha256": "6e0eebfb795ce50994bfcab6220d3eb1b8053855952fcfd44933d42cae4d441e"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_laichuang.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor05_佛賴弟_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1783875,
       "dimensions": "1728x1152",
@@ -3395,7 +3395,7 @@
       "sha256": "8307795691e42a44e0cea6d5adc2c84a4c0f8b2fb4cc77e32c6d104a0a35bcca"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_lan.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor10_藍教頭_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1973791,
       "dimensions": "1728x1152",
@@ -3403,7 +3403,7 @@
       "sha256": "3b4b9d225c1be92697e5fc99e48093151f4660bf2a775fca409c3a907ccd926c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_nightmare.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor11_惡夢超人_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1876128,
       "dimensions": "1728x1152",
@@ -3411,7 +3411,7 @@
       "sha256": "e3408b1dc803a2d10186278238718961169876bbba9f38c7501db4e701279767"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_qian.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor09_錢大姐_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1966399,
       "dimensions": "1728x1152",
@@ -3419,7 +3419,7 @@
       "sha256": "6c91911078b2057326d0a513d81f2806d8218ac2992043cb1e61569093851e99"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_student.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor01_主角學生_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1762063,
       "dimensions": "1728x1152",
@@ -3427,7 +3427,7 @@
       "sha256": "569cf45f4beaee5ede67f05e7d736dfa48d63405e32f06dad5d5883933102403"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_worker.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor15_主角上班族_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1967643,
       "dimensions": "1728x1152",
@@ -3435,7 +3435,7 @@
       "sha256": "d7c17a96222539dedb5e407436435c534a4dbadc858d005ed5e82ee357f795ad"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_xinji.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor19_新雞_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1917202,
       "dimensions": "1728x1152",
@@ -3443,7 +3443,7 @@
       "sha256": "af48b29e4f7e8ed0019b00545476a3405a5e5e4f85cdbddb040d53aba617cf08"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/sheet/unified/sheet_zhuangxiong.png",
+      "path": "02_brave_guy/assets/source/pic/sheet/unified/brave_guy_charactor08_假森_現役裁切圖集.png",
       "category": "角色合輯（含歷史版本；勿重複計件）",
       "bytes": 1879714,
       "dimensions": "1728x1152",
@@ -3515,7 +3515,7 @@
       "sha256": "c51bcbd14f7d2241e2db73af3aa2c1c7b1e154e7a2f35f00f8aa725d8fcd08bf"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/aux_hud_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui34_輔助狀態圖集.png",
       "category": "既有來源",
       "bytes": 1132310,
       "dimensions": "1536x1024",
@@ -3523,7 +3523,7 @@
       "sha256": "6a0d376da656ad8a31d95f6754b124ed773dd2b3c7de615fb6c7683e36f72d68"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/bingo_card.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui33_賓果卡.png",
       "category": "既有來源",
       "bytes": 1159164,
       "dimensions": "1254x1254",
@@ -3563,7 +3563,7 @@
       "sha256": "c6018fc9fc137006fa3b504ca87a6609e65be9c963158397bd63bbf8ae97663c"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/btn_text.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui27_文字按鈕圖集.png",
       "category": "本輪新增，尚未驗收",
       "bytes": 1034564,
       "dimensions": "2172x724",
@@ -3579,7 +3579,7 @@
       "sha256": "6f159f9c1290255cbac43ec084d9115351046440471296915cf544a186780bfd"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/bubble_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui22_對話框圖集.png",
       "category": "既有來源",
       "bytes": 1188709,
       "dimensions": "1536x1024",
@@ -3587,7 +3587,7 @@
       "sha256": "482456b30f9b1864b99dc1ad829830f55d40b541665a057d7839a0045acdd385"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/control_extras_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui28_方向控制圖集.png",
       "category": "既有來源",
       "bytes": 1317563,
       "dimensions": "1536x1024",
@@ -3603,7 +3603,7 @@
       "sha256": "1b24fb87d1f4399bfe56c40652edf8971c56f398326953ba5a92b5e5f79bd42f"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/difficulty_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui37_難度選擇圖集.png",
       "category": "既有來源",
       "bytes": 2005063,
       "dimensions": "1536x1024",
@@ -3619,7 +3619,7 @@
       "sha256": "c946a3fc4ffff7e3d01d5d94b5c63b11fbbc5a04e3ba1e37b0b5f0bf40988057"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/guilt_explode_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui30_罪惡感爆裂圖集.png",
       "category": "既有來源",
       "bytes": 1245869,
       "dimensions": "1536x1024",
@@ -3651,7 +3651,7 @@
       "sha256": "5ebdca9a64abcfe9ef1fbf9d1695f166ecacd9f8191963039bf45483350e5fea"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/hud_core_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui31_血量與能量圖集.png",
       "category": "既有來源",
       "bytes": 1332630,
       "dimensions": "1536x1024",
@@ -3707,7 +3707,7 @@
       "sha256": "39008d831b2a9cfef8a5544cf9ce529e3ccab0692bc695e282fe8eb9a7369cc2"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/minimap_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui23_小地圖圖集.png",
       "category": "既有來源",
       "bytes": 1411399,
       "dimensions": "1536x1024",
@@ -3723,7 +3723,7 @@
       "sha256": "4bea184ae211f1059db58710c5635a603f0a4a8f81005b810e597fa9e1f07e95"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/panel_popup.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui26_彈出面板.png",
       "category": "本輪新增，尚未驗收",
       "bytes": 1542448,
       "dimensions": "1254x1254",
@@ -3747,7 +3747,7 @@
       "sha256": "c1c9e8db1996c23a2a28b69922968a4edcf32ac90bd7017c78d3305599e577b7"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/panel_sheet.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui17_介面面板圖集.png",
       "category": "既有來源",
       "bytes": 1134682,
       "dimensions": "1536x1024",
@@ -3755,7 +3755,7 @@
       "sha256": "046754aa02a7131c018e046b25037c852d437de0e7acc00f61deac04409449ec"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/panel_title_plate.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui38_面板標題底板.png",
       "category": "本輪新增，尚未驗收",
       "bytes": 855778,
       "dimensions": "2172x724",
@@ -3763,7 +3763,7 @@
       "sha256": "73b6199e2680a861a5e6d67971c534e0b3ffef9e3691440146b8bd80a1c4c0be"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/portrait_brave.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui21_勇氣超人頭像.png",
       "category": "既有來源",
       "bytes": 1110602,
       "dimensions": "1254x1254",
@@ -3771,7 +3771,7 @@
       "sha256": "bbb5b3596d8f82327237eae6c75ead0e999eb33437682991571d92dae9e4b03b"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/ui/portrait_student.png",
+      "path": "02_brave_guy/assets/source/pic/ui/brave_guy_ui16_主角頭像.png",
       "category": "既有來源",
       "bytes": 1028299,
       "dimensions": "1254x1254",
@@ -4371,7 +4371,7 @@
       "sha256": "9b2caf3428f480727cc5783c1ac05e1a73be9d5c3f5e98b741663f8c1e97451b"
     },
     {
-      "path": "assets/preview/hub_banner_desktop.png",
+      "path": "assets/preview/game_center_branding02_hub_banner_desktop.png",
       "category": "既有來源",
       "bytes": 688428,
       "dimensions": "1440x1080",
@@ -4379,7 +4379,7 @@
       "sha256": "5c8f77aad97d74489db09b4ad78643f6c423acf7f758c897b471fa6b12848b6a"
     },
     {
-      "path": "assets/preview/hub_banner_mobile.png",
+      "path": "assets/preview/game_center_branding03_hub_banner_mobile.png",
       "category": "既有來源",
       "bytes": 217696,
       "dimensions": "390x1054",
@@ -4387,7 +4387,7 @@
       "sha256": "af1b8fbb903a1b61cd8a632df7a88e252799a7efdf5a889b47dcbd5978da5035"
     },
     {
-      "path": "assets/preview/hub_banner_thai.png",
+      "path": "assets/preview/game_center_branding04_hub_banner_thai.png",
       "category": "既有來源",
       "bytes": 226795,
       "dimensions": "390x1109",
@@ -4395,7 +4395,7 @@
       "sha256": "0d4f1d04bb8b8552eb700076486be3d1b60ac63c2b93089892657cee72861697"
     },
     {
-      "path": "assets/preview/hub_compact_desktop.png",
+      "path": "assets/preview/game_center_branding05_hub_compact_desktop.png",
       "category": "既有來源",
       "bytes": 601979,
       "dimensions": "1440x900",
@@ -4403,7 +4403,7 @@
       "sha256": "a1af31fcd5332c007d27ab2d629a9d296147d04122cd3c227c9aa6589fee5ccc"
     },
     {
-      "path": "assets/preview/hub_compact_mobile.png",
+      "path": "assets/preview/game_center_branding06_hub_compact_mobile.png",
       "category": "既有來源",
       "bytes": 168614,
       "dimensions": "390x844",
@@ -4411,7 +4411,7 @@
       "sha256": "039f60c779c9dcf35f82e1839fb2ecedb8627c09d6b2c8422d4195b9a79ea72d"
     },
     {
-      "path": "assets/runtime/pic/banner_01.webp",
+      "path": "assets/runtime/pic/game_center_branding01_banner_01.webp",
       "category": "網頁衍生檔",
       "bytes": 134066,
       "dimensions": "2000x667",
@@ -4419,7 +4419,7 @@
       "sha256": "910586ee567e919886be9a32b3de895c8207050977839129908fb7fc44683556"
     },
     {
-      "path": "assets/source/pic/banner/banner_01.png",
+      "path": "assets/source/pic/banner/game_center_branding01_banner_01.png",
       "category": "既有來源",
       "bytes": 1820990,
       "dimensions": "2172x724",

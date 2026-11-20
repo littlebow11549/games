@@ -2,7 +2,7 @@
 
 ## 完成內容
 - menu-layout.css / play.html：既有 Logo 放大 1.7 倍，跨中間斜線；綠金光暈與透明輪廓掃光，日文沿用日文 Logo。減少動態偏好停用動畫；不新增圖片。
-- tools/make_ui_crisp.py 原創合成三款 UI 聲：清脆點按、上揚確認、短促返回。source/sfx/sfx_ui_*_crisp_v3.wav 為 44.1kHz、16-bit mono PCM，115/205/145ms，峰值 -4dBFS，三檔合計 41,144 bytes。source/UI_CRISP_V3.json 記錄規格。manifest 僅換 ui/ui_tap/ui_confirm/ui_back，保留 Claude 假森專屬音樂及其餘音效。audio.js 同步調整缺檔後備按鍵聲。
+- tools/make_ui_crisp.py 原創合成三款 UI 聲：清脆點按、上揚確認、短促返回。source/sfx/sfx_ui_*_crisp_v3.wav 為 44.1kHz、16-bit mono PCM，115/205/145ms，峰值 -4dBFS，三檔合計 41,144 bytes。records/brave_guy_record52_ui_crisp_v3.json 記錄規格。manifest 僅換 ui/ui_tap/ui_confirm/ui_back，保留 Claude 假森專屬音樂及其餘音效。audio.js 同步調整缺檔後備按鍵聲。
 - js/progress-reset.js：主選單難度下方新增「清除所有進度」。原生 dialog 提供中英日文說明、取消與確定；預設焦點在取消，支援 Escape。只刪除 braveguy.save.* 與 braveguy.records.*，包含通關／解鎖／看過劇情／單關及總排行。保留語言、聲音、畫質及其他遊戲資料。刪除失敗嘗試還原快照並顯示錯誤；成功重新載入開場、移除 unlock 參數。
 - index/play/main/audio/manifest 的版本鍵更新為 20261116menuplus，保持手機單畫面配置。
 

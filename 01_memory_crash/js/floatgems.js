@@ -1,4 +1,4 @@
-/* 漂浮動態寶石：用現成 gems_01.png（4×3 共 12 顆）sprite。
+/* 漂浮動態寶石：用現成 memory_crash_ui04_gems_01.png（4×3 共 12 顆）sprite。
    自然散佈、有遠近大小（景深）：近景大而清晰、遠景小而透明微模糊。
    座標 x/y 為「中心點」百分比（CSS 以 translate(-50%,-50%) 置中）。 */
 (function () {

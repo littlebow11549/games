@@ -1,9 +1,10 @@
-import { words } from './run-records.js?v=20261119dialogue';
-import { lang } from './i18n.js?v=20261119dialogue';
+import { assetPath, logicalAssetPath } from './asset-paths.js';
+import { words } from './run-records.js?v=20261120assets';
+import { lang } from './i18n.js?v=20261120assets';
 let manifestPromise,gameplayPromise,gameplayReady=false;const decoded=new Set();
 export async function preloadImages(report=()=>{},scope='boot'){
- if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261119dialogue').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
- const all=await manifestPromise;
+ if(!manifestPromise)manifestPromise=fetch('assets/runtime-images.json?v=20261120assets').then(r=>{if(!r.ok)throw new Error('Image manifest unavailable');return r.json()}).catch(e=>{manifestPromise=null;throw e});
+ const all=(await manifestPromise).map(logicalAssetPath);
  // 只載「當前語言」的字藝/logo（_en/_zh/_ja 三語變體各只需一份，省約 10MB）；切語言時由 preloadLanguage 背景補載
  const tag=lang==='zh-Hant'?'zh':lang;
  const otherLang=url=>{const m=url.match(/_(en|zh|ja)\.webp$/);return m&&m[1]!==tag;};
@@ -11,7 +12,7 @@ export async function preloadImages(report=()=>{},scope='boot'){
  const portrait=matchMedia('(orientation:portrait)').matches;
  const selected=common.filter(url=>!url.includes('/branding/')||url.endsWith('/logo_01.webp')||url.endsWith('/logo_ja.webp')||url.endsWith(portrait?'/menu_keyart_portrait_01.webp':'/menu_keyart_01.webp'));
  const urls=selected.filter(url=>!decoded.has(url)&&(scope==='game'||/\/branding\/|language_globe|panel_popup|panel_title_plate|btn_text|difficulty_sheet|portrait_student|\/concept\/(angel|ganqiao)_front\.webp/.test(url)));let next=0,done=0,failure=null;
- async function worker(){while(!failure&&next<urls.length){const url=urls[next++],im=new Image();im.src=url;try{await im.decode();if(!im.naturalWidth)throw new Error('Empty image');}catch{failure=true;throw new Error(words(lang,'圖片載入失敗，請重試：','Image failed. Please retry: ','画像の読み込みに失敗。再試行：')+url);}decoded.add(url);report(++done,urls.length);}}
+ async function worker(){while(!failure&&next<urls.length){const url=urls[next++],im=new Image();im.src=assetPath(url);try{await im.decode();if(!im.naturalWidth)throw new Error('Empty image');}catch{failure=true;throw new Error(words(lang,'圖片載入失敗，請重試：','Image failed. Please retry: ','画像の読み込みに失敗。再試行：')+url);}decoded.add(url);report(++done,urls.length);}}
  const results=await Promise.allSettled(Array.from({length:3},worker));
  const failed=results.find(result=>result.status==='rejected');if(failed)throw failed.reason;
 }
@@ -21,10 +22,11 @@ export function preloadLanguage(code){
  if(!manifestPromise)return;
  const tag=code==='zh-Hant'?'zh':code;
  manifestPromise.then(all=>{
-  for(const url of all){
+  for(const loaded of all){
+   const url=logicalAssetPath(loaded);
    const m=url.match(/_(en|zh|ja)\.webp$/);
    if(!m||m[1]!==tag||url.includes('/cinematics/')||decoded.has(url))continue;
-   const im=new Image();im.src=url;im.decode().then(()=>decoded.add(url)).catch(()=>{});
+   const im=new Image();im.src=assetPath(url);im.decode().then(()=>decoded.add(url)).catch(()=>{});
   }
  });
 }

@@ -8,7 +8,7 @@ import hashlib
 import json
 from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
-manifest = json.loads((ROOT/'assets/source/UNIFIED_SHEET_HEADERS.json').read_text())
+manifest = json.loads((ROOT/'assets/records/brave_guy_record54_unified_sheet_headers.json').read_text())
 logos = set()
 for row in manifest['sheets']:
     path = ROOT/row['source']

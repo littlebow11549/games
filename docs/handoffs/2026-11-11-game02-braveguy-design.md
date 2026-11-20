@@ -11,7 +11,7 @@
 8. 構築遊戲劇情腳本。
 
 ## 完成內容
-- 概念圖歸檔：`02_brave_guy/assets/source/pic/reference/braveguy_cover_front.jpg`、`braveguy_cover_back.jpg`（使用者原檔，未重新壓縮）。
+- 概念圖歸檔：`02_brave_guy/assets/source/pic/reference/brave_guy_reference02_braveguy_cover_front.jpg`、`brave_guy_reference01_braveguy_cover_back.jpg`（使用者原檔，未重新壓縮）。
 - **企劃書 [`02_brave_guy/DESIGN.md`](../../02_brave_guy/DESIGN.md) v0.5**：一句話、故事（使用者設定與 Claude 提案分開標示）、三大地圖（校園／荒野／職場）＋終章、角色與呼應、十種心魔、勇氣值與變身、小天使、喜劇對白風格與範例、惡夢超人兩場戰鬥、現有原型可沿用項目、製作階段（設計底 D1–D5 → 美術 A1–A7）、11 個待使用者決定的問題。
 - **劇情腳本 [`02_brave_guy/SCRIPT.md`](../../02_brave_guy/SCRIPT.md) 初稿 v0.1**：地圖一校園 4 區、地圖二荒野 2 區、地圖三職場 5 區、終章與結局的完整對白；主線 331 句、通用泡泡與心魔求饒句 33 句；每句有四位數台詞 ID，可對應配音檔 `vo_XXXX.mp3`；文末列 7 個待確認事項。整份為 Claude 提案，未經使用者確認，也尚未接進遊戲。
 - 遊戲改名：首頁卡片、六語介紹、遊戲頁標題、Logo 與橫幅文字改為「勇氣超人 Brave Guy」；首頁 id 由 `jade-sword-trial` 改為 `brave-guy`（尚未部署過，不影響既有玩家的最愛紀錄）。
@@ -80,7 +80,7 @@
 ### 完成內容
 - 地圖三新提案「算了股份有限公司」寫入 `DESIGN.md` 第 5 節，**標為待確認，尚未取代原本的地圖三關卡表與腳本**。使用者提出新要求時沒有對這個提案表態。
 - 新增 [`02_brave_guy/CHARACTERS.md`](../../02_brave_guy/CHARACTERS.md)（由 `tools/make_character_bible.py` 產生）：合輯統一版式、合輯與 3D 生成用圖的差別、製作順序、通用提示詞、13 個角色各自的定位／個性／台詞／外觀／身高／配色／6 表情／6 細節／變體／3D 注意事項、7 個待確認事項。
-- 版式範例圖存為 `assets/source/pic/reference/sheet_layout_example.webp`（使用者原檔）。只參考版式，不沿用其角色、Logo、配色。
+- 版式範例圖存為 `assets/source/pic/reference/brave_guy_reference07_sheet_layout_example.webp`（使用者原檔）。只參考版式，不沿用其角色、Logo、配色。
 - `assets/ASSETS.md`：新增 `pic/sheet/` 資料夾與合輯流程說明。
 
 ### 重要限制

@@ -12,7 +12,7 @@
 - **超惡夢波機率**：`bossThink` 在加壓且 `hp<=maxHp*0.25` 時，招式池多加兩份 `nightmareWave` 提高抽中率。
 
 ## 測試(無頭)
-- 進 4-1、生董事長、觸發 `startAwakening`：首過場 mode=`firststrike`、`incubus_firststrike.webp` 載入、跳過後接 mode=`awakening`、0 error。
+- 進 4-1、生董事長、觸發 `startAwakening`：首過場 mode=`firststrike`、`brave_guy_cinematic24_incubus_firststrike.webp` 載入、跳過後接 mode=`awakening`、0 error。
 - **未驗證**：未真人實戰確認門檻手感與過場演出整體觀感。
 
 ## 發布

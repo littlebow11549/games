@@ -1,0 +1,333 @@
+{
+  "files": [
+    {
+      "path": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor03_小幹譙_表情特輯.jpg",
+      "sha256": "65400a31bb025eabc125b8a2b77c9d72978d060b683d62816ac2f360cb7437b9",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/EEDD6AC1-6456-496C-B2C9-7CFA2FC05AE7/4-照片-4.jpg",
+      "category": "expressions",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor04_勇氣超人_表情特輯.jpg",
+      "sha256": "208a8b52a2eee2698c9e2af2872871329a0bacc01ec353ddb6c6c37f06eb3c45",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/EEDD6AC1-6456-496C-B2C9-7CFA2FC05AE7/3-照片-3.jpg",
+      "category": "expressions",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding02_braveguy_closeup.jpg",
+      "sha256": "4e08e378eb7fdcc601cb111aa9aadabb1f752edee3e46f868732528ef44b76f4",
+      "size": [
+        1280,
+        720
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/EEDD6AC1-6456-496C-B2C9-7CFA2FC05AE7/5-照片-5.jpg",
+      "category": "branding",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor01_主角學生_表情特輯.jpg",
+      "sha256": "3d8cd3234639c697206693242f549a41403e5f7b6cf8c56571d8c990ee4e2e02",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/EEDD6AC1-6456-496C-B2C9-7CFA2FC05AE7/1-照片-1.jpg",
+      "category": "expressions",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/expressions/brave_guy_charactor02_小天使_表情特輯.jpg",
+      "sha256": "97accabb4721368d8e3a2e8ad613107fffcd97f7b5bd6e7c313316881d5eb9fa",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/EEDD6AC1-6456-496C-B2C9-7CFA2FC05AE7/2-照片-2.jpg",
+      "category": "expressions",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor05_佛賴弟_設定集.jpg",
+      "sha256": "d3b5227e3ca40152abe7ca0a84733441abbb5cc44beb4ecad166479b6a079162",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/16-照片-6.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor20_八卦蛇_設定集.jpg",
+      "sha256": "7e860510be8c84b5f0fb781fdc3b9888251877c1eb3eca2c400b56d3c339d128",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/11-照片-1.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor21_藍經理_設定集.jpg",
+      "sha256": "b598103c5bac336fad85cc770f9e0be1329ab6b5d6ce24be0a758dd9fc8687af",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/7-照片-7.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor12_悶幹譙_職場版設定集.jpg",
+      "sha256": "528422c22fdf44097646241c92ca4542fbe45ff03fe8e7923dfcce8755386f30",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/4-照片-4.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_職場版設定集.jpg",
+      "sha256": "5142167afe52e5ed82b0ead60c1ee9a84f5a1e4c4433f2138814956969ecea04",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/3-照片-3.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor17_假忙森_設定集.jpg",
+      "sha256": "015d2ca634ecba9d345601f0161279ce0771f654877ce4399f6ae7ea297cd579",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/6-照片-6.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor25_冠老闆_設定集.jpg",
+      "sha256": "e555947358523b7631d71344e025969944445f258c98b403f761827063f16d08",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/9-照片-9.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor19_新雞_設定集.jpg",
+      "sha256": "2450d8668aa04fa66ac932695d5ae3e2f8ec6e03f19cd94ce33606015a6ff35d",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/12-照片-2.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding07_keyart_portrait_recovered.jpg",
+      "sha256": "8965b3492abf70628fec013ad7a310cb0a8a2abecdacf9a6447b6b2c411c6d57",
+      "size": [
+        941,
+        1118
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/19-照片-19.jpg",
+      "category": "branding",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor03_小幹譙_三型態設定集.jpg",
+      "sha256": "d2115301251f5a7f83285b77a70fd6dec3e7cf518f7eaef9a816b84e61b2ab0b",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/18-照片-8.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor26_夢魘超人_設定集.jpg",
+      "sha256": "9af9622519cb8beec1556943ceb56eedfef8733870204387901ce51c85534919",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/13-照片-3.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor16_加班鬼_設定集.jpg",
+      "sha256": "d5e85335e994e6c044fab6f6ab769ae3744aa0b2ab12255ab3bf0deafaad40c9",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/5-照片-5.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor23_錢經理_設定集.jpg",
+      "sha256": "a353b436cf95a77bc57ac729d8bbfefd243c4bd57cf5cf7a7e27077b3dd22407",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/1-照片-1.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/branding/brave_guy_branding06_keyart_landscape_recovered.jpg",
+      "sha256": "a55ab913de59105f443e62898603179c023a65f11b31fa46e1330fe21ebbd8d8",
+      "size": [
+        1280,
+        589
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/20-照片-20.jpg",
+      "category": "branding",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor14_地獄超人_設定集.jpg",
+      "sha256": "a9042c2f4ee676fad06a20afc61886d72ff58345da99bab5f7bba564db8ba222",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/14-照片-4.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_職場版設定集.jpg",
+      "sha256": "e17cfcfe0254023f4a3327dc73bce7a897cc35520048d8ce0367bf512e3271e7",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/2-照片-2.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor15_主角上班族_設定集.jpg",
+      "sha256": "859ddf64b99275a2723cf251b60da74c0f054b361972ff01e563da77af20980d",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/10-照片-10.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor06_俊熊_設定集.jpg",
+      "sha256": "98fc0e28aca4d67f064df10dcd25a4977b0c3508d73d7ab9206fed415803c50c",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/15-照片-5.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor27_夢魘超人最終覺醒_設定集.jpg",
+      "sha256": "83d6748741039f00d348bc792b09504136fe7f5c0439e346e9cfc3c737cc0298",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/8-照片-8.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/brave_guy_charactor08_假森_設定集.jpg",
+      "sha256": "05227f53670062c23c042b032754f14c2f6c0fce3d87d98122ce189172c23f1c",
+      "size": [
+        1280,
+        853
+      ],
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/BC38D972-9D96-4827-A007-ECCB75CF749C/17-照片-7.jpg",
+      "category": "sheet",
+      "status": "design-reference-not-runtime"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/recovered-art/fx/brave_guy_fx02_hit_arcade_source_unused.png",
+      "sha256": "fcd3ecc71a250c7c150f404e6596676f082e4f69fe47d15ca5bc50875ba6ccb1",
+      "size": [
+        1774,
+        887
+      ],
+      "attachment": "/workspace/generated_images/exec-8813e118-4688-47c8-a16a-bfd22c1cf86d.png",
+      "category": "fx",
+      "status": "unused-candidate"
+    }
+  ],
+  "excluded_screenshots": [
+    {
+      "path": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/A8F4B9D8-3020-498B-9297-215CDE243EBB/1-照片-1.jpg",
+      "sha256": "847d4a879619a51445e0c1d638fc7b59f5cb2e8607e4ad1fe603750ad91b443b",
+      "size": [
+        589,
+        1280
+      ]
+    },
+    {
+      "path": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/68CA8446-42E7-4975-B9CB-7FC8CDB420AF/1-照片-1.jpg",
+      "sha256": "ac323fb06cea20c317be983ee8909aa3e06191a18a803413e592f204e5893621",
+      "size": [
+        589,
+        1280
+      ]
+    },
+    {
+      "path": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/91F5AC03-37D4-4D6D-B909-EB70C154972F/1-照片-1.jpg",
+      "sha256": "e3fb57a5901f1182927ce791c947b681c0ba74a24654357efaf5fac18122db36",
+      "size": [
+        589,
+        1280
+      ]
+    },
+    {
+      "path": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/64B9A7BA-27A2-461D-827C-B3EE2EFE1CB4/1-照片-1.jpg",
+      "sha256": "63907b8a67ed98d22011a5c5630e584b0830bf9101d34324f95a99401acdf76f",
+      "size": [
+        1280,
+        589
+      ]
+    },
+    {
+      "path": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/0E557B97-3F86-45D1-9D13-661DB648FEE6/1-照片-1.jpg",
+      "sha256": "1e615ef112ffd03da3339ecd0e2f98eda2ceb5c891fc8f72092443a49783f920",
+      "size": [
+        589,
+        1280
+      ]
+    }
+  ],
+  "nightmare_expression_special": "Not found as a standalone original among 31 unique unarchived candidates. Existing approved sheet includes six expressions; do not regenerate or claim the independent sheet was found."
+}

@@ -4,9 +4,9 @@
 
 ## 完成內容
 
-- 一般 index.html 載入 css/menu-art.css。三種難度採用 difficulty_sheet.png 的未選取／金框選取圖，共六態；保留原翻譯文字與難度邏輯，新增 aria-pressed 傳達選取狀態。
-- 暫停選單的繼續、重新開始、回標題、語言切換加入 function_icons_sheet.png 的播放、重設、首頁、地球圖示。保留原按鈕及事件，中文與英文皆有可見文字。
-- assets/source/MENU_RUNTIME_REGIONS.json 記錄十個顯示範圍。只用 CSS 顯示原生圖集，沒有修改原PNG、插值放大或產出獨立切圖。
+- 一般 index.html 載入 css/menu-art.css。三種難度採用 brave_guy_ui37_難度選擇圖集.png 的未選取／金框選取圖，共六態；保留原翻譯文字與難度邏輯，新增 aria-pressed 傳達選取狀態。
+- 暫停選單的繼續、重新開始、回標題、語言切換加入 brave_guy_ui18_功能按鈕圖集.png 的播放、重設、首頁、地球圖示。保留原按鈕及事件，中文與英文皆有可見文字。
+- assets/records/brave_guy_record18_menu_runtime_regions.json 記錄十個顯示範圍。只用 CSS 顯示原生圖集，沒有修改原PNG、插值放大或產出獨立切圖。
 - 首頁「全部使用佔位美術」改為「3D 角色目前使用佔位模型」，補英文與即時語言切換標記。已接入的Logo、頭像、按鍵不應被描述成全部佔位。
 
 ## 驗證

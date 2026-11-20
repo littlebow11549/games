@@ -14,12 +14,12 @@
 
 ## 測試
 - 無頭 Chromium：進 3-7 載入 0 error、boss=jiamangKing、名牌三語切換正常（check_newstage.js）。
-- rebase 合併 Codex 最新（Codex 已為 3-6 錢經理補了專屬 `boss_qianBiz_storyboard.webp`＋`victory_qianBiz.webp`，保留其版本）後再驗證 PASS。
+- rebase 合併 Codex 最新（Codex 已為 3-6 錢經理補了專屬 `brave_guy_cinematic14_boss_qianBiz_storyboard.webp`＋`brave_guy_cinematic51_victory_qianBiz.webp`，保留其版本）後再驗證 PASS。
 - **未驗證**：未真人打完 3-7；對白語氣未人工潤飾。
 
 ## 待辦
 - `jiamangKing` 的正式過場圖與勝利圖（目前沿用加班鬼王圖）——可併入美術需求交 GPT。
-- 若要專屬 BGM，見 `SFX_MUSIC_BRIEF_2026-11-16.md`。
+- 若要專屬 BGM，見 `brave_guy_record50_sfx_music_brief_2026-11-16.md`。
 
 ## 發布
 - 已 commit 並上線（開發分支＋預設分支）。commit `a130ee9`。

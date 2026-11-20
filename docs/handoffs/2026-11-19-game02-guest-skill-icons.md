@@ -18,7 +18,7 @@
 
 ## 素材與實作
 
-九張原創透明 SVG，viewBox 128×128，粗黑輪廓與賽璐璐色塊；原生向量沒有點陣縮圖。素材位於 `02_brave_guy/assets/source/pic/icons/skill_{character}_{action}.svg`，清單見 `assets/source/GUEST_SKILL_ICONS_DELIVERY.json`。
+九張原創透明 SVG，viewBox 128×128，粗黑輪廓與賽璐璐色塊；原生向量沒有點陣縮圖。素材位於 `02_brave_guy/assets/source/pic/icons/skill_{character}_{action}.svg`，清單見 `assets/records/brave_guy_record12_guest_skill_icons_delivery.json`。
 
 `applyCharacterHud()` 依角色裝入圖片，切換角色時清理舊圖。小天使普攻輔助標籤同步切換。CSS 保留圓框、冷卻遮罩及鍵位，圖示不攔截點擊；play.html 更新快取版本。未更動技能傷害或平衡。
 

@@ -6,7 +6,7 @@
 
 - 新增 css/ui-art.css，index.html 載入並在 body 啟用 game-art。攻擊、閃避、變身及四技能共七種操作／21 個狀態，另有鎖定三態、靜音切換、暫停、搖桿底座與旋鈕。
 - 每個圖案改用獨立像素範圍換算背景定位，修正先前整格縮放產生的空白與比例問題；變身按鍵改為120×56，配合約2:1圖案。去除既有 locked 濾鏡，避免灰階來源再次被壓暗。大招尚未蓄滿時仍保留原遊戲能量遮罩，屬正常狀態。
-- CSS 裁切是顯示視窗，沒有重新生成／修改任何原始 PNG，也沒有輸出獨立256／384 PNG。來源尺寸與alpha完整保留；外緣光暈可能被按鍵邊界裁去。範圍紀錄在 assets/source/UI_RUNTIME_REGIONS.json，非逐像素alpha去背結果。
+- CSS 裁切是顯示視窗，沒有重新生成／修改任何原始 PNG，也沒有輸出獨立256／384 PNG。來源尺寸與alpha完整保留；外緣光暈可能被按鍵邊界裁去。範圍紀錄在 assets/records/brave_guy_record53_ui_runtime_regions.json，非逐像素alpha去背結果。
 - 保留原按鍵元素、data-action、冷卻遮罩與鍵盤標籤，未修改戰鬥、音樂或輸入邏輯。保留先前 Claude 接入的256 WebP頭像及可讀計量條；移除舊試看CSS對頭像／計量條的重複覆蓋。
 - art-preview.html 改為切換正式 game-art 樣式，仍可比較舊按鍵；css/art-preview.css 僅負責介面檢視。assets/preview/p1-runtime-states.html 使用與遊戲相同CSS列出七種操作三態。
 

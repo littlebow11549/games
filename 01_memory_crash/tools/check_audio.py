@@ -12,5 +12,5 @@ for path in files:
  if 'bgm_' in path.name:row['loop_boundary_step']=float(np.abs(pcm[0]-pcm[-1]).max())
  assert row['clipped_samples']==0,row
  rows.append(row)
-(ROOT/'assets/AUDIO_QA.json').write_text(json.dumps({'audio':rows,'runtime_music_gain':.38,'ducked_music_gain':.18,'runtime_sfx_gain':.55,'method':'Complete decode, peak/RMS and loop-boundary measurement; browser playback/loop tests separately. Physical handset listening not performed.'},indent=2)+'\n')
+(ROOT/'assets/records/memory_crash_record02_audio_qa.json').write_text(json.dumps({'audio':rows,'runtime_music_gain':.38,'ducked_music_gain':.18,'runtime_sfx_gain':.55,'method':'Complete decode, peak/RMS and loop-boundary measurement; browser playback/loop tests separately. Physical handset listening not performed.'},indent=2)+'\n')
 print(json.dumps(rows,indent=2))

@@ -5,9 +5,9 @@
 
 ## 素材及接入
 - 依CHARACTERS §8職場變體：粉紅高馬尾、黃頭帶、紅眼、金色圈耳環；深藍套裝長褲、白襯衫、黃領巾；資料夾及收款信封取代紙扇。校園版原圖不變。
-- `assets/source/pic/cinematics/boss_qianBiz_storyboard.png`：財務辦公室亮相／信封勒索／金幣報表風暴三鏡。專屬12秒登場，沿用現行4秒一鏡與對話框形式。
-- `assets/source/pic/cinematics/victory_qianBiz.png`：蓄拳對峙／勇氣超人擊碎資料夾命中／擊倒收尾三鏡，6秒演出。
-- 原生1024×1536 PNG；相同尺寸WebP無損壓縮，RGBA逐像素核對，來源SHA與位元組數見`assets/source/QIAN_BIZ_FILMS_REVIEW.json`。只壓新圖，不回退Claude現有runtime優化。
+- `assets/source/pic/cinematics/brave_guy_cinematic14_boss_qianBiz_storyboard.png`：財務辦公室亮相／信封勒索／金幣報表風暴三鏡。專屬12秒登場，沿用現行4秒一鏡與對話框形式。
+- `assets/source/pic/cinematics/brave_guy_cinematic51_victory_qianBiz.png`：蓄拳對峙／勇氣超人擊碎資料夾命中／擊倒收尾三鏡，6秒演出。
+- 原生1024×1536 PNG；相同尺寸WebP無損壓縮，RGBA逐像素核對，來源SHA與位元組數見`assets/records/brave_guy_record46_qian_biz_films_review.json`。只壓新圖，不回退Claude現有runtime優化。
 - 補齊qianBiz的BOSS_PROFILES、三語BOSS_BANTER、VICTORY_KEYS和專屬檔案。先前只有storyboard借圖，缺profile/banter及勝利檔，未完整走通過場。
 - 登場採contain保留手持道具及人物；勝利依原生非等高分隔線指定裁窗，避免跨鏡。讀取仍走decode成功才放行、按需載入，不放入首屏。
 - 新版入口/main/相關模組版本20261116qian；既有終章流程測試改按4-1 ID查索引，避免插入新關後測錯關。

@@ -9,7 +9,7 @@
 
 ## 檔案、規格與分類
 - 流程：02_brave_guy/js/main.js；動畫：css/overlay-art.css；同步：js/transform-art.js；快取版本：js/audio.js、index.html。
-- 音效來源：02_brave_guy/assets/source/sfx/，manifest.json 對應；SFX_DELIVERY.json 含規格、SHA256、母帶路徑。
+- 音效來源：02_brave_guy/assets/source/sfx/，manifest.json 對應；brave_guy_record49_sfx_delivery.json 含規格、SHA256、母帶路徑。
 - 新版 14 個 WAV 母帶：_archive/game02/sfx/2026-11-15/combat-v3/，44.1kHz／mono／16-bit；原有母帶保留。遊戲 MP3 96kbps，整包 71 種／72 檔（含原 beam OGG 與 MP3），579002 bytes。
 - 原創 DSP 合成工具：tools/make_game02_sfx.py。6 個既有音效更新、8 個新增，其餘 57 種保留。
 - 試聽：assets/preview/audio/crisp-glam-v3.mp3（依序普通三擊、重擊、八段變身）；勝利截圖及檢查：assets/preview/stage-victories/。

@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-20 三專案素材統一歸檔](handoffs/2026-11-20-all-assets-organization.md)：678媒體原內容保留、73文件集中、26暫存原圖救回、三專案索引與動態路徑驗證；惡夢獨立表情特輯待追查。
+
 - [2026-11-20 最終設定集確認／停止生圖](handoffs/2026-11-20-approved-visual-revision-02.md)：使用者新傳四張米白底VISUAL REVISION 02才是最終定案；已於附件暫存區找到並原樣歸檔四張approved_v02.jpg；停止生圖，勿以舊深綠底版冒認。
 
 - [2026-11-20 廢棄視覺清理](handoffs/2026-11-20-retired-assets-cleanup.md)：213檔約149MiB直接刪除；包含佔位SVG、錯Logo稿、舊預覽；保留正式母檔與現役大招字。
@@ -211,13 +213,13 @@
 
 - [2026-11-15 主選單雙版主視覺與最新清單確認](handoffs/2026-11-15-game02-menu-keyart.md)：兩張無字 RGB PNG 已產出，原生 1330×1182／1448×1086，低於需求尺寸、未放大；尚待實際裁切與接入。已同步 Claude 最新完整缺件清單。
 
-- [2026-11-15 勇氣超人：修正絕招/衝刺穿牆 + 盤點未收到美術（Claude）](handoffs/2026-11-15-game02-wall-fix-and-art-backlog.md)：修正高速位移低幀率單幀跨過薄牆的穿牆 bug（新增 `moveHeroBy` 分段推進，衝刺/閃避/擊退/移動都改走它；無頭測試舊式 11/11 全穿、修正後 11/11 全擋、0 error）。並產出 [`assets/ART_OUTSTANDING_2026-11-15.md`](../02_brave_guy/assets/ART_OUTSTANDING_2026-11-15.md) 未收到美術完整清單（交 GPT），`ASSETS.md §4.5` 展開暫停/彈窗面板細規格。已 commit 並比照上線（預設分支）。
+- [2026-11-15 勇氣超人：修正絕招/衝刺穿牆 + 盤點未收到美術（Claude）](handoffs/2026-11-15-game02-wall-fix-and-art-backlog.md)：修正高速位移低幀率單幀跨過薄牆的穿牆 bug（新增 `moveHeroBy` 分段推進，衝刺/閃避/擊退/移動都改走它；無頭測試舊式 11/11 全穿、修正後 11/11 全擋、0 error）。並產出 [`assets/ART_OUTSTANDING_2026-11-15.md`](../02_brave_guy/assets/records/brave_guy_record01_art_outstanding_2026-11-15.md) 未收到美術完整清單（交 GPT），`ASSETS.md §4.5` 展開暫停/彈窗面板細規格。已 commit 並比照上線（預設分支）。
 
 - [2026-11-15 勇氣超人：套用交響金屬 BGM（v3.0 音檔到位）（Claude）](handoffs/2026-11-15-game02-music-v3-symphonic-metal-applied.md)：套用使用者上傳的 25 首交響金屬 MP3，轉出同名 OGG 一起覆蓋；新增 `bgm_battle`／`bgm_victory`／`bgm_stage_3_0` 三首專屬曲並改接 manifest（原為佔位）。無頭 Chromium 載入 0 error、24 鍵全對應、OGG 皆可解碼。**未做母帶處理，未 commit／push／部署。**
 
 - [2026-11-15 勇氣超人：資料夾改名 02_xianxia_battle → 02_brave_guy（Claude）](handoffs/2026-11-15-game02-folder-rename-brave-guy.md)：早期代號改為與遊戲名一致的 `02_brave_guy`；`git mv` 搬資料夾並全 repo 更新 52 檔的路徑引用。**GitHub Pages 網址改為 `.../02_brave_guy/`，舊網址失效**。Playwright 驗證 hub 連結、遊戲載入、0 error 全過。
 
-- [2026-11-15 勇氣超人：音樂需求 v3.0 — 改走吉他搖滾／金屬（Claude）](handoffs/2026-11-15-game02-music-v3-rock.md)：依使用者參考（Awaken BB 金屬搖滾 Boss 戰）改寫 [`MUSIC.md`](../02_brave_guy/assets/MUSIC.md)；風格換成吉他搖滾、每關不同節奏、附中文 AI 提示詞。**音檔未重做。**
+- [2026-11-15 勇氣超人：音樂需求 v3.0 — 改走吉他搖滾／金屬（Claude）](handoffs/2026-11-15-game02-music-v3-rock.md)：依使用者參考（Awaken BB 金屬搖滾 Boss 戰）改寫 [`MUSIC.md`](../02_brave_guy/assets/records/brave_guy_record04_music.md)；風格換成吉他搖滾、每關不同節奏、附中文 AI 提示詞。**音檔未重做。**
 
 - [2026-11-15 勇氣超人：近戰圈不再定住、打王時補小怪集氣（Claude）](handoffs/2026-11-15-game02-swarm-churn-boss-fodder.md)：還沒出手的小怪一直往主角擠（不再定格）；守關者戰持續補小怪（普通同時 10 隻）供集氣集大招，王倒即停。
 
@@ -229,7 +231,7 @@
 
 - [2026-11-14 SFX 正式檔案插槽與容錯接入](handoffs/2026-11-14-game02-sfx-batch.md)：新增11種音效插槽、快取疊音／合成回退與Node測試；尚無正式音效檔，未合併／部署。
 
-- [2026-11-15 勇氣超人：音樂全部重新設計的需求 v2.0（Claude）](handoffs/2026-11-15-game02-music-redesign-brief.md)：依使用者給的參考影片量測後改寫 [`MUSIC.md`](../02_brave_guy/assets/MUSIC.md)；新增 `tools/audio_features.py`。**音檔尚未重做，待音樂工作階段依 v2.0 製作，先交 P0 四首。**
+- [2026-11-15 勇氣超人：音樂全部重新設計的需求 v2.0（Claude）](handoffs/2026-11-15-game02-music-redesign-brief.md)：依使用者給的參考影片量測後改寫 [`MUSIC.md`](../02_brave_guy/assets/records/brave_guy_record04_music.md)；新增 `tools/audio_features.py`。**音檔尚未重做，待音樂工作階段依 v2.0 製作，先交 P0 四首。**
 
 - [2026-11-15 勇氣超人：隨機迷宮、小天使救援、守關者負面狀態、怪量加碼、主選單重做（Claude）](handoffs/2026-11-15-game02-maze-rescue-debuff-menu.md)：每次進關隨機生成迷宮；每關 2–3 次救援（抓俊熊 +1）；九種負面狀態；每關多一波狂潮；主選單改用主視覺並拆成標題與選關兩頁。
 
@@ -284,7 +286,7 @@
 
 - [2026-11-12 勇氣超人：關卡戰鬥電音（地圖一全數 + 2-1）（音樂階段）](handoffs/2026-11-12-game02-music-stage1.md)：依 MUSIC.md v1.2 做每關不同電音；交 `bgm_stage_1_0/1_2/1_3/1_4` 與 `bgm_stage_2_1`（各 ogg+mp3、−16 LUFS、無縫循環），地圖一一般戰鬥（1-0～1-4）全到位；六鍵已填 manifest，母帶於 `_archive/`，規格 `assets/source/AUDIO_DELIVERY.json`。分支已對齊主線，未改 `js/`。
 
-- [2026-11-13 勇氣超人：美術製作需求 v2.1（Claude）](handoffs/2026-11-13-game02-art-requirements-v21.md)：對照現況重新核對 [`ASSETS.md`](../02_brave_guy/assets/ASSETS.md)，新增小地圖、鎖定、難度、泡泡等介面素材；優先級不變。**需由使用者轉交 GPT，尚無正式美術交付。** 另新增 3D 外包需求 [`MODELS_3D.md`](../02_brave_guy/assets/MODELS_3D.md)（21 個角色、8 個道具、動作清單與技術規格）。
+- [2026-11-13 勇氣超人：美術製作需求 v2.1（Claude）](handoffs/2026-11-13-game02-art-requirements-v21.md)：對照現況重新核對 [`ASSETS.md`](../02_brave_guy/assets/ASSETS.md)，新增小地圖、鎖定、難度、泡泡等介面素材；優先級不變。**需由使用者轉交 GPT，尚無正式美術交付。** 另新增 3D 外包需求 [`MODELS_3D.md`](../02_brave_guy/assets/records/brave_guy_record03_models_3d.md)（21 個角色、8 個道具、動作清單與技術規格）。
 
 - [2026-11-12 勇氣超人：小地圖、三種難度、體型大小、俊熊補血、嗆聲與頂嘴（Claude）](handoffs/2026-11-12-game02-minimap-difficulty.md)：可點擊縮放的小地圖；輕鬆／普通／地獄（地獄同場最多 120 隻、鋪滿地圖）；小怪分大中小；小天使變身結束 10 句嗆聲、主角會回嘴。
 
@@ -302,9 +304,9 @@
 
 - [2026-11-12 勇氣超人：鎖定畫面大小，防止操作時網頁被拉近（Claude）](handoffs/2026-11-12-game02-viewport-lock.md)：攔截兩指縮放、連點放大、Ctrl＋滾輪；頁面固定不捲動。
 
-- [2026-11-12 勇氣超人：電音音樂交付（P0＋各地圖戰鬥曲）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音、每關不同**；交 7 首（`bgm_campus`／`bgm_boss`／`jingle_clear`／`bgm_wild`／`bgm_office`／`bgm_office_mute`＋主題 demo，各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_brave_guy/music/`](../_archive/02_brave_guy/music/)，規格表 [`02_brave_guy/assets/source/AUDIO_DELIVERY.json`](../02_brave_guy/assets/source/AUDIO_DELIVERY.json)；六個鍵已填入 manifest（地圖二三的三首已於同日由 Claude 接到各關）。分支 `claude/brave-guy-audio`。
+- [2026-11-12 勇氣超人：電音音樂交付（P0＋各地圖戰鬥曲）（Claude）](handoffs/2026-11-12-game02-music-p0.md)：依使用者指定改為**硬派電音、每關不同**；交 7 首（`bgm_campus`／`bgm_boss`／`jingle_clear`／`bgm_wild`／`bgm_office`／`bgm_office_mute`＋主題 demo，各 `.ogg`＋`.mp3`，−16 LUFS、無縫循環），母帶於 [`_archive/02_brave_guy/music/`](../_archive/02_brave_guy/music/)，規格表 [`02_brave_guy/assets/records/brave_guy_record09_audio_delivery.json`](../02_brave_guy/assets/records/brave_guy_record09_audio_delivery.json)；六個鍵已填入 manifest（地圖二三的三首已於同日由 Claude 接到各關）。分支 `claude/brave-guy-audio`。
 
-- [2026-11-11 勇氣超人：音樂與音效製作需求（Claude）](handoffs/2026-11-11-game02-music-requirements.md)：[`02_brave_guy/assets/MUSIC.md`](../02_brave_guy/assets/MUSIC.md)，交另一個工作階段製作。第二款遊戲已合併並上線。
+- [2026-11-11 勇氣超人：音樂與音效製作需求（Claude）](handoffs/2026-11-11-game02-music-requirements.md)：[`02_brave_guy/assets/records/brave_guy_record04_music.md`](../02_brave_guy/assets/records/brave_guy_record04_music.md)，交另一個工作階段製作。第二款遊戲已合併並上線。
 
 - [2026-11-11 勇氣超人：設計底 D1 實作與美術製作需求 v2.0（Claude）](handoffs/2026-11-11-game02-braveguy-d1.md)：原型已改成勇氣超人的核心玩法（兩種型態、四條計量、三小招一大招、變身）；進度見 [`02_brave_guy/PROGRESS.md`](../02_brave_guy/PROGRESS.md)；美術需求見 [`02_brave_guy/assets/ASSETS.md`](../02_brave_guy/assets/ASSETS.md)。
 
@@ -353,8 +355,8 @@
 - [Memory Crash 遊戲進度](../01_memory_crash/PROGRESS.md)：遊戲目前接入狀態，以最新進度為準。
 - [原素材交接](../01_memory_crash/CLAUDE_HANDOFF.md)：含先前版本的歷史說明，請與最新進度交叉閱讀。
 - [素材規格與分類](../01_memory_crash/assets/ASSETS.md)
-- [素材交付尺寸與來源](../01_memory_crash/assets/DELIVERY_V2.md)
-- [遊戲 PNG 無損壓縮紀錄](../01_memory_crash/assets/LOSSLESS_COMPRESSION.json)
+- [素材交付尺寸與來源](../01_memory_crash/assets/records/memory_crash_record03_delivery_v2.md)
+- [遊戲 PNG 無損壓縮紀錄](../01_memory_crash/assets/records/memory_crash_record04_lossless_compression.json)
 
 ## 後續每次製作的交接格式
 

@@ -12,7 +12,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
   const seek=async time=>{await page.evaluate(time=>__game.cinematics.update(Math.max(0,time-__game.cinematics.state.elapsed)),time)};
   const shot=async name=>{await page.waitForTimeout(300);await page.screenshot({path:out+'/'+name+'.png'})};
   for(const locale of ['zh-Hant','en','ja']){
-   await page.evaluate(async locale=>(await import('./js/i18n.js?v=20261115fast')).setLang(locale),locale);
+   await page.evaluate(async locale=>(await import('./js/i18n.js?v=20261120assets')).setLang(locale),locale);
    await start('awakening');
    for(const [i,time] of [0.2,2.6,3.7,4.9,6.4,9.3,10.6].entries()){
     await seek(time);assert.equal(await page.getAttribute('#cinema','data-awakening-shot'),String(i));assert((await page.locator('.cinema-caption p').textContent()).length>0);
@@ -28,7 +28,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
   await page.emulateMedia({reducedMotion:'no-preference'});await page.evaluate(()=>__game.prepareGameplay());
   let widthChecks=0;
   for(const width of [320,390,430]){await page.setViewportSize({width,height:Math.round(width*16/9)});for(const locale of ['zh-Hant','en','ja']){
-   await page.evaluate(async locale=>{(await import('./js/i18n.js?v=20261115fast')).setLang(locale);__game.showMenu()},locale);
+   await page.evaluate(async locale=>{(await import('./js/i18n.js?v=20261120assets')).setLang(locale);__game.showMenu()},locale);
    const equal=async selector=>{const widths=await page.locator(selector+' span[data-lang]').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().width));assert.equal(widths.length,3);assert(Math.min(...widths)>40);assert(Math.max(...widths)-Math.min(...widths)<1,JSON.stringify(widths));widthChecks++};
    await equal('#overlay .lang-btn');
    await page.evaluate(()=>{__game.startStage(0);__game.advanceDialog(true)});await page.locator('#btn-pause').click();await equal('#pause-menu .lang-btn');if(width===390&&locale==='zh-Hant')await shot('language-pause');await page.locator('#pm-resume').click();

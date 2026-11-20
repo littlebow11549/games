@@ -205,7 +205,7 @@
         "branding/logo_01_review_v1.png",
         "branding/icon_01.png",
         "branding/icon_01_logo.png",
-        "branding/banner_01.png"
+        "branding/game_center_branding01_banner_01.png"
       ],
       "status": "已有，Logo寬度限制另列",
       "next_action": "既有核准設計不重畫；衍生規格與使用位置核對",
@@ -429,7 +429,7 @@
   ],
   "integrated_transform_images": [
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_bg_stars.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic25_tf_bg_stars.png",
       "size": [
         1672,
         941
@@ -439,7 +439,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_glove.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic26_tf_glove.png",
       "size": [
         1672,
         941
@@ -449,7 +449,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_hair.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic27_tf_hair.png",
       "size": [
         1672,
         941
@@ -459,7 +459,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_jacket.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic28_tf_jacket.png",
       "size": [
         1672,
         941
@@ -469,7 +469,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_knee.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic29_tf_knee.png",
       "size": [
         1672,
         941
@@ -479,7 +479,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_pose.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic30_tf_pose.png",
       "size": [
         1672,
         941
@@ -489,7 +489,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_scarf.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic31_tf_scarf.png",
       "size": [
         1672,
         941
@@ -499,7 +499,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_sign.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic32_tf_sign.png",
       "size": [
         1024,
         1536
@@ -509,7 +509,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_silhouette.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic33_tf_silhouette.png",
       "size": [
         1672,
         941
@@ -519,7 +519,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_1.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic34_tf_waiting_1.png",
       "size": [
         1672,
         941
@@ -529,7 +529,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_2.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic35_tf_waiting_2.png",
       "size": [
         1672,
         941
@@ -539,7 +539,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_3.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic36_tf_waiting_3.png",
       "size": [
         1672,
         941
@@ -549,7 +549,7 @@
       "status": "沿用先前生成的原檔，SHA256未變；本輪接入首次變身與重播"
     },
     {
-      "path": "02_brave_guy/assets/source/pic/transform/tf_waiting_4.png",
+      "path": "02_brave_guy/assets/source/pic/transform/brave_guy_cinematic37_tf_waiting_4.png",
       "size": [
         1672,
         941

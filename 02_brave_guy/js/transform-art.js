@@ -1,6 +1,7 @@
+import { assetPath } from './asset-paths.js';
 // Lossless delivery copies of archived art; native dimensions and RGBA pixels preserved.
 export const TRANSFORM_FILES = ['bg_stars', 'silhouette', 'glove', 'knee', 'jacket', 'hair', 'scarf', 'pose', 'waiting_1', 'waiting_2', 'waiting_3', 'waiting_4', 'sign'];
-const urls = Object.fromEntries(TRANSFORM_FILES.map(id => [id, new URL(`../assets/runtime/lossless/pic/transform/tf_${id}.webp`, import.meta.url).href]));
+const urls = Object.fromEntries(TRANSFORM_FILES.map(id => [id, new URL(assetPath(`../assets/runtime/lossless/pic/transform/tf_${id}.webp`), import.meta.url).href]));
 const cache = new Map();
 function load(id) {
   if (!cache.has(id)) cache.set(id, new Promise(resolve => {

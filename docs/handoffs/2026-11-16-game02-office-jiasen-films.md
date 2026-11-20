@@ -7,7 +7,7 @@
 - 角色依CHARACTERS §11、原reference/braveguy_jiasen及unified/sheet_zhuangxiong：橘棕縫線布偶熊、圓耳、紅雞冠、灰白孔洞紅斜紋面具；職場版灰黑西裝、紅領帶、黑屏電腦。
 - boss_jiamangKing_storyboard：黑屏假忙／舉鍋推責／甩鍋紙張風暴三鏡，12秒登場。
 - victory_jiamangKing：接招／勇氣超人拳打回鍋命中面具／面具脫落、布偶現形三鏡，6秒勝利。自審發現初稿擊中鏡三隻熊掌，修訂為兩掌後才採用；退回稿保留、不接入。
-- 原生1024×1536 PNG歸檔source/pic/cinematics；同名WebP配送至runtime/lossless/pic/cinematics。無損最高壓縮、原尺寸與RGBA逐像素一致，細節與SHA見source/JIAMANG_FILMS_REVIEW.json。沒有插值放大，沒有把整個圖集當單鏡播放；每鏡原生1024×512供手機顯示，登場contain保留人物道具。
+- 原生1024×1536 PNG歸檔source/pic/cinematics；同名WebP配送至runtime/lossless/pic/cinematics。無損最高壓縮、原尺寸與RGBA逐像素一致，細節與SHA見source/brave_guy_record16_jiamang_films_review.json。沒有插值放大，沒有把整個圖集當單鏡播放；每鏡原生1024×512供手機顯示，登場contain保留人物道具。
 - 圖片按需解碼後播放，不加入首屏讀取。補jiamangKing的profile、三語對嗆、勝利鍵及獨立檔案，取代加班鬼王借圖。
 - 入口/main及變動模組版本20261116jiamang；前關、最終魔王及16關順序保留。
 

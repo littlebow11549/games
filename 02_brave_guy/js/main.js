@@ -1,32 +1,32 @@
-import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
-import { angelText } from './angel-language.js?v=20261119dialogue';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120perf';
-import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120secret';
-import { createGuestCombat } from './guest-combat.js?v=20261120perf';
-import { placeSpeech } from './speech-layout.js?v=20261119speech';
-import { createSecretToggle } from './secret-toggle.js?v=20261120secret';
-import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261119dialogue';
+import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
+import { angelText } from './angel-language.js?v=20261120assets';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
+import { createGuestCombat } from './guest-combat.js?v=20261120assets';
+import { placeSpeech } from './speech-layout.js?v=20261120assets';
+import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
+import { createProgressReset } from './progress-reset.js?v=20261120assets';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120assets';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
-import { RunRecords, formatTime, words } from './run-records.js?v=20261119dialogue';
-import { disposeOwned } from './dispose-owned.js?v=20261119dialogue';
+import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets';
+import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
-import { buildWorld, ARENA_RADIUS } from './world.js?v=20261119dialogue';
-import { createVisual, loadModel } from './visuals.js?v=20261119models';
-import { Fx } from './fx.js?v=20261119dialogue';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261119dialogue';
-import { createCinematics } from './cinematics.js?v=20261119dialogue';
-import { createOpening } from './opening.js?v=20261119dialogue';
-import { createMenuMotion } from './menu-motion.js?v=20261119dialogue';
-import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261119dialogue';
-import { Input, lockViewport } from './input.js?v=20261118stick';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261119dialogue';
-import { GameAudio } from './audio.js?v=20261118whoosh';
-import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261119dialogue';
-import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261119dialogue';
-import { makeMaze } from './maze.js?v=20261119dialogue';
-import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261119dialogue';
+import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
+import { createVisual, loadModel } from './visuals.js?v=20261120assets';
+import { Fx } from './fx.js?v=20261120assets';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120assets';
+import { createCinematics } from './cinematics.js?v=20261120assets';
+import { createOpening } from './opening.js?v=20261120assets';
+import { createMenuMotion } from './menu-motion.js?v=20261120assets';
+import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
+import { Input, lockViewport } from './input.js?v=20261120assets';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120assets';
+import { GameAudio } from './audio.js?v=20261120assets';
+import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261120assets';
+import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261120assets';
+import { makeMaze } from './maze.js?v=20261120assets';
+import { drawMinimapSprite, minimapArtReady } from './minimap-art.js?v=20261120assets';
 
 // ---------- 數值表（調手感改這裡；基準值出自 DESIGN.md 4.8） ----------
 
@@ -1811,7 +1811,7 @@ let manualLockUntil = 0;
 const lockMarker = new THREE.Mesh(new THREE.RingGeometry(0.85, 1, 4, 1), new THREE.MeshBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.9, depthWrite: false, side: THREE.DoubleSide }));
 // Reuse the ground-lock window from the existing atlas; retain the vector fallback.
 if (document.body.classList.contains('game-art')) {
-  new THREE.TextureLoader().load('assets/runtime/lossless/pic/icons/lock_heal_sheet.webp', texture => {
+  new THREE.TextureLoader().load('assets/runtime/lossless/pic/icons/brave_guy_ui35_鎖定治療圖集.webp', texture => {
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.repeat.set(884 / 1536, 368 / 1024);
     texture.offset.set(54 / 1536, 1 - (610 + 368) / 1024);
@@ -2665,7 +2665,7 @@ function frame(now) {
 async function boot() {
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261118whoosh';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261120assets';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

@@ -12,8 +12,8 @@
 
 ## 圖示與來源
 - 使用者明確要求換圖示。先確認既有guest_skill_atlas.png與美術台帳，再用該圖集作風格參照，由image_gen產生單張「五爆點＋天使心形結界」圖示。
-- 新母檔：02_brave_guy/assets/source/pic/icons/angel_guard_bombardment.png，1254×1254 RGBA，原生尺寸。
-- 交付：assets/runtime/lossless/pic/icons/angel_guard_bombardment.webp，同尺寸，逐像素比對通過，無縮圖／插值。
+- 新母檔：02_brave_guy/assets/source/pic/icons/brave_guy_ui24_小天使五點結界.png，1254×1254 RGBA，原生尺寸。
+- 交付：assets/runtime/lossless/pic/icons/brave_guy_ui24_小天使五點結界.webp，同尺寸，逐像素比對通過，無縮圖／插值。
 - source/ANGEL_GUARD_ICON_DELIVERY.json記錄規格、路徑與SHA256。CSS只覆蓋小天使R，其他八個圖示繼續使用原圖集；舊R區塊是混合圖集一部分，不能搬走整張現役圖集。
 - guest-combat.js、main.js與playable-roster.css接入；入口／模組版本20261120barrier。
 

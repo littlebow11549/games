@@ -1,6 +1,6 @@
 /* 字型：內文用粉圓體（圓潤、好讀），標題與大字用思源黑體 Black。都只含遊戲用到的字，見 tools/make_game02_fonts.py */
-@font-face{font-family:"BG Round";src:url("../assets/fonts/huninn-subset.woff2?v=20261120secret") format("woff2");font-display:swap}
-@font-face{font-family:"BG Black";src:url("../assets/fonts/notosanstc-black-subset.woff2?v=20261120secret") format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"BG Round";src:url("../assets/fonts/brave_guy_font01_huninn-subset.woff2?v=20261120assets") format("woff2");font-display:swap}
+@font-face{font-family:"BG Black";src:url("../assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2?v=20261120assets") format("woff2");font-weight:900;font-display:swap}
 :root{--font-body:"BG Round","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
   --font-display:"BG Black","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif}
 /* 佔位 UI：以 CSS 繪製，配色取自概念圖（勇氣綠、外套黃、圍巾紅）。正式美術到位後替換。 */
@@ -24,8 +24,8 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 
 .hud-top-left{position:absolute;left:calc(10px + var(--safe-l));top:calc(8px + var(--safe-t));display:flex;gap:8px;align-items:flex-start}
 .portrait{width:58px;height:58px;border-radius:50%;border:3px solid var(--ink);outline:3px solid var(--yellow);
-  background:radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a) ;background-image:url(../assets/runtime/pic/ui/portrait_student.webp),radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a);background-size:112%,cover;background-position:center 30%,center;background-repeat:no-repeat;box-shadow:0 2px 8px #0008;transition:outline-color .2s}
-.portrait.brave{outline-color:var(--red);background-image:url(../assets/runtime/pic/ui/portrait_brave.webp),radial-gradient(circle at 50% 35%,#fff3b0,#ffb52e)}
+  background:radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a) ;background-image:url(../assets/runtime/pic/ui/brave_guy_ui16_主角頭像.webp),radial-gradient(circle at 50% 35%,#dff7c8,#7fcf6a);background-size:112%,cover;background-position:center 30%,center;background-repeat:no-repeat;box-shadow:0 2px 8px #0008;transition:outline-color .2s}
+.portrait.brave{outline-color:var(--red);background-image:url(../assets/runtime/pic/ui/brave_guy_ui21_勇氣超人頭像.webp),radial-gradient(circle at 50% 35%,#fff3b0,#ffb52e)}
 .bars{display:flex;flex-direction:column;gap:4px;padding-top:2px}
 .bar{position:relative;height:15px;width:min(36vw,240px);border-radius:8px;background:#000a;border:2px solid var(--ink);overflow:hidden}
 .bar i{position:absolute;inset:0;transform-origin:left;transition:transform .12s}
@@ -299,7 +299,7 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 #menu-art .frame{position:absolute;top:-2%;bottom:-2%;right:-1%;width:64%}
 #menu-art .f1{background:#10131a;clip-path:polygon(24% 0,100% 0,100% 100%,0 100%)}
 #menu-art .f2{background:var(--yellow);clip-path:polygon(25.2% 0,100% 0,100% 100%,1.6% 100%)}
-#menu-art .art{background:#07130c url(../assets/runtime/pic/branding/banner_01.webp) 66% center/auto 104% no-repeat;clip-path:polygon(26.6% 0,100% 0,100% 100%,3.4% 100%)}
+#menu-art .art{background:#07130c url(../assets/runtime/pic/branding/brave_guy_branding01_banner_01.webp) 66% center/auto 104% no-repeat;clip-path:polygon(26.6% 0,100% 0,100% 100%,3.4% 100%)}
 #menu-bubble{position:absolute;right:max(3vw,var(--safe-r));top:20%;max-width:200px;padding:9px 14px;border-radius:16px;background:#fff;color:var(--ink);
   border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);font-size:14px;font-weight:800;line-height:1.35;transform:rotate(3deg);animation:bubbleBob 3s ease-in-out infinite alternate}
 #menu-bubble::after{content:"";position:absolute;left:26px;bottom:-13px;border:7px solid transparent;border-top-color:var(--ink);border-bottom:0}
@@ -434,5 +434,5 @@ body.blind #scene{filter:brightness(.6) saturate(.6)}
 .round-badge[hidden]{display:none}
 @keyframes godShift{from{background-position:0 0}to{background-position:300% 0}}
 
-@font-face{font-family:"BG JP";src:url("../assets/fonts/notosansjp-subset.woff2?v=20261120secret") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"BG JP";src:url("../assets/fonts/brave_guy_font02_notosansjp-subset.woff2?v=20261120assets") format("woff2");font-weight:100 900;font-display:swap}
 html[lang="ja"]{--font-display:"BG JP","BG Black",sans-serif}

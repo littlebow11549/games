@@ -41,11 +41,11 @@ def build(font, name):
     font.save(path)
     print(name, os.path.getsize(path) // 1024, 'KB')
 
-build(TTFont(os.path.join(src, 'jf-openhuninn-2.1.ttf')), 'huninn-subset.woff2')
+build(TTFont(os.path.join(src, 'jf-openhuninn-2.1.ttf')), 'brave_guy_font01_huninn-subset.woff2')
 black = instantiateVariableFont(TTFont(os.path.join(src, 'NotoSansTC[wght].ttf')), {'wght': 900})
-build(black, 'notosanstc-black-subset.woff2')
+build(black, 'brave_guy_font03_notosanstc-black-subset.woff2')
 
 # Japanese localized glyph forms, rather than falling back to a Chinese font.
 jp_path = os.path.join(src, "NotoSansJP[wght].ttf")
 if os.path.exists(jp_path):
-    build(TTFont(jp_path), "notosansjp-subset.woff2")
+    build(TTFont(jp_path), "brave_guy_font02_notosansjp-subset.woff2")

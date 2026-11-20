@@ -9,7 +9,7 @@ export const MINIMAP_REGIONS = {
   hero: [932, 744, 238, 238],
 };
 const atlas = new Image();
-atlas.src = new URL('../assets/runtime/lossless/pic/ui/minimap_sheet.webp', import.meta.url).href;
+atlas.src = new URL('../assets/runtime/lossless/pic/ui/brave_guy_ui23_小地圖圖集.webp', import.meta.url).href;
 export function minimapArtReady() {
   return atlas.complete && atlas.naturalWidth > 0;
 }

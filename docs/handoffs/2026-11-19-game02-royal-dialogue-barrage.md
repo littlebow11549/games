@@ -22,7 +22,7 @@
 - js/guest-combat.js：大招接入／清場傷害，一般子機文字彈；js/nightmare-boss-skills.js：Boss版門陣與台詞彈。
 - js/main.js：敵方文字彈與專用釋放，避免破壞共享Sprite geometry；play.html及模組快取版本20261119arsenal。
 - js/angel-language.js、system-art.js、playable-roster.js：沿用共用語言狀態及技能名稱映射；加入惡夢大招英日名稱。
-- assets/source/pic/titles/ult_nightmare_en.svg、ult_nightmare_ja.svg：760×370原生向量，復用既有紫綠爆發底形與Noto Sans TC／JP Black字形轉路徑；不是重複生成原中文素材。
+- assets/source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg、brave_guy_ui15_ult_nightmare_ja.svg：760×370原生向量，復用既有紫綠爆發底形與Noto Sans TC／JP Black字形轉路徑；不是重複生成原中文素材。
 - assets/fonts與css/game.css：重建三份字型子集並更新版本。門陣／文字均程式繪製，無新增點陣圖片、影片或音檔。
 
 ## 驗證

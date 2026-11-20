@@ -28,7 +28,7 @@
   let readyMetrics=null,fontReady=null;
   function ensureFont(){
     if(fontReady)return fontReady;
-    fontImage=new Image();fontImage.src='assets/source/pic/font/font_01.webp';
+    fontImage=new Image();fontImage.src='assets/source/pic/font/memory_crash_ui02_font_01.webp';
     fontReady=Promise.all([fontImage.decode(),fetch('assets/source/pic/font/font_01.metrics.json').then(r=>{if(!r.ok)throw new Error('font metrics');return r.json();})]).then(([,metrics])=>{readyMetrics=metrics;document.querySelectorAll('[data-bitmap]').forEach(node=>paintLabel(node,metrics));}).catch(()=>{});
     return fontReady;
   }
@@ -56,7 +56,7 @@
   intro.addEventListener('ended',finishIntro);intro.addEventListener('error',finishIntro);skip.addEventListener('click',finishIntro);
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&introPlaying){e.preventDefault();finishIntro();}});
   const fxRoot=document.querySelector('#fxLayer');
-  const fxPreload=new Image();fxPreload.src='assets/runtime/pic/fx_01.webp';
+  const fxPreload=new Image();fxPreload.src='assets/runtime/pic/memory_crash_fx02_fx_01.webp';
   function effect(kind){
     const names={burst:0,shatter:1,crack:2};if(!(kind in names))return;
     const art=document.createElement('span');art.className='fx-art fx-'+kind;

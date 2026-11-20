@@ -42,8 +42,8 @@
 - js/guest-combat.js：文字彈、子機、三路衝拳、凍結、麻痺爆點與龍捲；自有貼圖/材質/geometry清理，不dispose Three共享Sprite geometry。
 - js/main.js：選角入口、模型映射、救援與劇情、HUD、Boss控制、清理與計時紀錄。
 - play.html與css/game.css：新模組／樣式及字型快取版本20261119roster。
-- assets/fonts/huninn-subset.woff2、notosanstc-black-subset.woff2：重跑既有字型子集工具，涵蓋新中文台詞。
-- 圖片來源：runtime/pic/ui/portrait_brave.webp；runtime/lossless/pic/sheet/unified/sheet_angel.webp及sheet_nightmare.webp。
+- assets/fonts/brave_guy_font01_huninn-subset.woff2、brave_guy_font03_notosanstc-black-subset.woff2：重跑既有字型子集工具，涵蓋新中文台詞。
+- 圖片來源：runtime/pic/ui/brave_guy_ui21_勇氣超人頭像.webp；runtime/lossless/pic/sheet/unified/sheet_angel.webp及sheet_nightmare.webp。
 - 聲音復用既有dash/ki_shot/quake/boom/beam_start/revive；沒有新合成音效或語音配音。guest音效呼叫轉交boot後實際GameAudio，避免抓到未載入manifest的初始物件。
 
 ## 驗證

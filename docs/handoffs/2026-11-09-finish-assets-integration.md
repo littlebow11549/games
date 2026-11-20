@@ -11,7 +11,7 @@
 | assets/source/music/bgm_02.mp3 | 約 73.85 秒、130 BPM、原創合成大師模式配樂；保留主旋律識別並增加節奏層次 |
 | assets/source/video/vid_01.webm | 1080×1920、24fps、4 秒的 Logo 揭幕開場，無音訊、VP9 lossless RGB 母檔 |
 
-新 PNG 僅無損壓縮，原生尺寸、RGBA 與所有像素不變，紀錄在 assets/source/pic/fx/COMPRESSION.json。未對小圖插值放大。原來的圖片尺寸表已改列真實原生尺寸，並保留最初建議尺寸註記，不再把兩者混為一談。
+新 PNG 僅無損壓縮，原生尺寸、RGBA 與所有像素不變，紀錄在 assets/source/pic/fx/game_center_record02_banner_compression.json。未對小圖插值放大。原來的圖片尺寸表已改列真實原生尺寸，並保留最初建議尺寸註記，不再把兩者混為一談。
 
 ## 完成的接入
 

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "tap",
+    "path": "assets/source/sfx/brave_guy_sfx174_ui_tap_crisp_v3.wav",
+    "sampleRate": 44100,
+    "duration": 0.115,
+    "bytes": 10188,
+    "peakDBFS": -4.0
+  },
+  {
+    "name": "confirm",
+    "path": "assets/source/sfx/brave_guy_sfx171_ui_confirm_crisp_v3.wav",
+    "sampleRate": 44100,
+    "duration": 0.205,
+    "bytes": 18124,
+    "peakDBFS": -4.0
+  },
+  {
+    "name": "back",
+    "path": "assets/source/sfx/brave_guy_sfx168_ui_back_crisp_v3.wav",
+    "sampleRate": 44100,
+    "duration": 0.145,
+    "bytes": 12832,
+    "peakDBFS": -4.0
+  }
+]

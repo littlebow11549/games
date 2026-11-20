@@ -1,0 +1,137 @@
+[
+  {
+    "number": 1,
+    "id": "student",
+    "name": "主角學生"
+  },
+  {
+    "number": 2,
+    "id": "angel",
+    "name": "小天使"
+  },
+  {
+    "number": 3,
+    "id": "ganqiao",
+    "name": "小幹譙"
+  },
+  {
+    "number": 4,
+    "id": "braveguy",
+    "name": "勇氣超人"
+  },
+  {
+    "number": 5,
+    "id": "folaidi",
+    "name": "佛賴弟"
+  },
+  {
+    "number": 6,
+    "id": "junxiong",
+    "name": "俊熊"
+  },
+  {
+    "number": 7,
+    "id": "folaidiKing",
+    "name": "佛賴弟王"
+  },
+  {
+    "number": 8,
+    "id": "jiasen",
+    "name": "假森"
+  },
+  {
+    "number": 9,
+    "id": "qian",
+    "name": "錢大姐"
+  },
+  {
+    "number": 10,
+    "id": "lan",
+    "name": "藍教頭"
+  },
+  {
+    "number": 11,
+    "id": "nightmare",
+    "name": "惡夢超人"
+  },
+  {
+    "number": 12,
+    "id": "ganqiao_mid",
+    "name": "悶幹譙"
+  },
+  {
+    "number": 13,
+    "id": "midKing",
+    "name": "特大悶幹譙"
+  },
+  {
+    "number": 14,
+    "id": "hell",
+    "name": "地獄超人"
+  },
+  {
+    "number": 15,
+    "id": "worker",
+    "name": "主角上班族"
+  },
+  {
+    "number": 16,
+    "id": "kaban",
+    "name": "加班鬼"
+  },
+  {
+    "number": 17,
+    "id": "jiamang",
+    "name": "假忙森"
+  },
+  {
+    "number": 18,
+    "id": "kabanKing",
+    "name": "加班鬼王"
+  },
+  {
+    "number": 19,
+    "id": "xinji",
+    "name": "新雞"
+  },
+  {
+    "number": 20,
+    "id": "baguashe",
+    "name": "八卦蛇"
+  },
+  {
+    "number": 21,
+    "id": "lanMgr",
+    "name": "藍經理"
+  },
+  {
+    "number": 22,
+    "id": "ganqiaoFull",
+    "name": "幹譙龍完全體"
+  },
+  {
+    "number": 23,
+    "id": "qianBiz",
+    "name": "錢經理"
+  },
+  {
+    "number": 24,
+    "id": "jiamangKing",
+    "name": "假忙森主管"
+  },
+  {
+    "number": 25,
+    "id": "guan",
+    "name": "冠老闆"
+  },
+  {
+    "number": 26,
+    "id": "incubus",
+    "name": "夢魘超人"
+  },
+  {
+    "number": 27,
+    "id": "incubus_ascended",
+    "name": "夢魘超人最終覺醒"
+  }
+]

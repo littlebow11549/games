@@ -13,7 +13,7 @@
 - 原始合成程式：`tools/make_game02_sfx.py`；新增 combatRevision=2 及 enhanced 名稱清單。
 - 現行音檔：`02_brave_guy/assets/source/sfx/`；63 MP3＋1 OGG，共509,062 bytes。
 - 新版26份WAV母帶：`_archive/game02/sfx/2026-11-15/combat-v2/`；舊母帶完整保留在上層。皆mono、44.1kHz、16bit，MP3仍96kbps。
-- 完整路徑、聲長、電平、SHA與版本：`02_brave_guy/assets/source/SFX_DELIVERY.json`。
+- 完整路徑、聲長、電平、SHA與版本：`02_brave_guy/assets/records/brave_guy_record49_sfx_delivery.json`。
 - 試聽：`02_brave_guy/assets/preview/audio/combat-v2.mp3`，依序為拳擊與命中、重擊、50連擊、蓄力、變身爆發、大招收尾。此為無BGM串接試聽，不宣稱真人錄音或配音。
 
 ## 驗證與限制

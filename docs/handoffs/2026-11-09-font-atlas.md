@@ -8,7 +8,7 @@
 
 - `font_01.png`：一張完整透明 PNG，不拆成多張。金色立體字面、深藍描邊與青色細光，包含 A–Z、a–z、15 個符號與空白字元。
 - `font_01.json`：68 個字元的 Unicode、列欄、實際切圖 frame 座標與 alpha 邊界。
-- `COMPRESSION.json`：原始／壓縮容量、原生尺寸、RGBA 像素 SHA-256 與無損一致性驗證。
+- `game_center_record02_banner_compression.json`：原始／壓縮容量、原生尺寸、RGBA 像素 SHA-256 與無損一致性驗證。
 
 ## 排列與對照
 
@@ -30,7 +30,7 @@
 
 原生 1254×1254 RGBA，尚未達清單原訂 2048×2048。保留真實原生解析度，未插值放大假裝增加細節。單字可見圖形約 100px，切圖時不要超過原生像素硬放大；如需大型字面應重製更高原生解析度。
 
-已目視核對 A–Z、a–z 與符號，並以 alpha 驗證 67 個可見字元 frame 非空、空白 frame 無實體字形。PNG 保留透明底，移除第一版多餘底板。僅無損最佳化壓縮，壓縮前後尺寸、模式及所有 RGBA 像素完全一致；細節見 COMPRESSION.json。
+已目視核對 A–Z、a–z 與符號，並以 alpha 驗證 67 個可見字元 frame 非空、空白 frame 無實體字形。PNG 保留透明底，移除第一版多餘底板。僅無損最佳化壓縮，壓縮前後尺寸、模式及所有 RGBA 像素完全一致；細節見 game_center_record02_banner_compression.json。
 
 第一版底板稿未放進 repo 的正式素材位置，原始生成檔留在本次雲端工作區 /workspace/generated_images/，正式交付僅此一張 font_01.png。
 

@@ -14,7 +14,7 @@ for i in range(round(rate*duration)):
   else:env=.025*(length-t)/.025
   v+=math.sin(2*math.pi*frequency*t)*env*gain
  samples.append(round(v*32767))
-p=Path(__file__).resolve().parents[1]/'02_brave_guy/assets/source/sfx/sfx_dialog_next.wav'
+p=Path(__file__).resolve().parents[1]/'02_brave_guy/assets/source/sfx/brave_guy_sfx33_dialog_next.wav'
 with wave.open(str(p),'wb') as w:
  w.setparams((1,2,rate,0,'NONE','not compressed'));w.writeframes(struct.pack('<'+'h'*len(samples),*samples))
 print(p.name, len(samples)/rate, 'seconds; peak',20*math.log10(max(map(abs,samples))/32767),'dBFS')
