@@ -288,7 +288,7 @@ const rand = (a, b) => a + Math.random() * (b - a);
 const forward = (yaw, out = new THREE.Vector3()) => out.set(Math.sin(yaw), 0, Math.cos(yaw));
 const dist2d = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const alive = (e) => e.state !== 'dead' && e.state !== 'spawn';
-const stats = () => {const base=FORM[hero.form === 'brave' ? 'brave' : 'student'];return hero.guestBurstT>0?{...base,atk:base.atk*1.25,speed:base.speed*1.15,hurtMult:base.hurtMult*.8}:base;}; // 上班族沿用大學生的數值
+const stats = () => {const base=FORM[hero.form === 'brave' ? 'brave' : 'student'];return hero.guestBurstT>0?{...base,atk:base.atk*1.5,speed:base.speed*1.15,hurtMult:base.hurtMult*.8}:base;}; // 上班族沿用大學生的數值
 const stage = () => STAGES[game.stage];
 let maze = null; // 這一關的迷宮（教學關與黑影單挑沒有）
 const navTmp = new THREE.Vector3();
@@ -391,6 +391,9 @@ function setForm(form) {
   const visualKind = guest() ? hero.character : form;
   for (const [k, v] of Object.entries(hero.vis)) v.root.visible = k === visualKind;
   hero.visual = hero.vis[visualKind];
+  // Dialog frames do not run the combat update: place the selected model immediately.
+  hero.visual.root.position.copy(hero.pos);
+  hero.visual.root.rotation.y = hero.yaw;
   hero.visual.glow(false);
   if (changed) applyBgm();
   hero.visual.play('idle');
