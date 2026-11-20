@@ -4,6 +4,8 @@
 
 ## 最新交付
 
+- [2026-11-20 最終設定集確認／停止生圖](handoffs/2026-11-20-approved-visual-revision-02.md)：使用者新傳四張米白底VISUAL REVISION 02才是最終定案；原檔待定位，禁止以舊深綠底版本冒認。
+
 - [2026-11-20 廢棄視覺清理](handoffs/2026-11-20-retired-assets-cleanup.md)：213檔約149MiB直接刪除；包含佔位SVG、錯Logo稿、舊預覽；保留正式母檔與現役大招字。
 
 - [2026-11-20 主畫面長按解鎖](handoffs/2026-11-20-game02-secret-character-unlocks.md)：長按5秒依序小天使／惡夢角色通知與獨立保存權限，三語台詞、零輪選角，保留戰場秘技與正常解鎖。
