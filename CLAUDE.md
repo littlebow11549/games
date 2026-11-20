@@ -1,7 +1,13 @@
 # Claude 接手入口
 
-請先讀 [docs/HANDOFF.md](docs/HANDOFF.md)，其中連到最新製作報告、素材位置與遊戲進度。
+開始任何整理、製作或程式修改前，依序閱讀：
 
-使用者要求所有製作都附交接報告：每次修改程式、素材、音樂、動畫或版面，請同步更新 docs/handoffs/ 的相關報告與 docs/HANDOFF.md，隨成果提交。其餘協作要求見 AGENTS.md。
+1. [AGENTS.md：素材設計與替換鐵則](AGENTS.md#asset-design-rules)——全專案唯一的設計準則主文，Claude、Codex及人工接手均適用。
+2. [docs/HANDOFF.md](docs/HANDOFF.md)——最新實作、驗證、待辦及發布狀態。
+3. 目標專案的 `assets/records/*_asset-index.md`、`*_asset-inventory.json`、`*_asset-renames.json`，以及相關製作報告。
 
-**資料夾結構鐵則**（所有遊戲共用同一套結構、保持簡潔、不隨意新增資料夾、未使用素材與舊圖統一收 `assets/_alternate/`、不再做驗收用頁面改在對話預覽）詳見 AGENTS.md「資料夾結構鐵則」一節，含統一結構圖與待執行整理清單。
+核心要求：按角色／用途整合圖集、固定用途ID與取圖規格、能直接換圖並沿用角色參考製作新風格、區分定案／現役／備選、原檔與版本可追溯。整理規則不依賴聊天記憶；若與舊規格衝突，以AGENTS最新鐵則及使用者後續明確指示為準。
+
+不得把未直接載入的正式母檔當垃圾。已確認淘汰的半成品、錯Logo稿與QA依最新清理指示刪除並記錄；有價值的未使用備選才收 `_alternate/`。不要重建預覽頁或散放交付文件。
+
+每次製作必須更新 `docs/handoffs/` 報告及 `docs/HANDOFF.md`，與成果共同提交。明確區分需求、規格、已實作、已驗證及未完成；不得把仍待重繪的圖集說成已接入。

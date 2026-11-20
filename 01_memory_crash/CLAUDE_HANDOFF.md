@@ -1,5 +1,7 @@
 # Claude 素材交接（2026-11-09）
 
+> 接手前先讀根目錄 [CLAUDE.md](../CLAUDE.md) 與 [素材設計與替換鐵則](../AGENTS.md#asset-design-rules)。以下為歷史交付；現況以 assets/records/ 索引及根目錄最新交接為準。
+
 已依最新 assets/ASSETS.md 的媒體分類與編號放檔。專案根目錄為 /workspace/games/01_memory_crash。
 
 ## 已完成素材（以下相對 assets/source/）
