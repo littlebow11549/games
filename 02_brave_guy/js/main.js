@@ -3,7 +3,7 @@ import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120nightcast';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
-import { createGuestCombat } from './guest-combat.js?v=20261120assets';
+import { createGuestCombat } from './guest-combat.js?v=20261120angelstraight';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
@@ -15,7 +15,7 @@ import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
-import { Fx } from './fx.js?v=20261120assets';
+import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
 import { createOpening } from './opening.js?v=20261120assets';
@@ -2010,6 +2010,8 @@ function startDodge(mv) {
   }
 }
 
+const isAngelStraightCast = action => hero.character === 'angel' && action === 'skill1';
+
 function startSkill(name, mv) {
   if (!game.abilities.has(name)) { popup(hero.pos,2.8,unlockHint(name),'guard');say('locked');return; }
   if (hero.form !== 'brave') { say('noSkill'); return; }
@@ -2018,7 +2020,10 @@ function startSkill(name, mv) {
     const idx=['skill1','skill2','skill3','ult'].indexOf(name);if(idx<0)return;
     if(name==='ult'){if(hero.qi<GAUGE.qiMax||guestCombat.ultActive)return;hero.qi=0;}
     else {if((hero.cds[name]||0)>0)return;hero.cds[name]=ROSTER[hero.character].cd[idx];}
-    faceForAction(mv,18);hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
+    // Q uses the direction she already faces, never the cursor or a newly acquired lock.
+    if(isAngelStraightCast(name))hero.actionLockTarget=null;
+    else faceForAction(mv,18);
+    hero.state='guestCast';hero.t=0;hero.guestCastDuration=.4;
     hero.invuln=Math.max(hero.invuln,.45);hero.visual.play(name,.4);
     guestCombat.begin(hero.character,name);
     showSkillCastName(name,ROSTER[hero.character].skills[idx]);
@@ -2129,7 +2134,8 @@ function updateHero(dt) {
     } else {
       hero.visual.play('idle');
     }
-    if (mv.len === 0) trackAttackLock();
+    // Do not turn the idle model toward a target on the same frame that Angel Q fires.
+    if (mv.len === 0 && !actions.some(isAngelStraightCast)) trackAttackLock();
     for (const a of actions) { if (hero.state !== 'free') break; act(a); }
   } else if (hero.state === 'transforming') {
     // 可按住拖延 1–3 秒，全程無敵；拖越久衝擊波越強

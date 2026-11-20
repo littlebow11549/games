@@ -30,7 +30,9 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
   const from=hero.pos.clone(),dir=direction(hero.yaw),color=kind==='angel'?0xa2eeff:0xad61ff;
   if(kind==='angel'){
    if(name==='skill1'){
-    const end=from.clone().addScaledVector(dir,28);line(from,end,8,4.8,{src:name,kb:22,launch:9,heavy:true,forwardOnly:true});fx.trail(from,end,8,0xffa5df,.55,.18);fx.trail(from,end,3,0xd5fbff,.4,.3);
+    const width=8,end=from.clone().addScaledVector(dir,28);
+    line(from,end,width,4.8,{src:name,kb:22,launch:9,heavy:true,forwardOnly:true});
+    fx.trail(from,end,width,0xffa5df,.55,.35,{alignToPath:true});
     bolt(from,dir,{text:'不要過來！',mult:0,src:name,life:1,speed:28,scale:1.6,piercing:true});audio.sfx('dash');
    }else if(name==='skill2'){
     area(from,9,2.5,name,3,0xa2eeff);casts.push({kind:'snow',pos:from,life:2,tick:0});audio.sfx('quake');

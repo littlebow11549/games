@@ -7,6 +7,7 @@
 先讀 [素材設計與替換鐵則](../AGENTS.md#asset-design-rules)。這是所有協作者共同遵守的設計準則；實作完成度則依下方報告判斷。
 
 ## 最新交付
+- [小天使 Q 沿自身面向](handoffs/2026-11-20-angel-q-facing.md)：不重新瞄準，單一直線光帶與命中一致。
 - [惡夢超人一般對話框去除灰底](handoffs/2026-11-20-nightmare-dialogue-clip.md)：沿第五列三格原輪廓裁背景，保留文字及尾巴。
 
 - [惡夢系守關者的招式字圖](handoffs/2026-11-20-nightmare-boss-cast-routing.md)：四招各自取惡夢三語圖集。

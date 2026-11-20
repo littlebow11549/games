@@ -158,11 +158,14 @@ export class Fx {
   }
 
   // 殘影：衝拳路徑上留下的拖尾
-  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7) {
+  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7, { alignToPath = false } = {}) {
     const len = Math.hypot(to.x - from.x, to.z - from.z);
     const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), additive(color, opacity));
     m.rotation.x = -Math.PI / 2;
-    m.rotation.z = -Math.atan2(to.x - from.x, to.z - from.z);
+    const yaw = Math.atan2(to.x - from.x, to.z - from.z);
+    // A plane's local Y axis becomes -Z after the ground rotation. The positive
+    // angle aligns it to the endpoints; leave older effect styles unchanged.
+    m.rotation.z = alignToPath ? yaw : -yaw;
     m.position.set((from.x + to.x) / 2, 0.2, (from.z + to.z) / 2);
     return this.add(m, life, (k) => { m.material.opacity = opacity * (1 - k); m.scale.x = 1 - k * 0.6; });
   }
