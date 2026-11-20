@@ -1,3 +1,4 @@
+require('node:fs').mkdirSync('/tmp/game02-qa',{recursive:true});
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 (async()=>{
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
@@ -6,7 +7,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
   page.setDefaultTimeout(120000);page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{window.filmDraws=0;for(const C of [WebGLRenderingContext,WebGL2RenderingContext])for(const key of ['drawArrays','drawElements','drawArraysInstanced','drawElementsInstanced']){const fn=C.prototype[key];if(fn)C.prototype[key]=function(...args){if(this.canvas.id==='scene')window.filmDraws++;return fn.apply(this,args)}}});
   await page.goto(process.env.GAME_URL||'http://127.0.0.1:8000/02_brave_guy/play.html');await page.locator('.opening-skip').click();
-  const out='/workspace/games/02_brave_guy/assets/preview/picture-films';fs.mkdirSync(out,{recursive:true});
+  const out='/tmp/game02-qa/picture-films';fs.mkdirSync(out,{recursive:true});
   const start=async mode=>{await page.evaluate(mode=>{__game.cinematics.cancel();__game.game.phase='cinematic';__game.cinematics[mode](()=>__game.game.phase='ready')},mode);await page.waitForFunction(mode=>__game.cinematics.state?.mode===mode,mode);await page.evaluate(()=>window.filmDraws=0)};
   const seek=async time=>{await page.evaluate(time=>__game.cinematics.update(Math.max(0,time-__game.cinematics.state.elapsed)),time)};
   const shot=async name=>{await page.waitForTimeout(300);await page.screenshot({path:out+'/'+name+'.png'})};

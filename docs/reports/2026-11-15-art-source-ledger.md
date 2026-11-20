@@ -127,3 +127,8 @@
 
 ## 2026-11-20 小天使第三招新圖示
 使用者要求五點轟炸＋排斥結界，已參照現役guest_skill_atlas.png以image_gen生成獨立angel_guard_bombardment.png（1254×1254 RGBA），母檔位於02_brave_guy/assets/source/pic/icons/，runtime/lossless/pic/icons/下同名WebP逐像素無損。交付JSON：assets/source/ANGEL_GUARD_ICON_DELIVERY.json。CSS只替換小天使R；原圖集其他八區仍在使用。詳見docs/handoffs/2026-11-20-game02-angel-guard-bombardment.md。
+
+
+## 2026-11-20 廢棄視覺清理與職場補圖
+舊SVG佔位、錯Logo稿及歸檔視覺已依使用者明確要求刪除，歷史紀錄不代表目前檔案存在。六張ult_角色三語大招字仍使用並明確保留。16張sheet/unified為現役母檔，已逐像素驗證角色區域。刪除清單：docs/reports/2026-11-20-retired-assets-removed.json（repo相對）。
+已查既有16張合輯與CHARACTERS職場變體說明；缺少獨立的加班鬼、加班鬼王、假忙森、假忙森主管、錢經理、藍經理設定集。使用者已於本日明確同意補這六款；沿用原角色與正式Logo，不重繪已有16張。

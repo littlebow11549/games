@@ -1,3 +1,4 @@
+require('node:fs').mkdirSync('/tmp/game02-qa',{recursive:true});
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 (async()=>{
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
@@ -11,7 +12,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
   // Hold the freshly spawned boss in its hidden spawn state to cover immediate clicks.
   await frame.evaluate(()=>{const e=__game.enemies.find(e=>e.def.incubus);e.state='spawn';e.t=-1;e.shown=false;e.visual.root.visible=false});
   await frame.locator('#btn-quick-clear').click();await frame.waitForFunction(()=>__game.cinematics.state?.mode==='awakening');await frame.evaluate(()=>__game.cinematics.update(10.5));await page.waitForTimeout(500);
-  const out='/workspace/games/02_brave_guy/assets/preview/picture-films';fs.mkdirSync(out,{recursive:true});await page.screenshot({path:out+'/release-awakening.png'});await frame.locator('.cinema-skip').click();
+  const out='/tmp/game02-qa/picture-films';fs.mkdirSync(out,{recursive:true});await page.screenshot({path:out+'/release-awakening.png'});await frame.locator('.cinema-skip').click();
   assert(await frame.evaluate(()=>{const e=__game.enemies.find(e=>e.def.incubus);return e.shown&&e.visual.root.visible&&e.visual.root.scale.x>0&&e.state==='chase'}));
   await frame.locator('#btn-quick-clear').click();await frame.waitForFunction(()=>__game.cinematics.state?.mode==='victory');await frame.evaluate(()=>__game.cinematics.update(2.3));await page.waitForTimeout(500);await page.screenshot({path:out+'/release-final-victory.png'});await frame.locator('.cinema-skip').click();
   await frame.locator('#ov-next').click();await frame.waitForFunction(()=>__game.cinematics.state?.mode==='ending');await frame.evaluate(()=>__game.cinematics.update(5));await page.waitForTimeout(500);await page.screenshot({path:out+'/release-ending.png'});await frame.locator('.cinema-skip').click();assert.equal(await frame.getAttribute('#cinema','data-act'),'credits');await frame.locator('.cinema-skip').click();assert.equal(await frame.getAttribute('#overlay','data-outcome'),'ending');

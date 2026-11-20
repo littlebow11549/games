@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 import math,json,hashlib
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE=ROOT/'assets/source/pic/character';OUT=ROOT/'assets/preview';OUT.mkdir(parents=True,exist_ok=True)
+SOURCE=ROOT/'assets/source/pic/character';OUT=Path('/tmp/game01-qa');OUT.mkdir(parents=True,exist_ok=True)
 W,H=320,360
 clips=[('idle',3,'BREATHING + BLINK'),('happy',8,'HAPPY'),('sad',5,'SAD'),('celebrate',8,'CELEBRATE')]
 font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',16)

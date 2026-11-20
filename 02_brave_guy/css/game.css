@@ -45,9 +45,9 @@ html,body{margin:0;height:100%;overflow:hidden;position:fixed;inset:0;width:100%
 @keyframes shake{25%{transform:translateX(-1px)}75%{transform:translateX(1px)}}
 
 .hud-top-right{position:absolute;right:calc(10px + var(--safe-r));top:calc(8px + var(--safe-t));display:flex;gap:8px}
-.icon-btn{width:38px;height:38px;border-radius:50%;border:0;background:url(../assets/runtime/lossless/pic/icons/fn_pause.svg) center/cover}
-#btn-mute{background-image:url(../assets/runtime/lossless/pic/icons/fn_sound_on.svg)}
-#btn-mute.off{background-image:url(../assets/runtime/lossless/pic/icons/fn_sound_off.svg)}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:0;background:#123c21}
+
+
 #btn-pause.on{outline:3px solid var(--yellow)}
 
 .quest{position:absolute;right:calc(10px + var(--safe-r));top:calc(56px + var(--safe-t));width:140px;padding:7px 10px;

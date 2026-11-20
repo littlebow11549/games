@@ -1,7 +1,8 @@
+require('node:fs').mkdirSync('/tmp/game01-qa',{recursive:true});
 // Capture actual game events and CSS animations, then export GIF previews.
 const {chromium}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
-const root=path.resolve(__dirname,'..');const output=path.join(root,'01_memory_crash/assets/preview');const tmp=fs.mkdtempSync('/workspace/scratch/fx-recording-');
+const root=path.resolve(__dirname,'..');const output='/tmp/game01-qa';const tmp=fs.mkdtempSync('/workspace/scratch/fx-recording-');
 const run=(args,extra={})=>cp.execFileSync('ffmpeg',args,{maxBuffer:32*1024*1024,...extra});
 (async()=>{const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});let video;
 try{

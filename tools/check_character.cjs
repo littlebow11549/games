@@ -1,3 +1,4 @@
+require('node:fs').mkdirSync('/tmp/game01-qa',{recursive:true});
 // Real gameplay checks for the sequential character animation and responsive layout.
 const {chromium}=require('playwright');const assert=require('node:assert/strict');
 (async()=>{const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
@@ -6,12 +7,12 @@ await p.evaluate(()=>Promise.all(['idle','happy','sad','celebrate'].map(name=>ne
 const startBox=await p.locator('#btnStart').boundingBox();await p.mouse.click(startBox.x+startBox.width/2,startBox.y+startBox.height/2);await p.waitForSelector('#screen-menu.active');await p.waitForFunction(()=>document.querySelector('.menu-char').classList.contains('loaded'));
 const first=await p.locator('.menu-char').getAttribute('data-frame');await p.waitForTimeout(420);assert.notEqual(await p.locator('.menu-char').getAttribute('data-frame'),first);
 for(const [width,height] of [[390,844],[375,667],[320,568]]){await p.setViewportSize({width,height});assert.ok(await p.locator('#btnExit').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),`menu clipped ${width}/${height}`);}
-await p.setViewportSize({width:390,height:844});await p.screenshot({path:'/workspace/games/01_memory_crash/assets/preview/character_idle.png'});
+await p.setViewportSize({width:390,height:844});await p.screenshot({path:'/tmp/game01-qa/character_idle.png'});
 await p.locator('#btnArcade').click();await p.waitForSelector('#screen-game.active');await p.waitForFunction(()=>!document.querySelector('#board').classList.contains('locked'));
-await p.locator('.gem').nth(0).click();assert.equal(await p.evaluate(()=>MemoryCrashMascot.state),'happy');await p.waitForTimeout(250);await p.screenshot({path:'/workspace/games/01_memory_crash/assets/preview/character_happy.png'});
-await p.locator('.gem').nth(1).click();await p.locator('.gem').nth(2).click();assert.equal(await p.evaluate(()=>MemoryCrashMascot.state),'celebrate');await p.waitForTimeout(350);await p.screenshot({path:'/workspace/games/01_memory_crash/assets/preview/character_celebrate.png'});
+await p.locator('.gem').nth(0).click();assert.equal(await p.evaluate(()=>MemoryCrashMascot.state),'happy');await p.waitForTimeout(250);await p.screenshot({path:'/tmp/game01-qa/character_happy.png'});
+await p.locator('.gem').nth(1).click();await p.locator('.gem').nth(2).click();assert.equal(await p.evaluate(()=>MemoryCrashMascot.state),'celebrate');await p.waitForTimeout(350);await p.screenshot({path:'/tmp/game01-qa/character_celebrate.png'});
 for(let miss=0;miss<3;miss++){await p.waitForFunction(()=>!document.querySelector('#board').classList.contains('locked'));await p.locator('.gem').nth(11).click();assert.equal(await p.evaluate(()=>MemoryCrashMascot.state),'sad');}
-await p.waitForSelector('#screen-over.active');await p.waitForFunction(()=>document.querySelector('.over-char').classList.contains('loaded'));await p.waitForTimeout(650);await p.screenshot({path:'/workspace/games/01_memory_crash/assets/preview/character_sad.png'});
+await p.waitForSelector('#screen-over.active');await p.waitForFunction(()=>document.querySelector('.over-char').classList.contains('loaded'));await p.waitForTimeout(650);await p.screenshot({path:'/tmp/game01-qa/character_sad.png'});
 await p.emulateMedia({reducedMotion:'reduce'});await p.waitForTimeout(100);assert.equal(await p.locator('.over-char').getAttribute('data-frame'),'0');await p.waitForTimeout(400);assert.equal(await p.locator('.over-char').getAttribute('data-frame'),'0');
 for(const [width,height] of [[390,844],[375,667],[320,568]]){await p.setViewportSize({width,height});assert.ok(await p.locator('#btnHomeOver').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),`game over clipped ${width}/${height}`);}
 await p.locator('#btnAgain').click();await p.waitForSelector('#screen-game.active');for(const [width,height] of [[390,844],[375,667],[320,568]]){await p.setViewportSize({width,height});assert.ok(await p.locator('.game-reaction').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),`board/reaction clipped ${width}/${height}`);}

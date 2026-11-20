@@ -1,8 +1,9 @@
+require('node:fs').mkdirSync('/tmp/game02-qa',{recursive:true});
 // Run with repository HTTP server on port 8000.
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
- const out=path.resolve('02_brave_guy/assets/preview/boss-storyboards');fs.mkdirSync(out,{recursive:true});
+ const out=path.resolve('/tmp/game02-qa/boss-storyboards');fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],missing=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()===404)missing.push(r.url());});

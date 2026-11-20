@@ -1,5 +1,0 @@
-.art-inspect #hud{display:block!important}
-.art-inspect #overlay,.art-inspect #dialog,.art-inspect #pause-menu{display:none!important}
-.art-inspect #scene{opacity:.35}
-.art-inspect .actions{pointer-events:none}
-.art-inspect #stick-zone{display:block;pointer-events:none}

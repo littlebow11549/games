@@ -1,0 +1,1284 @@
+{
+  "files": 213,
+  "bytes": 156445927,
+  "removed": [
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/01_title.png",
+      "bytes": 706665,
+      "sha256": "449d9ff13713be6b967a5001b8a7ecf1dc244cb2a5b6abc331e6efa84e3c90e7",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/02_option.png",
+      "bytes": 633025,
+      "sha256": "e576833f23a3ac635f5e57e6c2ac15ca90dae0b2d29304526b2d4335cbc17414",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/03_game.png",
+      "bytes": 785822,
+      "sha256": "01d49ad2e7d6e8acdea8fa781bcc950edc520e8456a6ff6d0128a37471752402",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/04_howto.png",
+      "bytes": 396426,
+      "sha256": "518fdff8d201403c9e1c39e1affce1c7ffe3649dc5a9574cde537e19007b29e0",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/05_option_music.png",
+      "bytes": 636935,
+      "sha256": "09ac0c629992a6bc8053582110f8c269cf12c25c46446142fcf252beaa6cfe92",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/06_hub.png",
+      "bytes": 843187,
+      "sha256": "055fa967e2aadb1d6089d7ae6983595484dfb5ef6b3b41e5d45accf739549acf",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/07_icon.png",
+      "bytes": 135373,
+      "sha256": "eab12df7185d2d644e4b92f1e90a919596db0f2504a8022e5d33a01526d161db",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/08_animated_gems.png",
+      "bytes": 291822,
+      "sha256": "9a3072ed3c7a713b62479cabf041ddc4bbba1f81e6ca405ec566a802d236ea83",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/10_title_real.png",
+      "bytes": 1221445,
+      "sha256": "fe9b78d617de1145340a7102f78521e53473cc0788e7bdb4d8c0abdf56e5b826",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/11_game_real.png",
+      "bytes": 1291055,
+      "sha256": "7d755eab082343c4d11dee487fc2db0eb3935aa65157d9304e1d083c4f8c305a",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/12_option_ui.png",
+      "bytes": 1184272,
+      "sha256": "0d872182b04af28fb95133ca723d0dbb518f28cac434f39a4e0af13db5b97173",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/13_game_ui.png",
+      "bytes": 1305965,
+      "sha256": "9fee0ec848178dabe859607f0049369c83da4d60ecc4da0a8cba9e7374ceb072",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/20_title.png",
+      "bytes": 1252934,
+      "sha256": "6aab85ffff4e1b8d5be69d113d13a1eef9728efccb746cf36fe6b730b75db1ba",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/21_option.png",
+      "bytes": 1279070,
+      "sha256": "d5b890c9896f2c0680cfcfa69b7c6cb25159ac3a98c42d864dfe973e8d669644",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/22_howto.png",
+      "bytes": 609595,
+      "sha256": "b3b8155b7077768096b9f97927fed34250c49aa9e839af4064895e5dc5986529",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/23_game_banner.png",
+      "bytes": 1264665,
+      "sha256": "657097ae35514d1de5ef07595a208f0cbb66b54a35f0fd48cb5dcb81b90c40bb",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/23_game_ready.png",
+      "bytes": 1339969,
+      "sha256": "f66aa2a41a2aa3ac545beb1385004f1aa93969dfb21da961709f42658aa0c7e9",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/24_game_yourturn.png",
+      "bytes": 1315650,
+      "sha256": "02a7f1c145c65081e396a0fbef745a5ccc66b92dad171cc8602ea4b88f7b1bd7",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/25_howto.png",
+      "bytes": 798517,
+      "sha256": "54d70cdd7dc6119f24fb3769a22ae83817f80b5b13784761c13f0094444276e3",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/30_title_warp.png",
+      "bytes": 1254083,
+      "sha256": "d5bf406f7a010145b5d801121200ac077cd8249aad60eb4d84bed6f59d5491a0",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/31_menu.png",
+      "bytes": 1244106,
+      "sha256": "b89d5602e7e521d63b5d9907917fc3cbeacb2e42e4912874fcd335c442d6e437",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/40_hub_desktop.png",
+      "bytes": 545981,
+      "sha256": "511d2bdc61a79526b3f332b06f64bd335bce1f5fd8e665a9f31aba8079231a45",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/41_hub_mobile.png",
+      "bytes": 588323,
+      "sha256": "62d4320b83ba7463c06e448269881c667ffdb29f221325baf7de6a81d211137b",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/50_combo.png",
+      "bytes": 1264793,
+      "sha256": "75ac91a70494dd86e6b31c4c550ebb77c1038a4c8fe91bb6f1f06555ac75af04",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/51_perfect.png",
+      "bytes": 1279697,
+      "sha256": "8dcdec5ac99ee5866a7a8b5dd62d028b6e38632b14bc636fa290029f8d4f6012",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/60_game_en.png",
+      "bytes": 1316891,
+      "sha256": "e8bc90a2250545234b5bd71af6011d097984ecd4b76a46e552f2b6c4bac0c560",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/61_hud.png",
+      "bytes": 1264793,
+      "sha256": "75ac91a70494dd86e6b31c4c550ebb77c1038a4c8fe91bb6f1f06555ac75af04",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/62_timer.png",
+      "bytes": 1258134,
+      "sha256": "3978cb04eb1070603158ebac11db70e421ce841a37f999a1d7f58edc1493f8c8",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/70_title.png",
+      "bytes": 1461586,
+      "sha256": "3b4480a0b39f9772f8e6e15b4dccd54efb390728b34a3313ae744cd1b0872b90",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/71_title.png",
+      "bytes": 1432790,
+      "sha256": "a6cc5ed4296f93e602c8e7b05e3efb9f78a57216312e5fea95f94b77a37ed0b8",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/72_menu.png",
+      "bytes": 1370341,
+      "sha256": "24cb7cd4e9b7bcd933172dcc99772a8ec018ec44fa0aa19c815fc51a74dba61c",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/73_game_banner.png",
+      "bytes": 1404597,
+      "sha256": "a7a4c22dd6de9371f591e63b271ecb2de83c5609627f18482a84c13605e91b97",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/74_title_big.png",
+      "bytes": 1458168,
+      "sha256": "1d12974a8aebfb6dbfd371248b54c21ad49b7d8d8a77e680319c43d929a62b49",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/80_title.png",
+      "bytes": 1612018,
+      "sha256": "ad2cf6e49c0affc9625f7d0a46bd0ebb51f6c25b74d65c9e22e89e6a91a95087",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/81_banner.png",
+      "bytes": 1493354,
+      "sha256": "0641ea9aff1118e48c62e6cdfe115b42c21c0fe81131f83b277a2c911dc67805",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/82_game.png",
+      "bytes": 1514981,
+      "sha256": "684c05a0d722710413273800214e546c8e40205394769c8269aa1fb2167fe653",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/83_banner_big.png",
+      "bytes": 1479498,
+      "sha256": "c33fc44010433dea9391d0672ea3ddb8154918b28eaedbdb41f6aeeb59fbcee1",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/84_ready_big.png",
+      "bytes": 1498409,
+      "sha256": "8aed5af46ae60557bf5c7f14d76b94dbc6cc88f6f0e2a9069d91da0774357600",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/85_gameover.png",
+      "bytes": 1356409,
+      "sha256": "dd071e1a0f85f46ad77d36eb314af1158516e6f8f047083195ce50de58e4c061",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/90_title.png",
+      "bytes": 1595732,
+      "sha256": "57595490bc1a38b2a0ef7101f9d83fbe7c50e5dbdf2ed8db4d08230b2414a430",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/91_gameover.png",
+      "bytes": 1298292,
+      "sha256": "664862439cf7b7c016c5756f0e8d963c7e857978a0e74c6a816b01d994bd8d1e",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/92_title.png",
+      "bytes": 1604904,
+      "sha256": "6a05180bbc8da398946149fb3ca7964c4f6353df3afb3edbf401c9ff1c19d44d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/93_menu.png",
+      "bytes": 1559803,
+      "sha256": "ab6b75128aa8939cff122739855e55e753c5a89ff37c8dfa5e6b0dc17c4bd8fe",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/94_banner_fx.png",
+      "bytes": 1530236,
+      "sha256": "d4df41829921247af1de55c5657d4157920fadbfe258907e5483552b5a064c64",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/95_gauge.png",
+      "bytes": 1707151,
+      "sha256": "7723c82ca4451d8bf000627d46fd91073de7a7270afcc4a317ffaa04d2e18666",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/96_menu.png",
+      "bytes": 1516409,
+      "sha256": "3cafabdd054ce1537e5319511c1d0ff514680f708e832a481347f3aee907b6b8",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/97_title.png",
+      "bytes": 1609261,
+      "sha256": "e5f615f6ba46721846c6b14d71a51276f1f8ed413b63821899a025e5d306c369",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/A0_short_title.png",
+      "bytes": 1043770,
+      "sha256": "d22b6022a0883482965400bd4412d74a583964f36494b62c69a37ec2386f9c20",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/A1_short_menu.png",
+      "bytes": 961435,
+      "sha256": "207b08147e4c47897749eb7d5fa3146975ca88ab793e551b65487b5fdac4966d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/B0_hint.png",
+      "bytes": 1554210,
+      "sha256": "132bcccd9035bdba24607e941ed9fe048b84db5a7883a06c4f12f4f718c1fddb",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch2.html",
+      "bytes": 4360,
+      "sha256": "f48f3b695f6dbf65e53ccaa5bea72f300eab385bb62ae9eef8d1676522cafb79",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch2_desktop.png",
+      "bytes": 1470204,
+      "sha256": "658fc467a42db748d37ddcc544e36737011165e28fce459109c2a9254df85eff",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch2_mobile.png",
+      "bytes": 838329,
+      "sha256": "6500b8f5ee4aeca05a4c487204981bd159fd03eaeeb47df81dad6f3967f42a96",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch2_qa.json",
+      "bytes": 385,
+      "sha256": "8ea3c0bc85fa6a054fea91bc350315e864cc0d13d80eb89829f3142fa3851e3e",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch3.html",
+      "bytes": 7638,
+      "sha256": "a3be638a7f31deccc83d6656f7efc5467b225c106ab4b8d2de8066f3c6ae912b",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch3_desktop.png",
+      "bytes": 2692827,
+      "sha256": "6558c71149d070ca65d254a90eae1a9aadbf5f475411c8154ef2426ff3bdc8dd",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/batch3_mobile.png",
+      "bytes": 1123725,
+      "sha256": "80d23b65828d69475424ccca2a551628bc69e26942ebbc563e8a65a779266787",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_all.gif",
+      "bytes": 9339315,
+      "sha256": "5b105e86a261a3fd704ad098101af646097d873d88562b9ee201626124b5d06a",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_celebrate.gif",
+      "bytes": 229178,
+      "sha256": "011c9f59354654c758956d8eefedb56244202d51e5b5d4380564161d3be6b4ca",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_celebrate.png",
+      "bytes": 407197,
+      "sha256": "4161633684d9a14d2e78aa743323e6778a69326640d95f86de44a97b2f1b6b64",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_gif_preview.json",
+      "bytes": 1061,
+      "sha256": "ff39fa22dad27b51d9521d5e5e1e60a8fad276426227ca99460499dc29f74361",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_happy.gif",
+      "bytes": 251561,
+      "sha256": "3f5a647fb49209b0fff24db9297f1a89efc8dd47b9b9eb84470c3c9d77742ba0",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_happy.png",
+      "bytes": 380153,
+      "sha256": "e954f7421653bf75ff2641d0bdba9c8210ce028968f2df4f3836b60d0b38e8e6",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_idle.gif",
+      "bytes": 254480,
+      "sha256": "b6d2cfea6a72688f775197d3b94fa66a3c156bacb7c550fb79b22ebb9a37b8a9",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_idle.png",
+      "bytes": 373985,
+      "sha256": "a1470656615811a3d2860d2878cf0f205a585bede2113d77ae39655ca11c8d52",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_sad.gif",
+      "bytes": 240341,
+      "sha256": "0d84432579a75ed5e73ece3a0a9bb85ed391bc319adaa103d81fe0b50dba88fd",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/character_sad.png",
+      "bytes": 375774,
+      "sha256": "3818c9eb82f12bdb7de27ab1115c704ef57e5e231792f5798a24982e3ceb78d8",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_bitmap_options.png",
+      "bytes": 358171,
+      "sha256": "8733b45a850948c2cf302c1a5d9cc79ddc6b5bc25f75ce03e0d3324a06ea1fa1",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_font_proof.png",
+      "bytes": 146982,
+      "sha256": "c1a5c14f93527264080b7af3a401824acada5523db75bf6a68dc37cdd55068bd",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_intro.png",
+      "bytes": 103545,
+      "sha256": "5aea85a862e6e43999528bdfebea88662d1ba3e85175385aba459a5f5605b64b",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_options_small.png",
+      "bytes": 237385,
+      "sha256": "4f2bd74e748284ffbead3f2d3509e15a8f7576e11ef9088020b2aab09d8fe9e3",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_over_fx.png",
+      "bytes": 380046,
+      "sha256": "2f17edda5f2b8b214fe321476469f500e8f785fe4a4a1678d1758f6611eb0905",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_perfect_fx.png",
+      "bytes": 410852,
+      "sha256": "0bb6d80d338b4df7baf40b6b9e49c206eb718d6545df88b0be0c0c57881a8bfe",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/final_title.png",
+      "bytes": 356260,
+      "sha256": "fa2ca7167f9f26dcffb699f2c866734d0a9c2410fac7de896660a424b22af81e",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/fx_all.gif",
+      "bytes": 7060238,
+      "sha256": "ed0cef17d3bb33736749ddb121bb1c2af2adab2a8a22fb118097287c8dcbcf90",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/fx_burst.gif",
+      "bytes": 2301488,
+      "sha256": "ff00509d7b904adca36f7bbef9371ecf4ad8d3cb464356deee49d21606d1b319",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/fx_crack.gif",
+      "bytes": 3083117,
+      "sha256": "705c6eed49a99c1257980b1e0294bf8266a7ab49593230bf6f5be5856ba6130d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/fx_gif_preview.json",
+      "bytes": 1360,
+      "sha256": "c14663357d7f4f8b50209915d019b94a6abc8cb321206329be4cc4d8d68d6a39",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/fx_shatter.gif",
+      "bytes": 1530603,
+      "sha256": "9f5301320c6b0226d689b66fdf1336e3210c566a0be8e48fe2ba4ca8ba72a48d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/hub_desktop.png",
+      "bytes": 496304,
+      "sha256": "cf386ebf01c66946c82a540ecf389f22205c8fd022660ebad773e3c244698092",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/hub_mobile.png",
+      "bytes": 300251,
+      "sha256": "12458f0ad0234a55a9e7205b78e84bbbba25865ea62a1fe40b3cafd5fd8bd34c",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/pug_fullbody_menu.png",
+      "bytes": 357714,
+      "sha256": "f67c7ae8f6985c40ad2cc7f7480215c0af7f235cab9a28474d510178b416bb1e",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/pug_fullbody_title.png",
+      "bytes": 403659,
+      "sha256": "7cfe3b5ceaa5780b81a98f725d4687c1acb9f8ab4f71c033c45bfe72f5329ba7",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "01_memory_crash/assets/_alternate/preview/warp_video.png",
+      "bytes": 49730,
+      "sha256": "5dc4f2898af9c983fd9acada90d43d6e9b2c676521ca3f8d7ea37e69e8343fe5",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/GUEST_SKILL_ICONS_V1_DELIVERY.json",
+      "bytes": 1228,
+      "sha256": "58decbab2bcf7ab670a2f46c7545e7e7fef3a41cb218e5ed1f8710e906a5f7b0",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/branding-placeholders/banner_01.svg",
+      "bytes": 5035,
+      "sha256": "633ea9ae33e05571fe74c5072daa23431397e2cb2bdb65da1f4d311026d79a28",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/branding-placeholders/icon_01.svg",
+      "bytes": 3377,
+      "sha256": "49505216e3ced19f1527db0c4f762e7435b39d86dfe3bcabb7788eea2c5ad948",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/branding-placeholders/logo_01.svg",
+      "bytes": 2755,
+      "sha256": "5461983241d451ac8f5e4c4b158cc27a9baf19ee609efbe0e1898b7c5d2ca21d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/braveguy_back_gray_v1.png",
+      "bytes": 1382130,
+      "sha256": "b3d47db7f9791784c44fdcc14219a44019ccfd421663d3dbc34c27a791290c77",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/braveguy_front_gray_v1.png",
+      "bytes": 1431662,
+      "sha256": "74483ee336d5a2f8aaaecd292a33755d8e299f621865dc090f868fea051dbb9a",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/braveguy_side_gray_v1.png",
+      "bytes": 1324251,
+      "sha256": "59130f7f10356cdd54280773c3b60b53a494dfbad92d31814ea2d5ebb444a3f6",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/student_back_gray_v1.png",
+      "bytes": 1343533,
+      "sha256": "63d30f6109da6403176ba2b65ce9f566e31e5a82543f4a26357363b7abf959a7",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/student_front_gray_v1.png",
+      "bytes": 1402128,
+      "sha256": "14fdc9d354b5f441fed03cbf5e1596da6ae12f4042c0f28735df22341b8146cb",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-history/student_side_gray_v1.png",
+      "bytes": 1321262,
+      "sha256": "afa2afb53aa7d52c4db67bbdb0925d27964021c03f2a4cb4334cf599862563f4",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/boss_back.png",
+      "bytes": 237152,
+      "sha256": "14f3e19df37553bec62e2db16f50d48492d55014b11e931d1795223247eff382",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/boss_front.png",
+      "bytes": 255187,
+      "sha256": "bac6ee98a900038d822c0de7f2e4ed851d9071909ca490bf064d4a4f068d77cf",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/boss_side.png",
+      "bytes": 176155,
+      "sha256": "69c364d17e0b8154cf55cb031406a7abd2ea40b35dbf1d231aaf8362bf0c66e3",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/hero_back.png",
+      "bytes": 209526,
+      "sha256": "e93e88a65d97f6659d883b2d1fcc383b1be42a4db0f6c0c52415afa8f959c504",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/hero_front.png",
+      "bytes": 220084,
+      "sha256": "cdb56c8d7e338ce85e1c6a7aea818492eb122b1ca81bc02b7aa4a18875751e6f",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/hero_side.png",
+      "bytes": 170468,
+      "sha256": "b4b2a45421d066307f3a28a0c1d5db32a2d6fbaeb2a109211a7428aa312e5d2d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_imp_back.png",
+      "bytes": 195915,
+      "sha256": "700459217791a8e7462d86df7803846e586ea65275b1c1b31b129db3a03133f4",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_imp_front.png",
+      "bytes": 206296,
+      "sha256": "f8d0159512d756fd24fa3ddf9d1f01dcb5f617c6c4d73ccd468ec278aa525fe0",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_imp_side.png",
+      "bytes": 160957,
+      "sha256": "12d13c5f4c3d0476788aca81de57861ed5139134a2df6c1483709d0b646988f6",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_plant_back.png",
+      "bytes": 219673,
+      "sha256": "9661a1c5cdd680f38dcfb17cc00e2f561ecd48a1b28f08737ba604e15a95b491",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_plant_front.png",
+      "bytes": 226848,
+      "sha256": "e84ebfdfd5013d9a56bbcdd7b26ddbc1fc3b9072dc79e0b3016e7240f925522f",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_plant_side.png",
+      "bytes": 175716,
+      "sha256": "0705ad8a9db0bf67cde6999cca0e789a3a6383b213ccd7d0b6dbf6288b5e995b",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_spear_back.png",
+      "bytes": 205516,
+      "sha256": "2ff9fce360bd522742a30ce94bc5ee6da7155ca56e04102378f6521e02b4908e",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_spear_front.png",
+      "bytes": 214862,
+      "sha256": "66b1e9c0501d62b98b58a3becc6b7637d6754ca9d9a5f3873ae84853b4b633ff",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_spear_side.png",
+      "bytes": 162646,
+      "sha256": "b9871e3c3cc96d4563886ea907b699a9b2ada71734b328584308a8002b65ccf7",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/mob_spear_weapon.png",
+      "bytes": 91046,
+      "sha256": "17ecdac923f12785c931b5073fe88c2587033ff51257172c5aa593e549499cae",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/concept-placeholders/sword_01.png",
+      "bytes": 88969,
+      "sha256": "ea6621d9627f02d8a746969c6dc7547e0fc221eb4dae33389233ef5522668413",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/review-pages/art-preview-host.js",
+      "bytes": 1888,
+      "sha256": "650c3d78fe32b5995cd82f27c76a58ac78806ffe2798fa874e54104e1b7ce608",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/review-pages/art-preview.css",
+      "bytes": 271,
+      "sha256": "febba236ffc9ec8f2f89354121d762838a859c9b3cf359a02cb7e14e0d7cb809",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/review-pages/art-preview.html",
+      "bytes": 1213,
+      "sha256": "64be52dcafca9093828e207675d548ad42584d69b5f66a8221ce7329328aeefa",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/review-pages/hit-effect-preview.html",
+      "bytes": 1566,
+      "sha256": "b761546ca1b832f0cc37710d32e85048d23ec994726efdc84c0367ec0942379a",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/sheet-history/sheet_braveguy_before_logo_approval.png",
+      "bytes": 1992507,
+      "sha256": "843fbdeb4e4184ea925322829a49b2781ccd8e801315e00c3cf40ad9b074a2b6",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/sheet-history/sheet_student_before_logo_approval.png",
+      "bytes": 1856022,
+      "sha256": "9879f8607a8484b0a711b60faae8323d5cabd5e991e787c0b0af676c86403e78",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_angel_attack.svg",
+      "bytes": 1265,
+      "sha256": "602b44d2c3346d668d5966ed625098420a55c834d17ad73d88445664e66bfc24",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_angel_skill1.svg",
+      "bytes": 1216,
+      "sha256": "079f594a8463cd81ee684f6707df30a529a326d3afb31887cd83676268c17583",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_angel_skill2.svg",
+      "bytes": 1651,
+      "sha256": "090850fa515ce5a0dee39b322b8127412766d6bcad628c5f8878ba1f83ac6c17",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_angel_skill3.svg",
+      "bytes": 2381,
+      "sha256": "c0b83ac87fe93458613447ba3c1f877fc0e57f801015b3878d25887f0af67e2f",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_angel_ult.svg",
+      "bytes": 1429,
+      "sha256": "d7721cf75237ce775f634d7586acc67f9ec6119ceab7967cfad896c46e751aea",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_nightmare_skill1.svg",
+      "bytes": 1963,
+      "sha256": "bed826c6254b9f746bbdf57957db572ff6a48c5e1cfa12041f3f546cae39f16c",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_nightmare_skill2.svg",
+      "bytes": 1607,
+      "sha256": "effccf1c4d3c268dbc68beda8730610ebf22826462a8436621120ed5b80953ba",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_nightmare_skill3.svg",
+      "bytes": 1193,
+      "sha256": "c3ed692487d42fa0d2a574a2254523ce2c74e6db4eaf3ec5747ccbfa6b5da2fb",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/_alternate/skill_nightmare_ult.svg",
+      "bytes": 2487,
+      "sha256": "8f3ac28050abb2b46ff11411ea95066b3056a0342fa74ed73cb41051c019793d",
+      "reason": "既有歸檔紀錄確認已淘汰的視覺／驗收檔"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/bg_loading.svg",
+      "bytes": 3096,
+      "sha256": "a0333dfde022545b9ef7c46f086f61d72a1f7435856564260fa17265a51e6eaa",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/bg_result.svg",
+      "bytes": 3102,
+      "sha256": "aed6ef1e2f7d79c541421da0de429c8f057f20787e13d1a514bf4b4cf3951f9d",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/background/sky_01.svg",
+      "bytes": 2978,
+      "sha256": "3e94b7991f8161cb0c32853031ed3cb270acace0cce38f38a403d0ea1acb5317",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_fire_sheet.svg",
+      "bytes": 3585,
+      "sha256": "d13235fb1f1326dfb6d8eb8e5a492e592180148d024664c719b935eb201c0a59",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_leaf.svg",
+      "bytes": 1899,
+      "sha256": "8c87a6a7fb51ced19ab645fd3696c2f27f1944d4631e878c7d849b9b5cc66fbc",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_magic_circle.svg",
+      "bytes": 2191,
+      "sha256": "d8fdf3c1afd554c4f1e3c66053494f11af25d6118b418935e4804a57e6e5af31",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_noise.svg",
+      "bytes": 1851,
+      "sha256": "781f678a7778fcbf799f195a0b495454c0d58f9a892d398cd9d9d219dd99ebb7",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_petal.svg",
+      "bytes": 1863,
+      "sha256": "691ee75cf1c64182f1c00eb3564b4eda93317cc94901decf482b6ac776052aca",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_ring.svg",
+      "bytes": 1921,
+      "sha256": "26592f925cbf1b7732c8ab1cdaec1a7a735939359d16399cfe327aaff0a88890",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_slash.svg",
+      "bytes": 1941,
+      "sha256": "f7f0087496f9a4d23e3c0398a48c08f56e9d8240c576ad6a746348caa3dc2ffb",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_smoke.svg",
+      "bytes": 2252,
+      "sha256": "f4c8b6cd58185e02cb91026cd2daba37a74d7e16df7096d1f338857c31dcc87d",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/fx/fx_spark.svg",
+      "bytes": 1977,
+      "sha256": "48b34d0ec70698bc2128ada7bfb3a27f08a601f89a4f00962584960306ded5b8",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/howto/howto_01.svg",
+      "bytes": 7514,
+      "sha256": "5bc3f224898b0f5e33f395ddd1643d30d77f4ad5bd04d97fea14ca1a7831db6b",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_atk.svg",
+      "bytes": 2742,
+      "sha256": "a3dd47bbb80561aeae805fefd55bd8061dc6beca30ae6d247383b781568a5bfa",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_def.svg",
+      "bytes": 1910,
+      "sha256": "abd459e2d18ac3a8c757914e95e3729a34811e80ecafe9506e024b855a9057e8",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/buff_speed.svg",
+      "bytes": 2180,
+      "sha256": "40602348ab98744ab95e32c71eeb6936499c905906a644da0067899534c3b8ce",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_coin.svg",
+      "bytes": 1777,
+      "sha256": "284fdb20180b44747cfca7fc6fc72f06b47e9af524ae21be8b808322c11f967b",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_hp.svg",
+      "bytes": 1803,
+      "sha256": "583e3035c456658a3f6eda9db85d3ca2dd3e1814768ab18b70b2fcbeee5cf583",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/drop_mp.svg",
+      "bytes": 1804,
+      "sha256": "0c575ec572d3e1a8bfef1a300eb5299c3a0c336c89d4efea0a63b3c19c4cc6dd",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_bag.svg",
+      "bytes": 1952,
+      "sha256": "1d119cf089e3155f4b07d0d6d74e82c91d242e783755982987e5b32f29e6918c",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_character.svg",
+      "bytes": 1882,
+      "sha256": "4248b6998c18fb7795b52a1b5c948dc0e51cf6ba6d9683aab8613da15ea39aee",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_pause.svg",
+      "bytes": 1913,
+      "sha256": "d672387464d8e968a64fd4087c5bc5888d2b7405c3c5302dcb3de0f9cce4f771",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_quest.svg",
+      "bytes": 1986,
+      "sha256": "f01a1b4daec0836af89e6adff499008913ec951c6fc91ce56d715e4e19423a40",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_settings.svg",
+      "bytes": 2938,
+      "sha256": "24a7461b43344d218bd6de1fef7ce191abed42b79d05e15bdef23b1a39c79ae5",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_sound_off.svg",
+      "bytes": 1961,
+      "sha256": "296be04507487a3fcd7da39905abca04da087642397d8e05b92d87783ad0f004",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/fn_sound_on.svg",
+      "bytes": 1993,
+      "sha256": "6de4ee4ea61777cdd6fe55fe169b90d450980241e7aa7787d560c36eddc8db79",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_01.svg",
+      "bytes": 2064,
+      "sha256": "e5594706b33d6caaa56d3f0943464d3e6dc6e5539d2e6ad364664617e57efb7b",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_02.svg",
+      "bytes": 2345,
+      "sha256": "6312a47638f07e6d822a5484586f0c9893b975d4a422da33491b1344919e4f11",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_03.svg",
+      "bytes": 2747,
+      "sha256": "c7c18d1126a7a3908f0d4cdb2a7f0a6888be405597c716341ba075f847f5637b",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_04.svg",
+      "bytes": 2094,
+      "sha256": "6770ce48029e409663be404390ee8eed9151426ebbe96011def2ee22686e0561",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_05.svg",
+      "bytes": 3417,
+      "sha256": "8039d63f9b671a008dcb1eee67cf8eb75763442d926b8be90f43d088fe97a4ae",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/icons/skill_06.svg",
+      "bytes": 4718,
+      "sha256": "24816168b7a77912c6318e7a4230f4ef47b1ae631d0d78bb904d434774c0538e",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_crit.svg",
+      "bytes": 4699,
+      "sha256": "67f15fa9b3b521523a2ffb64190a8434d8e571c1a9b44f6173ad98c43495fa82",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_dmg.svg",
+      "bytes": 4440,
+      "sha256": "1522a680b0ebc460106c923faab2b7b89bcabac935f67449248318853c41e935",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_heal.svg",
+      "bytes": 4440,
+      "sha256": "a35247198c96b7200c95db2e365e7d77d28dfca711928d82725841c4ea150893",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/numbers/numbers_ui.svg",
+      "bytes": 5217,
+      "sha256": "c5b4f7a15991547fc5469a94e34bc753ef406f8e415eee729b48e3d4fdb3f202",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_boss.svg",
+      "bytes": 1883,
+      "sha256": "3b147e9a1c17184c37227c72ac09702255e241dbd4213d90a7296fc3c691d1c8",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_combo.svg",
+      "bytes": 1876,
+      "sha256": "61e50a1c73c564c0452a6c859a4ed6febd3e2a37e7bd1b3298669ee859b4cd40",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_defeat.svg",
+      "bytes": 1878,
+      "sha256": "c29583206d131b16776274811fecf04d04af7cb38c97b267b6d85b695eab3882",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_pause.svg",
+      "bytes": 1878,
+      "sha256": "7a7bb897e41a9abdab2e57e400c4f2093c00e67cea626e484f19fb789316f10e",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_start.svg",
+      "bytes": 1876,
+      "sha256": "2dfd6d6ebf49018e86d925e1e0fabcb6c6b400fd5fef201da72d7413ddc0e428",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_victory.svg",
+      "bytes": 1878,
+      "sha256": "6f53d2e6bada2b558e58826ef432b896f3830a45da5ea81795e5d33c8fe629d9",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_wave_a.svg",
+      "bytes": 1872,
+      "sha256": "936b512fbf74c55cef521b70563e34878a405b3ebc5d46ca574607f45f4a7b9c",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/titles/title_wave_b.svg",
+      "bytes": 1872,
+      "sha256": "c51bcbd14f7d2241e2db73af3aa2c1c7b1e154e7a2f35f00f8aa725d8fcd08bf",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/boss_bar.svg",
+      "bytes": 2019,
+      "sha256": "c480f0191b11fde733402d24a3868ccacb486d8569b38cc423a80eb5455b6718",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_attack.svg",
+      "bytes": 2671,
+      "sha256": "902b960cab08d174e93797a132a347b5600947297c52d4371139df0b6562c2df",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_dodge.svg",
+      "bytes": 1931,
+      "sha256": "a5795aaa5b4a026b02ce96807198b91bc82d6cbce33a99ec474fac3cf0623b16",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_skill_frame.svg",
+      "bytes": 1759,
+      "sha256": "c6018fc9fc137006fa3b504ca87a6609e65be9c963158397bd63bbf8ae97663c",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/btn_text.svg",
+      "bytes": 1780,
+      "sha256": "6f159f9c1290255cbac43ec084d9115351046440471296915cf544a186780bfd",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/enemy_bar.svg",
+      "bytes": 1756,
+      "sha256": "c946a3fc4ffff7e3d01d5d94b5c63b11fbbc5a04e3ba1e37b0b5f0bf40988057",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_frame.svg",
+      "bytes": 1692,
+      "sha256": "5e4b095598568e0455a6b6d8c104b540de95e3c96d5c79523f636f0c3730f9f5",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_hp.svg",
+      "bytes": 1864,
+      "sha256": "937a11e1f4603eb58399b0badc394fd3af06ef7abd095d2d2b19267990c4bd29",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_bar_mp.svg",
+      "bytes": 1864,
+      "sha256": "5ebdca9a64abcfe9ef1fbf9d1695f166ecacd9f8191963039bf45483350e5fea",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_brave.svg",
+      "bytes": 2896,
+      "sha256": "7dc7c1c6f492d97fcc4c02eaf00ce77d9ea13c9c718beafdcdfd0f0b246d945b",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_frame.svg",
+      "bytes": 2057,
+      "sha256": "64244509dfd3f64eed9d26e492f2d6a69e1eda4ae0f4d29e56ec9b0839a4ff0e",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/hud_portrait_hero.svg",
+      "bytes": 2362,
+      "sha256": "13cd2e28436dc7f1bac22802138a55b844d0143724cbc8ce343a49ec2a5b563c",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/joystick_base.svg",
+      "bytes": 2161,
+      "sha256": "517ecff1b528a1e985cf3dd7f46aa656bf0e82f2af77e013254331a8d04b9f76",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/joystick_knob.svg",
+      "bytes": 2031,
+      "sha256": "6520d73800d08aab9c77164b1e02f614d38e4629a45fa263f634069390aa23e6",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/minimap_frame.svg",
+      "bytes": 1779,
+      "sha256": "39008d831b2a9cfef8a5544cf9ce529e3ccab0692bc695e282fe8eb9a7369cc2",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_dialog.svg",
+      "bytes": 2216,
+      "sha256": "4bea184ae211f1059db58710c5635a603f0a4a8f81005b810e597fa9e1f07e95",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_popup.svg",
+      "bytes": 2202,
+      "sha256": "92b19dab39a31d2a645605a7c0cec3a0586b628b277e060f756a5ff863e923d0",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/panel_quest.svg",
+      "bytes": 2202,
+      "sha256": "c1c9e8db1996c23a2a28b69922968a4edcf32ac90bd7017c78d3305599e577b7",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/ui/tab_01.svg",
+      "bytes": 1817,
+      "sha256": "896a2420e4e81172e0c47ab2ff851994d8879aca70498c420a56443913f74cf6",
+      "reason": "舊程式佔位SVG；現役圖集／程式繪製已取代"
+    },
+    {
+      "path": "02_brave_guy/tools/make_simple_art.py",
+      "bytes": 23226,
+      "sha256": "15e8cf3f95ab6fa916bfe4d46d08b0ca0c32756302d1ad584e0baf9bbc466393",
+      "reason": "淘汰的佔位圖產生器；避免重新生成廢棄資產"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_angel.png",
+      "bytes": 2035545,
+      "sha256": "2487a8f287922cea4f08bd29c608d5fcf2d60860f3f5c3acce76d9088d39c602",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_baguashe_draft_v1.png",
+      "bytes": 2117655,
+      "sha256": "68f286a700a666fc58ef79f0ae9888393e31279d0b32c2b7f31801cd445de272",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_baguashe_logo_v2.png",
+      "bytes": 2170938,
+      "sha256": "766f91e113cdfcd41c45908964edb8ded6528f010f6fbbfe31f826e975d170a4",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_braveguy.png",
+      "bytes": 1984392,
+      "sha256": "87afbf35b5a60e3169fbde1d0dfdc4152d8ab7cdf49d94632a88118147743536",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_ganqiao.png",
+      "bytes": 2021009,
+      "sha256": "8603781ae7ef210e8bb26364bf5f64bdd252a6934465bf7a53933fc676f35a04",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_guanlaoban_draft_v1.png",
+      "bytes": 1939687,
+      "sha256": "80f8a3351429897b660a89bb0b2d53e6eb94d7bd39294d7b46b4a19221c628e8",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_guanlaoban_logo_v2.png",
+      "bytes": 1970895,
+      "sha256": "80625632e34e132c0a3fa194f1335c40338e7a8b8395561d3e7b4ebf1394f7bd",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_hell_draft_v1.png",
+      "bytes": 2123767,
+      "sha256": "924fc2d23a5974077aa400e47f769c4aff9006434ecd7dfe90473667337a3022",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_hell_logo_v2.png",
+      "bytes": 2162192,
+      "sha256": "fd95fecb53cfa1a3015ccf82c5fa26af18070f47519d430e3e814704d68cfe6d",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_incubus_draft_v1.png",
+      "bytes": 2029430,
+      "sha256": "1f10f5e68eb074fda5cf5cf65a3e214186e652a84c0ea410bd22aa9c02ece42c",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_incubus_logo_v2.png",
+      "bytes": 1984118,
+      "sha256": "0858dbc7066034754826f98f178b7023b52457758d6200e2569a2c11bd395f5a",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_junxiong_draft_v1.png",
+      "bytes": 1948165,
+      "sha256": "747fe10b48c98e33ed155550115567921632ef8a8b6d5f6c38fc85f34daf3b8a",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_laichuang_draft_v1.png",
+      "bytes": 1847069,
+      "sha256": "12b9a78ac57d027cae1d98489b2a2cf9ad5778b6f0199f525c8288f465b2e176",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_laichuang_logo_v2.png",
+      "bytes": 1885501,
+      "sha256": "8de482cc90de9c6989c346f534595bbc16a779a7ef6bd1680a78f924af6db966",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_lan_draft_v1.png",
+      "bytes": 2024453,
+      "sha256": "dc47656989618658174925095416fb428a0240960c61e74190e865508946279b",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_nightmare.png",
+      "bytes": 1936835,
+      "sha256": "d354e5ae800b29d2911ffeea00568b11d85482458d94a39384765041fa45802d",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_qian_draft_v1.png",
+      "bytes": 2028387,
+      "sha256": "289484274188e22253701e5197c95392484cb9396547a0cfd7225f2ee767257b",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_student.png",
+      "bytes": 1867953,
+      "sha256": "a66a3916358b45bb4826bf3ca60f0bc02e652541930bc8a9a02ceeaf13c4273e",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_worker_draft_v1.png",
+      "bytes": 2055523,
+      "sha256": "ec3fda64501acaeab3d07a5bd6f1d0ee6e212f7c0f15b2a13c5d7efd6a42bfa2",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_worker_logo_v2.png",
+      "bytes": 2035450,
+      "sha256": "cc1ce2bde697f08233fd820f7e397a3f56702775881e97cf3f64f970244ac458",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_xinji_draft_v1.png",
+      "bytes": 1974934,
+      "sha256": "6fa614d03b5cf8d41826b3ad2e5fe6b21e8de6eaef3b81905f4538a79f0a4704",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_xinji_logo_v2.png",
+      "bytes": 1925702,
+      "sha256": "e467de6d13fc6448893f0218da6e35c36656aadcc53f15d27f661f775f3b30cf",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    },
+    {
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_zhuangxiong_draft_v1.png",
+      "bytes": 1956036,
+      "sha256": "07f485504aa06329d0fa6cf5df59483ffce05c2719bf4f5ac31e1ac1eb874602",
+      "reason": "舊Logo／中間設定集；unified正式版保存角色像素，已解除工具依賴"
+    }
+  ]
+}
