@@ -603,3 +603,9 @@
 - [brave_guy_skill04_勇氣超人_原版2D技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_原版2D技能圖集.webp)
 - [brave_guy_skill02_小天使_四招三態備案.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_四招三態備案.png)
 - [brave_guy_skill11_惡夢超人_四招三態備案.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_四招三態備案.png)
+
+## 漫畫三語新版提案（未正式接入）
+
+- [brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png)
+- [brave_guy_dialogue02_小天使_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue02_小天使_漫畫三語提案01.png)
+- [brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png)

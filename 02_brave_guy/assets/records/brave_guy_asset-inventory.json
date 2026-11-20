@@ -4531,5 +4531,50 @@
     "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7",
     "bytes": 58633,
     "references": []
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png",
+    "source": "/workspace/generated_images/exec-97ec0f66-df5a-4200-b3df-334d8548388b.png",
+    "sha256": "beb4669f4bf579d3a8b4e3d168a9b034b8c0f160a2fc49f56fd1fb0cefa32132",
+    "size": [
+      1536,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      254
+    ],
+    "status": "已展示風格提案／未正式接入",
+    "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue02_小天使_漫畫三語提案01.png",
+    "source": "/workspace/generated_images/exec-bd7c1ee2-5e60-43a7-aff1-51adbd1ecc3c.png",
+    "sha256": "af5f898a31715cd5869d6e35386c881990cecf6d3933e8779a13d0da0227fcb8",
+    "size": [
+      1536,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      254
+    ],
+    "status": "已展示風格提案／未正式接入",
+    "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png",
+    "source": "/workspace/generated_images/exec-99def955-fbcc-4db8-9b1a-50c131fb39b3.png",
+    "sha256": "839874336c825dd8c50f7129429512cd1b8a78bed942b2911e61c07baa0acdcd",
+    "size": [
+      1536,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      254
+    ],
+    "status": "已展示風格提案／未正式接入",
+    "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
   }
 ]
