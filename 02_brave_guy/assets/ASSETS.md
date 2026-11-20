@@ -419,3 +419,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-19 王之嘴炮英日與傳送門
 新增source/pic/titles/ult_nightmare_en.svg、ult_nightmare_ja.svg（相對02_brave_guy/assets），復用既有760×370紫綠底形，Noto字形轉路徑。十門陣形與三語PUA文字砲為royal-arsenal.js／pua-projectile.js程式視覺，無新增點陣圖片。詳見2026-11-19-game02-royal-dialogue-barrage交接。
+
+## 2026-11-20 客串爆氣寶石與對話彈
+復用已歸檔勇氣寶石1254×1254母檔與無損WebP；小天使粉色心形、惡夢紫色菱形由playable-roster.css及角色HUD裝飾呈現，無新增圖片。PUA對話彈在pua-projectile.js以1536×384 Canvas重新繪製字形／向量框，非插值放大。詳見 ../../docs/handoffs/2026-11-20-game02-guest-burst-balance.md。

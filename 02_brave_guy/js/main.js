@@ -1,8 +1,8 @@
-import { createPuaProjectile } from './pua-projectile.js?v=20261119dialogue';
+import { createPuaProjectile } from './pua-projectile.js?v=20261120burst';
 import { angelText } from './angel-language.js?v=20261119dialogue';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261119dialogue';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120burst';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119dialogue';
-import { createGuestCombat } from './guest-combat.js?v=20261119pierce';
+import { createGuestCombat } from './guest-combat.js?v=20261120burst';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261119dialogue';
 import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
@@ -288,7 +288,7 @@ const rand = (a, b) => a + Math.random() * (b - a);
 const forward = (yaw, out = new THREE.Vector3()) => out.set(Math.sin(yaw), 0, Math.cos(yaw));
 const dist2d = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const alive = (e) => e.state !== 'dead' && e.state !== 'spawn';
-const stats = () => FORM[hero.form === 'brave' ? 'brave' : 'student']; // 上班族沿用大學生的數值
+const stats = () => {const base=FORM[hero.form === 'brave' ? 'brave' : 'student'];return hero.guestBurstT>0?{...base,atk:base.atk*1.25,speed:base.speed*1.15,hurtMult:base.hurtMult*.8}:base;}; // 上班族沿用大學生的數值
 const stage = () => STAGES[game.stage];
 let maze = null; // 這一關的迷宮（教學關與黑影單挑沒有）
 const navTmp = new THREE.Vector3();
@@ -364,6 +364,8 @@ function rescueSpeech(){
 }
 function applyCharacterHud(){
  const id=hero.character||'brave';$('hud').dataset.character=id;
+ const gem=document.querySelector('.act.transform');gem.querySelector('.burst-emblem')?.remove();
+ if(guest()){const emblem=document.createElement('b');emblem.className='burst-emblem';emblem.textContent=id==='angel'?'♡':'◆';emblem.setAttribute('aria-hidden','true');gem.append(emblem);}
  $('portrait').querySelector('.guest-face')?.remove();
  if(guest()){const face=document.createElement('span');face.className=`roster-face guest-face ${id}`;$('portrait').append(face);}
  for(const btn of ACT_BUTTONS){btn.querySelector('.guest-icon')?.remove();if(btn.dataset.action==='attack')btn.setAttribute('aria-label',id==='angel'?angelText('嘴砲攻擊'):t('攻擊'));const i=['skill1','skill2','skill3','ult'].indexOf(btn.dataset.action);
@@ -413,7 +415,7 @@ function resetHero() {
   Object.assign(hero, {
     hp: hero.maxHp, courage: 0, qi: 0, guilt: 0, guiltMax: GAUGE.guiltBase,
     state: 'free', actionLockTarget: null, t: 0, combo: -1, queued: false, comboGap: 0, hitDone: false, invuln: 0, cds: {}, yaw: 0, data: null,
-    mode: null, burstT: 0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
+    mode: null, burstT: 0, guestBurstT:0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
   hero.pos.set(0, 0, 5);
@@ -620,11 +622,17 @@ function updateHud() {
 
   $('hp-fill').style.transform = `scaleX(${Math.max(0, hero.hp / hero.maxHp)})`;
   textIfChanged('hp-text', `${Math.max(0, Math.ceil(hero.hp))} / ${hero.maxHp}`);
+  if((godMode()||guest())&&!game.final&&hero.form==='brave'){hero.courage=GAUGE.courageMax;hero.mode='courage';}
   const courageShown = hero.mode === 'burst' ? hero.burstT / GAUGE.burstTime : hero.courage / GAUGE.courageMax;
   $('courage-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, courageShown))})`;
   $('courage').classList.toggle('full', !brave && canTransform() && hero.courage >= GAUGE.courageMax);
   $('courage').classList.toggle('burst', hero.mode === 'burst');
-  const g = hero.guilt / hero.guiltMax;
+  $('courage').hidden=guest();
+  const burstActive=guest()&&hero.guestBurstT>0;
+  const resourceName=hero.character==='angel'?tr('包容心','Compassion','包容力'):hero.character==='nightmare'?tr('極限值','Limit','限界値'):t('罪惡感');
+  const resourceLabel=$('guilt').querySelector('b');resourceLabel.removeAttribute('data-i18n');resourceLabel.textContent=burstActive?`${tr('爆氣','Burst','覚醒')} ${hero.guestBurstT.toFixed(1)}s`:resourceName;
+  $('guilt').setAttribute('aria-label',resourceName);$('hud').classList.toggle('guest-burst',burstActive);
+  const g = burstActive?hero.guestBurstT/8:hero.guilt / hero.guiltMax;
   if(game.phase==='playing'&&!game.paused){const old=hero.guiltSoundRatio||0;if(g>=.9&&old<.9)audio.sfx('guilt_crack');else if(g>old+.001)audio.sfx('guilt_tick');}
   hero.guiltSoundRatio=g;
   $('guilt-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, g))})`;
@@ -658,7 +666,7 @@ function updateHud() {
 
   for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
-    btn.hidden = a==='transform' ? brave || !canTransform() || hero.courage < GAUGE.courageMax : Boolean(SKILLS[a]) && !brave;
+    btn.hidden = a==='transform' ? (guest()?game.final||hero.guilt<hero.guiltMax||hero.guestBurstT>0:brave || !canTransform() || hero.courage < GAUGE.courageMax) : Boolean(SKILLS[a]) && !brave;
     if(btn.hidden)input.held.delete(a);
     if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(t(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)])):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
     if (SKILLS[a] && a !== 'ult') {
@@ -669,9 +677,9 @@ function updateHud() {
       btn.classList.toggle('locked', !brave || !game.abilities.has('ult'));
       btn.classList.toggle('ready', brave && game.abilities.has('ult') && hero.qi >= GAUGE.qiMax);
     } else if (a === 'transform') {
-      const can = canTransform();
-      btn.classList.toggle('ready', !brave && can && hero.courage >= GAUGE.courageMax);
-      btn.classList.toggle('locked', brave || !can || hero.courage < GAUGE.courageMax);
+      const ready=guest()?!game.final&&hero.guilt>=hero.guiltMax&&!(hero.guestBurstT>0):!brave&&canTransform()&&hero.courage>=GAUGE.courageMax;
+      btn.classList.toggle('ready',ready);btn.classList.toggle('locked',!ready);
+      btn.setAttribute('aria-label',guest()?tr('爆氣','Burst','覚醒'):t('變身'));btn.title=btn.getAttribute('aria-label');btn.dataset.burstLabel=tr('爆氣','Burst','覚醒');
     } else if (a === 'dodge') {
       btn.style.setProperty('--cd', `${(hero.cds.dodge || 0) / stats().dodgeCd}turn`);
     }
@@ -749,6 +757,7 @@ function onHit(count, killed) {
     if(gained>0&&guest())supportSpeech(hero.character==='angel'?'勇氣回來了，我還能再接妳一次！':'看，你也能把勇氣找回來。',hero.character==='angel'?'還行。這句是說你，別得意。':'別說得好像我剛剛很丟臉。');
     if (gained > 0) popup(hero.pos, 4.4, tr(`連擊獎勵：${supportName()}救援 +${gained}`, `COMBO: Angel rescue +${gained}`, `コンボ：天使の救援 +${gained}`), 'good');
   }
+  if(guest()&&!game.final&&!(hero.guestBurstT>0))hero.guilt=Math.min(hero.guiltMax,hero.guilt+count*1.5+killed*2);
   game.comboT = 2.2;
   if (hero.form === 'brave') { addCourage(GAUGE.courageHitBrave * count); addQi(GAUGE.qiHit * count + GAUGE.qiKill * killed); }
   else addCourage(GAUGE.courageHitStudent * count);
@@ -783,7 +792,16 @@ function finishTransform() {
   say('transform', true);
 }
 
+function startGuestBurst(){
+  if(!guest()||game.final||hero.guilt<hero.guiltMax||hero.guestBurstT>0)return;
+  hero.guilt=0;hero.guestBurstT=8;hero.state='free';hero.invuln=Math.max(hero.invuln,.6);
+  const color=hero.character==='angel'?0xff9de0:0xb080ff;
+  hero.visual.glow(true,color);fx.dome(hero.pos,5,color,.5);fx.ring(hero.pos,1,7,color,.6);
+  audio.sfx('guilt_burst');popup(hero.pos,2.8,tr('爆氣！','BURST!','覚醒！'),'good');
+}
+
 function guiltBurst() {
+  if(guest()){hero.guilt=hero.guestBurstT>0?0:Math.min(hero.guilt,hero.guiltMax);return;} // Guests activate their full resource manually.
   burstMeter();
   if (!canTransform()) {
     audio.sfx('guilt_crack');
@@ -1013,7 +1031,7 @@ function hurtHero(amount, opts = {}) {
   tauntFrom(TAUNTS_HIT, 0.6);
   game.combo = 0;
   if (hero.form !== 'brave') addCourage(GAUGE.courageHurt);
-  hero.guilt += (dmg / hero.maxHp) * 100 * GAUGE.guiltPerHpPct + (opts.guilt || 0);
+  if(!(guest()&&hero.guestBurstT>0))hero.guilt = Math.min(hero.guiltMax,hero.guilt+(dmg / hero.maxHp) * 100 * GAUGE.guiltPerHpPct + (opts.guilt || 0));
   if (game.final) hero.guilt = 0; // 終章最後一段不再累積罪惡感
   // 上班族被打會自動回話，取代學生時的「沒關係」
   if (hero.form === 'worker') popup(hero.pos, 2.9, ['好的。', '收到。', '沒問題。'][Math.floor(Math.random() * 3)], 'guard');
@@ -1072,6 +1090,7 @@ function damageEnemy(e, mult, o = {}) {
   }
   const crit = Math.random() < HERO.critRate;
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
+  if(godMode())dmg/=3; // 天下無敵：所有敵人的有效防禦提升三倍。
   if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.1) dmg = Math.max(0, e.hp - e.maxHp * 0.1 + 1); // 不會被直接打死，血打到剩一成才進入最後一段（走上前收尾）
@@ -1365,7 +1384,7 @@ const MOVES = {
     start(e) { e.aim = e.pos.clone(); e.visual.play('skill3', 0.9); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
     update(e) { if (e.cast.t < 0.8) return false; boomAt(e.aim, 8); fx.dome(e.aim, 7, 0xb06cff, 0.5); if (dist2d(hero.pos, e.aim) < 7.5) hurtHero(180); return true; } },
   guiltTalk: { cd: 5,          // 情勒：不扣血，但罪惡感會漲
-    start(e) { bossLine(e); if (hero.state !== 'transforming' && !game.final) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
+    start(e) { bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
     update: (e) => e.cast.t > 0.7 },
   firePools: { cd: 9,          // 寫著難聽話的黑火
     start(e) { bossLine(e); for (let i = 0; i < 5; i++) { const a = rand(0, 6.28), r = i === 0 ? 0 : rand(2, 7); addHazard('fire', tmp.set(hero.pos.x + Math.cos(a) * r, 0, hero.pos.z + Math.sin(a) * r), 2.4, 0.9, 5); } },
@@ -1474,7 +1493,7 @@ function startAwakening(e) {
 }
 function startFinalPhase(e) {
   guestCombat.clear();nightmareBossSkills.clear();
-  game.final = true;
+  game.final = true;hero.guestBurstT=0;hero.visual.glow(false);
   e.untouchable = true;
   e.cast = null; e.state = 'chase'; e.cool = 2.5;
   if (beam) endUlt();
@@ -1982,6 +2001,8 @@ function endUlt() {
 
 function updateHero(dt) {
   hero.t += dt;
+  if(hero.guestBurstT>0){hero.guestBurstT=Math.max(0,hero.guestBurstT-dt);if(!hero.guestBurstT)hero.visual.glow(false);}
+  if((godMode()||guest())&&!game.final&&hero.form==='brave'){hero.courage=GAUGE.courageMax;hero.mode='courage';}
   hero.invuln = Math.max(0, hero.invuln - dt);
   for (const k of Object.keys(hero.cds)) hero.cds[k] = Math.max(0, hero.cds[k] - dt);
   if (hero.hurtStreakT > 0) { hero.hurtStreakT -= dt; if (hero.hurtStreakT <= 0) hero.hurtStreak = 0; }
@@ -2004,7 +2025,7 @@ function updateHero(dt) {
   // 計量隨時間的變化
   if (hero.form === 'brave') {
     if (hero.mode === 'burst') hero.burstT -= dt; else if (!godMode()&&!guest()) hero.courage -= GAUGE.courageDrain * dt; // 天下無敵：勇氣不衰減，保持勇氣超人
-    const over = hero.mode === 'burst' ? hero.burstT <= 0 : hero.courage <= 0;
+    const over = !guest()&&(!godMode()||game.final)&&(hero.mode === 'burst' ? hero.burstT <= 0 : hero.courage <= 0);
     if (over && hero.state === 'free') { revert(); return; }
   } else if (enemies.some(alive)) {
     hero.farT = nearestEnemy(GAUGE.courageFarDist) ? 0 : hero.farT + dt;
@@ -2023,6 +2044,7 @@ function updateHero(dt) {
     if (a === 'attack') startAttack((hero.combo + 1) % combo.length, mv);
     else if (a === 'dodge') startDodge(mv);
     else if (a === 'transform') {
+      if(guest()){startGuestBurst();return;}
       if (hero.form !== 'brave' && canTransform() && hero.courage >= GAUGE.courageMax) {
         hero.state = 'transforming'; hero.t = 0;
         hero.visual.play('transform');

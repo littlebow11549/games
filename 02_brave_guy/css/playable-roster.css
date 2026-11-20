@@ -33,3 +33,17 @@
 .control-badge[data-status="pull"]{color:#efc5ff;border-color:#d58df9;background:#2f1640ed}
 .control-badge[data-status="resist"]{color:#eee;border-color:#aaa;background:#222d}
 .control-badge[hidden]{display:none}
+/* Guest burst gems reuse the native courage gem; color and crest identify the character. */
+#hud:is([data-character="angel"],[data-character="nightmare"]) #courage{display:none!important}
+#hud[data-character="angel"]{--burst-hue:205deg;--burst-color:#ffb9e6}
+#hud[data-character="nightmare"]{--burst-hue:155deg;--burst-color:#bc91ff}
+#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform{right:144px;bottom:224px;width:68px;height:68px}
+#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform::before{animation:none;filter:hue-rotate(var(--burst-hue)) drop-shadow(0 0 8px var(--burst-color))}
+#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform.ready::before{animation:guest-gem-pulse 1.2s ease-in-out infinite alternate}
+#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform::after{content:attr(data-burst-label);font-size:11px;white-space:nowrap;color:var(--burst-color);border-color:var(--burst-color)}
+#hud .burst-emblem{position:absolute;inset:24% 20%;display:grid;place-items:center;font:900 23px/1 sans-serif;color:white;text-shadow:0 1px 3px #180b26;-webkit-text-stroke:1px #48213b;pointer-events:none}
+#hud[data-character="angel"] #guilt-fill{background:linear-gradient(90deg,#c552a6,#ffd0f1)}
+#hud[data-character="nightmare"] #guilt-fill{background:linear-gradient(90deg,#7836c9,#d2b0ff)}
+#hud.guest-burst #guilt{box-shadow:0 0 12px var(--burst-color)}
+@keyframes guest-gem-pulse{to{filter:hue-rotate(var(--burst-hue)) brightness(1.2) drop-shadow(0 0 13px var(--burst-color));transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform.ready::before{animation:none}}

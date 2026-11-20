@@ -1,4 +1,4 @@
-import { createRoyalArsenal } from './royal-arsenal.js?v=20261119dialogue';
+import { createRoyalArsenal } from './royal-arsenal.js?v=20261120burst';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Same four nightmare mechanics, with readable windups and dodgeable hostile shots.
 export function createNightmareBossSkills({scene,hero,fx,hurt,shot,say,clamp,arena=40}){

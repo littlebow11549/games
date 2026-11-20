@@ -1,5 +1,5 @@
-import { createPuaProjectile } from './pua-projectile.js?v=20261119dialogue';
-import { createRoyalArsenal } from './royal-arsenal.js?v=20261119dialogue';
+import { createPuaProjectile } from './pua-projectile.js?v=20261120burst';
+import { createRoyalArsenal } from './royal-arsenal.js?v=20261120burst';
 import { angelText, angelFont } from './angel-language.js?v=20261119dialogue';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Owns all guest projectiles, drones and delayed casts. Simulation time only.
@@ -45,8 +45,8 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
    if(name==='skill1'){casts.push({kind:'dash',life:.35,dir,from,hit:[new Set(),new Set(),new Set()]});audio.sfx('dash');}
    else if(name==='skill3'){area(from,13,4,name,2.3);fx.dome(from,13,color,.6);fx.ring(from,1,13,0xe2bbff,.5);audio.sfx('boom');}
    else if(name==='ult'){const arsenal=createRoyalArsenal({scene,owner:hero,targets:()=>targets().filter(e=>!e.untouchable&&!e.castInvuln),impact:(e,from)=>{
-     const impactPos=e.pos.clone();hit(e,2.4,{src:'ult',from,kb:9,launch:4,heavy:true});
-     for(const nearby of targets())if(nearby!==e&&nearby.pos.distanceTo(impactPos)<3.6+nearby.def.radius)hit(nearby,1.2,{src:'ult',from:impactPos,kb:7,launch:3,heavy:true});
+     const impactPos=e.pos.clone();hit(e,1.8,{src:'ult',from,kb:9,launch:4,heavy:true});
+     for(const nearby of targets())if(nearby!==e&&nearby.pos.distanceTo(impactPos)<3.6+nearby.def.radius)hit(nearby,.9,{src:'ult',from:impactPos,kb:7,launch:3,heavy:true});
      fx.ring(impactPos,.3,3.6,0xc1ff6b,.3);fx.burst(impactPos,0xbc7aff,9,6,.3,.2);
     },fx,audio});casts.push({kind:'arsenal',life:10,ult:true,arsenal,nodes:arsenal.nodes});audio.sfx('beam_start');}
    else{const ult=false,count=5;casts.push({kind:'drones',life:ult?10:5,tick:0,ult,src:name,nodes:Array.from({length:count},()=>{const m=orb(0x9d49ff,.45);m.position.copy(from);m.position.y=2.3;return m})});audio.sfx('ki_shot');}
@@ -67,7 +67,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
     if(c.tick<=0){c.tick=.22;fx.ring(c.pos,14,1,0xa7faff,.4);fx.pillar(c.pos,3,10,0xbdf5ff,.35);fx.burst(c.pos,0xffffff,16,12,.4,.18);area(c.pos,arena*2,.65,'ult');}
     if(c.life<=0){area(c.pos,arena*2,6,'ult');fx.dome(c.pos,17,0xffd4ef,.65);audio.sfx('boom');}
    }else if(c.kind==='arsenal'){c.arsenal.update(elapsed);
-    if(c.life<=0){const pool=targets();for(const e of pool)hit(e,6,{src:'ult',from:hero.pos,kb:18,launch:8,heavy:true});for(const e of pool.slice(0,24)){fx.burst(e.pos,0xc4ff78,10,9,.6,.25);fx.dome(e.pos,3.6,0xbb70ff,.65);fx.pillar(e.pos,1.2,7,0xc4ff78,.45);}fx.ring(hero.pos,2,arena*2,0xc08aff,.8);fx.ring(hero.pos,1,arena*1.7,0xc4ff78,1);audio.sfx('boom');}
+    if(c.life<=0){const pool=targets();for(const e of pool)hit(e,4.5,{src:'ult',from:hero.pos,kb:18,launch:8,heavy:true});for(const e of pool.slice(0,24)){fx.burst(e.pos,0xc4ff78,10,9,.6,.25);fx.dome(e.pos,3.6,0xbb70ff,.65);fx.pillar(e.pos,1.2,7,0xc4ff78,.45);}fx.ring(hero.pos,2,arena*2,0xc08aff,.8);fx.ring(hero.pos,1,arena*1.7,0xc4ff78,1);audio.sfx('boom');}
    }else if(c.kind==='drones'){
     const pool=targets().filter(e=>!e.untouchable&&!e.castInvuln);
     c.nodes.forEach((m,k)=>{
