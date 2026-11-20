@@ -1,8 +1,8 @@
-import { createPuaProjectile } from './pua-projectile.js?v=20261120burst';
+import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
 import { angelText } from './angel-language.js?v=20261119dialogue';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120burst';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120perf';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119dialogue';
-import { createGuestCombat } from './guest-combat.js?v=20261120barrier';
+import { createGuestCombat } from './guest-combat.js?v=20261120perf';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261119dialogue';
 import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
@@ -607,11 +607,13 @@ const ACTION_PANEL = document.querySelector('.actions');
 const ACT_BUTTONS = [...document.querySelectorAll('.act[data-action]')]; // 每幀都要用，先查好
 
 function textIfChanged(id, value) { const el=$(id), text=String(value); if(el.textContent!==text)el.textContent=text; }
+function attrIfChanged(el,name,value){if(el.getAttribute(name)!==String(value))el.setAttribute(name,value);}
+function boolIfChanged(el,name,value){value=Boolean(value);if(el[name]!==value)el[name]=value;}
 function updateHud() {
   const brave = hero.form === 'brave';
   ACTION_PANEL.classList.toggle('base-form', !brave);
   const transformStatus = $('transform-status');
-  transformStatus.hidden = brave || canTransform();
+  boolIfChanged(transformStatus,'hidden',brave || canTransform());
   if(!transformStatus.hidden){
     const message=game.final
       ? tr('閃避集滿勇氣，再走向董事長','Dodge to fill courage, then approach the chairman','回避で勇気を満たし、会長へ近づこう')
@@ -630,11 +632,11 @@ function updateHud() {
   $('courage-fill').style.transform = `scaleX(${Math.max(0, Math.min(1, courageShown))})`;
   $('courage').classList.toggle('full', !brave && canTransform() && hero.courage >= GAUGE.courageMax);
   $('courage').classList.toggle('burst', hero.mode === 'burst');
-  $('courage').hidden=guest();
+  boolIfChanged($('courage'),'hidden',guest());
   const burstActive=guest()&&hero.guestBurstT>0;
   const resourceName=hero.character==='angel'?tr('包容心','Compassion','包容力'):hero.character==='nightmare'?tr('極限值','Limit','限界値'):t('罪惡感');
-  const resourceLabel=$('guilt').querySelector('b');resourceLabel.removeAttribute('data-i18n');resourceLabel.textContent=burstActive?`${tr('爆氣','Burst','覚醒')} ${hero.guestBurstT.toFixed(1)}s`:resourceName;
-  $('guilt').setAttribute('aria-label',resourceName);$('hud').classList.toggle('guest-burst',burstActive);
+  const resourceLabel=$('guilt').querySelector('b');if(resourceLabel.hasAttribute('data-i18n'))resourceLabel.removeAttribute('data-i18n');const resourceText=burstActive?`${tr('爆氣','Burst','覚醒')} ${hero.guestBurstT.toFixed(1)}s`:resourceName;if(resourceLabel.textContent!==resourceText)resourceLabel.textContent=resourceText;
+  attrIfChanged($('guilt'),'aria-label',resourceName);$('hud').classList.toggle('guest-burst',burstActive);
   const g = burstActive?hero.guestBurstT/8:hero.guilt / hero.guiltMax;
   if(game.phase==='playing'&&!game.paused){const old=hero.guiltSoundRatio||0;if(g>=.9&&old<.9)audio.sfx('guilt_crack');else if(g>old+.001)audio.sfx('guilt_tick');}
   hero.guiltSoundRatio=g;
@@ -648,18 +650,18 @@ function updateHud() {
   $('guilt').classList.toggle('heavy', g >= GAUGE.guiltHesitate);
   $('portrait').classList.toggle('brave', brave);
   $('portrait').classList.toggle('worker', hero.form === 'worker');
-  $('btn-quick-clear').hidden = !secretToggle.enabled || game.phase !== 'playing' || game.paused || !!dialog || cinematics.active;
+  boolIfChanged($('btn-quick-clear'),'hidden',!secretToggle.enabled || game.phase !== 'playing' || game.paused || !!dialog || cinematics.active);
   const jumpToBoss = stage().boss && !game.bossSpawned;
   textIfChanged('btn-quick-clear', jumpToBoss
     ? (lang === 'ja' ? 'ボスへ' : lang === 'en' ? 'Jump to boss' : '跳到魔王')
     : stage().boss==='incubus'&&!game.awakened?tr('第二形態','Second form','第二形態')
     : (lang === 'ja' ? '即クリア' : lang === 'en' ? 'Clear stage' : '一鍵過關'));
-  $('btn-cycle-lock').disabled = game.phase !== 'playing' || game.paused || !!dialog;
+  boolIfChanged($('btn-cycle-lock'),'disabled',game.phase !== 'playing' || game.paused || !!dialog);
   textIfChanged('quest-count', tf('擊倒 {0}', game.kills));
   textIfChanged('suanle-n', game.suanle);
   const hearts = '♥'.repeat(Math.max(0, game.rescues || 0)) || '—';
   textIfChanged('rescue-n', hearts);
-  $('rescue').querySelector('span').textContent=tf('{0}救援',t(supportName()));
+  const rescueLabel=$('rescue').querySelector('span'),rescueText=tf('{0}救援',t(supportName()));if(rescueLabel.textContent!==rescueText)rescueLabel.textContent=rescueText;
   const miniHTML = `<b>${stage().id}</b><span>✊ ${game.kills}</span><i>${hearts}</i>`;
   if ($('quest-mini').innerHTML !== miniHTML) $('quest-mini').innerHTML = miniHTML; // 收合時只顯示這一行
   $('btn-lock').hidden = false;
@@ -669,9 +671,10 @@ function updateHud() {
 
   for (const btn of ACT_BUTTONS) {
     const a = btn.dataset.action;
-    btn.hidden = a==='transform' ? (guest()?game.final||hero.guilt<hero.guiltMax||hero.guestBurstT>0:brave || !canTransform() || hero.courage < GAUGE.courageMax) : Boolean(SKILLS[a]) && !brave;
+    const buttonHidden = a==='transform' ? (guest()?game.final||hero.guilt<hero.guiltMax||hero.guestBurstT>0:brave || !canTransform() || hero.courage < GAUGE.courageMax) : Boolean(SKILLS[a]) && !brave;
+    boolIfChanged(btn,'hidden',buttonHidden);
     if(btn.hidden)input.held.delete(a);
-    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(t(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)])):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;btn.setAttribute('aria-label',hint);}
+    if(SKILLS[a]){const unlearned=!game.abilities.has(a);btn.classList.toggle('unlearned',unlearned);if(btn.getAttribute('aria-disabled')!==String(unlearned))btn.setAttribute('aria-disabled',String(unlearned));const hint=unlearned?unlockHint(a):(guest()?angelText(t(ROSTER[hero.character].skills[['skill1','skill2','skill3','ult'].indexOf(a)])):t(SKILLS[a].name));if(btn.title!==hint)btn.title=hint;attrIfChanged(btn,'aria-label',hint);}
     if (SKILLS[a] && a !== 'ult') {
       btn.style.setProperty('--cd', `${(hero.cds[a] || 0) / (guest()?ROSTER[hero.character].cd[['skill1','skill2','skill3'].indexOf(a)]:SKILLS[a].cd)}turn`);
       btn.classList.toggle('locked', !brave || !game.abilities.has(a) || hero.silenceT > 0);
@@ -682,7 +685,7 @@ function updateHud() {
     } else if (a === 'transform') {
       const ready=guest()?!game.final&&hero.guilt>=hero.guiltMax&&!(hero.guestBurstT>0):!brave&&canTransform()&&hero.courage>=GAUGE.courageMax;
       btn.classList.toggle('ready',ready);btn.classList.toggle('locked',!ready);
-      btn.setAttribute('aria-label',guest()?tr('爆氣','Burst','覚醒'):t('變身'));btn.title=btn.getAttribute('aria-label');btn.dataset.burstLabel=tr('爆氣','Burst','覚醒');
+      attrIfChanged(btn,'aria-label',guest()?tr('爆氣','Burst','覚醒'):t('變身'));attrIfChanged(btn,'title',btn.getAttribute('aria-label'));attrIfChanged(btn,'data-burst-label',tr('爆氣','Burst','覚醒'));
     } else if (a === 'dodge') {
       btn.style.setProperty('--cd', `${(hero.cds.dodge || 0) / stats().dodgeCd}turn`);
     }
@@ -1312,7 +1315,7 @@ function boomAt(pos, r) {
   fx.burst(pos, 0xffb347, 26, 10, 0.4, 0.3);
   game.shake = Math.max(game.shake, 0.6);
 }
-function disposeShot(mesh){if(mesh.isSprite){mesh.material.map?.dispose();mesh.material.dispose();mesh.removeFromParent();}else disposeOwned(mesh);}
+function disposeShot(mesh){if(mesh.isSprite){disposeProjectileMaterial(mesh.material);mesh.removeFromParent();}else disposeOwned(mesh);}
 function hostileShot(from, yaw, o = {}) {
   if(o.pan)audio.sfx('pan_fly');
   const r = o.radius || 0.3;

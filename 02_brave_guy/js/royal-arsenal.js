@@ -1,10 +1,10 @@
-import { createPuaProjectile } from './pua-projectile.js?v=20261120burst';
+import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Purple/gold portals launch independently targeted PUA dialogue; all time is simulation time.
 const UP=new THREE.Vector3(0,0,1);
 function material(color,extra={}){return new THREE.MeshBasicMaterial({color,...extra});}
 function part(root,geo,color,x=0,y=0,z=0){const m=new THREE.Mesh(geo,material(color));m.position.set(x,y,z);root.add(m);return m;}
-function dispose(root){root.removeFromParent();root.traverse(o=>{if(o.isMesh)o.geometry?.dispose();if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material]){m.map?.dispose();m.dispose();}});}
+function dispose(root){root.removeFromParent();root.traverse(o=>{if(o.isMesh)o.geometry?.dispose();if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material]){disposeProjectileMaterial(m);}});}
 const slots=[[-5,2.6],[-2.5,2.8],[0,3],[2.5,2.8],[5,2.6],[-4,4.8],[-1.4,5.2],[1.4,5.2],[4,4.8],[0,6.9]];
 export function createRoyalArsenal({scene,owner,targets,impact,fx,audio,hostile=false}){
  const root=new THREE.Group();root.name='nightmare-royal-arsenal';scene.add(root);
@@ -32,7 +32,7 @@ export function createRoyalArsenal({scene,owner,targets,impact,fx,audio,hostile=
   for(const p of projectiles)if(!recall.includes(p.mesh))dispose(p.mesh);projectiles.length=0;
  }
  return {nodes:gates.map(g=>g.group),get state(){return {phase:returning?'recall':'barrage',recallCount:recall.length,recallPositions:recall.map(m=>({x:m.position.x,y:m.position.y,z:m.position.z})),portals:gates.length,projectiles:projectiles.length,texts:projectiles.map(p=>p.mesh.userData.text),targets:projectiles.map(p=>({x:p.target?.pos.x,z:p.target?.pos.z})),weaponPositions:projectiles.map(p=>({x:p.mesh.position.x,y:p.mesh.position.y,z:p.mesh.position.z})),fired,age,positions:gates.map(g=>{const p=g.group.getWorldPosition(new THREE.Vector3());return{x:p.x,y:p.y,z:p.z}})}},update(dt){
-  if(closed||dt<=0)return;age+=dt;position();const pool=targets();
+  if(closed||dt<=0)return;age+=dt;position();const pool=targets(),live=new Set(pool);
   if(age>=8.4&&!returning)beginReturn();
   if(returning){root.scale.setScalar(Math.max(.01,1-(age-8.4)*3));recall.forEach((m,k)=>{const a=k*Math.PI*2/10+(age-8.4)*2,r=Math.max(1.3,3-(age-8.4));const goal=owner.pos.clone().add(new THREE.Vector3(Math.cos(a)*r,2.4+Math.sin(a*2)*.3,Math.sin(a)*r));const delta=goal.sub(m.position),d=delta.length();if(d)m.position.addScaledVector(delta,Math.min(1,Math.max(26,d/Math.max(.04,10-age))*dt/d));});return;}
 
@@ -40,14 +40,14 @@ export function createRoyalArsenal({scene,owner,targets,impact,fx,audio,hostile=
    const opening=Math.max(.01,Math.min(1,(age-g.index*.025)/.4));g.group.scale.setScalar(opening);g.ring.rotation.z+=dt*(g.index%2?1:-1);
    g.cool-=dt;g.weapon.visible=g.cool<.55;g.weapon.position.z=.2+Math.max(0,.55-g.cool)*.9;
    if(g.cool<=.28&&!g.aim&&pool.length){const target=pool[(g.index+Math.floor(fired/10))%pool.length];g.aim=target.pos.clone();g.aim.y+=1;g.target=target;if(hostile)fx.telegraph(target.pos,.8,.28,0xb784ff);}
-   if(g.aim&&!pool.includes(g.target)){g.aim=null;g.target=null;}
+   if(g.aim&&!live.has(g.target)){g.aim=null;g.target=null;}
    if(g.cool<=0){launch(g);g.cool=hostile?.75:.5;}
   }
   for(let i=projectiles.length-1;i>=0;i--){const p=projectiles[i],a=p.mesh.position.clone();p.life-=dt;
-   if(!hostile){if(!pool.includes(p.target))p.target=pool.slice().sort((x,y)=>x.pos.distanceToSquared(a)-y.pos.distanceToSquared(a))[0]||null;
+   if(!hostile){if(!live.has(p.target)){p.target=null;let nearest=Infinity;for(const e of pool){const distance=e.pos.distanceToSquared(a);if(distance<nearest){nearest=distance;p.target=e;}}}
     if(p.target){const aim=p.target.pos.clone();aim.y+=1;const desired=aim.sub(a).normalize().multiplyScalar(p.speed);p.velocity.lerp(desired,Math.min(1,dt*6)).normalize().multiplyScalar(p.speed);p.mesh.quaternion.setFromUnitVectors(UP,p.velocity.clone().normalize());}}
    p.mesh.position.addScaledVector(p.velocity,dt);const b=p.mesh.position,d=b.clone().sub(a),l=d.lengthSq();
-   for(const e of pool){const point=e.pos.clone();point.y+=1;const t=l?THREE.MathUtils.clamp(point.clone().sub(a).dot(d)/l,0,1):0;if(point.distanceTo(a.clone().addScaledVector(d,t))<(e.def?.radius||.6)+.55){impact(e,a);fx.burst(b,0xc7ff8b,5,3,.2,.1);p.life=0;break;}}
+   for(const e of pool){const x=e.pos.x-a.x,y=e.pos.y+1-a.y,z=e.pos.z-a.z,t=l?THREE.MathUtils.clamp((x*d.x+y*d.y+z*d.z)/l,0,1):0;const dx=x-d.x*t,dy=y-d.y*t,dz=z-d.z*t,r=(e.def?.radius||.6)+.55;if(dx*dx+dy*dy+dz*dz<r*r){impact(e,a);fx.burst(b,0xc7ff8b,5,3,.2,.1);p.life=0;break;}}
    lastPositions[p.index]=p.mesh.position.clone();
    if(p.life<=0){dispose(p.mesh);projectiles.splice(i,1);}
   }
