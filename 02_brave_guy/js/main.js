@@ -1,10 +1,10 @@
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120perf';
 import { angelText } from './angel-language.js?v=20261119dialogue';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120perf';
-import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119dialogue';
+import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120secret';
 import { createGuestCombat } from './guest-combat.js?v=20261120perf';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
-import { createSecretToggle } from './secret-toggle.js?v=20261119dialogue';
+import { createSecretToggle } from './secret-toggle.js?v=20261120secret';
 import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
 import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261119dialogue';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
@@ -270,6 +270,7 @@ const DEV_UNLOCK = false;
 const unlockParam = new URLSearchParams(location.search).get('unlock');
 const unlockAll = unlockParam === 'all' || (DEV_UNLOCK && unlockParam !== 'off');
 save.cleared=Array.isArray(save.cleared)?save.cleared.filter(id=>STAGES.some(s=>s.id===id)):[];
+save.secretCharacters=Array.isArray(save.secretCharacters)?[...new Set(save.secretCharacters.filter(id=>['angel','nightmare'].includes(id)))]:[];
 const runs = new RunRecords({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
 const tr=(zh,en,ja)=>words(lang,zh,en,ja);
 const writeSave = () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(save)); } catch { /* 無法存檔時本次仍可玩 */ } };
@@ -335,7 +336,7 @@ const unlockNotice = createUnlockNotice();
 async function announceUnlocks(){
  if(unlockNotice.open)return;
  for(const id of [...(save.pendingCharacters||[])]){
-   if(characterUnlocked(id,save.rounds)){await unlockNotice.show(id);}
+   if(characterUnlocked(id,save.rounds,save.secretCharacters)){await unlockNotice.show(id);}
    save.pendingCharacters=(save.pendingCharacters||[]).filter(x=>x!==id);writeSave();
  }
 }
@@ -454,12 +455,12 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 function startStage(index, character=null) {
-  if((save.rounds||0)>=3&&character===null){
+  if(((save.rounds||0)>=3||save.secretCharacters.length>0)&&character===null){
     if(rosterPicker.open)return;
     const wasPaused=game.paused;game.paused=true;audio.stopLoops();input.takeActions();input.held.clear();input.keys.clear();input.stick.x=input.stick.y=0;
-    return rosterPicker.choose(hero.character||'brave',save.rounds).then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
+    return rosterPicker.choose(hero.character||'brave',save.rounds,save.secretCharacters).then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
   }
-  hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds)?character:'brave';
+  hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds,save.secretCharacters)?character:'brave';
   if(!gameplayIsReady()){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(prepareGameplay,()=>startStage(index,hero.character));return;}
   audio.stopCelebration();input.takeActions();
   runs.start(index,diff);
@@ -2857,6 +2858,15 @@ function setPaused(on) {
   $('pause-menu').hidden = !on;
 }
 const secretToggle = createSecretToggle({
+  canUseMenu:()=>game.phase==='ready'&&menuView==='title'&&!$('overlay').hidden&&!rosterPicker.open&&!unlockNotice.open&&!document.querySelector('dialog[open]')&&!opening.active&&!cinematics.active&&save.secretCharacters.length<2,
+  onMenuHold:()=>{
+    const id=save.secretCharacters.includes('angel')?'nightmare':'angel';
+    save.secretCharacters.push(id);writeSave();input.takeActions();
+    const message=id==='angel'
+      ?tr('小娘炮你又想作弊！\n可以使用小天使了！','You little wimp, cheating again!\nLittle Angel is now playable!','またズルする気、この弱虫！\n小天使が使用可能になった！')
+      :tr('你這廢物，我阿媽都比你強。滾開！\n可以使用惡夢超人了！','You loser. My grandma is stronger than you. Move aside!\nNightmare Superman is now playable!','この役立たず。うちのばあちゃんの方が強いぞ。どけ！\n悪夢超人が使用可能になった！');
+    unlockNotice.show(id,message);
+  },
   canUse:()=>game.phase==='playing'&&!game.paused&&!dialog&&!cinematics.active&&!$('hud').hidden,
   pause:()=>{game.paused=true;audio.stopLoops();input.takeActions();},
   resume:()=>{input.takeActions();game.paused=false;},

@@ -1,5 +1,5 @@
-// Session-only reveal gesture; never writes player progress.
-export function createSecretToggle({canUse,pause,resume,labels,onChange}) {
+// Battle reveal is session-only; menu unlock persistence is handled by the caller.
+export function createSecretToggle({canUse,pause,resume,labels,onChange,canUseMenu=()=>false,onMenuHold=()=>{}}) {
   let enabled=false,down=null,timer=null,opened=false;
   const box=document.createElement('dialog');box.id='secret-dialog';
   box.innerHTML='<div class="secret-angel"><div class="secret-expression" aria-hidden="true"></div><div><b></b><p id="secret-question"></p></div></div><div class="secret-choices"><button type="button" id="secret-no"></button><button type="button" id="secret-yes"></button></div>';
@@ -13,9 +13,9 @@ export function createSecretToggle({canUse,pause,resume,labels,onChange}) {
   function cancelHold(){clearTimeout(timer);timer=null;down=null;}
   addEventListener('pointerdown',e=>{
     cancelHold();
-    if(!e.isPrimary||e.button!==0||!canUse()||excluded(e))return;
+    if(!e.isPrimary||e.button!==0||!(canUse()||canUseMenu())||excluded(e))return;
     down={id:e.pointerId,x:e.clientX,y:e.clientY};
-    timer=setTimeout(()=>{cancelHold();if(canUse())activate();},5000);
+    timer=setTimeout(()=>{cancelHold();if(canUseMenu())onMenuHold();else if(canUse())activate();},5000);
   },true);
   addEventListener('pointermove',e=>{if(down&&e.pointerId===down.id&&Math.hypot(e.clientX-down.x,e.clientY-down.y)>16)cancelHold();},true);
   for(const event of ['pointerup','pointercancel'])addEventListener(event,cancelHold,true);
