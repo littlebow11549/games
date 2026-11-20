@@ -78,11 +78,14 @@ const base = process.env.GAME_TEST_URL || 'http://127.0.0.1:8000/02_brave_guy/pl
               src: decodeURI(new URL(image.src).pathname),
               fits: box.width > 0 && box.height > 0 && box.left >= 0 && box.top >= 0 && box.right <= innerWidth && box.bottom <= innerHeight,
               visible: css.visibility === 'visible',
+              clip: css.clipPath,
               layered: ['world-ui', 'angel-bubble'].every(id => Number(getComputedStyle(layer).zIndex) > Number(getComputedStyle(document.getElementById(id)).zIndex))
             };
           });
           assert(artState.src.endsWith('/' + character.titles.runtime), artState.src);
           assert(artState.fits && artState.visible && artState.layered, JSON.stringify(artState));
+          if (id === 'nightmare') assert.match(artState.clip, /^polygon\(/);
+          else assert.equal(artState.clip, 'none');
           await notice.evaluate(el => { el.dataset.previous = 'yes'; });
           await page.evaluate(() => { __game.hero.state = 'free'; __game.game.hitstop = 0; });
           await page.keyboard.press(['q', 'e', 'r', 'f'][row]);

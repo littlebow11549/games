@@ -1,7 +1,7 @@
 import { assetPath, logicalAssetPath } from './asset-paths.js';
 import { words } from './run-records.js?v=20261120assets';
 import { lang } from './i18n.js?v=20261120assets';
-import { CHARACTER_ART } from './character-art-data.js?v=20261120castfix';
+import { CHARACTER_ART } from './character-art-data.js?v=20261120nighttitles';
 
 let manifestPromise;
 const gameplayLoads = new Map();

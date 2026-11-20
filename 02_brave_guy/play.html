@@ -28,11 +28,11 @@
 <link rel="stylesheet" href="css/loading.css?v=20261120assets">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261120assets">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261120assets">
-<link rel="stylesheet" href="css/controls-layout.css?v=20261120assets">
+<link rel="stylesheet" href="css/controls-layout.css?v=20261120stableburst">
 <link rel="stylesheet" href="css/ui-layers.css?v=20261120castfix">
 <link rel="stylesheet" href="css/secret-toggle.css?v=20261120assets">
 <link rel="stylesheet" href="css/hurt-feedback.css?v=20261120assets">
-<link rel="stylesheet" href="css/playable-roster.css?v=20261120assets">
+<link rel="stylesheet" href="css/playable-roster.css?v=20261120bursticon">
 <link rel="stylesheet" href="css/character-art.css?v=20261120castfix">
 </head>
 <body class="game-art">
@@ -91,7 +91,7 @@
     <button hidden class="act ult" data-action="ult" data-key="F" aria-label="超勇氣波"><span data-i18n="波">波</span><em></em></button>
     <button class="act lock" id="btn-lock" data-key="T" aria-label="自動鎖定" aria-pressed="false"><span data-i18n="鎖">鎖</span></button>
     <button class="act cycle-lock" id="btn-cycle-lock" data-key="Y" aria-label="切換鎖定目標"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 12a12 12 0 0 1 20 1M30 6v8h-8M30 28a12 12 0 0 1-20-1M10 34v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button hidden class="act transform" data-action="transform" data-key="空白鍵" data-i18n-key="空白鍵" aria-label="變身"><span data-i18n="變身">變身</span></button>
+    <button hidden class="act transform" data-action="transform" data-key="空白鍵" data-i18n-key="空白鍵" aria-keyshortcuts="Space" aria-label="變身"><span data-i18n="變身">變身</span></button>
     <button class="act dodge" data-action="dodge" data-key="右鍵" data-i18n-key="右鍵" aria-label="閃避"><span data-i18n="閃">閃</span><em></em></button>
     <button class="act attack" data-action="attack" data-key="左鍵" data-i18n-key="左鍵" aria-label="攻擊"><span data-i18n="拳">拳</span></button>
   </div>
@@ -186,7 +186,7 @@
   function startGame() {
     var s = document.createElement('script');
     s.type = 'module';
-    s.src = 'js/main.js?v=20261120burstwave';
+    s.src = 'js/main.js?v=20261120nighttitles';
     document.body.appendChild(s);
   }
   window.__progress(3, '開始讀取');

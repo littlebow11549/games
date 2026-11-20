@@ -10,7 +10,7 @@ const imports={
  './asset-paths.js':moduleUrl(await read('js/asset-paths.js')),
  './run-records.js?v=20261120assets':moduleUrl('export const words=(code,...options)=>options[0]'),
  './i18n.js?v=20261120assets':moduleUrl('export const lang="zh-Hant"'),
- './character-art-data.js?v=20261120castfix':moduleUrl(await read('js/character-art-data.js')),
+ './character-art-data.js?v=20261120nighttitles':moduleUrl(await read('js/character-art-data.js')),
 };
 let source=await read('js/loading.js');
 for(const [name,url] of Object.entries(imports))source=source.replace(`'${name}'`,`'${url}'`);

@@ -24,7 +24,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
    assert.deepEqual(d.cuts,[4,8]);assert.equal(d.duration,12);
    await page.evaluate(k=>{__game.game.phase='cinematic';__game.cinematics.boss([k],()=>{__game.game.phase='playing';});},key);await page.waitForTimeout(35);
    for(const [dt,beat]of [[.2,'0'],[4,'1'],[4,'2']]){await page.evaluate(dt=>__game.cinematics.update(dt),dt);assert.equal(await page.getAttribute('#cinema','data-beat'),beat,key);assert.equal(await page.getAttribute('#cinema','data-art-ready'),'true',key);shots++;}
-   assert(await page.locator('.cinema-name').isVisible());const expected=await page.evaluate(async k=>{const{BOSS_PROFILES}=await import('./js/cinematics.js?v=20261120assets');const{t}=await import('./js/i18n.js?v=20261120assets');return t(BOSS_PROFILES[k][0]);},key);assert.equal(await page.locator('.cinema-name').textContent(),expected);
+   assert(await page.locator('.cinema-name').isVisible());const expected=await page.evaluate(async k=>{const{BOSS_PROFILES}=await import('./js/cinematics.js?v=20261120nighttitles');const{t}=await import('./js/i18n.js?v=20261120assets');return t(BOSS_PROFILES[k][0]);},key);assert.equal(await page.locator('.cinema-name').textContent(),expected);
    if(locale==='zh-Hant'){await page.waitForTimeout(550);await page.screenshot({path:path.join(out,key+'.png')});}
    await page.evaluate(()=>__game.cinematics.update(4));assert.equal(await page.evaluate(()=>__game.game.phase),'playing');assert.equal(await page.evaluate(()=>__game.audio.duck),1);
   }

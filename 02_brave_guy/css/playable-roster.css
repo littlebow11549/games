@@ -40,7 +40,8 @@
 #hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform{right:144px;bottom:224px;width:68px;height:68px}
 #hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform::before{animation:none;filter:hue-rotate(var(--burst-hue)) drop-shadow(0 0 8px var(--burst-color))}
 #hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform.ready::before{animation:guest-gem-pulse 1.2s ease-in-out infinite alternate}
-#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform::after{content:attr(data-burst-label);font-size:11px;white-space:nowrap;color:var(--burst-color);border-color:var(--burst-color)}
+/* Icon only for guest burst; this also suppresses the desktop keycap. */
+#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform::after{content:none}
 #hud .burst-emblem{position:absolute;inset:24% 20%;display:grid;place-items:center;font:900 23px/1 sans-serif;color:white;text-shadow:0 1px 3px #180b26;-webkit-text-stroke:1px #48213b;pointer-events:none}
 #hud[data-character="angel"] #guilt-fill{background:linear-gradient(90deg,#c552a6,#ffd0f1)}
 #hud[data-character="nightmare"] #guilt-fill{background:linear-gradient(90deg,#7836c9,#d2b0ff)}

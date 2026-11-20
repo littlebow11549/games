@@ -1,4 +1,4 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120castfix';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120nighttitles';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=requested==='legacy'||art.reviewStyles.includes(requested)?requested:art.defaultStyle;
@@ -31,7 +31,8 @@ function titleWindow(record,col,row){
  const a=record.titles,[W,H]=a.size||[3600,1800];
  const [x,x2]=a.columns?.[col]||[col*W/3,(col+1)*W/3];
  const [y,y2]=a.rows?.[row]||[row*H/5,(row+1)*H/5];
- return {ratio:`${x2-x} / ${y2-y}`,size:`${W/(x2-x)*100}% ${H/(y2-y)*100}%`,pos:`${x/(W-x2+x)*100}% ${y/(H-y2+y)*100}%`};
+ const width=x2-x,height=y2-y;
+ return {width,height,ratio:`${width} / ${height}`,size:`${W/width*100}% ${H/height*100}%`,pos:`${x/(W-width)*100}% ${y/(H-height)*100}%`};
 }
 function renderCharacterTitle(id,record,row){
  const col=Math.max(0,art.title_grid.columnsByLanguage.indexOf(lang));
@@ -40,6 +41,13 @@ function renderCharacterTitle(id,record,row){
  el.setAttribute('role','img');el.setAttribute('aria-label',record.titles.labels[row][col]);
  const win=titleWindow(record,col,row);el.style.aspectRatio=win.ratio;el.style.backgroundImage=`url("${record.titles.runtime}")`;
  el.style.backgroundSize=win.size;el.style.backgroundPosition=win.pos;
+ // Some approved sheets include opaque halftone outside the actual lettering burst.
+ // Trace only that excess out at presentation time; leave the entire source atlas intact.
+ const points=record.titles.clipPointsByRowAndLocale?.[row]?.[col];
+ if(points){
+  const clip=`polygon(${points.split(' ').map(point=>{const [x,y]=point.split(',').map(Number);return `${(100*x/win.width).toFixed(3)}% ${(100*y/win.height).toFixed(3)}%`;}).join(',')})`;
+  el.style.webkitClipPath=clip;el.style.clipPath=clip;
+ }
  return el;
 }
 export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){

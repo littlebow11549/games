@@ -1,4 +1,4 @@
-import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120castfix';
+import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nighttitles';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
@@ -7,7 +7,7 @@ import { createGuestCombat } from './guest-combat.js?v=20261120assets';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120castfix';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120nighttitles';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets';
@@ -16,8 +16,8 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
 import { Fx } from './fx.js?v=20261120assets';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120castfix';
-import { createCinematics } from './cinematics.js?v=20261120castfix';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nighttitles';
+import { createCinematics } from './cinematics.js?v=20261120nighttitles';
 import { createOpening } from './opening.js?v=20261120assets';
 import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
@@ -715,7 +715,11 @@ function updateHud() {
     } else if (a === 'transform') {
       const ready=guest()?!game.final&&hero.guilt>=hero.guiltMax&&!(hero.guestBurstT>0):!brave&&canTransform()&&hero.courage>=GAUGE.courageMax;
       btn.classList.toggle('ready',ready);btn.classList.toggle('locked',!ready);
-      attrIfChanged(btn,'aria-label',guest()?tr('爆氣','Burst','覚醒'):t('變身'));attrIfChanged(btn,'title',btn.getAttribute('aria-label'));attrIfChanged(btn,'data-burst-label',tr('爆氣','Burst','覚醒'));
+      const burst = guest();
+      const label = burst ? tr('爆氣','Burst','覚醒') : t('變身');
+      attrIfChanged(btn,'aria-label',label);
+      if (!burst) attrIfChanged(btn,'title',label);
+      else if (btn.hasAttribute('title')) btn.removeAttribute('title');
     } else if (a === 'dodge') {
       btn.style.setProperty('--cd', `${(hero.cds.dodge || 0) / stats().dodgeCd}turn`);
     }

@@ -2,9 +2,10 @@
 #stick-zone{display:block}
 .game-art .act.lock{right:14px;bottom:202px;width:48px;height:48px}
 .game-art .act.cycle-lock{right:72px;bottom:202px;width:48px;height:48px}
-/* Give the original-position courage gem room when it becomes available. */
-.actions:has(.transform:not([hidden])) .act.lock,
-.actions:has(.transform:not([hidden])) .act.cycle-lock{bottom:252px}
+/* Only the protagonist's courage gem needs clearance from the targeting buttons.
+   Guests use a separate slot; showing their gem must not move any controls. */
+:where(#hud:not([data-character="angel"],[data-character="nightmare"])) .actions:has(.transform:not([hidden])) .act.lock,
+:where(#hud:not([data-character="angel"],[data-character="nightmare"])) .actions:has(.transform:not([hidden])) .act.cycle-lock{bottom:252px}
 
 /* Base form has fewer actions: larger targets, with room for the left thumb. */
 .game-art .actions.base-form .act.attack{width:108px;height:108px;right:0;bottom:0}
