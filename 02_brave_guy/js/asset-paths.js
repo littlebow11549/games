@@ -117,12 +117,12 @@ const paths={
  "assets/source/pic/titles/system_outcomes_en.png": "assets/source/pic/titles/brave_guy_ui07_system_outcomes_en.png",
  "assets/source/pic/titles/system_outcomes_ja.png": "assets/source/pic/titles/brave_guy_ui08_system_outcomes_ja.png",
  "assets/source/pic/titles/system_outcomes_zh.png": "assets/source/pic/titles/brave_guy_ui09_system_outcomes_zh.png",
- "assets/source/pic/titles/ult_angel.svg": "assets/source/pic/titles/brave_guy_ui10_ult_angel.svg",
- "assets/source/pic/titles/ult_angel_en.svg": "assets/source/pic/titles/brave_guy_ui11_ult_angel_en.svg",
- "assets/source/pic/titles/ult_angel_ja.svg": "assets/source/pic/titles/brave_guy_ui12_ult_angel_ja.svg",
- "assets/source/pic/titles/ult_nightmare.svg": "assets/source/pic/titles/brave_guy_ui13_ult_nightmare.svg",
- "assets/source/pic/titles/ult_nightmare_en.svg": "assets/source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg",
- "assets/source/pic/titles/ult_nightmare_ja.svg": "assets/source/pic/titles/brave_guy_ui15_ult_nightmare_ja.svg"
+ "assets/source/pic/titles/ult_angel.svg": "assets/_alternate/character-dialogue/brave_guy_ui10_ult_angel.svg",
+ "assets/source/pic/titles/ult_angel_en.svg": "assets/_alternate/character-dialogue/brave_guy_ui11_ult_angel_en.svg",
+ "assets/source/pic/titles/ult_angel_ja.svg": "assets/_alternate/character-dialogue/brave_guy_ui12_ult_angel_ja.svg",
+ "assets/source/pic/titles/ult_nightmare.svg": "assets/_alternate/character-dialogue/brave_guy_ui13_ult_nightmare.svg",
+ "assets/source/pic/titles/ult_nightmare_en.svg": "assets/_alternate/character-dialogue/brave_guy_ui14_ult_nightmare_en.svg",
+ "assets/source/pic/titles/ult_nightmare_ja.svg": "assets/_alternate/character-dialogue/brave_guy_ui15_ult_nightmare_ja.svg"
 };
 export function assetPath(path){const parent=path.startsWith("../")?"../":"";const key=parent?path.slice(3):path;return parent+(paths[key]||key);}
 const originals=Object.fromEntries(Object.entries(paths).map(([a,b])=>[b,a]));

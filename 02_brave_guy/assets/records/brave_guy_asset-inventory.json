@@ -3339,43 +3339,43 @@
     "bytes": 1900942
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui10_ult_angel.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui10_ult_angel.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "6158023e96e8cff8c2acc094241f3dfdcd264a7f76121be3d0d142452bab7ca4",
     "bytes": 32020
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui11_ult_angel_en.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui11_ult_angel_en.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "12f5e417fe3339f28385a0e841b71fef3d25f6a89bb31aede65adc13059736d9",
     "bytes": 16688
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui12_ult_angel_ja.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui12_ult_angel_ja.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "6972bd451721bc427b3b3e955b4730c41e3e16157c738743ac456db7505cd05a",
     "bytes": 47427
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui13_ult_nightmare.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui13_ult_nightmare.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "fdf5a9a608f15f1b1cce805544297cd0bf177ef12f9edc5659c20296f6dc653e",
     "bytes": 17969
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui14_ult_nightmare_en.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "5bb9229cbf53db5346bfe54f97420aa25b8bbce48550093302ac98afa35b7f5b",
     "bytes": 22186
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_ui15_ult_nightmare_ja.svg",
-    "status": "正式母檔／設計參考",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_ui15_ult_nightmare_ja.svg",
+    "status": "未採用備案／legacy相容",
     "references": [],
     "sha256": "80ffe23900fa6540f3ff8856b53b23f4cab97802928eceb6e7ded552b09242a4",
     "bytes": 12526
@@ -4323,15 +4323,15 @@
     "bytes": 1950652
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
+    "status": "現役系列母檔與SVG交付",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
       "02_brave_guy/js/character-art.js"
     ],
-    "sha256": "f48061043320b98178884104e2d73c46031d04b5069c00896945a444e4553d53",
-    "bytes": 44487
+    "sha256": "ef7de3852cc66ea9d47d0ae10ddd29ba3f66462f96dc987afbc164e2a274989b",
+    "bytes": 42822
   },
   {
     "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill02_小天使_技能圖集.png",
@@ -4378,15 +4378,15 @@
     "bytes": 1927230
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
+    "status": "現役系列母檔與SVG交付",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
       "02_brave_guy/js/character-art.js"
     ],
-    "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7",
-    "bytes": 58633
+    "sha256": "2655656527be07a9bad3674ab976453a51d938bcc7c181d3b762e72bad186b6a",
+    "bytes": 56970
   },
   {
     "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_技能圖集.png",
@@ -4433,15 +4433,15 @@
     "bytes": 1945668
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
+    "status": "現役系列母檔與SVG交付",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
       "02_brave_guy/js/character-art.js"
     ],
-    "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7",
-    "bytes": 55381
+    "sha256": "e4c5f8f9ea9cba847e47106dfb4147e95b85b214f2235d86ff8dfbdfc945df2f",
+    "bytes": 53720
   },
   {
     "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_原版2D技能圖集.png",
@@ -4509,6 +4509,27 @@
     "status": "未採用備案",
     "sha256": "f67c6a4e572d1ed12098bf6b827b8e21ec9c627ac4bda768744ebd240de79aa3",
     "bytes": 1726177,
+    "references": []
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_title11_惡夢超人_三語招式圖集.svg",
+    "status": "未採用備案／legacy相容",
+    "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7",
+    "bytes": 55381,
+    "references": []
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_title04_勇氣超人_三語招式圖集.svg",
+    "status": "未採用備案／legacy相容",
+    "sha256": "f48061043320b98178884104e2d73c46031d04b5069c00896945a444e4553d53",
+    "bytes": 44487,
+    "references": []
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_title02_小天使_三語招式圖集.svg",
+    "status": "未採用備案／legacy相容",
+    "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7",
+    "bytes": 58633,
     "references": []
   }
 ]

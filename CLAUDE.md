@@ -11,3 +11,13 @@
 不得把未直接載入的正式母檔當垃圾。已確認淘汰的半成品、錯Logo稿與QA依最新清理指示刪除並記錄；有價值的未使用備選才收 `_alternate/`。不要重建預覽頁或散放交付文件。
 
 每次製作必須更新 `docs/handoffs/` 報告及 `docs/HANDOFF.md`，與成果共同提交。明確區分需求、規格、已實作、已驗證及未完成；不得把仍待重繪的圖集說成已接入。
+
+## 全repo專案地圖與最新系列規格
+
+| 專案 | 素材索引 |
+|---|---|
+| 遊戲中心 | [game_center](assets/records/game_center_asset-index.md) |
+| 記憶水晶 | [memory_crash](01_memory_crash/assets/records/memory_crash_asset-index.md) |
+| 勇氣超人 | [brave_guy](02_brave_guy/assets/records/brave_guy_asset-index.md) |
+
+同角色同系列集中成一張，放不下依01、02、03續頁。正式、交付、備案、紀錄四類分開；不得把有價值未採用稿直接丟掉。最新完成與待辦讀[漫畫系列交接](docs/handoffs/2026-11-20-comic-series.md)。技能三角色9格已接入；對話招式三角色系列01已接入指定場景，其他面板與敵人系列未全部重製。

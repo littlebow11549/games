@@ -26,7 +26,7 @@ export const CHARACTER_ART={
  },
  "title_grid": {
   "columns": 3,
-  "rows": 4,
+  "rows": 5,
   "cell": [
    1200,
    360
@@ -46,7 +46,19 @@ export const CHARACTER_ART={
    70,
    35
   ],
-  "transparent": true
+  "transparent": true,
+  "speechRow": 4,
+  "speechColumns": [
+   "talk",
+   "shout",
+   "support"
+  ],
+  "safeTextBox": [
+   200,
+   85,
+   800,
+   190
+  ]
  },
  "characters": {
   "brave": {
@@ -54,8 +66,8 @@ export const CHARACTER_ART={
    "characterNumber": 4,
    "reference": "assets/source/pic/sheet/brave_guy_charactor04_勇氣超人.jpg",
    "titles": {
-    "source": "assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
-    "runtime": "assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
+    "source": "assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
+    "runtime": "assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
     "labels": [
      [
       "勇氣衝拳",
@@ -78,7 +90,7 @@ export const CHARACTER_ART={
       "超勇気波！"
      ]
     ],
-    "sha256": "f48061043320b98178884104e2d73c46031d04b5069c00896945a444e4553d53"
+    "sha256": "ef7de3852cc66ea9d47d0ae10ddd29ba3f66462f96dc987afbc164e2a274989b"
    },
    "palette": [
     "#e9ff96",
@@ -127,8 +139,8 @@ export const CHARACTER_ART={
    "characterNumber": 2,
    "reference": "assets/source/pic/sheet/brave_guy_charactor02_小天使.jpg",
    "titles": {
-    "source": "assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
-    "runtime": "assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
+    "source": "assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
+    "runtime": "assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
     "labels": [
      [
       "變態！不要過來",
@@ -151,7 +163,7 @@ export const CHARACTER_ART={
       "みんなこっちに来て！"
      ]
     ],
-    "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7"
+    "sha256": "2655656527be07a9bad3674ab976453a51d938bcc7c181d3b762e72bad186b6a"
    },
    "palette": [
     "#fff7eb",
@@ -201,8 +213,8 @@ export const CHARACTER_ART={
    "characterNumber": 11,
    "reference": "assets/source/pic/sheet/brave_guy_charactor11_惡夢超人.jpg",
    "titles": {
-    "source": "assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
-    "runtime": "assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
+    "source": "assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
+    "runtime": "assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
     "labels": [
      [
       "夢的翅膀已經受了傷～",
@@ -225,7 +237,7 @@ export const CHARACTER_ART={
       "王の口撃！"
      ]
     ],
-    "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7"
+    "sha256": "e4c5f8f9ea9cba847e47106dfb4147e95b85b214f2235d86ff8dfbdfc945df2f"
    },
    "palette": [
     "#e8d6ff",

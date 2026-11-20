@@ -1,4 +1,4 @@
-import { applyCharacterArt } from './character-art.js?v=20261120nine';
+import { applyCharacterArt, applyCharacterSpeech } from './character-art.js?v=20261120comic';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
@@ -16,7 +16,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
 import { Fx } from './fx.js?v=20261120assets';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nine';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120comic';
 import { createCinematics } from './cinematics.js?v=20261120assets';
 import { createOpening } from './opening.js?v=20261120assets';
 import { createMenuMotion } from './menu-motion.js?v=20261120assets';
@@ -601,6 +601,7 @@ function say(key, force = false) {
   const b = $('angel-bubble');
   const line = ANGEL[key];
   b.textContent = guest()?`${t(supportName())}：${t(key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。')}`:t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
+  applyCharacterSpeech(b,guest()?'brave':'angel','support');
   b.hidden = false;
   audio.sfx('bubble');
 }
@@ -1230,6 +1231,7 @@ function heroSay(text, dur = 1.8) {
   const el = document.createElement('div');
   el.className = 'taunt hero';
   setSystemArt(el, text);
+  if(!el.classList.contains('has-word-art'))applyCharacterSpeech(el,hero.character||'brave');
   $('world-ui').append(el);
   hero.sayEl = el; hero.sayT = dur;
 }

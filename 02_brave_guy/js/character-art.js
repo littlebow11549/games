@@ -1,4 +1,4 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120nine';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120comic';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=art.reviewStyles.includes(requested)?requested:art.defaultStyle;
@@ -28,7 +28,7 @@ export function setCharacterArtStyle(value){
  return style;
 }
 export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
- if(!characterArtEnabled()||style==='classic2d')return null;
+ if(!characterArtEnabled())return null;
  const normalize=value=>String(value).replace(/[\s！!～~]/g,'');
  for(const [id,record] of Object.entries(art.characters)){
   if(id!==characterId)continue;
@@ -39,8 +39,15 @@ export function characterTitle(text,characterId=document.getElementById('hud')?.
   el.dataset.character=id;el.dataset.action=art.title_grid.rowsByAction[row];el.dataset.locale=lang;
   el.setAttribute('role','img');el.setAttribute('aria-label',record.titles.labels[row][col]);
   el.style.aspectRatio='1200 / 360';el.style.backgroundImage=`url("${record.titles.runtime}")`;
-  el.style.backgroundSize='300% 400%';el.style.backgroundPosition=`${col*50}% ${row*100/3}%`;
+  el.style.backgroundSize='300% 500%';el.style.backgroundPosition=`${col*50}% ${row*25}%`;
   return el;
  }
  return null;
+}
+
+export function applyCharacterSpeech(el,id,kind='talk'){
+ const c=art.characters[id]||art.characters.brave;
+ el.classList.add('character-speech');el.dataset.speaker=id;
+ el.style.setProperty('--speech-atlas',`url("${new URL(c.titles.runtime,document.baseURI).href}")`);
+ el.style.setProperty('--speech-x',`${Math.max(0,art.title_grid.speechColumns.indexOf(kind))*50}%`);
 }

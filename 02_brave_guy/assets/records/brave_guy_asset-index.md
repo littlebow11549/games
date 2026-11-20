@@ -423,12 +423,12 @@
 | [brave_guy_ui07_system_outcomes_en.png](../source/pic/titles/brave_guy_ui07_system_outcomes_en.png) | 2,241,516 B |
 | [brave_guy_ui08_system_outcomes_ja.png](../source/pic/titles/brave_guy_ui08_system_outcomes_ja.png) | 2,129,560 B |
 | [brave_guy_ui09_system_outcomes_zh.png](../source/pic/titles/brave_guy_ui09_system_outcomes_zh.png) | 1,900,942 B |
-| [brave_guy_ui10_ult_angel.svg](../source/pic/titles/brave_guy_ui10_ult_angel.svg) | 32,020 B |
-| [brave_guy_ui11_ult_angel_en.svg](../source/pic/titles/brave_guy_ui11_ult_angel_en.svg) | 16,688 B |
-| [brave_guy_ui12_ult_angel_ja.svg](../source/pic/titles/brave_guy_ui12_ult_angel_ja.svg) | 47,427 B |
-| [brave_guy_ui13_ult_nightmare.svg](../source/pic/titles/brave_guy_ui13_ult_nightmare.svg) | 17,969 B |
-| [brave_guy_ui14_ult_nightmare_en.svg](../source/pic/titles/brave_guy_ui14_ult_nightmare_en.svg) | 22,186 B |
-| [brave_guy_ui15_ult_nightmare_ja.svg](../source/pic/titles/brave_guy_ui15_ult_nightmare_ja.svg) | 12,526 B |
+| [brave_guy_ui10_ult_angel.svg](../_alternate/character-dialogue/brave_guy_ui10_ult_angel.svg) | 32,020 B |
+| [brave_guy_ui11_ult_angel_en.svg](../_alternate/character-dialogue/brave_guy_ui11_ult_angel_en.svg) | 16,688 B |
+| [brave_guy_ui12_ult_angel_ja.svg](../_alternate/character-dialogue/brave_guy_ui12_ult_angel_ja.svg) | 47,427 B |
+| [brave_guy_ui13_ult_nightmare.svg](../_alternate/character-dialogue/brave_guy_ui13_ult_nightmare.svg) | 17,969 B |
+| [brave_guy_ui14_ult_nightmare_en.svg](../_alternate/character-dialogue/brave_guy_ui14_ult_nightmare_en.svg) | 22,186 B |
+| [brave_guy_ui15_ult_nightmare_ja.svg](../_alternate/character-dialogue/brave_guy_ui15_ult_nightmare_ja.svg) | 12,526 B |
 | [brave_guy_cinematic25_tf_bg_stars.png](../source/pic/transform/brave_guy_cinematic25_tf_bg_stars.png) | 1,907,036 B |
 | [brave_guy_cinematic26_tf_glove.png](../source/pic/transform/brave_guy_cinematic26_tf_glove.png) | 1,839,631 B |
 | [brave_guy_cinematic27_tf_hair.png](../source/pic/transform/brave_guy_cinematic27_tf_hair.png) | 1,923,802 B |
@@ -578,17 +578,17 @@
 - [brave_guy_skill04_勇氣超人_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_技能圖集.webp)（color）
 - [brave_guy_skill04_勇氣超人_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill04_勇氣超人_同色調技能圖集.png)（tonal）
 - [brave_guy_skill04_勇氣超人_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_同色調技能圖集.webp)（tonal）
-- [brave_guy_title04_勇氣超人_三語招式圖集.svg](../source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg)（shared）
+- [brave_guy_title04_勇氣超人_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg)（shared）
 - [brave_guy_skill02_小天使_技能圖集.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_技能圖集.png)（color）
 - [brave_guy_skill02_小天使_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill02_小天使_技能圖集.webp)（color）
 - [brave_guy_skill02_小天使_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_同色調技能圖集.png)（tonal）
 - [brave_guy_skill02_小天使_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill02_小天使_同色調技能圖集.webp)（tonal）
-- [brave_guy_title02_小天使_三語招式圖集.svg](../source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg)（shared）
+- [brave_guy_title02_小天使_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg)（shared）
 - [brave_guy_skill11_惡夢超人_技能圖集.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_技能圖集.png)（color）
 - [brave_guy_skill11_惡夢超人_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_技能圖集.webp)（color）
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_同色調技能圖集.png)（tonal）
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_同色調技能圖集.webp)（tonal）
-- [brave_guy_title11_惡夢超人_三語招式圖集.svg](../source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg)（shared）
+- [brave_guy_title11_惡夢超人_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg)（shared）
 
 ## 使用者認可：隱藏角色原版2D系列
 
