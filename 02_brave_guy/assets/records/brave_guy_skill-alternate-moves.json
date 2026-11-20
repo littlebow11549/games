@@ -1,0 +1,62 @@
+[
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill04_勇氣超人_技能圖集.png",
+    "sha256": "7233749dc01103abedc3e959fb1394f03d611742e1b636fde2d24cb1fbb198a5"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_技能圖集.webp",
+    "sha256": "7ef29d338ed14093379a3a230fb654df337d05b0812117a39f19c01750b0f42f"
+  },
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
+    "sha256": "dd251f6d4c1732c01d7e5c15572f7928f81704e2a78041e2c6ef3b98cd88c134"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
+    "sha256": "b6ffdd2127f65de1ac9af0fdc7a6c55ee4d5ea7ffae60e8e8521ada1c251a13b"
+  },
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill02_小天使_技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill02_小天使_技能圖集.png",
+    "sha256": "0250719533634718b7bfaaf340b408eef93d504b5ec982f93695a738fb821165"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill02_小天使_技能圖集.webp",
+    "sha256": "f7a3a030c8c330c5487b87530f9c8ae18ae9e360340c0cc9b9dc59892eec4a1e"
+  },
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill02_小天使_同色調技能圖集.png",
+    "sha256": "ab65ef608cfc4fe33afc70cb1fa8ab21461b8d275dba93b9b1c0a5750dfe5b58"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill02_小天使_同色調技能圖集.webp",
+    "sha256": "1114d5be83ef014049ce5615ff4860dfc3d3d62e13ae957df80a242858626a5e"
+  },
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_技能圖集.png",
+    "sha256": "366a372a785236bb44941fe17c7a47701aae8bb4eabe393c14b34b153654bad4"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_技能圖集.webp",
+    "sha256": "d40ebd91bf5a726b319bc5807e5d39097d4040d8493914b5a566ef0a2b9f127c"
+  },
+  {
+    "old": "assets/source/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
+    "new": "assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
+    "sha256": "fe47728a5234f9c2331a08176f6acba16f62059b44cba50768c2ddbf3b0b8570"
+  },
+  {
+    "old": "assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
+    "new": "assets/_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
+    "sha256": "adfd8034e9520706ee05dd93a7edda8fed0ce2ae9483fa3b42597fe0bf42165d"
+  }
+]

@@ -1,4 +1,4 @@
-import { characterTitle } from './character-art.js?v=20261120characterart';
+import { characterTitle } from './character-art.js?v=20261120archive';
 import { assetPath } from './asset-paths.js';
 import { angelText } from './angel-language.js?v=20261120assets';
 // Native atlas windows: sources remain unmodified and retain their alpha channel.

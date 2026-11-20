@@ -4279,8 +4279,8 @@
     "bytes": 13106
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill04_勇氣超人_技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4290,8 +4290,8 @@
     "bytes": 2693849
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4301,8 +4301,8 @@
     "bytes": 2008364
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4312,8 +4312,8 @@
     "bytes": 2660349
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4334,8 +4334,8 @@
     "bytes": 44487
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill02_小天使_技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4345,8 +4345,8 @@
     "bytes": 2680137
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill02_小天使_技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4356,8 +4356,8 @@
     "bytes": 1979508
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill02_小天使_同色調技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4367,8 +4367,8 @@
     "bytes": 2734478
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill02_小天使_同色調技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4389,8 +4389,8 @@
     "bytes": 58633
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4400,8 +4400,8 @@
     "bytes": 2797835
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "color",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4411,8 +4411,8 @@
     "bytes": 2066782
   },
   {
-    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4422,8 +4422,8 @@
     "bytes": 2855506
   },
   {
-    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
-    "status": "驗收預覽／待使用者選定",
+    "path": "02_brave_guy/assets/_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
+    "status": "未採用備案／僅手動預覽",
     "style": "tonal",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",

@@ -1,4 +1,4 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120characterart';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120archive';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=art.reviewStyles.includes(requested)?requested:art.defaultStyle;
