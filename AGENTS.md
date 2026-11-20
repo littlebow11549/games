@@ -59,3 +59,6 @@ NN_game/
 
 ## 2026-11-20 最終設定優先與停止生圖
 使用者在聊天新傳的四張米白底VISUAL REVISION 02（brave／angel／nightmare／student）才是最終定案。repo舊深綠底四張不是最新定案；原始附件尚待定位，不得冒認已歸檔。使用者已要求停止生圖；職場補圖暫停，勿自動重啟。詳見docs/handoffs/2026-11-20-approved-visual-revision-02.md。
+
+## 已找回定案原附件（最新狀態）
+四張VISUAL REVISION 02已從聊天附件暫存區原樣歸檔到02_brave_guy/assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg；清單APPROVED_VISUAL_REVISION_02.json。此前「未定位」已解除。四張JPEG逐byte一致，不可改用舊深綠底圖。停止生圖仍有效；其他職場版附件已有線索，先盤點不可重生。

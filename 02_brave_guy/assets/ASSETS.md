@@ -1,3 +1,5 @@
+> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/source/APPROVED_VISUAL_REVISION_02.json。
+
 # 🎨 勇氣超人 Brave Guy — 美術製作需求（交 GPT／Codex，v2.1，2026-11-13）
 
 依全專案標準範本（`/ASSETS_TEMPLATE.md`）。產出後依「路徑」放檔，**檔名勿改**，Claude 才接得到。

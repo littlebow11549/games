@@ -1,3 +1,5 @@
+> 2026-11-20 最新定案：四位主角以 assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg 為準（路徑相對02_brave_guy）。原附件已找回，未修改圖像；舊深綠底設定不是這四位的最新定案。詳見 assets/source/APPROVED_VISUAL_REVISION_02.json。
+
 # 勇氣超人 Brave Guy — 角色設定集與「角色設定合輯」需求（v0.4）
 
 使用者要求：**每一個角色都要做角色設定合輯**，版式參考使用者提供的範例圖

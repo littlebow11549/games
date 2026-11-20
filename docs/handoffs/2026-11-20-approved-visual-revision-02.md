@@ -15,3 +15,10 @@
 - 四張附圖已可在聊天中檢視，但目前未定位可讀取的原始附件檔案／Sediment ID；尚未將圖檔寫入repo，不能宣稱已歸檔。
 - 現有相關資料夾為02_brave_guy/assets/source/pic/sheet/unified，但其中舊四張不等同本次附圖。不得以同名／近似圖片冒認已找到原檔。
 - 清理213件舊佔位／歷史稿已本地提交f2b3a36，尚未推送；現役六張大招SVG按使用者指示保留。暫停進一步設定集刪除／替換，待原檔定位。
+
+## 已找到並歸檔（取代上方「尚待定位」狀態）
+完整搜尋已涵蓋遠端分支、877個歷史圖片blob、工作區／tmp圖片及不可達Git物件（其中沒有圖片blob）。最後在/tmp/codex-remote-attachments的聊天附件目錄找到四張完全對應使用者附圖的JPEG，各1280×853。此前漏查附件暫存區，不能將「Git無紀錄」當成原圖遺失。
+
+已原樣複製至02_brave_guy/assets/source/pic/sheet/sheet_{braveguy,angel,nightmare,student}_approved_v02.jpg。逐檔bytes及SHA256與附件一致，無重壓、裁切、放大、加Logo或生圖。對應清單assets/source/APPROVED_VISUAL_REVISION_02.json。找回的是本次附圖JPEG，未宣稱找到更早、更高解析的生成母檔。
+
+另發現24張同風格附件（含職場變體），尚未全部完成逐張定案／去重盤點，不再直接認定那些角色缺圖。停止生圖及設定集刪除仍有效。遊戲內舊圖集尚未替換，以免裁切座標失效。本次先保存使用者明確認可的四張。

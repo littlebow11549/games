@@ -1,0 +1,54 @@
+{
+  "status": "user-approved-final",
+  "source": "Recovered current chat attachment JPEGs; not newly generated; no recompression or upscaling",
+  "files": [
+    {
+      "character": "braveguy",
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_braveguy_approved_v02.jpg",
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/E2A7F9EC-67A1-4CD3-A2C7-C668110C1DFC/1-照片-1.jpg",
+      "sha256": "3b38cb52afd048601db4b8ad9e531fd0ba61bb1796e2ffdb7cd72068fc83ddc2",
+      "size": [
+        1280,
+        853
+      ],
+      "bytes": 421270,
+      "byte_identical": true
+    },
+    {
+      "character": "angel",
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_angel_approved_v02.jpg",
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/E2A7F9EC-67A1-4CD3-A2C7-C668110C1DFC/2-照片-2.jpg",
+      "sha256": "afae9831f7a2acf3ad6a62912acecd9d372faee654386d0b2cf47045b7c555be",
+      "size": [
+        1280,
+        853
+      ],
+      "bytes": 387210,
+      "byte_identical": true
+    },
+    {
+      "character": "nightmare",
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_nightmare_approved_v02.jpg",
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/E2A7F9EC-67A1-4CD3-A2C7-C668110C1DFC/3-照片-3.jpg",
+      "sha256": "c32fceb995a0028c6b083ed1c123d8697a1f5723f944cfd71e40e330453ee7d0",
+      "size": [
+        1280,
+        853
+      ],
+      "bytes": 380804,
+      "byte_identical": true
+    },
+    {
+      "character": "student",
+      "path": "02_brave_guy/assets/source/pic/sheet/sheet_student_approved_v02.jpg",
+      "attachment": "/tmp/codex-remote-attachments/6afa7a9a-8ba4-8191-ba78-c3dd602660b9/E2A7F9EC-67A1-4CD3-A2C7-C668110C1DFC/4-照片-4.jpg",
+      "sha256": "1de6d6c187c4f08649971faf15c9cb56476db4baf612aa7e980c4b6d110da6e8",
+      "size": [
+        1280,
+        853
+      ],
+      "bytes": 342852,
+      "byte_identical": true
+    }
+  ]
+}
