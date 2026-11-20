@@ -9,8 +9,8 @@ const manifest = require('../../02_brave_guy/assets/records/brave_guy_character-
     createElement: () => ({ dataset: {}, style: {}, setAttribute(k, v) { this[k] = v; } })
   };
   const { setLang } = await import('../../02_brave_guy/js/i18n.js?v=20261120assets');
-  const { characterSkillTitle, characterTitle, applyCharacterSpeech } = await import('../../02_brave_guy/js/character-art.js?v=20261120nighttitles');
-  const { CHARACTER_ART } = await import('../../02_brave_guy/js/character-art-data.js?v=20261120nighttitles');
+  const { characterSkillTitle, characterTitle, applyCharacterSpeech } = await import('../../02_brave_guy/js/character-art.js?v=20261120nightdialogue');
+  const { CHARACTER_ART } = await import('../../02_brave_guy/js/character-art-data.js?v=20261120nightdialogue');
   assert.deepEqual(CHARACTER_ART, manifest);
   const masks = new Set();
   for (const [column, locale] of manifest.title_grid.columnsByLanguage.entries()) {
@@ -33,11 +33,13 @@ const manifest = require('../../02_brave_guy/assets/records/brave_guy_character-
       const speech = { classList: {add() {}}, style: {setProperty(k, v) {this[k] = v;}}, dataset: {} };
       for (const kind of manifest.title_grid.speechColumns) {
         applyCharacterSpeech(speech, id, kind);
-        assert.equal(speech.style.clipPath, undefined);
+        assert.equal(speech.style.clipPath, undefined, 'dialogue text and its container are not clipped');
+        if (id === 'nightmare') assert.match(speech.style['--speech-clip'], /^polygon\(/);
+        else assert.equal(speech.style['--speech-clip'], 'none');
         assert(speech.style['--speech-atlas'].includes('/assets/runtime/'));
       }
     }
   }
   assert.equal(masks.size, 12, 'each of Nightmare’s four moves has a unique mask in every locale');
-  console.log('PASS: 36 cast renderings / 12 distinct Nightmare masks, other characters and speech unaffected.');
+  console.log('PASS: 36 cast renderings / 12 distinct Nightmare masks, only Nightmare speech backgrounds use speech clip.');
 })().catch(e => { console.error(e); process.exitCode = 1; });

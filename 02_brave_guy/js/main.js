@@ -1,13 +1,13 @@
-import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nighttitles';
+import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120nightcast';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
 import { createGuestCombat } from './guest-combat.js?v=20261120assets';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
-import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage } from './loading.js?v=20261120nighttitles';
+import { preloadImages, prepareGameplay, gameplayIsReady, waitForArtwork, preloadLanguage, warmCharacterTitles } from './loading.js?v=20261120nightcast';
 // 勇氣超人 遊戲底層：關卡流程（14 關）、兩種型態、四條計量、拳頭與氣功、變身、守關者招式庫、三層死亡保險。
 // 規格見 DESIGN.md；關卡與對白在 story.js，正式介面/過場素材由美術層接入。
 import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets';
@@ -16,8 +16,8 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
 import { Fx } from './fx.js?v=20261120assets';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nighttitles';
-import { createCinematics } from './cinematics.js?v=20261120nighttitles';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
+import { createCinematics } from './cinematics.js?v=20261120nightcast';
 import { createOpening } from './opening.js?v=20261120assets';
 import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
@@ -587,22 +587,23 @@ function popup(world, height, text, cls = '') {
   el.addEventListener('animationend', () => el.remove());
 }
 
-function showSkillCastName(action, label) {
+function showSkillCastName(action, label, caster = hero, character = caster.character || 'brave', height = 2.8) {
   // A confirmed cast is neither dialogue nor a damage number: do not overwrite
   // speech or let the crowd's world-UI cap suppress the name.
   const layer = $('skill-announcements');
   const el = document.createElement('div');
   el.className = 'skill-cast-name';
   el.dataset.action = action;
-  const title = characterSkillTitle(hero.character || 'brave', action);
+  el.dataset.caster = caster === hero ? 'player' : 'boss';
+  const title = characterSkillTitle(character, action);
   if (title) el.append(title);
   else { el.classList.add('system-lettering'); el.textContent = angelText(t(label)); }
-  const p = screenPos(hero.pos, 2.8);
+  const p = screenPos(caster.pos, height);
   if (p.visible) {
     el.style.setProperty('--cast-x', `${p.x}px`);
     el.style.setProperty('--cast-y', `${p.y}px`);
   }
-  layer.querySelector('.skill-cast-name')?.remove();
+  layer.querySelector(`.skill-cast-name[data-caster="${el.dataset.caster}"]`)?.remove();
   layer.append(el);
   el.addEventListener('animationend', () => el.remove(), { once: true });
 }
@@ -1020,6 +1021,7 @@ function bossBgm(entrance = false) {
   return audio.tracks[specific] ? specific : 'bgm_boss';
 }
 function startBossIntro() {
+  if (['nightmare', 'hell', 'incubus'].includes(stage().boss)) warmCharacterTitles('nightmare');
   if(guest())heroSay(hero.character==='angel'?'排場這麼大，是怕大家不知道你欠罵？':'你也要我忍一下？我已經忍夠了。',3);
   const names=(BOSS_GROUPS[stage().boss]||[stage().boss]).map(k=>BOSSES[k]?.name||k).join('、');
   const encounter=guest()?[[names,'這裡不是你該來的地方。'],[ROSTER[hero.character].name,hero.character==='angel'?'排場這麼大，是怕大家不知道你欠罵？':stage().boss==='nightmare'?'原來從外面看，我一直都是這個樣子……。':'你也要我忍一下？我已經忍夠了。'],[supportName(),hero.character==='angel'?'放心，我會接住妳。':'這次，你可以自己決定要不要忍。']]:stage().bossIntro;
@@ -1377,7 +1379,7 @@ function addHazard(type, pos, r, warn, life) {
 
 // 守關者的招式庫。start 在出招瞬間呼叫；update 每幀呼叫，回傳 true 表示這招結束。
 // range／minRange 是與主角距離的條件，cd 是這招的冷卻。
-const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_RADIUS,hurt:n=>hurtHero(n),shot:hostileShot,say:(e,text)=>popup(e.pos,e.def.height+.5,text,'shout'),clamp:pos=>clampArena(pos,1)});
+const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_RADIUS,hurt:n=>hurtHero(n),shot:hostileShot,say:(e,text)=>popup(e.pos,e.def.height+.5,text,'shout'),announce:(e,action)=>showSkillCastName(action,'',e,'nightmare',e.def.height+.9+(e.y||0)),clamp:pos=>clampArena(pos,1)});
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,

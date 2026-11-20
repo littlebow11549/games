@@ -1,7 +1,7 @@
 import { assetPath, logicalAssetPath } from './asset-paths.js';
 import { words } from './run-records.js?v=20261120assets';
 import { lang } from './i18n.js?v=20261120assets';
-import { CHARACTER_ART } from './character-art-data.js?v=20261120nighttitles';
+import { CHARACTER_ART } from './character-art-data.js?v=20261120nightdialogue';
 
 let manifestPromise;
 const gameplayLoads = new Map();
@@ -61,6 +61,11 @@ function decodeImage(url, priority = 'auto') {
   }).then(() => { decoded.add(url); }).finally(() => { inFlight.delete(url); });
   inFlight.set(url, request);
   return request;
+}
+
+// Warm the shared boss title atlas during the stage intro, not boot.
+export function warmCharacterTitles(character) {
+  return decodeImage(artFor(character).titles.runtime).catch(() => {});
 }
 
 export async function preloadImages(report = () => {}, scope = 'boot', character = 'brave') {

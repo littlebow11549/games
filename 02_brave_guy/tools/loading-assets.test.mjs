@@ -10,13 +10,13 @@ const imports={
  './asset-paths.js':moduleUrl(await read('js/asset-paths.js')),
  './run-records.js?v=20261120assets':moduleUrl('export const words=(code,...options)=>options[0]'),
  './i18n.js?v=20261120assets':moduleUrl('export const lang="zh-Hant"'),
- './character-art-data.js?v=20261120nighttitles':moduleUrl(await read('js/character-art-data.js')),
+ './character-art-data.js?v=20261120nightdialogue':moduleUrl(await read('js/character-art-data.js')),
 };
 let source=await read('js/loading.js');
 for(const [name,url] of Object.entries(imports))source=source.replace(`'${name}'`,`'${url}'`);
 globalThis.location={search:''};
 globalThis.matchMedia=()=>({matches:true});
-const {imagePlan,preloadImages,prepareGameplay,gameplayIsReady}=await import(moduleUrl(source));
+const {imagePlan,preloadImages,prepareGameplay,gameplayIsReady,warmCharacterTitles}=await import(moduleUrl(source));
 const manifest=JSON.parse(await read('assets/runtime-images.json'));
 
 test('game plan prioritizes only selected combat atlas, localized title art, and common angel speech',async()=>{
@@ -29,6 +29,7 @@ test('game plan prioritizes only selected combat atlas, localized title art, and
   assert(plan.some(x=>x.includes('小天使_對話招式圖集01')));
   assert(!plan.some(x=>/(ui20_勇氣超人技能|ui29_普攻|ui36_閃避|ui19_勇氣寶石)/.test(x)));
   assert(!plan.some(x=>x.includes('/cinematics/')));
+  assert.equal(plan.some(x=>x.includes('惡夢超人_對話招式圖集')),id==='nightmare');
   assert.equal(plan.some(x=>x.includes('/transform/')),id==='brave');
   assert(plan.some(x=>x.endsWith(`system_combat_${locale==='zh-Hant'?'zh':locale}.webp`)));
   assert.equal(plan.filter(x=>/system_combat_(zh|en|ja)/.test(x)).length,1);
@@ -77,4 +78,22 @@ test('duplicate requests share the same decode and failed artwork can be retried
  assert(gameplayIsReady('brave'));
  assert.equal(seen.get(path),2);
  assert.equal([...seen].filter(([url])=>url.includes('小天使_對話招式圖集'))[0][1],1);
+});
+
+
+test('Nightmare title warmup deduplicates requests and retries failed decodes',async()=>{
+ let count=0;
+ globalThis.Image=class {
+  naturalWidth=1536;
+  decode(){
+   assert.match(this.src,/惡夢超人_對話招式圖集01\.webp$/);
+   return ++count===1?Promise.reject(Error('decode failure')):Promise.resolve();
+  }
+ };
+ await Promise.all([warmCharacterTitles('nightmare'),warmCharacterTitles('nightmare')]);
+ assert.equal(count,1);
+ await warmCharacterTitles('nightmare');
+ assert.equal(count,2);
+ await warmCharacterTitles('nightmare');
+ assert.equal(count,2);
 });

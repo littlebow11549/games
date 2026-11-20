@@ -1,4 +1,4 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120nighttitles';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120nightdialogue';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=requested==='legacy'||art.reviewStyles.includes(requested)?requested:art.defaultStyle;
@@ -34,6 +34,10 @@ function titleWindow(record,col,row){
  const width=x2-x,height=y2-y;
  return {width,height,ratio:`${width} / ${height}`,size:`${W/width*100}% ${H/height*100}%`,pos:`${x/(W-width)*100}% ${y/(H-height)*100}%`};
 }
+// Convert a trace in this atlas cell's native pixels to the rendered box.
+function clipPolygon(points,win){
+ return points ? `polygon(${points.split(' ').map(point=>{const [x,y]=point.split(',').map(Number);return `${(100*x/win.width).toFixed(3)}% ${(100*y/win.height).toFixed(3)}%`;}).join(',')})` : 'none';
+}
 function renderCharacterTitle(id,record,row){
  const col=Math.max(0,art.title_grid.columnsByLanguage.indexOf(lang));
  const el=document.createElement('span');el.className='word-art character-title-art';
@@ -44,10 +48,7 @@ function renderCharacterTitle(id,record,row){
  // Some approved sheets include opaque halftone outside the actual lettering burst.
  // Trace only that excess out at presentation time; leave the entire source atlas intact.
  const points=record.titles.clipPointsByRowAndLocale?.[row]?.[col];
- if(points){
-  const clip=`polygon(${points.split(' ').map(point=>{const [x,y]=point.split(',').map(Number);return `${(100*x/win.width).toFixed(3)}% ${(100*y/win.height).toFixed(3)}%`;}).join(',')})`;
-  el.style.webkitClipPath=clip;el.style.clipPath=clip;
- }
+ if(points){const clip=clipPolygon(points,win);el.style.webkitClipPath=clip;el.style.clipPath=clip;}
  return el;
 }
 export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
@@ -67,6 +68,9 @@ export function applyCharacterSpeech(el,id,kind='talk'){
  const c=art.characters[id]||art.characters.brave;
  el.classList.add('character-speech');el.dataset.speaker=id;
  el.style.setProperty('--speech-atlas',`url("${new URL(c.titles.runtime,document.baseURI).href}")`);
- const win=titleWindow(c,Math.max(0,art.title_grid.speechColumns.indexOf(kind)),4);
+ const col=Math.max(0,art.title_grid.speechColumns.indexOf(kind));
+ const win=titleWindow(c,col,4);
  el.style.setProperty('--speech-size',win.size);el.style.setProperty('--speech-position',win.pos);
+ // Clip the atlas background, never the live dialogue text in the box itself.
+ el.style.setProperty('--speech-clip',clipPolygon(c.titles.speechClipPointsByKind?.[art.title_grid.speechColumns[col]],win));
 }
