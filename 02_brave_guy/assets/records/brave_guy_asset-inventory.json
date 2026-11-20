@@ -4442,5 +4442,73 @@
     ],
     "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7",
     "bytes": 55381
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_原版2D技能圖集.png",
+    "status": "正式母檔",
+    "references": [
+      "js/character-art-data.js"
+    ],
+    "sha256": "4f9e4f3617b27633db6d855d637d3653afc77a05e11bbf71751013cabc09bfa3",
+    "bytes": 1652272
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_原版2D技能圖集.webp",
+    "status": "現役載入",
+    "references": [
+      "js/character-art-data.js"
+    ],
+    "sha256": "b7a8fd35a5172fc4254c17b70f8ab1c882348dce0ba581ffd7c4e8aeff338651",
+    "bytes": 1211964
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill11_惡夢超人_原版2D技能圖集.png",
+    "status": "正式母檔",
+    "references": [
+      "js/character-art-data.js"
+    ],
+    "sha256": "6ec04e585961d04f362187dae2a9197d6075e592113684b70a06bf0baecd5a43",
+    "bytes": 1575715
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_原版2D技能圖集.webp",
+    "status": "現役載入",
+    "references": [
+      "js/character-art-data.js"
+    ],
+    "sha256": "3b11b9f3e781cbdf6c8350509241faae2a81c6ed42dbbeb112893e33f4fb1487",
+    "bytes": 1168502
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill04_勇氣超人_原版2D技能圖集.png",
+    "status": "現役交付／母檔",
+    "sha256": "5c516577484bb856671686ec06fd7021ae9722294ba1725e4bec1c2da32e327a",
+    "bytes": 1557172,
+    "references": [
+      "assets/records/brave_guy_character-art.json"
+    ]
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_原版2D技能圖集.webp",
+    "status": "現役交付／母檔",
+    "sha256": "2be8fd328e39020212ad393edbe0106ce66a427eb26b171cb1725be42499c07c",
+    "bytes": 1139362,
+    "references": [
+      "assets/records/brave_guy_character-art.json"
+    ]
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill02_小天使_四招三態備案.png",
+    "status": "未採用備案",
+    "sha256": "55938e58dda370d2a576dc2817d9f2396f3840e956dc7f410b370cbd7d41596a",
+    "bytes": 1743104,
+    "references": []
+  },
+  {
+    "path": "02_brave_guy/assets/_alternate/character-skills/source/brave_guy_skill11_惡夢超人_四招三態備案.png",
+    "status": "未採用備案",
+    "sha256": "f67c6a4e572d1ed12098bf6b827b8e21ec9c627ac4bda768744ebd240de79aa3",
+    "bytes": 1726177,
+    "references": []
   }
 ]

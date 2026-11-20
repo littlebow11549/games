@@ -589,3 +589,17 @@
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_同色調技能圖集.png)（tonal）
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_同色調技能圖集.webp)（tonal）
 - [brave_guy_title11_惡夢超人_三語招式圖集.svg](../source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg)（shared）
+
+## 使用者認可：隱藏角色原版2D系列
+
+- [brave_guy_skill02_小天使_原版2D技能圖集.png](../source/pic/icons/brave_guy_skill02_小天使_原版2D技能圖集.png)（source）
+- [brave_guy_skill02_小天使_原版2D技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill02_小天使_原版2D技能圖集.webp)（runtime）
+- [brave_guy_skill11_惡夢超人_原版2D技能圖集.png](../source/pic/icons/brave_guy_skill11_惡夢超人_原版2D技能圖集.png)（source）
+- [brave_guy_skill11_惡夢超人_原版2D技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_原版2D技能圖集.webp)（runtime）
+
+## 勇氣超人九格整合與四招備案
+
+- [brave_guy_skill04_勇氣超人_原版2D技能圖集.png](../source/pic/icons/brave_guy_skill04_勇氣超人_原版2D技能圖集.png)
+- [brave_guy_skill04_勇氣超人_原版2D技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_原版2D技能圖集.webp)
+- [brave_guy_skill02_小天使_四招三態備案.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_四招三態備案.png)
+- [brave_guy_skill11_惡夢超人_四招三態備案.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_四招三態備案.png)

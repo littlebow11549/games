@@ -18,4 +18,4 @@ for character,entry in data['characters'].items():
  assert tree.getroot().get('viewBox')=='0 0 3600 1440'
  assert len(tree.getroot().findall('s:svg',ns))==12
  assert hashlib.sha256(title.read_bytes()).hexdigest()==entry['titles']['sha256']
-print('PASS 6 source/runtime pairs: byte provenance, native grids, lossless pixels; 3 references and 36 vector title cells.')
+print('PASS all source/runtime pairs: byte provenance, native grids, lossless pixels; 3 references and 36 vector title cells.')

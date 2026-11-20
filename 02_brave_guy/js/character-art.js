@@ -1,20 +1,22 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120archive';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120nine';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=art.reviewStyles.includes(requested)?requested:art.defaultStyle;
 export const characterArtEnabled=()=>art.reviewStyles.includes(style);
 export function applyCharacterArt(hud,id){
  const record=art.characters[id]||art.characters.brave;
- if(!characterArtEnabled()){delete hud.dataset.artStyle;return;}
+ for(const button of hud.querySelectorAll('.act'))delete button.dataset.atlasSlot;
+ if(!characterArtEnabled()||!record.skills[style]){delete hud.dataset.artStyle;return;}
  hud.dataset.artStyle=style;
  const cols=art.skill_grid.columns,rows=art.skill_grid.rows;hud.style.setProperty('--atlas-size',`${cols*100}% ${rows*100}%`);
  hud.style.setProperty('--character-skill-atlas',`url("${new URL(record.skills[style].runtime,document.baseURI).href}")`);
  hud.style.setProperty('--character-art-accent',record.palette[1]);
  for(const button of hud.querySelectorAll('.act')){
   const key=button.dataset.action||(button.id==='btn-lock'?'lock':button.id==='btn-cycle-lock'?'cycle':'');
-  if(key==='lock'||key==='cycle'){delete button.dataset.atlasSlot;continue;}
+  if(style!=='classic2d'&&(key==='lock'||key==='cycle')){delete button.dataset.atlasSlot;continue;}
   const index=art.skill_grid.slots.indexOf(key);if(index<0)continue;
   button.dataset.atlasSlot=key;
+  if(!button.querySelector('.art-lock-mark')){const mark=document.createElement('span');mark.className='art-lock-mark';mark.setAttribute('aria-hidden','true');button.append(mark);}
   button.style.setProperty('--atlas-x',`${index%cols*100/(cols-1)}%`);
   button.style.setProperty('--atlas-y',`${Math.floor(index/cols)*100/(rows-1)}%`);
  }
@@ -26,7 +28,7 @@ export function setCharacterArtStyle(value){
  return style;
 }
 export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
- if(!characterArtEnabled())return null;
+ if(!characterArtEnabled()||style==='classic2d')return null;
  const normalize=value=>String(value).replace(/[\s！!～~]/g,'');
  for(const [id,record] of Object.entries(art.characters)){
   if(id!==characterId)continue;
