@@ -285,6 +285,7 @@ let ambush = null;    // 俊熊的埋伏
 let dialog = null;    // 進行中的對話
 const tmp = new THREE.Vector3();
 const camTarget = new THREE.Vector3();
+let stageFocusHeight = 0.9;
 
 const rand = (a, b) => a + Math.random() * (b - a);
 const forward = (yaw, out = new THREE.Vector3()) => out.set(Math.sin(yaw), 0, Math.cos(yaw));
@@ -423,7 +424,9 @@ function resetHero() {
     mode: null, burstT: 0, guestBurstT:0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
-  hero.pos.set(0, 0, 5);
+  // The arena and minimap share this origin; the maze clears the central area.
+  hero.pos.set(0, 0, 0);
+  clampArena(hero.pos, HERO.radius);
   // 天下無敵從進場就使用勇氣超人；不觸發變身動畫或範圍傷害。
   if (godMode() || guest()) {
     hero.mode = 'courage';
@@ -431,7 +434,7 @@ function resetHero() {
     hero.extendLeft = GAUGE.courageExtendCap;
     setForm('brave');
   } else setForm(hero.base);
-  angel.pos.copy(hero.pos);
+  supportTarget(angel.pos);
   // 地圖三前段小天使縮成巴掌大，找回變身後長回來
   angel.visual.root.scale.setScalar(guest()?1:stage().map === 3 && !game.abilities.has('transform') ? 0.35 : 1);
   applyCharacterHud();
@@ -498,7 +501,8 @@ function startStage(index, character=null) {
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
-  camTarget.copy(hero.pos);
+  updateAngel(0);
+  snapStageCamera();
   $('overlay').hidden = true;
   $('hud').hidden = false;
   $('boss-bar').hidden = true;
@@ -2490,11 +2494,14 @@ function update(dt) {
   }
 }
 
+function supportTarget(out) {
+  return out.set(hero.pos.x - (angel.rescueT > 0 ? 0.3 : 1.3), 0, hero.pos.z - 0.6);
+}
+
 function updateAngel(dt) {
   if (!angel.visual) return;
   angel.rescueT=Math.max(0,(angel.rescueT||0)-dt);
-  tmp.set(hero.pos.x - (angel.rescueT>0?.3:1.3), 0, hero.pos.z - .6);
-  angel.pos.lerp(tmp, 1 - Math.exp(-4 * dt));
+  angel.pos.lerp(supportTarget(tmp), 1 - Math.exp(-4 * dt));
   angel.visual.root.position.set(angel.pos.x, guest()?2.1+Math.sin(game.time*4)*.15:1.5, angel.pos.z);
   angel.visual.root.rotation.y = Math.atan2(hero.pos.x - angel.pos.x, hero.pos.z - angel.pos.z);
   angel.visual.update(dt);
@@ -2623,6 +2630,17 @@ function updateDebuffs(dt) {
   popup(game.pulse.pos, 0.6, t(DEBUFFS[kind].name), 'guard');
 }
 
+function snapStageCamera() {
+  // Evaluate the entry idle pose once, not the bobbing or attack pose every frame.
+  hero.visual.update(0);
+  const box = new THREE.Box3().setFromObject(hero.visual.root);
+  const centerY = (box.min.y + box.max.y) * 0.5 - hero.pos.y;
+  stageFocusHeight = Number.isFinite(centerY) ? centerY : 0.9;
+  camTarget.copy(hero.pos);
+  updateCamera(0);
+  camera.updateMatrixWorld(); // First-frame projection/aiming, before rendering.
+}
+
 function updateCamera(dt) {
   camTarget.lerp(hero.pos, 1 - Math.exp(-8 * dt));
   camera.position.copy(camTarget).add(CAM_OFFSET);
@@ -2633,7 +2651,7 @@ function updateCamera(dt) {
     camera.position.x += rand(-s, s);
     camera.position.y += rand(-s, s);
   }
-  camera.lookAt(camTarget.x, 0.9, camTarget.z);
+  camera.lookAt(camTarget.x, camTarget.y + stageFocusHeight, camTarget.z);
   sun.position.set(camTarget.x - 14, 26, camTarget.z + 10);
   sun.target.position.copy(camTarget);
 }
@@ -2985,7 +3003,7 @@ addEventListener('keydown', (e) => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && game.phase === 'playing') setPaused(true); });
 
 // 供自動化測試與除錯讀取狀態
-window.__game = { updateHud, nightmareBossSkills, COMBO, guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
+window.__game = { camera, updateHud, nightmareBossSkills, COMBO, guestCombat, rosterPicker, get support(){return {name:supportName(),visual:angel.visual}}, game, hero, save, STAGES, setDiff, get maze() { return maze; }, hurt: (n) => hurtHero(n), get diff() { return diff; }, get quality() { return quality; }, get lockOn() { return lockOn; }, get lockTarget() { return lockTargetEnemy; }, setLock, cycleLockTarget, get audio() { return audio; }, get enemies() { return enemies; }, get dialog() { return dialog; }, get hazards() { return hazards; },
   onHit, addRescues, get lockMarker() { return lockMarker; }, runs, prepareGameplay, startAwakening, endGame, startSkill, startGame, startStage, spawnEnemy, spawnBoss, clearStage, guiltBurst, cinematics, hurtHero, advanceDialog, showMenu, damageEnemy, MOVES, HERO, GAUGE, SKILLS,
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
