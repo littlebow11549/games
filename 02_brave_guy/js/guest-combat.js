@@ -3,7 +3,7 @@ import { createRoyalArsenal } from './royal-arsenal.js?v=20261120burst';
 import { angelText, angelFont } from './angel-language.js?v=20261119dialogue';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Owns all guest projectiles, drones and delayed casts. Simulation time only.
-export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,arena}) {
+export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,arena,constrain=()=>{}}) {
  const bolts=[], casts=[];
  let attackStep=0,attackGap=0;
  const valid=e=>e.hp>0&&!e.gone&&!e.fly&&e.state!=='dead'&&e.state!=='spawn'&&e.shown;
@@ -30,13 +30,18 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
   const from=hero.pos.clone(),dir=direction(hero.yaw),color=kind==='angel'?0xa2eeff:0xad61ff;
   if(kind==='angel'){
    if(name==='skill1'){
-    const end=from.clone().addScaledVector(dir,28);line(from,end,8,4.8,{src:name,kb:22,launch:9,heavy:true});fx.trail(from,end,8,0xffa5df,.55,.18);fx.trail(from,end,3,0xd5fbff,.4,.3);
+    const end=from.clone().addScaledVector(dir,28);line(from,end,8,4.8,{src:name,kb:22,launch:9,heavy:true,forwardOnly:true});fx.trail(from,end,8,0xffa5df,.55,.18);fx.trail(from,end,3,0xd5fbff,.4,.3);
     bolt(from,dir,{text:'不要過來！',mult:0,src:name,life:1,speed:28,scale:1.6,piercing:true});audio.sfx('dash');
    }else if(name==='skill2'){
     area(from,9,2.5,name,3,0xa2eeff);casts.push({kind:'snow',pos:from,life:2,tick:0});audio.sfx('quake');
    }else if(name==='skill3'){
-    const points=Array.from({length:10},()=>{const a=Math.random()*Math.PI*2,r=3+Math.sqrt(Math.random())*16,p=from.clone().add(new THREE.Vector3(Math.sin(a)*r,0,Math.cos(a)*r));if(p.length()>arena-1)p.setLength(arena-1);fx.ring(p,.3,2.8,0xffdf79,.55);return p});
-    casts.push({kind:'bombs',points,life:2.4,age:0,next:0});audio.sfx('ki_shot');
+    const points=Array.from({length:5},(_,i)=>{const a=hero.yaw+i*Math.PI*2/5,p=from.clone().add(new THREE.Vector3(Math.sin(a)*4.5,0,Math.cos(a)*4.5));if(p.length()>arena-1)p.setLength(arena-1);fx.ring(p,.3,3.2,0xffb4e8,.3);return p});
+    const barrier=new THREE.Group();barrier.name='angel-repelling-barrier';
+    const shell=new THREE.Mesh(new THREE.SphereGeometry(4.5,32,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshBasicMaterial({color:0x9eefff,transparent:true,opacity:.15,side:THREE.DoubleSide,depthWrite:false}));barrier.add(shell);
+    const rim=new THREE.Mesh(new THREE.TorusGeometry(4.5,.09,6,64),new THREE.MeshBasicMaterial({color:0xffa9e6}));rim.rotation.x=Math.PI/2;rim.position.y=.1;barrier.add(rim);
+    for(let i=0;i<5;i++){const a=i*Math.PI*2/5,m=new THREE.Mesh(new THREE.OctahedronGeometry(.25),new THREE.MeshBasicMaterial({color:0xffef9d}));m.position.set(Math.sin(a)*4.5,.3,Math.cos(a)*4.5);barrier.add(m);}
+    barrier.position.copy(hero.pos);scene.add(barrier);casts.push({kind:'bombs',points,life:3,age:0,next:0,barrier});
+    for(const e of enemies())repelEnemy(e);audio.sfx('ki_shot');
    }else{
     const funnel=new THREE.Group();for(let i=0;i<5;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.1+i*.85,.13,6,32,Math.PI*1.6),new THREE.MeshBasicMaterial({color:i%2?0xffffff:0x9cefff,transparent:true,opacity:.75,depthWrite:false}));ring.rotation.x=Math.PI/2;ring.rotation.z=i*.8;ring.position.y=.5+i*1.25;funnel.add(ring);}funnel.position.copy(from);scene.add(funnel);
     casts.push({kind:'vortex',pos:from,life:4,tick:0,ult:true,funnel});audio.sfx('beam_start');
@@ -52,6 +57,23 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
    else{const ult=false,count=5;casts.push({kind:'drones',life:ult?10:5,tick:0,ult,src:name,nodes:Array.from({length:count},()=>{const m=orb(0x9d49ff,.45);m.position.copy(from);m.position.y=2.3;return m})});audio.sfx('ki_shot');}
   }
  }
+ // Body exclusion only: ranged projectiles and damage remain governed by normal rules.
+ function repelEnemy(e){
+  if(hero.hp<=0||e.hp<=0||e.gone||e.state==='dead'||!casts.some(c=>c.barrier&&c.life>0))return false;
+  const radius=4.5+e.def.radius,dx=e.pos.x-hero.pos.x,dz=e.pos.z-hero.pos.z,d=Math.hypot(dx,dz);
+  if(d>=radius)return false;
+  const angle=d>.001?Math.atan2(dx,dz):hero.yaw+Math.PI;
+  let best=null,score=Infinity;
+  for(let i=0;i<25;i++){
+   const offset=i===0?0:Math.ceil(i/2)*Math.PI/12*(i%2?1:-1),a=angle+offset;
+   const candidate=hero.pos.clone().add(new THREE.Vector3(Math.sin(a)*(radius+.02),0,Math.cos(a)*(radius+.02)));constrain(candidate,e.def.radius);
+   if(Math.hypot(candidate.x-hero.pos.x,candidate.z-hero.pos.z)<radius-.001)continue;
+   const cost=candidate.distanceToSquared(e.pos);if(cost<score){best=candidate;score=cost;}if(i===0)break;
+  }
+  if(!best)return false;e.pos.copy(best);
+  if(e.vel){const away=best.clone().sub(hero.pos).normalize(),inward=e.vel.dot(away);if(inward<0)e.vel.addScaledVector(away,-inward);}
+  return true;
+ }
  function update(dt){
   attackGap=Math.max(0,attackGap-dt);if(!attackGap)attackStep=0;
   for(let i=casts.length-1;i>=0;i--){const c=casts[i];const elapsed=Math.min(dt,c.life);c.life-=dt;c.tick=(c.tick||0)-elapsed;
@@ -60,7 +82,8 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
     for(let k=0;k<3;k++){const a=before.clone().addScaledVector(side,(k-1)*3.4),b=hero.pos.clone().addScaledVector(side,(k-1)*3.4);line(a,b,3,4,{src:'skill1',kb:17,launch:7,heavy:true},c.hit[k]);fx.trail(a,b,1.4,0xb46cff,.25);}
    }else if(c.kind==='snow'&&c.tick<=0){c.tick=.18;fx.ring(c.pos,2,9,0xa2eeff,.45);fx.burst(c.pos,0xd6faff,18,9,.5,.2);}
    else if(c.kind==='bombs'){
-    c.age+=elapsed;while(c.next<10&&c.age>=.5+c.next*.15){const p=c.points[c.next++];area(p,3.2,1.9,'skill3',1.8,0xffe88a);fx.dome(p,3.2,0xffd659,.35);fx.burst(p,0xffefb1,12,7,.3,.2);audio.sfx('boom');}
+    c.barrier.position.copy(hero.pos);c.barrier.rotation.y+=elapsed*.6;
+    c.age+=elapsed;while(c.next<c.points.length&&c.age>=.3+c.next*.15){const p=c.points[c.next++];area(p,3.2,1.9,'skill3',1.8,0xffe88a);fx.dome(p,3.2,0xffd659,.35);fx.burst(p,0xffefb1,12,7,.3,.2);audio.sfx('boom');}
    }else if(c.kind==='vortex'){
     c.funnel.rotation.y+=elapsed*8;
     for(const e of targets()){if(e.untouchable||e.castInvuln)continue;e.guestPullT=.3;const pull=c.pos.clone().sub(e.pos);pull.y=0;const d=pull.length();if(d>.8){pull.multiplyScalar(Math.min(d-.8,elapsed*(e.def.boss?9:22))/d);e.pos.add(pull);}}
@@ -79,12 +102,12 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
     });
     if(c.tick<=0){c.tick=c.ult?.6:.65;let fired=false;c.nodes.forEach(m=>{const e=m.userData.target;if(!e||m.position.distanceTo(e.pos)>8)return;const d=e.pos.clone().sub(m.position);d.y=0;bolt(m.position,d.normalize(),{pua:(m.userData.shots=(m.userData.shots||0)+1),target:e,mult:c.ult?1.2:1.1,src:c.src,life:3,speed:30});fired=true;});if(fired)audio.sfx('ki_shot');}
    }
-   if(c.life<=0){if(c.funnel)dispose(c.funnel);if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);casts.splice(i,1);}
+   if(c.life<=0){if(c.funnel)dispose(c.funnel);if(c.barrier)dispose(c.barrier);if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);casts.splice(i,1);}
   }
   for(let i=bolts.length-1;i>=0;i--){const b=bolts[i];b.life-=dt;const before=b.mesh.position.clone();if(b.target&&valid(b.target)){const d=b.target.pos.clone().sub(before);d.y=0;if(d.lengthSq()>0)b.vel.copy(d.normalize().multiplyScalar(30));}b.mesh.position.addScaledVector(b.vel,dt);
    if(b.mult){const a=before,bp=b.mesh.position,dx=bp.x-a.x,dz=bp.z-a.z,l=dx*dx+dz*dz||1;for(const e of targets()){if(b.hit.has(e))continue;const t=Math.max(0,Math.min(1,((e.pos.x-a.x)*dx+(e.pos.z-a.z)*dz)/l));if(Math.hypot(e.pos.x-a.x-t*dx,e.pos.z-a.z-t*dz)<e.def.radius+.65){damage(e,b.mult,b.src,0,0xb891ff,before);b.hit.add(e);if(!b.piercing){b.life=0;break;}}}}
    if(b.life<=0){dispose(b.mesh);bolts.splice(i,1);}
   }
  }
- return {begin,update,attack(){const step=attackStep;bolt(hero.pos,direction(hero.yaw),{text:['笨蛋！','走開啦！','給我閉嘴！'][step],mult:[1.25,1.7,2.4][step],scale:[1,1.3,1.65][step],piercing:true});attackStep=(step+1)%3;attackGap=1.2;audio.sfx('ki_shot');},get ultActive(){return casts.some(c=>c.ult)},get state(){return {attackStep,attackGap,projectiles:bolts.map(b=>({mult:b.mult,width:b.mesh.scale.x,text:b.mesh.userData.text})),bolts:bolts.length,casts:casts.map(c=>({kind:c.kind,life:c.life,arsenal:c.arsenal?.state,nodes:c.nodes?.length||0,dronePositions:c.nodes?.map(m=>({x:m.position.x,z:m.position.z,targetX:m.userData.target?.pos.x,targetZ:m.userData.target?.pos.z}))||[],exploded:c.next}))}},clear(){attackStep=attackGap=0;bolts.forEach(b=>dispose(b.mesh));casts.forEach(c=>{if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);if(c.funnel)dispose(c.funnel)});bolts.length=casts.length=0;}};
+ return {begin,update,repelEnemy,attack(){const step=attackStep;bolt(hero.pos,direction(hero.yaw),{text:['笨蛋！','走開啦！','給我閉嘴！'][step],mult:[1.45,1.95,2.75][step],scale:[1,1.3,1.65][step],piercing:true});attackStep=(step+1)%3;attackGap=1.2;audio.sfx('ki_shot');},get ultActive(){return casts.some(c=>c.ult)},get state(){return {attackStep,attackGap,projectiles:bolts.map(b=>({mult:b.mult,width:b.mesh.scale.x,text:b.mesh.userData.text})),bolts:bolts.length,casts:casts.map(c=>({kind:c.kind,life:c.life,arsenal:c.arsenal?.state,nodes:c.nodes?.length||0,dronePositions:c.nodes?.map(m=>({x:m.position.x,z:m.position.z,targetX:m.userData.target?.pos.x,targetZ:m.userData.target?.pos.z}))||[],points:c.points?.map(p=>({x:p.x,z:p.z})),barrier:!!c.barrier,exploded:c.next}))}},clear(){attackStep=attackGap=0;bolts.forEach(b=>dispose(b.mesh));casts.forEach(c=>{if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);if(c.funnel)dispose(c.funnel);if(c.barrier)dispose(c.barrier)});bolts.length=casts.length=0;}};
 }

@@ -422,3 +422,6 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 
 ## 2026-11-20 客串爆氣寶石與對話彈
 復用已歸檔勇氣寶石1254×1254母檔與無損WebP；小天使粉色心形、惡夢紫色菱形由playable-roster.css及角色HUD裝飾呈現，無新增圖片。PUA對話彈在pua-projectile.js以1536×384 Canvas重新繪製字形／向量框，非插值放大。詳見 ../../docs/handoffs/2026-11-20-game02-guest-burst-balance.md。
+
+## 2026-11-20 小天使第三招新圖示
+使用者要求五點轟炸＋排斥結界，已參照現役guest_skill_atlas.png以image_gen生成獨立angel_guard_bombardment.png（1254×1254 RGBA），母檔位於02_brave_guy/assets/source/pic/icons/，runtime/lossless/pic/icons/下同名WebP逐像素無損。交付JSON：assets/source/ANGEL_GUARD_ICON_DELIVERY.json。CSS只替換小天使R；原圖集其他八區仍在使用。詳見docs/handoffs/2026-11-20-game02-angel-guard-bombardment.md。

@@ -124,3 +124,6 @@
 
 ## 2026-11-19 王之嘴炮英日與傳送門
 新增source/pic/titles/ult_nightmare_en.svg、ult_nightmare_ja.svg（相對02_brave_guy/assets），復用既有760×370紫綠底形，Noto字形轉路徑。十門陣形與三語PUA文字砲為royal-arsenal.js／pua-projectile.js程式視覺，無新增點陣圖片。詳見2026-11-19-game02-royal-dialogue-barrage交接。
+
+## 2026-11-20 小天使第三招新圖示
+使用者要求五點轟炸＋排斥結界，已參照現役guest_skill_atlas.png以image_gen生成獨立angel_guard_bombardment.png（1254×1254 RGBA），母檔位於02_brave_guy/assets/source/pic/icons/，runtime/lossless/pic/icons/下同名WebP逐像素無損。交付JSON：assets/source/ANGEL_GUARD_ICON_DELIVERY.json。CSS只替換小天使R；原圖集其他八區仍在使用。詳見docs/handoffs/2026-11-20-game02-angel-guard-bombardment.md。

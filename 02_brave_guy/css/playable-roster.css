@@ -47,3 +47,5 @@
 #hud.guest-burst #guilt{box-shadow:0 0 12px var(--burst-color)}
 @keyframes guest-gem-pulse{to{filter:hue-rotate(var(--burst-hue)) brightness(1.2) drop-shadow(0 0 13px var(--burst-color));transform:scale(1.04)}}
 @media(prefers-reduced-motion:reduce){#hud:is([data-character="angel"],[data-character="nightmare"]) .act.transform.ready::before{animation:none}}
+/* Skill R now depicts five-point bombardment and a repelling barrier. Native lossless art. */
+#hud[data-character="angel"] .act[data-action="skill3"] .guest-icon{background-image:url('../assets/runtime/lossless/pic/icons/angel_guard_bombardment.webp');background-size:contain;background-position:center!important}

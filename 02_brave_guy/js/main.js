@@ -2,7 +2,7 @@ import { createPuaProjectile } from './pua-projectile.js?v=20261120burst';
 import { angelText } from './angel-language.js?v=20261119dialogue';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120burst';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261119dialogue';
-import { createGuestCombat } from './guest-combat.js?v=20261120burst';
+import { createGuestCombat } from './guest-combat.js?v=20261120barrier';
 import { placeSpeech } from './speech-layout.js?v=20261119speech';
 import { createSecretToggle } from './secret-toggle.js?v=20261119dialogue';
 import { createProgressReset } from './progress-reset.js?v=20261119dialogue';
@@ -343,7 +343,7 @@ const guest = () => hero.character === 'angel' || hero.character === 'nightmare'
 const supportName = () => hero.character === 'angel' ? '主角' : hero.character === 'nightmare' ? '勇氣超人' : '小天使';
 const guestCombat = createGuestCombat({scene,hero,enemies:()=>enemies,fx,audio:{sfx:name=>audio.sfx(name)},arena:ARENA_RADIUS,
   hit:(e,m,o)=>{const result=damageEnemy(e,m,o);tally([result],false,true);return result;},
-  line:lineStrike,move:moveHeroBy});
+  line:lineStrike,move:moveHeroBy,constrain:clampArena});
 function supportSpeech(text, reply=null) {
   const b=$('angel-bubble');b.textContent=`${t(supportName())}：${t(text)}`;b.hidden=false;
   angel.sayT=2.5;angel.quiet=5;angel.rescueT=1.2;
@@ -1180,7 +1180,9 @@ function lineStrike(a, b, width, mult, o = {}, skip = null) {
   const res = [];
   for (const e of enemies) {
     if (!alive(e) || (skip && skip.has(e))) continue;
-    const t = THREE.MathUtils.clamp(((e.pos.x - a.x) * dx + (e.pos.z - a.z) * dz) / len2, 0, 1);
+    const along=((e.pos.x-a.x)*dx+(e.pos.z-a.z)*dz)/len2;
+    if(o.forwardOnly&&(along<0||along>1))continue;
+    const t = THREE.MathUtils.clamp(along, 0, 1);
     const px = a.x + dx * t, pz = a.z + dz * t;
     if (Math.hypot(e.pos.x - px, e.pos.z - pz) > width / 2 + e.def.radius) continue;
     if (skip) skip.add(e);
@@ -1523,6 +1525,7 @@ function updateControlBadge(e,bottom=12){
 }
 
 function updateEnemy(e, dt, attackers) {
+  guestCombat.repelEnemy(e);
   e.guestPullT=Math.max(0,(e.guestPullT||0)-dt);e.guestKnockT=Math.max(0,(e.guestKnockT||0)-dt);
   const tint=alive(e)&&e.guestHold>0?e.guestStatus:null;
   if(tint!==e.guestTint){e.visual.glow(!!tint,tint==='freeze'?0x7bdfff:0xffd751);e.guestTint=tint;}
@@ -1550,7 +1553,7 @@ function updateEnemy(e, dt, attackers) {
     e.y = Math.max(0, e.y + e.vy * dt);
     if (e.y === 0) { e.vy = 0; if (alive(e)) fx.ring(e.pos, 0.2, 1.4, 0xffffff, 0.2); }
   }
-  clampArena(e.pos, def.radius);
+  clampArena(e.pos, def.radius);guestCombat.repelEnemy(e);
   e.visual.root.position.set(e.pos.x, e.y, e.pos.z);
   e.visual.root.rotation.set(e.y > 0 && !e.fly ? e.t * 9 : 0, e.yaw, 0);
 
@@ -2406,7 +2409,7 @@ function update(dt) {
   enemies = enemies.filter((e) => !e.gone);
   separate();
   // Movement and separation must finish before rendering either enemy or lock marker.
-  for (const e of enemies) { clampArena(e.pos, e.def.radius); e.visual.root.position.set(e.pos.x, e.y, e.pos.z); }
+  for (const e of enemies) { clampArena(e.pos, e.def.radius);guestCombat.repelEnemy(e); e.visual.root.position.set(e.pos.x, e.y, e.pos.z); }
   updateShots(dt);
   updateHazards(dt);
   updateAmbush(dt);
