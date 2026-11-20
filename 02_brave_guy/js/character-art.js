@@ -1,4 +1,4 @@
-import { CHARACTER_ART as art } from './character-art-data.js?v=20261120comic';
+import { CHARACTER_ART as art } from './character-art-data.js?v=20261120approvedcomic';
 import { lang } from './i18n.js?v=20261120assets';
 const requested=new URLSearchParams(location.search).get('skillStyle');
 let style=art.reviewStyles.includes(requested)?requested:art.defaultStyle;
@@ -27,6 +27,12 @@ export function setCharacterArtStyle(value){
  style=value;const hud=document.getElementById('hud');applyCharacterArt(hud,hud.dataset.character||'brave');
  return style;
 }
+function titleWindow(record,col,row){
+ const a=record.titles,[W,H]=a.size||[3600,1800];
+ const [x,x2]=a.columns?.[col]||[col*W/3,(col+1)*W/3];
+ const [y,y2]=a.rows?.[row]||[row*H/5,(row+1)*H/5];
+ return {ratio:`${x2-x} / ${y2-y}`,size:`${W/(x2-x)*100}% ${H/(y2-y)*100}%`,pos:`${x/(W-x2+x)*100}% ${y/(H-y2+y)*100}%`};
+}
 export function characterTitle(text,characterId=document.getElementById('hud')?.dataset.character||'brave'){
  if(!characterArtEnabled())return null;
  const normalize=value=>String(value).replace(/[\s！!～~]/g,'');
@@ -38,8 +44,8 @@ export function characterTitle(text,characterId=document.getElementById('hud')?.
   const el=document.createElement('span');el.className='word-art character-title-art';
   el.dataset.character=id;el.dataset.action=art.title_grid.rowsByAction[row];el.dataset.locale=lang;
   el.setAttribute('role','img');el.setAttribute('aria-label',record.titles.labels[row][col]);
-  el.style.aspectRatio='1200 / 360';el.style.backgroundImage=`url("${record.titles.runtime}")`;
-  el.style.backgroundSize='300% 500%';el.style.backgroundPosition=`${col*50}% ${row*25}%`;
+  const win=titleWindow(record,col,row);el.style.aspectRatio=win.ratio;el.style.backgroundImage=`url("${record.titles.runtime}")`;
+  el.style.backgroundSize=win.size;el.style.backgroundPosition=win.pos;
   return el;
  }
  return null;
@@ -49,5 +55,6 @@ export function applyCharacterSpeech(el,id,kind='talk'){
  const c=art.characters[id]||art.characters.brave;
  el.classList.add('character-speech');el.dataset.speaker=id;
  el.style.setProperty('--speech-atlas',`url("${new URL(c.titles.runtime,document.baseURI).href}")`);
- el.style.setProperty('--speech-x',`${Math.max(0,art.title_grid.speechColumns.indexOf(kind))*50}%`);
+ const win=titleWindow(c,Math.max(0,art.title_grid.speechColumns.indexOf(kind)),4);
+ el.style.setProperty('--speech-size',win.size);el.style.setProperty('--speech-position',win.pos);
 }

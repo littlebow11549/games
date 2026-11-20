@@ -37,5 +37,5 @@
 
 /* Role dialogue and ultimate titles share a single per-character atlas. */
 .game-art .character-speech{isolation:isolate;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#181818!important;text-shadow:none!important;white-space:normal!important;text-align:center;font-weight:900;font-size:clamp(12px,2.8vw,16px);line-height:1.4;min-width:180px;max-width:min(310px,78vw);padding:22px 36px 30px!important;overflow:visible}
-.game-art .character-speech::before{content:''!important;display:block!important;position:absolute!important;inset:0!important;z-index:-1!important;background-image:var(--speech-atlas)!important;background-size:300% 500%!important;background-position:var(--speech-x) 100%!important;background-repeat:no-repeat!important;border:0!important;box-shadow:none!important;transform:none!important}
+.game-art .character-speech::before{content:''!important;display:block!important;position:absolute!important;inset:0!important;z-index:-1!important;background-image:var(--speech-atlas)!important;background-size:var(--speech-size)!important;background-position:var(--speech-position)!important;background-repeat:no-repeat!important;border:0!important;box-shadow:none!important;transform:none!important}
 .game-art .character-speech::after{display:none!important}

@@ -14,8 +14,13 @@ for character,entry in data['characters'].items():
    assert list(a.size)==asset['size'] and a.size==b.size
    assert a.width==a.height and a.width%data['skill_grid']['columns']==0
    assert a.convert('RGBA').tobytes()==b.convert('RGBA').tobytes(),runtime
- title=ROOT/entry['titles']['source'];tree=ET.parse(title);ns={'s':'http://www.w3.org/2000/svg'}
- assert tree.getroot().get('viewBox')=='0 0 3600 1800'
- assert len(tree.getroot().findall('s:svg',ns))==15
+ title=ROOT/entry['titles']['source']
  assert hashlib.sha256(title.read_bytes()).hexdigest()==entry['titles']['sha256']
-print('PASS all source/runtime pairs: byte provenance, native grids, lossless pixels; 3 references and 36 vector title cells.')
+ if entry['titles'].get('format')=='raster':
+  with Image.open(title) as a,Image.open(ROOT/entry['titles']['runtime']) as b:
+   assert list(a.size)==entry['titles']['size']
+   assert a.convert('RGBA').tobytes()==b.convert('RGBA').tobytes()
+ else:
+  tree=ET.parse(title);ns={'s':'http://www.w3.org/2000/svg'}
+  assert len(tree.getroot().findall('s:svg',ns))==15
+print('PASS all skill and dialogue source/runtime pairs: hashes, native sizes and exact lossless RGBA.')

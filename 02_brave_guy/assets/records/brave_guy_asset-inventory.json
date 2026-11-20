@@ -4323,8 +4323,8 @@
     "bytes": 1950652
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
-    "status": "現役系列母檔與SVG交付",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
+    "status": "未採用備案",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4378,8 +4378,8 @@
     "bytes": 1927230
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
-    "status": "現役系列母檔與SVG交付",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
+    "status": "未採用備案",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4433,8 +4433,8 @@
     "bytes": 1945668
   },
   {
-    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
-    "status": "現役系列母檔與SVG交付",
+    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
+    "status": "未採用備案",
     "style": "shared",
     "references": [
       "02_brave_guy/assets/records/brave_guy_character-art.json",
@@ -4533,7 +4533,7 @@
     "references": []
   },
   {
-    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.png",
     "source": "/workspace/generated_images/exec-97ec0f66-df5a-4200-b3df-334d8548388b.png",
     "sha256": "beb4669f4bf579d3a8b4e3d168a9b034b8c0f160a2fc49f56fd1fb0cefa32132",
     "size": [
@@ -4544,11 +4544,11 @@
       0,
       254
     ],
-    "status": "已展示風格提案／未正式接入",
+    "status": "正式認可母檔",
     "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
   },
   {
-    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue02_小天使_漫畫三語提案01.png",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.png",
     "source": "/workspace/generated_images/exec-bd7c1ee2-5e60-43a7-aff1-51adbd1ecc3c.png",
     "sha256": "af5f898a31715cd5869d6e35386c881990cecf6d3933e8779a13d0da0227fcb8",
     "size": [
@@ -4559,11 +4559,11 @@
       0,
       254
     ],
-    "status": "已展示風格提案／未正式接入",
+    "status": "正式認可母檔",
     "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
   },
   {
-    "path": "02_brave_guy/assets/_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png",
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.png",
     "source": "/workspace/generated_images/exec-99def955-fbcc-4db8-9b1a-50c131fb39b3.png",
     "sha256": "839874336c825dd8c50f7129429512cd1b8a78bed942b2911e61c07baa0acdcd",
     "size": [
@@ -4574,7 +4574,34 @@
       0,
       254
     ],
-    "status": "已展示風格提案／未正式接入",
+    "status": "正式認可母檔",
     "notes": "背景與格位尚需交付校正，未宣稱通過正式圖集驗證"
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.webp",
+    "status": "現役無損交付",
+    "sha256": "733172ff9ad4a22d65d68e119f3eaaf6aec4036cb15d09c60961dc82fb37f2e6",
+    "bytes": 1948288,
+    "references": [
+      "js/character-art-data.js"
+    ]
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.webp",
+    "status": "現役無損交付",
+    "sha256": "ce93dc8ae6f48a61fdaf954a7e05a92a991a5efd7b649a73c069dd52214d1038",
+    "bytes": 1881868,
+    "references": [
+      "js/character-art-data.js"
+    ]
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.webp",
+    "status": "現役無損交付",
+    "sha256": "43f8d35a9a30bd4a29ae7ee7f9d2f01f79b3dc539f51b2b34e54717d8fe062af",
+    "bytes": 2164954,
+    "references": [
+      "js/character-art-data.js"
+    ]
   }
 ]

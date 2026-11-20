@@ -27,8 +27,8 @@
     "columns": 3,
     "rows": 5,
     "cell": [
-      1200,
-      360
+      512,
+      204.8
     ],
     "columnsByLanguage": [
       "zh-Hant",
@@ -52,12 +52,7 @@
       "shout",
       "support"
     ],
-    "safeTextBox": [
-      200,
-      85,
-      800,
-      190
-    ]
+    "safeTextBox": "文字已在圖內；第五列底框搭配動態語系文字，使用CSS內距"
   },
   "characters": {
     "brave": {
@@ -65,8 +60,8 @@
       "characterNumber": 4,
       "reference": "assets/source/pic/sheet/brave_guy_charactor04_勇氣超人.jpg",
       "titles": {
-        "source": "assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
-        "runtime": "assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg",
+        "source": "assets/source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.png",
+        "runtime": "assets/runtime/lossless/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.webp",
         "labels": [
           [
             "勇氣衝拳",
@@ -89,7 +84,17 @@
             "超勇気波！"
           ]
         ],
-        "sha256": "ef7de3852cc66ea9d47d0ae10ddd29ba3f66462f96dc987afbc164e2a274989b"
+        "sha256": "beb4669f4bf579d3a8b4e3d168a9b034b8c0f160a2fc49f56fd1fb0cefa32132",
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "使用者通過驗收／正式接入",
+        "format": "raster",
+        "cell": [
+          512,
+          204.8
+        ]
       },
       "palette": [
         "#e9ff96",
@@ -138,8 +143,8 @@
       "characterNumber": 2,
       "reference": "assets/source/pic/sheet/brave_guy_charactor02_小天使.jpg",
       "titles": {
-        "source": "assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
-        "runtime": "assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg",
+        "source": "assets/source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.png",
+        "runtime": "assets/runtime/lossless/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.webp",
         "labels": [
           [
             "變態！不要過來",
@@ -162,7 +167,17 @@
             "みんなこっちに来て！"
           ]
         ],
-        "sha256": "2655656527be07a9bad3674ab976453a51d938bcc7c181d3b762e72bad186b6a"
+        "sha256": "af5f898a31715cd5869d6e35386c881990cecf6d3933e8779a13d0da0227fcb8",
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "使用者通過驗收／正式接入",
+        "format": "raster",
+        "cell": [
+          512,
+          204.8
+        ]
       },
       "palette": [
         "#fff7eb",
@@ -212,8 +227,8 @@
       "characterNumber": 11,
       "reference": "assets/source/pic/sheet/brave_guy_charactor11_惡夢超人.jpg",
       "titles": {
-        "source": "assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
-        "runtime": "assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg",
+        "source": "assets/source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.png",
+        "runtime": "assets/runtime/lossless/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.webp",
         "labels": [
           [
             "夢的翅膀已經受了傷～",
@@ -236,7 +251,53 @@
             "王の口撃！"
           ]
         ],
-        "sha256": "e4c5f8f9ea9cba847e47106dfb4147e95b85b214f2235d86ff8dfbdfc945df2f"
+        "sha256": "839874336c825dd8c50f7129429512cd1b8a78bed942b2911e61c07baa0acdcd",
+        "size": [
+          1536,
+          1024
+        ],
+        "status": "使用者通過驗收／正式接入",
+        "format": "raster",
+        "cell": [
+          512,
+          204.8
+        ],
+        "columns": [
+          [
+            16,
+            508
+          ],
+          [
+            522,
+            1018
+          ],
+          [
+            1032,
+            1520
+          ]
+        ],
+        "rows": [
+          [
+            16,
+            205
+          ],
+          [
+            220,
+            405
+          ],
+          [
+            420,
+            603
+          ],
+          [
+            615,
+            797
+          ],
+          [
+            810,
+            1010
+          ]
+        ]
       },
       "palette": [
         "#e8d6ff",

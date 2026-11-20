@@ -578,17 +578,17 @@
 - [brave_guy_skill04_勇氣超人_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_技能圖集.webp)（color）
 - [brave_guy_skill04_勇氣超人_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill04_勇氣超人_同色調技能圖集.png)（tonal）
 - [brave_guy_skill04_勇氣超人_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill04_勇氣超人_同色調技能圖集.webp)（tonal）
-- [brave_guy_title04_勇氣超人_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg)（shared）
+- [brave_guy_title04_勇氣超人_三語招式圖集.svg](../_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_對話招式圖集01.svg)（shared）
 - [brave_guy_skill02_小天使_技能圖集.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_技能圖集.png)（color）
 - [brave_guy_skill02_小天使_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill02_小天使_技能圖集.webp)（color）
 - [brave_guy_skill02_小天使_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill02_小天使_同色調技能圖集.png)（tonal）
 - [brave_guy_skill02_小天使_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill02_小天使_同色調技能圖集.webp)（tonal）
-- [brave_guy_title02_小天使_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.svg)（shared）
+- [brave_guy_title02_小天使_三語招式圖集.svg](../_alternate/character-dialogue/brave_guy_dialogue02_小天使_對話招式圖集01.svg)（shared）
 - [brave_guy_skill11_惡夢超人_技能圖集.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_技能圖集.png)（color）
 - [brave_guy_skill11_惡夢超人_技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_技能圖集.webp)（color）
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.png](../_alternate/character-skills/source/brave_guy_skill11_惡夢超人_同色調技能圖集.png)（tonal）
 - [brave_guy_skill11_惡夢超人_同色調技能圖集.webp](../_alternate/character-skills/runtime/brave_guy_skill11_惡夢超人_同色調技能圖集.webp)（tonal）
-- [brave_guy_title11_惡夢超人_三語招式圖集.svg](../source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg)（shared）
+- [brave_guy_title11_惡夢超人_三語招式圖集.svg](../_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_對話招式圖集01.svg)（shared）
 
 ## 使用者認可：隱藏角色原版2D系列
 
@@ -606,6 +606,10 @@
 
 ## 漫畫三語新版提案（未正式接入）
 
-- [brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png)
-- [brave_guy_dialogue02_小天使_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue02_小天使_漫畫三語提案01.png)
-- [brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png](../_alternate/character-dialogue/brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png)
+- [brave_guy_dialogue04_勇氣超人_漫畫三語提案01.png](../source/pic/titles/brave_guy_dialogue04_勇氣超人_對話招式圖集01.png)
+- [brave_guy_dialogue02_小天使_漫畫三語提案01.png](../source/pic/titles/brave_guy_dialogue02_小天使_對話招式圖集01.png)
+- [brave_guy_dialogue11_惡夢超人_漫畫三語提案01.png](../source/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.png)
+
+## 正式採用：新版漫畫三語對話招式01
+
+使用者已通過驗收。三角色各一張PNG母檔＋同名無損WebP；舊SVG已移入備案。詳見brave_guy_character-art.json。
