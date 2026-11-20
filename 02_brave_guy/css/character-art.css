@@ -1,0 +1,18 @@
+/* One character / one 3x3 atlas. Position and hit target sizes remain in control-layout.css. */
+.game-art #hud[data-art-style] .act[data-atlas-slot]{border:0;border-radius:50%;box-shadow:none;isolation:isolate}
+.game-art #hud[data-art-style] .act[data-atlas-slot]::before{content:'';inset:0;z-index:-1;border-radius:50%;background:transparent!important;background-image:var(--character-skill-atlas)!important;background-size:var(--atlas-size)!important;background-position:var(--atlas-x) var(--atlas-y)!important;background-repeat:no-repeat!important;box-shadow:0 0 0 2px var(--character-art-accent),0 2px 7px #0008;filter:none;animation:none;transform:none;transition:filter .12s,transform .12s}
+.game-art #hud[data-art-style] .act[data-atlas-slot] .guest-icon,.game-art #hud[data-art-style] .burst-emblem{display:none}
+.game-art #hud[data-art-style] .act[data-atlas-slot] em{border-radius:50%;z-index:1}
+.game-art #hud[data-art-style] .act.ult em::after{display:none}
+.game-art #hud[data-art-style] .act[data-atlas-slot]:is(:active,.art-pressed)::before{filter:brightness(1.2);transform:scale(.94)}
+.game-art #hud[data-art-style] .act[data-atlas-slot].locked::before{filter:grayscale(.85) brightness(.45)}
+.game-art #hud[data-art-style] .act.lock.on::before{box-shadow:0 0 0 2px #ff6060,0 0 11px #ff4646;filter:brightness(1.15)}
+.game-art #hud[data-art-style] .act.transform.ready::before{box-shadow:0 0 0 2px var(--character-art-accent),0 0 14px var(--character-art-accent)}
+.game-art #hud[data-art-style] .act:focus-visible{outline:3px solid white;outline-offset:3px}
+.character-title-art{display:inline-block;max-width:100%;background-repeat:no-repeat}
+/* Circular joystick skin shares the selected palette; dimensions and touch hit-testing are unchanged. */
+.game-art #hud[data-art-style]{--control-rim:#e7d397}
+.game-art #hud[data-art-style="tonal"]{--control-rim:var(--character-art-accent)}
+.game-art #hud[data-art-style] #stick-base{background:radial-gradient(circle at 38% 26%,color-mix(in srgb,var(--character-art-accent) 25%,#14242a),#090d13 62%)!important;border:2px solid var(--control-rim);border-radius:50%;box-shadow:inset 0 0 0 4px #0a0b11,inset 0 0 0 6px color-mix(in srgb,var(--control-rim) 55%,#172027),inset 0 0 18px #000,0 3px 9px #0009}
+.game-art #hud[data-art-style] #stick-base::before{content:'';position:absolute;inset:10%;border:1px solid color-mix(in srgb,var(--character-art-accent) 65%,transparent);border-radius:50%;background:repeating-conic-gradient(from -2deg,var(--control-rim) 0deg 4deg,transparent 4deg 90deg);mask:radial-gradient(circle,transparent 60%,#000 61%);pointer-events:none}
+.game-art #hud[data-art-style] #stick-knob{background:radial-gradient(ellipse at 32% 22%,#f5fffa 0%,color-mix(in srgb,var(--character-art-accent) 65%,#fff) 7%,var(--character-art-accent) 22%,color-mix(in srgb,var(--character-art-accent) 48%,#131923) 62%,#080b10 90%)!important;border:2px solid var(--control-rim);border-radius:50%;box-shadow:inset 0 0 0 3px #0b101c,inset 0 -6px 10px #0009,0 4px 10px #0009,0 0 10px color-mix(in srgb,var(--character-art-accent) 35%,transparent)}

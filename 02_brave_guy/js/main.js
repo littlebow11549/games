@@ -1,3 +1,4 @@
+import { applyCharacterArt } from './character-art.js?v=20261120characterart';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120assets';
@@ -15,7 +16,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261120assets';
 import { Fx } from './fx.js?v=20261120assets';
-import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120assets';
+import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120characterart2';
 import { createCinematics } from './cinematics.js?v=20261120assets';
 import { createOpening } from './opening.js?v=20261120assets';
 import { createMenuMotion } from './menu-motion.js?v=20261120assets';
@@ -364,7 +365,7 @@ function rescueSpeech(){
  supportSpeech(...pair);
 }
 function applyCharacterHud(){
- const id=hero.character||'brave';$('hud').dataset.character=id;
+ const id=hero.character||'brave';$('hud').dataset.character=id;applyCharacterArt($('hud'),id);
  const gem=document.querySelector('.act.transform');gem.querySelector('.burst-emblem')?.remove();
  if(guest()){const emblem=document.createElement('b');emblem.className='burst-emblem';emblem.textContent=id==='angel'?'♡':'◆';emblem.setAttribute('aria-hidden','true');gem.append(emblem);}
  $('portrait').querySelector('.guest-face')?.remove();

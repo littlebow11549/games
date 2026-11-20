@@ -569,3 +569,23 @@
 | [brave_guy_sfx178_win.mp3](../_alternate/audio-unused/sfx/brave_guy_sfx178_win.mp3) | 21,987 B |
 | [brave_guy_fx02_hit_arcade_source_unused.png](../_alternate/recovered-art/fx/brave_guy_fx02_hit_arcade_source_unused.png) | 1,876,010 B |
 
+
+## 角色圖集驗收版（未取代預設）
+
+[完整替換與製作規格](brave_guy_character-art-guide.md) · [格位與來源資料](brave_guy_character-art.json)
+
+- [brave_guy_skill04_勇氣超人_技能圖集.png](../source/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.png)（color）
+- [brave_guy_skill04_勇氣超人_技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.webp)（color）
+- [brave_guy_skill04_勇氣超人_同色調技能圖集.png](../source/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.png)（tonal）
+- [brave_guy_skill04_勇氣超人_同色調技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.webp)（tonal）
+- [brave_guy_title04_勇氣超人_三語招式圖集.svg](../source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg)（shared）
+- [brave_guy_skill02_小天使_技能圖集.png](../source/pic/icons/brave_guy_skill02_小天使_技能圖集.png)（color）
+- [brave_guy_skill02_小天使_技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill02_小天使_技能圖集.webp)（color）
+- [brave_guy_skill02_小天使_同色調技能圖集.png](../source/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.png)（tonal）
+- [brave_guy_skill02_小天使_同色調技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.webp)（tonal）
+- [brave_guy_title02_小天使_三語招式圖集.svg](../source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg)（shared）
+- [brave_guy_skill11_惡夢超人_技能圖集.png](../source/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.png)（color）
+- [brave_guy_skill11_惡夢超人_技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.webp)（color）
+- [brave_guy_skill11_惡夢超人_同色調技能圖集.png](../source/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.png)（tonal）
+- [brave_guy_skill11_惡夢超人_同色調技能圖集.webp](../runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.webp)（tonal）
+- [brave_guy_title11_惡夢超人_三語招式圖集.svg](../source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg)（shared）

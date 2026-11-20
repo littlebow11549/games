@@ -4277,5 +4277,170 @@
     ],
     "sha256": "7c6105062e811364a736883a183ca12185658386bcaaeafed7f1d186dcbceb76",
     "bytes": 13106
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "7233749dc01103abedc3e959fb1394f03d611742e1b636fde2d24cb1fbb198a5",
+    "bytes": 2693849
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "7ef29d338ed14093379a3a230fb654df337d05b0812117a39f19c01750b0f42f",
+    "bytes": 2008364
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "dd251f6d4c1732c01d7e5c15572f7928f81704e2a78041e2c6ef3b98cd88c134",
+    "bytes": 2660349
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "b6ffdd2127f65de1ac9af0fdc7a6c55ee4d5ea7ffae60e8e8521ada1c251a13b",
+    "bytes": 1950652
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
+    "status": "驗收預覽／待使用者選定",
+    "style": "shared",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "f48061043320b98178884104e2d73c46031d04b5069c00896945a444e4553d53",
+    "bytes": 44487
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "0250719533634718b7bfaaf340b408eef93d504b5ec982f93695a738fb821165",
+    "bytes": 2680137
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "f7a3a030c8c330c5487b87530f9c8ae18ae9e360340c0cc9b9dc59892eec4a1e",
+    "bytes": 1979508
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "ab65ef608cfc4fe33afc70cb1fa8ab21461b8d275dba93b9b1c0a5750dfe5b58",
+    "bytes": 2734478
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "1114d5be83ef014049ce5615ff4860dfc3d3d62e13ae957df80a242858626a5e",
+    "bytes": 1927230
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
+    "status": "驗收預覽／待使用者選定",
+    "style": "shared",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7",
+    "bytes": 58633
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "366a372a785236bb44941fe17c7a47701aae8bb4eabe393c14b34b153654bad4",
+    "bytes": 2797835
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "color",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "d40ebd91bf5a726b319bc5807e5d39097d4040d8493914b5a566ef0a2b9f127c",
+    "bytes": 2066782
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "fe47728a5234f9c2331a08176f6acba16f62059b44cba50768c2ddbf3b0b8570",
+    "bytes": 2855506
+  },
+  {
+    "path": "02_brave_guy/assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
+    "status": "驗收預覽／待使用者選定",
+    "style": "tonal",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "adfd8034e9520706ee05dd93a7edda8fed0ce2ae9483fa3b42597fe0bf42165d",
+    "bytes": 1945668
+  },
+  {
+    "path": "02_brave_guy/assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
+    "status": "驗收預覽／待使用者選定",
+    "style": "shared",
+    "references": [
+      "02_brave_guy/assets/records/brave_guy_character-art.json",
+      "02_brave_guy/js/character-art.js"
+    ],
+    "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7",
+    "bytes": 55381
   }
 ]

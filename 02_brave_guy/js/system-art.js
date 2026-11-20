@@ -1,3 +1,4 @@
+import { characterTitle } from './character-art.js?v=20261120characterart';
 import { assetPath } from './asset-paths.js';
 import { angelText } from './angel-language.js?v=20261120assets';
 // Native atlas windows: sources remain unmodified and retain their alpha channel.
@@ -23,6 +24,7 @@ export function artSprite(group, index, label = '') {
 }
 export function setSystemArt(el, text) {
  el.classList.remove('wave-art');
+ const title=characterTitle(text);if(title){el.replaceChildren(title);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}
  const value = clean(text);
  const guestTitle={'全都給我過來！':'angel','王之嘴炮':'nightmare'}[value];
  if(guestTitle){const img=document.createElement('img');img.className='word-art';img.src=assetPath(`assets/source/pic/titles/ult_${guestTitle}${lang!=='zh-Hant'?'_'+lang:''}.svg`);img.alt=angelText(text);el.replaceChildren(img);el.classList.add('has-word-art');el.classList.remove('system-lettering');return;}

@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "status": "implemented-pending-user-review",
+  "skill_grid": {
+    "columns": 3,
+    "rows": 3,
+    "slots": [
+      "attack",
+      "dodge",
+      "skill1",
+      "skill2",
+      "skill3",
+      "ult",
+      "transform",
+      "lock",
+      "cycle"
+    ],
+    "anchor": [
+      0.5,
+      0.5
+    ],
+    "safeMarginFraction": 0.12,
+    "opaque": true,
+    "states": "CSS handles pressed, disabled, cooldown, full and lock-on; never bake keyboard labels into artwork"
+  },
+  "title_grid": {
+    "columns": 3,
+    "rows": 4,
+    "cell": [
+      1200,
+      360
+    ],
+    "columnsByLanguage": [
+      "zh-Hant",
+      "en",
+      "ja"
+    ],
+    "rowsByAction": [
+      "skill1",
+      "skill2",
+      "skill3",
+      "ult"
+    ],
+    "safeMargin": [
+      70,
+      35
+    ],
+    "transparent": true
+  },
+  "characters": {
+    "brave": {
+      "name": "勇氣超人",
+      "characterNumber": 4,
+      "reference": "assets/source/pic/sheet/brave_guy_charactor04_勇氣超人.jpg",
+      "titles": {
+        "source": "assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
+        "runtime": "assets/source/pic/titles/brave_guy_title04_勇氣超人_三語招式圖集.svg",
+        "labels": [
+          [
+            "勇氣衝拳",
+            "Courage Rush!",
+            "勇気ラッシュ！"
+          ],
+          [
+            "氣功彈",
+            "Ki Blast!",
+            "気功弾！"
+          ],
+          [
+            "氣功震地",
+            "Ki Quake!",
+            "気功震地！"
+          ],
+          [
+            "超勇氣波！",
+            "Super Courage Wave!",
+            "超勇気波！"
+          ]
+        ],
+        "sha256": "f48061043320b98178884104e2d73c46031d04b5069c00896945a444e4553d53"
+      },
+      "palette": [
+        "#e9ff96",
+        "#53f735",
+        "#087632"
+      ],
+      "skills": {
+        "color": {
+          "source": "assets/source/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "7233749dc01103abedc3e959fb1394f03d611742e1b636fde2d24cb1fbb198a5",
+          "generatorSource": "/workspace/generated_images/exec-f5e05fac-d454-4975-b552-c5165beb63d0.png"
+        },
+        "tonal": {
+          "source": "assets/source/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill04_勇氣超人_同色調技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "dd251f6d4c1732c01d7e5c15572f7928f81704e2a78041e2c6ef3b98cd88c134",
+          "generatorSource": "/workspace/generated_images/exec-48967aff-2aed-4289-91c4-d31f417e146f.png"
+        }
+      }
+    },
+    "angel": {
+      "name": "小天使",
+      "characterNumber": 2,
+      "reference": "assets/source/pic/sheet/brave_guy_charactor02_小天使.jpg",
+      "titles": {
+        "source": "assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
+        "runtime": "assets/source/pic/titles/brave_guy_title02_小天使_三語招式圖集.svg",
+        "labels": [
+          [
+            "變態！不要過來",
+            "Creep! Stay back!",
+            "変態！近寄らないで！"
+          ],
+          [
+            "救命啊～色狼！",
+            "Help! A pervert!",
+            "助けて～！変態！"
+          ],
+          [
+            "給我站住！",
+            "Stop right there!",
+            "待ちなさい！"
+          ],
+          [
+            "全都給我過來！",
+            "Get over here!",
+            "みんなこっちに来て！"
+          ]
+        ],
+        "sha256": "8558c9ba83cac820bae32abbba35966cd79825d53d3c6d2702a520bcf52d59a7"
+      },
+      "palette": [
+        "#fff7eb",
+        "#ff88cc",
+        "#b42f93"
+      ],
+      "skills": {
+        "color": {
+          "source": "assets/source/pic/icons/brave_guy_skill02_小天使_技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "0250719533634718b7bfaaf340b408eef93d504b5ec982f93695a738fb821165",
+          "generatorSource": "/workspace/generated_images/exec-26fbe2ba-b4a9-4baa-85e1-89029be6b374.png"
+        },
+        "tonal": {
+          "source": "assets/source/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill02_小天使_同色調技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "ab65ef608cfc4fe33afc70cb1fa8ab21461b8d275dba93b9b1c0a5750dfe5b58",
+          "generatorSource": "/workspace/generated_images/exec-9b0d261d-ac7b-4aab-b5af-dfc1432b6c13.png"
+        }
+      }
+    },
+    "nightmare": {
+      "name": "惡夢超人",
+      "characterNumber": 11,
+      "reference": "assets/source/pic/sheet/brave_guy_charactor11_惡夢超人.jpg",
+      "titles": {
+        "source": "assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
+        "runtime": "assets/source/pic/titles/brave_guy_title11_惡夢超人_三語招式圖集.svg",
+        "labels": [
+          [
+            "夢的翅膀已經受了傷～",
+            "Wings of Dreams, Wounded",
+            "夢の翼は傷ついた～"
+          ],
+          [
+            "聽話，讓我看看！",
+            "Be good. Let me see!",
+            "いい子だ、見せて！"
+          ],
+          [
+            "夠了！",
+            "Enough!",
+            "もう十分だ！"
+          ],
+          [
+            "王之嘴炮",
+            "Royal Barrage!",
+            "王の口撃！"
+          ]
+        ],
+        "sha256": "41179b6b291c6e0ddd1dacbe2866e747cfee134357828d5dccac7e003baa79c7"
+      },
+      "palette": [
+        "#e8d6ff",
+        "#ba70ff",
+        "#58228e"
+      ],
+      "skills": {
+        "color": {
+          "source": "assets/source/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "366a372a785236bb44941fe17c7a47701aae8bb4eabe393c14b34b153654bad4",
+          "generatorSource": "/workspace/generated_images/exec-1f1891d8-996f-43ba-8727-e7a494a3840c.png"
+        },
+        "tonal": {
+          "source": "assets/source/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.png",
+          "runtime": "assets/runtime/lossless/pic/icons/brave_guy_skill11_惡夢超人_同色調技能圖集.webp",
+          "size": [
+            1254,
+            1254
+          ],
+          "sha256": "fe47728a5234f9c2331a08176f6acba16f62059b44cba50768c2ddbf3b0b8570",
+          "generatorSource": "/workspace/generated_images/exec-06e809b4-b3d6-4014-9b36-c3754c44a818.png"
+        }
+      }
+    }
+  },
+  "defaultStyle": "legacy",
+  "reviewStyles": [
+    "color",
+    "tonal"
+  ],
+  "approval": "Awaiting user choice; normal entry retains legacy art. Use ?skillStyle=color or ?skillStyle=tonal in the actual game.",
+  "presentation": {
+    "shape": "circle",
+    "joystick": "CSS circular material, same size and input bounds; palette follows active character/style",
+    "targetControls": "original lock/cycle preserved; atlas last two cells reserved",
+    "status": "both styles integrated in actual game, pending user choice"
+  }
+}
