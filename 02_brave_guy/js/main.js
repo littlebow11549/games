@@ -1093,7 +1093,7 @@ function damageEnemy(e, mult, o = {}) {
   }
   const crit = Math.random() < HERO.critRate;
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
-  if(godMode())dmg/=3; // 天下無敵：所有敵人的有效防禦提升三倍。
+  if(godMode())dmg/=2; // 天下無敵：承傷由1/3提高至1/2，相較上一版增加50%。
   if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
   if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.1) dmg = Math.max(0, e.hp - e.maxHp * 0.1 + 1); // 不會被直接打死，血打到剩一成才進入最後一段（走上前收尾）
