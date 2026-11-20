@@ -802,11 +802,17 @@ function onHit(count, killed) {
 
 // ---------- 變身 ----------
 
-function shockwave(center, radius, mult, color, sound='quake') {
+const TRANSFORM_RELEASE_RADIUS = 6;
+
+function shockwaveVisual(center, radius, color) {
   fx.dome(center, radius, color, 0.55);
   fx.ring(center, 1, radius, 0xffffff, 0.45);
   fx.burst(center, color, 36, 13, 0.6, 0.32);
   game.shake = Math.max(game.shake, 0.7);
+}
+
+function shockwave(center, radius, mult, color, sound='quake') {
+  shockwaveVisual(center, radius, color);
   audio.sfx(sound);
   areaStrike(center, radius, mult, { kb: 12, launch: 9, stun: 0.8, heavy: true });
 }
@@ -820,7 +826,7 @@ function finishTransform() {
   hero.state = 'free';
   hero.invuln = Math.max(hero.invuln, 0.4);
   hero.guilt *= 0.5;
-  shockwave(hero.pos, 6 + 5 * extra, 1.6 + 1.6 * extra, 0x9be564, 'transform_done');
+  shockwave(hero.pos, TRANSFORM_RELEASE_RADIUS + 5 * extra, 1.6 + 1.6 * extra, 0x9be564, 'transform_done');
   popup(hero.pos, 2.6, '勇氣超人！', 'shout');
   for (const e of enemies) if (e.sayEl) { e.sayEl.remove(); e.sayEl = null; } // 囂張的話收回去
   setTimeout(() => tauntFrom(TAUNTS_SCARED), 350);
@@ -832,7 +838,8 @@ function startGuestBurst(){
   if(!guest()||game.final||hero.guilt<hero.guiltMax||hero.guestBurstT>0)return;
   hero.guilt=0;hero.guestBurstT=8;hero.state='free';hero.invuln=Math.max(hero.invuln,.6);
   const color=hero.character==='angel'?0xff9de0:0xb080ff;
-  hero.visual.glow(true,color);fx.dome(hero.pos,5,color,.5);fx.ring(hero.pos,1,7,color,.6);
+  hero.visual.glow(true,color);
+  shockwaveVisual(hero.pos, TRANSFORM_RELEASE_RADIUS, color);
   audio.sfx('guilt_burst');popup(hero.pos,2.8,tr('爆氣！','BURST!','覚醒！'),'good');
 }
 
