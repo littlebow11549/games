@@ -1782,14 +1782,17 @@ function separate() {
   const live = [];
   for (const e of enemies) if (alive(e) && e.y <= 0) { e._si = live.length; live.push(e); }
   sepGrid.clear();
+  // 格鍵用純數字（而非字串拼接），避免每幀替每隻怪與 9 格查詢產生大量短命字串造成 GC。
+  // 場地半徑 26、CELL=3，格座標約在 ±10，加 64 後落在 [0,127]，乘 128 可唯一編碼不互撞。
+  const gkey = (cx, cz) => ((cx + 64) << 7) + (cz + 64);
   for (const e of live) {
-    const k = Math.floor(e.pos.x / CELL) + ',' + Math.floor(e.pos.z / CELL);
+    const k = gkey(Math.floor(e.pos.x / CELL), Math.floor(e.pos.z / CELL));
     let cell = sepGrid.get(k); if (!cell) { cell = []; sepGrid.set(k, cell); } cell.push(e);
   }
   for (const a of live) {
     const cx = Math.floor(a.pos.x / CELL), cz = Math.floor(a.pos.z / CELL);
     for (let ox = -1; ox <= 1; ox++) for (let oz = -1; oz <= 1; oz++) {
-      const cell = sepGrid.get((cx + ox) + ',' + (cz + oz)); if (!cell) continue;
+      const cell = sepGrid.get(gkey(cx + ox, cz + oz)); if (!cell) continue;
       for (const b of cell) {
         if (b._si <= a._si) continue; // 每對只處理一次
         let dx = b.pos.x - a.pos.x, dz = b.pos.z - a.pos.z;
