@@ -5,7 +5,7 @@ import {FINALE_QUALITY} from './story-quality-finale.js';
 import {addOfficeProps} from './story-office-props.js';
 import {addFinaleProps} from './story-finale-props.js';
 import {makeQualityKit} from './story-quality-kit.js';
-import {paintArtStage} from './story-quality-paint.js';
+import {paintArtStage} from './story-quality-paint.js?v=20261125perf1';
 import {addStoryAmbient} from './story-ambient.js';
 export const STORY_QUALITY=Object.freeze({...SCHOOL_QUALITY,...OFFICE_QUALITY,...FINALE_QUALITY});
 

@@ -1,10 +1,6 @@
+import {loadStageAtlas} from './stage-textures.js?v=20261125perf1';
 // Original chibi environment art. Four 2×2 atlases; divide maps once, share across visits.
-const atlasNames=['school','wild','office','end'];
 const cv=(w,h)=>Object.assign(document.createElement('canvas'),{width:w,height:h});
-const load=n=>new Promise((ok,no)=>{
- const img=new Image();img.onload=()=>ok(img);img.onerror=()=>no(new Error('Scene atlas missing: '+n));
- img.src=new URL('../../assets/runtime/stage-art/brave_guy_scene_'+n+'.png',import.meta.url);
-});
 function crop(img,j){
  const w=Math.floor(img.width/2),h=Math.floor(img.height/2),out=cv(w,h),ctx=out.getContext('2d',{willReadFrequently:true});
  const pad=5;ctx.drawImage(img,j%2*w+pad,Math.floor(j/2)*h+pad,w-pad*2,h-pad*2,pad,pad,w-pad*2,h-pad*2);
@@ -18,13 +14,18 @@ function crop(img,j){
  return trim;
 }
 const images={};
-await Promise.all(atlasNames.map(async n=>{const i=await load(n);images[n]=[0,1,2,3].map(j=>crop(i,j));}));
 const lookup={
  '1-0':['school',0,0,3.8],'1-2':['school',1,1,4.30],'1-3':['school',2,2,3.80],'1-4':['school',3,3,4.85],
  '2-1':['wild',0,0,5.05],'2-2':['wild',1,2,5.05],
  '3-0':['office',0,0,4.40],'3-1':['office',1,1,4.60],'3-2':['office',2,2,4.75],'3-3':['office',3,3,4.65],
  '3-4':['end',0,0,4.20],'3-6':['end',1,1,4.35],'3-7':['end',2,2,4.65],'3-5':['end',3,3,4.85],
  '4-1':['wild',3,3,4.90]};
+export async function prepareStoryLandmarks(id){
+ const [name]=lookup[id];
+ if(images[name])return;
+ const image=await loadStageAtlas('brave_guy_scene_'+name);
+ if(!images[name])images[name]=[0,1,2,3].map(j=>crop(image,j));
+}
 export function placeStoryPaint(T,root,maze,id,camera,hero){
  const [id0,left,right,size]=lookup[id],stage=[];
  const matBy=new Map(),natural=id==='2-1'||id==='2-2',isBlank=(x,z)=>maze.blocked({x,z},.035);

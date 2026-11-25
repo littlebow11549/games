@@ -3,7 +3,7 @@
   "models": {
     "student": null,
     "brave": {
-      "url": "assets/runtime/stage-art/BraveGuy_Toon_Actions.glb",
+      "url": "assets/runtime/stage-art/BraveGuy_Toon_Actions_Runtime.glb",
       "height": 2.05,
       "rotationY": 0,
       "clips": {

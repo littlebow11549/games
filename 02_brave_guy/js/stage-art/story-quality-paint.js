@@ -1,8 +1,6 @@
+import {loadStageAtlas} from './stage-textures.js?v=20261125perf1';
 // Story H5 revision: image-backed scenery, painted cast shadows, readable route masks.
 const U=Math.PI*2, EXTENT=31, SIZE=1536;
-const root='../../assets/runtime/stage-art/story_quality_';
-const load=name=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(Error(name+' not found'));i.src=new URL(root+name+'.png',import.meta.url);});
-const existing=n=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=new URL('../../assets/runtime/stage-art/sunny_chibi_'+n+'.png',import.meta.url);});
 const canvas=(W,H)=>Object.assign(document.createElement('canvas'),{width:W,height:H});
 function quadrant(im,j,alpha) {
  const a=canvas(Math.floor(im.width/2),Math.floor(im.height/2)),c=a.getContext('2d',{willReadFrequently:alpha});
@@ -20,11 +18,14 @@ function oldCrop(im,k) {
  const boxes=[[22,129,591,430],[648,149,579,410],[34,897,562,219],[662,942,548,174]];
  const [x,y,w,h]=boxes[k],b=canvas(w,h);b.getContext('2d').drawImage(im,x,y,w,h,0,0,w,h);return b;
 }
-const [woods,inside,twilight,surfaces,nature]=await Promise.all([load('woodland'),load('interior'),load('twilight'),load('surfaces'),existing('plants')]);
-const bitmaps=Object.fromEntries(Object.entries({forest:[woods,0],ferns:[woods,1],cottage:[woods,2],lantern:[woods,3],read:[inside,0],
- pots:[inside,1],window:[inside,2],files:[inside,3],tower:[twilight,0],crystal:[twilight,1],sofa:[twilight,2],city:[twilight,3]}).map(([n,[im,j]])=>[n,quadrant(im,j,true)]));
-for(const [k,j] of [['tree',0],['bloom',1],['flowers',2],['hedge',3]])bitmaps[k]=oldCrop(nature,j);
-const surfacesBy=[0,1,2,3].map(i=>quadrant(surfaces,i,false));
+const sources={
+ forest:['woodland',0],ferns:['woodland',1],cottage:['woodland',2],lantern:['woodland',3],
+ read:['interior',0],pots:['interior',1],window:['interior',2],files:['interior',3],
+ tower:['twilight',0],crystal:['twilight',1],sofa:['twilight',2],city:['twilight',3],
+ tree:['plants',0],bloom:['plants',1],flowers:['plants',2],hedge:['plants',3]
+};
+const bitmaps=Object.create(null);
+let surfacesBy;
 const rnd=s=>()=>((s=(Math.imul(s,1664525)+1013904223)>>>0)/2**32);
 const recipe={
  '1-0':{rim:['files','pots'],back:['read','window','read'],coat:'rug',light:'#ffd5a2'},
@@ -43,6 +44,18 @@ const recipe={
  '3-5':{rim:['pots','sofa'],back:['city','tower','city'],coat:'roof',light:'#ffd1a7'},
  '4-1':{rim:['crystal','ferns'],back:['crystal','tower','crystal'],coat:'rift',light:'#eca6e8'}
 };
+export async function prepareStoryPaint(id){
+ const {rim,back}=recipe[id];
+ const loadSurface=surfacesBy ? null : loadStageAtlas('story_quality_surfaces').then(img=>{
+  if(!surfacesBy)surfacesBy=[0,1,2,3].map(i=>quadrant(img,i,false));
+ });
+ await Promise.all([loadSurface,...[...new Set([...rim,...back])].map(async name=>{
+  if(bitmaps[name])return;
+  const [key,index]=sources[name],isPlant=key==='plants';
+  const image=await loadStageAtlas(isPlant?'sunny_chibi_plants':'story_quality_'+key);
+  if(!bitmaps[name])bitmaps[name]=isPlant?oldCrop(image,index):quadrant(image,index,true);
+ })]);
+}
 export function paintArtStage(T,root,maze,style,id,camera,hero) {
  const recipe0=recipe[id],{rim,back,coat,light}=recipe0,palette=style.palette;
  const [base,high,dark,mid,lite,line]=palette;

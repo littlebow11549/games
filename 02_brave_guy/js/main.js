@@ -1,6 +1,6 @@
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
-const stageArtReady=import('./stage-art/catalog.js?v=20261125scene').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
+const stageArtReady=import('./stage-art/catalog.js?v=20261125perf1').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
@@ -17,7 +17,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261125scene';
+import { createVisual, loadModel } from './visuals.js?v=20261125perf1';
 import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -478,7 +478,15 @@ function startStage(index, character=null) {
   }
   hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds,save.secretCharacters)?character:'brave';
   const selectedCharacter=hero.character;
-  if(!gameplayIsReady(selectedCharacter)){game.phase='loading-assets';$('overlay').hidden=true;waitForArtwork(()=>prepareGameplay(selectedCharacter),()=>startStage(index,selectedCharacter));return;}
+  const stageId=STAGES[index]?.id;
+  if(!stageId)return;
+  const needsArt=stageArt&&(stageId==='1-1'||stageArt.STORY_DESIGN[stageId]);
+  const pack=needsArt?stageArt.preparedStageArt(stageId):null;
+  if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)){
+    game.phase='loading-assets';$('overlay').hidden=true;
+    waitForArtwork(()=>Promise.all([prepareGameplay(selectedCharacter),needsArt?stageArt.prepareStageArt(stageId):null]),()=>startStage(index,selectedCharacter));
+    return;
+  }
   audio.stopCelebration();input.takeActions();
   runs.start(index,diff);
   if(unlockAll||guest())runs.invalidate();
@@ -498,13 +506,13 @@ function startStage(index, character=null) {
   if(stageArt&&st.id==='1-1') {
     maze?.dispose(); maze=stageArt.makeSunnyMaze(THREE);scene.add(maze.group);
   } else if(stageArt?.STORY_DESIGN[st.id]) {
-    maze?.dispose(); maze=stageArt.makeStoryMaze(THREE, stageArt.STORY_QUALITY[st.id].rows);scene.add(maze.group);
-    hallArt=stageArt.dressStoryQuality(THREE,scene,stageArt.STORY_DESIGN[st.id],maze,sun,Q(),camera,hero);
+    maze?.dispose(); maze=stageArt.makeStoryMaze(THREE, pack.STORY_QUALITY[st.id].rows);scene.add(maze.group);
+    hallArt=pack.dressStoryQuality(THREE,scene,stageArt.STORY_DESIGN[st.id],maze,sun,Q(),camera,hero);
   } else buildMaze(st);
   stageArt?.applyStageGrade(st.id,stageArt.STORY_DESIGN[st.id]);
   if (stageArt && st.id === '1-1' && maze) {
-    hallArt = stageArt.dressCampus3D(THREE,scene,{world:sun.parent,maze,sun,camera,hero,quality:Q(),radius:ARENA_RADIUS});
-    hallFx = stageArt.createHallwayFx(THREE,scene);
+    hallArt = pack.dressCampus3D(THREE,scene,{world:sun.parent,maze,sun,camera,hero,quality:Q(),radius:ARENA_RADIUS});
+    hallFx = pack.createHallwayFx(THREE,scene);
   }
   // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
   game.waves = st.waves.slice();
@@ -2774,17 +2782,19 @@ function frame(now) {
 
 async function boot() {
   await stageArtReady;
-  let manifest = {};
+  async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261125scene';
-    manifest = await (await fetch(url)).json();
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261125perf1';
+    return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
   }
+  return {};
+  }
+  const [manifest]=await Promise.all([loadManifest(),preloadImages((done,total)=>progress(76+done/total*15,tr('準備圖像','Preparing artwork','画像を準備中')+' '+done+'/'+total))]);
   audio = new GameAudio(manifest);
   audio.onLoading = (on) => { $('music-loading').hidden = !on; }; // 音樂進關後才下載，載的時候在任務欄提示
   const models = Object.entries(manifest.models || {}).filter(([, cfg]) => cfg && cfg.url);
-  await preloadImages((done,total)=>progress(76+done/total*15,tr(`準備畫面 ${done}/${total}`,`Preparing artwork ${done}/${total}`,`画像を準備 ${done}/${total}`)));
   progress(91, models.length ? '載入角色模型' : '準備角色');
   let got = 0;
   const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(91 + (++got / models.length) * 4, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));

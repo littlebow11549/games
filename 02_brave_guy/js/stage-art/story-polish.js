@@ -1,5 +1,5 @@
-import {placeStoryPaint} from './story-polish-art.js';
-import {dressStoryQuality as illustrated,STORY_QUALITY} from './story-quality-world.js';
+import {placeStoryPaint} from './story-polish-art.js?v=20261125perf1';
+import {dressStoryQuality as illustrated,STORY_QUALITY} from './story-quality-world.js?v=20261125perf1';
 import {makeQualityKit} from './story-quality-kit.js';
 export {STORY_QUALITY};
 

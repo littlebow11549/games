@@ -1,12 +1,13 @@
+import {loadStageAtlas} from './stage-textures.js?v=20261125perf1';
 import { makeSchool } from './campus-school-3d.js';
 import { makeWaterfall } from './campus-water-3d.js';
 // Atlas paintings are not reference screenshots. Navigation remains owned by sunny-maze.
 const TAU = Math.PI*2;
-const load=(name)=>new Promise((ok,fail)=>{
- const pic=new Image();pic.onload=()=>ok(pic);pic.onerror=()=>fail(Error('Scene art failed to load: '+name));
- pic.src=new URL('../../assets/runtime/stage-art/sunny_chibi_'+name+'.png',import.meta.url).href;
-});
-const [PLANTS,LANDMARKS,GROUND]=await Promise.all(['plants','landmarks','terrain'].map(load));
+let PLANTS,LANDMARKS,GROUND;
+export async function prepareCampus(){
+ if(GROUND)return;
+ [PLANTS,LANDMARKS,GROUND]=await Promise.all(['plants','landmarks','terrain'].map(name=>loadStageAtlas('sunny_chibi_'+name)));
+}
 const WATER_POS={x:-4.7,z:-10.15};
 const POND='M -3.99,-.03 C -4.18,-.75 -3.3,-1.48 -2.36,-1.49 C -1.2,-1.62 -.91,-2.15 .61,-1.98 C 1.68,-1.9 1.97,-1.55 2.88,-1.24 C 4.04,-.88 4.17,-.05 3.17,.58 C 2.75,.81 1.81,1.03 .42,1.24 C -.72,1.36 -1.38,1.87 -2.73,1.48 C -3.65,1.17 -4.14,.63 -3.99,-.03 Z';
 const RAND=(s)=>()=>((s=(Math.imul(s,1664525)+1013904223)>>>0)/4294967296);
