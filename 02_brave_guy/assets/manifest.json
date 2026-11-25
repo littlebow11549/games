@@ -2,7 +2,27 @@
   "_說明": "素材插槽表。值為 null 時遊戲使用程式拼的佔位版；素材到位後把路徑填進來即可替換，不需改程式。模型格式見 assets/README.md，音樂見 assets/records/brave_guy_record04_music.md。 音訊填 .ogg 路徑；裝置不支援 OGG 時程式會自動改讀同名的 .mp3。",
   "models": {
     "student": null,
-    "brave": null,
+    "brave": {
+      "url": "assets/runtime/stage-art/BraveGuy_Toon_Actions.glb",
+      "height": 2.05,
+      "rotationY": 0,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "attack1": "Punch_L",
+        "attack2": "Punch_R",
+        "attack3": "Spin_Kick",
+        "dodge": "Evade_Slip",
+        "skill1": "Courage_Dash_Punch",
+        "skill2": "Ki_Ball",
+        "skill3": "Ki_Ground_Quake",
+        "ult": "Super_Courage_Beam",
+        "hit": "Hit_Recoil",
+        "stun": "Stun_Guard",
+        "transformArrival": "Transform_Arrive",
+        "burst": "Guilt_Burst"
+      }
+    },
     "angel": null,
     "ganqiao": null,
     "jiasen": null,

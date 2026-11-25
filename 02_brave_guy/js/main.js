@@ -1,3 +1,6 @@
+import {enableCameraZoom} from './stage-art/camera-zoom.js';
+let stageArt=null;
+const stageArtReady=import('./stage-art/catalog.js?v=20261125scene').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
@@ -14,7 +17,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261120assets';
+import { createVisual, loadModel } from './visuals.js?v=20261125scene';
 import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -293,6 +296,8 @@ const dist2d = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const alive = (e) => e.state !== 'dead' && e.state !== 'spawn';
 const stats = () => {const base=FORM[hero.form === 'brave' ? 'brave' : 'student'];return hero.guestBurstT>0?{...base,atk:base.atk*1.5,speed:base.speed*1.15,hurtMult:base.hurtMult*.8}:base;}; // 上班族沿用大學生的數值
 const stage = () => STAGES[game.stage];
+let hallArt = null;
+let hallFx = null;
 let maze = null; // 這一關的迷宮（教學關與黑影單挑沒有）
 const navTmp = new THREE.Vector3();
 function clampArena(p, margin = 0) {
@@ -402,6 +407,12 @@ function setForm(form) {
   hero.visual.play('idle');
 }
 
+function playBraveCue(type){
+  const dur={hit:.23,transformArrival:.56,burst:.60}[type];
+  if(dur&&hero.character==='brave'&&hero.visual===hero.vis.brave&&hero.state==='free'&&hero.stunT<=0&&game.phase==='playing')
+    hero.visual.playReaction?.(type,dur);
+}
+
 let portraitHurtTimer;
 function resetHero() {
   clearTimeout(portraitHurtTimer);
@@ -441,6 +452,7 @@ function resetHero() {
 }
 
 function clearField() {
+  hallFx?.clear();
   guestCombat.clear();nightmareBossSkills.clear();
   lockTargetEnemy = null;
   manualLockTarget = null;
@@ -480,8 +492,20 @@ function startStage(index, character=null) {
   if(index===STAGES.length-1&&!guest())cinematics.prepareEnding().catch(()=>{});
   if(st.id==='3-0')audio.sfx('punch_clock');
   if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]).catch(()=>{});
+  hallArt?.dispose(); hallArt = null;
+  hallFx?.dispose(); hallFx = null;
   ({ sun } = buildWorld(scene, st.theme, Q()));
-  buildMaze(st);
+  if(stageArt&&st.id==='1-1') {
+    maze?.dispose(); maze=stageArt.makeSunnyMaze(THREE);scene.add(maze.group);
+  } else if(stageArt?.STORY_DESIGN[st.id]) {
+    maze?.dispose(); maze=stageArt.makeStoryMaze(THREE, stageArt.STORY_QUALITY[st.id].rows);scene.add(maze.group);
+    hallArt=stageArt.dressStoryQuality(THREE,scene,stageArt.STORY_DESIGN[st.id],maze,sun,Q(),camera,hero);
+  } else buildMaze(st);
+  stageArt?.applyStageGrade(st.id,stageArt.STORY_DESIGN[st.id]);
+  if (stageArt && st.id === '1-1' && maze) {
+    hallArt = stageArt.dressCampus3D(THREE,scene,{world:sun.parent,maze,sun,camera,hero,quality:Q(),radius:ARENA_RADIUS});
+    hallFx = stageArt.createHallwayFx(THREE,scene);
+  }
   // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
   game.waves = st.waves.slice();
   if (st.waves.length && !st.rules.tutorial && st.id !== '3-0') {
@@ -831,6 +855,7 @@ function finishTransform() {
   hero.state = 'free';
   hero.invuln = Math.max(hero.invuln, 0.4);
   hero.guilt *= 0.5;
+  playBraveCue('transformArrival');
   shockwave(hero.pos, TRANSFORM_RELEASE_RADIUS + 5 * extra, 1.6 + 1.6 * extra, 0x9be564, 'transform_done');
   popup(hero.pos, 2.6, '勇氣超人！', 'shout');
   for (const e of enemies) if (e.sayEl) { e.sayEl.remove(); e.sayEl = null; } // 囂張的話收回去
@@ -878,6 +903,7 @@ function guiltBurst() {
     hero.courage = Math.min(GAUGE.courageMax, hero.courage + GAUGE.burstExtend * GAUGE.courageDrain); // 不受命中延長上限限制
   }
   hero.state = 'free';
+  playBraveCue('burst');
   shockwave(hero.pos, 9, 3, 0xb06cff, 'guilt_burst');
   fx.pillar(hero.pos, 2, 14, 0xd9b0ff, 0.6);
   popup(hero.pos, 2.6, '夠了！！', 'shout');
@@ -935,7 +961,19 @@ function spawnEnemy(kind, at, delay = 0) {
     pos.set(Math.cos(a) * r, 0, Math.sin(a) * r);
     if (dist2d(pos, hero.pos) < (D().spread ? 5 : 8)) pos.multiplyScalar(-1); // 不要生在主角臉上
     if (def.boss) pos.set(rand(-3, 3), 0, -7);
+    if(maze?.walkCells){
+      if(def.boss) pos.set(maze.boss.x,0,maze.boss.z);
+      else {
+        const cells=maze.walkCells.filter(p=>{const d=dist2d(p,hero.pos);return d>4.9&&d<11.3;});
+        if(cells.length){
+          const k=enemies.length,c=cells[k%cells.length],twist=k*2.39996323;
+          const spread=.52+(Math.floor(k/cells.length)%5)*.21;
+          pos.set(c.x+Math.cos(twist)*spread,0,c.z+Math.sin(twist)*spread);
+        }
+      }
+    }
   }
+  if(maze?.nearestWalkable) pos.copy(maze.nearestWalkable(pos,def.radius));
   clampArena(pos, def.radius);
   visual.root.position.copy(pos);
   visual.root.visible = false;
@@ -1119,6 +1157,7 @@ function hurtHero(amount, opts = {}) {
     return;
   }
   if (hero.guilt >= hero.guiltMax) guiltBurst();
+  else playBraveCue('hit');
 }
 
 // 回傳 { hit, killed, crit }
@@ -2194,7 +2233,7 @@ function updateHero(dt) {
       g.position.set(hero.pos.x, 1.2, hero.pos.z).addScaledVector(forward(hero.yaw), 1.2);
       scene.add(g);
       shots.push({ mesh: g, vel: forward(hero.yaw).multiplyScalar(s.speed), life: s.life, radius: s.radius, mult: s.mult, hostile: false, hitSet: new Set(), blast: s.blast, blastMult: s.blastMult, src: 'skill2' });
-      fx.ring(hero.pos, 0.5, 3, 0x9be564, 0.25);
+      if (!hallFx?.attachKiShot(g, shots.at(-1).vel)) fx.ring(hero.pos, 0.5, 3, 0x9be564, 0.25);
       audio.sfx('ki_shot');
     }
     if (hero.t >= s.dur) hero.state = 'free';
@@ -2295,8 +2334,10 @@ function updateShots(dt) {
       s.mesh.rotation.y += dt * 6;
       if (s.life <= 0 || out) {
         audio.sfx('ki_blast');
-        fx.dome(s.mesh.position, s.blast, 0x9be564, 0.4);
-        fx.burst(s.mesh.position, 0x9be564, 24, 10, 1, 0.3);
+        if(!(s.src==='skill2' && hallFx?.impactKi(s.mesh.position,s.vel))) {
+          fx.dome(s.mesh.position, s.blast, 0x9be564, 0.4);
+          fx.burst(s.mesh.position, 0x9be564, 24, 10, 1, 0.3);
+        }
         areaStrike(s.mesh.position, s.blast, s.blastMult, { kb: 10, launch: 8, heavy: true });
         s.life = 0;
       }
@@ -2549,6 +2590,8 @@ mini.cv.addEventListener('pointerdown', (e) => {
 });
 function updateMinimap() {
   if (mini.skip++ % 3) return; // 每三幀畫一次就夠
+  mini.cv.classList.toggle('campus-radar',!!maze?.walkCells);
+  if(maze?.walkCells){stageArt.paintCampusRadar(mini,maze,hero,enemies,hazards,ambush,lockOn ? lockTargetEnemy : null);return;}
   const useArt = document.body.classList.contains('game-art') && minimapArtReady();
   mini.cv.classList.toggle('art-loaded', useArt);
   const c = mini.ctx, S = mini.cv.width, R = S / 2, k = (R - (useArt ? 28 : 10)) / ARENA_RADIUS;
@@ -2663,6 +2706,7 @@ function snapStageCamera() {
 function updateCamera(dt) {
   camTarget.lerp(hero.pos, 1 - Math.exp(-8 * dt));
   camera.position.copy(camTarget).add(CAM_OFFSET);
+  if(stage().id==='1-2')camera.position.addScaledVector(CAM_OFFSET,.17);
   if (camera.aspect < 1) camera.position.addScaledVector(CAM_OFFSET, 0.25);
   if (game.shake > 0) {
     game.shake = Math.max(0, game.shake - dt * 2.2);
@@ -2670,7 +2714,7 @@ function updateCamera(dt) {
     camera.position.x += rand(-s, s);
     camera.position.y += rand(-s, s);
   }
-  camera.lookAt(camTarget.x, camTarget.y + stageFocusHeight, camTarget.z);
+  camera.lookAt(camTarget.x, camTarget.y + stageFocusHeight, camTarget.z - (stageArt?.STORY_DESIGN[stage().id] ? 2.95 : 0));
   sun.position.set(camTarget.x - 14, 26, camTarget.z + 10);
   sun.target.position.copy(camTarget);
 }
@@ -2709,7 +2753,7 @@ function frame(now) {
   if(game.phase==='ready'){staticFrame=null;requestAnimationFrame(frame);return;}
   const frozen=game.paused||game.phase==='over';
   const frameKey=frozen?`${game.phase}:${game.stage}:${game.paused}`:null;
-  if(frozen&&staticFrame===frameKey){requestAnimationFrame(frame);return;}
+  if(frameKey!==null&&staticFrame===frameKey){requestAnimationFrame(frame);return;}
   staticFrame=frameKey;
   watchPerformance(rawDt);
   if(game.phase==='playing'&&!game.paused)runs.tick(rawDt);
@@ -2720,6 +2764,8 @@ function frame(now) {
   updateLockMarker(dt);
   if (game.phase !== 'loading' && (frozen || now-lastHud>=1000/30)) {updateHud();lastHud=now;}
   if (game.phase === 'playing' || game.phase === 'dialog') updateMinimap();
+  hallArt?.update(frozen?0:dt);
+  hallFx?.update(frozen?0:dt);
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
@@ -2727,9 +2773,10 @@ function frame(now) {
 // ---------- 啟動 ----------
 
 async function boot() {
+  await stageArtReady;
   let manifest = {};
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261120assets';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261125scene';
     manifest = await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
@@ -3027,5 +3074,6 @@ window.__game = { camera, updateHud, nightmareBossSkills, COMBO, guestCombat, ro
   // 測試用：不經過畫面更新直接推進模擬
   step(n = 1, dt = 1 / 30) { for (let i = 0; i < n; i++) { if (game.phase === 'playing' || game.phase === 'ending') { update(dt); updateAngel(dt); } } } };
 
+enableCameraZoom({camera,game});
 requestAnimationFrame(frame);
 boot().catch(err=>window.__fail?.(err.message));

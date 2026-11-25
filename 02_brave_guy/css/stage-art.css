@@ -1,0 +1,13 @@
+/* Production stage overlays, outside the HUD and input layers. */
+#stage-scene-glaze{position:fixed;inset:0;pointer-events:none}
+#stage-scene-glaze[data-tinted]{background:radial-gradient(ellipse 70% 64% at 17% -7%,color-mix(in srgb,var(--scene-warm) 27%,transparent),transparent 72%),radial-gradient(ellipse 85% 83% at 52% 49%,transparent 49%,color-mix(in srgb,var(--scene-shadow) 24%,transparent) 93%)}
+#scene[data-stage-grade="sunny-arcade"]{filter:saturate(.955) url("#stage-grade-sunny-arcade")}
+#scene[data-story-grade]{filter:saturate(1.065) contrast(1.025)}
+#scene[data-story-grade="2-1"]{filter:saturate(1.04) contrast(1.08) brightness(.94)}
+#scene[data-story-grade="2-2"]{filter:saturate(1.03) contrast(1.10) brightness(.86)}
+#scene[data-story-grade="3-0"]{filter:saturate(.93) contrast(1.09) brightness(.94)}
+#scene[data-story-grade="4-1"]{filter:saturate(1.15) contrast(1.09)}
+#minimap.campus-radar{border-radius:50%;touch-action:none}
+#minimap.campus-radar.art-loaded{background:none}
+@media(max-width:640px){#minimap.campus-radar.big{width:146px;height:146px}}
+#brave3d-zoom-reset{border:1px solid #d0b771;border-radius:999px;background:#26372e;color:#fff;padding:4px 8px;min-height:34px;font:700 12px system-ui;cursor:pointer}

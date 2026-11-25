@@ -1,3 +1,4 @@
+import {applyBraveToon} from './stage-art/brave-toon.js';
 // 角色外觀層。兩種實作共用同一介面：
 //   root（THREE.Group，原點在腳底、面向 +Z）、play(state)、update(dt)、flash()
 // ProcVisual：程式拼出的佔位角色與程式動畫（student、brave、angel、ganqiao、jiasen、folaidi、boss）。
@@ -6,7 +7,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // GLB 載入器約 150KB，只有 manifest 真的指定了模型才動態載入，沒模型時不拖慢開場
 let SkeletonUtils = null;
 
-const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die']);
+const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst']);
 
 const toon = (color, extra = {}) => new THREE.MeshToonMaterial({ color, ...extra });
 const mesh = (geo, material, x = 0, y = 0, z = 0) => {
@@ -548,6 +549,7 @@ export class GltfVisual {
     model.traverse((o) => {
       if (o.isMesh) {
         o.material = o.material.clone();
+        if(kind==='brave')applyBraveToon(o);
         if (o.material.emissive) this.mats.push({ m: o.material, e: o.material.emissive.getHex(), i: o.material.emissiveIntensity });
       }
     });
@@ -577,7 +579,15 @@ export class GltfVisual {
     return this.actions.idle;
   }
 
+  playReaction(state,duration){
+    this.reactionLeft=0;
+    this.play(state,duration);
+    this.reactionLeft=duration*.91;
+  }
+
   play(state, dur = 0.4) {
+    if(state==='idle'&&this.reactionLeft>0)return;
+    this.reactionLeft=0;
     if (state === this.state && !ONE_SHOT.has(state)) return;
     this.state = state;
     const next = this.pick(state);
@@ -591,7 +601,7 @@ export class GltfVisual {
       next.setLoop(THREE.LoopRepeat, Infinity);
       next.timeScale = 1;
     }
-    if (this.current && this.current !== next) next.crossFadeFrom(this.current, 0.1, false);
+    if (this.current && this.current !== next) next.crossFadeFrom(this.current, this.kind==='brave' && ['dodge','skill1','skill2','skill3','ult','hit','transformArrival','burst'].includes(state) ? Math.min(0.05,dur*0.2) : 0.1, false);
     next.play();
     this.current = next;
   }
@@ -604,6 +614,7 @@ export class GltfVisual {
   }
 
   update(dt) {
+    this.reactionLeft=Math.max(0,(this.reactionLeft||0)-dt);
     this.mixer.update(dt);
     if (this.flashT > 0) {
       this.flashT -= dt;
