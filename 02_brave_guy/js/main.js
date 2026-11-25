@@ -1186,6 +1186,7 @@ function damageEnemy(e, mult, o = {}) {
   }
   const crit = Math.random() < HERO.critRate;
   let dmg = stats().atk * mult * rand(0.9, 1.1) * (crit ? HERO.critMult : 1) * (hasDebuff('weak') ? 0.6 : 1);
+  if (hero.character === 'angel' && e.def.boss) dmg *= 1.35; // Angel boss-only balance; keep all boss phase rules below.
   if(godMode())dmg/=2; // 天下無敵：承傷由1/3提高至1/2，相較上一版增加50%。
   if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
