@@ -41,7 +41,8 @@ assert.match(main,/t > 0\.7 && t < 1\.5/);
 
 const calls=[];
 const folaidiMove=vm.runInNewContext(fs.readFileSync(path.join(root,'js/folaidi-motion.js'),'utf8').replaceAll('export ','')+'\nfolaidiMove');
-const env={folaidiMove,ganqiaoMove:config.ganqiaoMove,nightmareBossSkills:{moves:{}},hero:{pos:{}},HERO:{radius:.7},
+const jiasenMove=vm.runInNewContext(fs.readFileSync(path.join(root,'js/jiasen-motion.js'),'utf8').replaceAll('export ','')+'\njiasenMove');
+const env={jiasenMove,folaidiMove,ganqiaoMove:config.ganqiaoMove,nightmareBossSkills:{moves:{}},hero:{pos:{}},HERO:{radius:.7},
  fx:{telegraph:(...z)=>calls.push(['warning',z[2]]),ring(){}},bossLine(){},hostileShot:(...z)=>calls.push(['shot',z[1],z[2]]),
  hurtHero:d=>calls.push(['hurt',d]),boomAt(){},dist2d:()=>0};
 const a=main.indexOf('const MOVES = {'),b=main.indexOf('  dive: {',a);

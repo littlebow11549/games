@@ -71,7 +71,20 @@
         "attack": "Swipe"
       }
     },
-    "jiasen": null,
+    "jiasen": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor08_jiasen_motion.glb",
+      "height": 1.4,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Stride",
+        "attack": "Strike",
+        "hit": "Flinch",
+        "stun": "Stagger",
+        "die": "Fall"
+      }
+    },
     "folaidi": {
       "url": "assets/runtime/stage-art/brave_guy_charactor05_folaidi_motion.glb",
       "height": 1.9,
@@ -176,6 +189,24 @@
         "skill1": "Breath",
         "skill2": "Charge",
         "skill3": "Slam"
+      }
+    },
+    "jiamang": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor17_jiamang_motion.glb",
+      "height": 1.4,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Stride",
+        "attack": "Strike",
+        "hit": "Flinch",
+        "stun": "Stagger",
+        "die": "Fall",
+        "backstep": "Backstep",
+        "skill1": "Stomp",
+        "skill2": "Rush",
+        "skill3": "Call"
       }
     }
   },

@@ -1,3 +1,4 @@
+import { buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
 import { buildFolaidiBed } from './folaidi-motion.js?v=20261126folaidi';
 import {applyBraveToon} from './stage-art/brave-toon.js';
 // 角色外觀層。兩種實作共用同一介面：
@@ -578,6 +579,7 @@ export class GltfVisual {
     this.wakeBed=appearance?.kingWake?buildFolaidiBed(THREE,document.documentElement.lang):null;
     if(this.wakeBed)this.root.add(this.wakeBed);
 
+
     this.mixer = new THREE.AnimationMixer(model);
     this.actions = {};
     for (const [state, clipName] of Object.entries(cfg.clips || {})) {
@@ -609,8 +611,15 @@ export class GltfVisual {
         bone.add(w);
       }
     }
+    this.panProp=null;
+    if(kind==='jiamang'&&!appearance?.height) {
+      const hand=model.getObjectByName('R_Hand');
+      if(hand){this.panProp=buildJiamangPan(THREE,.105);this.panProp.position.set(0,-.042,.197);this.panProp.rotation.z=-.22;this.panProp.visible=false;hand.add(this.panProp);}
+    }
     this.play('idle');
   }
+
+  releasePan(){if(this.panProp)this.panProp.visible=false;}
 
   updateSpawn(progress) {
     if(!this.wakeBed)return;
@@ -643,6 +652,7 @@ export class GltfVisual {
     this.state = state;
     if(this.kind==='lan_school'&&this.campusProp)this.campusProp.visible=state==='skill1';
     if(this.wakeBed&&state!=='spawn')this.wakeBed.visible=false;
+    if(this.panProp)this.panProp.visible=state==='attack';
     const next = this.pick(state);
     if (!next) return;
     next.reset();
@@ -690,12 +700,12 @@ export class GltfVisual {
       for(const mat of this.ownedMats)mat.dispose();
       this.ownedMats.clear();
     }
-    if(this.wakeBed) {
+    for(const prop of [this.wakeBed,this.panProp])if(prop) {
       const geometries=new Set(),materials=new Set();
-      this.wakeBed.traverse(o=>{if(o.isMesh){geometries.add(o.geometry);materials.add(o.material);}});
+      prop.traverse(o=>{if(o.isMesh){geometries.add(o.geometry);materials.add(o.material);}});
       for(const g of geometries)g.dispose();
       for(const m of materials){m.map?.dispose();m.dispose();}
-      this.wakeBed.removeFromParent();
+      prop.removeFromParent();
     }
     if(this.campusProp) {
       const materials=new Set();
