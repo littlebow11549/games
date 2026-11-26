@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-26 3-2 新雞＋八卦蛇 3D 與雙王血條：[交接紀錄](handoffs/2026-11-26-office-duo-runtime.md)。
+
 - 2026-11-26 主角上班族 3D、戰鬥與變身動作：[交接報告](handoffs/2026-11-26-worker-runtime.md)。
 
 - 2026-11-26 夢魘超人雙型態和人物腳底陰影：[交接報告](handoffs/2026-11-26-incubus-shadows-runtime.md)。

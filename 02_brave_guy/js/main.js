@@ -17,7 +17,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261126incubus';
+import { createVisual, loadModel } from './visuals.js?v=20261126officeDuo';
 import { createActorShadows } from './actor-shadows.js?v=20261126incubus';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
@@ -478,7 +478,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
-const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...GANQIAO_MODELS]);
+const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...BOSS_GROUPS.duo,...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -519,6 +519,7 @@ function startStage(index, character=null) {
   if(folaidiNeeded(st,bosses))stageVisualKinds.push('folaidi');
   stageVisualKinds.push(...jiasenModels(st,bosses));
   if (st.rules?.junxiong) stageVisualKinds.push(junxiongModel(st));
+  if (st.boss==='duo') stageVisualKinds.push(...BOSS_GROUPS.duo);
   if (st.boss==='incubus') stageVisualKinds.push('incubus','incubus_final');
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
@@ -567,7 +568,7 @@ function startStage(index, character=null) {
   clearField();
   resetHero();
   Object.assign(game, { phase: 'playing', time: 0, kills: 0, wave: -1, waveTimer: 0.8, hitstop: 0, shake: 0, paused: false, combo: 0, comboT: 0,
-    bossFightTime:0, bossSpawned: false, bossKinds: null, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, bossKoPlayed: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
+    bossFightTime:0, bossSpawned: false, bossKinds: null, bossEncounterMaxHp: 0, midDone: false, suanle: 0, ambushT: rand(...D().bearGap), caught: 0, final: false, awakened: false, victoryShown: false, bossKoPlayed: false, counterT: 0, pressure: false, rescues: D().rescues, pulse: null, pulseT: rand(5, 8), queue: [], queueT: 0, bossFodderT: 3 });
   Object.assign(taunt, { t: 2.5, recent: [], last: null, begT: 0, backT: 3 });
   if (hero.sayEl) { hero.sayEl.remove(); hero.sayEl = null; }
   hero.sayNext = null;
@@ -812,7 +813,8 @@ function updateHud() {
       e.bar.firstChild.style.transform = `scaleX(${Math.max(0, e.hp / e.maxHp)})`;
     }
   }
-  if (bossMax) $('boss-fill').style.transform = `scaleX(${bossHp / bossMax})`;
+  const encounterMax = game.bossEncounterMaxHp || bossMax;
+  if (encounterMax) $('boss-fill').style.transform = `scaleX(${Math.min(1,bossHp / encounterMax)})`;
 
   const b = $('angel-bubble');
   if (!b.hidden) {
@@ -1120,7 +1122,14 @@ function spawnBossActual() {
   const key = stage().boss;
   const kinds = BOSS_GROUPS[key] || [key];
   game.bossKinds = kinds; // 記下目前守關者，供切語系時重算名牌
-  for (const k of kinds) spawnEnemy(k);
+  if (kinds.length>1) {
+    const anchor=maze?.boss || {x:0,z:-7};
+    game.bossEncounterMaxHp=kinds.reduce((hp,k,i)=> {
+      const offset=(i-(kinds.length-1)/2)*2.8;
+      return hp + spawnEnemy(k,new THREE.Vector3(anchor.x+offset,0,anchor.z)).maxHp;
+    },0);
+  }
+  else spawnEnemy(kinds[0]);
   const names = kinds.map((k) => t(BOSSES[k].name)).join(t('＋'));
   banner('心魔來襲');
   audio.sfx('boss_appear'); // 守關者登場音效
@@ -1471,7 +1480,7 @@ const MOVES = {
     start(e) { e.aim = e.pos.clone(); e.visual.play(...(jiasenMove(e,'slam')||folaidiMove(e,'slam')||ganqiaoMove(e,'slam')||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim, 5.5, 0.95); },
     update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
   charge: { minRange: 6, cd: 7,
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(jiasenMove(e,'charge')||folaidiMove(e,'charge')||ganqiaoMove(e,'charge')||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(jiasenMove(e,'charge')||folaidiMove(e,'charge')||ganqiaoMove(e,'charge')||(e.visual.actions?.chargeRush?['chargeRush',1.5]:null)||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.7 && t < 1.5) {
@@ -1502,7 +1511,7 @@ const MOVES = {
       return true;
     } },
   spread: { minRange: 4, cd: 5,
-    start(e) { bossLine(e); e.visual.play(e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', 0.5 / 0.6); },
+    start(e) { bossLine(e); e.visual.play(e.visual.actions?.spreadCast?'spreadCast':e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', e.visual.actions?.spreadCast?.getClip().duration ?? 0.5 / 0.6); },
     update(e) { if (e.cast.t < 0.5) return false; for (let i = -2; i <= 2; i++) hostileShot(e.pos, e.yaw + i * 0.25, { dmg: 80, speed: 12, color: 0xf2efe0 }); audio.sfx('shoot'); return true; } },
   mDash: { minRange: 4, cd: 4, // 鏡像的勇氣衝拳
     start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(e.def.incubus&&e.visual.actions?.finalDash?['finalDash',.95]:['skill1',.9])); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
@@ -1572,10 +1581,10 @@ const MOVES = {
     start(e) { bossLine(e, 3); for (let i = 0; i < 3; i++) { const a = rand(0, 6.28); addHazard('pie', tmp.set(hero.pos.x + Math.cos(a) * rand(3, 7), 0, hero.pos.z + Math.sin(a) * rand(3, 7)), 1.2, 0, 9); } },
     update: (e) => e.cast.t > 0.4 },
   copy: { minRange: 4, cd: 4.5, // 新雞模仿主角的氣功彈
-    start(e) { bossLine(e, 0); e.visual.play('attack', 0.8); },
+    start(e) { bossLine(e, 0); e.visual.play(e.visual.actions?.copyCast?'copyCast':'attack', 0.8); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 90, speed: 14, radius: 0.9, color: 0x9be564 }); audio.sfx('shoot'); return true; } },
   gossip: { cd: 8,             // 八卦蛇咬耳朵：其他敵人加速
-    start(e) { audio.sfx('notify');bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play('attack', 0.6); },
+    start(e) { audio.sfx('notify');bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play(e.visual.actions?.gossipCast?'gossipCast':'attack', 0.6); },
     update: (e) => e.cast.t > 0.6 },
   // 超惡夢波：魔王二型態的大招。蓄力後放出三道擴張的惡夢衝擊波；施放全程無敵，玩家要靠走位閃到場邊。
   nightmareWave: { cd: 8,
@@ -1691,6 +1700,7 @@ function updateEnemy(e, dt, attackers) {
     if (!e.shown) {
       e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4);
       if(intro)e.visual.play('spawn',intro);
+      else if(BOSS_GROUPS.duo.includes(e.kind)&&e.visual.actions?.spawn)e.visual.play('spawn',.45);
     }
     e.visual.root.scale.setScalar((intro?1:Math.min(1, e.t / 0.35)) * e.size);
     if(intro)e.visual.updateSpawn?.(e.t/intro);
@@ -2850,7 +2860,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126worker';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126officeDuo';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
