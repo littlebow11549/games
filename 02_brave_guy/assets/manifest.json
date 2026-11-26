@@ -57,7 +57,20 @@
       }
     },
     "angel": null,
-    "ganqiao": null,
+    "ganqiao": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor03_ganqiao_initial_motion.glb",
+      "height": 1,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "hit": "Flinch",
+        "stun": "Dazed",
+        "die": "Fall",
+        "attack": "Swipe"
+      }
+    },
     "jiasen": null,
     "folaidi": null,
     "boss": null,
@@ -110,6 +123,40 @@
         "attack": "Strike",
         "skill1": "Whistle",
         "skill2": "Spread",
+        "skill3": "Slam"
+      }
+    },
+    "ganqiao_mid": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor03_ganqiao_mid_motion.glb",
+      "height": 1.7,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "hit": "Flinch",
+        "stun": "Dazed",
+        "die": "Fall",
+        "attack": "Swipe",
+        "skill1": "Roar",
+        "skill2": "Charge",
+        "skill3": "Slam"
+      }
+    },
+    "ganqiaoFull": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor03_ganqiao_final_motion.glb",
+      "height": 2.65,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "hit": "Flinch",
+        "stun": "Dazed",
+        "die": "Fall",
+        "attack": "Swipe",
+        "skill1": "Breath",
+        "skill2": "Charge",
         "skill3": "Slam"
       }
     }

@@ -17,7 +17,8 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261126campus';
+import { createVisual, loadModel } from './visuals.js?v=20261126dragon';
+import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -470,7 +471,7 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school']);
+const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school',...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -505,6 +506,9 @@ function startStage(index, character=null) {
   if (STAGES[index].boss==='nightmare'&&!stageVisualKinds.includes('nightmare')) stageVisualKinds.push('nightmare');
   const campusModel=STAGES[index].boss==='qian'?'qian_school':STAGES[index].boss==='lan'?'lan_school':null;
   if(campusModel)stageVisualKinds.push(campusModel);
+  const st=STAGES[index];
+  const bosses=(BOSS_GROUPS[st.boss]||(st.boss?[st.boss]:[])).map(key=>BOSSES[key]);
+  stageVisualKinds.push(...ganqiaoStageModels(st,bosses,BOSS_FODDER_KIND[st.map]));
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
@@ -520,7 +524,6 @@ function startStage(index, character=null) {
   cinematics.cancel();
   transformArt.hide();
   game.stage = index;
-  const st = stage();
   if(index===STAGES.length-1&&!guest())cinematics.prepareEnding().catch(()=>{});
   if(st.id==='3-0')audio.sfx('punch_clock');
   if(st.boss)cinematics.prepareBoss(BOSS_GROUPS[st.boss]||[st.boss]).catch(()=>{});
@@ -978,7 +981,8 @@ function spawnEnemy(kind, at, delay = 0) {
     size = z.s;
     def = { ...def, hp: def.hp * z.hp, dmg: def.dmg * z.dmg, speed: def.speed * z.speed, radius: def.radius * z.s, height: def.height * z.s, reach: def.ranged ? def.reach : def.reach * (0.6 + 0.4 * z.s) };
   }
-  const visual = createVisual(def.vis || kind, !!def.boss); // 只有守關者投射即時陰影
+  const visual = createVisual(def.vis || kind, !!def.boss,
+    kind==='midKing'?{modelKind:'ganqiao_mid',height:def.height}:null); // 只有守關者投射即時陰影
   if (!def.boss) {
     const blob = new THREE.Mesh(BLOB_GEO, BLOB_MAT);
     blob.rotation.x = -Math.PI / 2;
@@ -1455,10 +1459,10 @@ const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_R
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
-    start(e) { e.aim = e.pos.clone(); e.visual.play(e.def.vis==='lan_school'&&e.visual.actions?.skill3?'skill3':'attack', 0.95 / 0.6); fx.telegraph(e.aim, 5.5, 0.95); },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(ganqiaoMove(e,'slam')||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim, 5.5, 0.95); },
     update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
   charge: { minRange: 6, cd: 7,
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(e.def.vis==='qian_school'&&e.visual.actions?.skill2?'skill2':'attack', 0.7); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(ganqiaoMove(e,'charge')||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.7 && t < 1.5) {
@@ -1469,7 +1473,7 @@ const MOVES = {
       return t >= 1.5;
     } },
   summon: { cd: 16, cond: (e) => enemies.filter((x) => alive(x) && !x.def.boss).length < 4 && e.hp < e.maxHp * 0.8,
-    start(e) { if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
+    start(e) { const pose=ganqiaoMove(e,'summon');if(pose)e.visual.play(...pose);else if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
     update: (e) => e.cast.t > 0.5 },
   fan: { range: 7, cd: 3.5,   // 錢大姐的紙扇：把人扇回場邊
     start(e) { e.visual.play(e.def.vis==='qian_school'&&e.visual.actions?.skill1?'skill1':'attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
@@ -1526,7 +1530,7 @@ const MOVES = {
     start(e) { bossLine(e, hazards.length % 2); addHazard('meeting', hero.pos, 6, 0.8, 7); },
     update: (e) => e.cast.t > 0.5 },
   breath: { range: 13, cd: 5,  // 幹譙龍用噴的
-    start(e) { bossLine(e); e.cast.n = 0; e.cast.yaw0 = e.yaw; e.visual.play('attack', 1.9); },
+    start(e) { bossLine(e); e.cast.n = 0; e.cast.yaw0 = e.yaw; e.visual.play(...(ganqiaoMove(e,'breath')||['attack',1.9])); },
     update(e) {
       const t = e.cast.t;
       while (e.cast.n < 12 && t >= 0.5 + e.cast.n * 0.1) {
@@ -1733,7 +1737,7 @@ function updateEnemy(e, dt, attackers) {
     if (heroAlive && clearSight && d <= def.reach && e.cool <= 0 && canAttack) {
       e.state = 'windup'; e.t = 0; e.struck = false;
       if (def.ranged) attackers.ranged++; else attackers.melee++;
-      e.visual.play('attack', def.windup / 0.6);
+      e.visual.play('attack', ganqiaoAttackDuration(e.kind,def.windup));
     } else if (def.ranged) {
       // 遠程：保持距離
       const want = !clearSight || d > 7 ? 1 : d < 4 ? -1 : 0;
@@ -2809,7 +2813,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126campus';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126dragon';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

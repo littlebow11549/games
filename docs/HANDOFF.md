@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-26 幹譙龍三型態 3D 動作：[接手紀錄](handoffs/2026-11-26-ganqiao-runtime.md)。
+
 - 2026-11-26 校園錢大姐、藍教頭 3D 動作與道具：[接手紀錄](handoffs/2026-11-26-campus-bosses-runtime.md)。
 
 - 2026-11-26 勇氣超人學生版、可玩惡夢／校門口 Boss 3D 接入：見 [接手紀錄](handoffs/2026-11-26-student-nightmare-runtime.md)。

@@ -512,7 +512,12 @@ export async function loadModel(kind, cfg) {
     }
     const gltf = await loader.loadAsync(cfg.url);
     gltf.scene.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.frustumCulled = false; } });
-    library[kind] = { scene: gltf.scene, clips: gltf.animations, cfg };
+    const bounds=cfg.cacheBounds?new THREE.Box3().setFromObject(gltf.scene):null;
+    // Cache spacious animation bounds once; offscreen crowd clones need not be drawn.
+    if(bounds)gltf.scene.traverse(o=>{
+      if(o.isSkinnedMesh){o.computeBoundingSphere();o.boundingSphere.radius*=1.55;o.frustumCulled=true;}
+    });
+    library[kind] = { scene: gltf.scene, clips: gltf.animations, cfg, bounds };
     return true;
   } catch (err) {
     console.warn(`[models] ${kind} 載入失敗，改用佔位角色：`, err);
@@ -553,16 +558,17 @@ function attachCampusProp(kind,model) {
 }
 
 export class GltfVisual {
-  constructor(kind) {
-    const { scene, clips, cfg } = library[kind];
+  constructor(kind,height=null) {
+    const { scene, clips, cfg, bounds } = library[kind];
     this.kind = kind;
     this.cfg = cfg;
+    this.ownedMats = cfg.cacheBounds ? new Set() : null;
     this.root = new THREE.Group();
     const model = SkeletonUtils.clone(scene);
     model.updateMatrixWorld(true); // 骨架世界矩陣要先更新，否則蒙皮模型的包圍盒會算錯
-    const box = new THREE.Box3().setFromObject(model);
+    const box = bounds || new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3());
-    const scale = (cfg.height || 1.5) / (size.y || 1);
+    const scale = (height || cfg.height || 1.5) / (size.y || 1);
     model.scale.setScalar(scale);
     model.position.y = -box.min.y * scale;
     model.rotation.y = cfg.rotationY || 0;
@@ -582,6 +588,7 @@ export class GltfVisual {
     model.traverse((o) => {
       if (o.isMesh) {
         o.material = o.material.clone();
+        this.ownedMats?.add(o.material);
         if(kind==='brave')applyBraveToon(o);
         if (o.material.emissive) this.mats.push({ m: o.material, e: o.material.emissive.getHex(), i: o.material.emissiveIntensity });
       }
@@ -662,6 +669,14 @@ export class GltfVisual {
 
   dispose() {
     this.mixer.stopAllAction();
+    if(this.ownedMats){
+      const model=this.mixer.getRoot();
+      this.mixer.uncacheRoot(model);
+      const skins=new Set();model.traverse(o=>{if(o.isSkinnedMesh)skins.add(o.skeleton);});
+      for(const skin of skins)skin.dispose();
+      for(const mat of this.ownedMats)mat.dispose();
+      this.ownedMats.clear();
+    }
     if(this.campusProp) {
       const materials=new Set();
       this.campusProp.traverse(o=>{if(o.isMesh){o.geometry.dispose();materials.add(o.material);}});
@@ -672,8 +687,9 @@ export class GltfVisual {
 }
 
 // shadow=false 時這個角色不投射即時陰影（成群的小怪用，省掉一半的繪製次數）
-export function createVisual(kind, shadow = true) {
-  const v = library[kind] ? new GltfVisual(kind) : new ProcVisual(kind);
+export function createVisual(kind, shadow = true, appearance=null) {
+  const modelKind=appearance?.modelKind||kind;
+  const v = library[modelKind] ? new GltfVisual(modelKind,appearance?.height) : new ProcVisual(kind);
   if (!shadow) v.root.traverse((o) => { if (o.isMesh) o.castShadow = false; });
   return v;
 }

@@ -6,8 +6,9 @@ const js=fs.readFileSync(path.join(root,'js/main.js'),'utf8');
 const gfx=fs.readFileSync(path.join(root,'js/visuals.js'),'utf8');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'assets/manifest.json'),'utf8'));
 const calls=[];
+const ganqiaoMove=vm.runInNewContext(fs.readFileSync(path.join(root,'js/ganqiao-motion.js'),'utf8').replaceAll('export ','')+'\nganqiaoMove');
 class V { constructor(x=0,y=0,z=0){Object.assign(this,{x,y,z});} clone(){return new V(this.x,this.y,this.z);} }
-const env={nightmareBossSkills:{moves:{}},THREE:{Vector3:V},boomAt(){},hero:{invuln:0,movingT:.4,pos:new V()},HERO:{radius:.7},
+const env={ganqiaoMove,nightmareBossSkills:{moves:{}},THREE:{Vector3:V},boomAt(){},hero:{invuln:0,movingT:.4,pos:new V()},HERO:{radius:.7},
  fx:{telegraph:(...a)=>calls.push(['telegraph',...a.slice(1)]),ring(){},slash:()=>calls.push(['slash'])},
  sfx(){},audio:{sfx:k=>calls.push(['sfx',k])}, hurtHero:n=>calls.push(['hurt',n]), knockHero:(p,n)=>calls.push(['knock',n]),dist2d:()=>0,
  stunHero:(t)=>{calls.push(['stun',t]);return true}, enemies:[], alive:()=>false, bossLine(){}, banner(){}, rand:()=>0,
