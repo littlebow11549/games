@@ -9,7 +9,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // GLB 載入器約 150KB，只有 manifest 真的指定了模型才動態載入，沒模型時不拖慢開場
 let SkeletonUtils = null;
 
-const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst', 'spawn']);
+const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst', 'spawn', 'talk', 'attackWindup', 'wave', 'finalDash', 'finalQuake']);
 
 const toon = (color, extra = {}) => new THREE.MeshToonMaterial({ color, ...extra });
 const mesh = (geo, material, x = 0, y = 0, z = 0) => {
@@ -646,7 +646,7 @@ export class GltfVisual {
   }
 
   play(state, dur = 0.4) {
-    if(state==='idle'&&this.reactionLeft>0)return;
+    if((state==='idle'||(state==='run'&&this.kind==='incubus_final'&&this.state==='spawn'))&&this.reactionLeft>0)return;
     this.reactionLeft=0;
     if (state === this.state && !ONE_SHOT.has(state)) return;
     this.state = state;

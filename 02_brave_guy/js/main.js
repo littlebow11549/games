@@ -4,7 +4,7 @@ const stageArtReady=import('./stage-art/catalog.js?v=20261125perf1').then(m=>sta
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261120nightcast';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261126incubus';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
 import { createGuestCombat } from './guest-combat.js?v=20261120angelstraight';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
@@ -17,7 +17,8 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261126jiasen';
+import { createVisual, loadModel } from './visuals.js?v=20261126incubus';
+import { createActorShadows } from './actor-shadows.js?v=20261126incubus';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
@@ -243,6 +244,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 
 const scene = new THREE.Scene();
+const actorShadows=createActorShadows(THREE,scene);
 const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 200);
 const CAM_OFFSET = new THREE.Vector3(0, 13, 12.5);
 let { sun } = buildWorld(scene, 'corridor', Q());
@@ -474,7 +476,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
-const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office',...GANQIAO_MODELS]);
+const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -515,6 +517,7 @@ function startStage(index, character=null) {
   if(folaidiNeeded(st,bosses))stageVisualKinds.push('folaidi');
   stageVisualKinds.push(...jiasenModels(st,bosses));
   if (st.rules?.junxiong) stageVisualKinds.push(junxiongModel(st));
+  if (st.boss==='incubus') stageVisualKinds.push('incubus','incubus_final');
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
@@ -968,8 +971,6 @@ function revert(silent = false) {
 // ---------- 怪物 ----------
 
 // 小怪腳下的假陰影：全部共用同一份幾何與材質
-const BLOB_GEO = new THREE.CircleGeometry(1, 16);
-const BLOB_MAT = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.28, depthWrite: false });
 
 // 小怪有大中小三種體型：小隻的跑得快但一碰就倒，大隻的血厚、打人痛、走得慢
 const SIZES = [
@@ -991,13 +992,7 @@ function spawnEnemy(kind, at, delay = 0) {
     kind==='midKing'?{modelKind:'ganqiao_mid',height:def.height}:
     kind==='folaidiKing'?{modelKind:'folaidi',height:def.height,kingWake:true}:
     kind==='jiamangKing'?{height:def.height}:null); // 只有守關者投射即時陰影
-  if (!def.boss) {
-    const blob = new THREE.Mesh(BLOB_GEO, BLOB_MAT);
-    blob.rotation.x = -Math.PI / 2;
-    blob.position.y = 0.03;
-    blob.scale.setScalar(def.radius * 1.5 / size);
-    visual.root.add(blob);
-  }
+
   const pos = at ? at.clone() : new THREE.Vector3();
   if (!at) {
     const a = rand(0, Math.PI * 2);
@@ -1226,11 +1221,14 @@ function damageEnemy(e, mult, o = {}) {
   if(godMode())dmg/=2; // 天下無敵：承傷由1/3提高至1/2，相較上一版增加50%。
   if (e.def.boss && game.pressure) dmg *= 0.5; // 魔王二型態防禦力提升，更硬更難打
   const guarded = e.def.armored && e.y === 0 && e.stun <= 0 && (e.state === 'chase' || e.state === 'spawn');
-  if (e.def.incubus && !game.final && e.hp - dmg < e.maxHp * 0.1) dmg = Math.max(0, e.hp - e.maxHp * 0.1 + 1); // 不會被直接打死，血打到剩一成才進入最後一段（走上前收尾）
   if (guarded) {dmg *= 0.35;audio.sfx('guard');} // 假森：平常打不動，出手後或被打飛時才打得痛
   dmg *= game.counterT>0?1.5:game.combo>=20?1.25:1;
-  if(e.def.incubus&&!game.awakened&&!e.shield)dmg=Math.min(dmg,Math.max(0,e.hp-e.maxHp*.6));
   dmg = Math.round(dmg);
+  if (e.def.incubus && !game.final) {
+    // 套用反擊／連擊倍率後仍保留轉場門檻，避免重擊跳過最終收尾。
+    const phaseFloor=game.awakened?Math.floor(e.maxHp*.1)+1:Math.ceil(e.maxHp*.6);
+    dmg=Math.min(dmg,Math.max(0,e.hp-phaseFloor));
+  }
   e.hp -= dmg;
   if (dmg > 0 && !guarded && game.time >= (e.nextHitSparkAt || 0)) {
     fx.hitSpark(e.pos, e.y + Math.max(.6, e.def.height * .65), crit || mult >= 1.8);
@@ -1505,7 +1503,7 @@ const MOVES = {
     start(e) { bossLine(e); e.visual.play(e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', 0.5 / 0.6); },
     update(e) { if (e.cast.t < 0.5) return false; for (let i = -2; i <= 2; i++) hostileShot(e.pos, e.yaw + i * 0.25, { dmg: 80, speed: 12, color: 0xf2efe0 }); audio.sfx('shoot'); return true; } },
   mDash: { minRange: 4, cd: 4, // 鏡像的勇氣衝拳
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play('skill1', 0.9); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(e.def.incubus&&e.visual.actions?.finalDash?['finalDash',.95]:['skill1',.9])); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.5 && t < 0.72) {
@@ -1518,10 +1516,10 @@ const MOVES = {
     start(e) { e.visual.play('skill2', 0.7); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 150, speed: 13, radius: 1.3, color: 0xb06cff, life: 2.6 }); audio.sfx('shoot'); return true; } },
   mQuake: { range: 6.5, cd: 6, // 鏡像的氣功震地
-    start(e) { e.aim = e.pos.clone(); e.visual.play('skill3', 0.9); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(e.def.incubus&&e.visual.actions?.finalQuake?['finalQuake',.85]:['skill3',.9])); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
     update(e) { if (e.cast.t < 0.8) return false; boomAt(e.aim, 8); fx.dome(e.aim, 7, 0xb06cff, 0.5); if (dist2d(hero.pos, e.aim) < 7.5) hurtHero(180); return true; } },
   guiltTalk: { cd: 5,          // 情勒：不扣血，但罪惡感會漲
-    start(e) { bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
+    start(e) { if(e.def.incubus&&e.visual.actions?.talk)e.visual.play('talk',.7); bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
     update: (e) => e.cast.t > 0.7 },
   firePools: { cd: 9,          // 寫著難聽話的黑火
     start(e) { bossLine(e); for (let i = 0; i < 5; i++) { const a = rand(0, 6.28), r = i === 0 ? 0 : rand(2, 7); addHazard('fire', tmp.set(hero.pos.x + Math.cos(a) * r, 0, hero.pos.z + Math.sin(a) * r), 2.4, 0.9, 5); } },
@@ -1579,7 +1577,7 @@ const MOVES = {
     update: (e) => e.cast.t > 0.6 },
   // 超惡夢波：魔王二型態的大招。蓄力後放出三道擴張的惡夢衝擊波；施放全程無敵，玩家要靠走位閃到場邊。
   nightmareWave: { cd: 8,
-    start(e) { bossLine(e); e.castInvuln = true; e.cast.wv = 0; audio.sfx('beam_start'); popup(e.pos, e.def.height + 0.9, '超惡夢波！', 'shout'); fx.telegraph(e.pos, 3.5, 2.2, 0x8a4fd6); e.visual.play('attack', 1.4); game.shake = 0.4; },
+    start(e) { bossLine(e); e.castInvuln = true; e.cast.wv = 0; audio.sfx('beam_start'); popup(e.pos, e.def.height + 0.9, '超惡夢波！', 'shout'); fx.telegraph(e.pos, 3.5, 2.2, 0x8a4fd6); e.visual.play(...(e.def.incubus&&e.visual.actions?.wave?['wave',2]:['attack',1.4])); game.shake = 0.4; },
     update(e) {
       const t = e.cast.t;
       if (t > 0.9 && e.cast.wv < 3 && t > 0.9 + e.cast.wv * 0.33) {
@@ -1619,20 +1617,36 @@ function bossThink(e, d, dx, dz) {
 }
 
 // 終章最後一段：把主角打回平常型態，兩種變身都封住；他不再能被打，只能靠閃避撐到勇氣滿，然後走上前
+function swapIncubusArmor(e) {
+  const old=e.visual;
+  if(old.kind==='incubus_final')return;
+  const next=createVisual('incubus',true,{modelKind:'incubus_final'});
+  if(next.kind!=='incubus_final'){next.dispose();return;}
+  next.root.position.copy(old.root.position);
+  next.root.quaternion.copy(old.root.quaternion);
+  next.root.scale.copy(old.root.scale);
+  next.root.visible=old.root.visible;
+  scene.add(next.root);
+  scene.remove(old.root);
+  old.dispose();
+  e.visual=next;
+  e.guestTint=null;
+  next.playReaction('spawn',.72);
+}
 function startAwakening(e) {
   guestCombat.clear();nightmareBossSkills.clear();
   game.awakened=true;game.phase='cinematic';setBgm(bossBgm());audio.stopLoops();input.takeActions();
-  if(beam)endUlt();e.cast=null;e.state='chase';e.t=0;e.cool=2.5;
+  if(beam)endUlt();e.cast=null;e.castInvuln=false;e.state='chase';e.t=0;e.cool=2.5;
   e.shown=true;e.visual.root.visible=true;
   hazards.forEach(h=>h.life=0);$('hud').hidden=true;
   // 第一階段打完：先播勇氣超人一拳打倒董事長的過場（新圖），再接原本的甦醒鎧甲過場
-  cinematics.firstStrike(()=>cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);hero.invuln=2;input.takeActions();setBgm(stageBgm());}));
+  cinematics.firstStrike(()=>cinematics.awakening(()=>{game.phase='playing';$('hud').hidden=false;e.visual.root.scale.setScalar(e.size*1.2);swapIncubusArmor(e);hero.invuln=2;input.takeActions();setBgm(stageBgm());}));
 }
 function startFinalPhase(e) {
   guestCombat.clear();nightmareBossSkills.clear();
   game.final = true;hero.guestBurstT=0;hero.visual.glow(false);
   e.untouchable = true;
-  e.cast = null; e.state = 'chase'; e.cool = 2.5;
+  e.cast = null; e.castInvuln = false; e.state = 'chase'; e.cool = 2.5;
   if (beam) endUlt();
   if (hero.form === 'brave') revert(guest());
   if(guest()){hero.sayNext=null;heroSay(hero.character==='angel'?'不用魔法也能往前走。看好了。':'這一次，我不會再叫自己忍下去。',3);}
@@ -2823,6 +2837,7 @@ function frame(now) {
   if (game.phase === 'playing' || game.phase === 'dialog') updateMinimap();
   hallArt?.update(frozen?0:dt);
   hallFx?.update(frozen?0:dt);
+  actorShadows.update(hero,angel,enemies,ambush,!!sun?.castShadow);
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
@@ -2833,7 +2848,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126junxiong';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126incubus';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

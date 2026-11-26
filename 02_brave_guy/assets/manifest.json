@@ -230,6 +230,56 @@
         "attack": "Startle",
         "hit": "Caught"
       }
+    },
+    "incubus": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor26_incubus_motion.glb",
+      "height": 2.2,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "talk": "Talk",
+        "attackWindup": "Windup",
+        "attack1": "Punch",
+        "attack2": "Hook",
+        "attack3": "Sweep",
+        "skill1": "Dash",
+        "skill2": "Drones",
+        "skill3": "Shout",
+        "ult": "King",
+        "wave": "Wave",
+        "finalDash": "FinalDash",
+        "finalQuake": "Quake",
+        "spawn": "Awaken",
+        "hit": "Hit",
+        "die": "Fall"
+      }
+    },
+    "incubus_final": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor26_incubus_final_motion.glb",
+      "height": 2.2,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "talk": "Talk",
+        "attackWindup": "Windup",
+        "attack1": "Punch",
+        "attack2": "Hook",
+        "attack3": "Sweep",
+        "skill1": "Dash",
+        "skill2": "Drones",
+        "skill3": "Shout",
+        "ult": "King",
+        "wave": "Wave",
+        "finalDash": "FinalDash",
+        "finalQuake": "Quake",
+        "spawn": "Awaken",
+        "hit": "Hit",
+        "die": "Fall"
+      }
     }
   },
   "audio": {
