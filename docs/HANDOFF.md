@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-26 校園俊熊與職場已讀俊熊 3D 動作：[交接報告](handoffs/2026-11-26-junxiong-runtime.md)。
+
 - 2026-11-26 假森、假忙森與主管 3D 動作：[接手紀錄](handoffs/2026-11-26-jiasen-runtime.md)。
 
 - 2026-11-26 佛賴弟、佛賴弟王 3D 與出場道具：[接手紀錄](handoffs/2026-11-26-folaidi-runtime.md)。

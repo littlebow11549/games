@@ -473,7 +473,8 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang',...GANQIAO_MODELS]);
+const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
+const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office',...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -513,6 +514,7 @@ function startStage(index, character=null) {
   stageVisualKinds.push(...ganqiaoStageModels(st,bosses,BOSS_FODDER_KIND[st.map]));
   if(folaidiNeeded(st,bosses))stageVisualKinds.push('folaidi');
   stageVisualKinds.push(...jiasenModels(st,bosses));
+  if (st.rules?.junxiong) stageVisualKinds.push(junxiongModel(st));
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
@@ -1816,14 +1818,15 @@ function updateHazards(dt) {
 
 // 俊熊：躲在場上各處，跳出來用恐懼攻擊。預兆期間打牠或閃開就會抓到牠。
 function updateAmbush(dt) {
-  if (!game.rules.junxiong || game.caught >= D().bearMax) return;
+  if (!game.rules.junxiong) return;
   if (!ambush) {
+    if (game.caught >= D().bearMax) return;
     game.ambushT -= dt;
     if (game.ambushT > 0 || !enemies.some(alive)) return;
     const a = rand(0, 6.28), r = rand(3.5, 6);
     const pos = new THREE.Vector3(hero.pos.x + Math.cos(a) * r, 0, hero.pos.z + Math.sin(a) * r);
     clampArena(pos, 1);
-    const visual = createVisual('junxiong');
+    const visual = createVisual('junxiong',true,{modelKind:junxiongModel(STAGES[game.stage])});
     visual.root.position.set(pos.x, -0.6, pos.z);
     scene.add(visual.root);
     ambush = { pos, t: 0, warn: 1.2, visual, done: false };
@@ -1842,6 +1845,7 @@ function updateAmbush(dt) {
     if ((striking && d < 3.4) || (a.t >= a.warn && hero.form === 'brave' && d < 4.5)) {
       // 被抓到（變身中不會被嚇到，等於直接抓到）
       a.done = true; a.t = 0; a.caught = true; audio.sfx('revive');
+      if (a.visual.actions?.hit) a.visual.play('hit',.9);
       game.caught++;
       if (addRescues() > 0) { popup(hero.pos, 3.8, tf('救援 +1（共 {0} 次）', game.rescues), 'good'); }
       addCourage(15);
@@ -1854,6 +1858,7 @@ function updateAmbush(dt) {
     } else if (a.t >= a.warn) {
       a.done = true; a.t = 0;
       a.visual.root.position.y = 0; audio.sfx('junxiong_pop');
+      if (a.visual.actions?.attack) a.visual.play('attack',.9);
       popup(a.pos, 2.2, '蛤～～～', 'shout');
       fx.ring(a.pos, 0.5, 4.5, 0x4a4458, 0.5);
       if (d < 4.5 && stunHero(0.8, '嚇！')) { hero.courage = Math.max(0, hero.courage - 10); hero.guilt += 6; say('scared'); }
@@ -2828,7 +2833,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126jiasen';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126junxiong';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

@@ -208,6 +208,28 @@
         "skill2": "Rush",
         "skill3": "Call"
       }
+    },
+    "junxiong": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor06_junxiong_motion.glb",
+      "height": 1,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Peek",
+        "attack": "Startle",
+        "hit": "Caught"
+      }
+    },
+    "junxiong_office": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor06_junxiong_office_motion.glb",
+      "height": 1,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Peek",
+        "attack": "Startle",
+        "hit": "Caught"
+      }
     }
   },
   "audio": {
