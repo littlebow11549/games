@@ -17,7 +17,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261125perf1';
+import { createVisual, loadModel } from './visuals.js?v=20261126campus';
 import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -92,10 +92,10 @@ const ENEMIES = {
 // 守關者。moves 是會用的招式（定義在下方 MOVES），lines 是出招時喊的話
 const BOSSES = {
   folaidiKing: { name: '佛賴弟王', vis: 'boss', hp: 4200, speed: 2.6, radius: 1.5, height: 4.6, moves: ['slam', 'charge', 'summon'], minion: 'ganqiao', lines: ['再五分鐘啦～', '明天的你會處理的～'] },
-  qian: { name: '錢大姐', vis: 'qian', hp: 3600, speed: 3.6, radius: 0.7, height: 2.1, moves: ['fan', 'charge', 'summon'], minion: 'folaidi', minionN: 3, lines: ['過路費！', '這個場子我罩的！'] },
+  qian: { name: '錢大姐', vis: 'qian_school', hp: 3600, speed: 3.6, radius: 0.7, height: 2.1, moves: ['fan', 'charge', 'summon'], minion: 'folaidi', minionN: 3, lines: ['過路費！', '這個場子我罩的！'] },
   qianBiz: { name: '錢經理', vis: 'qian', hp: 5200, speed: 3.8, radius: 0.7, height: 2.1, moves: ['fan', 'charge', 'summon'], minion: 'jiamang', minionN: 3, lines: ['先幫我墊一下嘛～', '這個業績，算你的喔～'] },
   jiamangKing: { name: '假忙森主管', vis: 'jiamang', hp: 5600, speed: 3.0, radius: 1.2, height: 3.4, moves: ['charge', 'summon', 'slam'], minion: 'jiamang', minionN: 4, lines: ['這不是我的業務範圍～', '鍋給你，接好。', '我有 cc 你啊。'] },
-  lan: { name: '藍教頭', vis: 'lan', hp: 4600, speed: 3.0, radius: 0.9, height: 2.7, moves: ['whistle', 'spread', 'slam'], lines: ['立正！', '稍息！', '我沒說可以動！', '你要檢討你自己！'] },
+  lan: { name: '藍教頭', vis: 'lan_school', hp: 4600, speed: 3.0, radius: 0.9, height: 2.7, moves: ['whistle', 'spread', 'slam'], lines: ['立正！', '稍息！', '我沒說可以動！', '你要檢討你自己！'] },
   nightmare: { name: '惡夢超人', vis: 'nightmare', hp: 4800, speed: 4.2, radius: 0.6, height: 2.1, fear: true, moves: ['mDash', 'mKi', 'mQuake', 'guiltTalk'], lines: ['我這麼做都是為你好。', '好啊你打。打死我好了。', '我沒關係。你開心就好。', '全世界只有我是真的替你想。'] },
   midKing: { name: '特大隻的悶幹譙', vis: 'midKing', hp: 5200, speed: 3.6, radius: 1.5, height: 4.4, enrage: true, moves: ['charge', 'slam', 'summon'], minion: 'ganqiao_mid', minionN: 3, lines: ['……！', '……！！'] },
   hell: { name: '地獄超人', vis: 'hell', hp: 6400, speed: 4.6, radius: 0.7, height: 2.3, enrage: true, moves: ['mDash', 'mQuake', 'firePools', 'guiltTalk', 'mKi'], lines: ['都是你害我變這樣！', '你有考慮過我的感受嗎！', '你明明答應過我！', '廢物！'] },
@@ -470,7 +470,7 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-const deferredModelKinds=new Set(['student','angel_playable','nightmare']);
+const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school']);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -503,6 +503,8 @@ function startStage(index, character=null) {
   const pack=needsArt?stageArt.preparedStageArt(stageId):null;
   const stageVisualKinds=selectedCharacter==='angel'?['angel_playable']:selectedCharacter==='nightmare'?['nightmare']:STAGES[index].form==='student'?['student']:[];
   if (STAGES[index].boss==='nightmare'&&!stageVisualKinds.includes('nightmare')) stageVisualKinds.push('nightmare');
+  const campusModel=STAGES[index].boss==='qian'?'qian_school':STAGES[index].boss==='lan'?'lan_school':null;
+  if(campusModel)stageVisualKinds.push(campusModel);
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
@@ -1453,10 +1455,10 @@ const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_R
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
-    start(e) { e.aim = e.pos.clone(); e.visual.play('attack', 0.95 / 0.6); fx.telegraph(e.aim, 5.5, 0.95); },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(e.def.vis==='lan_school'&&e.visual.actions?.skill3?'skill3':'attack', 0.95 / 0.6); fx.telegraph(e.aim, 5.5, 0.95); },
     update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
   charge: { minRange: 6, cd: 7,
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play('attack', 0.7); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(e.def.vis==='qian_school'&&e.visual.actions?.skill2?'skill2':'attack', 0.7); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.7 && t < 1.5) {
@@ -1467,10 +1469,10 @@ const MOVES = {
       return t >= 1.5;
     } },
   summon: { cd: 16, cond: (e) => enemies.filter((x) => alive(x) && !x.def.boss).length < 4 && e.hp < e.maxHp * 0.8,
-    start(e) { bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
+    start(e) { if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
     update: (e) => e.cast.t > 0.5 },
   fan: { range: 7, cd: 3.5,   // 錢大姐的紙扇：把人扇回場邊
-    start(e) { e.visual.play('attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
+    start(e) { e.visual.play(e.def.vis==='qian_school'&&e.visual.actions?.skill1?'skill1':'attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
     update(e, dt, d) {
       if (e.cast.t < 0.6) return false;
       audio.sfx('fan');
@@ -1479,7 +1481,7 @@ const MOVES = {
       return true;
     } },
   whistle: { cd: 6,           // 藍教頭吹哨：站著不動就是罰站
-    start(e) { bossLine(e); fx.telegraph(e.pos, 10, 1.0, 0x3a6fd0); audio.sfx('whistle'); },
+    start(e) { if(e.def.vis==='lan_school'&&e.visual.actions?.skill1)e.visual.play('skill1',1); bossLine(e); fx.telegraph(e.pos, 10, 1.0, 0x3a6fd0); audio.sfx('whistle'); },
     update(e, dt, d) {
       if (e.cast.t < 1.0) return false;
       fx.ring(e.pos, 1, 10, 0x9fd4ff, 0.4);
@@ -1487,7 +1489,7 @@ const MOVES = {
       return true;
     } },
   spread: { minRange: 4, cd: 5,
-    start(e) { bossLine(e); e.visual.play('attack', 0.5 / 0.6); },
+    start(e) { bossLine(e); e.visual.play(e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', 0.5 / 0.6); },
     update(e) { if (e.cast.t < 0.5) return false; for (let i = -2; i <= 2; i++) hostileShot(e.pos, e.yaw + i * 0.25, { dmg: 80, speed: 12, color: 0xf2efe0 }); audio.sfx('shoot'); return true; } },
   mDash: { minRange: 4, cd: 4, // 鏡像的勇氣衝拳
     start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play('skill1', 0.9); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
@@ -2807,7 +2809,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126duorig';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126campus';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

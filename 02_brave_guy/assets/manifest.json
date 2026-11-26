@@ -80,6 +80,38 @@
         "skill3": "Shout",
         "ult": "Arsenal"
       }
+    },
+    "qian_school": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor09_qian_school_motion.glb",
+      "height": 2.1,
+      "rotationY": 0,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "hit": "Flinch",
+        "stun": "Dazed",
+        "die": "Fall",
+        "attack": "Strike",
+        "skill1": "Fan",
+        "skill2": "Charge",
+        "skill3": "Summon"
+      }
+    },
+    "lan_school": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor10_lan_school_motion.glb",
+      "height": 2.7,
+      "rotationY": 0,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "hit": "Flinch",
+        "stun": "Dazed",
+        "die": "Fall",
+        "attack": "Strike",
+        "skill1": "Whistle",
+        "skill2": "Spread",
+        "skill3": "Slam"
+      }
     }
   },
   "audio": {

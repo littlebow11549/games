@@ -316,7 +316,7 @@ const ease = (x) => 1 - (1 - x) * (1 - x);
 export class ProcVisual {
   constructor(kind) {
     this.kind = kind;
-    this.p = kind === 'angel_playable' ? buildPlayableAngel() : kind === 'student_spirit' ? buildHeroSpirit('student') : kind === 'brave_spirit' ? buildHeroSpirit('brave') : kind === 'angel' ? buildAngel() : kind === 'baguashe' ? buildSnake() : buildHumanoid(LOOKS[kind] || LOOKS.ganqiao);
+    this.p = kind === 'angel_playable' ? buildPlayableAngel() : kind === 'student_spirit' ? buildHeroSpirit('student') : kind === 'brave_spirit' ? buildHeroSpirit('brave') : kind === 'angel' ? buildAngel() : kind === 'baguashe' ? buildSnake() : buildHumanoid(LOOKS[kind==='qian_school'?'qian':kind==='lan_school'?'lan':kind] || LOOKS.ganqiao);
     this.root = this.p.root;
     this.state = 'idle';
     this.t = 0;
@@ -520,6 +520,38 @@ export async function loadModel(kind, cfg) {
   }
 }
 
+// The old procedural fan disappears with the placeholder. Keep the same prop on the new hand bone.
+function attachCampusProp(kind,model) {
+  if (kind!=='qian_school'&&kind!=='lan_school') return null;
+  const hand=model.getObjectByName('R_Hand');
+  if (!hand) return null;
+  const prop=new THREE.Group();
+  if (kind==='qian_school') {
+    prop.name='Campus Qian | Paper Fan';
+    prop.position.set(-.014,-.029,.025);prop.rotation.y=.55;prop.rotation.z=-.33;
+    const paper=new THREE.Mesh(new THREE.CircleGeometry(.156,20,0,Math.PI),
+      new THREE.MeshToonMaterial({color:0xfff1d8,side:THREE.DoubleSide}));
+    paper.rotation.z=Math.PI;prop.add(paper);
+    const trim=new THREE.Mesh(new THREE.RingGeometry(.146,.156,20,1,0,Math.PI),
+      new THREE.MeshToonMaterial({color:0xe39c58,side:THREE.DoubleSide}));
+    trim.rotation.z=Math.PI;trim.position.z=.002;prop.add(trim);
+    const gold=new THREE.MeshToonMaterial({color:0xa86d43});
+    for (let i=0;i<=6;i++) {
+      const theta=-Math.PI*i/6, rib=new THREE.Mesh(new THREE.BoxGeometry(.004,.144,.003),gold);
+      rib.position.set(Math.cos(theta)*.072,Math.sin(theta)*.072,.004);
+      rib.rotation.z=theta-Math.PI/2;prop.add(rib);
+    }
+  } else {
+    prop.name='Campus Lan | Whistle';
+    prop.position.set(0,-.028,.025);
+    const body=new THREE.Mesh(new THREE.BoxGeometry(.026,.017,.037),new THREE.MeshToonMaterial({color:0xffd368}));
+    const mouth=new THREE.Mesh(new THREE.BoxGeometry(.018,.012,.020),new THREE.MeshToonMaterial({color:0x797684}));
+    mouth.position.z=.023;prop.add(body,mouth);prop.visible=false;
+  }
+  hand.add(prop);
+  return prop;
+}
+
 export class GltfVisual {
   constructor(kind) {
     const { scene, clips, cfg } = library[kind];
@@ -535,6 +567,7 @@ export class GltfVisual {
     model.position.y = -box.min.y * scale;
     model.rotation.y = cfg.rotationY || 0;
     this.root.add(model);
+    this.campusProp=attachCampusProp(kind,model);
 
     this.mixer = new THREE.AnimationMixer(model);
     this.actions = {};
@@ -590,6 +623,7 @@ export class GltfVisual {
     this.reactionLeft=0;
     if (state === this.state && !ONE_SHOT.has(state)) return;
     this.state = state;
+    if(this.kind==='lan_school'&&this.campusProp)this.campusProp.visible=state==='skill1';
     const next = this.pick(state);
     if (!next) return;
     next.reset();
@@ -626,7 +660,15 @@ export class GltfVisual {
     }
   }
 
-  dispose() { this.mixer.stopAllAction(); }
+  dispose() {
+    this.mixer.stopAllAction();
+    if(this.campusProp) {
+      const materials=new Set();
+      this.campusProp.traverse(o=>{if(o.isMesh){o.geometry.dispose();materials.add(o.material);}});
+      for(const mat of materials)mat.dispose();
+      this.campusProp.removeFromParent();
+    }
+  }
 }
 
 // shadow=false 時這個角色不投射即時陰影（成群的小怪用，省掉一半的繪製次數）
