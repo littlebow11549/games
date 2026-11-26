@@ -17,8 +17,9 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261126dragon';
+import { createVisual, loadModel } from './visuals.js?v=20261126folaidi';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
+import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { Fx } from './fx.js?v=20261120angelstraight';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -471,7 +472,7 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school',...GANQIAO_MODELS]);
+const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi',...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -509,6 +510,7 @@ function startStage(index, character=null) {
   const st=STAGES[index];
   const bosses=(BOSS_GROUPS[st.boss]||(st.boss?[st.boss]:[])).map(key=>BOSSES[key]);
   stageVisualKinds.push(...ganqiaoStageModels(st,bosses,BOSS_FODDER_KIND[st.map]));
+  if(folaidiNeeded(st,bosses))stageVisualKinds.push('folaidi');
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
   if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
@@ -982,7 +984,8 @@ function spawnEnemy(kind, at, delay = 0) {
     def = { ...def, hp: def.hp * z.hp, dmg: def.dmg * z.dmg, speed: def.speed * z.speed, radius: def.radius * z.s, height: def.height * z.s, reach: def.ranged ? def.reach : def.reach * (0.6 + 0.4 * z.s) };
   }
   const visual = createVisual(def.vis || kind, !!def.boss,
-    kind==='midKing'?{modelKind:'ganqiao_mid',height:def.height}:null); // 只有守關者投射即時陰影
+    kind==='midKing'?{modelKind:'ganqiao_mid',height:def.height}:
+    kind==='folaidiKing'?{modelKind:'folaidi',height:def.height,kingWake:true}:null); // 只有守關者投射即時陰影
   if (!def.boss) {
     const blob = new THREE.Mesh(BLOB_GEO, BLOB_MAT);
     blob.rotation.x = -Math.PI / 2;
@@ -1459,10 +1462,10 @@ const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_R
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
-    start(e) { e.aim = e.pos.clone(); e.visual.play(...(ganqiaoMove(e,'slam')||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim, 5.5, 0.95); },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(folaidiMove(e,'slam')||ganqiaoMove(e,'slam')||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim, 5.5, 0.95); },
     update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
   charge: { minRange: 6, cd: 7,
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(ganqiaoMove(e,'charge')||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(folaidiMove(e,'charge')||ganqiaoMove(e,'charge')||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.7 && t < 1.5) {
@@ -1473,7 +1476,7 @@ const MOVES = {
       return t >= 1.5;
     } },
   summon: { cd: 16, cond: (e) => enemies.filter((x) => alive(x) && !x.def.boss).length < 4 && e.hp < e.maxHp * 0.8,
-    start(e) { const pose=ganqiaoMove(e,'summon');if(pose)e.visual.play(...pose);else if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
+    start(e) { const pose=folaidiMove(e,'summon')||ganqiaoMove(e,'summon');if(pose)e.visual.play(...pose);else if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
     update: (e) => e.cast.t > 0.5 },
   fan: { range: 7, cd: 3.5,   // 錢大姐的紙扇：把人扇回場邊
     start(e) { e.visual.play(e.def.vis==='qian_school'&&e.visual.actions?.skill1?'skill1':'attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
@@ -1662,9 +1665,14 @@ function updateEnemy(e, dt, attackers) {
 
   if (e.state === 'spawn') {
     if (e.t < 0) return;
-    if (!e.shown) { e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4); }
-    e.visual.root.scale.setScalar(Math.min(1, e.t / 0.35) * e.size);
-    if (e.t > 0.45) { e.state = 'chase'; e.t = 0; }
+    const intro=folaidiSpawn(e.kind,e.visual);
+    if (!e.shown) {
+      e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4);
+      if(intro)e.visual.play('spawn',intro);
+    }
+    e.visual.root.scale.setScalar((intro?1:Math.min(1, e.t / 0.35)) * e.size);
+    if(intro)e.visual.updateSpawn?.(e.t/intro);
+    if (e.t > 0.45) { e.state = 'chase'; e.t = 0; if(intro)e.visual.play('idle'); }
     return;
   }
 
@@ -1737,14 +1745,14 @@ function updateEnemy(e, dt, attackers) {
     if (heroAlive && clearSight && d <= def.reach && e.cool <= 0 && canAttack) {
       e.state = 'windup'; e.t = 0; e.struck = false;
       if (def.ranged) attackers.ranged++; else attackers.melee++;
-      e.visual.play('attack', ganqiaoAttackDuration(e.kind,def.windup));
+      e.visual.play('attack', e.kind==='folaidi'&&e.visual.actions?.spawn?def.windup+.25:ganqiaoAttackDuration(e.kind,def.windup));
     } else if (def.ranged) {
       // 遠程：保持距離
       const want = !clearSight || d > 7 ? 1 : d < 4 ? -1 : 0;
       const go = want > 0 && maze ? maze.steer(e.pos, hero.pos, navTmp, def.radius) : navTmp.set(dx / d, 0, dz / d);
       e.pos.x += go.x * speed * want * dt;
       e.pos.z += go.z * speed * want * dt;
-      e.visual.play(want ? 'run' : 'idle');
+      e.visual.play(want<0&&e.kind==='folaidi'&&e.visual.actions?.backstep?'backstep':want?'run':'idle');
     } else {
       // 近戰：還沒輪到出手的也一直往主角擠（被 separate() 推開 → 整團不停湧動，不會定在原地）
       const go = (maze && (!clearSight || d > def.reach)) ? maze.steer(e.pos, hero.pos, navTmp, def.radius) : navTmp.set(dx / d, 0, dz / d);
@@ -2813,7 +2821,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126dragon';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126folaidi';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

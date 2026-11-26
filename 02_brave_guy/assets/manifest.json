@@ -72,7 +72,25 @@
       }
     },
     "jiasen": null,
-    "folaidi": null,
+    "folaidi": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor05_folaidi_motion.glb",
+      "height": 1.9,
+      "rotationY": 0,
+      "cacheBounds": true,
+      "clips": {
+        "idle": "Idle",
+        "run": "Stride",
+        "backstep": "Backstep",
+        "attack": "Throw",
+        "hit": "Flinch",
+        "stun": "Stagger",
+        "die": "Fall",
+        "spawn": "Emerge",
+        "skill1": "Stomp",
+        "skill2": "Rush",
+        "skill3": "Call"
+      }
+    },
     "boss": null,
     "nightmare": {
       "url": "assets/runtime/stage-art/brave_guy_charactor03_nightmare_motion.glb",

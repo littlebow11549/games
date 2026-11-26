@@ -1,3 +1,4 @@
+import { buildFolaidiBed } from './folaidi-motion.js?v=20261126folaidi';
 import {applyBraveToon} from './stage-art/brave-toon.js';
 // 角色外觀層。兩種實作共用同一介面：
 //   root（THREE.Group，原點在腳底、面向 +Z）、play(state)、update(dt)、flash()
@@ -7,7 +8,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // GLB 載入器約 150KB，只有 manifest 真的指定了模型才動態載入，沒模型時不拖慢開場
 let SkeletonUtils = null;
 
-const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst']);
+const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst', 'spawn']);
 
 const toon = (color, extra = {}) => new THREE.MeshToonMaterial({ color, ...extra });
 const mesh = (geo, material, x = 0, y = 0, z = 0) => {
@@ -558,7 +559,7 @@ function attachCampusProp(kind,model) {
 }
 
 export class GltfVisual {
-  constructor(kind,height=null) {
+  constructor(kind,appearance=null) {
     const { scene, clips, cfg, bounds } = library[kind];
     this.kind = kind;
     this.cfg = cfg;
@@ -568,17 +569,19 @@ export class GltfVisual {
     model.updateMatrixWorld(true); // 骨架世界矩陣要先更新，否則蒙皮模型的包圍盒會算錯
     const box = bounds || new THREE.Box3().setFromObject(model);
     const size = box.getSize(new THREE.Vector3());
-    const scale = (height || cfg.height || 1.5) / (size.y || 1);
+    const scale = (appearance?.height || cfg.height || 1.5) / (size.y || 1);
     model.scale.setScalar(scale);
     model.position.y = -box.min.y * scale;
     model.rotation.y = cfg.rotationY || 0;
     this.root.add(model);
     this.campusProp=attachCampusProp(kind,model);
+    this.wakeBed=appearance?.kingWake?buildFolaidiBed(THREE,document.documentElement.lang):null;
+    if(this.wakeBed)this.root.add(this.wakeBed);
 
     this.mixer = new THREE.AnimationMixer(model);
     this.actions = {};
     for (const [state, clipName] of Object.entries(cfg.clips || {})) {
-      const clip = THREE.AnimationClip.findByName(clips, clipName);
+      const clip = THREE.AnimationClip.findByName(clips, appearance?.kingWake&&state==='spawn'?'KingWake':clipName);
       if (clip) this.actions[state] = this.mixer.clipAction(clip);
     }
     this.current = null;
@@ -609,6 +612,14 @@ export class GltfVisual {
     this.play('idle');
   }
 
+  updateSpawn(progress) {
+    if(!this.wakeBed)return;
+    const u=Math.max(0,Math.min(1,(progress-.54)/.46));
+    this.wakeBed.visible=u<1;
+    this.wakeBed.position.y=-u*.36;
+    this.wakeBed.scale.setScalar(1-u*u*.98);
+  }
+
   pick(state) {
     if (this.actions[state]) return this.actions[state];
     if (/^attack\d$/.test(state)) return this.actions.attack1 || this.actions.attack;
@@ -631,6 +642,7 @@ export class GltfVisual {
     if (state === this.state && !ONE_SHOT.has(state)) return;
     this.state = state;
     if(this.kind==='lan_school'&&this.campusProp)this.campusProp.visible=state==='skill1';
+    if(this.wakeBed&&state!=='spawn')this.wakeBed.visible=false;
     const next = this.pick(state);
     if (!next) return;
     next.reset();
@@ -642,7 +654,8 @@ export class GltfVisual {
       next.setLoop(THREE.LoopRepeat, Infinity);
       next.timeScale = 1;
     }
-    if (this.current && this.current !== next) next.crossFadeFrom(this.current, this.kind==='brave' && ['dodge','skill1','skill2','skill3','ult','hit','transformArrival','burst'].includes(state) ? Math.min(0.05,dur*0.2) : 0.1, false);
+    if (this.current && this.current !== next && state==='spawn')this.current.stop();
+    else if (this.current && this.current !== next) next.crossFadeFrom(this.current, this.kind==='brave' && ['dodge','skill1','skill2','skill3','ult','hit','transformArrival','burst'].includes(state) ? Math.min(0.05,dur*0.2) : 0.1, false);
     next.play();
     this.current = next;
   }
@@ -677,6 +690,13 @@ export class GltfVisual {
       for(const mat of this.ownedMats)mat.dispose();
       this.ownedMats.clear();
     }
+    if(this.wakeBed) {
+      const geometries=new Set(),materials=new Set();
+      this.wakeBed.traverse(o=>{if(o.isMesh){geometries.add(o.geometry);materials.add(o.material);}});
+      for(const g of geometries)g.dispose();
+      for(const m of materials){m.map?.dispose();m.dispose();}
+      this.wakeBed.removeFromParent();
+    }
     if(this.campusProp) {
       const materials=new Set();
       this.campusProp.traverse(o=>{if(o.isMesh){o.geometry.dispose();materials.add(o.material);}});
@@ -689,7 +709,7 @@ export class GltfVisual {
 // shadow=false 時這個角色不投射即時陰影（成群的小怪用，省掉一半的繪製次數）
 export function createVisual(kind, shadow = true, appearance=null) {
   const modelKind=appearance?.modelKind||kind;
-  const v = library[modelKind] ? new GltfVisual(modelKind,appearance?.height) : new ProcVisual(kind);
+  const v = library[modelKind] ? new GltfVisual(modelKind,appearance) : new ProcVisual(kind);
   if (!shadow) v.root.traverse((o) => { if (o.isMesh) o.castShadow = false; });
   return v;
 }

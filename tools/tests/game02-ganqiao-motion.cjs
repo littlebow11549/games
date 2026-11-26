@@ -40,7 +40,8 @@ assert.match(main,/e\.cast\.n < 12/);
 assert.match(main,/t > 0\.7 && t < 1\.5/);
 
 const calls=[];
-const env={ganqiaoMove:config.ganqiaoMove,nightmareBossSkills:{moves:{}},hero:{pos:{}},HERO:{radius:.7},
+const folaidiMove=vm.runInNewContext(fs.readFileSync(path.join(root,'js/folaidi-motion.js'),'utf8').replaceAll('export ','')+'\nfolaidiMove');
+const env={folaidiMove,ganqiaoMove:config.ganqiaoMove,nightmareBossSkills:{moves:{}},hero:{pos:{}},HERO:{radius:.7},
  fx:{telegraph:(...z)=>calls.push(['warning',z[2]]),ring(){}},bossLine(){},hostileShot:(...z)=>calls.push(['shot',z[1],z[2]]),
  hurtHero:d=>calls.push(['hurt',d]),boomAt(){},dist2d:()=>0};
 const a=main.indexOf('const MOVES = {'),b=main.indexOf('  dive: {',a);
