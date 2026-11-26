@@ -470,19 +470,24 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
-let angelModelConfig=null, angelModelStatus=null;
-function prepareAngelModel() {
-  if (!angelModelConfig || angelModelStatus) return angelModelStatus;
-  const cfg=angelModelConfig;
-  angelModelStatus=loadModel('angel_playable',cfg).then(ok=>{
-    angelModelConfig=null;
-    if (!ok || !hero.vis.angel) return;
-    const previous=hero.vis.angel, next=createVisual('angel_playable');
+const deferredModelKinds=new Set(['student','angel_playable','nightmare']);
+const deferredModels=new Map(), deferredModelLoads=new Map();
+function prepareStageModel(kind) {
+  if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
+  if (deferredModelLoads.has(kind)) return deferredModelLoads.get(kind);
+  const cfg=deferredModels.get(kind);
+  const task=loadModel(kind,cfg).then(ok=>{
+    deferredModels.delete(kind);
+    const slot=kind==='angel_playable'?'angel':kind;
+    const previous=hero.vis[slot];
+    if (!ok || !previous) return;
+    const next=createVisual(kind);
     next.root.visible=false;
     scene.remove(previous.root);previous.dispose();
-    hero.vis.angel=next;scene.add(next.root);
+    hero.vis[slot]=next;scene.add(next.root);
   });
-  return angelModelStatus;
+  deferredModelLoads.set(kind,task);
+  return task;
 }
 function startStage(index, character=null) {
   if(((save.rounds||0)>=3||save.secretCharacters.length>0)&&character===null){
@@ -496,10 +501,12 @@ function startStage(index, character=null) {
   if(!stageId)return;
   const needsArt=stageArt&&(stageId==='1-1'||stageArt.STORY_DESIGN[stageId]);
   const pack=needsArt?stageArt.preparedStageArt(stageId):null;
-  const needsAngel=selectedCharacter==='angel'&&Boolean(angelModelConfig);
-  if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||needsAngel){
+  const stageVisualKinds=selectedCharacter==='angel'?['angel_playable']:selectedCharacter==='nightmare'?['nightmare']:STAGES[index].form==='student'?['student']:[];
+  if (STAGES[index].boss==='nightmare'&&!stageVisualKinds.includes('nightmare')) stageVisualKinds.push('nightmare');
+  const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
+  if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||pendingModels.length){
     game.phase='loading-assets';$('overlay').hidden=true;
-    waitForArtwork(()=>Promise.all([prepareGameplay(selectedCharacter),needsArt?stageArt.prepareStageArt(stageId):null,needsAngel?prepareAngelModel():null]),()=>startStage(index,selectedCharacter));
+    waitForArtwork(()=>Promise.all([prepareGameplay(selectedCharacter),needsArt?stageArt.prepareStageArt(stageId):null,...pendingModels.map(prepareStageModel)]),()=>startStage(index,selectedCharacter));
     return;
   }
   audio.stopCelebration();input.takeActions();
@@ -2800,7 +2807,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126angel3d';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126duorig';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
@@ -2810,8 +2817,9 @@ async function boot() {
   const [manifest]=await Promise.all([loadManifest(),preloadImages((done,total)=>progress(76+done/total*15,tr('準備圖像','Preparing artwork','画像を準備中')+' '+done+'/'+total))]);
   audio = new GameAudio(manifest);
   audio.onLoading = (on) => { $('music-loading').hidden = !on; }; // 音樂進關後才下載，載的時候在任務欄提示
-  angelModelConfig=manifest.models?.angel_playable?.url?manifest.models.angel_playable:null;
-  const models = Object.entries(manifest.models || {}).filter(([kind,cfg]) => kind!=='angel_playable'&&cfg?.url);
+  const availableModels = Object.entries(manifest.models || {}).filter(([,cfg])=>cfg?.url);
+  for (const [kind,cfg] of availableModels) if (deferredModelKinds.has(kind)) deferredModels.set(kind,cfg);
+  const models = availableModels.filter(([kind])=>!deferredModelKinds.has(kind));
   progress(91, models.length ? '載入角色模型' : '準備角色');
   let got = 0;
   const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(91 + (++got / models.length) * 4, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));
