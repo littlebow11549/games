@@ -414,6 +414,8 @@ function setForm(form) {
 
 function playBraveCue(type){
   const dur={hit:.23,transformArrival:.56,burst:.60}[type];
+  if(type==='hit'&&hero.form==='worker'&&hero.character==='brave'&&hero.state==='free'&&hero.stunT<=0&&game.phase==='playing'&&hero.visual.actions?.hit)
+    hero.visual.playReaction('hit',.23);
   if(dur&&hero.character==='brave'&&hero.visual===hero.vis.brave&&hero.state==='free'&&hero.stunT<=0&&game.phase==='playing')
     hero.visual.playReaction?.(type,dur);
 }
@@ -476,7 +478,7 @@ function clearField() {
 
 // 開始（或重來）指定的關卡
 const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
-const deferredModelKinds=new Set(['student','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...GANQIAO_MODELS]);
+const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -507,7 +509,7 @@ function startStage(index, character=null) {
   if(!stageId)return;
   const needsArt=stageArt&&(stageId==='1-1'||stageArt.STORY_DESIGN[stageId]);
   const pack=needsArt?stageArt.preparedStageArt(stageId):null;
-  const stageVisualKinds=selectedCharacter==='angel'?['angel_playable']:selectedCharacter==='nightmare'?['nightmare']:STAGES[index].form==='student'?['student']:[];
+  const stageVisualKinds=selectedCharacter==='angel'?['angel_playable']:selectedCharacter==='nightmare'?['nightmare']:[STAGES[index].form];
   if (STAGES[index].boss==='nightmare'&&!stageVisualKinds.includes('nightmare')) stageVisualKinds.push('nightmare');
   const campusModel=STAGES[index].boss==='qian'?'qian_school':STAGES[index].boss==='lan'?'lan_school':null;
   if(campusModel)stageVisualKinds.push(campusModel);
@@ -2848,7 +2850,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126incubus';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126worker';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

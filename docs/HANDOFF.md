@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-26 主角上班族 3D、戰鬥與變身動作：[交接報告](handoffs/2026-11-26-worker-runtime.md)。
+
 - 2026-11-26 夢魘超人雙型態和人物腳底陰影：[交接報告](handoffs/2026-11-26-incubus-shadows-runtime.md)。
 
 - 2026-11-26 校園俊熊與職場已讀俊熊 3D 動作：[交接報告](handoffs/2026-11-26-junxiong-runtime.md)。

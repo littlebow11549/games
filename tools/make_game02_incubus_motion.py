@@ -15,7 +15,8 @@ from make_game02_ganqiao_motion import add, get, glb, load, pixels, repack, xfor
 ROLES={'incubus':'夢魘超人・西裝','incubus_final':'夢魘超人・最終昇華'}
 DURATIONS={'Idle':1.7,'Run':.7,'Talk':.7,'Windup':.55,'Punch':.4,'Hook':.4,'Sweep':.4,'Dash':1.3,'Drones':.8,'Shout':.8,'King':1.15,'Wave':2.,'FinalDash':.95,'Quake':.85,'Awaken':.72,'Hit':.24,'Fall':.9}
 
-def bake(kind, data, out):
+def bake(kind, data, out, *, motion_profile=None):
+    durations, title, subtitle, filename = (DURATIONS, ROLES.get(kind), "4-1 董事長室｜由遊戲用 GLB 擷取的動作分格", f"brave_guy_charactor26_{kind}_motion.glb") if motion_profile is None else motion_profile[:4]
     j,b=load(data)
     nodes=j['nodes']
     skin=j['skins'][0]; joints=skin['joints']
@@ -138,11 +139,13 @@ def bake(kind, data, out):
         if low<0:move(-low,0)
         return m
 
+    if motion_profile is not None:
+        motion=motion_profile[4](loc,named,pose)
     sheet=Image.new('RGB',(1084,1018),'#ebebeb');paint=ImageDraw.Draw(sheet)
     fp=Path('C:/Windows/Fonts/msjhbd.ttc');fp=str(fp) if fp.exists() else 'DejaVuSans.ttf'
     big=ImageFont.truetype(fp,35);small=ImageFont.truetype(fp,21)
-    paint.text((26,20),ROLES[kind],font=big,fill='#242034')
-    paint.text((28,67),'4-1 董事長室｜由遊戲用 GLB 擷取的動作分格',font=small,fill='#544b60')
+    paint.text((26,20),title,font=big,fill='#242034')
+    paint.text((28,67),subtitle,font=small,fill='#544b60')
     _,ix,inv=np.unique(np.round(p,5),axis=0,return_index=True,return_inverse=True)
     edges=np.unique(np.sort(inv[idx.reshape(-1,3)[:,[0,1,1,2,2,0]]].reshape(-1,2),axis=1),axis=0)
     def lens(x):return np.linalg.norm(x[ix][edges[:,0]]-x[ix][edges[:,1]],axis=1)
@@ -159,9 +162,10 @@ def bake(kind, data, out):
         'Fall':('戰甲・倒地',[0,.31,.62,1]),
     }
     # Repair the moving shoulder/cuff surfaces in mesh space. Keep original topology.
+    if motion_profile is not None:frames=motion_profile[5]
     j['animations']=[]
     times=np.linspace(0,1,29)
-    sample={name:np.stack([motion(name,t) for t in times]) for name in DURATIONS}
+    sample={name:np.stack([motion(name,t) for t in times]) for name in durations}
     correction=[]; trimap={}
     def linear(m):return (matrices(m)[:,:,:3,:3]*w[:,:,None,None]).sum(1)
     for name,mats in sample.items():
@@ -197,7 +201,7 @@ def bake(kind, data, out):
                values=dict(bufferView=j['accessors'][iv]['bufferView']))))
     j['meshes'][0]['weights']=[0]*len(basis)
     mesh_node=next(i for i,n in enumerate(nodes) if n.get('mesh')==0 and 'skin' in n)
-    for name,dur in DURATIONS.items():
+    for name,dur in durations.items():
         mats=sample[name]
         coeff=np.column_stack([np.interp(times,times[::2],v) for v in co[trimap[name]].T]) if name in trimap else np.zeros((len(times),len(basis)))
         def posed(m,weights):
@@ -232,7 +236,7 @@ def bake(kind, data, out):
             x=28+col*260;sheet.paste(pic,(x,y+35))
             paint.line((x+18,y+195,x+234,y+195),fill='#8a8194',width=2)
             paint.text((x+9,y+42),f'{t*dur:.2f}s',font=small,fill='#544b60')
-    (out/f'brave_guy_charactor26_{kind}_motion.glb').write_bytes(glb(j,b))
+    (out/filename).write_bytes(glb(j,b))
     sheet.save(out/f'BraveGuy_{kind}_Motion_QA.jpg',quality=92,optimize=True)
 
 if __name__=='__main__':
