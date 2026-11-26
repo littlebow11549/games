@@ -470,6 +470,20 @@ function clearField() {
 }
 
 // 開始（或重來）指定的關卡
+let angelModelConfig=null, angelModelStatus=null;
+function prepareAngelModel() {
+  if (!angelModelConfig || angelModelStatus) return angelModelStatus;
+  const cfg=angelModelConfig;
+  angelModelStatus=loadModel('angel_playable',cfg).then(ok=>{
+    angelModelConfig=null;
+    if (!ok || !hero.vis.angel) return;
+    const previous=hero.vis.angel, next=createVisual('angel_playable');
+    next.root.visible=false;
+    scene.remove(previous.root);previous.dispose();
+    hero.vis.angel=next;scene.add(next.root);
+  });
+  return angelModelStatus;
+}
 function startStage(index, character=null) {
   if(((save.rounds||0)>=3||save.secretCharacters.length>0)&&character===null){
     if(rosterPicker.open)return;
@@ -482,9 +496,10 @@ function startStage(index, character=null) {
   if(!stageId)return;
   const needsArt=stageArt&&(stageId==='1-1'||stageArt.STORY_DESIGN[stageId]);
   const pack=needsArt?stageArt.preparedStageArt(stageId):null;
-  if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)){
+  const needsAngel=selectedCharacter==='angel'&&Boolean(angelModelConfig);
+  if(!gameplayIsReady(selectedCharacter)||(needsArt&&!pack)||needsAngel){
     game.phase='loading-assets';$('overlay').hidden=true;
-    waitForArtwork(()=>Promise.all([prepareGameplay(selectedCharacter),needsArt?stageArt.prepareStageArt(stageId):null]),()=>startStage(index,selectedCharacter));
+    waitForArtwork(()=>Promise.all([prepareGameplay(selectedCharacter),needsArt?stageArt.prepareStageArt(stageId):null,needsAngel?prepareAngelModel():null]),()=>startStage(index,selectedCharacter));
     return;
   }
   audio.stopCelebration();input.takeActions();
@@ -2785,7 +2800,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261125perf1';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261126angel3d';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
@@ -2795,7 +2810,8 @@ async function boot() {
   const [manifest]=await Promise.all([loadManifest(),preloadImages((done,total)=>progress(76+done/total*15,tr('準備圖像','Preparing artwork','画像を準備中')+' '+done+'/'+total))]);
   audio = new GameAudio(manifest);
   audio.onLoading = (on) => { $('music-loading').hidden = !on; }; // 音樂進關後才下載，載的時候在任務欄提示
-  const models = Object.entries(manifest.models || {}).filter(([, cfg]) => cfg && cfg.url);
+  angelModelConfig=manifest.models?.angel_playable?.url?manifest.models.angel_playable:null;
+  const models = Object.entries(manifest.models || {}).filter(([kind,cfg]) => kind!=='angel_playable'&&cfg?.url);
   progress(91, models.length ? '載入角色模型' : '準備角色');
   let got = 0;
   const loaded = await Promise.all(models.map(([kind, cfg]) => loadModel(kind, cfg).then((r) => { progress(91 + (++got / models.length) * 4, tf('載入角色模型 {0}/{1}', got, models.length)); return r; })));

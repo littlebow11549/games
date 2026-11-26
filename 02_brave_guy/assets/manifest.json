@@ -23,6 +23,24 @@
         "burst": "Guilt_Burst"
       }
     },
+    "angel_playable": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor02_angel_motion.glb",
+      "height": 1.68,
+      "rotationY": 1.5707963267948966,
+      "clips": {
+        "idle": "Angel_Idle",
+        "run": "Angel_Run",
+        "attack": "Punch_R",
+        "dodge": "Angel_Dodge",
+        "hit": "Angel_Hit",
+        "stun": "Angel_Stun",
+        "skill1": "Angel_CastForward",
+        "skill2": "Angel_CastArea",
+        "skill3": "Angel_CastArea",
+        "ult": "Angel_CastUltimate",
+        "burst": "Angel_Burst"
+      }
+    },
     "angel": null,
     "ganqiao": null,
     "jiasen": null,
