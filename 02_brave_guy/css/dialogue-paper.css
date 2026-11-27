@@ -1,0 +1,40 @@
+/* Story dialogue uses one paper frame. Impact captions keep their separate approved burst. */
+.game-art :is(.dialog .dlg-box.dialogue-paper,#opening article.dialogue-paper,#cinema[data-dialogue-tone=normal] .dialogue-paper){
+ --paper-surface:linear-gradient(0deg,var(--dialogue-tint,#fff0c9),var(--dialogue-paper) 43%);
+ background:var(--paper-surface);border:3px solid var(--dialogue-ink);
+ border-radius:21px 15px 21px 16px;color:var(--dialogue-text);
+ box-shadow:0 5px 0 var(--dialogue-accent,#ffce66),0 8px 0 var(--dialogue-ink),0 12px 25px #150d2770;
+ box-sizing:border-box;text-shadow:none;
+}
+.game-art #opening article.dialogue-paper,.game-art #cinema[data-dialogue-tone=normal] .dialogue-paper{
+ width:auto;max-width:760px;padding:12px clamp(13px,3vw,22px);
+}
+.game-art #opening article.dialogue-paper{width:100%;margin: auto auto 15px;--dialogue-accent:#aee66d;--dialogue-tint:#eff9d5}
+.game-art #opening[data-scene=angel] article.dialogue-paper{--dialogue-accent:#ffc1d9;--dialogue-tint:#fff1f6}
+.game-art #opening article.dialogue-paper small{color:var(--dialogue-ink);font-weight:900}
+.game-art #opening article.dialogue-paper h1{font-size:clamp(18px,4.2vw,30px);line-height:1.25;margin:5px 0 7px;color:var(--dialogue-ink);text-shadow:none}
+.game-art #opening article.dialogue-paper p,.game-art #cinema[data-dialogue-tone=normal] .cinema-caption p{
+ min-height:0;margin:0;border:0;padding:0;background:none;box-shadow:none;color:var(--dialogue-text);
+ font:750 clamp(14px,2.1vw,19px)/1.47 var(--font-body);overflow-wrap:anywhere;text-shadow:none;text-align:start;text-wrap:pretty;
+}
+.game-art #cinema[data-dialogue-tone=normal][data-speaker=hero]{--dialogue-accent:#aee66d;--dialogue-tint:#eff9d5}
+.game-art #cinema[data-dialogue-tone=normal][data-speaker=boss]{--dialogue-accent:#d4befb;--dialogue-tint:#f5edff}
+.game-art #cinema[data-dialogue-tone=normal] .dialogue-paper{
+ left:max(5%,var(--safe-l));right:max(5%,var(--safe-r));bottom:max(7%,calc(var(--safe-b) + 30px));margin-inline:auto;text-align:start;
+}
+.game-art #cinema[data-dialogue-tone=normal] .cinema-name{
+ display:table;margin:0 0 7px;padding:3px 10px;background:var(--dialogue-accent,#ffce66);color:var(--dialogue-ink);
+ border:2px solid var(--dialogue-ink);border-radius:11px 12px 12px 5px;
+ font:900 clamp(13px,2.8vw,15px)/1.15 var(--font-body);-webkit-text-stroke:0;text-shadow:none;
+}
+.game-art #cinema[data-dialogue-tone=normal] .cinema-name[hidden]{display:none}
+@media(max-width:520px){
+ .game-art :is(.dialog .dlg-box.dialogue-paper,#opening article.dialogue-paper,#cinema[data-dialogue-tone=normal] .dialogue-paper){border-radius:17px 14px 17px 13px}
+}
+@media(orientation:landscape) and (max-height:450px){
+ .game-art #opening article.dialogue-paper,.game-art #cinema[data-dialogue-tone=normal] .dialogue-paper{padding-block:8px}
+ .game-art #opening article.dialogue-paper{margin-bottom:12px}
+ .game-art #opening article.dialogue-paper h1{font-size:17px}
+ .game-art #opening article.dialogue-paper p,.game-art #cinema[data-dialogue-tone=normal] .cinema-caption p{font-size:14px}
+ .game-art #cinema[data-dialogue-tone=normal] .dialogue-paper{left:max(12%,var(--safe-l));right:max(12%,var(--safe-r))}
+}

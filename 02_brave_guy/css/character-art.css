@@ -60,11 +60,6 @@
 .game-art .dialog[data-who="other"] { --dialogue-accent:#d4befb; --dialogue-tint:#f5edff; --dialogue-deep:#624584; }
 
 .game-art .dialog .dlg-box {
-  background:linear-gradient(0deg,var(--dialogue-tint),var(--dialogue-paper) 43%);
-  border:3px solid var(--dialogue-ink);
-  border-radius:21px 15px 21px 16px;
-  color:var(--dialogue-text);
-  box-shadow:0 5px 0 var(--dialogue-accent),0 8px 0 var(--dialogue-ink),0 12px 25px #150d2770;
   min-height:118px;
   max-height:min(46dvh,360px);
   padding:11px 17px 30px;

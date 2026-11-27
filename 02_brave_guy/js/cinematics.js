@@ -52,7 +52,7 @@ const FIRSTSTRIKE_SHOTS=[
 const FIRSTSTRIKE_DURATION=FIRSTSTRIKE_SHOTS.reduce((n,s)=>n+s.duration,0);
 export function createCinematics(_renderer,audioProvider){
  const root=document.createElement('section');root.id='cinema';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
- root.innerHTML='<div class="cinema-lines" aria-hidden="true"></div><div class="cinema-top"><span class="cinema-kicker"></span><button class="cinema-skip"></button></div><div class="cinema-caption"><h2></h2><p></p></div><div class="cinema-progress"><i></i></div><div class="cinema-credits" hidden></div>';
+ root.innerHTML='<div class="cinema-lines" aria-hidden="true"></div><div class="cinema-top"><span class="cinema-kicker"></span><button class="cinema-skip"></button></div><div class="cinema-caption dialogue-paper"><h2></h2><p></p></div><div class="cinema-progress"><i></i></div><div class="cinema-credits" hidden></div>';
  document.body.append(root);const storyboard=createBossStoryboard(root,audioProvider),victoryArt=createVictoryStoryboard(root),film=createPictureFilm(root);
  const $=q=>root.querySelector(q),skip=$('.cinema-skip'),title=$('.cinema-caption h2'),subtitle=$('.cinema-caption p'),credits=$('.cinema-credits');
  let active=null,elapsed=0,previousFocus=null;
