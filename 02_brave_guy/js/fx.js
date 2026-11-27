@@ -1,3 +1,4 @@
+import {impactProfile,impactTexture} from './impact-art.js?v=20261127finishfx';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
@@ -53,21 +54,25 @@ export class Fx {
     this.items.length = 0;
   }
 
-  // Eight discrete frames at 40fps: fast flash, sharp burst, then fading shards.
-  hitSpark(pos, y = 1, heavy = false) {
-    if (this.items.filter(it => it.obj.userData.hitSpark).length >= 18) return null;
-    if (!hitFrames.length) return null;
-    const material = new THREE.SpriteMaterial({ map: hitFrames[0], transparent: true,
-      depthWrite: false, depthTest: true, toneMapped: false, rotation: (Math.random() - .5) * .6 });
-    const sprite = new THREE.Sprite(material);
-    sprite.userData.hitSpark = true;
-    sprite.userData.frame = 0;
-    sprite.position.set(pos.x, y, pos.z);
-    sprite.scale.setScalar(heavy ? 2.6 : 1.7);
-    return this.add(sprite, .2, k => {
-      const frame = Math.min(7, Math.floor(k * 8));
-      sprite.userData.frame = frame;
-      material.map = hitFrames[frame];
+  // One sprite per hit, shared textures and flat opacity; avoid a full-screen flash.
+  hitSpark(pos,y=1,kind='light'){
+    if(this.items.filter(it=>it.obj.userData.hitSpark).length>=18)return null;
+    if(typeof kind==='boolean')kind=kind?'heavy':'light';
+    const p=impactProfile(kind),atlas=kind==='light'&&hitFrames.length>0;
+    const material=new THREE.SpriteMaterial({map:atlas?hitFrames[0]:impactTexture(kind),transparent:true,
+      depthWrite:false,depthTest:true,toneMapped:false,rotation:kind==='guard'?0:(Math.random()-.5)*.26});
+    const sprite=new THREE.Sprite(material);
+    Object.assign(sprite.userData,{hitSpark:true,kind,frame:0});
+    sprite.position.set(pos.x,y,pos.z);
+    sprite.scale.setScalar(atlas?p.scale:p.scale*.77);
+    return this.add(sprite,p.life,k=>{
+      const frame=Math.min(7,Math.floor(k*8));
+      sprite.userData.frame=frame;
+      if(atlas)material.map=hitFrames[frame];
+      else {
+        sprite.scale.setScalar(p.scale*(.77+.32*(1-(1-k)**3)));
+        material.opacity=k<.26?1:(1-k)/.74;
+      }
     });
   }
 

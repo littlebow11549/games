@@ -23,14 +23,16 @@ assert.equal(e.hp,5520);assert.equal(e.shield,false);assert.equal(e.cast,null);
 assert.equal(e.visual.root.scale.x,1.2);assert.equal(c.hero.invuln,2);assert.equal(c.hazards[0].life,0);
 e.hp=921;c.finish(e);
 assert.equal(c.game.final,true);assert.equal(e.untouchable,true);assert.equal(e.hp,921);
-const dmg=main.slice(main.indexOf('function damageEnemy('),main.indexOf('function tally('));
+const dmg=main.slice(main.indexOf('function enemyImpact('),main.indexOf('function tally('));
 const d={alive:e=>e.state!=='dead',audio:{sfx(){}},tf:()=>'',popup(){},fx:{ring(){},hitSpark(){},burst(){}},updateLockMarker(){},playBossKO(){},
  stats:()=>({atk:1000}),hasDebuff:()=>false,godMode:()=>false,rand:()=>1,HERO:{critRate:0,critMult:1.5},game:{combo:30,counterT:0,awakened:false,final:false,time:1},
  tmp:new THREE.Vector3(),hero:{character:'brave',pos:new THREE.Vector3()},Math};
 vm.createContext(d);vm.runInContext(dmg+'\nthis.hit=damageEnemy',d);
 const boss={kind:'incubus',maxHp:9200,hp:9200,def:{boss:true,incubus:true,height:2.2},shield:true,broken:new Set(),state:'chase',
  y:0,pos:new THREE.Vector3(1,0,2),visual:{flash(){},play(){}}};
+const hits=[];d.fx.hitSpark=(_,__,kind)=>hits.push(kind);
 for(const src of ['attack','skill1','skill1','skill2'])d.hit(boss,100,{src});
+assert.deepEqual(hits,['guard'],'shield feedback is throttled without changing the number of shield breaks');
 assert.equal(boss.hp,9200);assert.equal(boss.shield,true);assert.equal(boss.broken.size,2);
 d.hit(boss,100,{src:'skill3'});assert.equal(boss.shield,false);assert.equal(boss.hp,9200);
 d.hit(boss,100);assert.equal(boss.hp,5520);

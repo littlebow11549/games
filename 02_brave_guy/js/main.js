@@ -22,7 +22,8 @@ import { createActorShadows } from './actor-shadows.js?v=20261127managers';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
-import { Fx } from './fx.js?v=20261120angelstraight';
+import { Fx } from './fx.js?v=20261127finishfx';
+import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
 import { createOpening } from './opening.js?v=20261120assets';
@@ -279,6 +280,7 @@ const DEV_UNLOCK = false;
 const unlockParam = new URLSearchParams(location.search).get('unlock');
 const unlockAll = unlockParam === 'all' || (DEV_UNLOCK && unlockParam !== 'off');
 save.cleared=Array.isArray(save.cleared)?save.cleared.filter(id=>STAGES.some(s=>s.id===id)):[];
+restoreEnding(save,STAGES.at(-1).id);
 save.secretCharacters=Array.isArray(save.secretCharacters)?[...new Set(save.secretCharacters.filter(id=>['angel','nightmare'].includes(id)))]:[];
 const runs = new RunRecords({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
 const tr=(zh,en,ja)=>words(lang,zh,en,ja);
@@ -1218,13 +1220,19 @@ function hurtHero(amount, opts = {}) {
   else playBraveCue('hit');
 }
 
+function enemyImpact(e,kind){
+  if(game.time<(e.nextHitSparkAt||0))return;
+  fx.hitSpark(e.pos,e.y+Math.max(.6,e.def.height*.65),kind);
+  e.nextHitSparkAt=game.time+.08;
+}
+
 // 回傳 { hit, killed, crit }
 function damageEnemy(e, mult, o = {}) {
   if (!alive(e) || e.fly) return null;
   if (e.untouchable) return { killed: false, crit: false, damaged: false }; // 終章最後一段：打不到，但出手仍然算數
-  if (e.castInvuln) { audio.sfx('guard'); return { killed: false, crit: false, damaged: false }; } // 放超惡夢波時無敵
+  if (e.castInvuln) { enemyImpact(e,'guard');audio.sfx('guard'); return { killed: false, crit: false, damaged: false }; } // 放超惡夢波時無敵
   if (e.shield) {
-    audio.sfx('guard');
+    enemyImpact(e,'guard');audio.sfx('guard');
     // 夢魘超人只會擋：要用三個小招各破一次
     if (['skill1', 'skill2', 'skill3'].includes(o.src) && !e.broken.has(o.src)) {
       e.broken.add(o.src); audio.sfx('mask_off');
@@ -1249,10 +1257,7 @@ function damageEnemy(e, mult, o = {}) {
     dmg=Math.min(dmg,Math.max(0,e.hp-phaseFloor));
   }
   e.hp -= dmg;
-  if (dmg > 0 && !guarded && game.time >= (e.nextHitSparkAt || 0)) {
-    fx.hitSpark(e.pos, e.y + Math.max(.6, e.def.height * .65), crit || mult >= 1.8);
-    e.nextHitSparkAt = game.time + .08;
-  }
+  if(dmg>0)enemyImpact(e,guarded?'guard':game.counterT>0?'counter':crit||mult>=1.8?'heavy':'light');
   e.visual.flash();
   popup(e.pos, e.def.height + e.y, guarded ? tf('擋 {0}', dmg) : `-${dmg}`, guarded ? 'guard' : crit ? 'crit' : '');
   const from = o.from || hero.pos;
@@ -2530,7 +2535,9 @@ function clearStage() {
   game.phase = 'over'; game.fails = 0; game.paused = false;
   audio.stopLoops(); input.takeActions();
   const newlyCleared=!save.cleared.includes(st.id);
-  if(newlyCleared){save.cleared.push(st.id);writeSave();}
+  if(newlyCleared)save.cleared.push(st.id);
+  if(last)queueEnding(save,stats,guest());
+  if(newlyCleared||last)writeSave();
   if(st.grant)st.grant.split('+').forEach(ability=>game.abilities.add(ability));
   game.bgm = null; audio.stopBgm(); audio.stopCelebration();
   if (hero.form === 'brave'&&!guest()) revert(true);
@@ -2550,17 +2557,7 @@ function continueVictory() {
   pendingVictory = null; // Repeated taps cannot advance twice.
   $('overlay').hidden = true;
   if (result.last) {
-    // 只有「第一次破關」或「從序章重玩的那一輪」破關才計入一刷，避免重複打最終話刷輪數
-    const previousRounds=save.rounds||0;
-    if (save.rounds === 0 || save.freshRun) save.rounds = previousRounds + 1;
-    for(const [id,threshold] of [['nightmare',3],['angel',4]])if(previousRounds<threshold&&save.rounds>=threshold)save.pendingCharacters=[...new Set([...(save.pendingCharacters||[]),id])];
-    save.freshRun = false; writeSave();
-    playEnding(async () => {
-      await announceUnlocks();
-      game.phase = 'over';
-      showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
-        text:()=>t('他知道自己要往哪走了。'),note:()=>t('小天使留下的便利貼：「還行。」'),btn:'再打一次'});
-    });
+    finishJourney();
   } else {
     if(guest()){startStage(result.index+1);return;}
     if (result.st.outro?.length) setBgm('bgm_talk');
@@ -2569,10 +2566,23 @@ function continueVictory() {
   }
 }
 
-function playEnding(done) {
+function finishJourney(){
+  const result=save.pendingEnding;
+  if(!result||game.phase==='cinematic')return;
+  if(creditEnding(save))writeSave();
+  playEnding(async () => {
+    await announceUnlocks();
+    delete save.pendingEnding;writeSave();
+    game.phase='over';
+    showOverlay({outcome:'ending',title:'醒 來',stats:result.stats,
+        text:()=>t('他知道自己要往哪走了。'),note:()=>t('小天使留下的便利貼：「還行。」'),btn:'再打一次'});
+  },result.creditsOnly);
+}
+
+function playEnding(done,creditsOnly=guest()) {
   game.phase = 'cinematic';
   $('overlay').hidden = true; $('hud').hidden = true;
-  cinematics.ending(() => { input.takeActions(); done(); },guest());
+  cinematics.ending(() => { input.takeActions(); done(); },creditsOnly);
 }
 
 function update(dt) {
@@ -2920,7 +2930,7 @@ function showMenu() {
   progressReset.refresh();
   audio.stopCelebration();
   document.getElementById('run-result')?.remove();
-  $('ov-run').hidden=menuView!=='title';
+  $('ov-run').hidden=menuView!=='title'||Boolean(save.pendingEnding);
   $('ov-run').textContent=tr('完整通關計時挑戰','FULL RUN · TIME ATTACK','全ステージ・タイムアタック');
   pendingVictory = null;
   opening.cancel();
@@ -2968,7 +2978,7 @@ function showMenu() {
   const next = firstOpenStage();
   game.stage = next;
   const fullyCleared = save.cleared.includes(STAGES.at(-1).id);
-  $('ov-btn').textContent = fullyCleared ? t('從序章開始重玩') : save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
+  $('ov-btn').textContent = save.pendingEnding ? tr('續看結局','Continue ending','エンディングの続き') : fullyCleared ? t('從序章開始重玩') : save.cleared.length ? tf('繼續　{0} {1}', STAGES[next].id, t(STAGES[next].name)) : t('開始');
   $('ov-btn').disabled = false;
   const dbox = $('ov-diff');
   dbox.replaceChildren();
@@ -3022,6 +3032,7 @@ $('ov-opening').addEventListener('click', playOpening);
 const progressReset=createProgressReset(()=>audio);
 $('ov-btn').addEventListener('click', () => { audio.unlock(); audio.sfx('ui_confirm');
   if (lastOverlay?.outcome === 'ending' && game.phase === 'over') restartJourney(); // 破關結算：從序章重玩（進度歸零、計一刷）
+  else if (game.phase === 'ready' && save.pendingEnding) finishJourney();
   else if (game.phase === 'ready' && save.cleared.includes(STAGES.at(-1).id)) restartJourney(); // 全破後主選單主按鈕＝從序章重玩
   else startStage(game.stage);
 });

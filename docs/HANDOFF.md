@@ -436,3 +436,5 @@
 - [2026-11-27: 2-2 Village solid landmarks](handoffs/2026-11-27-village-solid-landmarks.md)
 
 - [2026-11-27: All story foreground 3D landmarks](handoffs/2026-11-27-all-story-solid-landmarks.md)
+
+- [2026-11-27: Finale recovery and hit feedback](handoffs/2026-11-27-ending-recovery-and-hit-fx.md)

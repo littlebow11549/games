@@ -1,0 +1,8 @@
+# 2026-11-27 | Recoverable finale and hit feedback
+
+Release key: `20261127finishfx`.
+
+- Final stage 4-1 records the clear and pending ending together. The title offers Continue ending after a reload. Crediting the round and the unlock thresholds (Nightmare 3, Angel 4) is idempotent; the pending ending is removed only after the film/credits and unlock acknowledgments finish. Legacy saves with the final stage recorded and a clearly uncredited round can resume. No inferred extra rounds on already settled saves.
+- Normal hit keeps the original eight-frame atlas, with a fallback if the image is not yet ready. Heavy critical/skill hits add an orange starburst, successful counter hits use a mint star, and blocked hits show a blue shield. No changes to damage, enemy invulnerability, combo, counter window, or animations. A hit emits at most one sprite, with an existing 80 ms per-target throttle and 18 active-sprite cap.
+- Browser QA used a separate local origin: a new save traversed all 16 stages through the real win/Continue handlers, with scripted stage clears and skipped cutscenes. It persisted one round and a ranked campaign result. Separate test saves verified reload before Continue and during the film, round 1/3/4 including both unlock dialogs, and no duplicate round on final replay. Actual hit handling was checked in desktop and 390px portrait Chrome. Art review stills freeze the hit sprite frames for comparison. This is flow validation, not a full manual combat playthrough or a physical-phone performance benchmark.
+- Rollback: revert this release commit. Previous versions safely ignore the additive pending-ending snapshot.
