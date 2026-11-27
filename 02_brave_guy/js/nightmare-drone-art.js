@@ -5,87 +5,66 @@ export function nightmareShotAim(from,to){
  const x=to.x-from.x,z=to.z-from.z,d=Math.hypot(x,z);
  return Number.isFinite(d)&&d>.001?new THREE.Vector3(x/d,0,z/d):null;
 }
-let spiritArt;
-function sculptSpirit(){
- const parts=[];
- const sphere=()=>new THREE.SphereGeometry(1,10,6);
- function part(g,ink,x,y,z,sx,sy,sz,rz=0){
-  const shape=g.index?g.toNonIndexed():g;
-  if(shape!==g)g.dispose();
-  shape.scale(sx,sy,sz).rotateZ(rz).translate(x,y,z);
-  const p=shape.attributes.position,colors=new Float32Array(p.count*3);
-  const c=new THREE.Color(ink);
-  for(let i=0;i<p.count;i++){
-   const light=Math.min(1.19,Math.max(.70,.96+.48*(p.getY(i)-y)+.38*(p.getZ(i)-z)));
-   colors.set([c.r*light,c.g*light,c.b*light],i*3);
+let wingArt, spiritBody, spiritTask, spiritSettled=false;
+let referenceHeight=1.05,assetHeight=1.45476;
+export function setNightmareSpiritHeight(height){if(Number.isFinite(height)&&height>0)referenceHeight=height;}
+const spiritScale=()=>referenceHeight/assetHeight;
+const spiritUrl=new URL('../assets/runtime/stage-art/brave_guy_charactor03_nightmare_spirit.glb?v=20261127spiritflight',import.meta.url);
+export const nightmareSpiritIsReady=()=>spiritSettled;
+export function prepareNightmareSpirit(){
+ if(!spiritTask)spiritTask=import('../vendor/three/addons/loaders/GLTFLoader.js')
+  .then(({GLTFLoader})=>new GLTFLoader().loadAsync(spiritUrl.href))
+  .then(({scene})=>{spiritBody=scene;const height=new THREE.Box3().setFromObject(scene).getSize(new THREE.Vector3()).y;if(height>0)assetHeight=height;spiritBody.traverse(node=>{if(node.isMesh)node.material.toneMapped=false});return true;})
+  .catch(()=>false).finally(()=>{spiritSettled=true;});
+ return spiritTask;
+}
+function sculptWings(){
+ const material=new THREE.MeshBasicMaterial({vertexColors:true,toneMapped:false});
+ const wing=[-1,1].map(side=>{
+  const parts=[];
+  for(const [i,[rx,ry,rz]] of [[.217,.093,.034],[.179,.078,.029],[.139,.065,.021]].entries()){
+   const shape=new THREE.SphereGeometry(1,12,8);
+   shape.scale(rx,ry,rz).rotateZ(side*(.69-.24*i)).translate(side*(.168-.024*i),.12-.101*i,0);
+   const p=shape.attributes.position,colors=new Float32Array(p.count*3);
+   const deep=new THREE.Color(0x71419a), pale=new THREE.Color(i===0?0xf1dbff:0xce9bfc),color=new THREE.Color();
+   for(let k=0;k<p.count;k++){
+    const light=THREE.MathUtils.clamp(.47+.9*p.getY(k)+.51*Math.abs(p.getX(k))+.19*Math.sign(p.getZ(k)),.12,.98);
+    color.copy(deep).lerp(pale,light);
+    colors.set([color.r,color.g,color.b],k*3);
+   }
+   shape.setAttribute('color',new THREE.BufferAttribute(colors,3));parts.push(shape);
   }
-  shape.setAttribute('color',new THREE.BufferAttribute(colors,3));
-  parts.push(shape);
- }
- const orb=(...v)=>part(sphere(),...v);
- const merge=()=>{
-  const merged=mergeGeometries(parts);
-  parts.forEach(g=>g.dispose());parts.length=0;
-  return merged;
- };
- // Giant soft-square head, tiny floating jacket, mitten hands and boots.
- orb(0x38204f,0,.44,0,.24,.26,.18);
- orb(0x6c38a2,0,.49,.03,.202,.202,.168);
- orb(0x613426,0,.96,-.02,.345,.345,.304);
- orb(0xffcba8,0,.92,.085,.308,.283,.254);
- orb(0x814536,0,1.122,.042,.318,.16,.277);
- for(const [x,y,z,rx,ry,rz,tilt] of [[-.20,1.23,.11,.113,.24,.096,.42],[-.051,1.30,.13,.114,.23,.071,-.16],[.094,1.28,.115,.105,.23,.090,-.34],[.226,1.208,.168,.095,.20,.087,-.59]]){
-  part(new THREE.ConeGeometry(1,2,7),0x944832,x,y,z,rx,ry,rz,tilt);
- }
- for(const side of [-1,1]){
-  orb(0xf7b498,side*.29,.89,.084,.069,.084,.066);
-  orb(0x352137,side*.115,.934,.308,.068,.089,.022,side*.14);
-  orb(0xffeaca,side*.115,.920,.322,.052,.065,.014,side*.10);
-  orb(0xdc395e,side*.107,.917,.333,.022,.045,.011);
-  orb(0xfffaff,side*.107-.008,.939,.342,.009,.013,.006);
-  orb(0x9bd94e,side*.228,.454,.059,.084,.103,.078,side*.30);
-  orb(0x332143,side*.103,.244,.02,.079,.114,.075);
-  orb(0x7fbd3e,side*.106,.160,.045,.087,.078,.102,side*.13);
- }
- orb(0x572b45,0,.808,.319,.052,.021,.012,-.13);
- const collar=new THREE.TorusGeometry(1,.26,6,16);collar.rotateX(Math.PI/2);
- part(collar,0xa8dc50,0,.666,0,.163,.106,.146);
- orb(0x75b343,-.126,.63,-.143,.084,.061,.136,-.34);
- orb(0x628729,-.222,.586,-.232,.116,.047,.088,.39);
- part(new THREE.OctahedronGeometry(1),0xe9b5ff,0,.496,.182,.045,.063,.021);
- const body=merge(),wing=[-1,1].map(side=>{
-  orb(0x6b399d,side*.162,.109,-.013,.183,.110,.050,side*.45);
-  orb(0xad66da,side*.257,.177,-.029,.191,.069,.047,side*.51);
-  orb(0xcc9ef1,side*.215,.080,.010,.158,.055,.039,side*.19);
-  orb(0x9564c5,side*.150,-.002,.006,.104,.043,.035,side*.04);
-  return merge();
+  const result=mergeGeometries(parts);parts.forEach(g=>g.dispose());return result;
  });
- return {body,wing,material:new THREE.MeshLambertMaterial({vertexColors:true,toneMapped:false,emissive:0x29202e,emissiveIntensity:.38})};
+ return {wing,material};
 }
 export function createNightmareDrone(scene){
- const art=spiritArt||(spiritArt=sculptSpirit());
+ const art=wingArt||(wingArt=sculptWings());
  const root=new THREE.Group();
- root.name='Nightmare skill2 | miniature Nightmare spirit';
+ root.name='Nightmare skill2 | Tripo chibi spirit';
  root.userData.modelKind='nightmare_spirit';
- const body=new THREE.Mesh(art.body,art.material);root.add(body);
+ root.scale.setScalar(spiritScale());
+ const body=new THREE.Group();root.add(body);
+ const attach=()=>{if(spiritBody&&root.parent&&!body.children.length){body.add(spiritBody.clone(true));root.scale.setScalar(spiritScale());root.userData.hasTripoBody=true;}};
  const wings=art.wing.map((g,i)=>{
-  const m=new THREE.Mesh(g,art.material);m.position.set(i?.11:-.11,.58,-.12);root.add(m);return m;
+  const m=new THREE.Mesh(g,art.material);m.position.set(i?.105:-.105,.76,-.165);root.add(m);return m;
  });
  let time=0;
  root.userData.advanceSpirit=dt=>{
-  time+=dt;body.position.y=Math.sin(time*9)*.045;
+  time+=dt;body.position.y=Math.sin(time*8)*.052;body.rotation.x=.055*Math.sin(time*8-.4);
   for(let i=0;i<2;i++){
-   const side=i?1:-1,amount=Math.sin(time*15+i*.11);
-   wings[i].position.y=.58+body.position.y;
-   wings[i].rotation.y=side*(.22+.51*amount);wings[i].rotation.z=side*(.09+.14*amount);
+   const side=i?1:-1,amount=Math.sin(time*14+i*.11);
+   wings[i].position.y=.76+body.position.y;
+   wings[i].rotation.y=side*(.14+.58*amount);wings[i].rotation.z=side*(.12+.18*amount);
   }
  };
- root.userData.releaseSpirit=()=>root.clear(); // shared species geometry/material retain ownership
+ root.userData.releaseSpirit=()=>root.clear(); // all drones share immutable asset geometry/materials
+ scene.add(root);attach();
+ if(!spiritBody&&typeof window!=='undefined')prepareNightmareSpirit().then(attach);
  root.userData.advanceSpirit(0);
- scene.add(root);return root;
+ return root;
 }
-// A solid arrowhead of violet pressure over a dark tapered wake. Two crossed sheets
-// keep the silhouette readable from the mobile camera without relying on bloom.
+// Original Nightmare Wave silhouette, without the two chartreuse side accents.
 export function createNightmareWave(dir){
  const root=new THREE.Group();root.name='Nightmare skill2 | straight nightmare wave';
  root.rotation.y=Math.atan2(dir.x,dir.z);
@@ -104,11 +83,9 @@ export function createNightmareWave(dir){
     float slit=band(x-fin*(.41+.17*cos(u*26.)),.025)*p*(.3+.7*smoothstep(.41,.52,u));
     float glow=(1.-smoothstep(.06,max(fin*.78,.065),x))*p;
     float hot=(1.-smoothstep(.02,max(.026,fin*.23),x))*smoothstep(.29,.77,u)*(1.-smoothstep(.95,1.,u));
-    float pip=band(u-.77,.061)*band(x-fin*.68,.066);
     vec3 color=mix(vec3(.066,.010,.12),vec3(.42,.12,.84),max(glow,bevel*.88));
     color=mix(color,vec3(.95,.74,1.),max(hot,slit*.68));
-    color=mix(color,vec3(.73,1.,.33),pip);
-    float alpha=max(glow*.80,max(bevel*.8,max(hot,max(slit*.72,pip*.9))));
+    float alpha=max(glow*.80,max(bevel*.8,max(hot,slit*.72)));
     if(alpha<.026)discard;
     gl_FragColor=vec4(color,alpha);
     #include <colorspace_fragment>

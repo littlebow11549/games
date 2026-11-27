@@ -1,0 +1,58 @@
+/* High-impact captions and battle shouts share a black-and-white frame; only the speaker's lettering is colored. */
+#cinema[data-dialogue-tone=impact] .cinema-caption{
+ left:max(2%,var(--safe-l));right:max(2%,var(--safe-r));filter:drop-shadow(4px 7px 0 #111)
+}
+#cinema[data-dialogue-tone=impact] .cinema-caption::before{display:none}
+#cinema[data-dialogue-tone=impact] .cinema-caption p,
+.game-art #world-ui .dmg.shout.battle-shout{
+ position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;
+ box-sizing:border-box;clip-path:none;border:0;border-radius:0;box-shadow:none;
+ background:none;color:var(--voice-ink,#fff1b0);text-shadow:-1px -1px #111,-2px -2px #111,-3px -3px #111,-4px -4px #111,-5px -5px #111,-6px -6px #111;margin:0;
+ font-family:var(--font-display);font-style:italic;font-weight:900;
+ -webkit-text-stroke:clamp(3.6px,1vw,5.2px) #111;paint-order:stroke fill;
+ line-height:1.38;text-align:center;text-wrap:balance;overflow-wrap:anywhere;white-space:normal;
+}
+#cinema[data-dialogue-tone=impact] .cinema-caption p{
+ min-height:138px;padding:28px max(33px,12%);font-size:clamp(22px,6.4vw,38px);
+}
+#cinema[data-dialogue-tone=impact] .cinema-caption p::before,
+.game-art #world-ui .dmg.shout.battle-shout::before{
+ content:'';position:absolute;inset:0;z-index:-1;
+ /* Exact blank shout cell from the approved 1536×1024 title atlas.
+    Desaturate only this layer to keep the original ink and halftones; speaker color remains above. */
+ background:url('../assets/runtime/lossless/pic/titles/brave_guy_dialogue11_惡夢超人_對話招式圖集01.webp') 50.19231% 98.30097% / 309.67742% 512.00000% no-repeat;
+ clip-path:polygon(19.03% 2.00%,19.15% 1.55%,19.35% 1.70%,27.42% 8.40%,33.27% 12.40%,33.79% 11.50%,33.27% 8.55%,33.27% 7.25%,35.89% 9.90%,38.31% 11.45%,40.32% 9.90%,45.56% 2.95%,45.75% 3.00%,45.77% 4.00%,45.38% 8.00%,45.77% 9.30%,49.60% 3.70%,49.78% 4.00%,48.79% 14.50%,48.95% 16.00%,49.40% 16.45%,53.02% 13.90%,64.31% 2.50%,64.58% 3.00%,64.54% 3.50%,63.19% 11.00%,63.51% 11.80%,65.93% 9.20%,66.11% 9.50%,65.36% 14.50%,65.36% 16.00%,65.73% 16.80%,66.94% 16.40%,69.35% 14.40%,80.85% 3.20%,81.25% 3.80%,81.27% 5.00%,79.07% 13.50%,78.91% 14.50%,79.23% 15.40%,80.65% 15.50%,82.06% 14.90%,87.30% 11.90%,95.56% 5.00%,95.97% 6.30%,95.97% 7.35%,91.29% 20.50%,89.76% 26.00%,89.35% 28.50%,89.92% 29.50%,95.97% 29.50%,96.29% 30.00%,96.17% 31.30%,91.73% 39.40%,90.60% 42.50%,91.13% 43.90%,96.83% 50.50%,96.98% 52.00%,96.39% 53.00%,92.34% 55.60%,89.31% 58.10%,88.39% 60.00%,88.67% 61.50%,92.26% 71.00%,92.14% 72.00%,91.94% 72.05%,90.12% 71.10%,89.80% 72.00%,89.88% 72.50%,94.31% 85.50%,96.09% 90.00%,96.17% 91.00%,95.97% 92.20%,95.56% 92.80%,88.31% 87.10%,81.65% 83.10%,75.40% 81.00%,74.76% 81.50%,74.64% 83.00%,76.33% 92.50%,76.01% 93.50%,66.13% 84.10%,62.90% 81.60%,62.50% 81.90%,62.30% 83.00%,62.30% 91.50%,62.50% 94.00%,62.30% 95.05%,53.63% 86.60%,50.40% 84.10%,49.19% 83.70%,46.77% 86.60%,42.54% 93.65%,42.34% 93.00%,42.74% 87.50%,42.54% 86.40%,42.14% 86.05%,38.51% 89.60%,34.07% 94.75%,34.23% 87.50%,33.67% 86.10%,32.66% 86.00%,25.60% 90.60%,19.56% 95.50%,19.33% 95.00%,19.35% 93.80%,21.94% 83.00%,21.81% 82.00%,21.37% 81.50%,19.76% 81.60%,15.32% 83.60%,11.29% 86.10%,4.46% 92.00%,3.43% 92.30%,3.02% 90.70%,3.02% 89.65%,8.19% 75.50%,7.66% 74.55%,6.45% 75.50%,6.13% 75.00%,6.13% 74.50%,8.71% 68.00%,9.19% 66.00%,8.87% 65.10%,7.66% 64.50%,6.25% 64.50%,5.65% 64.00%,1.41% 64.00%,1.01% 62.50%,1.21% 61.70%,7.66% 50.55%,7.68% 49.50%,7.26% 49.00%,7.20% 48.50%,7.86% 47.90%,8.19% 47.00%,7.86% 46.10%,3.02% 40.30%,2.42% 39.00%,2.42% 38.00%,2.62% 37.50%,7.66% 34.40%,8.67% 33.40%,9.03% 32.50%,8.51% 30.00%,7.14% 26.00%,7.46% 25.00%,8.67% 25.40%,9.03% 24.00%,7.10% 18.00%,3.71% 9.50%,3.17% 7.50%,3.23% 6.80%,3.43% 5.85%,3.83% 5.50%,8.06% 8.90%,14.11% 12.40%,16.73% 13.50%,20.16% 13.40%,20.89% 12.00%);filter:grayscale(1) contrast(1.15);
+}
+#cinema[data-dialogue-tone=impact] .cinema-caption .cinema-name{margin-bottom:-8px;z-index:2;background:#111;color:#fff;border-color:#111;box-shadow:none;text-shadow:none}
+@media(max-height:450px){
+ #cinema[data-dialogue-tone=impact] .cinema-caption{left:max(13%,var(--safe-l));right:max(13%,var(--safe-r))}
+ #cinema[data-dialogue-tone=impact] .cinema-caption p{min-height:98px;font-size:clamp(19px,3vw,28px);padding-block:19px}
+}
+.game-art #world-ui .dmg.shout.battle-shout{
+ position:absolute;width:var(--shout-width);min-height:91px;padding:18px 12%;
+ padding-inline:calc(var(--shout-width) * .12);
+ font-size:clamp(20px,5.4vw,31px);filter:drop-shadow(4px 6px 0 #111);
+ animation:battle-shout 1.35s ease-out both;
+}
+.game-art :is(#cinema,.battle-shout)[data-voice="brave"]{--voice-ink:#ffe16a}
+.game-art :is(#cinema,.battle-shout)[data-voice="angel"]{--voice-ink:#ffb9eb}
+.game-art :is(#cinema,.battle-shout)[data-voice="nightmare"]{--voice-ink:#d2a3ff}
+.game-art :is(#cinema,.battle-shout)[data-voice="incubus"]{--voice-ink:#bef482}
+.game-art :is(#cinema,.battle-shout)[data-voice="baguashe"]{--voice-ink:#f5a8e8}
+.game-art :is(#cinema,.battle-shout)[data-voice="xinji"]{--voice-ink:#ffe17c}
+.game-art :is(#cinema,.battle-shout):is([data-voice="lan"],[data-voice="lanMgr"]){--voice-ink:#b3dcff}
+.game-art :is(#cinema,.battle-shout):is([data-voice="hell"],[data-voice="ganqiaoFull"]){--voice-ink:#ffae9c}
+.game-art :is(#cinema,.battle-shout):is([data-voice="kabanKing"],[data-voice="jiamangKing"]){--voice-ink:#acf2c9}
+.game-art :is(#cinema,.battle-shout):is([data-voice="qian"],[data-voice="qianBiz"],[data-voice="guan"]){--voice-ink:#ffdc79}
+.game-art :is(#cinema,.battle-shout):is([data-voice="folaidiKing"],[data-voice="midKing"]){--voice-ink:#d0baff}
+@keyframes battle-shout{
+ 0%{transform:translate(-50%,-48%) scale(.69) rotate(-4deg);opacity:0}
+ 17%{transform:translate(-50%,-62%) scale(1.10) rotate(2deg);opacity:1}
+ 32%{transform:translate(-50%,-66%) scale(.98) rotate(-1deg)}
+ 78%{transform:translate(-50%,-78%);opacity:1}
+ 100%{transform:translate(-50%,-97%);opacity:0}
+}
+@keyframes battle-shout-fade{0%,78%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+ .game-art #world-ui .dmg.shout.battle-shout{animation-name:battle-shout-fade}
+}

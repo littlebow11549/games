@@ -1,0 +1,14 @@
+/* Game typography. Keep authored dialogue, dialogue portraits/overlays, and combo lettering intact. */
+.game-art :not(:is(
+ #dialog, #dialog *, #hud, #angel-bubble, #angel-bubble *, #world-ui,
+ #overlay, #overlay > .card, .secret-angel, .secret-angel *,
+ .taunt, .taunt *, #menu-art, #menu-bubble, #menu-bubble *,
+ #cinema, .cinema-caption, .cinema-caption *, #combo, #combo *,
+ svg, svg *, [aria-hidden="true"]:not(.dmg)
+)){
+ font-style:italic!important;
+ font-weight:800!important;
+}
+.game-art :is(h1,h2,.boss-meter-name,.banner,.dmg,.skill-cast-name,.system-lettering,.art-number):not(:is(#dialog *, .cinema-caption *, #combo *)){
+ font-weight:900!important;
+}

@@ -28,20 +28,18 @@
  font:900 italic 11px/1.05 system-ui,sans-serif;text-shadow:none;-webkit-text-stroke:0;
 }
 .game-art .quest h3 .stage-name{min-width:0;overflow-wrap:anywhere}
-.game-art #boss-name{
+.game-art #boss-bar .boss-meter-name{
  background:linear-gradient(110deg,#211926,#513044 41%,#281927);
  clip-path:polygon(9% 0,100% 0,93% 100%,0 100%);
  color:#fff1d4;text-shadow:0 2px #1d1023;box-sizing:border-box;
  font-size:13px;letter-spacing:.09em;
 }
-.game-art #boss-bar .bar{
- height:12px;background:linear-gradient(180deg,#513943 0 1px,#241724 1px 85%,#75505c 85%);
- clip-path:polygon(0 0,100% 0,98% 100%,1.5% 100%);
-}
-.game-art #boss-bar .bar i{
- inset:2px 5px;border-radius:0;
- background:linear-gradient(180deg,#ffe08e 0 20%,#ff935d 22% 62%,#be3d57 68% 100%);
-}
+.game-art #boss-bar.boss-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(55vw,600px);gap:9px}
+.game-art #boss-bar.boss-split[hidden]{display:none}
+.game-art #boss-bar.boss-split .bar{width:100%}
+.game-art #boss-bar.boss-split .boss-meter-name{display:inline-block;max-width:100%;font-size:11px;line-height:1.2;padding:5px 10px;letter-spacing:0}
+.game-art #boss-bar .boss-meter.inactive{opacity:.46}
+@media(max-width:600px) and (orientation:portrait){.game-art #boss-bar.boss-split{top:calc(218px + var(--safe-t));width:min(86vw,520px)}}
 .game-art .skill-cast-name{
  isolation:isolate;
  --cast-accent:#ffcb74;--cast-tone:#512733;
@@ -66,19 +64,49 @@
  text-shadow:0 2px #1b1427,1px 3px #1b1427;
 }
 @keyframes cast-rule{from{transform:scaleX(.25);opacity:.24}to{transform:scaleX(1);opacity:.88}}
-/* A clipped metal lip repeats the boss plate; color separates each resource. */
-.game-art .bars .bar{
- --meter-fill:linear-gradient(#ffb493 0 17%,#ec5269 22% 62%,#a12d50 70%);
- height:17px;box-sizing:border-box;border-radius:0;
- clip-path:polygon(4px 0,100% 0,calc(100% - 5px) 100%,0 100%);
- background:linear-gradient(180deg,#806170 0 1px,#221c2d 1px calc(100% - 1px),#5c495f calc(100% - 1px));
+/* Both the empty channel and its color layer use an identical slanted silhouette.
+   Only the wipe changes width; the artwork is never horizontally stretched. */
+.game-art :is(.bars,#boss-bar) .bar{
+ --meter-edge:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);
+ --meter-channel:polygon(6px 1px,calc(100% - 2px) 1px,calc(100% - 6px) calc(100% - 1px),2px calc(100% - 1px));
+ --meter-track:linear-gradient(#28212d,#17131d);
+ --meter-frame:linear-gradient(#746172 0 5%,#2c2132 24% 70%,#6c5568);
+ clip-path:var(--meter-edge);background:var(--meter-frame);border:0;border-radius:0;padding:0;
 }
-.game-art .bars .bar i{inset:2px 4px;border-radius:0;background:var(--meter-fill);filter:none;box-shadow:none}
-.game-art .bars .bar.courage i{background:linear-gradient(#e0ffbb 0 16%,#8bcc54 22% 60%,#4d9448 76%)}
-.game-art .bars .bar.guilt i{background:linear-gradient(#efd3ff 0 17%,#b177dc 24% 59%,#7b499d 77%)}
-.game-art .bars .bar.courage.burst i{background:linear-gradient(#fff1b3 0 17%,#ffa76a 26% 61%,#a65188 75%)}
+.game-art :is(.bars,#boss-bar) .bar::before,
+.game-art :is(.bars,#boss-bar) .bar i::before{
+ content:'';position:absolute;inset:0;clip-path:var(--meter-channel);pointer-events:none;
+}
+.game-art :is(.bars,#boss-bar) .bar::before{background:var(--meter-track)}
+.game-art :is(.bars,#boss-bar) .bar i{
+ inset:0;clip-path:inset(0 calc(100% - 100% * var(--charge,0)) 0 0);
+ background:none;border-radius:0;filter:none;box-shadow:none;transition:clip-path .12s;
+}
+.game-art :is(.bars,#boss-bar) .bar i::before{background:var(--meter-fill)}
+/* A short bright damage trail sits behind the real fill and shares its channel. */
+.game-art :is(.bars,#boss-bar) .bar .meter-lag{opacity:0;transition:none}
+.game-art :is(.bars,#boss-bar) .bar .meter-lag::before{
+ background:linear-gradient(#fff9d9 0 17%,#ffc46d 27% 65%,#c76a48 78%);
+}
+.game-art :is(.bars,#boss-bar) .bar.taking-damage .meter-lag{
+ opacity:1;transition:clip-path .46s .14s cubic-bezier(.28,.65,.3,1);
+}
+@media(prefers-reduced-motion:reduce){
+ .game-art :is(.bars,#boss-bar) .bar.taking-damage .meter-lag{transition:none;opacity:0}
+}
+.game-art .bars .bar{height:17px}
+.game-art .bars .bar.hp{--meter-fill:linear-gradient(#ffb493 0 17%,#ec5269 22% 62%,#a12d50 70%)}
+.game-art .bars .bar.courage{--meter-fill:linear-gradient(#e0ffbb 0 16%,#8bcc54 22% 60%,#4d9448 76%)}
+.game-art .bars .bar.guilt{--meter-fill:linear-gradient(#efd3ff 0 17%,#b177dc 24% 59%,#6f419e 77%)}
+.game-art .bars .bar.courage.burst{--meter-fill:linear-gradient(#fff1b3 0 17%,#ffa76a 26% 61%,#a65188 75%)}
+.game-art #boss-bar .bar{height:12px;--meter-fill:linear-gradient(#ffe08e 0 20%,#ff935d 23% 62%,#be3d57 68% 100%)}
+.game-art #boss-bar.boss-split .boss-meter:nth-child(2) .bar,
+.game-art #boss-bar .boss-meter[data-boss-phase="2"] .bar{
+ --meter-fill:linear-gradient(#d6c8ff 0 20%,#ab83e9 23% 65%,#6845aa 69% 100%);
+}
 .game-art .bars .bar b{line-height:17px}
 .game-art .bars .bar:not(.full,.burst)::after{display:none}
+@media(prefers-reduced-motion:reduce){.game-art :is(.bars,#boss-bar) .bar i{transition:none}}
 .game-art .ebar{
  width:32px;height:4px;margin-left:-16px;border-radius:0;
  background:#241c2c;border:0;clip-path:polygon(2px 0,100% 0,calc(100% - 2px) 100%,0 100%);

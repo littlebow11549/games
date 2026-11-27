@@ -33,21 +33,52 @@ const radial=`
  float tooth=abs(fract(ang*3.8197+.5)*2.-1.);
  vec3 dark=vec3(.022,.009,.044);
 `;
-export function dangerDisc(p,r,color){
+export function dangerDisc(p,r,color,kind='circle'){
  const edge=.94, width=2*r/edge;
+ const impact=kind==='impact';
  const m=ground(p,width,material(color,radial+`
-   float outer=ink(r-(edge-.016),.026);
-   float shell=ink(r-(edge-.023),.010);
-   float markers=(1.-smoothstep(.18,.48,tooth))*ink(r-(edge-.066),.045);
-   float inner=ink(r-edge*mix(.11,.975,phase),.011)*smoothstep(.01,.09,phase);
-   float fill=(1.-smoothstep(edge*phase-.02,edge*phase+.015,r));
-   float hatch=step(.72,fract((p.x+p.y)*12.))*step(r,edge-.034);
-   float clock=step(fract(ang/6.28318+.5),phase)*shell;
-   float glow=max(shell*.56,max(inner*.91,max(markers*.92,clock)));
-   vec3 rgb=mix(dark,mix(tone,vec3(1.,.94,.81),glow*.9),clamp(glow*1.55,0.,1.));
-   float a=max(outer*.85,max(markers*.83,max(inner*.92,fill*.24+hatch*.13)));
+   float rim=edge-r;
+   float inside=smoothstep(0.,.012,rim);
+   float outline=ink(rim-.030,.030);
+   float rail=ink(rim-.023,.010);
+   float clock=step(fract(ang/6.28318+.25),phase)*rail;
+   float hatch=(1.-smoothstep(.08,.22,abs(fract((p.x+p.y)*13.)-.5)))*smoothstep(.52,.79,r);
+   float ticks=(1.-smoothstep(.13,.39,tooth))*ink(rim-.099,.041);
+   float charge=1.-smoothstep(.015,.052,r-edge*phase);
+   ${impact?`
+   // Landing target: an unmistakable cross and inward cardinal brackets.
+   float arm=1.-smoothstep(.014,.035,min(abs(p.x),abs(p.y)));
+   float brackets=arm*(smoothstep(.49,.57,r)-smoothstep(.76,.83,r));
+   float target=max(ink(r-.21,.016),arm*(smoothstep(.03,.055,r)-smoothstep(.14,.19,r)));
+   float glyph=max(brackets*.86,target*.88)*(.62+phase*.38);
+   `:`
+   // Area danger: progress sweeps on the rim; the centre has no target mark.
+   float glyph=ticks*.65;
+   `}
+   float gleam=max(rail*.68,max(clock,glyph));
+   vec3 rgb=mix(mix(dark,tone,.36),mix(tone,vec3(1.,.96,.86),.83),gleam);
+   float a=inside*max(outline*.9,max(glyph,max(.15+charge*.22,hatch*.29)));
  `,1,edge),.15);
- m.name='Boss | timed ground warning';return m;
+ m.name=impact?'Boss | landing impact target':'Boss | timed ground warning';return m;
+}
+export function dangerLane(from,to,width,color){
+ const dx=to.x-from.x,dz=to.z-from.z,len=Math.hypot(dx,dz);
+ if(len<.025)return null;
+ const m=new THREE.Mesh(new THREE.PlaneGeometry(width,len),material(color,`
+   float x=abs(art.x*2.-1.),y=1.-art.y;
+   float rail=ink(x-.94,.021),cap=ink(min(y,1.-y)-.016,.010);
+   float pulse=1.-smoothstep(.016,.043,abs(y-phase));
+   float v=fract(y*6.);
+   float arrow=ink(v-(.63-x*.32),.046)*(1.-smoothstep(.49,.68,x));
+   arrow*=smoothstep(.02,.065,y)*(1.-smoothstep(.935,.98,y));
+   float glow=max(max(rail,cap)*.83,arrow*(.55+pulse*.35));
+   vec3 rgb=mix(mix(vec3(.027,.009,.043),tone,.38),mix(tone,vec3(1.,.96,.86),.85),glow);
+   float a=max(max(rail,cap)*.88,max(arrow*.79,.17+.18*pulse));
+ `));
+ m.name='Boss | fixed lane warning';
+ m.rotation.x=-Math.PI/2;m.rotation.z=Math.atan2(dx,dz);
+ m.position.set((from.x+to.x)/2,.176,(from.z+to.z)/2);
+ return m;
 }
 export const impactWaveShape=Object.freeze({worldScale:2.20,edge:.871});
 export function outwardWave(p,r,color){

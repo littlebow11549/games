@@ -1,5 +1,5 @@
 import { disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
-import { createNightmareDrone, createNightmareWave, nightmareShotAim } from './nightmare-drone-art.js?v=20261127qspirit';
+import { createNightmareDrone, createNightmareWave, nightmareShotAim } from './nightmare-drone-art.js?v=20261127cleancues';
 import { createRoyalArsenal } from './royal-arsenal.js?v=20261127combatfinal';
 import { angelText, angelFont } from './angel-language.js?v=20261120assets';
 import { createAngelIceFx } from './angel-ice-fx.js?v=20261127icebloom';
@@ -20,7 +20,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
   geometries.forEach(g=>g?.dispose());materials.forEach(disposeProjectileMaterial);
  }; // Sprite geometry is shared by Three; never dispose it.
  const orb=(color,size=.35)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(size,10,8),new THREE.MeshBasicMaterial({color}));scene.add(m);return m};
- const textMesh=raw=>{const text=angelText(raw);const cv=document.createElement('canvas');cv.width=512;cv.height=128;const c=cv.getContext('2d');c.font=`900 64px ${angelFont()}`;const size=Math.min(64,64*480/Math.max(1,c.measureText(text).width));c.font=`900 ${size}px ${angelFont()}`;c.textAlign='center';c.textBaseline='middle';c.lineWidth=10;c.strokeStyle='#4e194c';c.strokeText(text,256,64);c.fillStyle='#fff4b4';c.fillText(text,256,64);const texture=new THREE.CanvasTexture(cv);const m=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,depthWrite:false}));m.scale.set(5,1.25,1);m.userData.text=text;scene.add(m);return m};
+ const textMesh=raw=>{const text=angelText(raw);const cv=document.createElement('canvas');cv.width=512;cv.height=128;const c=cv.getContext('2d');c.font=`italic 900 64px ${angelFont()}`;const size=Math.min(64,64*460/Math.max(1,c.measureText(text).width));c.font=`italic 900 ${size}px ${angelFont()}`;c.textAlign='center';c.textBaseline='middle';c.lineWidth=10;c.strokeStyle='#4e194c';c.strokeText(text,256,64);c.fillStyle='#fff4b4';c.fillText(text,256,64);const texture=new THREE.CanvasTexture(cv);const m=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,depthWrite:false}));m.scale.set(5,1.25,1);m.userData.text=text;scene.add(m);return m};
  function bolt(pos,dir,{text=null,mult=1,src='combo',life=1.1,speed=22,scale=1,wave=false,piercing=false}={}){
   const mesh=wave?createNightmareWave(dir):text?textMesh(text):orb(0xb55cff);
   if(wave)scene.add(mesh);
@@ -73,7 +73,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
      for(const nearby of targets())if(nearby!==e&&nearby.pos.distanceTo(impactPos)<3.6+nearby.def.radius)hit(nearby,.9,{src:'ult',from:impactPos,kb:7,launch:3,heavy:true});
      fx.releaseWave?.(impactPos,3.6,0xc1ff6b,.33);fx.burst(impactPos,0xbc7aff,7,6,.3,.2);
     },fx,audio});casts.push({kind:'arsenal',life:10,ult:true,arsenal,nodes:arsenal.nodes});audio.sfx('beam_start');}
-   else{const ult=false,count=5;casts.push({kind:'drones',life:ult?10:5,tick:0,ult,src:name,nodes:Array.from({length:count},()=>{const m=createNightmareDrone(scene);m.position.copy(from);m.position.y=2.3;return m})});fx.releaseWave?.(from,3.5,0xb577f8,.36);audio.sfx('ki_shot');}
+   else{const count=5;casts.push({kind:'drones',life:10,age:0,nextShot:2,src:name,nodes:Array.from({length:count},()=>{const m=createNightmareDrone(scene);m.position.copy(from);m.position.y=2.3;m.userData.aim=direction(hero.yaw);return m})});fx.releaseWave?.(from,3.5,0xb577f8,.36);audio.sfx('ki_shot');}
   }
  }
  // Body exclusion only: ranged projectiles and damage remain governed by normal rules.
@@ -125,20 +125,20 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
       const a=c.life*1.4+k*Math.PI*2/c.nodes.length,center=target?target.pos:hero.pos,r=target?2.8:2.3;
       const goal=new THREE.Vector3(center.x+Math.cos(a)*r,2.3+Math.sin(a*2)*.3,center.z+Math.sin(a)*r);
       const delta=goal.sub(m.position),distance=delta.length();if(distance)m.position.addScaledVector(delta,Math.min(1,18*elapsed/distance));
-      const aim=nightmareShotAim(m.position,target?target.pos:hero.pos);
-      m.rotation.y=aim?Math.atan2(aim.x,aim.z):a;
+      if(target){const aim=nightmareShotAim(m.position,target.pos);if(aim)m.userData.aim=aim;}
+      m.rotation.y=Math.atan2(m.userData.aim.x,m.userData.aim.z);
       m.rotation.z=Math.sin(a*2)*.13;m.userData.advanceSpirit(elapsed);
     });
-    if(c.tick<=0){
-     c.tick=c.ult?.6:.65;let fired=false;
+    c.age+=elapsed;
+    // Five volleys, including the t=10 volley immediately before the spirits leave.
+    while(c.nextShot<=10&&c.age+1e-8>=c.nextShot){
+     c.nextShot+=2;
      for(const m of c.nodes){
-      const e=m.userData.target;if(!e||m.position.distanceTo(e.pos)>8)continue;
-      const d=nightmareShotAim(m.position,e.pos);if(!d)continue;
-      m.rotation.y=Math.atan2(d.x,d.z);
-      bolt(m.position,d,{wave:true,mult:c.ult?1.2:1.1,src:c.src,life:3,speed:30});
-      fired=true;
+      const d=m.userData.aim;
+      const origin=m.position.clone().addScaledVector(d,.36);
+      bolt(origin,d,{wave:true,mult:1.1,src:c.src,life:3,speed:30});
      }
-     if(fired)audio.sfx('ki_shot');
+     audio.sfx('ki_shot');
     }
    }
    if(c.life<=0){if(c===barrierCast)barrierCast=null;if(c.barrier)dispose(c.barrier);if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);casts.splice(i,1);}
@@ -151,6 +151,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
     continue;
    }
    const before=b.mesh.position.clone();b.mesh.position.addScaledVector(b.vel,dt);
+
    if(b.mult){const a=before,bp=b.mesh.position,dx=bp.x-a.x,dz=bp.z-a.z,l=dx*dx+dz*dz||1;for(const e of boltTargets){if(!valid(e)||b.hit.has(e))continue;const t=Math.max(0,Math.min(1,((e.pos.x-a.x)*dx+(e.pos.z-a.z)*dz)/l));if(Math.hypot(e.pos.x-a.x-t*dx,e.pos.z-a.z-t*dz)<e.def.radius+.65){damage(e,b.mult,b.src,0,0xb891ff,before);b.hit.add(e);if(!b.piercing){
     if(b.wave){b.mesh.position.lerp(before,1-t);b.life=.10;b.spent=1;}
     else b.life=0;

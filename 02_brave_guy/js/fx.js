@@ -1,4 +1,4 @@
-import {dangerDisc,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127stagefx';
+import {dangerDisc,dangerLane,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127ready';
 import {impactProfile,impactFrames,impactAngle} from './impact-art.js?v=20261127artdirection';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
@@ -141,9 +141,14 @@ export class Fx {
   }
 
   // Ground warning bounds remain fixed; timing follows the game's simulation.
-  telegraph(pos, radius, life, color = 0xff3b30) {
-    const m=dangerDisc(pos,radius,color);
+  telegraph(pos, radius, life, color = 0xff3b30, kind = 'circle') {
+    const m=dangerDisc(pos,radius,color,kind);
     return this.add(m,life,k=>{m.material.uniforms.phase.value=k;});
+  }
+
+  laneTelegraph(from, to, width, color, life) {
+    const m=dangerLane(from,to,width,color);
+    return m ? this.add(m,life,k=>{m.material.uniforms.phase.value=k;}) : null;
   }
 
   releaseWave(pos,radius,color=0xffa949,life=.5) {

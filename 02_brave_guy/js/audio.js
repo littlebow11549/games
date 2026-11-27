@@ -3,7 +3,10 @@ const MUTE_KEY = 'game02.muted';
 // Keep the startup network free for artwork; rare/large tracks remain on demand.
 const WARM_SFX = ['ui', 'ui_confirm', 'stage_select', 'dialog_next', 'student_punch',
   'swing', 'hit', 'crit', 'punch_1', 'punch_2', 'punch_3', 'dodge', 'hurt',
-  'lock_switch', 'spawn', 'boss_ko'];
+  'lock_switch', 'spawn', 'shoot', 'enemy_fly', 'enemy_down', 'boss_ko'];
+const FILE_ONLY_CUES = new Set(['dialog_next', 'spawn', 'shoot', 'enemy_shot', 'enemy_fly',
+  'enemy_down', 'mask_off', 'boss_appear', 'boss_warn', 'boss_slam']);
+const MAX_MONSTER_DEATH_VOICES = 2;
 
 export class GameAudio {
   constructor(manifest) {
@@ -14,6 +17,7 @@ export class GameAudio {
     this.bgmLoads = new Map();
     this.sfxLoading = new Map();
     this.sfxFailed = new Set();
+    this.monsterDeathVoices = new Set();
     this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.crowdVoices=new Set(); this.celebrationEpoch=0;
     this.loops = new Map(); this.loopRequests = new Map(); this.duck = 1;
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
@@ -51,6 +55,11 @@ export class GameAudio {
     if (this.sfxWarmup || this.muted || !this.ctx) return this.sfxWarmup;
     const jobs = WARM_SFX.flatMap(name => {
       const source = this.sfxTracks[name];
+      // Warm just the shortest approved monster death cue (variant 3 in the catalog).
+      if(name==='enemy_down' && Array.isArray(source)) {
+        const i=source.length>2 ? 2 : 0;
+        return source[i] ? [[`${name}:${i}`, source[i]]] : [];
+      }
       return Array.isArray(source) ? source.map((url,i) => [`${name}:${i}`, url]) :
         source ? [[name, source]] : [];
     });
@@ -218,21 +227,31 @@ export class GameAudio {
     return promise;
   }
 
-  sfx(name) {
+  sfx(name, { sampleOnly = false } = {}) {
     if (this.muted) return;
     const now=this.ctx?.currentTime;
+    const monsterDeath=name==='enemy_down';
+    if(monsterDeath && this.monsterDeathVoices.size>=MAX_MONSTER_DEATH_VOICES)return;
     const gap={dialog_next:.08,spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.1,crit:.1,boss_ko:.6,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
     const rateKey = name==='hit'||name==='crit' ? 'impact' : name;
     if(Number.isFinite(now)){if(now-(this.sfxLast.get(rateKey)??-Infinity)<gap)return;this.sfxLast.set(rateKey,now);}
-    let source=this.sfxTracks[name],cacheKey=name;
-    if(Array.isArray(source)){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%source.length);cacheKey=`${name}:${i}`;source=source[i];}
+    const fileOnly=sampleOnly || FILE_ONLY_CUES.has(name);
+    const variants=Array.isArray(this.sfxTracks[name]) ? this.sfxTracks[name] : null;
+    let source=variants ? null : this.sfxTracks[name],cacheKey=name;
+    if(variants?.length){const i=this.sfxVariants.get(name)||0;this.sfxVariants.set(name,(i+1)%variants.length);cacheKey=`${name}:${i}`;source=variants[i];}
     if (source && this.ctx && this.master) {
-      const buffer = this.sfxBuffers.get(cacheKey);
+      const loadingVariant = fileOnly && variants;
+      let buffer = this.sfxBuffers.get(cacheKey);
+      if(!buffer && loadingVariant) {
+        this.loadSfx(cacheKey,this.resolve(source));
+        buffer=variants.map((_,i)=>this.sfxBuffers.get(`${name}:${i}`)).find(Boolean);
+      }
       if (buffer) {
         if(this.voices.size>=16){const oldest=this.voices.values().next().value;oldest.stop?.();this.voices.delete(oldest);}
         const player=this.ctx.createBufferSource();player.buffer=buffer;player.connect(this.master);this.voices.add(player);
+        if(monsterDeath)this.monsterDeathVoices.add(player);
         if(name==='applause'||name==='crowd_cheer'||name==='victory_human_cheer')this.crowdVoices.add(player);
-        player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);};player.start();return;
+        player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);this.monsterDeathVoices.delete(player);};player.start();return;
       }
       if(name==='victory_human_cheer'||name==='boss_ko') {
         const epoch=this.celebrationEpoch;
@@ -241,11 +260,12 @@ export class GameAudio {
         });
         return;
       }
-      this.loadSfx(cacheKey,this.resolve(source));
+      if(!loadingVariant)this.loadSfx(cacheKey,this.resolve(source));
     }
     if(name==='victory_human_cheer'||name==='boss_ko')return; // Recorded voice only: never substitute a synthesized cue.
+    if(fileOnly)return;
     if(['hit','crit','swing'].includes(name)&&this.sfxTracks[name])return;
-    if(name==='stage_select'||name==='dialog_next'||name==='win'){this.cleanUiCue(name);return;}
+    if(name==='stage_select'||name==='win'){this.cleanUiCue(name);return;}
     const basic=['swing','hit','crit','boom','hurt','skill','dodge','shoot','ui','win','lose'];
     const fallback=basic.includes(name)?name:/burst|slam|quake|blast|done|reveal|beam_end/.test(name)?'boom':/punch|kick|fly|fan/.test(name)?'swing':/hurt|guilt/.test(name)?'hurt':/full|beam|charge|revive|combo/.test(name)?'skill':'ui';
     this.syntheticSfx(fallback);
@@ -254,7 +274,7 @@ export class GameAudio {
   // Match the PCM cues even on the first click before audio files finish loading.
   cleanUiCue(name) {
     if(!this.ctx || !this.master)return;
-    const combat={dialog_next:[[0,420,.085,.10],[0,1159,.05,.012]],lose:[[0,392,.18,.17],[.10,330,.20,.15],[.20,262,.25,.12]],swing:[[0,330,.16,.20]],hit:[[0,130,.15,.35],[.01,520,.06,.10]],crit:[[0,110,.22,.40],[.01,440,.08,.12]],boom:[[0,65,.40,.40],[.02,130,.25,.15]],hurt:[[0,196,.17,.22]],skill:[[0,440,.18,.20],[.07,660,.22,.16]],dodge:[[0,330,.14,.16]],shoot:[[0,660,.13,.18]],ui:[[0,587.330,.105,.12]]};
+    const combat={lose:[[0,392,.18,.17],[.10,330,.20,.15],[.20,262,.25,.12]],swing:[[0,330,.16,.20]],hit:[[0,130,.15,.35],[.01,520,.06,.10]],crit:[[0,110,.22,.40],[.01,440,.08,.12]],boom:[[0,65,.40,.40],[.02,130,.25,.15]],hurt:[[0,196,.17,.22]],skill:[[0,440,.18,.20],[.07,660,.22,.16]],dodge:[[0,330,.14,.16]],shoot:[[0,660,.13,.18]],ui:[[0,587.330,.105,.12]]};
     const notes=combat[name] || (name==='win'?[[0,523.251,.22,.17],[.10,659.255,.22,.15],[.20,783.991,.24,.14],[.32,1046.502,.32,.12]]:name==='stage_select'?[[0,659.255,.15,.19],[.075,987.767,.20,.16]]:[[0,587.330,.105,.12]]);
     for(const [delay,frequency,duration,volume] of notes){
       const start=this.ctx.currentTime+delay,osc=this.ctx.createOscillator(),gain=this.ctx.createGain();

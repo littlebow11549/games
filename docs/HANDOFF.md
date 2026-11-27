@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 勇氣超人雙血條、粗斜體、惡夢 3D 浮游炮、過場與怪潮（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-qa-audio-and-boss.md)。
+
 - 2026-11-27 小天使五瓣冰陣、圓形鎖定鍵與綠金視角鍵（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-ice-bloom-controls.md)。
 
 - 2026-11-27 依參考圖重畫琉璃雪花陣、改用 Q 版惡夢浮游炮（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-frost-sigil-q-spirit.md)。

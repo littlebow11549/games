@@ -14,4 +14,9 @@ test('a Nightmare shot is a forward-facing wave with one fixed flat launch headi
  const heading=new THREE.Vector3(0,0,1).applyQuaternion(m.quaternion);
  assert(heading.distanceTo(aim)<.00001);
  assert.equal(m.children.length,2);
+ const {geometry,material}=m.children[0];
+ assert.equal(geometry.parameters.height,4.25);
+ assert.equal(geometry.parameters.width,1.82);
+ assert.match(material.fragmentShader,/float bevel=/);
+ assert.doesNotMatch(material.fragmentShader,/\bpip\b|vec3\(\.73,1\.,\.33\)/);
 });

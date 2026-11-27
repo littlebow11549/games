@@ -96,6 +96,10 @@ body.in-cinematic #hud,body.in-cinematic #world-ui,body.in-cinematic #dialog{vis
 #cinema[data-act=credits] .cinema-credits h2,#cinema[data-act=credits] .cinema-credits strong{color:#fff}
 #cinema[data-act=credits] .cinema-credits p{display:flex;justify-content:space-between;margin:17px 0;font-size:14px}
 #cinema[data-act=credits] .cinema-credits .credits-thanks{display:block;border:0;text-align:center}
-#cinema.awakening-impact .picture-film{animation:ascension-shock .7s ease-out both}
-@keyframes ascension-shock{0%{transform:scale(1.07) translateX(-8px)}15%{transform:scale(1.05) translateX(8px)}35%{transform:scale(1.03) translate(-5px,4px)}60%{transform:translate(3px,-2px)}100%{transform:none}}
-@media(prefers-reduced-motion:reduce){#cinema.awakening-impact .picture-film{animation:none}#cinema[data-act=credits] .cinema-credits{top:15%;will-change:auto}}
+@media(prefers-reduced-motion:reduce){#cinema[data-act=credits] .cinema-credits{top:15%;will-change:auto}}
+/* Reserve the short landscape screen for the complete final-boss illustration. */
+@media (orientation:landscape) and (max-height:450px){
+ #cinema[data-art-ready=true]:is([data-mode=awakening],[data-mode=firststrike]) .cinema-caption{left:12%;right:12%;bottom:max(24px,8%)}
+ #cinema[data-art-ready=true][data-mode=awakening] .cinema-name{font-size:16px;padding:3px 12px}
+ #cinema[data-art-ready=true][data-mode=awakening] .cinema-caption p{min-height:74px;padding:14px 26px;font-size:16px}
+}

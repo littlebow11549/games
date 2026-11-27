@@ -35,7 +35,7 @@ export function createBossStoryboard(root,audioProvider){
   if(root.dataset.beat!==String(beat))root.dataset.beat=String(beat);const shot=beat===2?'hold':'reveal';if(root.dataset.shot!==shot)root.dataset.shot=shot;
   // Fire only cues crossed this frame. A skip/large seek never dumps old cues together.
   const due=d.cues.filter(([at],i)=>!fired.has(i)&&at<=time&&at>previous);
-  for(const [at,sound] of due){const i=d.cues.findIndex(c=>c[0]===at&&c[1]===sound);fired.add(i);if(time-at<.2||previous<0&&at===0)audioProvider()?.sfx(sound);}
+  for(const [at,sound] of due){const i=d.cues.findIndex(c=>c[0]===at&&c[1]===sound);fired.add(i);if(time-at<.2||previous<0&&at===0)audioProvider()?.sfx(sound,{sampleOnly:true});}
   previous=time;
   const list=images(key),im=list[list.length===1?0:beat];if(!im.complete||!im.naturalWidth){canvas.hidden=true;root.dataset.artReady='false';return;}
   canvas.hidden=false;if(root.dataset.artReady!=='true')root.dataset.artReady='true';

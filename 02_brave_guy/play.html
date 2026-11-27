@@ -15,15 +15,15 @@
 <link rel="stylesheet" href="css/hud-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/transform-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/system-art.css?v=20261120castfix">
-<link rel="stylesheet" href="css/cinematics.css?v=20261120assets">
+<link rel="stylesheet" href="css/cinematics.css?v=20261127finalcrop">
 <link rel="stylesheet" href="css/opening.css?v=20261120assets">
 <link rel="modulepreload" href="vendor/three/three.module.min.js">
-<link rel="modulepreload" href="js/main.js?v=20261127zoomswap">
+<link rel="modulepreload" href="js/main.js?v=20261127damagefall">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
-<link rel="modulepreload" href="js/fx.js?v=20261127stagefx">
+<link rel="modulepreload" href="js/fx.js?v=20261127ready">
 <link rel="modulepreload" href="js/input.js?v=20261127joystick">
-<link rel="modulepreload" href="js/audio.js?v=20261120castfix">
+<link rel="modulepreload" href="js/audio.js?v=20261127ready">
 <link rel="modulepreload" href="js/story.js?v=20261120assets">
 <link rel="preload" href="assets/fonts/brave_guy_font01_huninn-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
@@ -37,7 +37,9 @@
 <link rel="stylesheet" href="css/playable-roster.css?v=20261120bursticon">
 <link rel="stylesheet" href="css/character-art.css?v=20261127dialog">
 <link rel="stylesheet" href="css/stage-art.css?v=20261127zoomskin">
-<link rel="stylesheet" href="css/battle-presentation.css?v=20261127lockvector">
+<link rel="stylesheet" href="css/battle-presentation.css?v=20261127damagefall">
+<link rel="stylesheet" href="css/game-typography.css?v=20261127bolditalic">
+<link rel="stylesheet" href="css/impact-dialogue.css?v=20261127upperink">
 </head>
 <body class="game-art">
 <section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit" aria-hidden="true"></div><h1 class="boot-brand"><img id="boot-logo" src="assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy" fetchpriority="high"></h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
@@ -48,7 +50,7 @@
   <div class="hud-top-left">
     <div class="portrait" id="portrait"></div>
     <div class="bars">
-      <div class="bar hp"><i id="hp-fill"></i><b id="hp-text"></b></div>
+      <div class="bar hp"><i class="meter-lag" aria-hidden="true"></i><i id="hp-fill"></i><b id="hp-text"></b></div>
       <div class="bar courage" id="courage"><i id="courage-fill"></i><b data-i18n="勇氣">勇氣</b></div>
       <div class="bar guilt" id="guilt"><i id="guilt-fill"></i><b data-i18n="罪惡感">罪惡感</b></div>
     </div>
@@ -77,8 +79,12 @@
 
 
   <div class="boss-bar" id="boss-bar" hidden>
-    <span id="boss-name"></span>
-    <div class="bar boss"><i id="boss-fill"></i></div>
+    <section class="boss-meter"><span id="boss-name" class="boss-meter-name"></span>
+      <div class="bar boss" role="meter" aria-labelledby="boss-name" aria-valuemin="0" aria-valuemax="100"><i class="meter-lag" aria-hidden="true"></i><i id="boss-fill"></i></div>
+    </section>
+    <section class="boss-meter" hidden><span id="boss-name-2" class="boss-meter-name"></span>
+      <div class="bar boss" role="meter" aria-labelledby="boss-name-2" aria-valuemin="0" aria-valuemax="100"><i class="meter-lag" aria-hidden="true"></i><i></i></div>
+    </section>
   </div>
 
   <div id="banner" class="banner"></div>
@@ -200,7 +206,7 @@
   window.__progress(3, '開始讀取');
   var entry = document.createElement('script');
   entry.type = 'module';
-  entry.src = 'js/main.js?v=20261127zoomswap';
+  entry.src = 'js/main.js?v=20261127damagefall';
   entry.onerror = function () {
     window.__fail(['遊戲程式載入失敗，請重新載入。','The game failed to load. Please retry.','ゲームを読み込めませんでした。再読み込みしてください。'][language]);
   };

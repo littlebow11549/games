@@ -40,14 +40,21 @@ test('loaded SFX uses cache and supports overlapping playback', async () => {
   const previous = globalThis.fetch;
   globalThis.fetch = async () => { h.inc(); return { ok: true, arrayBuffer: async () => new ArrayBuffer(4) }; };
   try {
+    h.g.ctx.currentTime = 0;
     h.g.sfx('hit');
+    h.g.ctx.currentTime = .11;
     h.g.sfx('hit');
-    assert.deepEqual(h.played, ['fallback:hit', 'fallback:hit']);
+    // The project's approved impact is sample-only: don't substitute a different impact.
+    assert.deepEqual(h.played, []);
     await h.g.sfxLoading.get('hit');
+    h.g.ctx.currentTime = .22;
     h.g.sfx('hit');
+    h.g.sfx('hit'); // same-frame impact is still suppressed
+    h.g.ctx.currentTime = .33;
     h.g.sfx('hit');
     assert.equal(h.fetchCount, 1);
-    assert.deepEqual(h.played.slice(2), ['file', 'file']);
+    assert.deepEqual(h.played, ['file', 'file']);
+    assert.equal(h.g.voices.size, 2);
   } finally { globalThis.fetch = previous; }
 });
 
@@ -107,7 +114,7 @@ test('user recording stops when leaving celebration',()=>{
 });
 
 test('clean cues work before files load, use silent edges and respect mute', () => {
-  for (const [name, expected] of [['stage_select',2], ['dialog_next',2], ['win',4], ['hit',2]]) {
+  for (const [name, expected] of [['stage_select',2], ['win',4], ['hit',2]]) {
     const audio = new GameAudio({});
     let starts = 0, disconnected = 0;
     const envelopes = [];
@@ -143,7 +150,7 @@ test('leaving victory cancels pending recorded cheer', async()=>{
 });
 
 test('startup warms common sound only, limits background work, and skips muted sessions',async()=>{
- const {g}=harness({ui:'ui.mp3',ui_confirm:'confirm.mp3',hit:['a.mp3','b.mp3'],boss_ko:'ko.mp3',victory_human_cheer:'heavy.mp3'});
+ const {g}=harness({ui:'ui.mp3',ui_confirm:'confirm.mp3',hit:['a.mp3','b.mp3'],boss_ko:'ko.mp3',victory_human_cheer:'heavy.mp3',enemy_down:['long.wav','long2.wav','short.wav','long3.wav']});
  const names=[];let active=0,max=0;
  g.loadSfx=async name=>{names.push(name);++active;max=Math.max(max,active);await new Promise(setImmediate);--active;};
  g.muted=true;
@@ -154,5 +161,37 @@ test('startup warms common sound only, limits background work, and skips muted s
  assert.equal(g.preloadSfx(),pending);
  await pending;
  assert.equal(max,2);
- assert.deepEqual(names.sort(),['boss_ko','hit:0','hit:1','ui','ui_confirm']);
+ assert.deepEqual(names.sort(),['boss_ko','enemy_down:2','hit:0','hit:1','ui','ui_confirm']);
+});
+
+
+test('enemy and cutscene cues never turn into a generic tone while files load or fail', async () => {
+  const h = harness({ enemy_down:['down0.wav','down1.wav'], spawn:'spawn.mp3', dialog_next:'click.wav', notify:'notify.wav' });
+  const previousFetch = globalThis.fetch, previousWarn = console.warn;
+  console.warn = () => {};
+  globalThis.fetch = async url => {
+    if (url.startsWith('spawn')) throw new Error('offline');
+    return { ok:true, arrayBuffer:async()=>new ArrayBuffer(4) };
+  };
+  try {
+    h.g.sfx('enemy_down'); h.g.sfx('spawn'); h.g.sfx('dialog_next'); h.g.sfx('notify', { sampleOnly:true });
+    assert.deepEqual(h.played, []);
+    await Promise.all(h.g.sfxLoading.values());
+    h.g.sfx('enemy_down'); // variant 1 is cold; use decoded variant 0, never a tone
+    h.g.sfx('spawn'); h.g.sfx('dialog_next'); h.g.sfx('notify', { sampleOnly:true });
+    assert.deepEqual(h.played, ['file','file','file']);
+    await Promise.all(h.g.sfxLoading.values());
+  } finally { globalThis.fetch = previousFetch; console.warn = previousWarn; }
+});
+
+test('monster death layers stay bounded during swarms without stealing player impacts', () => {
+  const {g} = harness({enemy_down:'down.wav',hit:'hit.wav'});
+  g.sfxBuffers.set('enemy_down','death');g.sfxBuffers.set('hit','impact');
+  const nodes = [];
+  g.ctx.createBufferSource=()=>({ connect(){}, disconnect(){}, start(){nodes.push(this);}, stop(){this.stopped=true;this.onended();} });
+  g.ctx.currentTime=0;g.sfx('hit');
+  for(let i=1;i<=5;i++){g.ctx.currentTime=i*.2;g.sfx('enemy_down');}
+  assert.equal(nodes.filter(node=>node.buffer==='death'&&!node.stopped).length,2);
+  assert.equal(g.voices.size,3);
+  assert.equal(nodes[0].stopped,undefined);
 });

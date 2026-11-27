@@ -14,7 +14,7 @@ export function prepareStageArt(id){
    await campus.prepareCampus();
    return {...campus,...fx};
   }
-  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127stagefx'),import('./story-quality-paint.js?v=20261127stagefx')]);
+  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127ready'),import('./story-quality-paint.js?v=20261127stagefx')]);
   await paint.prepareStoryPaint(id);
   return story;
  })().then(pack=>{prepared.set(id,pack);return pack;}).finally(()=>pending.delete(id));

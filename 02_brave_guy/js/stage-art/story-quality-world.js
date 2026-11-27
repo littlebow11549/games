@@ -9,7 +9,7 @@ import {addOfficeProps} from './story-office-props.js';
 import {addFinaleProps} from './story-finale-props.js';
 import {makeQualityKit} from './story-quality-kit.js?v=20261127scenes';
 import {paintArtStage} from './story-quality-paint.js?v=20261127stagefx';
-import {addStoryAmbient} from './story-ambient.js?v=20261127artdirection';
+import {addStoryAmbient} from './story-ambient.js?v=20261127ready';
 export const STORY_QUALITY=Object.freeze({...SCHOOL_QUALITY,...OFFICE_QUALITY,...FINALE_QUALITY});
 
 function detachShell(world,sun){

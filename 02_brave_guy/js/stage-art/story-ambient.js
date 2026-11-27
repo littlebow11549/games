@@ -54,28 +54,70 @@ function texture(T,type){
  }
  const tex=new T.CanvasTexture(cv);tex.colorSpace=T.SRGBColorSpace;return tex;
 }
+export function makeAmbientBatch(T,root,tex,color,count,type){
+ const base=new T.PlaneGeometry(1,1),geometry=new T.InstancedBufferGeometry();
+ geometry.setIndex(base.index);geometry.setAttribute('position',base.attributes.position);geometry.setAttribute('uv',base.attributes.uv);
+ base.dispose();
+ const center=new T.InstancedBufferAttribute(new Float32Array(count*3),3).setUsage(T.DynamicDrawUsage);
+ const shape=new T.InstancedBufferAttribute(new Float32Array(count*4),4).setUsage(T.DynamicDrawUsage);
+ geometry.setAttribute('ambientCenter',center);geometry.setAttribute('ambientShape',shape);geometry.instanceCount=count;
+ const material=new T.ShaderMaterial({
+  transparent:true,depthWrite:false,fog:true,
+  uniforms:{...T.UniformsUtils.clone(T.UniformsLib.fog),atlas:{value:tex},tint:{value:new T.Color(color)}},
+  vertexShader:`attribute vec3 ambientCenter;
+   attribute vec4 ambientShape;
+   varying vec2 spriteUv;
+   varying float spriteAlpha;
+   #include <fog_pars_vertex>
+   void main(){
+    spriteUv=uv;spriteAlpha=ambientShape.z;
+    vec2 p=position.xy*ambientShape.xy;
+    float s=sin(ambientShape.w),c=cos(ambientShape.w);
+    vec4 mvPosition=modelViewMatrix*vec4(ambientCenter,1.);
+    mvPosition.xy+=vec2(c*p.x-s*p.y,s*p.x+c*p.y);
+    gl_Position=projectionMatrix*mvPosition;
+    #include <fog_vertex>
+   }`,
+  fragmentShader:`uniform sampler2D atlas;
+   uniform vec3 tint;
+   varying vec2 spriteUv;
+   varying float spriteAlpha;
+   #include <fog_pars_fragment>
+   void main(){
+    vec4 texel=texture2D(atlas,spriteUv);
+    float a=texel.a*spriteAlpha;
+    if(a<.004)discard;
+    gl_FragColor=vec4(texel.rgb*tint,a);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
+    #include <fog_fragment>
+   }`
+ });
+ const mesh=new T.Mesh(geometry,material);mesh.name='Ambient batch | '+type;mesh.frustumCulled=false;root.add(mesh);
+ return {
+  set(i,x,y,z,sx,sy,a,rotation){center.setXYZ(i,x,y,z);shape.setXYZW(i,sx,sy,a,rotation);},
+  commit(){center.needsUpdate=true;shape.needsUpdate=true;},
+  dispose(){root.remove(mesh);geometry.dispose();material.dispose();}
+ };
+}
 export function addStoryAmbient(T,root,d){
- const particles=[],texBy=new Map(),released=[];
+ const particles=[],batches=[];let anchor='';
  let t=0,s=Number(d.id.replace('-',''))+195;
  const rand=()=>((s=(s*1664525+1013904223)>>>0)/4294967296);
  for(const [type,n,x,z] of FX[d.id]){
   const [color,opa,speed]=themes[type];
-  if(!texBy.has(type))texBy.set(type,texture(T,type));
-  for(let i=0;i<n;i++){
-   const mat=new T.SpriteMaterial({color,map:texBy.get(type),opacity:opa,transparent:true,depthWrite:false});
-   const sprite=new T.Sprite(mat);sprite.name='Ambient '+type;
-   root.add(sprite);released.push(mat);
-   particles.push({type,x,z,sprite,opa,speed,seed:rand(),a:rand(),b:rand(),c:rand()});
-  }
+  const tex=texture(T,type),batch=makeAmbientBatch(T,root,tex,color,n,type);
+  batches.push({tex,batch});
+  for(let i=0;i<n;i++)particles.push({type,x,z,batch,i,opa,speed,seed:rand(),a:rand(),b:rand(),c:rand()});
  }
- const digest=()=>particles[0].sprite.position.toArray().map(n=>Number(n.toFixed(5))).join(',');
+ const digest=()=>anchor;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  function update(dt){
   t+=Math.min(Math.max(dt||0,0),.05)*(reduced?.28:1);
   for(const p of particles){
-   const {type,sprite,x,z,opa,speed,seed,a,b,c}=p;
+   const {type,batch,i,x,z,opa,speed,seed,a,b,c}=p;
    const u=(seed+t*.16*speed)%1,phase=(a+t*.20)*Math.PI*2;
-   let px,py,pz,sx,sy,alpha;
+   let px,py,pz,sx,sy,alpha,rotation=0;
    if(type==='fog'){
     px=x+(a-.5)*17+Math.sin(phase)*3;pz=z+(b-.5)*7+u*3;
     py=.29+c*.46;sx=2.8+c*2.6;sy=.60+c*.46;alpha=opa*(.38+.42*Math.sin(Math.PI*u));
@@ -89,18 +131,20 @@ export function addStoryAmbient(T,root,d){
    }else if(type==='paper'){
     px=x+(a-.5)*9+u*2+Math.sin(phase)*.5;pz=z+(b-.5)*4;
     py=.85+(1-u)*2+c*.8;sx=.14+c*.15;sy=.16+c*.12;alpha=opa*Math.sin(Math.PI*u);
-    sprite.material.rotation=phase*(c>.5?1:-1);
+    rotation=phase*(c>.5?1:-1);
    }else{
     px=x+(a-.5)*9+Math.sin(phase)*(.36+c*.32);pz=z+(b-.5)*4+Math.cos(phase)*.27;
     py=.52+(type==='ember'?u*2:c*2.1)+Math.sin(phase)*.17;
     sx=.07+c*.12;sy=sx*(type==='rift'?2.4:1);
     alpha=opa*(.23+.77*Math.abs(Math.sin(phase+seed*8)));
-    if(type==='rift'){sx*=1.7;alpha*=.82;sprite.material.rotation=(a-.5)*.6;}
+    if(type==='rift'){sx*=1.7;alpha*=.82;rotation=(a-.5)*.6;}
    }
-   sprite.position.set(px,py,pz);sprite.scale.set(sx,sy,1);sprite.material.opacity=alpha;
+   batch.set(i,px,py,pz,sx,sy,alpha,rotation);
+   if(p===particles[0])anchor=[px,py,pz].map(n=>Number(n.toFixed(5))).join(',');
   }
+  for(const {batch} of batches)batch.commit();
  }
  update(0);
  return {update,digest,types:FX[d.id].map(a=>a[0]),count:particles.length,
-  dispose(){for(const m of released)m.dispose();for(const tex of texBy.values())tex.dispose();for(const {sprite} of particles)sprite.removeFromParent();}};
+  dispose(){for(const {batch,tex} of batches){batch.dispose();tex.dispose();}}};
 }
