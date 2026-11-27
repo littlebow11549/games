@@ -1,3 +1,4 @@
+import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd-visual-budget.js?v=20261127crowdbudget';
 import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
@@ -250,6 +251,8 @@ renderer.toneMappingExposure = 1.0;
 const scene = new THREE.Scene();
 const burstAura = makeBurstAura(scene);
 const actorShadows=createActorShadows(THREE,scene);
+const crowdVisual=makeCrowdVisualBudget(THREE);
+const crowdResolution=makeCrowdResolution();
 const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 200);
 const CAM_OFFSET = new THREE.Vector3(0, 13, 12.5);
 let { sun } = buildWorld(scene, 'corridor', Q());
@@ -264,7 +267,7 @@ progress(76, '讀取設定');
 
 function resize() {
   const w = innerWidth, h = innerHeight;
-  renderer.setPixelRatio(Math.min(devicePixelRatio, Q().ratio));
+  renderer.setPixelRatio(Math.min(devicePixelRatio,Q().ratio)*crowdResolution.scale);
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.fov = w < h ? 58 : 42; // 直式畫面拉寬視野
@@ -819,6 +822,11 @@ function updateHud() {
   let bossHp = 0, bossMax = 0;
   const controlTop=$('boss-bar').hidden?12:$('boss-bar').getBoundingClientRect().bottom+12;
   for (const e of enemies) {
+    if(e.crowdDrawOmit){
+      if(e.bar&&e.bar.style.display!=='none')e.bar.style.display='none';
+      if(e.controlBadge&&!e.controlBadge.hidden)e.controlBadge.hidden=true;
+      continue;
+    }
     updateControlBadge(e,controlTop);
     if (e.def.boss) { bossHp += Math.max(0, e.hp); bossMax += e.def.hp; continue; }
     if (!e.bar) continue;
@@ -1730,7 +1738,7 @@ function updateEnemy(e, dt, attackers) {
   e.guestControlCooldown=Math.max(0,(e.guestControlCooldown||0)-dt);
   if(alive(e)&&e.guestHold>0){e.guestHold=Math.max(0,e.guestHold-dt);e.visual.play('stun');e.visual.root.position.set(e.pos.x,e.y,e.pos.z);return;}
   e.t += dt;
-  e.visual.update(dt);
+  crowdVisual.animate(e,dt);
   const def = e.def;
   if (e.lineT > 0) e.lineT -= dt;
   for (const k of Object.keys(e.cds)) e.cds[k] -= dt*(def.boss&&game.pressure?1.7:1)*(def.incubus&&game.awakened?1.2:1)*(def.boss?roundRush():1);
@@ -1739,7 +1747,8 @@ function updateEnemy(e, dt, attackers) {
     if (e.t < 0) return;
     const intro=folaidiSpawn(e.kind,e.visual);
     if (!e.shown) {
-      e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4);
+      e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true;
+      if(!e.crowdDrawOmit)fx.ring(e.pos,0.3,def.radius*3,0xb48cff,0.4);
       if(intro)e.visual.play('spawn',intro);
       else if((e.kind==='kabanKing'||OFFICE_BOSS_MODELS[e.kind]||ARCHIVE_STAGE_BOSSES.has(e.kind)||BOSS_GROUPS.duo.includes(e.kind))&&e.visual.actions?.spawn)e.visual.play('spawn',.45);
     }
@@ -1755,7 +1764,7 @@ function updateEnemy(e, dt, attackers) {
   if (!e.fly && (e.y > 0 || e.vy > 0)) {
     e.vy -= 30 * dt;
     e.y = Math.max(0, e.y + e.vy * dt);
-    if (e.y === 0) { e.vy = 0; if (alive(e)) fx.ring(e.pos, 0.2, 1.4, 0xffffff, 0.2); }
+    if (e.y === 0) { e.vy = 0; if (alive(e)&&!e.crowdDrawOmit) fx.ring(e.pos, 0.2, 1.4, 0xffffff, 0.2); }
   }
   clampArena(e.pos, def.radius);guestCombat.repelEnemy(e);
   e.visual.root.position.set(e.pos.x, e.y, e.pos.z);
@@ -1814,8 +1823,9 @@ function updateEnemy(e, dt, attackers) {
     e.cool -= dt*(game.pressure?1.7:1)*(e.def.incubus&&game.awakened?1.2:1)*(e.def.boss?roundRush():1);
     e.yaw = Math.atan2(dx, dz);
     const canAttack = def.ranged ? attackers.ranged < 2 : attackers.melee < MAX_ATTACKERS;
-    const clearSight = !maze || maze.lineClear(e.pos, hero.pos, 0.2);
+    const clearSight=!maze||!needsChaseSight(def.ranged,d,def.reach)||maze.lineClear(e.pos,hero.pos,0.2);
     if (heroAlive && clearSight && d <= def.reach && e.cool <= 0 && canAttack) {
+      crowdVisual.flush(e); // do not carry locomotion time into the attack clip
       e.state = 'windup'; e.t = 0; e.struck = false;
       if (def.ranged) attackers.ranged++; else attackers.melee++;
       const jiasenDur=e.visual.actions?.attack?jiasenAttackTime(e.kind,def.windup):null;
@@ -2868,7 +2878,13 @@ function updateCamera(dt) {
 // 持續掉幀就自動降一級畫質（只降不升，避免來回跳）
 const perf = { acc: 0, n: 0, slow: 0 };
 function watchPerformance(rawDt) {
-  if (game.phase !== 'playing' || game.paused || quality === 0 || forced !== null) return;
+  if (game.phase !== 'playing' || game.paused) { crowdResolution.tick(rawDt,0,false); return; }
+  if(crowdResolution.tick(rawDt,enemies.length,true)){
+    renderer.setPixelRatio(Math.min(devicePixelRatio,Q().ratio)*crowdResolution.scale);
+  }
+  // Don't drop the old quality tier during a crowd: that tier also controls wave size.
+  if(enemies.length>=36||crowdResolution.scale<1){perf.acc=perf.n=perf.slow=0;return;}
+  if(quality===0||forced!==null)return;
   perf.acc += rawDt; perf.n++;
   if (perf.n < 90) return;
   const avg = perf.acc / perf.n;
@@ -2907,14 +2923,17 @@ function frame(now) {
   else if (game.phase === 'dialog' && hero.visual) { hero.visual.update(dt); updateAngel(dt); fx.update(dt); }
   else if (hero.visual) { hero.visual.update(dt); updateAngel(dt); }
   updateCamera(dt);
+  crowdVisual.classify(enemies,camera,hero.pos,lockOn?lockTargetEnemy:null);
   updateLockMarker(dt);
   if (game.phase !== 'loading' && (frozen || now-lastHud>=1000/30)) {updateHud();lastHud=now;}
   if (game.phase === 'playing' || game.phase === 'dialog') updateMinimap();
   hallArt?.update(frozen?0:dt);
   hallFx?.update(frozen?0:dt);
-  actorShadows.update(hero,angel,enemies,ambush,!!sun?.castShadow);
   burstAura.update(hero,game);
-  renderer.render(scene, camera);
+  crowdVisual.draw(()=>{
+    actorShadows.update(hero,angel,enemies,ambush,!!sun?.castShadow);
+    renderer.render(scene,camera);
+  });
   requestAnimationFrame(frame);
 }
 
