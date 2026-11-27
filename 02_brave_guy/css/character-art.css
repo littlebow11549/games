@@ -101,16 +101,6 @@
   line-height:1.15;
   overflow-wrap:anywhere;
 }
-.game-art .dialog #dlg-name::before {
-  content:"";
-  width:8px;
-  height:8px;
-  border-radius:3px;
-  border:2px solid var(--dialogue-ink);
-  background:var(--dialogue-paper);
-  transform:rotate(45deg);
-  flex:0 0 auto;
-}
 .game-art .dialog #dlg-name[hidden] { display:none; }
 .game-art .dialog #dlg-text {
   font-family:var(--font-body);
@@ -205,18 +195,7 @@
   --speaker-shell:#bd9bee; --speaker-line:#7350a0; --speaker-fill:#f7efff;
 }
 .game-art .taunt.hero.character-speech:not(.has-word-art)::before {
-  display:block !important;
-  inset:-5px auto auto 10px !important;
-  width:10px;
-  height:10px;
-  border:2px solid var(--speaker-line) !important;
-  border-radius:3px;
-  background:var(--speaker-shell) !important;
-  clip-path:none;
-  -webkit-clip-path:none;
-  transform:rotate(45deg) !important;
-  z-index:1 !important;
-  pointer-events:none;
+  display:none !important;
 }
 .game-art .taunt.hero.character-speech:not(.has-word-art)::after {
   display:block !important;

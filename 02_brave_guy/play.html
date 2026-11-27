@@ -9,25 +9,25 @@
 <link rel="stylesheet" href="css/game.css?v=20261120assets">
 <link rel="stylesheet" href="css/ui-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/menu-art.css?v=20261120assets">
-<link rel="stylesheet" href="css/panel-art.css?v=20261127flamework">
+<link rel="stylesheet" href="css/panel-art.css?v=20261127comicmatch">
 <link rel="stylesheet" href="css/overlay-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/feedback-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/hud-art.css?v=20261120assets">
 <link rel="stylesheet" href="css/transform-art.css?v=20261120assets">
-<link rel="stylesheet" href="css/system-art.css?v=20261120castfix">
+<link rel="stylesheet" href="css/system-art.css?v=20261127comicmatch">
 <link rel="stylesheet" href="css/cinematics.css?v=20261127finalcrop">
 <link rel="stylesheet" href="css/opening.css?v=20261120assets">
 <link rel="modulepreload" href="vendor/three/three.module.min.js">
-<link rel="modulepreload" href="js/main.js?v=20261127rightink">
+<link rel="modulepreload" href="js/main.js?v=20261127transformaudio">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
 <link rel="modulepreload" href="js/fx.js?v=20261127impactpriority">
 <link rel="modulepreload" href="js/input.js?v=20261127joystick">
-<link rel="modulepreload" href="js/audio.js?v=20261127clearbanter">
+<link rel="modulepreload" href="js/audio.js?v=20261127transformaudio">
 <link rel="modulepreload" href="js/story.js?v=20261120assets">
 <link rel="preload" href="assets/fonts/brave_guy_font01_huninn-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/loading.css?v=20261127stagefx">
+<link rel="stylesheet" href="css/loading.css?v=20261127loadorbit">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261120assets">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261120assets">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261127quality">
@@ -35,11 +35,11 @@
 <link rel="stylesheet" href="css/secret-toggle.css?v=20261120assets">
 <link rel="stylesheet" href="css/hurt-feedback.css?v=20261120assets">
 <link rel="stylesheet" href="css/playable-roster.css?v=20261120bursticon">
-<link rel="stylesheet" href="css/character-art.css?v=20261127dialog">
+<link rel="stylesheet" href="css/character-art.css?v=20261127comicmatch">
 <link rel="stylesheet" href="css/stage-art.css?v=20261127zoomskin">
-<link rel="stylesheet" href="css/battle-presentation.css?v=20261127damagefall">
+<link rel="stylesheet" href="css/battle-presentation.css?v=20261127comicmatch">
 <link rel="stylesheet" href="css/game-typography.css?v=20261127bolditalic">
-<link rel="stylesheet" href="css/impact-dialogue.css?v=20261127rightink">
+<link rel="stylesheet" href="css/impact-dialogue.css?v=20261127comicmatch">
 </head>
 <body class="game-art">
 <section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit" aria-hidden="true"></div><h1 class="boot-brand"><img id="boot-logo" src="assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy" fetchpriority="high"></h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
@@ -206,7 +206,7 @@
   window.__progress(3, '開始讀取');
   var entry = document.createElement('script');
   entry.type = 'module';
-  entry.src = 'js/main.js?v=20261127rightink';
+  entry.src = 'js/main.js?v=20261127transformaudio';
   entry.onerror = function () {
     window.__fail(['遊戲程式載入失敗，請重新載入。','The game failed to load. Please retry.','ゲームを読み込めませんでした。再読み込みしてください。'][language]);
   };

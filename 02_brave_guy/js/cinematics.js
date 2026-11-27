@@ -3,7 +3,7 @@ import { createPictureFilm } from './picture-film.js?v=20261127finalcrop';
 import { waitForArtwork, cancelArtwork } from './loading.js?v=20261120nightcast';
 import { words } from './run-records.js?v=20261120assets';
 import { BOSS_BANTER } from './boss-banter.js?v=20261120assets';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261127clearbanter';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261127transformaudio';
 import { t, lang } from './i18n.js?v=20261120assets';
 export const BOSS_PROFILES = {
  jiamangKing:['假忙森主管','jiamang','#71dfdc','papers','你的鍋，接回去！','zhuangxiong'],
@@ -33,21 +33,21 @@ const endingLines = [
 ];
 const roles=['企劃・導演','故事・角色設計','美術・動畫','程式・遊戲設計','音樂・音效','測試・製作'];
 const AWAKENING_SHOTS=[
- {file:'awakening_armor_a',row:0,duration:2.4,sound:'guilt_crack',role:'boss',line:['你以為，這就是我的全部？','You think this is all I am?','これが俺のすべてだと思ったか？']},
- {file:'awakening_armor_a',row:1,duration:1.1,sound:'tf_glove',role:'boss',line:['你每一次退縮，都成了我的鎧甲。','Every retreat became my armor.','お前が逃げるたび、俺の鎧になった。']},
- {file:'awakening_armor_a',row:2,duration:1.2,sound:'tf_jacket',role:'boss',line:['你每一次退縮，都成了我的鎧甲。','Every retreat became my armor.','お前が逃げるたび、俺の鎧になった。']},
- {file:'awakening_armor_b',row:0,duration:1.4,sound:'tf_hair',role:'boss',line:['你的恐懼，就是核心。','Your fear powers the core.','お前の恐怖が、この核を動かす。']},
- {file:'awakening_armor_b',row:1,duration:3,sound:'ui_back',role:'hero',line:['變身的時候我能偷襲嗎？','Can I sneak-attack while you transform?','変身中に不意打ちしてもいい？']},
- {file:'awakening_armor_a',row:2,duration:.65,sound:'transform_charge',role:'boss',line:['……你能不能尊重一下流程？','…Could you respect the process?','……手順を尊重してくれないか？']},
- {file:'awakening_armor_b',row:2,duration:3.8,sound:'guilt_burst',role:'boss',line:['現在，看看你還敢不敢往前。','Now, dare to take another step.','さあ、それでも前に進めるか。']}
+ {file:'awakening_armor_a',row:0,duration:2.4,role:'boss',line:['你以為，這就是我的全部？','You think this is all I am?','これが俺のすべてだと思ったか？']},
+ {file:'awakening_armor_a',row:1,duration:1.1,role:'boss',line:['你每一次退縮，都成了我的鎧甲。','Every retreat became my armor.','お前が逃げるたび、俺の鎧になった。']},
+ {file:'awakening_armor_a',row:2,duration:1.2,role:'boss',line:['你每一次退縮，都成了我的鎧甲。','Every retreat became my armor.','お前が逃げるたび、俺の鎧になった。']},
+ {file:'awakening_armor_b',row:0,duration:1.4,role:'boss',line:['你的恐懼，就是核心。','Your fear powers the core.','お前の恐怖が、この核を動かす。']},
+ {file:'awakening_armor_b',row:1,duration:3,role:'hero',line:['變身的時候我能偷襲嗎？','Can I sneak-attack while you transform?','変身中に不意打ちしてもいい？']},
+ {file:'awakening_armor_a',row:2,duration:.65,role:'boss',line:['……你能不能尊重一下流程？','…Could you respect the process?','……手順を尊重してくれないか？']},
+ {file:'awakening_armor_b',row:2,duration:3.8,sound:'boss_slam',role:'boss',line:['現在，看看你還敢不敢往前。','Now, dare to take another step.','さあ、それでも前に進めるか。']}
 ];
 export const AWAKENING_DURATION=AWAKENING_SHOTS.reduce((n,s)=>n+s.duration,0);
 
 // 第一階段打完：勇氣超人一拳把董事長打倒的三格過場（用 incubus_firststrike 圖集，接在甦醒鎧甲過場之前）
 const FIRSTSTRIKE_SHOTS=[
- {file:'incubus_firststrike',row:0,duration:2.2,sound:'boss_warn',role:'boss',line:['你真以為，打倒我就結束了？','You think beating me down ends it?','俺を倒せば終わると思ったか？']},
+ {file:'incubus_firststrike',row:0,duration:2.2,role:'boss',line:['你真以為，打倒我就結束了？','You think beating me down ends it?','俺を倒せば終わると思ったか？']},
  {file:'incubus_firststrike',row:1,duration:1.5,sound:'hit_heavy',role:'hero',line:['這一拳，連本帶利還你！','This one is for everything — with interest!','この一撃、利子つきで返す！']},
- {file:'incubus_firststrike',row:2,duration:2.6,sound:'boss_slam',role:'hero',line:['站起來。我不會再退了。','Get up. I won’t back down again.','立て。もう引かない。']}
+ {file:'incubus_firststrike',row:2,duration:2.6,role:'hero',line:['站起來。我不會再退了。','Get up. I won’t back down again.','立て。もう引かない。']}
 ];
 const FIRSTSTRIKE_DURATION=FIRSTSTRIKE_SHOTS.reduce((n,s)=>n+s.duration,0);
 export function createCinematics(_renderer,audioProvider){
@@ -86,7 +86,6 @@ export function createCinematics(_renderer,audioProvider){
    let index=0,start=0;while(index<AWAKENING_SHOTS.length-1&&elapsed>=start+AWAKENING_SHOTS[index].duration)start+=AWAKENING_SHOTS[index++].duration;
    const shot=AWAKENING_SHOTS[index],local=elapsed-start,burst=index===6,impact=burst?Math.max(0,1-local/1.1):index===1||index===2?Math.max(0,1-local/.3):0;
    root.dataset.awakeningShot=String(index);root.dataset.shot=burst?'ascension':'assembly';
-   if(active.beat!==index&&burst)audioProvider()?.sfx('boss_slam',{sampleOnly:true});
    line(index,t(shot.role==='hero'?'主角':'夢魘超人'),words(lang,...shot.line),shot.role,burst,shot.sound);
    film.render([shot],elapsed,{reduced,impact,dark:index===5?.75:0,flash:burst?Math.max(0,.65-local*2):0,color:'#a6ff70',zoom:burst&&!reduced?1+Math.max(0,.08-local*.12):1});
   }else if(active.mode==='firststrike'){

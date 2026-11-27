@@ -61,7 +61,7 @@
  padding:8px 16px 12px;box-sizing:border-box;color:#fff9da;
  background:linear-gradient(115deg,#24182bfa,var(--cast-tone) 63%,#21152bfa);
  clip-path:polygon(6% 0,100% 0,95% 100%,0 100%);
- text-shadow:0 2px #1b1427,1px 3px #1b1427;
+ text-shadow:var(--comic-ink-extrusion);
 }
 @keyframes cast-rule{from{transform:scaleX(.25);opacity:.24}to{transform:scaleX(1);opacity:.88}}
 /* Both the empty channel and its color layer use an identical slanted silhouette.

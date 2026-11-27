@@ -3,40 +3,35 @@ import { assetPath } from './asset-paths.js';
 const ROOT='assets/runtime/lossless/pic/cinematics/';
 export const BOSS_INTRO_TIMING=Object.freeze({cuts:Object.freeze([4,8]),duration:12});
 export const BOSS_STORYBOARDS={
- folaidiKing:{files:['folaidi_corridor','folaidi_eyes','folaidi_reveal'],...BOSS_INTRO_TIMING,fx:'mist',cues:[[0.0,'folaidi_flicker'],[0.323,'folaidi_tick'],[0.969,'folaidi_tick'],[1.615,'folaidi_tick'],[2.4,'folaidi_rise'],[4.2,'folaidi_reveal']]},
- qian:{...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'punch_clock'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
- qianBiz:{fit:'contain',...BOSS_INTRO_TIMING,fx:'coins',cues:[[0.0,'punch_clock'],[2.4,'fan'],[4.2,'fan'],[4.429,'boss_slam']]},
- jiamangKing:{fit:'contain',...BOSS_INTRO_TIMING,fx:'papers',cues:[[0.0,'punch_clock'],[2.4,'pan_fly'],[4.2,'pan_hit'],[4.429,'boss_slam']]},
- lan:{...BOSS_INTRO_TIMING,fx:'rings',cues:[[0.0,'boss_warn'],[2.4,'pan_hit'],[4.2,'boss_slam']]},
- nightmare:{...BOSS_INTRO_TIMING,fx:'glass',cues:[[0.0,'guilt_tick'],[2.4,'guilt_crack'],[4.2,'guilt_burst']]},
- midKing:{...BOSS_INTRO_TIMING,fx:'rubble',cues:[[0.0,'punch_clock'],[2.4,'hit_heavy'],[4.2,'boss_slam']]},
- hell:{...BOSS_INTRO_TIMING,fx:'fire',cues:[[0.0,'beam_start'],[2.4,'folaidi_rise'],[4.2,'guilt_burst']]},
- kabanKing:{...BOSS_INTRO_TIMING,fx:'papers',cues:[[0.0,'punch_clock'],[1.292,'folaidi_tick'],[2.4,'guilt_crack'],[4.2,'folaidi_reveal']]},
- xinji:{...BOSS_INTRO_TIMING,fx:'feathers',cues:[[0.0,'bubble'],[2.4,'punch_clock'],[3.05,'punch_clock'],[4.2,'enemy_shot']]},
- baguashe:{...BOSS_INTRO_TIMING,fx:'gossip',cues:[[0.0,'bubble'],[2.4,'punch_clock'],[3.2,'bubble'],[4.2,'fan']]},
- lanMgr:{...BOSS_INTRO_TIMING,fx:'stamp',cues:[[0.0,'punch_clock'],[2.4,'boss_warn'],[4.2,'boss_slam']]},
- ganqiaoFull:{...BOSS_INTRO_TIMING,fx:'rubble',cues:[[0.0,'quake'],[2.4,'folaidi_rise'],[4.2,'guilt_burst'],[4.771,'boss_slam']]},
- guan:{...BOSS_INTRO_TIMING,fx:'crown',cues:[[0.0,'boss_warn'],[2.4,'hit_2'],[4.2,'beam_end']]},
- incubus:{...BOSS_INTRO_TIMING,fx:'glass',cues:[[0.0,'folaidi_tick'],[1.076,'folaidi_tick'],[2.4,'guilt_crack'],[4.2,'guilt_burst']]},
+ folaidiKing:{files:['folaidi_corridor','folaidi_eyes','folaidi_reveal'],...BOSS_INTRO_TIMING,fx:'mist'},
+ qian:{...BOSS_INTRO_TIMING,fx:'coins'},
+ qianBiz:{fit:'contain',...BOSS_INTRO_TIMING,fx:'coins'},
+ jiamangKing:{fit:'contain',...BOSS_INTRO_TIMING,fx:'papers'},
+ lan:{...BOSS_INTRO_TIMING,fx:'rings'},
+ nightmare:{...BOSS_INTRO_TIMING,fx:'glass'},
+ midKing:{...BOSS_INTRO_TIMING,fx:'rubble'},
+ hell:{...BOSS_INTRO_TIMING,fx:'fire'},
+ kabanKing:{...BOSS_INTRO_TIMING,fx:'papers'},
+ xinji:{...BOSS_INTRO_TIMING,fx:'feathers'},
+ baguashe:{...BOSS_INTRO_TIMING,fx:'gossip'},
+ lanMgr:{...BOSS_INTRO_TIMING,fx:'stamp'},
+ ganqiaoFull:{...BOSS_INTRO_TIMING,fx:'rubble'},
+ guan:{...BOSS_INTRO_TIMING,fx:'crown'},
+ incubus:{...BOSS_INTRO_TIMING,fx:'glass'},
 };
-// Retime existing sound accents to the readable 4-second dialogue beats.
-for (const board of Object.values(BOSS_STORYBOARDS)) board.cues = board.cues.map(([at,sound]) => [at < 2.4 ? at*4/2.4 : at < 4.2 ? 4+(at-2.4)*4/1.8 : 8+(at-4.2), sound]);
+// Boss banter keeps the score without per-panel sound effects.
 export function createBossStoryboard(root,audioProvider){
  const canvas=document.createElement('canvas');canvas.className='cinema-storyboard';canvas.setAttribute('aria-hidden','true');root.prepend(canvas);
- const ctx=canvas.getContext('2d'),cache=new Map(),backdrop=document.createElement('canvas');let backKey=null;let key=null,definition=null,fired=new Set(),previous=-1;
+ const ctx=canvas.getContext('2d'),cache=new Map(),backdrop=document.createElement('canvas');let backKey=null;let key=null,definition=null;
  function images(k){const d=BOSS_STORYBOARDS[k];const files=d.files||[`boss_${k}_storyboard`];return files.map(file=>{if(!cache.has(file)){const im=new Image();im.src=assetPath(ROOT+file+'.webp');cache.set(file,im);}return cache.get(file);});}
  function prepare(kinds){return Promise.all(kinds.filter(k=>BOSS_STORYBOARDS[k]).flatMap(k=>images(k).map(im=>im.decode().catch(error=>{for(const [file,image] of cache)if(image===im)cache.delete(file);throw error;}))));}
  function ready(){return key&&images(key).every(im=>im.complete&&im.naturalWidth>0);}
- function start(k){key=k;definition=BOSS_STORYBOARDS[k];fired=new Set();previous=-1;images(k);root.dataset.storyboard=k;root.dataset.artReady='false';root.dataset.beat='0';audioProvider()?.stopLoops?.();audioProvider()?.duckBgm?.(.38);}
+ function start(k){key=k;definition=BOSS_STORYBOARDS[k];images(k);root.dataset.storyboard=k;root.dataset.artReady='false';root.dataset.beat='0';audioProvider()?.stopLoops?.();audioProvider()?.duckBgm?.(.38);}
  function stop(){key=null;definition=null;delete root.dataset.storyboard;delete root.dataset.beat;canvas.hidden=true;audioProvider()?.duckBgm?.(1);}
  function render(time,reduced,color){
   if(!definition)return;
   const d=definition,beat=time<d.cuts[0]?0:time<d.cuts[1]?1:2,local=time-(beat===0?0:d.cuts[beat-1]),length=(beat===2?d.duration:d.cuts[beat])-(beat===0?0:d.cuts[beat-1]);
   if(root.dataset.beat!==String(beat))root.dataset.beat=String(beat);const shot=beat===2?'hold':'reveal';if(root.dataset.shot!==shot)root.dataset.shot=shot;
-  // Fire only cues crossed this frame. A skip/large seek never dumps old cues together.
-  const due=d.cues.filter(([at],i)=>!fired.has(i)&&at<=time&&at>previous);
-  for(const [at,sound] of due){const i=d.cues.findIndex(c=>c[0]===at&&c[1]===sound);fired.add(i);if(time-at<.2||previous<0&&at===0)audioProvider()?.sfx(sound,{sampleOnly:true});}
-  previous=time;
   const list=images(key),im=list[list.length===1?0:beat];if(!im.complete||!im.naturalWidth){canvas.hidden=true;root.dataset.artReady='false';return;}
   canvas.hidden=false;if(root.dataset.artReady!=='true')root.dataset.artReady='true';
   const w=innerWidth,h=innerHeight,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}

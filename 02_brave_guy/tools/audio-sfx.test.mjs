@@ -211,3 +211,25 @@ test('warm or unavailable dialog clicks are silent, and crowded voices cannot st
  assert.equal(g.voices.size,16);
  assert.equal(g.priorityVoices.size,2);
 });
+
+test('transform frame plays the original recording on cold load, with no synthesized substitute',async()=>{
+ const {g,played}=harness({tf_glove:'original.mp3'});
+ const requests=[];
+ g.loadSfx=async (key,url)=>{requests.push(url);g.sfxBuffers.set(key,{});};
+ g.sfx('tf_glove',{sampleOnly:true,stillCurrent:()=>true});
+ await new Promise(r=>setImmediate(r));
+ assert.deepEqual(requests,['original.mp3']);
+ assert.deepEqual(played,['file']);
+});
+
+test('a pending transform cue cannot play after skipping or muting its frame',async()=>{
+ for(const interrupt of ['skip','mute']){
+  const {g,played}=harness({tf_glove:'original.mp3'});
+  let finish,current=true;
+  g.loadSfx=key=>new Promise(resolve=>{finish=()=>{g.sfxBuffers.set(key,{});resolve();};});
+  g.sfx('tf_glove',{sampleOnly:true,stillCurrent:()=>current});
+  if(interrupt==='skip')current=false;else g.setMuted(true);
+  finish();await new Promise(r=>setImmediate(r));
+  assert.deepEqual(played,[],interrupt);
+ }
+});

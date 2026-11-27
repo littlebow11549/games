@@ -10,6 +10,8 @@
 .game-art #pause-menu .card h1.has-word-art,.game-art #overlay.result .card #ov-title.has-word-art{display:flex;align-items:center;justify-content:center;height:100px;padding:0!important}
 .game-art #pause-menu h1 .word-art,.game-art #ov-title .word-art{width:min(100%,310px)}
 .game-art .dmg.has-word-art{width:170px;max-width:48vw;background:none!important;padding:0!important}
+/* Match the approved ultimate title art: thick ink runs down with a slight rightward lean. */
+.game-art{--comic-ink-extrusion:0 1px #111,1px 2px #111,1px 3px #111,2px 4px #111,2px 5px #111,3px 6px #111,3px 7px #111}
 /* Approved atlas title, independent of the icon style, damage DOM and dialogue. */
 .skill-cast-name{
  --cast-width:min(70vw,clamp(215px,26vw,286px),67svh);

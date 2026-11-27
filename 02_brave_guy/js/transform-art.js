@@ -55,7 +55,7 @@ export function createTransformArt(root, onFrame = () => {}) {
         load('bg_stars').then(bg => {
           if (bg && token === generation) root.style.backgroundImage = `url("${bg.src}")`;
         });
-        if (!document.hidden) onFrame(id);
+        if (!document.hidden) onFrame(id, () => token === generation && !root.hidden && !document.hidden && root.dataset.frame === id);
       } else {
         // Stop showing the previous frame after a failed request; the dialogue stays usable.
         root.hidden = true; sign.hidden = true; delete root.dataset.frame;

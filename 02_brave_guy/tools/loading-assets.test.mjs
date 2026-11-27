@@ -97,3 +97,12 @@ test('Nightmare title warmup deduplicates requests and retries failed decodes',a
  await warmCharacterTitles('nightmare');
  assert.equal(count,2);
 });
+
+test('the official boot logo and animated orbit coexist with reduced-motion support',async()=>{
+ const [page,css]=await Promise.all([read('play.html'),read('css/loading.css')]);
+ assert.match(page,/class="boot-orbit" aria-hidden="true"/);
+ assert.match(page,/id="boot-logo"[^>]*branding08_logo_01/);
+ assert.match(css,/\.boot-orbit\{[^}]*animation:boot-orbit 16s linear infinite/);
+ assert.match(css,/@keyframes boot-orbit\{/);
+ assert.match(css,/prefers-reduced-motion:reduce[^\n]*animation:none/);
+});

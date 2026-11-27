@@ -3,11 +3,11 @@ const MUTE_KEY = 'game02.muted';
 // Keep the startup network free for artwork; rare/large tracks remain on demand.
 const WARM_SFX = ['ui', 'ui_confirm', 'stage_select', 'student_punch',
   'swing', 'hit', 'crit', 'punch_1', 'punch_2', 'punch_3', 'dodge', 'hurt',
-  'lock_switch', 'spawn', 'shoot', 'enemy_fly', 'enemy_down', 'boss_ko'];
-const FILE_ONLY_CUES = new Set(['guilt_crack', 'whistle', 'spawn', 'shoot', 'enemy_shot', 'enemy_fly',
+  'transform_charge', 'transform_done', 'lock_switch', 'spawn', 'shoot', 'enemy_fly', 'enemy_down', 'boss_ko'];
+const FILE_ONLY_CUES = new Set(['guilt_crack', 'whistle', 'transform_done', 'spawn', 'shoot', 'enemy_shot', 'enemy_fly',
   'enemy_down', 'mask_off', 'boss_appear', 'boss_warn', 'boss_slam']);
 const MAX_MONSTER_DEATH_VOICES = 2;
-const PRIORITY_CUES=new Set(['boss_warn','boss_slam','boss_appear','whistle','guard','hit_heavy','crit','dodge_perfect','hurt','guilt_crack']);
+const PRIORITY_CUES=new Set(['boss_warn','boss_slam','boss_appear','whistle','guard','hit_heavy','crit','dodge_perfect','hurt','guilt_crack','transform_done']);
 
 export class GameAudio {
   constructor(manifest) {
@@ -228,8 +228,8 @@ export class GameAudio {
     return promise;
   }
 
-  sfx(name, { sampleOnly = false } = {}) {
-    if (this.muted || name==='dialog_next') return; // Silent text advance, even when the old pitched file is cached.
+  sfx(name, { sampleOnly = false, stillCurrent = null } = {}) {
+    if (this.muted || name==='dialog_next' || (stillCurrent && !stillCurrent())) return; // Silent text advance, even when the old pitched file is cached.
     const now=this.ctx?.currentTime;
     const monsterDeath=name==='enemy_down';
     if(monsterDeath && this.monsterDeathVoices.size>=MAX_MONSTER_DEATH_VOICES)return;
@@ -269,7 +269,19 @@ export class GameAudio {
         });
         return;
       }
-      if(!loadingVariant)this.loadSfx(cacheKey,this.resolve(source));
+      if (!loadingVariant) {
+        const pending = this.loadSfx(cacheKey, this.resolve(source));
+        if (stillCurrent) {
+          // A frame cue can finish loading only while its visual is still current.
+          pending.then(() => {
+            if (!this.muted && stillCurrent() && this.sfxBuffers.has(cacheKey)) {
+              this.sfxLast.delete(rateKey);
+              this.sfx(name, {sampleOnly: true});
+            }
+          });
+          return;
+        }
+      }
     }
     if(name==='victory_human_cheer'||name==='boss_ko')return; // Recorded voice only: never substitute a synthesized cue.
     if(fileOnly)return;

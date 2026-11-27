@@ -33,13 +33,13 @@ import { Fx } from './fx.js?v=20261127impactpriority';
 import { revealMobHealth } from './battle-readability.js?v=20261127artdirection';
 import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261127burstframe';
-import { createCinematics } from './cinematics.js?v=20261127clearbanter';
+import { createCinematics } from './cinematics.js?v=20261127transformaudio';
 import { createOpening } from './opening.js?v=20261127clearbanter';
 import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
 import { Input, lockViewport } from './input.js?v=20261127joystick';
-import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120castfix';
-import { GameAudio } from './audio.js?v=20261127clearbanter';
+import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261127transformaudio';
+import { GameAudio } from './audio.js?v=20261127transformaudio';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261120assets';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261120assets';
 import { makeMaze } from './maze.js?v=20261120assets';
@@ -624,7 +624,9 @@ const startGame = () => startStage(game.stage);
 // ---------- 對話 ----------
 
 // 播放一段對話，播完呼叫 done。對話期間遊戲暫停。
-const transformArt = createTransformArt($('tf-art'), id => { for (const sound of TRANSFORM_SFX[id] || []) audio.sfx(sound); });
+const transformArt = createTransformArt($('tf-art'), (id, stillCurrent) => {
+  for (const sound of TRANSFORM_SFX[id] || []) audio.sfx(sound, {sampleOnly: true, stillCurrent});
+});
 function runDialog(lines, done, cls = '') {
   if (!lines || !lines.length) { if (done) done(); return; }
   dialog = { lines, i: 0, done, prev: game.phase };
@@ -949,11 +951,15 @@ function shockwaveVisual(center, radius, color) {
 
 function shockwave(center, radius, mult, color, sound='quake') {
   shockwaveVisual(center, radius, color);
-  audio.sfx(sound);
+  if (sound === 'transform_done') {
+    const level = game.stage, visual = hero.visual;
+    audio.sfx(sound, {sampleOnly: true, stillCurrent: () => game.phase === 'playing' && game.stage === level && hero.visual === visual && hero.form === 'brave'});
+  } else audio.sfx(sound);
   areaStrike(center, radius, mult, { kb: 12, launch: 9, stun: 0.8, heavy: true });
 }
 
 function finishTransform() {
+  audio.stopLoop('transform_charge');
   const held = Math.min(GAUGE.transformMax, hero.t);
   const extra = (held - GAUGE.transformMin) / (GAUGE.transformMax - GAUGE.transformMin); // 0–1，拖越久越強
   setForm('brave');
@@ -2933,7 +2939,8 @@ function frame(now) {
   last = now;
   if (document.hidden||game.phase==='loading'||game.phase==='loading-assets') { requestAnimationFrame(frame); return; }
   if (opening.active) { requestAnimationFrame(frame); return; }
-  audio.syncCombatLoops(game.phase==='playing'&&!game.paused&&!cinematics.active?hero.state:null);
+  const firstTransformActive = game.phase === 'dialog' && dialog?.lines === FIRST_TRANSFORM && hero.state === 'transforming';
+  audio.syncCombatLoops((game.phase === 'playing' || firstTransformActive) && !game.paused && !cinematics.active ? hero.state : null);
   if (cinematics.update(dt)) { requestAnimationFrame(frame); return; }
   if(game.phase==='cinematic'){requestAnimationFrame(frame);return;}
   menuMotion.update(now, game.phase === 'ready');

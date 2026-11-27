@@ -33,11 +33,6 @@
 .game-art #angel-bubble .support-label{
  display:flex;align-items:center;gap:5px;padding-inline:1px 8px;line-height:1.1;font-size:.75em;font-weight:900;color:var(--support-label);border-bottom:1px solid var(--support-accent);padding-bottom:3px;
 }
-.game-art #angel-bubble .support-label::before{
- content:'';width:.42em;height:.42em;flex:none;
- background:var(--support-accent);border:1px solid var(--support-label);
- transform:rotate(45deg);border-radius:1px;
-}
 .game-art #angel-bubble .support-line{max-width:100%}
 .game-art #angel-bubble::after{
  content:'';display:block;width:8px;height:8px;left:50%;bottom:-6px;margin-left:-5px;
