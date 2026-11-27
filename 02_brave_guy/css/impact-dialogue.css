@@ -7,7 +7,7 @@
 .game-art #world-ui .dmg.shout.battle-shout{
  position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;
  box-sizing:border-box;clip-path:none;border:0;border-radius:0;box-shadow:none;
- background:none;color:var(--voice-ink,#fff1b0);text-shadow:-1px -1px #111,-2px -2px #111,-3px -3px #111,-4px -4px #111,-5px -5px #111,-6px -6px #111;margin:0;
+ background:none;color:var(--voice-ink,#fff1b0);text-shadow:1px 1px #111,2px 2px #111,3px 3px #111,4px 4px #111,5px 5px #111,6px 6px #111;margin:0;
  font-family:var(--font-display);font-style:italic;font-weight:900;
  -webkit-text-stroke:clamp(3.6px,1vw,5.2px) #111;paint-order:stroke fill;
  line-height:1.38;text-align:center;text-wrap:balance;overflow-wrap:anywhere;white-space:normal;
@@ -45,9 +45,6 @@
 .game-art :is(#cinema,.battle-shout):is([data-voice="kabanKing"],[data-voice="jiamangKing"]){--voice-ink:#acf2c9}
 .game-art :is(#cinema,.battle-shout):is([data-voice="qian"],[data-voice="qianBiz"],[data-voice="guan"]){--voice-ink:#ffdc79}
 .game-art :is(#cinema,.battle-shout):is([data-voice="folaidiKing"],[data-voice="midKing"]){--voice-ink:#d0baff}
-.game-art #world-ui .dmg.shout.battle-shout[data-letter-shadow="down-right"]{
- text-shadow:1px 1px #111,2px 2px #111,3px 3px #111,4px 4px #111,5px 5px #111,6px 6px #111;
-}
 @keyframes battle-shout{
  0%{transform:translate(-50%,-48%) scale(.69) rotate(-4deg);opacity:0}
  17%{transform:translate(-50%,-62%) scale(1.10) rotate(2deg);opacity:1}

@@ -696,7 +696,6 @@ function popup(world, height, text, cls = '', voice = '') {
     ui.querySelector('.battle-shout')?.remove(); // Keep large shouts from covering each other.
     el.classList.add('battle-shout');
     if(voice)el.dataset.voice=voice;
-    if(voice==='lan'&&text==='立正！')el.dataset.letterShadow='down-right';
     const width=Math.min(innerWidth*.82,470),pad=width*.55+5;
     el.style.setProperty('--shout-width',width+'px');
     el.style.left=`${Math.max(pad,Math.min(innerWidth-pad,p.x))}px`;
