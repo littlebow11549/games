@@ -25,7 +25,7 @@ const { pathToFileURL } = require('node:url');
     areaStrike: (...args) => strikes.push(args), popup: noop, guest: () => hero.character !== 'brave',
     tr: zh => zh, canTransform: () => unlocked, burstMeter: noop, showGuiltBurstArt: noop, beam: null,
     setForm: form => { hero.form = form; }, endUlt: noop, stage: () => ({map: 1}),
-    enemies: [], setTimeout: noop, say: noop, tauntFrom: noop, TAUNTS_SCARED: [],
+    enemies: [], playBraveCue: noop, setTimeout: noop, say: noop, tauntFrom: noop, TAUNTS_SCARED: [],
   });
   vm.runInContext(
     part('const FORM =', '// dur 動作總長') +

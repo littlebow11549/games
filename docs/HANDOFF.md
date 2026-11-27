@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 勇氣超人跟隨角色台詞框與三款爆氣火焰：[交接紀錄](handoffs/2026-11-27-follower-bubble.md)。
+
 - 2026-11-27 勇氣超人全角色攻擊演出、兩位 Tripo 小精靈與正式入口：[交接紀錄](handoffs/2026-11-27-combat-art-and-tripo-spirits.md)。
 - 2026-11-27 主角實戰對話泡泡與底部劇情對話設計：[交接紀錄](handoffs/2026-11-27-player-dialogue-redesign.md)。
 
@@ -449,3 +451,5 @@
 - [2026-11-27: Little Angel ice and snow combat VFX](handoffs/2026-11-27-little-angel-ice-fx.md)
 
 - [2026-11-27: Guest roster attack art](handoffs/2026-11-27-guest-attack-art.md)
+
+- [2026-11-27: Sustained burst flames and body pulse](handoffs/2026-11-27-sustained-burst-aura.md)

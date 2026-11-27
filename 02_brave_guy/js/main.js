@@ -1,3 +1,4 @@
+import {showSupportBubble} from './support-bubble.js?v=20261127aurabubble';
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
 const stageArtReady=import('./stage-art/catalog.js?v=20261127landmarks2').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
@@ -7,6 +8,7 @@ import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261127combatfinal';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
 import { createGuestCombat } from './guest-combat.js?v=20261127combatfinal';
+import { makeBurstAura } from './burst-aura.js?v=20261127aurabubble';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
@@ -246,6 +248,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 
 const scene = new THREE.Scene();
+const burstAura = makeBurstAura(scene);
 const actorShadows=createActorShadows(THREE,scene);
 const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 200);
 const CAM_OFFSET = new THREE.Vector3(0, 13, 12.5);
@@ -357,11 +360,15 @@ async function announceUnlocks(){
 }
 const guest = () => hero.character === 'angel' || hero.character === 'nightmare';
 const supportName = () => hero.character === 'angel' ? '主角' : hero.character === 'nightmare' ? '勇氣超人' : '小天使';
+function renderSupportLine(line) {
+  const theme=hero.character==='angel'?'student':hero.character==='nightmare'?'brave':'angel';
+  showSupportBubble($('angel-bubble'),t(supportName()),line,theme);
+}
 const guestCombat = createGuestCombat({scene,hero,enemies:()=>enemies,fx,audio:{sfx:name=>audio.sfx(name)},arena:ARENA_RADIUS,
   hit:(e,m,o)=>{const result=damageEnemy(e,m,o);tally([result],false,true);return result;},
   line:lineStrike,move:moveHeroBy,constrain:clampArena});
 function supportSpeech(text, reply=null) {
-  const b=$('angel-bubble');b.textContent=`${t(supportName())}：${t(text)}`;b.hidden=false;
+  renderSupportLine(t(text));
   angel.sayT=2.5;angel.quiet=5;angel.rescueT=1.2;
   if(reply)hero.sayNext={text:reply,t:2.5};
 }
@@ -425,6 +432,7 @@ function playBraveCue(type){
 
 let portraitHurtTimer;
 function resetHero() {
+  burstAura.clear();
   clearTimeout(portraitHurtTimer);
   $('portrait').classList.remove('hurt');
   $('hit-feedback').classList.remove('hit');
@@ -442,7 +450,7 @@ function resetHero() {
   Object.assign(hero, {
     hp: hero.maxHp, courage: 0, qi: 0, guilt: 0, guiltMax: GAUGE.guiltBase,
     state: 'free', actionLockTarget: null, t: 0, combo: -1, queued: false, comboGap: 0, hitDone: false, invuln: 0, cds: {}, yaw: 0, data: null,
-    mode: null, burstT: 0, guestBurstT:0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
+    mode: null, burstT: 0, burstAuraUntil: 0, guestBurstT:0, extendLeft: 0, farT: 0, hurtStreak: 0, hurtStreakT: 0, usedClutch: false, usedRevive: false, debuff: {}, readySaid: false,
     kb: new THREE.Vector3(), stunT: 0, slowT: 0, silenceT: 0, movingT: 9, inMeeting: false,
   });
   // The arena and minimap share this origin; the maze clears the central area.
@@ -711,11 +719,8 @@ function say(key, force = false) {
   angel.lastKey = key;
   angel.sayT = 2.8;
   angel.quiet = 5;
-  const b = $('angel-bubble');
   const line = ANGEL[key];
-  b.textContent = guest()?`${t(supportName())}：${t(key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。')}`:t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line);
-  applyCharacterSpeech(b,guest()?'brave':'angel','support');
-  b.hidden = false;
+  renderSupportLine(guest()?t(key==='perfect'?'閃得漂亮，換你反擊！':key==='hurt3'?'別硬撐，我在這裡。':key==='guilt'?'不必把一切都怪在自己身上。':['shield','walk','locked'].includes(key)?t(Array.isArray(line)?line[0]:line||'一起突破這裡。'):key==='wave'?'下一批來了，我會替你留意後方。':key==='ult'?'把你的力量釋放出來吧！':'我在這裡。照自己的步調前進。'):t(Array.isArray(line) ? line[Math.floor(Math.random() * line.length)] : line));
   audio.sfx('bubble');
 }
 
@@ -962,6 +967,7 @@ function guiltBurst() {
   } else if (hero.mode === 'burst') {
     hero.burstT += GAUGE.burstExtend;
   } else {
+    hero.burstAuraUntil = game.time + GAUGE.burstExtend; // Effect follows this burst extension, not the full courage form.
     hero.courage = Math.min(GAUGE.courageMax, hero.courage + GAUGE.burstExtend * GAUGE.courageDrain); // 不受命中延長上限限制
   }
   hero.state = 'free';
@@ -977,6 +983,7 @@ function revert(silent = false) {
   if (!silent) audio.sfx('revert');
   setForm(hero.base);
   hero.mode = null;
+  hero.burstAuraUntil = 0;
   hero.courage = 0;
   hero.qi *= 0.5;
   hero.readySaid = false;
@@ -2616,6 +2623,7 @@ function update(dt) {
   if(game.bossSpawned&&!game.pressure&&(game.bossFightTime=(game.bossFightTime||0)+dt)>=45){game.pressure=true;banner(tr('久戰加壓：魔王加速','PRESSURE: Boss accelerates','長期戦：ボス加速'));if(audio.tracks['bgm_boss_rage'])setBgm('bgm_boss_rage');}
   if (game.comboT > 0) { game.comboT -= dt; if (game.comboT <= 0) game.combo = 0; }
   updateHero(dt);
+  burstAura.update(hero,game);
   if(guest()&&hero.state!=='dead')guestCombat.update(dt);
   nightmareBossSkills.update(dt);
   if(game.phase!=='playing'&&game.phase!=='ending')return;
@@ -2905,6 +2913,7 @@ function frame(now) {
   hallArt?.update(frozen?0:dt);
   hallFx?.update(frozen?0:dt);
   actorShadows.update(hero,angel,enemies,ambush,!!sun?.castShadow);
+  burstAura.update(hero,game);
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
