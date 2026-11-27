@@ -1,12 +1,13 @@
 // BGM 使用 manifest.audio；正式 SFX 可填 manifest.sfx，缺檔時沿用 WebAudio 合成音效。
 const MUTE_KEY = 'game02.muted';
 // Keep the startup network free for artwork; rare/large tracks remain on demand.
-const WARM_SFX = ['ui', 'ui_confirm', 'stage_select', 'dialog_next', 'student_punch',
+const WARM_SFX = ['ui', 'ui_confirm', 'stage_select', 'student_punch',
   'swing', 'hit', 'crit', 'punch_1', 'punch_2', 'punch_3', 'dodge', 'hurt',
   'lock_switch', 'spawn', 'shoot', 'enemy_fly', 'enemy_down', 'boss_ko'];
-const FILE_ONLY_CUES = new Set(['dialog_next', 'spawn', 'shoot', 'enemy_shot', 'enemy_fly',
+const FILE_ONLY_CUES = new Set(['guilt_crack', 'whistle', 'spawn', 'shoot', 'enemy_shot', 'enemy_fly',
   'enemy_down', 'mask_off', 'boss_appear', 'boss_warn', 'boss_slam']);
 const MAX_MONSTER_DEATH_VOICES = 2;
+const PRIORITY_CUES=new Set(['boss_warn','boss_slam','boss_appear','whistle','guard','hit_heavy','crit','dodge_perfect','hurt','guilt_crack']);
 
 export class GameAudio {
   constructor(manifest) {
@@ -18,7 +19,7 @@ export class GameAudio {
     this.sfxLoading = new Map();
     this.sfxFailed = new Set();
     this.monsterDeathVoices = new Set();
-    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.crowdVoices=new Set(); this.celebrationEpoch=0;
+    this.sfxVariants = new Map(); this.sfxLast = new Map(); this.voices = new Set(); this.priorityVoices = new Set(); this.crowdVoices=new Set(); this.celebrationEpoch=0;
     this.loops = new Map(); this.loopRequests = new Map(); this.duck = 1;
     this.muted = localStorage.getItem(MUTE_KEY) === '1';
     this.ctx = null;
@@ -228,11 +229,11 @@ export class GameAudio {
   }
 
   sfx(name, { sampleOnly = false } = {}) {
-    if (this.muted) return;
+    if (this.muted || name==='dialog_next') return; // Silent text advance, even when the old pitched file is cached.
     const now=this.ctx?.currentTime;
     const monsterDeath=name==='enemy_down';
     if(monsterDeath && this.monsterDeathVoices.size>=MAX_MONSTER_DEATH_VOICES)return;
-    const gap={dialog_next:.08,spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.1,crit:.1,boss_ko:.6,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
+    const gap={spawn:.16,enemy_down:.09,enemy_fly:.14,guilt_tick:.3,guilt_crack:1.2,hit:.1,crit:.1,boss_ko:.6,bubble:.25,guard:.08,applause:6.5,crowd_cheer:12}[name] ?? .025;
     const rateKey = name==='hit'||name==='crit' ? 'impact' : name;
     if(Number.isFinite(now)){if(now-(this.sfxLast.get(rateKey)??-Infinity)<gap)return;this.sfxLast.set(rateKey,now);}
     const fileOnly=sampleOnly || FILE_ONLY_CUES.has(name);
@@ -247,11 +248,19 @@ export class GameAudio {
         buffer=variants.map((_,i)=>this.sfxBuffers.get(`${name}:${i}`)).find(Boolean);
       }
       if (buffer) {
-        if(this.voices.size>=16){const oldest=this.voices.values().next().value;oldest.stop?.();this.voices.delete(oldest);}
+        const priority=PRIORITY_CUES.has(name);
+        if(this.voices.size>=16){
+          let oldest;
+          for(const active of this.voices){if(!this.priorityVoices.has(active)){oldest=active;break;}}
+          if(!oldest&&!priority)return; // Decoration cannot steal a combat cue.
+          oldest??=this.voices.values().next().value;
+          oldest.stop?.();this.voices.delete(oldest);this.priorityVoices.delete(oldest);
+        }
         const player=this.ctx.createBufferSource();player.buffer=buffer;player.connect(this.master);this.voices.add(player);
+        if(priority)this.priorityVoices.add(player);
         if(monsterDeath)this.monsterDeathVoices.add(player);
         if(name==='applause'||name==='crowd_cheer'||name==='victory_human_cheer')this.crowdVoices.add(player);
-        player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.crowdVoices.delete(player);this.monsterDeathVoices.delete(player);};player.start();return;
+        player.onended=()=>{player.disconnect?.();this.voices.delete(player);this.priorityVoices.delete(player);this.crowdVoices.delete(player);this.monsterDeathVoices.delete(player);};player.start();return;
       }
       if(name==='victory_human_cheer'||name==='boss_ko') {
         const epoch=this.celebrationEpoch;

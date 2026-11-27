@@ -3,7 +3,7 @@ import { createPictureFilm } from './picture-film.js?v=20261127finalcrop';
 import { waitForArtwork, cancelArtwork } from './loading.js?v=20261120nightcast';
 import { words } from './run-records.js?v=20261120assets';
 import { BOSS_BANTER } from './boss-banter.js?v=20261120assets';
-import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261127finalcrop';
+import { BOSS_STORYBOARDS, createBossStoryboard } from './boss-storyboards.js?v=20261127clearbanter';
 import { t, lang } from './i18n.js?v=20261120assets';
 export const BOSS_PROFILES = {
  jiamangKing:['假忙森主管','jiamang','#71dfdc','papers','你的鍋，接回去！','zhuangxiong'],
@@ -79,7 +79,7 @@ export function createCinematics(_renderer,audioProvider){
   if(active.mode==='boss'){
    let index=0,start=0;while(index<active.kinds.length-1&&elapsed>=start+BOSS_STORYBOARDS[active.kinds[index]].duration){start+=BOSS_STORYBOARDS[active.kinds[index++]].duration;}
    const key=active.kinds[index],profile=BOSS_PROFILES[key];if(active.index!==index){active.index=index;storyboard.start(key);root.dataset.motif=profile[3];root.style.setProperty('--cinema-color',profile[2]);}
-   storyboard.render(elapsed-start,reduced,profile[2]);const beat=Number(root.dataset.beat),role=beat===1?'hero':'boss';line(index*3+beat,t(beat===1?'主角':profile[0]),words(lang,...BOSS_BANTER[key][beat]),role,beat===2,beat===1?'hit_2':'hit_heavy');
+   storyboard.render(elapsed-start,reduced,profile[2]);const beat=Number(root.dataset.beat),role=beat===1?'hero':'boss';line(index*3+beat,t(beat===1?'主角':profile[0]),words(lang,...BOSS_BANTER[key][beat]),role,true);
   }else if(active.mode==='victory'){
    const beat=Math.min(2,Math.floor(elapsed/2));victoryArt.render(elapsed,reduced);const lines=[['這一次，換我說了算！','My turn to call the shots!','今度は俺が決める！'],['把你的廢話，全都打回去！','Take your excuses back!','その言い訳、全部返す！'],['我還會害怕，但我不會再退。','I still feel fear. I will not back down.','怖くても、もう引かない。']];line(beat,t('主角'),words(lang,...lines[beat]),'hero',beat===1,beat===2?'boom':'hit_heavy');
   }else if(active.mode==='awakening'){

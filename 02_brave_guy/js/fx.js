@@ -1,4 +1,5 @@
 import {dangerDisc,dangerLane,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127ready';
+import {reserveHitSpark} from './hit-spark-budget.js?v=20261127impactpriority';
 import {impactProfile,impactFrames,impactAngle} from './impact-art.js?v=20261127artdirection';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
@@ -61,16 +62,19 @@ export class Fx {
   }
 
   // All bursts fit on one camera-facing quad. Direction derives from the actual hit source.
-  hitSpark(pos,y=1,kind='light',aimX=0,aimY=0){
-    if(this.items.filter(it=>it.obj.userData.hitSpark).length>=18)return null;
+  hitSpark(pos,y=1,kind='light',aimX=0,aimY=0,boss=false,crowded=false){
     if(typeof kind==='boolean')kind=kind?'heavy':'light';
+    const essential=boss||kind!=='light';
+    const slot=reserveHitSpark(this.items,essential,crowded);
+    if(!slot.show)return null;
+    if(slot.replace>=0){releaseFx(this.items[slot.replace].obj);this.items.splice(slot.replace,1);}
     const p=impactProfile(kind),atlas=kind==='light'&&hitFrames.length>0;
     const frames=atlas?hitFrames:impactFrames(kind,hitReference);
     const rotation=kind==='light'?(Math.random()-.5)*.37:impactAngle(aimX,aimY);
     const material=new THREE.SpriteMaterial({map:frames[0],transparent:true,
       depthWrite:false,depthTest:true,toneMapped:false,rotation});
     const sprite=new THREE.Sprite(material);
-    Object.assign(sprite.userData,{hitSpark:true,kind,frame:0});
+    Object.assign(sprite.userData,{hitSpark:true,essential,kind,frame:0});
     sprite.position.set(pos.x,y,pos.z);
     sprite.scale.setScalar(p.scale);
     return this.add(sprite,p.life,k=>{

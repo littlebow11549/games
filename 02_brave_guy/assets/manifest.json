@@ -501,7 +501,7 @@
     "transform_done": "assets/source/sfx/brave_guy_sfx165_transform_done.mp3",
     "revert": "assets/source/sfx/brave_guy_sfx111_revert.mp3",
     "guilt_tick": "assets/source/sfx/clean/brave_guy_sfx60_guilt_tick_clean.wav",
-    "guilt_crack": "assets/source/sfx/clean/brave_guy_sfx58_guilt_crack_clean.wav",
+    "guilt_crack": "assets/source/sfx/brave/brave_guy_sfx15_brave_hit_sharp.wav",
     "guilt_burst": "assets/source/sfx/clean/brave_guy_sfx56_guilt_burst_clean.wav",
     "spawn": "assets/source/sfx/brave_guy_sfx151_spawn.mp3",
     "enemy_fly": "assets/source/sfx/brave_guy_sfx45_enemy_fly.mp3",

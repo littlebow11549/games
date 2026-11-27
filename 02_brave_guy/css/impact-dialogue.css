@@ -45,6 +45,9 @@
 .game-art :is(#cinema,.battle-shout):is([data-voice="kabanKing"],[data-voice="jiamangKing"]){--voice-ink:#acf2c9}
 .game-art :is(#cinema,.battle-shout):is([data-voice="qian"],[data-voice="qianBiz"],[data-voice="guan"]){--voice-ink:#ffdc79}
 .game-art :is(#cinema,.battle-shout):is([data-voice="folaidiKing"],[data-voice="midKing"]){--voice-ink:#d0baff}
+.game-art #world-ui .dmg.shout.battle-shout[data-letter-shadow="down-right"]{
+ text-shadow:1px 1px #111,2px 2px #111,3px 3px #111,4px 4px #111,5px 5px #111,6px 6px #111;
+}
 @keyframes battle-shout{
  0%{transform:translate(-50%,-48%) scale(.69) rotate(-4deg);opacity:0}
  17%{transform:translate(-50%,-62%) scale(1.10) rotate(2deg);opacity:1}

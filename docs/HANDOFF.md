@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 勇氣超人 81→85 分優化企劃：[策略與驗收](handoffs/2026-11-27-brave-guy-roadmap-85.md)。
+
 - 2026-11-27 勇氣超人雙血條、粗斜體、惡夢 3D 浮游炮、過場與怪潮（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-qa-audio-and-boss.md)。
 
 - 2026-11-27 小天使五瓣冰陣、圓形鎖定鍵與綠金視角鍵（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-ice-bloom-controls.md)。

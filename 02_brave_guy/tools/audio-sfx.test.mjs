@@ -179,7 +179,7 @@ test('enemy and cutscene cues never turn into a generic tone while files load or
     await Promise.all(h.g.sfxLoading.values());
     h.g.sfx('enemy_down'); // variant 1 is cold; use decoded variant 0, never a tone
     h.g.sfx('spawn'); h.g.sfx('dialog_next'); h.g.sfx('notify', { sampleOnly:true });
-    assert.deepEqual(h.played, ['file','file','file']);
+    assert.deepEqual(h.played, ['file','file']);
     await Promise.all(h.g.sfxLoading.values());
   } finally { globalThis.fetch = previousFetch; console.warn = previousWarn; }
 });
@@ -194,4 +194,20 @@ test('monster death layers stay bounded during swarms without stealing player im
   assert.equal(nodes.filter(node=>node.buffer==='death'&&!node.stopped).length,2);
   assert.equal(g.voices.size,3);
   assert.equal(nodes[0].stopped,undefined);
+});
+
+test('warm or unavailable dialog clicks are silent, and crowded voices cannot steal Boss warnings',()=>{
+ const {g}=harness({dialog_next:'old-pitched.wav',boss_warn:'warning.wav',hit_heavy:'heavy.wav',swing:'swing.wav'});
+ for(const name of ['dialog_next','boss_warn','hit_heavy','swing'])g.sfxBuffers.set(name,name);
+ const nodes=[];
+ g.ctx.createBufferSource=()=>({connect(){},disconnect(){},start(){nodes.push(this);},stop(){this.stopped=true;this.onended();}});
+ g.sfx('dialog_next');assert.equal(nodes.length,0);
+ g.ctx.currentTime=0;g.sfx('boss_warn');
+ for(let i=1;i<=16;i++){g.ctx.currentTime=i;g.sfx('swing');}
+ assert.equal(nodes[0].stopped,undefined);
+ assert.equal(nodes[1].stopped,true);
+ g.ctx.currentTime=20;g.sfx('hit_heavy');
+ assert.equal(nodes.at(-1).buffer,'hit_heavy');
+ assert.equal(g.voices.size,16);
+ assert.equal(g.priorityVoices.size,2);
 });

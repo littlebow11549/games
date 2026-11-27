@@ -29,17 +29,17 @@ import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration 
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
 import {beamInk} from './attack-art.js?v=20261127ready';
-import { Fx } from './fx.js?v=20261127ready';
+import { Fx } from './fx.js?v=20261127impactpriority';
 import { revealMobHealth } from './battle-readability.js?v=20261127artdirection';
 import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261127burstframe';
-import { createCinematics } from './cinematics.js?v=20261127voicestyle';
-import { createOpening } from './opening.js?v=20261120assets';
+import { createCinematics } from './cinematics.js?v=20261127clearbanter';
+import { createOpening } from './opening.js?v=20261127clearbanter';
 import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
 import { Input, lockViewport } from './input.js?v=20261127joystick';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120castfix';
-import { GameAudio } from './audio.js?v=20261127ready';
+import { GameAudio } from './audio.js?v=20261127clearbanter';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261120assets';
 import { t, tf, lang, nextLang, setLang, applyStatic } from './i18n.js?v=20261120assets';
 import { makeMaze } from './maze.js?v=20261120assets';
@@ -650,7 +650,7 @@ function showLine() {
 function advanceDialog(skip = false) {
   if (!dialog) return;
   dialog.i = skip ? dialog.lines.length : dialog.i + 1;
-  if (dialog.i < dialog.lines.length) { showLine(); if(dialog.lines!==FIRST_TRANSFORM)audio.sfx('dialog_next'); return; }
+  if (dialog.i < dialog.lines.length) { showLine(); return; }
   const d = dialog;
   dialog = null;
   $('dialog').hidden = true;
@@ -696,6 +696,7 @@ function popup(world, height, text, cls = '', voice = '') {
     ui.querySelector('.battle-shout')?.remove(); // Keep large shouts from covering each other.
     el.classList.add('battle-shout');
     if(voice)el.dataset.voice=voice;
+    if(voice==='lan'&&text==='立正！')el.dataset.letterShadow='down-right';
     const width=Math.min(innerWidth*.82,470),pad=width*.55+5;
     el.style.setProperty('--shout-width',width+'px');
     el.style.left=`${Math.max(pad,Math.min(innerWidth-pad,p.x))}px`;
@@ -850,14 +851,14 @@ function updateHud() {
   }
 
   updateBossHealth();
-  const controlTop=$('boss-bar').hidden?12:$('boss-bar').getBoundingClientRect().bottom+12;
+  let controlTop; // Read layout only if a visible control badge needs the Boss-bar floor.
   for (const e of enemies) {
     if(e.crowdDrawOmit){
       if(e.bar&&e.bar.style.display!=='none')e.bar.style.display='none';
       if(e.controlBadge&&!e.controlBadge.hidden)e.controlBadge.hidden=true;
       continue;
     }
-    updateControlBadge(e,controlTop);
+    controlTop=updateControlBadge(e,controlTop)??controlTop;
     if (e.def.boss) continue;
     if (!e.bar) continue;
     if(e.state==='dead'||e.state==='spawn'||!e.shown||!e.visual.root.visible
@@ -1306,7 +1307,7 @@ function enemyImpact(e,kind,from){
     const source=screenPos(from||hero.pos,y),target=screenPos(e.pos,y);
     aimX=target.x-source.x;aimY=target.y-source.y;
   }
-  fx.hitSpark({x:e.pos.x+dx*shift,z:e.pos.z+dz*shift},y+dy*shift,kind,aimX,aimY);
+  fx.hitSpark({x:e.pos.x+dx*shift,z:e.pos.z+dz*shift},y+dy*shift,kind,aimX,aimY,e.def.boss,enemies.length>=36||crowdResolution.scale<1);
   e.nextHitSparkAt=game.time+.08;
 }
 
@@ -1779,16 +1780,18 @@ function startFinalPhase(e) {
   game.shake = 0.7;
 }
 
-function updateControlBadge(e,bottom=12){
+function updateControlBadge(e,bottom){
  const kind=e.guestHold>0?(e.guestStatus||'stun'):e.guestKnockT>0?'knock':e.guestPullT>0?'pull':e.def.boss&&e.guestControlCooldown>0?'resist':null;
  if(!kind||!alive(e)||!e.shown||e.hp<=0){e.controlBadge?.remove();e.controlBadge=null;return;}
  const point=screenPos(e.pos,e.def.height+.75+e.y);if(!point.visible){if(e.controlBadge)e.controlBadge.hidden=true;return;}
+ const bossBar=$('boss-bar');bottom??=bossBar.hidden?12:bossBar.getBoundingClientRect().bottom+12;
  if(!e.controlBadge){e.controlBadge=document.createElement('span');e.controlBadge.className='control-badge';$('world-ui').append(e.controlBadge);}
  const badge=e.controlBadge;badge.hidden=false;badge.dataset.status=kind;
  const names={freeze:['❄ 凍結','❄ Frozen','❄ 凍結'],paralyze:['ϟ 麻痺','ϟ Paralyzed','ϟ 麻痺'],stun:['✦ 震懾','✦ Stunned','✦ スタン'],knock:['↗ 吹飛','↗ Blown away','↗ 吹き飛ばし'],pull:['◎ 聚攏','◎ Pulled','◎ 引き寄せ'],resist:['控制抗性','Control resist','制御耐性']};
  const seconds=kind==='resist'?e.guestControlCooldown:e.guestHold;
  badge.textContent=names[kind][lang==='en'?1:lang==='ja'?2:0]+(seconds>0&&kind!=='pull'&&kind!=='knock'?` ${seconds.toFixed(1)}s`:'');
  badge.style.left=`${Math.max(65,Math.min(innerWidth-65,point.x))}px`;badge.style.top=`${Math.max(bottom,Math.min(innerHeight-30,point.y))}px`;
+ return bottom;
 }
 
 function updateEnemy(e, dt, attackers) {
@@ -2966,7 +2969,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127combatfinal';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127clearbanter';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
