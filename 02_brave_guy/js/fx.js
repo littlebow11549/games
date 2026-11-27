@@ -1,4 +1,4 @@
-import {impactProfile,impactTexture} from './impact-art.js?v=20261127finishfx';
+import {impactProfile,impactFrames} from './impact-art.js?v=20261127impact3d';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
@@ -9,8 +9,10 @@ const additive = (color, opacity = 1) => new THREE.MeshBasicMaterial({
 });
 
 const hitFrames = [];
+let hitReference=null;
 const hitSheetReady = new THREE.TextureLoader().loadAsync(new URL('../assets/source/pic/fx/brave_guy_fx01_fx_hit_arcade_8f.png', import.meta.url).href).then(sheet => {
   sheet.colorSpace = THREE.SRGBColorSpace;
+  hitReference=sheet.image;
   for (let i = 0; i < 8; i++) {
     const frame = sheet.clone();
     frame.repeat.set(1 / 4, 1 / 2);
@@ -19,6 +21,9 @@ const hitSheetReady = new THREE.TextureLoader().loadAsync(new URL('../assets/sou
     hitFrames.push(frame);
   }
   sheet.dispose();
+  if(typeof requestIdleCallback==='function'){
+    for(const kind of ['heavy','counter','guard'])requestIdleCallback(()=>impactFrames(kind,hitReference));
+  }
 }).catch(() => {}); // Missing art must not stop gameplay.
 function releaseFx(obj) {
   if (obj.userData.hitSpark) { obj.material.dispose(); obj.removeFromParent(); }
@@ -54,25 +59,25 @@ export class Fx {
     this.items.length = 0;
   }
 
-  // One sprite per hit, shared textures and flat opacity; avoid a full-screen flash.
-  hitSpark(pos,y=1,kind='light'){
+  // All bursts fit on one camera-facing quad. Direction derives from the actual hit source.
+  hitSpark(pos,y=1,kind='light',from=null){
     if(this.items.filter(it=>it.obj.userData.hitSpark).length>=18)return null;
     if(typeof kind==='boolean')kind=kind?'heavy':'light';
     const p=impactProfile(kind),atlas=kind==='light'&&hitFrames.length>0;
-    const material=new THREE.SpriteMaterial({map:atlas?hitFrames[0]:impactTexture(kind),transparent:true,
-      depthWrite:false,depthTest:true,toneMapped:false,rotation:kind==='guard'?0:(Math.random()-.5)*.26});
+    const frames=atlas?hitFrames:impactFrames(kind,hitReference);
+    const dx=from?pos.x-from.x:0,dz=from?pos.z-from.z:0;
+    const directed=kind==='counter'||kind==='guard';
+    const rotation=directed?(Math.hypot(dx,dz)>.12?Math.atan2(-dz*.72,dx):.25):(Math.random()-.5)*.37;
+    const material=new THREE.SpriteMaterial({map:frames[0],transparent:true,
+      depthWrite:false,depthTest:true,toneMapped:false,rotation});
     const sprite=new THREE.Sprite(material);
     Object.assign(sprite.userData,{hitSpark:true,kind,frame:0});
     sprite.position.set(pos.x,y,pos.z);
-    sprite.scale.setScalar(atlas?p.scale:p.scale*.77);
+    sprite.scale.setScalar(p.scale);
     return this.add(sprite,p.life,k=>{
       const frame=Math.min(7,Math.floor(k*8));
       sprite.userData.frame=frame;
-      if(atlas)material.map=hitFrames[frame];
-      else {
-        sprite.scale.setScalar(p.scale*(.77+.32*(1-(1-k)**3)));
-        material.opacity=k<.26?1:(1-k)/.74;
-      }
+      material.map=frames[frame];material.opacity=atlas?1:k<.68?1:Math.max(0,(1-k)/.32);
     });
   }
 

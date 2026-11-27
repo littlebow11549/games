@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const root=path.resolve(__dirname,'../../02_brave_guy'),T=require(path.join(root,'vendor/three/three.module.min.js'));
 const read=name=>fs.readFileSync(path.join(root,'js',name),'utf8').replace(/^import .*;$/gm,'').replaceAll('export ','');
-const ctx=()=>new Proxy({},{get:(o,k)=>k in o?o[k]:(()=>{})});
+const ctx=()=>new Proxy({},{get:(o,k)=>k in o?o[k]:k==='createRadialGradient'||k==='createLinearGradient'?(()=>({addColorStop(){}})):(()=>{})});
 const THREE={...T,TextureLoader:class{loadAsync(){return Promise.resolve(new T.Texture());}}};
 const env={THREE,URL,document:{createElement:()=>({getContext:ctx})}};
 const {Fx}=vm.runInNewContext(read('impact-art.js')+'\n'+read('dispose-owned.js')+'\n'+read('fx.js').replace('import.meta.url',"'https://example.test/js/fx.js'")+'\n({Fx})',env);
@@ -17,8 +17,13 @@ async function main(){
  heavy.material.addEventListener('dispose',()=>materialDispose++);
  heavyTexture.addEventListener('dispose',()=>textureDispose++);
  for(let i=1;i<8;i++){f.update(.025001);assert.equal(light.userData.frame,i);}
+ f.update(.027);
  assert.ok(heavy.material.opacity<1);
- f.update(.1);assert.equal(f.items.length,0);
+ assert.notEqual(heavy.material.map,heavyTexture,'heavy changes actual atlas phase');
+ assert.equal(heavy.material.map.source,heavyTexture.source,'phases share one atlas texture source');
+ const guardAngle=f.hitSpark(pos,1,'guard',{x:7,z:1});
+ assert.ok(Math.abs(guardAngle.material.rotation-Math.PI/2)<.01);
+ f.update(.3);assert.equal(f.items.length,0);
  assert.equal(materialDispose,1);assert.equal(textureDispose,0);
  for(let i=0;i<40;i++)f.hitSpark(pos,1,'heavy');
  assert.equal(f.items.length,18);assert.equal(f.items[0].obj.material.map,heavyTexture);

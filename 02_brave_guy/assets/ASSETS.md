@@ -434,3 +434,5 @@ minimap_sheet外框、敵人三種與主角箭頭已經js/minimap-art.js接入�
 ## 2026-11-20 廢棄視覺清理與職場補圖
 舊SVG佔位、錯Logo稿及歸檔視覺已依使用者明確要求刪除，歷史紀錄不代表目前檔案存在。六張ult_角色三語大招字仍使用並明確保留。16張sheet/unified為現役母檔，已逐像素驗證角色區域。刪除清單：docs/reports/2026-11-20-retired-assets-removed.json（repo相對）。
 已查既有16張合輯與CHARACTERS職場變體說明；缺少獨立的加班鬼、加班鬼王、假忙森、假忙森主管、錢經理、藍經理設定集。使用者已於本日明確同意補這六款；沿用原角色與正式Logo，不重繪已有16張。
+
+- Little Angel shoulder support uses the genuine skinned `assets/runtime/stage-art/brave_guy_charactor02_angel_companion.glb` derivative (manifest model `angel`); see [provenance and QA](../../docs/handoffs/2026-11-27-little-angel-companion.md). The playable GLB and all reference art are unchanged.

@@ -18,11 +18,11 @@ import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261127kaban';
-import { createActorShadows } from './actor-shadows.js?v=20261127managers';
+import { createActorShadows } from './actor-shadows.js?v=20261127impact3d';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
-import { Fx } from './fx.js?v=20261127finishfx';
+import { Fx } from './fx.js?v=20261127impact3d';
 import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -1220,9 +1220,13 @@ function hurtHero(amount, opts = {}) {
   else playBraveCue('hit');
 }
 
-function enemyImpact(e,kind){
+function enemyImpact(e,kind,from){
   if(game.time<(e.nextHitSparkAt||0))return;
-  fx.hitSpark(e.pos,e.y+Math.max(.6,e.def.height*.65),kind);
+  const y=e.y+Math.max(.6,e.def.height*.65);
+  const cam=camera.position,dx=cam.x-e.pos.x,dy=cam.y-y,dz=cam.z-e.pos.z;
+  // Pull the sprite to the visible surface without changing its screen-space hit location.
+  const shift=Math.max(.58,(e.def.radius||.6)*.94)/(Math.hypot(dx,dy,dz)||1);
+  fx.hitSpark({x:e.pos.x+dx*shift,z:e.pos.z+dz*shift},y+dy*shift,kind,from||hero.pos);
   e.nextHitSparkAt=game.time+.08;
 }
 
@@ -1230,9 +1234,9 @@ function enemyImpact(e,kind){
 function damageEnemy(e, mult, o = {}) {
   if (!alive(e) || e.fly) return null;
   if (e.untouchable) return { killed: false, crit: false, damaged: false }; // 終章最後一段：打不到，但出手仍然算數
-  if (e.castInvuln) { enemyImpact(e,'guard');audio.sfx('guard'); return { killed: false, crit: false, damaged: false }; } // 放超惡夢波時無敵
+  if (e.castInvuln) { enemyImpact(e,'guard',o.from);audio.sfx('guard'); return { killed: false, crit: false, damaged: false }; } // 放超惡夢波時無敵
   if (e.shield) {
-    enemyImpact(e,'guard');audio.sfx('guard');
+    enemyImpact(e,'guard',o.from);audio.sfx('guard');
     // 夢魘超人只會擋：要用三個小招各破一次
     if (['skill1', 'skill2', 'skill3'].includes(o.src) && !e.broken.has(o.src)) {
       e.broken.add(o.src); audio.sfx('mask_off');
@@ -1257,7 +1261,7 @@ function damageEnemy(e, mult, o = {}) {
     dmg=Math.min(dmg,Math.max(0,e.hp-phaseFloor));
   }
   e.hp -= dmg;
-  if(dmg>0)enemyImpact(e,guarded?'guard':game.counterT>0?'counter':crit||mult>=1.8?'heavy':'light');
+  if(dmg>0)enemyImpact(e,guarded?'guard':game.counterT>0?'counter':crit||mult>=1.8?'heavy':'light',o.from);
   e.visual.flash();
   popup(e.pos, e.def.height + e.y, guarded ? tf('擋 {0}', dmg) : `-${dmg}`, guarded ? 'guard' : crit ? 'crit' : '');
   const from = o.from || hero.pos;
@@ -2663,8 +2667,18 @@ function updateAngel(dt) {
   if (!angel.visual) return;
   angel.rescueT=Math.max(0,(angel.rescueT||0)-dt);
   angel.pos.lerp(supportTarget(tmp), 1 - Math.exp(-4 * dt));
-  angel.visual.root.position.set(angel.pos.x, guest()?2.1+Math.sin(game.time*4)*.15:1.5, angel.pos.z);
-  angel.visual.root.rotation.y = Math.atan2(hero.pos.x - angel.pos.x, hero.pos.z - angel.pos.z);
+  const root=angel.visual.root, modelCompanion=angel.visual.kind==='angel'&&!!angel.visual.actions?.idle;
+  const facing=Math.atan2(hero.pos.x-angel.pos.x,hero.pos.z-angel.pos.z);
+  if(modelCompanion){
+    // Keep the shoulder anchor and rescue approach, but let the textured fairy hover and bank in 3D.
+    angel.hoverClock=((angel.hoverClock||0)+dt)%(Math.PI*20);
+    const hover=Math.sin(angel.hoverClock*4.3), bank=Math.cos(angel.hoverClock*3.8);
+    root.position.set(angel.pos.x,1.5+hover*.10+(angel.rescueT>0?.07:0),angel.pos.z);
+    root.rotation.set(bank*.055,facing*.40,hover*.085);
+  } else {
+    root.position.set(angel.pos.x,guest()?2.1+Math.sin(game.time*4)*.15:1.5,angel.pos.z);
+    root.rotation.y=facing;
+  }
   angel.visual.update(dt);
   angel.quiet = Math.max(0, angel.quiet - dt);
   if (angel.sayT > 0) { angel.sayT -= dt; if (angel.sayT <= 0) $('angel-bubble').hidden = true; }
@@ -2878,7 +2892,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127kaban';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127impact3d';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

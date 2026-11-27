@@ -196,7 +196,7 @@
         "burst": "Angel_Burst"
       }
     },
-    "angel": null,
+    "angel": {"url": "assets/runtime/stage-art/brave_guy_charactor02_angel_companion.glb", "height": 1.09, "rotationY": 1.5707963267948966, "clips": {"idle": "Angel_Idle"}},
     "ganqiao": {
       "url": "assets/runtime/stage-art/brave_guy_charactor03_ganqiao_initial_motion.glb",
       "height": 1,

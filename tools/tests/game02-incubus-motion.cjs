@@ -26,7 +26,7 @@ assert.equal(c.game.final,true);assert.equal(e.untouchable,true);assert.equal(e.
 const dmg=main.slice(main.indexOf('function enemyImpact('),main.indexOf('function tally('));
 const d={alive:e=>e.state!=='dead',audio:{sfx(){}},tf:()=>'',popup(){},fx:{ring(){},hitSpark(){},burst(){}},updateLockMarker(){},playBossKO(){},
  stats:()=>({atk:1000}),hasDebuff:()=>false,godMode:()=>false,rand:()=>1,HERO:{critRate:0,critMult:1.5},game:{combo:30,counterT:0,awakened:false,final:false,time:1},
- tmp:new THREE.Vector3(),hero:{character:'brave',pos:new THREE.Vector3()},Math};
+ camera:{position:new THREE.Vector3(0,13,12.5)},tmp:new THREE.Vector3(),hero:{character:'brave',pos:new THREE.Vector3()},Math};
 vm.createContext(d);vm.runInContext(dmg+'\nthis.hit=damageEnemy',d);
 const boss={kind:'incubus',maxHp:9200,hp:9200,def:{boss:true,incubus:true,height:2.2},shield:true,broken:new Set(),state:'chase',
  y:0,pos:new THREE.Vector3(1,0,2),visual:{flash(){},play(){}}};
