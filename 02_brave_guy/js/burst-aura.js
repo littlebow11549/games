@@ -1,9 +1,9 @@
 import * as THREE from '../vendor/three/three.module.min.js';
 
 const PALETTES={
- brave:[0xff9a2b,0xffe58a,0xfff5ba,2.12],
- angel:[0xec67b4,0xffcfed,0xffe9f6,1.74],
- nightmare:[0x8b46e8,0xba8bff,0xe2c5ff,2.17]
+ brave:[0xff9b36,0xffda7b,0xffedb0,2.12],
+ angel:[0xf064b8,0xffcde9,0xffdcf2,1.74],
+ nightmare:[0x9250ec,0xd2a9ff,0xe4c5ff,2.17]
 };
 const common=`
  varying vec2 art; uniform float clock;
@@ -24,40 +24,60 @@ const flameVertex=`
 const flame=common+`
  uniform float seed;
  varying float foreground;
+ float hash(float x){return fract(sin(x*36.671+.91)*4375.953);}
+ float noise(float x){
+  float i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
+  return mix(hash(i),hash(i+1.),f);
+ }
+ float curl(float y,float t,float k){
+  return sin(y*9.-t*4.+k)*.10+sin(y*17.-t*7.+k*1.7)*.043;
+ }
+ float tongue(float x,float y,float height,float width){
+  float ny=clamp(y/height,0.,1.);
+  float notch=width*pow(max(0.,1.-ny),.68)*(1.+.10*sin(ny*10.));
+  return min(notch-abs(x),(height-y)*.47);
+ }
  void main(){
-  float y=art.y;
-  float flow=y*2.75-clock*2.3+seed;
-  float tip=.64+.30*ridge(clock*2.2+seed*1.73);
-  float h=y/tip;
-  float wav=(ridge(flow)-.5)*(.12+.29*y)+(ridge(flow*.69+.6)-.5)*.16*y;
-  float x0=abs(art.x-.50-wav);
-  float x1=abs(art.x-.25-.18*y+(ridge(flow*.47+.25)-.5)*.25);
-  float x2=abs(art.x-.76+.14*y-(ridge(flow*.53+.60)-.5)*.21);
-  float body=.28*pow(clamp(1.-h,0.,1.),.72);
-  float l=.15*pow(clamp(1.-h*1.38,0.,1.),.72);
-  float r=.13*pow(clamp(1.-h*1.58,0.,1.),.66);
-  float edge=max(1.-smoothstep(body*.85,body+.011,x0),max(1.-smoothstep(l*.86,l+.01,x1),1.-smoothstep(r*.86,r+.01,x2)));
-  edge*=smoothstep(0.,.035,y)*(1.-smoothstep(.94,1.,h));
-  float hot=(1.-smoothstep(body*.08,body*.58+.004,x0))*pow(max(0.,1.-h),.40);
-  float teeth=.72+.28*ridge(flow*1.43);
-  // Keep the near flame transparent so the character's body flash remains legible.
-  float opacity=edge*(.65+hot*.29)*mix(1.,.17,foreground);
-  gl_FragColor=vec4(mix(outerTint,coreTint,hot*teeth),opacity);
-  if(gl_FragColor.a<.027) discard;
-  #include <tonemapping_fragment>
+  float y=art.y,t=clock, x=art.x-.5;
+  float k=seed*15.4;
+  float adv=y*4.-t*2.5+k;
+  float turbulence=noise(adv)*.67+noise(adv*2.1+k)*.33-.5;
+  float flex=curl(y,t,k)*(.24+y*.93)+turbulence*.15*y;
+  float swell=.74+.18*noise(t*3.5+k)+.07*sin(t*7.+k);
+  float wide=tongue(x-flex,y,swell,.275);
+  float side1=tongue(x+.23+flex*.48-y*.23,y,.50+.16*noise(t*2.8+k+5.),.125);
+  float side2=tongue(x-.22-flex*.61+y*.13,y,.41+.18*noise(t*3.2+k-3.),.12);
+  float silhouette=max(wide,max(side1,side2));
+  float root=smoothstep(0.,.035,y);
+  float shape=smoothstep(-.007,.013,silhouette)*root;
+  float halo=pow(smoothstep(-.12,.015,silhouette),2.)*root;
+  float inner=tongue(x-flex*.86-.014,y+.028,swell*.65,.16);
+  float filament=tongue(x-flex*.83+.04,y+.105,swell*.67,.055);
+  float stream=smoothstep(.06,.91,noise(adv*2.3+k));
+  float hot=smoothstep(-.011,.025,inner)*(.69+.22*stream)*(1.-y*.36);
+  float skin=smoothstep(.001,.05,silhouette);
+  float edge=(1.-skin)*shape;
+  vec3 mid=mix(outerTint*.55,outerTint,skin);
+  mid=mix(mid,coreTint,hot*.82+stream*.16*skin);
+  mid=mix(mid,vec3(1.,.99,.95),smoothstep(-.006,.016,filament)*.68);
+  float keep=mix(1.,.11,foreground);
+  float alpha=(halo*.16+shape*(.60+hot*.28)+edge*.10)*keep;
+  gl_FragColor=vec4(mid,alpha);
+  if(gl_FragColor.a<.014)discard;
   #include <colorspace_fragment>
  }`;
 const base=common+`
  void main(){
-  vec2 p=art*2.-1.; float r=length(p), a=atan(p.y,p.x);
-  float skew=.73+ridge(a*1.91+clock*3.)*.085;
-  float gl=1.-smoothstep(.008,.060,abs(r-skew));
-  float thin=1.-smoothstep(.007,.024,abs(r-skew+.063));
-  float grit=pow(ridge(a*5.73-clock*4.),2.5);
-  float alpha=(gl*.65+thin*.37)*(.52+.48*grit);
-  gl_FragColor=vec4(mix(outerTint,coreTint,gl*.70),alpha);
-  if(gl_FragColor.a<.024)discard;
-  #include <tonemapping_fragment>
+  vec2 p=art*2.-1.;float r=length(p),a=atan(p.y,p.x);
+  float wav=sin(a*3.+clock*2.5)*.030+sin(a*7.-clock*4.)*.020;
+  float streak=pow(.5+.5*sin(a*4.-clock*7.3),3.);
+  float broken=pow(.5+.5*sin(a*7.+clock*5.1+.7),5.);
+  float fast=(1.-smoothstep(.005,.025,abs(r-.74-wav)))*streak;
+  float slow=(1.-smoothstep(.004,.038,abs(r-.69+wav)))*broken;
+  float feet=pow(1.-smoothstep(.08,.85,r),2.)*.31;
+  float alpha=feet+fast*.58+slow*.34;
+  gl_FragColor=vec4(mix(outerTint,coreTint,fast*.78+feet*.17),alpha);
+  if(gl_FragColor.a<.012)discard;
   #include <colorspace_fragment>
  }`;
 const embersVert=`
@@ -138,13 +158,13 @@ export function makeBurstAura(scene){
   if(lastTime===game.time)return;
   lastTime=game.time;
   const age=Math.max(0,game.time-started);
-  const pulse=.08+.48*Math.pow(.5+.5*Math.sin(age*15.7),2.6);
+  const pulse=.035+.29*Math.pow(.5+.5*Math.sin(age*13.2),1.9);
   for(const m of materials)m.uniforms.clock.value=age;
   for(const {original,clone} of body){
    clone.color.copy(original.color).lerp(tint,pulse);
    if(original.emissive){
-    clone.emissive.copy(original.emissive).lerp(tint,pulse*.49);
-    clone.emissiveIntensity=original.emissiveIntensity*(.67+pulse*.35)+pulse*.29;
+    clone.emissive.copy(original.emissive).lerp(tint,pulse*.26);
+    clone.emissiveIntensity=original.emissiveIntensity*(.67+pulse*.35)+pulse*.21;
    }
   }
  }

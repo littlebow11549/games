@@ -1,4 +1,4 @@
-import {showSupportBubble} from './support-bubble.js?v=20261127aurabubble';
+import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
 const stageArtReady=import('./stage-art/catalog.js?v=20261127landmarks2').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
@@ -8,7 +8,7 @@ import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261127combatfinal';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
 import { createGuestCombat } from './guest-combat.js?v=20261127combatfinal';
-import { makeBurstAura } from './burst-aura.js?v=20261127aurabubble';
+import { makeBurstAura } from './burst-aura.js?v=20261127flamework';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';

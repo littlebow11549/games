@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 爆氣第二版與小天使台詞框：[交接紀錄](handoffs/2026-11-27-flamework-revision.md)。
+
 - 2026-11-27 勇氣超人跟隨角色台詞框與三款爆氣火焰：[交接紀錄](handoffs/2026-11-27-follower-bubble.md)。
 
 - 2026-11-27 勇氣超人全角色攻擊演出、兩位 Tripo 小精靈與正式入口：[交接紀錄](handoffs/2026-11-27-combat-art-and-tripo-spirits.md)。
