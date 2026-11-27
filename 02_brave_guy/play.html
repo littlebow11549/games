@@ -18,16 +18,16 @@
 <link rel="stylesheet" href="css/cinematics.css?v=20261120assets">
 <link rel="stylesheet" href="css/opening.css?v=20261120assets">
 <link rel="modulepreload" href="vendor/three/three.module.min.js">
-<link rel="modulepreload" href="js/main.js?v=20261127scenes">
+<link rel="modulepreload" href="js/main.js?v=20261127icebloom">
 <link rel="modulepreload" href="js/world.js">
 <link rel="modulepreload" href="js/visuals.js">
-<link rel="modulepreload" href="js/fx.js?v=20261127flamework">
+<link rel="modulepreload" href="js/fx.js?v=20261127stagefx">
 <link rel="modulepreload" href="js/input.js?v=20261127joystick">
 <link rel="modulepreload" href="js/audio.js?v=20261120castfix">
 <link rel="modulepreload" href="js/story.js?v=20261120assets">
 <link rel="preload" href="assets/fonts/brave_guy_font01_huninn-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/brave_guy_font03_notosanstc-black-subset.woff2?v=20261120assets" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/loading.css?v=20261120assets">
+<link rel="stylesheet" href="css/loading.css?v=20261127stagefx">
 <link rel="stylesheet" href="css/comic-polish.css?v=20261120assets">
 <link rel="stylesheet" href="css/menu-layout.css?v=20261120assets">
 <link rel="stylesheet" href="css/controls-layout.css?v=20261127quality">
@@ -36,10 +36,11 @@
 <link rel="stylesheet" href="css/hurt-feedback.css?v=20261120assets">
 <link rel="stylesheet" href="css/playable-roster.css?v=20261120bursticon">
 <link rel="stylesheet" href="css/character-art.css?v=20261127dialog">
-<link rel="stylesheet" href="css/stage-art.css?v=20261125scene">
+<link rel="stylesheet" href="css/stage-art.css?v=20261127zoomskin">
+<link rel="stylesheet" href="css/battle-presentation.css?v=20261127lockvector">
 </head>
 <body class="game-art">
-<section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit"></div><img src="assets/runtime/lossless/pic/ui/brave_guy_ui16_主角頭像.webp" alt=""><h1>BRAVE GUY</h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
+<section id="boot-scene" aria-label="Loading" role="status"><div class="boot-orbit" aria-hidden="true"></div><h1 class="boot-brand"><img id="boot-logo" src="assets/runtime/pic/branding/brave_guy_branding08_logo_01.webp" width="768" height="512" alt="勇氣超人 Brave Guy" fetchpriority="high"></h1><p id="boot-caption">準備進入內心世界…</p><div class="boot-track"><i id="boot-fill"></i></div><b id="boot-percent">0%</b><p id="boot-tip"></p><button id="boot-retry" hidden>重試 / Retry / 再試行</button></section>
 <canvas id="scene"></canvas>
 <div id="hit-feedback" aria-hidden="true"></div>
 
@@ -92,7 +93,7 @@
     <button hidden class="act skill s2" data-action="skill2" data-key="E" aria-label="氣功彈"><span data-i18n="彈">彈</span><em></em></button>
     <button hidden class="act skill s1" data-action="skill1" data-key="Q" aria-label="勇氣衝拳"><span data-i18n="衝">衝</span><em></em></button>
     <button hidden class="act ult" data-action="ult" data-key="F" aria-label="超勇氣波"><span data-i18n="波">波</span><em></em></button>
-    <button class="act lock" id="btn-lock" data-key="T" aria-label="自動鎖定" aria-pressed="false"><span data-i18n="鎖">鎖</span></button>
+    <button class="act lock" id="btn-lock" data-key="T" aria-label="自動鎖定" aria-pressed="false"><span data-i18n="鎖">鎖</span><svg class="lock-reticle" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="lock-base" cx="24" cy="24" r="19.6"/><circle class="lock-rim" cx="24" cy="24" r="18.1"/><circle class="lock-rail" cx="24" cy="24" r="15"/><path class="lock-fins" d="M20.2 4h7.6L26 9h-4zM44 20.2v7.6L39 26v-4zM20.2 44h7.6L26 39h-4zM4 20.2v7.6L9 26v-4z"/><circle class="lock-cross" cx="24" cy="24" r="10"/><path class="lock-cross" d="M24 10v8m0 12v8M10 24h8m12 0h8"/><circle class="lock-dot" cx="24" cy="24" r="3.25"/></svg><i class="lock-focus-ring" aria-hidden="true"></i></button>
     <button class="act cycle-lock" id="btn-cycle-lock" data-key="Y" aria-label="切換鎖定目標"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 12a12 12 0 0 1 20 1M30 6v8h-8M30 28a12 12 0 0 1-20-1M10 34v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button hidden class="act transform" data-action="transform" data-key="空白鍵" data-i18n-key="空白鍵" aria-keyshortcuts="Space" aria-label="變身"><span data-i18n="變身">變身</span></button>
     <button class="act dodge" data-action="dodge" data-key="右鍵" data-i18n-key="右鍵" aria-label="閃避"><span data-i18n="閃">閃</span><em></em></button>
@@ -170,6 +171,14 @@
   var pct = 0, failed = false;
   var locale=new URLSearchParams(location.search).get('lang');try{locale=locale||localStorage.getItem('braveguy.lang');}catch(e){}
   var language=locale==='en'?1:locale==='ja'?2:0;
+  if(language===2){
+    var bootLogo=document.getElementById('boot-logo'), titleLogo=document.getElementById('ov-local-logo');
+    bootLogo.src=titleLogo.dataset.src; bootLogo.alt=titleLogo.alt;
+    bootLogo.addEventListener('error',function(){
+      var original=document.getElementById('ov-logo');
+      bootLogo.src=original.getAttribute('src');bootLogo.alt=original.alt;
+    },{once:true});
+  }
   var tips=[['20 連擊：攻擊提升 25%','20-hit combo: +25% damage','20 コンボ：攻撃力 25% アップ'],['完美閃避：3 秒反擊增傷 50%','Perfect dodge: +50% damage for 3 seconds','ジャスト回避：3 秒間ダメージ 50% アップ'],['魔王久戰會加速，抓住出招後的破綻','Bosses accelerate in long fights. Punish openings.','長期戦ではボスが加速。攻撃後の隙を狙おう。']];
   var tipIndex=0;function tip(){document.getElementById('boot-tip').textContent=tips[tipIndex++%tips.length][language];}tip();
   var tipTimer=setInterval(function(){if(window.__booted||failed)clearInterval(tipTimer);else tip();},4500);
@@ -191,7 +200,7 @@
   window.__progress(3, '開始讀取');
   var entry = document.createElement('script');
   entry.type = 'module';
-  entry.src = 'js/main.js?v=20261127scenes';
+  entry.src = 'js/main.js?v=20261127icebloom';
   entry.onerror = function () {
     window.__fail(['遊戲程式載入失敗，請重新載入。','The game failed to load. Please retry.','ゲームを読み込めませんでした。再読み込みしてください。'][language]);
   };

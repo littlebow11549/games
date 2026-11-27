@@ -1,13 +1,23 @@
 /* Production stage overlays, outside the HUD and input layers. */
 #stage-scene-glaze{position:fixed;inset:0;pointer-events:none}
-#stage-scene-glaze[data-tinted]{background:radial-gradient(ellipse 70% 64% at 17% -7%,color-mix(in srgb,var(--scene-warm) 27%,transparent),transparent 72%),radial-gradient(ellipse 85% 83% at 52% 49%,transparent 49%,color-mix(in srgb,var(--scene-shadow) 24%,transparent) 93%)}
-#scene[data-stage-grade="sunny-arcade"]{filter:saturate(.955) url("#stage-grade-sunny-arcade")}
-#scene[data-story-grade]{filter:saturate(1.065) contrast(1.025)}
-#scene[data-story-grade="2-1"]{filter:saturate(1.04) contrast(1.08) brightness(.94)}
-#scene[data-story-grade="2-2"]{filter:saturate(1.03) contrast(1.10) brightness(.86)}
-#scene[data-story-grade="3-0"]{filter:saturate(.93) contrast(1.09) brightness(.94)}
-#scene[data-story-grade="4-1"]{filter:saturate(1.15) contrast(1.09)}
+/* Match baked pools and world lights without filtering the canvas or HUD. */
+#stage-scene-glaze[data-look]{background:
+ radial-gradient(ellipse 73% 65% at var(--scene-key-origin),color-mix(in srgb,var(--scene-warm) 18%,transparent),transparent 72%),
+ radial-gradient(ellipse 77% 76% at 50% 44%,transparent 48%,color-mix(in srgb,var(--scene-shadow) calc(var(--scene-veil) * 100%),transparent) 100%),
+ linear-gradient(180deg,transparent 73%,color-mix(in srgb,var(--scene-shadow) 10%,transparent));}
 #minimap.campus-radar{border-radius:50%;touch-action:none}
 #minimap.campus-radar.art-loaded{background:none}
 @media(max-width:640px){#minimap.campus-radar.big{width:146px;height:146px}}
-#brave3d-zoom-reset{border:1px solid #d0b771;border-radius:999px;background:#26372e;color:#fff;padding:4px 8px;min-height:34px;font:700 12px system-ui;cursor:pointer}
+#brave3d-zoom-reset{
+ --zoom-edge:#e1c74c;display:inline-grid;align-self:flex-start;grid-template-columns:1fr 15px;gap:3px;
+ align-items:center;justify-items:center;width:62px;height:38px;box-sizing:border-box;
+ background:radial-gradient(ellipse at 39% 22%,#447332 0,#264d2c 51%,#132b19 100%);
+ border:2px solid var(--zoom-edge);border-radius:50px;padding:0 5px;color:#fff2aa;cursor:pointer;
+ box-shadow:0 0 0 1px #182219,inset 0 0 0 2px #263919,inset 0 3px #f5ff9740,0 2px #172423a6;
+ text-shadow:0 1px 2px #132219;
+}
+#brave3d-zoom-reset[data-changed="true"]{--zoom-edge:#f8de65;color:#fffbd4}
+#brave3d-zoom-reset:active{background:#3d6b32}
+#brave3d-zoom-reset:focus-visible{outline:2px solid #fff7dd;outline-offset:2px}
+.camera-zoom-value{font:850 12px/1 system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+#brave3d-zoom-reset svg{height:15px;width:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}

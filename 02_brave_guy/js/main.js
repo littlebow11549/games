@@ -1,14 +1,14 @@
 import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd-visual-budget.js?v=20261127quality';
 import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
-import {enableCameraZoom} from './stage-art/camera-zoom.js';
+import {enableCameraZoom} from './stage-art/camera-zoom.js?v=20261127stagefx';
 let stageArt=null;
-const stageArtReady=import('./stage-art/catalog.js?v=20261127scenes').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
+const stageArtReady=import('./stage-art/catalog.js?v=20261127stagefx').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
 import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261127combatfinal';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
-import { createGuestCombat } from './guest-combat.js?v=20261127combatfinal';
+import { createGuestCombat } from './guest-combat.js?v=20261127icebloom';
 import { makeBurstAura } from './burst-aura.js?v=20261127flamework';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
@@ -21,12 +21,13 @@ import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
 import { createVisual, loadModel } from './visuals.js?v=20261127kaban';
-import { createActorShadows } from './actor-shadows.js?v=20261127impact3d';
+import { createActorShadows } from './actor-shadows.js?v=20261127artdirection';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
-import {beamInk} from './attack-art.js?v=20261127combatfinal';
-import { Fx } from './fx.js?v=20261127combatfinal';
+import {beamInk} from './attack-art.js?v=20261127stagefx';
+import { Fx } from './fx.js?v=20261127stagefx';
+import { revealMobHealth } from './battle-readability.js?v=20261127artdirection';
 import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -574,11 +575,12 @@ function startStage(index, character=null) {
     maze?.dispose(); maze=stageArt.makeStoryMaze(THREE, pack.STORY_QUALITY[st.id].rows);scene.add(maze.group);
     hallArt=pack.dressStoryQuality(THREE,scene,stageArt.STORY_DESIGN[st.id],maze,sun,Q(),camera,hero);
   } else buildMaze(st);
-  stageArt?.applyStageGrade(st.id,stageArt.STORY_DESIGN[st.id]);
+
   if (stageArt && st.id === '1-1' && maze) {
     hallArt = pack.dressCampus3D(THREE,scene,{world:sun.parent,maze,sun,camera,hero,quality:Q(),radius:ARENA_RADIUS});
     hallFx = pack.createHallwayFx(THREE,scene);
   }
+  stageArt?.applyStageGrade(st.id,scene,sun);
   // 有小怪波次的關卡最後多一波「狂潮」：前面出過的怪全部再來一次，數量再多三成
   game.waves = st.waves.slice();
   if (st.waves.length && !st.rules.tutorial && st.id !== '3-0') {
@@ -604,7 +606,7 @@ function startStage(index, character=null) {
   $('hud').hidden = false;
   $('boss-bar').hidden = true;
   $('btn-pause').classList.remove('on');
-  $('quest-title').textContent = `${st.id}　${t(st.name)}`;
+  renderStageTitle(st);
   $('quest-wave').textContent = t(st.sub);
   $('suanle').hidden = st.map !== 3;
   // 開場對話播對話曲，講完才進該關的戰鬥曲
@@ -656,6 +658,12 @@ function advanceDialog(skip = false) {
 }
 
 // ---------- HUD ----------
+function renderStageTitle(st) {
+  const code=document.createElement('span'),name=document.createElement('span');
+  code.className='stage-number';code.textContent=st.id;
+  name.className='stage-name';name.textContent=t(st.name);
+  $('quest-title').replaceChildren(code,document.createTextNode(' '),name);
+}
 
 function banner(text) {
   const b = $('banner');
@@ -691,6 +699,7 @@ function showSkillCastName(action, label, caster = hero, character = caster.char
   const el = document.createElement('div');
   el.className = 'skill-cast-name';
   el.dataset.action = action;
+  el.dataset.character = character;
   el.dataset.caster = caster === hero ? 'player' : 'boss';
   const title = characterSkillTitle(character, action);
   if (title) el.append(title);
@@ -831,10 +840,13 @@ function updateHud() {
     updateControlBadge(e,controlTop);
     if (e.def.boss) { bossHp += Math.max(0, e.hp); bossMax += e.def.hp; continue; }
     if (!e.bar) continue;
-    if(e.state==='dead'||e.state==='spawn'||!e.shown||!e.visual.root.visible){if(e.bar.style.display!=='none')e.bar.style.display='none';continue;}
+    if(e.state==='dead'||e.state==='spawn'||!e.shown||!e.visual.root.visible
+      ||!revealMobHealth(enemies.length,e===lockTargetEnemy,e.hp,e.maxHp)){
+      if(e.bar.style.display!=='none')e.bar.style.display='none';continue;
+    }
     const p = screenPos(e.pos, e.def.height + 0.3 + e.y);
-    const show = p.visible && e.hp > 0;
-    e.bar.style.display = show ? '' : 'none';
+    const show = p.visible && e.hp > 0 && p.x>=-15 && p.x<=innerWidth+15 && p.y>=-6 && p.y<=innerHeight+6;
+    const display=show?'':'none';if(e.bar.style.display!==display)e.bar.style.display=display;
     if (show) {
       e.bar.style.left = `${p.x}px`;
       e.bar.style.top = `${p.y}px`;
@@ -1247,7 +1259,12 @@ function enemyImpact(e,kind,from){
   const cam=camera.position,dx=cam.x-e.pos.x,dy=cam.y-y,dz=cam.z-e.pos.z;
   // Pull the sprite to the visible surface without changing its screen-space hit location.
   const shift=Math.max(.58,(e.def.radius||.6)*.94)/(Math.hypot(dx,dy,dz)||1);
-  fx.hitSpark({x:e.pos.x+dx*shift,z:e.pos.z+dz*shift},y+dy*shift,kind,from||hero.pos);
+  let aimX=0,aimY=0;
+  if(kind!=='light'){
+    const source=screenPos(from||hero.pos,y),target=screenPos(e.pos,y);
+    aimX=target.x-source.x;aimY=target.y-source.y;
+  }
+  fx.hitSpark({x:e.pos.x+dx*shift,z:e.pos.z+dz*shift},y+dy*shift,kind,aimX,aimY);
   e.nextHitSparkAt=game.time+.08;
 }
 
@@ -3132,6 +3149,7 @@ $('btn-cycle-lock').addEventListener('click', e => {if(e.detail===0){audio.unloc
 addEventListener('keydown', e => { if (e.code === 'KeyY' && !e.repeat && game.phase === 'playing' && !game.paused && !dialog) { e.preventDefault(); cycleLockTarget(e.shiftKey ? -1 : 1); } });
 addEventListener('keydown', (e) => { if (e.code === 'KeyT' && !e.repeat && !dialog) { audio.sfx('ui'); selectLock(); } });
 $('btn-lock').classList.toggle('on', lockOn);
+$('btn-lock').setAttribute('aria-pressed',String(lockOn));
 // 暫停：跳出選單，可以繼續、重打這一關，或回標題選關
 function setPaused(on) {
   if (secretToggle.opened) return;
@@ -3202,7 +3220,7 @@ function refreshLang() {
   else if (game.phase === 'over' && lastOverlay) showOverlay(lastOverlay);
   else if (game.phase === 'playing' || game.phase === 'dialog') {
     const st = stage();
-    $('quest-title').textContent = `${st.id}　${t(st.name)}`;
+    renderStageTitle(st);
     if (game.bossKinds) {
       // 守關者戰中切語系：名牌與任務字要跟著換語系
       const names = game.bossKinds.map((k) => t(BOSSES[k].name)).join(t('＋'));

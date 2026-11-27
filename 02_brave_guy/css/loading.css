@@ -1,1 +1,17 @@
-#boot-scene{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px;color:#eaffd4;background:radial-gradient(ellipse at 50% 35%,#185d31,#061911 65%);font-family:system-ui;text-align:center;overflow:hidden}#boot-scene[hidden]{display:none}#boot-scene img{width:112px;height:112px;object-fit:contain;border-radius:50%;border:3px solid #edda4c;box-shadow:0 0 35px #8bff5055;animation:boot-breathe 3s ease-in-out infinite}#boot-scene h1{font-size:36px;font-style:italic;margin:0;color:#ffdf53;text-shadow:2px 3px #ad3b1d}#boot-scene p{font-size:14px;line-height:1.6;max-width:290px;margin:0;min-height:45px}#boot-scene b{font-variant-numeric:tabular-nums}.boot-track{width:85%;max-width:300px;height:12px;border:1px solid #adff7b;border-radius:20px;overflow:hidden;background:#0008}.boot-track i{display:block;height:100%;background:linear-gradient(90deg,#3eb244,#caff58,#ffe774);transform:scaleX(0);transform-origin:left;transition:transform .25s}.boot-orbit{position:absolute;width:80vw;height:80vw;border:1px solid #98ee5b22;border-radius:40%;animation:boot-orbit 16s linear infinite;pointer-events:none}#boot-retry{padding:12px 30px;border-radius:25px;border:2px solid #f0d962;background:#18452b;color:#fff;font:inherit}@keyframes boot-breathe{50%{transform:translateY(-6px);filter:brightness(1.15)}}@keyframes boot-orbit{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){#boot-scene *{animation:none!important;transition:none!important}}
+#boot-scene{
+ position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:clamp(8px,2.3svh,18px);padding:clamp(12px,6vw,30px);box-sizing:border-box;
+ color:#efffdf;background:radial-gradient(ellipse at 50% 38%,#21623b,#091f19 69%,#061410);
+ font-family:system-ui;text-align:center;overflow:hidden
+}
+#boot-scene[hidden]{display:none}
+#boot-scene .boot-brand{position:relative;margin:0;width:min(84vw,420px,67svh);line-height:0}
+#boot-logo{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 7px 13px #0d1b17ad)}
+#boot-scene p{position:relative;font-size:14px;line-height:1.5;max-width:310px;margin:0;min-height:1.5em}
+#boot-scene b{font-variant-numeric:tabular-nums}
+.boot-track{width:85%;max-width:300px;height:10px;border:1px solid #bde099;border-radius:7px;overflow:hidden;background:#0008}
+.boot-track i{display:block;height:100%;background:linear-gradient(90deg,#54b65e,#b9f370,#ffe394);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.boot-orbit{position:absolute;width:min(82vw,65svh);aspect-ratio:1;border:1px solid #c3ea8a25;border-radius:42%;pointer-events:none;transform:rotate(-16deg)}
+#boot-retry{padding:10px 27px;border-radius:12px;border:2px solid #f0d962;background:#18452b;color:#fff;font:inherit}
+@media(max-height:430px){#boot-scene .boot-brand{width:min(59vw,60svh)}#boot-scene p{font-size:12px}}
+@media(prefers-reduced-motion:reduce){#boot-scene *{animation:none!important;transition:none!important}}

@@ -33,6 +33,7 @@ function tiles(c,W,H,key,count){
   blit(c,GROUND,key,-1.25,-1.25,w+2.5,h+2.5);c.restore();
  }
 }
+import {paintSceneCraft} from './scene-craft.js?v=20261127stagefx';
 function floor(w,h,cells,cell,footprints,extent,maze,schoolPos){
  return graphic(w,h,(c,W,H)=>{
   const px=v=>(v+extent)/(2*extent)*W, s=cell*W/(extent*2), u=W/(extent*2);
@@ -118,6 +119,7 @@ function floor(w,h,cells,cell,footprints,extent,maze,schoolPos){
    c.fillStyle='#ffc9a0';c.beginPath();c.ellipse(x-.07,y-.02,.07,.035,.2,0,TAU);c.fill();
   }
   c.restore();
+  paintSceneCraft(c,cells,cell,'1-1',px,u);
   for(const o of footprints){shade(c,px(o.x+o.shadow),px(o.z+.36),o.w*u*.63,o.shadowH*u,o.k*.79);}
   // Subtle directional trail highlights at the courtyard, not fake collision.
   for(const [x,z] of [[-3,-1.9],[3,-1.9],[-3,3.8],[3,3.8]]){

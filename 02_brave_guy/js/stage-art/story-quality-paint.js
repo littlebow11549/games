@@ -1,4 +1,5 @@
 import {SCENE_GRADES,paintSceneWear,paintSceneRim} from './story-scene-grade.js';
+import {paintSceneCraft} from './scene-craft.js?v=20261127stagefx';
 import {loadStageAtlas} from './stage-textures.js?v=20261125perf1';
 // Story H5 revision: image-backed scenery, painted cast shadows, readable route masks.
 const U=Math.PI*2, EXTENT=31, SIZE=1536;
@@ -250,6 +251,7 @@ export function paintArtStage(T,root,maze,style,id,camera,hero,landmarks=[]) {
   c.beginPath();c.ellipse(uv(0),uv(0),1.35*k,1.35*k,0,0,U);c.stroke();
   for(let i=0;i<8;i++){const a=i*U/8;L(Math.cos(a)*1.11,Math.sin(a)*1.11,Math.cos(a)*.83,Math.sin(a)*.83);}
  }
+ paintSceneCraft(c,maze.walkCells,maze.cell,id,uv,k);
  for(let i=0;i<99;i++){
   const x=(rng()-.5)*42,z=(rng()-.5)*42,f=.035+rng()*.11;
   if(!inRoute(x,z,.3))continue;

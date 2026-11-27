@@ -1,5 +1,5 @@
-import {dangerDisc,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127combatfinal';
-import {impactProfile,impactFrames} from './impact-art.js?v=20261127impact3d';
+import {dangerDisc,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127stagefx';
+import {impactProfile,impactFrames,impactAngle} from './impact-art.js?v=20261127artdirection';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
@@ -61,14 +61,12 @@ export class Fx {
   }
 
   // All bursts fit on one camera-facing quad. Direction derives from the actual hit source.
-  hitSpark(pos,y=1,kind='light',from=null){
+  hitSpark(pos,y=1,kind='light',aimX=0,aimY=0){
     if(this.items.filter(it=>it.obj.userData.hitSpark).length>=18)return null;
     if(typeof kind==='boolean')kind=kind?'heavy':'light';
     const p=impactProfile(kind),atlas=kind==='light'&&hitFrames.length>0;
     const frames=atlas?hitFrames:impactFrames(kind,hitReference);
-    const dx=from?pos.x-from.x:0,dz=from?pos.z-from.z:0;
-    const directed=kind==='counter'||kind==='guard';
-    const rotation=directed?(Math.hypot(dx,dz)>.12?Math.atan2(-dz*.72,dx):.25):(Math.random()-.5)*.37;
+    const rotation=kind==='light'?(Math.random()-.5)*.37:impactAngle(aimX,aimY);
     const material=new THREE.SpriteMaterial({map:frames[0],transparent:true,
       depthWrite:false,depthTest:true,toneMapped:false,rotation});
     const sprite=new THREE.Sprite(material);
@@ -180,10 +178,10 @@ export class Fx {
   }
 
   // 殘影：衝拳路徑上留下的拖尾
-  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7, { alignToPath = true } = {}) {
+  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7, { alignToPath = true, style = 'ink' } = {}) {
     const len = Math.hypot(to.x - from.x, to.z - from.z);
     if(len<.025)return null;
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), laneInk(color,opacity));
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), laneInk(color,opacity,style));
     m.name='Attack | directional ground stroke';
     m.rotation.x = -Math.PI / 2;
     const yaw = Math.atan2(to.x - from.x, to.z - from.z);

@@ -1,4 +1,5 @@
 import {buildSceneHorizon,buildSceneThreshold} from './story-scene-horizon.js';
+import {dressSceneCraft} from './scene-craft.js?v=20261127stagefx';
 import {SCENE_GRADES,modelLightRig} from './story-scene-grade.js';
 import {STORY_DESIGN} from './story-stage-design.js';
 import {SCHOOL_QUALITY} from './story-quality-school.js?v=20261127scenes';
@@ -7,8 +8,8 @@ import {FINALE_QUALITY} from './story-quality-finale.js?v=20261127scenes';
 import {addOfficeProps} from './story-office-props.js';
 import {addFinaleProps} from './story-finale-props.js';
 import {makeQualityKit} from './story-quality-kit.js?v=20261127scenes';
-import {paintArtStage} from './story-quality-paint.js?v=20261127scenes';
-import {addStoryAmbient} from './story-ambient.js';
+import {paintArtStage} from './story-quality-paint.js?v=20261127stagefx';
+import {addStoryAmbient} from './story-ambient.js?v=20261127artdirection';
 export const STORY_QUALITY=Object.freeze({...SCHOOL_QUALITY,...OFFICE_QUALITY,...FINALE_QUALITY});
 
 function detachShell(world,sun){
@@ -76,6 +77,7 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  };
  const composed={at:oldMap};
  if(!SCHOOL_QUALITY[d.id])addOfficeProps(d.id,composed)||addFinaleProps(d.id,composed);
+ const craftCount=dressSceneCraft(kit,maze,d.id);
  kit.draw();
  const painted=paintArtStage(T,art,maze,style,d.id,camera,hero,kit.groundContacts());
 
@@ -94,7 +96,7 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  marker.position.set(maze.exit.x,.05,maze.exit.z);marker.rotation.y=Math.PI/4;art.add(marker);
  const ambient=addStoryAmbient(T,art,STORY_DESIGN[d.id]);
  const stats={id:d.id,quality:'illustrated',pattern:style.ground,get fxMotion(){return ambient.digest();},fx:ambient.types,payload:ambient.count,
-  detailSprites:painted.count,solidPieces:kit.partCount(),meshCount:art.children.length,signs:art.userData.signCount,cells:maze.walkCells.length,wallCount:maze.walls.length};
+  craftCount,detailSprites:painted.count,solidPieces:kit.partCount(),meshCount:art.children.length,signs:art.userData.signCount,cells:maze.walkCells.length,wallCount:maze.walls.length};
  return {
   stats,
   update(dt){painted.update();ambient.update(dt);},

@@ -8,13 +8,22 @@
     reset.type = 'button';
     reset.setAttribute('aria-label', '恢復預設視角');
     reset.title = '點一下回到 100% 原視角';
+    const readout=document.createElement('b');readout.className='camera-zoom-value';
+    const glyph=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    glyph.setAttribute('viewBox','0 0 20 20');
+    glyph.setAttribute('aria-hidden','true');
+    const trace=document.createElementNS(glyph.namespaceURI,'path');
+    trace.setAttribute('d','M14.8 6.7A6 6 0 1 0 16 12M15.7 3.6v4.2h-4.3');
+    glyph.append(trace);reset.append(readout,glyph);
     document.querySelector('#btn-pause').before(reset);
     canvas.style.touchAction = 'none';
     function setZoom(value) {
       if (!Number.isFinite(value)) return;
       const z = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, value));
       if (z !== camera.zoom) { camera.zoom = z; camera.updateProjectionMatrix(); }
-      reset.textContent = Math.round(z*100) + '% ↺';
+      const percent=Math.round(z*100)+'%';
+      if(readout.textContent!==percent)readout.textContent=percent;
+      reset.dataset.changed=String(Math.abs(z-DEFAULT_ZOOM)>.005);
     }
     const playing = () => g.game.phase === 'playing' && !g.game.paused;
     setZoom(DEFAULT_ZOOM);

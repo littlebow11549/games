@@ -31,6 +31,22 @@ function texture(T,type){
   c.lineWidth=1.8;c.beginPath();c.moveTo(20,27);c.lineTo(42,22);c.moveTo(22,34);c.lineTo(38,30);c.stroke();
  }else if(type==='rift'||type==='screen'){
   c.fillStyle='#fff';c.beginPath();c.moveTo(31,3);c.lineTo(40,29);c.lineTo(53,38);c.lineTo(35,37);c.lineTo(25,60);c.lineTo(27,34);c.lineTo(12,24);c.lineTo(27,27);c.closePath();c.fill();
+ }else if(['fog','smoke','steam'].includes(type)){
+  // Three wisps with asymmetric silhouettes, baked once per local effect.
+  for(const [x,y,rx,ry,a] of [[29,38,27,15,.63],[39,27,18,22,.52],[22,27,14,18,.31]]){
+   c.save();c.translate(x,y);c.scale(rx,ry);
+   const g=c.createRadialGradient(-.18,-.22,.1,0,0,1);
+   g.addColorStop(0,'rgba(255,255,255,'+a+')');
+   g.addColorStop(.46,'rgba(255,255,255,'+a*.63+')');
+   g.addColorStop(1,'rgba(255,255,255,0)');
+   c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();
+  }
+ }else if(type==='glint'||type==='firefly'||type==='ember'){
+  const g=c.createRadialGradient(32,32,1,32,32,30);
+  g.addColorStop(0,'#fff');g.addColorStop(.22,'#ffffffa0');g.addColorStop(1,'#ffffff00');
+  c.fillStyle=g;c.fillRect(0,0,64,64);
+  c.fillStyle='#fff';c.beginPath();
+  c.moveTo(32,10);c.lineTo(36,28);c.lineTo(47,32);c.lineTo(36,36);c.lineTo(32,53);c.lineTo(28,36);c.lineTo(17,32);c.lineTo(28,28);c.closePath();c.fill();
  }else{
   const g=c.createRadialGradient(32,32,0,32,32,32);
   g.addColorStop(0,'#fff');g.addColorStop(.22,'#ffffffe0');g.addColorStop(.55,'#ffffff6c');g.addColorStop(1,'#ffffff00');

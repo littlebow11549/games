@@ -1,5 +1,17 @@
 # 專案交接入口
 
+- 2026-11-27 小天使五瓣冰陣、圓形鎖定鍵與綠金視角鍵（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-ice-bloom-controls.md)。
+
+- 2026-11-27 依參考圖重畫琉璃雪花陣、改用 Q 版惡夢浮游炮（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-frost-sigil-q-spirit.md)。
+
+- 2026-11-27 小天使魔法陣、惡夢二技小精靈與鎖定開關（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-guest-fx-lock.md)。
+
+- 2026-11-27 勇氣超人地景紋樣、冰晶特效、視角重設與正式讀取 Logo：[交接紀錄](handoffs/2026-11-27-brave-guy-stage-craft.md)。
+
+- 勇氣超人美術規則：沿用原版連擊字、動畫及位置；除非使用者明確要求，不隨其他美術或介面升級更換。
+
+- 2026-11-27 勇氣超人全關光色、戰鬥演出與美術字（本機候選）：[交接紀錄](handoffs/2026-11-27-brave-guy-art-direction.md)。
+
 - 2026-11-27 Brave Guy all 16 scenes refresh: [handoff](handoffs/2026-11-27-brave-guy-all-scenes-refresh.md).
 
 - 2026-11-27 Brave Guy 3-7 scene polish (local candidate): [handoff](handoffs/2026-11-27-brave-guy-3-7-scene-polish.md).

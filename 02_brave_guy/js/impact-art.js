@@ -9,6 +9,7 @@ const profiles={
 };
 const N=224,cache=new Map(),pi=Math.PI;
 export const impactProfile=kind=>profiles[kind]||profiles.light;
+export const impactAngle=(dx,dy)=>Number.isFinite(dx)&&Number.isFinite(dy)&&Math.hypot(dx,dy)>3?(Math.atan2(-dy,dx)||0):0;
 const rgba=(rgb,a)=>'rgba('+rgb+','+Math.max(0,Math.min(1,a))+')';
 const ease=t=>1-(1-t)**3;
 const wave=(k,on,off)=>Math.max(0,Math.min(1,k/Math.max(.001,on),(1-k)/Math.max(.001,1-off)));
@@ -61,7 +62,13 @@ function wedge(c,x,y,s,p,seed,alpha){
 }
 function heavy(c,k,p,source,i){
  const e=ease(k),flare=wave(k,.1,.25);
- glow(c,0,0,59+e*30,47+e*35,p,.68*flare);
+ // Directional compression before contact, then a broken pressure front.
+ const tail=wave(k,.065,.29);
+ glow(c,-19+e*17,0,69+e*18,29+e*24,p,.54*flare);
+ spark(c,-31+7*e,-2,0,107-36*e,9-4*e,p,tail*.92);
+ spark(c,-42+15*e,14,-.24,58-13*e,3.1,p,tail*.71);
+ spark(c,28+e*48,-13,-.27,18+e*25,5*(1-k),p,wave(k,.18,.48)*.86);
+ crescent(c,4,1,41+e*53,17+e*29,-.43,.61,2.9*(1-k)+.4,p,wave(k,.28,.49)*.7);
  crescent(c,7*k,2,25+64*k,13+38*k,-.96,1.52,5*(1-k)+.35,p,wave(k,.21,.42)*.95);
  crescent(c,-8*k,-1,20+66*k,12+37*k,1.9,4.56,3.1*(1-k)+.42,p,wave(k,.26,.36)*.62);
  // Keep the original impact drawing inside the heavy burst; pressure front and embers are new.

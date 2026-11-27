@@ -1,4 +1,4 @@
-import {dressStoryQuality as illustrated,STORY_QUALITY} from './story-quality-world.js?v=20261127scenes';
+import {dressStoryQuality as illustrated,STORY_QUALITY} from './story-quality-world.js?v=20261127stagefx';
 import {makeQualityKit} from './story-quality-kit.js?v=20261127scenes';
 import {makeForestLandmarks} from './forest-landmarks.js?v=20261127landmarks2';
 import {makeVillageLandmarks} from './village-landmarks.js?v=20261127landmarks2';

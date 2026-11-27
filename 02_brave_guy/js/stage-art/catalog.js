@@ -2,7 +2,7 @@ export {STORY_DESIGN} from './story-stage-design.js';
 export {makeStoryMaze} from './story-maze-engine.js';
 export {makeSunnyMaze} from './sunny-maze.js';
 export {paintCampusRadar} from './campus-radar.js';
-export {applyStageGrade} from './stage-atmosphere.js';
+export {applyStageGrade} from './stage-atmosphere.js?v=20261127artdirection';
 const prepared=new Map(),pending=new Map();
 export const preparedStageArt=id=>prepared.get(id);
 export function prepareStageArt(id){
@@ -10,11 +10,11 @@ export function prepareStageArt(id){
  if(pending.has(id))return pending.get(id);
  const task=(async()=>{
   if(id==='1-1'){
-   const [campus,fx]=await Promise.all([import('./campus-stage-3d.js?v=20261127scenes'),import('./hallway-fx.js')]);
+   const [campus,fx]=await Promise.all([import('./campus-stage-3d.js?v=20261127stagefx'),import('./hallway-fx.js')]);
    await campus.prepareCampus();
    return {...campus,...fx};
   }
-  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127scenes'),import('./story-quality-paint.js?v=20261127scenes')]);
+  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127stagefx'),import('./story-quality-paint.js?v=20261127stagefx')]);
   await paint.prepareStoryPaint(id);
   return story;
  })().then(pack=>{prepared.set(id,pack);return pack;}).finally(()=>pending.delete(id));

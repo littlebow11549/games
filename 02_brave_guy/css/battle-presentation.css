@@ -1,0 +1,91 @@
+/* Coordinated battle UI; the approved combo presentation is intentionally untouched. */
+.game-art #hud #btn-lock{box-shadow:none;outline:none;border-radius:50%}
+.game-art #hud #btn-lock::before{display:none}
+.game-art #hud #btn-lock .lock-reticle{
+ width:100%;height:100%;display:block;pointer-events:none;
+ --lock-bg:#21242c;--lock-bezel:#64696b;--lock-edge:#343842;--lock-ink:#a6a6b1;
+}
+.game-art #hud #btn-lock[aria-pressed="true"] .lock-reticle{
+ --lock-bg:#173321;--lock-bezel:#e7c963;--lock-edge:#8dc74c;--lock-ink:#d1fc90;
+ filter:drop-shadow(0 0 3px #bcf07980);
+}
+.game-art #hud[data-character="angel"] #btn-lock[aria-pressed="true"] .lock-reticle{--lock-ink:#ff98df}
+.game-art #hud[data-character="nightmare"] #btn-lock[aria-pressed="true"] .lock-reticle{--lock-ink:#c6a3ff}
+.lock-reticle .lock-base{fill:var(--lock-bg);stroke:#161b20;stroke-width:1.7}
+.lock-reticle .lock-rim{fill:none;stroke:var(--lock-bezel);stroke-width:1.65}
+.lock-reticle .lock-rail{fill:none;stroke:var(--lock-edge);stroke-width:1.2}
+.lock-reticle .lock-fins{fill:var(--lock-bezel);stroke:#1a2026;stroke-width:1.3;stroke-linejoin:round}
+.lock-reticle .lock-cross{fill:none;stroke:var(--lock-ink);stroke-linecap:round;stroke-width:1.85}
+.lock-reticle .lock-dot{fill:var(--lock-ink);stroke:#11161d;stroke-width:.9}
+.game-art #hud #btn-lock .lock-focus-ring{
+ position:absolute;inset:-3px;border:2px solid #fff6cf;border-radius:50%;display:none;pointer-events:none
+}
+.game-art #hud #btn-lock:focus-visible .lock-focus-ring{display:block}
+.game-art .quest h3{display:flex;align-items:baseline;gap:6px}
+.game-art .quest h3 .stage-number{
+ flex:none;min-width:26px;padding:3px 6px 3px 5px;text-align:center;box-sizing:border-box;
+ clip-path:polygon(12% 0,100% 0,92% 100%,0 100%);color:#261924;background:#ffdc94;
+ font:900 italic 11px/1.05 system-ui,sans-serif;text-shadow:none;-webkit-text-stroke:0;
+}
+.game-art .quest h3 .stage-name{min-width:0;overflow-wrap:anywhere}
+.game-art #boss-name{
+ background:linear-gradient(110deg,#211926,#513044 41%,#281927);
+ clip-path:polygon(9% 0,100% 0,93% 100%,0 100%);
+ color:#fff1d4;text-shadow:0 2px #1d1023;box-sizing:border-box;
+ font-size:13px;letter-spacing:.09em;
+}
+.game-art #boss-bar .bar{
+ height:12px;background:linear-gradient(180deg,#513943 0 1px,#241724 1px 85%,#75505c 85%);
+ clip-path:polygon(0 0,100% 0,98% 100%,1.5% 100%);
+}
+.game-art #boss-bar .bar i{
+ inset:2px 5px;border-radius:0;
+ background:linear-gradient(180deg,#ffe08e 0 20%,#ff935d 22% 62%,#be3d57 68% 100%);
+}
+.game-art .skill-cast-name{
+ isolation:isolate;
+ --cast-accent:#ffcb74;--cast-tone:#512733;
+}
+.game-art .skill-cast-name[data-character="angel"]{--cast-accent:#aaf3ff;--cast-tone:#2d597b}
+.game-art .skill-cast-name[data-character="nightmare"],
+.game-art .skill-cast-name[data-caster="boss"]{--cast-accent:#fbb0f8;--cast-tone:#432758}
+.game-art .skill-cast-name > .word-art{
+ filter:drop-shadow(0 3px 1px #1a1029b8);
+}
+.game-art .skill-cast-name::after{
+ content:'';position:absolute;z-index:-1;left:18%;right:18%;bottom:9%;height:4px;
+ background:linear-gradient(90deg,transparent,var(--cast-accent) 28%,#fff6e7 51%,var(--cast-accent) 72%,transparent);
+ clip-path:polygon(0 50%,17% 18%,37% 35%,57% 0,100% 40%,81% 81%,41% 77%,31% 100%);
+ animation:cast-rule .46s cubic-bezier(.16,1,.29,1) both;
+}
+.game-art .skill-cast-name.system-lettering{
+ text-wrap:balance;width:max-content;max-width:var(--cast-width);
+ padding:8px 16px 12px;box-sizing:border-box;color:#fff9da;
+ background:linear-gradient(115deg,#24182bfa,var(--cast-tone) 63%,#21152bfa);
+ clip-path:polygon(6% 0,100% 0,95% 100%,0 100%);
+ text-shadow:0 2px #1b1427,1px 3px #1b1427;
+}
+@keyframes cast-rule{from{transform:scaleX(.25);opacity:.24}to{transform:scaleX(1);opacity:.88}}
+/* A clipped metal lip repeats the boss plate; color separates each resource. */
+.game-art .bars .bar{
+ --meter-fill:linear-gradient(#ffb493 0 17%,#ec5269 22% 62%,#a12d50 70%);
+ height:17px;box-sizing:border-box;border-radius:0;
+ clip-path:polygon(4px 0,100% 0,calc(100% - 5px) 100%,0 100%);
+ background:linear-gradient(180deg,#806170 0 1px,#221c2d 1px calc(100% - 1px),#5c495f calc(100% - 1px));
+}
+.game-art .bars .bar i{inset:2px 4px;border-radius:0;background:var(--meter-fill);filter:none;box-shadow:none}
+.game-art .bars .bar.courage i{background:linear-gradient(#e0ffbb 0 16%,#8bcc54 22% 60%,#4d9448 76%)}
+.game-art .bars .bar.guilt i{background:linear-gradient(#efd3ff 0 17%,#b177dc 24% 59%,#7b499d 77%)}
+.game-art .bars .bar.courage.burst i{background:linear-gradient(#fff1b3 0 17%,#ffa76a 26% 61%,#a65188 75%)}
+.game-art .bars .bar b{line-height:17px}
+.game-art .bars .bar:not(.full,.burst)::after{display:none}
+.game-art .ebar{
+ width:32px;height:4px;margin-left:-16px;border-radius:0;
+ background:#241c2c;border:0;clip-path:polygon(2px 0,100% 0,calc(100% - 2px) 100%,0 100%);
+}
+.game-art .ebar i{background:linear-gradient(#ffac82,#f17177 46%,#b94758)}
+@media(max-width:600px) and (orientation:portrait){
+ .game-art .bars .bar{max-width:calc(100vw - var(--safe-l) - var(--safe-r) - 248px)}
+ .game-art .bars .bar b{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.game-art .skill-cast-name::after{animation:none}}

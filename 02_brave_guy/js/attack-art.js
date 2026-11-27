@@ -49,21 +49,26 @@ export function dangerDisc(p,r,color){
  `,1,edge),.15);
  m.name='Boss | timed ground warning';return m;
 }
+export const impactWaveShape=Object.freeze({worldScale:2.20,edge:.871});
 export function outwardWave(p,r,color){
- const m=ground(p,r*2.28,material(color,radial+`
+ const m=ground(p,r*impactWaveShape.worldScale,material(color,radial+`
    float k=1.-pow(1.-phase,2.);
-   float reach=mix(.16,.866,k);
-   float saw=(tooth-.5)*.1;
-   float fork=sin(ang*13.+1.3)*sin(ang*4.)*.044;
-   float front=ink(r-reach-fork-saw,.018);
-   float shard=ink(r-reach-fork*.7+saw*.75-.035,.012)*smoothstep(.27,.79,tooth);
-   float echo=ink(r-reach*.74+fork*.7,.025)*smoothstep(.06,.35,k);
-   float smoke=ink(r-reach+.05,.10)*.31;
-   float gleam=max(front,max(shard*.76,echo*.62));
-   vec3 rgb=mix(mix(dark,tone,.47),mix(tone,vec3(1.,.975,.91),front*.86),clamp(gleam*1.45,0.,1.));
-   float a=max(gleam,max(smoke,shard*.8))*pow(1.-phase,.6);
- `),.19);
- m.name='Attack | fractured release wave';return m;
+   float reach=mix(.115,edge,k);
+   float tick=ang/6.283185+.5;
+   float s=fract(tick*29.);
+   float petals=sin(ang*5.+.45)*sin(ang*11.-.50);
+   float split=smoothstep(.1,.44,s)*(1.-smoothstep(.70,.94,s));
+   float rim=r-reach+(1.-split)*.026+petals*(.014+.022*(1.-phase));
+   float front=ink(rim,.012)*(.62+split*.38);
+   float bevel=ink(rim+.018,.032)*(.34+split*.53);
+   float chips=ink(r-reach+.092+s*.11,.013)*smoothstep(.39,.78,tooth)*smoothstep(.12,.37,k);
+   float echo=ink(r-reach*.71+petals*.042,.019)*smoothstep(.11,.45,k)*(.56+.44*split);
+   float wake=ink(r-reach+.105,.083)*.30*(.64+.36*petals);
+   float gleam=max(front,max(bevel*.88,max(chips*.78,echo*.61)));
+   vec3 rgb=mix(mix(dark,tone,.64),mix(tone,vec3(1.,.985,.934),front*.91),clamp(gleam*1.52,0.,1.));
+   float a=max(gleam,wake)*pow(1.-phase,.69);
+ `,1,impactWaveShape.edge),.19);
+ m.name='Attack | faceted pressure wave';return m;
 }
 export function sweepInk(color,dir){
  return material(color,`
@@ -78,10 +83,32 @@ export function sweepInk(color,dir){
    float shape=smoothstep(.04,.15,band)*(1.-smoothstep(.90,1.,band));
    vec3 rgb=mix(tone*.26,tone,max(glaze,facet));
    rgb=mix(rgb,vec3(1.,.97,.88),max(glaze*.87,spine));
-   float a=shape*cap*sweep*max(.62,max(glaze,facet))*pow(1.-phase,.62);
+   // Leading edge is a fine warm-white blade, with broken ink behind it.
+   float edgeGap=abs(fract(u*22.+band*.84+.13)*2.-1.);
+   float bead=ink(band-.90,.013)*(1.-smoothstep(.38,.84,edgeGap));
+   float strake=ink(band-(.22+.12*jag),.016)*(1.-smoothstep(.43,.84,edgeGap));
+   rgb=mix(rgb,vec3(1.,.985,.94),bead*.96);
+   float a=cap*sweep*max(shape*max(.58,max(glaze,facet)),max(bead,strake*.70))*pow(1.-phase,.65);
  `,1,1,dir);
 }
-export function laneInk(color,alpha){
+export function laneInk(color,alpha,style='ink'){
+ if(style==='frost')return material(color,`
+   float u=1.-art.y,x=(art.x-.5)*2.;
+   float shoulder=pow(max(.001,sin(u*3.14159)),.48);
+   float wing=abs(x)/max(shoulder,.026);
+   float pulse=smoothstep(u-.20,u+.09,.16+phase*2.60);
+   float veins=fract(u*11.5+abs(x)*1.83);
+   float wingChip=ink(wing-.73-.12*veins,.028)*smoothstep(.21,.48,veins)*(1.-smoothstep(.71,.89,veins));
+   float hilite=ink(wing-(.33+.24*veins),.031)*smoothstep(.24,.41,veins)*(1.-smoothstep(.67,.86,veins));
+   float core=1.-smoothstep(.018,.155,wing);
+   float bands=abs(fract(u*13.5+wing*1.03)*2.-1.);
+   float snow=ink(bands-.18,.052)*ink(wing-.29,.265)*smoothstep(.11,.20,phase);
+   float melt=(1.-smoothstep(.61,.96,wing))*.40;
+   vec3 ice=vec3(.21,.68,1.);
+   vec3 rgb=mix(tone*.43,mix(ice,vec3(.91,.99,1.),max(core,hilite*.7)),melt+.29);
+   rgb=mix(rgb,vec3(1.,.99,.98),clamp(core+snow*.8+wingChip*.67,0.,1.));
+   float a=max(melt,max(core*.89,max(wingChip*.86,max(hilite*.61,snow*.70))))*pulse*strength*pow(1.-phase,.79);
+ `,Math.min(1,alpha*1.8));
  return material(color,`
    float x=(art.x-.5)*2., z=1.-art.y;
    float taper=pow(max(.001,sin(z*3.141593)),.52);
@@ -93,7 +120,10 @@ export function laneInk(color,alpha){
    float body=1.-smoothstep(.55,.97,reach);
    vec3 rgb=mix(tone*.31,tone,max(body*.72,rip));
    rgb=mix(rgb,vec3(1.,.965,.91),max(core*.96,max(fine*.67,rip*.57)));
-   float a=max(body*.63,max(core,rip))*smoothstep(0.,.065,z)*(1.-smoothstep(.94,1.,z))*strength*(1.-phase);
+   float grain=abs(fract(z*18.5-phase*5.5+reach*.42)*2.-1.);
+   float thread=ink(reach-(.78+.13*grain),.028)*(1.-smoothstep(.31,.84,grain));
+   rgb=mix(rgb,vec3(.92,.98,1.),thread*.62);
+   float a=max(max(body*.59,max(core,rip)),thread*.72)*smoothstep(0.,.065,z)*(1.-smoothstep(.94,1.,z))*strength*(1.-phase);
  `,Math.min(1,alpha*1.8));
 }
 export function flightCross(radius,color){

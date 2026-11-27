@@ -1,30 +1,34 @@
-import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
+import { disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
+import { createNightmareDrone, createNightmareWave, nightmareShotAim } from './nightmare-drone-art.js?v=20261127qspirit';
 import { createRoyalArsenal } from './royal-arsenal.js?v=20261127combatfinal';
 import { angelText, angelFont } from './angel-language.js?v=20261120assets';
-import { createAngelIceFx } from './angel-ice-fx.js?v=20261127ice';
+import { createAngelIceFx } from './angel-ice-fx.js?v=20261127icebloom';
 import * as THREE from '../vendor/three/three.module.min.js';
 // Owns all guest projectiles, drones and delayed casts. Simulation time only.
 export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,arena,constrain=()=>{}}) {
  const bolts=[], casts=[], angelIce=[];
- const ice=(pos,phase)=>{const art=createAngelIceFx(scene,pos,phase);angelIce.push({art,left:art.life});};
+ const ice=(pos,phase,follow,life)=>{const art=createAngelIceFx(scene,pos,phase,follow,life);angelIce.push({art,left:art.life});};
  let attackStep=0,attackGap=0,barrierCast=null;
  const valid=e=>e.hp>0&&!e.gone&&!e.fly&&e.state!=='dead'&&e.state!=='spawn'&&e.shown;
  const targets=()=>enemies().filter(valid);
  const direction=yaw=>new THREE.Vector3(Math.sin(yaw),0,Math.cos(yaw));
- const dispose=m=>{scene.remove(m);m.traverse(o=>{if(o.isMesh)o.geometry?.dispose();if(o.material){disposeProjectileMaterial(o.material)}})}; // Sprite geometry is shared by Three; never dispose it.
+ const dispose=m=>{
+  scene.remove(m);
+  if(m.userData.releaseSpirit){m.userData.releaseSpirit();return;}
+  const geometries=new Set(),materials=new Set();
+  m.traverse(o=>{if(o.isMesh)geometries.add(o.geometry);if(o.material)materials.add(o.material);});
+  geometries.forEach(g=>g?.dispose());materials.forEach(disposeProjectileMaterial);
+ }; // Sprite geometry is shared by Three; never dispose it.
  const orb=(color,size=.35)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(size,10,8),new THREE.MeshBasicMaterial({color}));scene.add(m);return m};
  const textMesh=raw=>{const text=angelText(raw);const cv=document.createElement('canvas');cv.width=512;cv.height=128;const c=cv.getContext('2d');c.font=`900 64px ${angelFont()}`;const size=Math.min(64,64*480/Math.max(1,c.measureText(text).width));c.font=`900 ${size}px ${angelFont()}`;c.textAlign='center';c.textBaseline='middle';c.lineWidth=10;c.strokeStyle='#4e194c';c.strokeText(text,256,64);c.fillStyle='#fff4b4';c.fillText(text,256,64);const texture=new THREE.CanvasTexture(cv);const m=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,depthWrite:false}));m.scale.set(5,1.25,1);m.userData.text=text;scene.add(m);return m};
- function omenDrone(){
-  const g=new THREE.Group();g.name='Nightmare | PUA omen drone';
-  const part=(geo,color)=>{const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color}));g.add(m);return m;};
-  const core=part(new THREE.OctahedronGeometry(.38),0xc88dff);core.scale.y=1.58;
-  const frame=part(new THREE.TorusGeometry(.57,.105,5,6),0x371953);frame.rotation.x=-Math.PI/2;
-  const glyph=part(new THREE.TorusGeometry(.52,.031,5,6),0xc4f96c);glyph.rotation.x=-Math.PI/2+.22;glyph.position.y=.085;
-  const tip=part(new THREE.OctahedronGeometry(.12),0xf3deff);tip.position.y=.56;
-  scene.add(g);return g;
+ function bolt(pos,dir,{text=null,mult=1,src='combo',life=1.1,speed=22,scale=1,wave=false,piercing=false}={}){
+  const mesh=wave?createNightmareWave(dir):text?textMesh(text):orb(0xb55cff);
+  if(wave)scene.add(mesh);
+  mesh.scale.multiplyScalar(scale);mesh.position.copy(pos);mesh.position.y=wave?pos.y+.70:1.4;
+  const vel=dir.clone().multiplyScalar(speed);
+  bolts.push({mesh,vel,mult,src,life,piercing,wave,spent:0,hit:new Set()});
+  if(text)fx.projectileWake?.(mesh,vel,.48*scale,0xffa6e4);
  }
- function bolt(pos,dir,{text=null,target=null,mult=1,src='combo',life=1.1,speed=22,scale=1,pua=null,piercing=false}={}){const mesh=pua!==null?createPuaProjectile(pua):text?textMesh(text):orb(0xb55cff);if(pua!==null)scene.add(mesh);mesh.scale.multiplyScalar(scale);mesh.position.copy(pos);mesh.position.y=1.4;const vel=dir.clone().multiplyScalar(speed);bolts.push({mesh,vel,target,mult,src,life,piercing,hit:new Set()});
-  if(text||pua!==null)fx.projectileWake?.(mesh,vel,text?.length ? .48*scale : .62,pua!==null?0xc1f36e:0xffa6e4);}
  function damage(e,mult,src,control=0,color=0xb891ff,from=hero.pos){
   const result=hit(e,mult,{src,from,kb:0});
   if(result?.damaged&&control&&!e.castInvuln&&!e.untouchable){
@@ -44,17 +48,17 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
    if(name==='skill1'){
     const width=8,end=from.clone().addScaledVector(dir,28);
     line(from,end,width,4.8,{src:name,kb:22,launch:9,heavy:true,forwardOnly:true});
-    fx.trail(from,end,width,0xffa5df,.55,.68,{alignToPath:true});
-    fx.releaseWave?.(from,2.4,0xffbde6,.34);
+    fx.trail(from,end,width,0xffa5df,.55,.68,{alignToPath:true,style:'frost'});
+    ice(from,'cast');
     bolt(from,dir,{text:'不要過來！',mult:0,src:name,life:1,speed:28,scale:1.6,piercing:true});audio.sfx('dash');
    }else if(name==='skill2'){
     area(from,9,2.5,name,3,0xa2eeff);ice(from,'nova');casts.push({kind:'snow',pos:from,life:2,tick:0});audio.sfx('quake');
    }else if(name==='skill3'){
-    const points=Array.from({length:5},(_,i)=>{const a=hero.yaw+i*Math.PI*2/5,p=from.clone().add(new THREE.Vector3(Math.sin(a)*4.5,0,Math.cos(a)*4.5));if(p.length()>arena-1)p.setLength(arena-1);fx.ring(p,.3,3.2,0xffb4e8,.3);return p});
+    const points=Array.from({length:5},(_,i)=>{const a=hero.yaw+i*Math.PI*2/5,p=from.clone().add(new THREE.Vector3(Math.sin(a)*4.5,0,Math.cos(a)*4.5));if(p.length()>arena-1)p.setLength(arena-1);ice(p,'barrier-mark',null,.3+i*.15);return p});
     const barrier=new THREE.Group();barrier.name='angel-repelling-barrier';
-    const shell=new THREE.Mesh(new THREE.SphereGeometry(4.5,32,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshBasicMaterial({color:0x9eefff,transparent:true,opacity:.15,side:THREE.DoubleSide,depthWrite:false}));barrier.add(shell);
-    const rim=new THREE.Mesh(new THREE.TorusGeometry(4.5,.09,6,64),new THREE.MeshBasicMaterial({color:0xffa9e6}));rim.rotation.x=Math.PI/2;rim.position.y=.1;barrier.add(rim);
-    for(let i=0;i<5;i++){const a=i*Math.PI*2/5,m=new THREE.Mesh(new THREE.OctahedronGeometry(.25),new THREE.MeshBasicMaterial({color:0xffef9d}));m.position.set(Math.sin(a)*4.5,.3,Math.cos(a)*4.5);barrier.add(m);}
+    const shell=new THREE.Mesh(new THREE.SphereGeometry(4.5,32,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshBasicMaterial({color:0x9eefff,transparent:true,opacity:.10,side:THREE.DoubleSide,depthWrite:false}));barrier.add(shell);
+    ice(from,'barrier',hero.pos);
+
     barrier.position.copy(hero.pos);scene.add(barrier);barrierCast={kind:'bombs',points,life:3,age:0,next:0,barrier};casts.push(barrierCast);
     for(const e of enemies())repelEnemy(e);audio.sfx('ki_shot');
    }else{
@@ -69,7 +73,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
      for(const nearby of targets())if(nearby!==e&&nearby.pos.distanceTo(impactPos)<3.6+nearby.def.radius)hit(nearby,.9,{src:'ult',from:impactPos,kb:7,launch:3,heavy:true});
      fx.releaseWave?.(impactPos,3.6,0xc1ff6b,.33);fx.burst(impactPos,0xbc7aff,7,6,.3,.2);
     },fx,audio});casts.push({kind:'arsenal',life:10,ult:true,arsenal,nodes:arsenal.nodes});audio.sfx('beam_start');}
-   else{const ult=false,count=5;casts.push({kind:'drones',life:ult?10:5,tick:0,ult,src:name,nodes:Array.from({length:count},()=>{const m=omenDrone();m.position.copy(from);m.position.y=2.3;return m})});fx.releaseWave?.(from,3.5,0xb577f8,.36);audio.sfx('ki_shot');}
+   else{const ult=false,count=5;casts.push({kind:'drones',life:ult?10:5,tick:0,ult,src:name,nodes:Array.from({length:count},()=>{const m=createNightmareDrone(scene);m.position.copy(from);m.position.y=2.3;return m})});fx.releaseWave?.(from,3.5,0xb577f8,.36);audio.sfx('ki_shot');}
   }
  }
  // Body exclusion only: ranged projectiles and damage remain governed by normal rules.
@@ -106,7 +110,7 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
     if(c.life<=0)fx.releaseWave?.(hero.pos,3.8,0xd9a4ff,.38);
    }else if(c.kind==='bombs'){
     c.barrier.position.copy(hero.pos);c.barrier.rotation.y+=elapsed*.6;
-    c.age+=elapsed;while(c.next<c.points.length&&c.age>=.3+c.next*.15){const p=c.points[c.next++];area(p,3.2,1.9,'skill3',1.8,0xffe88a);ice(p,'barrier-pop');fx.ring(p,.35,3.2,0xffe89b,.36);audio.sfx('boom');}
+    c.age+=elapsed;while(c.next<c.points.length&&c.age>=.3+c.next*.15){const p=c.points[c.next++];area(p,3.2,1.9,'skill3',1.8,0xffe88a);ice(p,'barrier-pop');audio.sfx('boom');}
    }else if(c.kind==='vortex'){
     for(const e of targets()){if(e.untouchable||e.castInvuln)continue;e.guestPullT=.3;const pull=c.pos.clone().sub(e.pos);pull.y=0;const d=pull.length();if(d>.8){pull.multiplyScalar(Math.min(d-.8,elapsed*(e.def.boss?9:22))/d);e.pos.add(pull);}}
     if(c.tick<=0){c.tick=.22;area(c.pos,arena*2,.65,'ult');}
@@ -120,16 +124,38 @@ export function createGuestCombat({scene,hero,enemies,fx,hit,line,move,audio,are
       if(!live.has(target)){target=null;let nearest=Infinity;for(const e of pool){const distance=e.pos.distanceToSquared(m.position);if(distance<nearest){nearest=distance;target=e;}}m.userData.target=target;}
       const a=c.life*1.4+k*Math.PI*2/c.nodes.length,center=target?target.pos:hero.pos,r=target?2.8:2.3;
       const goal=new THREE.Vector3(center.x+Math.cos(a)*r,2.3+Math.sin(a*2)*.3,center.z+Math.sin(a)*r);
-      m.rotation.y=a; m.rotation.z=Math.sin(a*2)*.16;
       const delta=goal.sub(m.position),distance=delta.length();if(distance)m.position.addScaledVector(delta,Math.min(1,18*elapsed/distance));
+      const aim=nightmareShotAim(m.position,target?target.pos:hero.pos);
+      m.rotation.y=aim?Math.atan2(aim.x,aim.z):a;
+      m.rotation.z=Math.sin(a*2)*.13;m.userData.advanceSpirit(elapsed);
     });
-    if(c.tick<=0){c.tick=c.ult?.6:.65;let fired=false;c.nodes.forEach(m=>{const e=m.userData.target;if(!e||m.position.distanceTo(e.pos)>8)return;const d=e.pos.clone().sub(m.position);d.y=0;bolt(m.position,d.normalize(),{pua:(m.userData.shots=(m.userData.shots||0)+1),target:e,mult:c.ult?1.2:1.1,src:c.src,life:3,speed:30});fired=true;});if(fired)audio.sfx('ki_shot');}
+    if(c.tick<=0){
+     c.tick=c.ult?.6:.65;let fired=false;
+     for(const m of c.nodes){
+      const e=m.userData.target;if(!e||m.position.distanceTo(e.pos)>8)continue;
+      const d=nightmareShotAim(m.position,e.pos);if(!d)continue;
+      m.rotation.y=Math.atan2(d.x,d.z);
+      bolt(m.position,d,{wave:true,mult:c.ult?1.2:1.1,src:c.src,life:3,speed:30});
+      fired=true;
+     }
+     if(fired)audio.sfx('ki_shot');
+    }
    }
    if(c.life<=0){if(c===barrierCast)barrierCast=null;if(c.barrier)dispose(c.barrier);if(c.arsenal)c.arsenal.clear();else c.nodes?.forEach(dispose);casts.splice(i,1);}
   }
   const boltTargets=bolts.length?targets():[];
-  for(let i=bolts.length-1;i>=0;i--){const b=bolts[i];b.life-=dt;const before=b.mesh.position.clone();if(b.target&&valid(b.target)){const d=b.target.pos.clone().sub(before);d.y=0;if(d.lengthSq()>0)b.vel.copy(d.normalize().multiplyScalar(30));}b.mesh.position.addScaledVector(b.vel,dt);
-   if(b.mult){const a=before,bp=b.mesh.position,dx=bp.x-a.x,dz=bp.z-a.z,l=dx*dx+dz*dz||1;for(const e of boltTargets){if(!valid(e)||b.hit.has(e))continue;const t=Math.max(0,Math.min(1,((e.pos.x-a.x)*dx+(e.pos.z-a.z)*dz)/l));if(Math.hypot(e.pos.x-a.x-t*dx,e.pos.z-a.z-t*dz)<e.def.radius+.65){damage(e,b.mult,b.src,0,0xb891ff,before);b.hit.add(e);if(!b.piercing){b.life=0;break;}}}}
+  for(let i=bolts.length-1;i>=0;i--){const b=bolts[i];b.life-=dt;
+   if(b.spent){
+    b.mesh.scale.x=b.mesh.scale.y=Math.max(.03,b.life/.10);
+    if(b.life<=0){dispose(b.mesh);bolts.splice(i,1);}
+    continue;
+   }
+   const before=b.mesh.position.clone();b.mesh.position.addScaledVector(b.vel,dt);
+   if(b.mult){const a=before,bp=b.mesh.position,dx=bp.x-a.x,dz=bp.z-a.z,l=dx*dx+dz*dz||1;for(const e of boltTargets){if(!valid(e)||b.hit.has(e))continue;const t=Math.max(0,Math.min(1,((e.pos.x-a.x)*dx+(e.pos.z-a.z)*dz)/l));if(Math.hypot(e.pos.x-a.x-t*dx,e.pos.z-a.z-t*dz)<e.def.radius+.65){damage(e,b.mult,b.src,0,0xb891ff,before);b.hit.add(e);if(!b.piercing){
+    if(b.wave){b.mesh.position.lerp(before,1-t);b.life=.10;b.spent=1;}
+    else b.life=0;
+    break;
+   }}}}
    if(b.life<=0){dispose(b.mesh);bolts.splice(i,1);}
   }
  }

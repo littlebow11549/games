@@ -1,13 +1,17 @@
 // One soft contact batch grounds actors and complements a projected sun shadow.
+export function contactFalloff(r) {
+  const t=Math.max(0,Math.min(1,1-r)), wide=t*t*(3-2*t);
+  const u=Math.max(0,Math.min(1,(.8-r)/.48)), core=u*u*(3-2*u);
+  return .52*wide+.48*core;
+}
 export function createActorShadows(THREE,scene) {
   // Up to 400 live mobs, plus special actors and the brief death-animation overlap.
   const size=32, max=512, data=new Uint8Array(size*size*4);
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
     const i=(y*size+x)*4;
     const r=Math.hypot((x+.5)*2/size-1,(y+.5)*2/size-1);
-    const u=Math.max(0,Math.min(1,(1-r)/.62));
     data[i]=data[i+1]=data[i+2]=255;
-    data[i+3]=Math.round(u*u*(3-2*u)*255);
+    data[i+3]=Math.round(contactFalloff(r)*255);
   }
   const map=new THREE.DataTexture(data,size,size);
   map.minFilter=map.magFilter=THREE.LinearFilter;map.needsUpdate=true;
@@ -40,7 +44,7 @@ export function createActorShadows(THREE,scene) {
     // uses a faint separate ShadowMaterial receiver. Retain a tight contact
     // anchor rather than drawing a second full-strength silhouette.
     const projected=realTime&&mayCast&&casts(root);
-    if(projected)opacity*=.61;
+    if(projected)opacity*=.78;
     const {x,y,z}=root.position,height=Math.max(0,y),spread=(1+Math.min(height,3)*.11)*(projected?.81:1);
     const phase=Math.max(.06,root.scale.x);
     p.set(x,.045,z);
@@ -52,7 +56,7 @@ export function createActorShadows(THREE,scene) {
   return {
     update(hero,ally,enemies,ambush,sunShadows) {
       count=0;realTime=sunShadows;
-      stamp(hero?.visual?.root,hero?.form==='brave'?.98:.86,.65,.57);
+      stamp(hero?.visual?.root,hero?.form==='brave'?.98:.86,.70,.68);
       stamp(ally?.visual?.root,.64,.52,.46);
       // Prioritize boss and special silhouettes over ordinary mobs if the batch fills.
       for(const e of enemies)if(e.shown&&e.def.boss){

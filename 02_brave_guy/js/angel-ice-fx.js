@@ -1,4 +1,6 @@
 import * as THREE from '../vendor/three/three.module.min.js';
+import {createAngelSeal,createAngelSatellite} from './angel-seal.js?v=20261127icebloom';
+export {angelSealPose} from './angel-seal.js?v=20261127icebloom';
 
 const TAU = Math.PI * 2;
 const clamp = x => Math.max(0, Math.min(1,x));
@@ -59,10 +61,20 @@ function crystal(){
  * Simulation-time art only. The caller owns damage, control, target and cast ticks.
  * No frame allocations, texture downloads, lights or per-particle draw calls.
  */
-export function createAngelIceFx(scene,pos,phase){
- const tempest=phase==='vortex',final=phase==='finish',pop=phase==='barrier-pop';
- const life=tempest?4:final?.72:pop?.38:2, radius=tempest?13:final?17:pop?3.2:9;
+export function createAngelIceFx(scene,pos,phase,follow=null,markerLife=.3){
+ const tempest=phase==='vortex',final=phase==='finish',pop=phase==='barrier-pop',barrier=phase==='barrier',cast=phase==='cast',mark=phase==='barrier-mark';
+ const life=tempest?4:final?.72:pop?.38:barrier?3:cast?.53:mark?markerLife:2;
+ const radius=tempest?13:final?17:(pop||mark)?3.2:barrier?4.5:cast?2.4:9;
  const root=new THREE.Group();root.name='angel-ice-'+phase;root.position.copy(pos);scene.add(root);
+ let age=0,closed=false;
+ function clear(){
+  if(closed)return;closed=true;
+  scene.remove(root);root.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.isMesh){o.geometry.dispose();o.material.dispose();}});
+ }
+ const seal=pop||mark?createAngelSatellite(root,radius,pop):createAngelSeal(root,phase,radius);
+ if(cast||barrier||mark){
+  return {life,update(dt){if(!closed){if(follow)root.position.copy(follow);age=Math.min(life,age+dt);seal(age/life);}},clear};
+ }
  const dummy=new THREE.Object3D();
  function mesh(g,c,order){
   const m=new THREE.Mesh(g,glaze(c,0));m.renderOrder=order;root.add(m);return m;
@@ -71,41 +83,35 @@ export function createAngelIceFx(scene,pos,phase){
   const m=new THREE.InstancedMesh(g,glaze(color,0),count);m.material.vertexColors=facets;
   m.instanceMatrix.setUsage(THREE.DynamicDrawUsage);m.frustumCulled=false;m.renderOrder=7;root.add(m);return m;
  }
- const edge=mesh(strip(1,.035),0x479bd5,3);
- const core=mesh(strip(1,.017),0xf0fdff,4);
- const arc=mesh(strip(1,.06,44,TAU*.32),0x94dcff,4);arc.position.y=.13;
- const trim=mesh(strip(1,.025,36,TAU*.33),0xffc7ec,5);trim.position.y=.15;
- const sigil=mesh(flake(),0xbcf2ff,3);sigil.position.y=.095;
+ const edge=pop?null:mesh(strip(1,.035),0x479bd5,3);
+ const core=pop?null:mesh(strip(1,.017),0xf0fdff,4);
  const helix=tempest?Array.from({length:3},(_,i)=>[
   mesh(spiral(i*TAU/3,.44),[0x60bbff,0xafeaff,0xa4bfff][i],5),
   mesh(spiral(i*TAU/3+.03,.14),[0xf4fdff,0xffc4ee,0xcbf6ff][i],6)
  ]).flat():[];
- const icicles=pool(crystal(),0xffffff,tempest?30:final?28:pop?8:22,true);
- const snow=pool(flake(),0xffffff,tempest?44:final?24:pop?9:34);
+ const icicles=pool(crystal(),0xffffff,tempest?30:final?28:pop?5:22,true);
+ const snow=pool(flake(),0xffffff,tempest?44:final?24:pop?5:34);
  const pools=[icicles,snow].map((m,j)=>({m,isFlake:j===1,seeds:Array.from({length:m.count},(_,i)=>({
   a0:(i/m.count+grain(i,1)*.06)*TAU,rad:grain(i,2),seed:grain(i,3),tilt:grain(i,4)
  }))}));
  for(let i=0;i<snow.count;i++)snow.setColorAt(i,new THREE.Color(pa[i%pa.length]));
  if(snow.instanceColor)snow.instanceColor.needsUpdate=true;
- let age=0,closed=false;
  function update(dt){
   if(closed)return;
   age=Math.min(life,age+dt);
   const t=age/life,tail=1-clamp((t-(tempest?.87:.55))/(tempest?.13:.45));
   const pulse=tempest?(.84+.16*Math.sin(age*18)):(1-t),wash=tempest?clamp(t*12):1;
   const travel=tempest?radius*(1-.79*fract(t*3)):radius*(.09+.91*(1-Math.pow(1-clamp(age/(pop?.25:.72)),3)));
-  edge.position.y=.105;core.position.y=.12;
-  edge.scale.setScalar(travel);core.scale.setScalar(travel*.987);
-  edge.material.opacity=.61*tail*pulse;core.material.opacity=.93*tail*pulse;
-  arc.scale.setScalar(radius*(tempest?.43:.98));trim.scale.setScalar(radius*(tempest?.47:1.018));
-  arc.rotation.y=age*(tempest?1.9:.55);trim.rotation.y=age*(tempest?-1.65:-.65)+Math.PI;
-  arc.material.opacity=.67*tail*wash;trim.material.opacity=.84*tail*wash;
-  sigil.scale.setScalar(radius*(tempest?.43:.89));sigil.rotation.y=age*(tempest?.62:.13);
-  sigil.material.opacity=(tempest?.33:pop?.43:.49)*tail*wash;
+  if(edge){
+   edge.position.y=.105;core.position.y=.12;
+   edge.scale.setScalar(travel);core.scale.setScalar(travel*.987);
+   edge.material.opacity=.61*tail*pulse;core.material.opacity=.93*tail*pulse;
+  }
+  seal?.(t);
   for(let i=0;i<helix.length;i++){
    const m=helix[i];m.rotation.y=-age*4.6;
    m.scale.set(.7+.3*wash,.65+.35*wash,.7+.3*wash);
-   m.material.opacity=(i%2?.91:.39)*wash*tail*pulse;
+   m.material.opacity=(i%2?.55:.25)*wash*tail*pulse;
   }
   for(const {m,isFlake,seeds} of pools){
    m.material.opacity=tail*(isFlake?.89:.96)*wash;
@@ -130,10 +136,6 @@ export function createAngelIceFx(scene,pos,phase){
    }
    m.instanceMatrix.needsUpdate=true;
   }
- }
- function clear(){
-  if(closed)return;closed=true;
-  scene.remove(root);root.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.isMesh){o.geometry.dispose();o.material.dispose();}});
  }
  update(0);
  return {life,update,clear};
