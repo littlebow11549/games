@@ -33,7 +33,7 @@ import { createCinematics } from './cinematics.js?v=20261120nightcast';
 import { createOpening } from './opening.js?v=20261120assets';
 import { createMenuMotion } from './menu-motion.js?v=20261120castfix';
 import { nextLockTarget, lockCandidates, isLockTarget, directionalLockTarget } from './targeting.js?v=20261120assets';
-import { Input, lockViewport } from './input.js?v=20261120assets';
+import { Input, lockViewport } from './input.js?v=20261127joystick';
 import { createTransformArt, TRANSFORM_SFX } from './transform-art.js?v=20261120castfix';
 import { GameAudio } from './audio.js?v=20261120castfix';
 import { STAGES, MAP_NAMES, FIRST_TRANSFORM, abilitiesFor } from './story.js?v=20261120assets';
@@ -520,10 +520,11 @@ function prepareStageModel(kind) {
 function startStage(index, character=null) {
   if(((save.rounds||0)>=3||save.secretCharacters.length>0)&&character===null){
     if(rosterPicker.open)return;
-    const wasPaused=game.paused;game.paused=true;audio.stopLoops();input.takeActions();input.held.clear();input.keys.clear();input.stick.x=input.stick.y=0;
+    const wasPaused=game.paused;game.paused=true;audio.stopLoops();input.takeActions();input.held.clear();input.resetMovement();
     return rosterPicker.choose(hero.character||'brave',save.rounds,save.secretCharacters).then(id=>{game.paused=wasPaused;input.takeActions();input.held.clear();input.keys.clear();if(id)return startStage(index,id);if(game.phase==='over'&&$('overlay').hidden)showMenu();});
   }
   hero.character=ROSTER[character]&&characterUnlocked(character,save.rounds,save.secretCharacters)?character:'brave';
+  input.resetMovement();
   const selectedCharacter=hero.character;
   const stageId=STAGES[index]?.id;
   if(!stageId)return;
@@ -3136,7 +3137,7 @@ function setPaused(on) {
   if (secretToggle.opened) return;
   if (on && (game.phase !== 'playing' || dialog)) return;
   game.paused = on;
-  if(on)audio.stopLoops();
+  if(on){input.resetMovement();audio.stopLoops();}
   $('btn-pause').classList.toggle('on', on);
   $('pause-menu').hidden = !on;
 }

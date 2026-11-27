@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 Mobile joystick reset: [handoff](handoffs/2026-11-27-mobile-joystick.md).
+
 - 2026-11-27 勇氣超人怪潮效能：[交接說明](handoffs/2026-11-27-crowd-performance.md)。
 
 - 2026-11-27 爆氣第二版與小天使台詞框：[交接紀錄](handoffs/2026-11-27-flamework-revision.md)。

@@ -54,41 +54,76 @@ export class Input {
     const zone = document.getElementById('stick-zone');
     const base = document.getElementById('stick-base');
     const knob = document.getElementById('stick-knob');
-    let pid = null;
+    let pid = null, tid = null;
+    const nativeTouch = 'ontouchstart' in window;
     const R = 48;
-    const setKnob = (e) => {
+    const withinStick = (p) => {
       const b = base.getBoundingClientRect();
-      let dx = e.clientX - (b.left + b.width / 2);
-      let dy = e.clientY - (b.top + b.height / 2);
+      const radius = Math.min(b.width, b.height) / 2 + 8;
+      return Math.hypot(p.clientX - b.left - b.width / 2, p.clientY - b.top - b.height / 2) <= radius;
+    };
+    const setKnob = (p) => {
+      const b = base.getBoundingClientRect();
+      let dx = p.clientX - (b.left + b.width / 2);
+      let dy = p.clientY - (b.top + b.height / 2);
       const len = Math.hypot(dx, dy);
       if (len > R) { dx *= R / len; dy *= R / len; }
       knob.style.transform = `translate(${dx}px,${dy}px)`;
       this.stick.x = dx / R;
       this.stick.y = dy / R;
     };
-    const release = (e) => {
-      if (e && e.pointerId !== pid) return;
-      pid = null;
+    const release = () => {
+      const pointer = pid;
+      pid = tid = null;
       this.stick.x = this.stick.y = 0;
       knob.style.transform = '';
+      if (pointer !== null && base.hasPointerCapture?.(pointer)) {
+        try { base.releasePointerCapture(pointer); } catch { /* already ended */ }
+      }
     };
-    zone.addEventListener('pointerdown', (e) => {
-      if (pid !== null || (e.pointerType === 'mouse' && e.button !== 0)) return;
-      const b = base.getBoundingClientRect();
-      // Only start on the visible stick plus 8 CSS px of circular tolerance.
-      const radius = Math.min(b.width, b.height) / 2 + 8;
-      if (Math.hypot(e.clientX - b.left - b.width / 2, e.clientY - b.top - b.height / 2) > radius) return;
+    this.resetMovement = () => { release(); this.keys.clear(); };
+
+    if (nativeTouch) {
+      // Track the actual thumb, not another finger hitting a skill button.
+      // Window capture keeps the release visible even after the layout changes.
+      const touchOptions = { capture:true, passive:false };
+      const owned = (list) => Array.from(list).find(t => t.identifier === tid);
+      zone.addEventListener('touchstart', (e) => {
+        if (tid !== null || pid !== null) return;
+        const thumb = Array.from(e.changedTouches).find(withinStick);
+        if (!thumb) return;
+        if (e.cancelable) e.preventDefault();
+        tid = thumb.identifier;
+        setKnob(thumb);
+      }, { passive:false });
+      addEventListener('touchmove', (e) => {
+        if (tid === null) return;
+        const thumb = owned(e.changedTouches);
+        if (!thumb) { if (!owned(e.touches)) release(); return; }
+        if (e.cancelable) e.preventDefault();
+        setKnob(thumb);
+      }, touchOptions);
+      const endTouch = (e) => { if (tid !== null && (owned(e.changedTouches) || !owned(e.touches))) release(); };
+      for (const type of ['touchend','touchcancel']) addEventListener(type, endTouch, true);
+    }
+    base.addEventListener('pointerdown', (e) => {
+      if ((nativeTouch && e.pointerType === 'touch') || pid !== null || tid !== null ||
+          (e.pointerType === 'mouse' && e.button !== 0) || !withinStick(e)) return;
       e.preventDefault();
       pid = e.pointerId;
-      zone.setPointerCapture(pid);
+      try { base.setPointerCapture(pid); } catch { /* window listeners cover this */ }
       setKnob(e);
     });
-    zone.addEventListener('pointermove', (e) => { if (e.pointerId === pid) setKnob(e); });
-    zone.addEventListener('pointerup', release);
-    zone.addEventListener('pointercancel', release);
-    zone.addEventListener('lostpointercapture', release);
-    addEventListener('blur', () => release());
-    document.addEventListener('visibilitychange', () => { if (document.hidden) release(); });
+    addEventListener('pointermove', (e) => {
+      if (pid === null || e.pointerId !== pid) return;
+      if (e.pointerType === 'mouse' && e.buttons === 0) release();
+      else setKnob(e);
+    }, true);
+    const endPointer = (e) => { if (e.pointerId === pid) release(); };
+    for (const type of ['pointerup','pointercancel','lostpointercapture']) addEventListener(type, endPointer, true);
+    addEventListener('blur', this.resetMovement);
+    addEventListener('pagehide', this.resetMovement);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this.resetMovement(); });
 
     for (const btn of document.querySelectorAll('[data-action]')) {
       const action = btn.dataset.action;
