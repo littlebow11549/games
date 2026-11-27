@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 黑森林 2-1 立體地標、霧與路線驗證：[交接紀錄](handoffs/2026-11-27-forest-solid-landmarks.md)。
+
 - 2026-11-27 加班鬼與加班鬼王 3D、職場龍待配置：[交接紀錄](handoffs/2026-11-27-kaban-office-rigs.md)。
 
 - 2026-11-27 地獄超人與冠老闆 3D、招式對齊：[交接紀錄](handoffs/2026-11-27-hell-guan-runtime.md)。

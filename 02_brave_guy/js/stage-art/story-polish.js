@@ -1,6 +1,7 @@
 import {placeStoryPaint} from './story-polish-art.js?v=20261125perf1';
 import {dressStoryQuality as illustrated,STORY_QUALITY} from './story-quality-world.js?v=20261125perf1';
 import {makeQualityKit} from './story-quality-kit.js';
+import {makeForestLandmarks} from './forest-landmarks.js?v=20261127forest';
 export {STORY_QUALITY};
 
 // Room scenes use stage-owned silhouettes rather than swapping the same decorations.
@@ -309,7 +310,7 @@ function makeSkin(T,root,maze,id){
     if(!isFree(x+xo,z+zo)){const piece=detail.at(n,x+xo,z+zo,sy,w,-side*.25);details.push(piece);}
   }
  }
- cluster(left,-1,0);cluster(right,1,1);
+ if(kind!=='forest'){cluster(left,-1,0);cluster(right,1,1);}
  cluster([-10.2,3.45],-1,2);cluster([10.1,3.2],1,3);
  const exterior=['court','gate','forest','village'].includes(kind);
  for(const side of [-1,1]){
@@ -350,9 +351,10 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  const old=illustrated(T,scene,d,maze,sun,quality,camera,hero);
  const world=sun.parent,root=new T.Group();root.name='Story art v2 | '+d.id;world.add(root);
  const skin=makeSkin(T,root,maze,d.id);
- const painted=placeStoryPaint(T,root,maze,d.id,camera,hero);
- const stats={...old.stats,quality:'polished',sceneDetails:skin.details,sceneSolids:skin.solids,sceneMotion:skin.motion,paintedLandmarks:painted.count,paintedPositions:painted.entries,
+ const forest=d.id==='2-1'?makeForestLandmarks(T,root,maze,camera,hero):null;
+ const painted=forest?null:placeStoryPaint(T,root,maze,d.id,camera,hero);
+ const stats={...old.stats,quality:'polished',sceneDetails:skin.details,sceneSolids:skin.solids+(forest?.solids??0),sceneMotion:skin.motion,paintedLandmarks:painted?.count??0,paintedPositions:painted?.entries??[],solidLandmarks:forest?.count??0,
    get fxMotion(){return old.stats.fxMotion;}};
- return {stats,update(dt){old.update(dt);skin.update(dt);painted.update();},
-   dispose(){old.dispose();skin.dispose();painted.dispose();}};
+ return {stats,update(dt){old.update(dt);skin.update(dt);(forest||painted).update();},
+   dispose(){old.dispose();skin.dispose();(forest||painted).dispose();}};
 }
