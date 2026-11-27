@@ -19,4 +19,13 @@
   #hud:has(.actions.base-form) #stick-base{left:calc(12px + var(--safe-l));bottom:calc(18px + var(--safe-b));width:96px;height:96px}
 }
 
-#transform-status{position:absolute;right:0;bottom:302px;width:200px;margin:0;padding:7px 10px;box-sizing:border-box;border:1px solid #badc67;border-radius:10px;background:#102419ed;color:#f6ffdc;font:600 12px/1.4 system-ui;text-align:center;pointer-events:none}
+#transform-status{margin:.3em 0 0;font:600 11px/1.35 system-ui;text-align:start;overflow-wrap:anywhere}
+.game-art .quest:not(.mini) #transform-status{color:#305220;border-top:1px solid #2b5d2d57;padding-top:4px}
+.game-art .quest.mini:has(#transform-status:not([hidden])){border-radius:13px}
+.quest.mini #transform-status:not([hidden]){display:block!important;color:#e9ffd2;max-width:min(41vw,175px)}
+
+/* Optional guide: stays in pause and never covers the live fight. */
+#pm-guide{box-sizing:border-box;width:100%;max-width:28rem;margin:.65rem auto;text-align:start;border:1px solid #acdf8759;border-radius:12px;padding:.35rem .8rem;background:#101a17;color:#efffe8;font:inherit}
+#pm-guide summary{cursor:pointer;display:list-item;padding:.35rem 0;min-height:1.7rem;font-size:1rem;font-weight:700}
+#pm-guide p{margin:.2rem 0 .6rem;color:#e6f4de;line-height:1.45;font-size:.875rem}
+#pm-guide summary:focus-visible{outline:2px solid #f7e182;outline-offset:3px}

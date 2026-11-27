@@ -1,4 +1,4 @@
-import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd-visual-budget.js?v=20261127crowdbudget';
+import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd-visual-budget.js?v=20261127quality';
 import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
@@ -746,7 +746,7 @@ function updateHud() {
       ? tr('先清完第一波，找回變身能力','Clear wave 1 to restore transformation','第1波を倒して変身能力を取り戻そう')
       : stage().id==='3-0'
       ? tr('變身暫時封印，下一關找回能力','Transformation sealed. Recover it next stage','変身は封印中。次のステージで取り戻そう')
-      : tr('尚未解鎖變身，請先完成前面關卡','Transformation locked. Clear earlier stages first','変身は未解放。前のステージをクリアしよう');
+      : tr('變身未解鎖，先過前置關卡','Transformation locked: clear earlier stages','変身未解放：前のステージをクリア');
     textIfChanged('transform-status', message);
   }
 
@@ -3137,7 +3137,7 @@ function setPaused(on) {
   if (secretToggle.opened) return;
   if (on && (game.phase !== 'playing' || dialog)) return;
   game.paused = on;
-  if(on){input.resetMovement();audio.stopLoops();}
+  if(on){input.resetMovement();audio.stopLoops();updatePauseGuide();}
   $('btn-pause').classList.toggle('on', on);
   $('pause-menu').hidden = !on;
 }
@@ -3187,7 +3187,14 @@ $('btn-quick-clear').addEventListener('click', () => {
 });
 $('btn-pause').addEventListener('click', () => { audio.sfx('ui'); setPaused(!game.paused); });
 // 語系切換：標題畫面與暫停選單各有一顆。切換後立刻重畫目前看得到的文字
+function updatePauseGuide(){
+  textIfChanged('pm-guide-label',tr('操作與戰鬥提示','Controls and combat tips','操作と戦闘のヒント'));
+  textIfChanged('pm-guide-touch',tr('手機：左手拖搖桿移動；右手點攻擊、閃避與技能。','Touch: Drag the left stick to move; tap attack, evade and skills on the right.','タッチ：左スティックで移動、右のボタンで攻撃・回避・スキル。'));
+  textIfChanged('pm-guide-pc',tr('電腦：WASD 移動、左鍵攻擊、右鍵或 Shift 閃避；T 鎖定、Y 切換目標。','Keyboard: WASD to move. Left click attacks; right click or Shift dodges. T locks on; Y switches target.','PC：WASDで移動、左クリックで攻撃、右クリックかShiftで回避。Tでロック、Yで対象切替。'));
+  textIfChanged('pm-guide-counter',tr('看到攻擊預警，先閃離範圍。完美閃避後的 3 秒是反擊時機。','Dodge out of marked attacks. A perfect dodge opens a three-second window to counter.','攻撃予告を見たら範囲外へ。ジャスト回避の後、3秒間が反撃のチャンス。'));
+}
 function refreshLang() {
+  updatePauseGuide();
   preloadLanguage(lang); // 切語言後背景補載該語言字藝
   applyStatic();
   decorateSystemUI();

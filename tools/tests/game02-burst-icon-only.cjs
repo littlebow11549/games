@@ -83,6 +83,7 @@ const { pathToFileURL } = require('node:url');
   const window = new Target(), document = new Target();
   document.getElementById = () => new Target();
   document.querySelectorAll = () => [btn];
+  globalThis.window = window;
   globalThis.document = document;
   globalThis.addEventListener = window.addEventListener.bind(window);
   const { Input } = await import(pathToFileURL(path.join(root, 'js/input.js')).href);

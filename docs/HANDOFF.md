@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 Brave Guy quality audit 77 to 79.5: [handoff](handoffs/2026-11-27-brave-guy-quality-audit.md).
+
 - 2026-11-27 Mobile joystick reset: [handoff](handoffs/2026-11-27-mobile-joystick.md).
 
 - 2026-11-27 勇氣超人怪潮效能：[交接說明](handoffs/2026-11-27-crowd-performance.md)。

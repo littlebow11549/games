@@ -55,19 +55,24 @@ export function makeCrowdVisualBudget(THREE){
 // The HTML HUD and the radar remain at their original resolution.
 export function makeCrowdResolution(){
  const levels=[1,.85,.72];
- let tier=0,slow=0,fast=0,frames=0;
+ let tier=0,total=0,frames=0,slow=0,fast=0;
  return {
   get scale(){return levels[tier];},
   tick(dt,count,playing){
-   if(!playing){slow=fast=frames=0;return false;}
+   if(!playing){total=frames=slow=fast=0;return false;}
    const t=Math.min(.18,Math.max(0,dt));
-   const underLoad=count>=36&&t>1/38&&tier<levels.length-1;
    const canRecover=tier>0&&(count<30||t<1/55);
-   slow=underLoad?slow+t:0;
-   frames=underLoad?frames+1:0;
    fast=canRecover?fast+t:0;
-   if(slow>=.48&&frames>=7){tier++;slow=fast=frames=0;return true;}
-   if(fast>=1.8){tier--;slow=fast=frames=0;return true;}
+   // An occasional fast frame must not erase sustained load. Require both a
+   // slow average and a majority of slow samples so one stall is not enough.
+   if(count>=36&&tier<levels.length-1){total+=t;frames++;if(t>1/38)slow++;}
+   else {total=frames=slow=0;}
+   if(total>=.48&&frames>=7){
+    const shouldLower=total/frames>1/38&&slow>=Math.ceil(frames*.6);
+    total=frames=slow=0;
+    if(shouldLower){tier++;fast=0;return true;}
+   }
+   if(fast>=1.8){tier--;total=frames=slow=fast=0;return true;}
    return false;
   },
  };
