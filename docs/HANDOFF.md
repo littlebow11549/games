@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 加班鬼與加班鬼王 3D、職場龍待配置：[交接紀錄](handoffs/2026-11-27-kaban-office-rigs.md)。
+
 - 2026-11-27 地獄超人與冠老闆 3D、招式對齊：[交接紀錄](handoffs/2026-11-27-hell-guan-runtime.md)。
 
 - 2026-11-27 錢經理與藍經理 3D、大量敵人影子：[交接紀錄](handoffs/2026-11-27-office-managers-runtime.md)。

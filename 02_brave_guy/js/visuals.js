@@ -9,7 +9,7 @@ import * as THREE from '../vendor/three/three.module.min.js';
 // GLB 載入器約 150KB，只有 manifest 真的指定了模型才動態載入，沒模型時不拖慢開場
 let SkeletonUtils = null;
 
-const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst', 'spawn', 'talk', 'attackWindup', 'wave', 'finalDash', 'finalQuake', 'copyCast', 'chargeRush', 'gossipCast', 'spreadCast', 'officeFan', 'officeSummon', 'officeWhistle', 'officeHeal', 'officeMeeting', 'hellRush', 'hellQuake', 'hellFire', 'hellTaunt', 'hellKi', 'guanDive', 'guanPies']);
+const ONE_SHOT = new Set(['attack', 'attack1', 'attack2', 'attack3', 'skill1', 'skill2', 'skill3', 'ult', 'dodge', 'hit', 'die', 'transformArrival', 'burst', 'spawn', 'talk', 'attackWindup', 'wave', 'finalDash', 'finalQuake', 'copyCast', 'chargeRush', 'gossipCast', 'spreadCast', 'officeFan', 'officeSummon', 'officeWhistle', 'officeHeal', 'officeMeeting', 'hellRush', 'hellQuake', 'hellFire', 'hellTaunt', 'hellKi', 'guanDive', 'guanPies', 'kabanSlam', 'kabanSummon']);
 
 const toon = (color, extra = {}) => new THREE.MeshToonMaterial({ color, ...extra });
 const mesh = (geo, material, x = 0, y = 0, z = 0) => {
@@ -559,6 +559,30 @@ function attachCampusProp(kind,model) {
   return prop;
 }
 
+function attachKabanClock(kind,model) {
+  if(kind!=='kabanKing')return null;
+  const hand=model.getObjectByName('L_Hand');
+  if(!hand)return null;
+  const clock=new THREE.Group();
+  clock.name='Overtime king clock';clock.position.set(.016,-.022,.054);clock.rotation.set(.13,-.2,-.16);
+  const body=toon(0x46556e),edge=toon(0xb2c6d2),screen=toon(0x14382f),ink=toon(0xaadcb0),button=toon(0xffc878);
+  const add=(dims,mat,x,y,z)=>clock.add(mesh(new THREE.BoxGeometry(...dims),mat,x,y,z));
+  add([.14,.18,.087],body,0,0,0);
+  add([.126,.164,.014],edge,0,0,.044);
+  add([.094,.047,.008],screen,0,.034,.054);
+  const segments=[
+    [-.030,.042,.015,.004],[-.030,.026,.015,.004],[-.022,.034,.004,.017],
+    [-.008,.042,.011,.004],[-.008,.025,.011,.004],[-.014,.034,.004,.017],[-.002,.034,.004,.017],
+    [.007,.039,.004,.004],[.007,.029,.004,.004],
+    [.022,.042,.013,.004],[.022,.025,.013,.004],[.015,.034,.004,.018],[.029,.034,.004,.018]
+  ];
+  for(const [x,y,w,h] of segments)add([w,h,.003],ink,x,y,.060);
+  add([.086,.018,.008],screen,0,-.025,.054);
+  add([.042,.014,.009],button,0,-.054,.055);
+  hand.add(clock);
+  return clock;
+}
+
 export class GltfVisual {
   constructor(kind,appearance=null) {
     const { scene, clips, cfg, bounds } = library[kind];
@@ -576,6 +600,7 @@ export class GltfVisual {
     model.rotation.y = cfg.rotationY || 0;
     this.root.add(model);
     this.campusProp=attachCampusProp(kind,model);
+    this.kabanClock=attachKabanClock(kind,model);
     this.wakeBed=appearance?.kingWake?buildFolaidiBed(THREE,document.documentElement.lang):null;
     if(this.wakeBed)this.root.add(this.wakeBed);
 
@@ -700,7 +725,7 @@ export class GltfVisual {
       for(const mat of this.ownedMats)mat.dispose();
       this.ownedMats.clear();
     }
-    for(const prop of [this.wakeBed,this.panProp])if(prop) {
+    for(const prop of [this.wakeBed,this.panProp,this.kabanClock])if(prop) {
       const geometries=new Set(),materials=new Set();
       prop.traverse(o=>{if(o.isMesh){geometries.add(o.geometry);materials.add(o.material);}});
       for(const g of geometries)g.dispose();

@@ -74,7 +74,7 @@ def repack(j,b,sel,idx,p,n,uv,ids,w,im,tex):
  b.extend(blob)
  return b,np.array(Image.open(io.BytesIO(blob)).convert('RGB'))
 
-def run(role, raw, output=True):
+def run(role, raw, output=True, *, motion_role=None):
  j,b=load(raw); nd=j['nodes']; S=j['skins'][0]; js=S['joints']; names={nd[i]['name']:i for i in js}
  pr=j['meshes'][0]['primitives'][0]; a=pr['attributes']; p=get(j,b,a['POSITION']); ids=get(j,b,a['JOINTS_0']); w=get(j,b,a['WEIGHTS_0'])
  idx=get(j,b,pr['indices']).ravel().astype('int64');uv=get(j,b,a['TEXCOORD_0']); v=j['bufferViews'][j['images'][0]['bufferView']];o=v.get('byteOffset',0);tex=np.array(Image.open(io.BytesIO(b[o:o+v['byteLength']])).convert('RGB'))
@@ -92,7 +92,7 @@ def run(role, raw, output=True):
   g=world(m);J=(g[js]@im)[ids]
   return ((np.einsum('nkij,nj->nki',J[:,:,:3,:3],p)+J[:,:,:3,3])*w[:,:,None]).sum(1),g
  assert np.max(abs(pose(loc)[0]-p))<.002
- small,mid,final=[role==n for n in ROLE]
+ small,mid,final=[(motion_role or role)==n for n in ROLE]
  # Retain the original topology; small UV islands on claws and horns must stay intact.
  sel,idx2=np.arange(len(p)),idx
  b,tex=repack(j,b,sel,idx2,p,norm,uv,ids,w,im,tex)
@@ -204,6 +204,10 @@ def run(role, raw, output=True):
  print(role,len(js),mx,flush=True)
 if __name__=='__main__':
  ap=argparse.ArgumentParser(description='Build game-ready GLBs and action sheets from the original three rigs.')
- ap.add_argument('--rig-zip',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args();D=a.output;D.mkdir(parents=True,exist_ok=True)
+ ap.add_argument('--office',action='store_true',help='Build the two archive-only workplace variants for review.'); ap.add_argument('--rig-zip',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args();D=a.output;D.mkdir(parents=True,exist_ok=True)
  with zipfile.ZipFile(a.rig_zip) as z:
-  for r in ROLE:run(r,z.read(f'GLB/{r}_rig.glb'))
+  if a.office:
+   for source, profile in zip(('ganqiao_office','mid_ganqiao_office'),ROLE):
+    run(source,z.read(f'GLB/{source}_rig.glb'),motion_role=profile)
+  else:
+   for r in ROLE:run(r,z.read(f'GLB/{r}_rig.glb'))
