@@ -297,6 +297,116 @@ function callFloor({place}) {
   });
 }
 
+// Extra chapter landmarks sit behind the walking plane or on the existing outer edge.
+function wallClock(p,x,y,z,r,edge,face){
+  // A many-sided bezel and clock hands are separate solid parts.
+  p.round(x,y,z,r*2.18,r*2.18,.23,edge);
+  p.round(x,y,z+.15,r*1.89,r*1.89,.11,face);
+  for(let i=0;i<12;i++){
+    const a=i*Math.PI/6;
+    p.ball(x+Math.sin(a)*r*.75,y+Math.cos(a)*r*.75,z+.23,.044,.044,.025,edge);
+  }
+  p.round(x,y+r*.21,z+.246,.071,r*.48,.046,edge);
+  p.round(x+r*.26,y,z+.25,r*.57,.069,.046,'#bb697d');
+  p.ball(x,y,z+.29,.081,.08,.032,edge);
+}
+function monitor(p,x,y,z,body,screen,art=cyan){
+  p.round(x,y,z,1.48,.91,.31,body);
+  p.round(x,y+.025,z+.174,1.27,.71,.07,screen);
+  for(let i=0;i<3;i++)p.round(x-.30+i*.28,y+.13-i*.13,z+.218,.46,.054,.028,art);
+  p.round(x,y-.57,z,.15,.30,.19,body);
+  p.round(x,y-.743,z+.015,.70,.09,.41,body);
+}
+function illuminatedShelf(p,w,y,z,body,light){
+  p.round(0,y,z,w,.20,.86,body);
+  p.round(0,y-.115,z+.23,w*.88,.048,.27,light);
+}
+function officeDepth(kind,kit){
+ const {place}=kit;
+ if(kind==='night'){
+  place(0,-20.29,0,p=>{
+    wallClock(p,0,6.03,.12,1.16,'#55445f','#ffe1a3');
+    p.round(0,7.23,.08,4.08,.25,.94,'#635a7c');
+    p.round(0,5.58,-.08,3.96,1.45,.68,'#66567f');
+  });
+  for(const s of [-1,1]){
+   place(s*15.05,-14.63,-s*.49,p=>{
+    p.round(0,.66,0,3.12,1.29,.93,'#797486');
+    p.round(0,1.30,0,3.35,.14,1.14,'#c59c9c');
+    monitor(p,-.76,2.09,.18,navy,'#374563','#d4b387');
+    cactus(p,.9,1.40,.09,.87,teal,leaf,'#ae7992');
+    p.round(-.2,1.43,.45,.72,.064,.39,soft);
+   });
+   place(s*18.55,5.34,-s*turn,p=>{upright(p,0,.08,3.27,.70,.76,'#6d769a','#617193');pendent(p,0,.84,2.72,plum,amber);});
+  }
+ }else if(kind==='lobby'){
+  place(0,-21.13,0,p=>{
+   p.round(0,6.01,0,13.68,.50,.81,'#8494a7');
+   illuminatedShelf(p,13.29,5.75,.44,'#bdcfd0','#fff0bb');
+   for(const x of [-4,-2,0,2,4]){
+    p.round(x,5.02,.23,.72,.76,.22,'#d5d1b3');
+    p.round(x,4.99,.37,.56,.58,.07,'#b1e1e1');
+   }
+  });
+  for(const s of [-1,1]){
+   place(s*19.14,-15.78,-s*.65,p=>{
+    upright(p,0,0,6.43,.94,1.16,'#abc7ce','#dfdbc4','#fff1cc');
+    p.round(s*.91,1.91,.46,.81,1.29,.47,'#587c91');
+    p.sign(s*.91,1.95,.724,.60,.86,'入場',snow,navy);
+    p.box(s*.91,1.39,.67,.32,.093,.22,'#cce3d9');
+   });
+   place(s*18.56,7.85,-s*turn,p=>{bench(p,4.25,'#b5cfd0','#d5dfcf');cactus(p,s*2.62,0,.16,1.51,teal,leaf,'#b29e86');});
+  }
+ }else if(kind==='pantry'){
+  place(17.47,-11.35,-turn,p=>{
+   p.round(0,.78,0,4.07,1.53,1.03,'#a98068');
+   p.round(0,1.55,0,4.21,.21,1.17,'#e1ba8a');
+   p.round(-.75,2.24,.03,1.62,1.20,.79,'#8a664e');
+   p.round(-.75,2.45,.50,1.45,.72,.18,'#ddb383');
+   p.round(-.75,2.18,.631,1.08,.26,.14,'#645247');
+   for(const x of [-.97,-.52])p.cyl(x,1.82,.63,.17,.13,.27,soft,12);
+   p.sign(1.08,2.02,.56,1.28,.40,'熱咖啡',soft,'#935d58');
+  });
+  place(-12.0,-19.11,0,p=>{
+   p.round(0,4.78,.16,4.8,.66,.20,teal);
+   p.sign(0,4.80,.283,4.58,.43,'茶水間　OPEN',soft,'#667c6b');
+  });
+  place(-18.5,6.85,turn,p=>{lowShelf(p,0,0,3.27,1.54,'#7fa9a0','#5c8f85',[soft,'#edbc8c','#cab9a6']);cactus(p,1.28,1.60,.16,.84,leaf,teal,'#9a7584');});
+ }else if(kind==='board'){
+  place(-8.4,-18.92,0,p=>{
+   p.round(0,3.40,.08,7.13,3.64,.25,'#5a4f6f');
+   p.round(0,3.40,.236,6.78,3.34,.10,'#d4d4ec');
+   p.sign(0,4.31,.299,5.97,.45,'本週會議時數　↑',ink,'#cabbdc');
+   for(let i=0;i<6;i++){
+    const x=-2.34+i*.92,h=.35+[.1,.55,.33,1.04,1.24,1.42][i];
+    p.round(x,2.43+h/2,.309,.45,h,.10,['#8c92c2','#9087bf','#ae7ea5'][i%3]);
+   }
+   p.box(0,2.43,.31,5.57,.08,.10,'#8a82ad');
+  });
+  place(8.55,-19.07,0,p=>{wallClock(p,0,4.10,.05,1.01,plum,'#eacfc2');illuminatedShelf(p,5.15,3.0,.18,mauve,'#efddba');});
+  for(const s of [-1,1])
+   place(s*18.38,3.12,-s*turn,p=>{bench(p,4.01,'#857991','#b19aaf');cactus(p,s*1.8,0,.86,.90,teal,leaf,'#9f7b91');});
+ }else if(kind==='call'){
+  place(8.03,-18.86,0,p=>{
+   p.round(0,5.08,.08,6.54,.62,.31,'#705b84');
+   p.sign(0,5.09,.268,6.12,.43,'客服部　｜　匿名留言板',soft,'#755984');
+  });
+  place(-8.12,-18.83,0,p=>{
+   p.round(0,3.62,0,5.17,1.24,.37,'#577893');
+   p.sign(0,3.60,.22,4.90,.99,'通話中   ● ● ●',soft,'#3c6f88');
+   for(const x of [-2.39,2.39])p.ball(x,3.10,.25,.077,.076,.044,mint);
+  });
+  for(const s of [-1,1]){
+   place(s*17.30,4.41,-s*turn,p=>{
+    p.round(0,.70,0,3.55,1.28,.94,s>0?mauve:teal);
+    p.round(0,1.33,.05,3.74,.19,1.13,s>0?pink:'#b0d8ce');
+    monitor(p,-.85,2.12,.10,s>0?plum:navy,s>0?'#614b70':'#396e83');
+    monitor(p,.85,2.12,.10,s>0?plum:navy,s>0?'#614b70':'#396e83');
+   });
+  }
+ }
+}
+const compose=(base,kind)=>kit=>{base(kit);officeDepth(kind,kit);};
 const office=(rows,palette,ground,backdrop)=>Object.freeze({rows:Object.freeze(rows),palette:Object.freeze(palette),ground,backdrop});
 export const OFFICE_QUALITY=Object.freeze({
   '3-0':office([
@@ -309,7 +419,7 @@ export const OFFICE_QUALITY=Object.freeze({
     '##.##.###',
     '##....###',
     '#########',
-  ],['#aca5ae','#d9c7bb','#44495e','#697088','#8d94a9','#ebc284'],'office',nightShift),
+  ],['#aca5ae','#d9c7bb','#44495e','#697088','#8d94a9','#ebc284'],'office',compose(nightShift,'night')),
   '3-1':office([
     '####E####',
     '#.......#',
@@ -320,7 +430,7 @@ export const OFFICE_QUALITY=Object.freeze({
     '##.###.##',
     '##.....##',
     '#########',
-  ],['#c3d8d3','#ecede0','#627d8b','#8daeb6','#c1d5d1','#dcc093'],'marble',towerLobby),
+  ],['#c3d8d3','#ecede0','#627d8b','#8daeb6','#c1d5d1','#dcc093'],'marble',compose(towerLobby,'lobby')),
   '3-2':office([
     '####E####',
     '#......##',
@@ -331,7 +441,7 @@ export const OFFICE_QUALITY=Object.freeze({
     '###.##..#',
     '###.....#',
     '#########',
-  ],['#bcc4a8','#e3d9b4','#638581','#8ea690','#b4c3a1','#efc992'],'office',pantryFloor),
+  ],['#bcc4a8','#e3d9b4','#638581','#8ea690','#b4c3a1','#efc992'],'office',compose(pantryFloor,'pantry')),
   '3-3':office([
     '####E####',
     '#......##',
@@ -342,7 +452,7 @@ export const OFFICE_QUALITY=Object.freeze({
     '###.#..##',
     '###....##',
     '#########',
-  ],['#a2a4bb','#d1cad1','#59576d','#776f8c','#a19eb5','#d7b1b7'],'carpet',boardroom),
+  ],['#a2a4bb','#d1cad1','#59576d','#776f8c','#a19eb5','#d7b1b7'],'carpet',compose(boardroom,'board')),
   '3-4':office([
     '####E####',
     '##......#',
@@ -353,5 +463,5 @@ export const OFFICE_QUALITY=Object.freeze({
     '#.###.###',
     '#.....###',
     '#########',
-  ],['#adbdc1','#d7d0cf','#5d7188','#849aa8','#a9a8be','#ebb6c6'],'office',callFloor),
+  ],['#adbdc1','#d7d0cf','#5d7188','#849aa8','#a9a8be','#ebb6c6'],'office',compose(callFloor,'call')),
 });

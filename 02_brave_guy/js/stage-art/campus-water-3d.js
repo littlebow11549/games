@@ -15,6 +15,7 @@ export function makeWaterfall(THREE) {
   const color = x => new THREE.Color(x);
   const darkRock = color('#556881'), middleRock = color('#8699aa'), litRock = color('#b2c3c3');
   const darkWarm = color('#70798b'), midWarm = color('#9ba9b3'), lightWarm = color('#bcc8c7');
+  const moss = color('#869b64'), dryMoss = color('#b5c683');
   const sourceSphere = keep(new THREE.SphereGeometry(1,16,10));
   const shape = sourceSphere.attributes.position;
   const obj = new THREE.Object3D();
@@ -60,6 +61,11 @@ export function makeWaterfall(THREE) {
       const smooth=(lo,hi,v)=>{const t=THREE.MathUtils.clamp((v-lo)/(hi-lo),0,1);return t*t*(3-2*t);};
       blend.copy(warm?darkWarm:darkRock).lerp(warm?midWarm:middleRock,smooth(-.30,-.15,shade))
            .lerp(warm?lightWarm:litRock,smooth(.36,.53,shade));
+      // Moss is confined to the outer stone shoulders, not the wet chute.
+      if(Math.abs(x)>=.65){
+        const patch=smooth(.45,.72,b+.12*Math.sin(a*8+c*4+i))*smooth(.08,.50,Math.abs(x+dx));
+        blend.lerp(moss,patch*.85).lerp(dryMoss,patch*smooth(.72,.97,shade)*.39);
+      }
       colors.push(blend.r,blend.g,blend.b);
     }
     for(let j=0;j<sourceSphere.index.count;j++) indices.push(start+sourceSphere.index.getX(j));
@@ -116,15 +122,16 @@ export function makeWaterfall(THREE) {
   disk('Foot dispersal',.03,.092,1.22,.93,.065,.45,waterBlue);
   disk('Foot shoreline light',.07,.127,1.23,.78,.046,.37,mint);
 
-  function animatedMesh(material,count,name) {
-    const im=new THREE.InstancedMesh(sourceSphere,material,count);
+  function animatedMesh(material,count,name,geometry=sourceSphere) {
+    const im=new THREE.InstancedMesh(geometry,material,count);
     im.name=name;im.instanceMatrix.setUsage(THREE.DynamicDrawUsage);im.frustumCulled=false;
     root.add(im);return im;
   }
   const streams=animatedMesh(white,12,'Flowing white graphic strokes');
   const foam=animatedMesh(white,15,'Bobbing white scalloped foam');
   const drops=animatedMesh(mint,15,'Pale cyan droplets');
-  const poolArcs=animatedMesh(white,4,'Short expanding basin glints');
+  const rippleShape=keep(new THREE.RingGeometry(.86,1,16,1,.18,Math.PI*1.23)).rotateX(-Math.PI/2);
+  const poolArcs=animatedMesh(white,4,'Short expanding basin glints',rippleShape);
   const segments=paths.map(p=>p.map((a,i)=>i>0?Math.hypot(a[0]-p[i-1][0],a[1]-p[i-1][1]):0));
   const lengths=segments.map(a=>a.reduce((sum,d)=>sum+d,0));
   let elapsed=0;
@@ -164,8 +171,8 @@ export function makeWaterfall(THREE) {
     }
     for(let i=0;i<4;i++){
       const p=i<2?0:1,t=(elapsed*.92+i*.389)%1,f=Math.sin(t*Math.PI);
-      setTransform(poolArcs,i,.08+(i%2-.5)*.53,(p?.147:1.49)+.016*f,(p?1.36:.38)+.18*t,
-        (.10+.19*t)*f,.012*f,.024*f,i%2?.08:-.09);
+      setTransform(poolArcs,i,.08+(i%2-.5)*.43,(p?.165:1.487)+.008*f,(p?1.40:.42)+.20*t,
+        (.11+.30*t)*f,1,(.055+.14*t)*f,i%2?.42:-.31);
     }
     [streams,foam,drops,poolArcs].forEach(m=>{m.instanceMatrix.needsUpdate=true;});
   }

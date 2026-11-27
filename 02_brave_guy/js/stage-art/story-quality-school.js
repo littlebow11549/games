@@ -142,20 +142,20 @@ function stands(p,y=0){
  for(const x of [-2.96,2.96])p.round(x,y+.46,.04,.236,.90,2.98,C.wood);
 }
 function court({place}){
- place(-13.27,-.06,Math.PI*.5,p=>basket(p,1.04));
- place(13.26,.06,-Math.PI*.5,p=>basket(p,1.04));
- for(const x of [-10.53,10.53])place(x,-10.06,0,p=>{
+ place(-8.54,-8.76,.19,p=>basket(p,.83));
+ place(8.54,-8.76,-.19,p=>basket(p,.83));
+ for(const x of [-10.53,10.53])place(x,-12.17,0,p=>{
   stands(p);rail(p,6.02,0,1.77,-1.56,C.wood);
   p.round(0,.13,-1.92,6.4,.260,.48,C.navy);
   p.round(0,.389,-1.93,6.52,.31,.475,C.darkTeal);
   p.round(0,.55,-1.93,6.57,.065,.52,C.tealHi);
  });
- place(-9.28,-14.29,.02,p=>{
+ place(-9.44,-15.31,.02,p=>{
   p.round(0,1.98,0,4.21,2.72,1.39,C.ink);p.round(0,2.035,.71,4.08,2.59,.156,C.navy);
   label(p,0,2.36,.811,3.26,.54,'校際籃球賽',C.cream,C.darkTeal);
   label(p,0,1.71,.816,2.94,.48,'24　：　08',C.gold,C.night);
  });
- place(9.36,-14.15,.0,p=>{
+ place(9.45,-15.36,.0,p=>{
   p.round(0,.748,.0,4.16,1.49,1.17,C.wood);sill(p,0,1.55,.0,4.20,1.28,C.tan);
   rect(p,0,.857,.604,3.16,.667,.112,C.night,C.cream);label(p,0,.861,.701,2.31,.40,'過路費');
   for(let i=0;i<4;i++)p.cyl(-.74+i*.35,1.69,.246,.13,.133,.094,C.gold,12);
@@ -243,7 +243,7 @@ function campusGate(p){
  label(p,0,3.667,.476,2.16,.367,'校門口',C.ink,C.cream);
 }
 function gate({place}){
- place(-10.63,-9.81,.08,p=>campusGate(p));
+ place(-10.61,-6.61,.07,p=>campusGate(p));
  place(9.9,-9.93,-.07,p=>{
   p.round(.69,.91,-.40,3.34,1.78,1.87,C.deep);
   p.round(.68,1.06,.58,3.26,1.59,.213,0xa286a2);
@@ -370,24 +370,162 @@ function village({place}){
  for(const x of [-14.06,14.06])place(x,8.91,x>0?-.18:.18,p=>{rail(p,3.74,0,.29,0,C.darkWood);rockbed(p,.08,.341,.53);floatingNote(p,.47,.95,.463,null,.42,true);});
 }
 function styleFrom(x){return x>0?2:0;}
+function carvedSill(p,w,z,accent,stone=C.stone){
+ p.round(0,.12,z,w,.24,.78,C.ink);
+ p.round(0,.272,z,w+.04,.16,.82,stone);
+ p.round(0,.369,z+.018,w-.08,.06,.76,accent);
+}
+function dormTrim({place}){
+ for(const s of both){
+  place(s*12.63,-1.45,s<0?Math.PI/2:-Math.PI/2,p=>{
+   carvedSill(p,5.81,.08,C.tan,C.wood);
+   p.round(0,1.095,-.211,5.77,1.44,.54,0xb37f87);
+   p.round(0,1.832,-.185,5.86,.134,.65,C.tan);
+   for(let i=0;i<5;i++){
+    const x=(i-2)*1.105;
+    rect(p,x,1.095,.091,.91,1.03,.103,C.wood,i%2?0xc89191:0xd69e99);
+   }
+   p.round(-1.66,1.929,-.15,1.51,.054,.48,C.cream);books(p,-2.16,1.97,-.12,4,.78);
+   pot(p,1.91,-.11,.78,1.91);
+  });
+  place(s*8.44,6.3,s<0?.16:-.16,p=>{
+   carvedSill(p,1.89,.07,C.cream,C.oak);
+   p.round(0,.448,.075,1.57,.158,.60,s>0?C.teal:C.rose);
+   p.round(0,.55,.084,1.48,.072,.51,s>0?C.tealHi:C.pink);
+   p.round(s*.41,.622,.068,.621,.106,.45,C.white);
+   p.round(s*.41,.685,.072,.563,.068,.47,C.lilac);
+  });
+ }
+ place(-10.51,-6.72,.03,p=>{
+  p.round(0,.173,0,4.98,.32,.91,C.darkWood);
+  p.round(0,.34,0,4.91,.063,.87,C.tan);
+  for(const x of [-.42,.18,.74]){
+   p.round(x,.45,.17,.30,.16,.58,0xbd817a);
+   p.round(x,.562,.027,.265,.115,.25,C.pink);
+  }
+ });
+}
+function courtTrim({place}){
+ for(const s of both){
+  place(s*12.50,-3.32,s<0?Math.PI/2:-Math.PI/2,p=>{
+   carvedSill(p,5.05,.04,C.tealHi,C.darkTeal);
+   p.round(0,.466,.04,4.98,.13,.75,C.teal);
+   for(let i=0;i<6;i++)p.round((i-2.5)*.791,.519,.041,.56,.047,.62,0x649f93);
+   rail(p,5.0,0,.43,-.36,C.darkTeal);
+  });
+  place(s*10.11,10.07,s>0?-.27:.27,p=>{
+   carvedSill(p,2.93,.08,C.tan,C.navy);
+   p.round(0,.52,.08,2.74,.24,.84,C.teal);
+   p.round(0,.67,.10,2.79,.085,.85,C.tealHi);
+   p.ball(-s*.91,.925,.12,.26,.25,.26,C.amber);
+   p.cyl(-s*.91,.929,.12,.261,.261,.047,C.red,12);
+  });
+ }
+}
+function standTrim({place}){
+ for(const s of both){
+  place(s*9.14,4.58,s>0?-Math.PI/2:Math.PI/2,p=>{
+   carvedSill(p,4.11,.06,C.tan,0xaa8d88);
+   p.round(0,.492,.059,3.97,.251,.728,C.slate);
+   p.round(0,.657,.069,3.95,.082,.741,C.stone);
+   for(const x of [-1.75,.05,1.75]){
+    p.round(x,.529,.442,.105,.29,.066,0xbca6a0);
+    p.round(x,.707,.03,.30,.085,.79,C.tan);
+   }
+   pot(p,s*1.27,.066,.49,.731);
+  });
+ }
+ place(-11.74,-8.06,.12,p=>{
+  p.round(0,.217,0,2.12,.433,.63,C.wood);
+  p.round(0,.512,0,2.11,.19,.64,C.navy);
+  p.round(0,.637,.048,2.09,.06,.641,C.lilac);
+  label(p,0,.51,.363,1.48,.168,'列隊區',C.cream,C.navy);
+ });
+}
+function gateTrim({place}){
+ for(const s of both){
+  place(s*8.31,-2.72,s>0?-Math.PI/2:Math.PI/2,p=>{
+   carvedSill(p,4.93,.05,C.lilac,C.deep);
+   p.round(0,.595,.00,4.69,.426,.52,0x997894);
+   p.round(0,.837,.03,4.74,.097,.645,C.lilac);
+   for(const x of [-2.28,0,2.27]){
+    p.round(x,.631,.05,.237,.66,.74,0xb190a6);
+    p.round(x,.98,.05,.304,.145,.79,C.violet);
+   }
+   floatingNote(p,s*.86,1.384,.03,null,.60);
+  });
+  place(s*8.24,4.5,s>0?-.23:.23,p=>{
+   carvedSill(p,1.72,0,C.lilac,C.deep);
+   p.round(0,.503,.021,.89,.256,.51,C.violet);
+   p.round(0,.684,.045,.71,.142,.42,C.amber);
+   p.round(0,.793,.017,.69,.093,.45,C.darkWood);
+  });
+ }
+}
+function forestTrim({place}){
+ for(const s of both){
+  place(s*9.38,-3.45,s>0?-.24:.24,p=>{
+   woodtree(p,s*.72,-.19,.85,s>0?1:0);
+   rockbed(p,-s*.22,.56,.57,true);
+   mushrooms(p,-s*.79,.73,.75);
+  });
+  place(s*8.79,4.89,s>0?-.39:.39,p=>{
+   rockbed(p,s*.32,-.12,1.07,true);
+   mushrooms(p,-s*.64,.461,.89);
+   for(let i=0;i<4;i++)p.ball(s*(.37+i*.243),.27+(i%2)*.07,.48,.35,.208,.29,i%2?C.fern:C.moss);
+  });
+  place(s*8.94,2.0,s>0?-.25:.25,p=>{
+   p.cyl(-s*.11,.296,-.108,.39,.53,.59,C.bark,9);
+   p.cyl(-s*.11,.612,-.109,.341,.364,.066,0xb28f91,9);
+   p.cyl(-s*.12,.651,-.107,.231,.231,.015,0x876f7b,9);
+   for(const x of [-.46,.12])mushrooms(p,s*x,.77,.50);
+  });
+ }
+}
+function villageTrim({place}){
+ for(const s of both){
+  place(s*8.29,.08,s>0?-Math.PI/2:Math.PI/2,p=>{
+   carvedSill(p,3.95,.07,0xbe9c9a,C.deep);
+   p.round(0,.545,.081,3.79,.343,.59,0x938394);
+   p.round(0,.753,.09,3.92,.089,.696,0xb2a0a4);
+   for(let i=0;i<3;i++)p.round((i-1)*1.79,.559,.095,.179,.53,.68,C.stone);
+   p.round(-.87,.854,.09,.48,.093,.435,C.wood);
+   p.round(-.87,.963,.13,.39,.209,.33,C.amber);
+   p.round(-.87,1.094,.087,.398,.074,.341,C.darkWood);
+  });
+  place(s*11.25,-4.56,s>0?-.19:.18,p=>{
+   villageHouse(p,s*.30,-.39,.77,s>0?2:1);
+   p.cyl(-s*.96,.274,.758,.23,.184,.53,C.oak,8);
+   p.cyl(-s*.96,.516,.758,.25,.246,.066,C.wood,8);
+   floatingNote(p,s*.23,1.48,.946,null,.61,true);
+  });
+  place(s*14.22,6.82,s>0?-.28:.28,p=>{
+   rockbed(p,s*.31,.026,.55);
+   p.cyl(-s*.34,.267,-.28,.302,.235,.524,C.wood,12);
+   p.cyl(-s*.34,.461,-.28,.311,.288,.058,C.tan,12);
+   p.cyl(-s*.34,.55,-.28,.302,.28,.063,C.oak,12);
+  });
+ }
+}
+
 const make=(rows,palette,ground,backdrop)=>Object.freeze({rows:Object.freeze(rows),palette:Object.freeze(palette),ground,backdrop});
 export const SCHOOL_QUALITY=Object.freeze({
  '1-0':make([
   '####E####','###...###','###...###','###.B.###','##..S..##','###...###','###...###','####.####','#########',
- ],['#dcc095','#fbe0b9','#7c526a','#a6747c','#db9b94','#b98272'],'wood',dorm),
+ ],['#dcc095','#fbe0b9','#7c526a','#a6747c','#db9b94','#b98272'],'wood',kit=>{dorm(kit);dormTrim(kit);}),
  '1-2':make([
   '####E####','###...###','###...###','##..B..##','##..S..##','##.....##','###...###','##.....##','#########',
- ],['#dc9d5f','#f8ce88','#2e6564','#517f72','#80aa82','#fff0c0'],'court',court),
+ ],['#dc9d5f','#f8ce88','#2e6564','#517f72','#80aa82','#fff0c0'],'court',kit=>{court(kit);courtTrim(kit);}),
  '1-3':make([
   '####E####','###...###','###...###','###.B.###','#...S...#','#.#...#.#','#.#...#.#','#.......#','#########',
- ],['#ba9c88','#e5bda0','#625268','#977681','#c49993','#f0d9a5'],'stone',discipline),
+ ],['#ba9c88','#e5bda0','#625268','#977681','#c49993','#f0d9a5'],'stone',kit=>{discipline(kit);standTrim(kit);}),
  '1-4':make([
   '####E####','####.####','###...###','###.B.###','###.S.###','###...###','##.....##','##.#.#.##','#########',
- ],['#a495b8','#caafca','#54446a','#795985','#ba89a2','#e6bcc7'],'stone',gate),
+ ],['#a495b8','#caafca','#54446a','#795985','#ba89a2','#e6bcc7'],'stone',kit=>{gate(kit);gateTrim(kit);}),
  '2-1':make([
   '####E####','###..####','###...###','###.B.###','###.S.###','###...###','###...###','##..#..##','#########',
- ],['#638773','#a5b192','#243f45','#3f675a','#6b8d73','#98c3a5'],'moss',forest),
+ ],['#638773','#a5b192','#243f45','#3f675a','#6b8d73','#98c3a5'],'moss',kit=>{forest(kit);forestTrim(kit);}),
  '2-2':make([
   '####E####','####..###','###...###','###.B.###','###.S.###','##.....##','##.....##','###...###','#########',
- ],['#8b7082','#b99b95','#3c395b','#645676','#9b7390','#ddb388'],'stone',village),
+ ],['#8b7082','#b99b95','#3c395b','#645676','#9b7390','#ddb388'],'stone',kit=>{village(kit);villageTrim(kit);}),
 });

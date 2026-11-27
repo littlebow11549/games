@@ -1,5 +1,9 @@
 # 專案交接入口
 
+- 2026-11-27 Brave Guy all 16 scenes refresh: [handoff](handoffs/2026-11-27-brave-guy-all-scenes-refresh.md).
+
+- 2026-11-27 Brave Guy 3-7 scene polish (local candidate): [handoff](handoffs/2026-11-27-brave-guy-3-7-scene-polish.md).
+
 - 2026-11-27 Brave Guy quality audit 77 to 79.5: [handoff](handoffs/2026-11-27-brave-guy-quality-audit.md).
 
 - 2026-11-27 Mobile joystick reset: [handoff](handoffs/2026-11-27-mobile-joystick.md).

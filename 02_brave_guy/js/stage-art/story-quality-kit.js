@@ -1,6 +1,6 @@
 const css=v=>typeof v==='number'?'#'+v.toString(16).padStart(6,'0'):v;
-function rounded(T){
-  const geo=new T.BoxGeometry(1,1,1,5,5,5),p=geo.attributes.position;
+function rounded(T,segments=5){
+  const geo=new T.BoxGeometry(1,1,1,segments,segments,segments),p=geo.attributes.position;
   const radius=.16,inside=.5-radius, dir=new T.Vector3(), q=new T.Vector3();
   for(let i=0;i<p.count;i++){
     dir.fromBufferAttribute(p,i);
@@ -16,6 +16,7 @@ export function makeQualityKit(T,root,stage){
   const slots=[[-4.6,-9.2,0],[4.6,-9.2,0],[-9.6,-9.45,.14],[9.6,-9.45,-.14],[-14.7,0,.75],[14.7,0,-.75],[-15,8,1.08],[15,8,-1.08],[-13.35,.2,.6],[13.35,.2,-.6],[-7.7,-18.8,.18],[7.7,-18.8,-.18],[0,-22.1,0]];
   const temp=new T.Object3D(),col=new T.Color();
   const contour=new T.Color(stage.edge).multiplyScalar(.61);
+  const rig=stage.lightPools?.map(([x,y,z,radius,hue,strength])=>({x,y,z,radius,hue:new T.Color(hue),strength}));
   function call(key,data){
     if(!calls.has(key))calls.set(key,[]);
     calls.get(key).push(data);
@@ -47,7 +48,7 @@ export function makeQualityKit(T,root,stage){
   function draw(){
     for(const [kind,items] of calls){
       let geo;
-      if(kind==='round')geo=rounded(T);
+      if(kind==='round')geo=rounded(T,stage.bevelSegments);
       else if(kind==='ball')geo=new T.SphereGeometry(1,12,8);
       else if(kind.startsWith('cyl')){
         const [,ratio,vert]=kind.split('|');geo=new T.CylinderGeometry(+ratio,1,1,+vert);
@@ -58,7 +59,13 @@ export function makeQualityKit(T,root,stage){
       group.castShadow=kind==='round'||kind==='box';
       items.forEach(([x,y,z,w,h,d,color,yaw],i)=>{
         temp.position.set(x,y,z);temp.scale.set(w,h,d);temp.rotation.set(0,yaw,0);temp.updateMatrix();
-        group.setMatrixAt(i,temp.matrix);group.setColorAt(i,col.set(color));
+        col.set(color);
+        if(rig)for(const l of rig){
+          const dx=x-l.x,dy=(y-l.y)*1.15,dz=z-l.z;
+          const falloff=Math.max(0,1-(dx*dx+dy*dy+dz*dz)/(l.radius*l.radius));
+          if(falloff>0)col.lerp(l.hue,falloff*falloff*l.strength);
+        }
+        group.setMatrixAt(i,temp.matrix);group.setColorAt(i,col);
       });
       root.add(group);
     }
@@ -85,5 +92,15 @@ export function makeQualityKit(T,root,stage){
     }
     root.userData.signCount=labels.length;
   }
-  return {at,place,draw,gradient,contour,partCount:()=>[...calls.values()].reduce((a,b)=>a+b.length,0)};
+  function groundContacts(){
+    const landed=[];
+    for(const kind of ['box','round'])for(const [x,y,z,w,h,d,,yaw] of calls.get(kind)||[]){
+      if(y-h*.5>.12||w*d<1.0||w>18||d>18)continue;
+      if(landed.some(q=>Math.hypot(q[0]-x,q[1]-z)<.68))continue;
+      const c=Math.abs(Math.cos(yaw)),s=Math.abs(Math.sin(yaw));
+      landed.push([x,z,Math.min(5.1,(w*c+d*s)*.59+.35),Math.min(3.9,(d*c+w*s)*.59+.39)]);
+    }
+    return landed.slice(0,75);
+  }
+  return {at,place,draw,gradient,contour,groundContacts,partCount:()=>[...calls.values()].reduce((a,b)=>a+b.length,0)};
 }

@@ -10,11 +10,11 @@ export function prepareStageArt(id){
  if(pending.has(id))return pending.get(id);
  const task=(async()=>{
   if(id==='1-1'){
-   const [campus,fx]=await Promise.all([import('./campus-stage-3d.js?v=20261125perf1'),import('./hallway-fx.js')]);
+   const [campus,fx]=await Promise.all([import('./campus-stage-3d.js?v=20261127scenes'),import('./hallway-fx.js')]);
    await campus.prepareCampus();
    return {...campus,...fx};
   }
-  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127landmarks2'),import('./story-quality-paint.js?v=20261125perf1')]);
+  const [story,paint]=await Promise.all([import('./story-polish.js?v=20261127scenes'),import('./story-quality-paint.js?v=20261127scenes')]);
   await paint.prepareStoryPaint(id);
   return story;
  })().then(pack=>{prepared.set(id,pack);return pack;}).finally(()=>pending.delete(id));

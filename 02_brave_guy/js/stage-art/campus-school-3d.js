@@ -191,6 +191,16 @@ export function makeSchool(THREE,{label='教學大樓',subtitle='CAMPUS CLASSROO
   box(X+side*(rw/2-.061),4.862,Z,.260,.067,rd+.11,C.roofTop);
  }
  for(let i=0;i<8;i++)box(X,4.648,Z-.92+i*.254,W-.44,.011,.023,C.tile);
+ // Small rooftop school pennant breaks the heavy roofline without adding
+ // a third render mesh.
+ const flagX=X-2.65,flagZ=Z-.75;
+ box(flagX,4.733,flagZ,.35,.17,.31,C.step);
+ box(flagX,5.27,flagZ,.068,1.12,.068,C.woodDark);
+ box(flagX,5.822,flagZ,.112,.093,.105,C.knob);
+ const banner=[[.054,-.16],[.45,-.235],[.81,-.025],[.80,.209],[.46,.088],[.05,.147]];
+ stripe(flagX,5.555,flagZ+.013,banner,C.brickDark);
+ stripe(flagX,5.555,flagZ+.019,[[.068,-.111],[.433,-.181],[.755,-.016],[.75,.149],[.456,.036],[.067,.102]],C.brickLight);
+ stripe(flagX,5.555,flagZ+.026,[[.249,.026],[.300,.079],[.376,.032],[.304,-.047]],C.cream);
  box(X+2.62,4.731,Z-.36,1.247,.181,.899,C.brickDark);
  box(X+2.62,4.885,Z-.36,1.176,.306,.802,C.cream);
  box(X+2.62,5.054,Z-.36,1.30,.093,.921,C.brick);
@@ -261,6 +271,15 @@ export function makeSchool(THREE,{label='教學大樓',subtitle='CAMPUS CLASSROO
   const y=.058+i*.068;
   box(-.29,y,depth,2.59-i*.12,y*2,.38,C.stoneDark);
   box(-.29,y*2+.008,depth,2.62-i*.12,.065,.39,i%2===0?C.stepLight:C.step);
+ }
+ // Bulletin boards on both ground-level wings, visible through the columns.
+ for(const [qx,shade] of [[-2.83,C.tealDark],[2.25,C.woodDark]]){
+  box(qx,.966,F+.073,.51,.355,.111,C.ink);
+  box(qx,.970,F+.134,.456,.301,.041,shade);
+  for(const [off,hue,tilt] of [[-.102,C.cream,.07],[.041,C.light,-.09],[.124,C.brickLight,.06]]){
+   const u=qx+off;box(u,.970,F+.161,.125,.159,.012,hue,tilt);
+   box(u,1.032,F+.177,.022,.024,.014,C.knob);
+  }
  }
  // Entry planters are near posts but inside the art footprint.
  for(const cx of [-3.16,2.96]){

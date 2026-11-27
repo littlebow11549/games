@@ -2,7 +2,7 @@ import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd
 import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
 import {enableCameraZoom} from './stage-art/camera-zoom.js';
 let stageArt=null;
-const stageArtReady=import('./stage-art/catalog.js?v=20261127landmarks2').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
+const stageArtReady=import('./stage-art/catalog.js?v=20261127scenes').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';

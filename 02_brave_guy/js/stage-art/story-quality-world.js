@@ -1,11 +1,13 @@
+import {buildSceneHorizon,buildSceneThreshold} from './story-scene-horizon.js';
+import {SCENE_GRADES,modelLightRig} from './story-scene-grade.js';
 import {STORY_DESIGN} from './story-stage-design.js';
-import {SCHOOL_QUALITY} from './story-quality-school.js';
-import {OFFICE_QUALITY} from './story-quality-office.js';
-import {FINALE_QUALITY} from './story-quality-finale.js';
+import {SCHOOL_QUALITY} from './story-quality-school.js?v=20261127scenes';
+import {OFFICE_QUALITY} from './story-quality-office.js?v=20261127scenes';
+import {FINALE_QUALITY} from './story-quality-finale.js?v=20261127scenes';
 import {addOfficeProps} from './story-office-props.js';
 import {addFinaleProps} from './story-finale-props.js';
-import {makeQualityKit} from './story-quality-kit.js';
-import {paintArtStage} from './story-quality-paint.js?v=20261125perf1';
+import {makeQualityKit} from './story-quality-kit.js?v=20261127scenes';
+import {paintArtStage} from './story-quality-paint.js?v=20261127scenes';
 import {addStoryAmbient} from './story-ambient.js';
 export const STORY_QUALITY=Object.freeze({...SCHOOL_QUALITY,...OFFICE_QUALITY,...FINALE_QUALITY});
 
@@ -24,6 +26,9 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  detachShell(world,sun);world.add(art);
  const [base,high,dark,mid,lite,line]=style.palette;
  const fogColor=new T.Color(lite).lerp(new T.Color(mid),.53);
+ const grade=SCENE_GRADES[d.id];
+ if(grade)fogColor.set(grade.sky);
+ if(d.id==='3-7')fogColor.set('#4b405b');
  scene.background=fogColor;scene.fog=new T.Fog(fogColor,30,78);
  const hemi=world.children.find(o=>o.isHemisphereLight);
  hemi.color.set(d.warm);hemi.groundColor.set(d.shadow);hemi.intensity=1.52;
@@ -32,13 +37,24 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  const pad=new T.Mesh(new T.PlaneGeometry(125,125),new T.MeshBasicMaterial({color:mid}));
  pad.rotation.x=-Math.PI/2;pad.position.y=-.040;art.add(pad);
 
- const painted=paintArtStage(T,art,maze,style,d.id,camera,hero);
- const kit=makeQualityKit(T,art,{edge:mid,trim:line});
+
+ // Match prop and wall colors to the same pools painted on the floor.
+ // Tint is computed once while batching, not rendered as extra dynamic lights.
+ const meeting=d.id==='3-7';
+ const lightPools=meeting?[
+  [0,2.35,-20.2,5.4,'#ffc78e',.30],[-4.6,1.70,-10.82,2.8,'#e6a784',.24],
+  [-16.08,1.29,-.81,2.6,'#ffd09a',.30],[16.08,1.29,-.81,2.6,'#ffd09a',.30],
+  [-16.08,1.29,13.7,2.6,'#ffd09a',.30],[16.08,1.29,13.7,2.6,'#ffd09a',.30],
+ ]:modelLightRig(grade);
+ const kit=makeQualityKit(T,art,{edge:mid,trim:line,bevelSegments:4,lightPools});
+ buildSceneHorizon(kit,d.id);
  style.backdrop(kit);
+ buildSceneThreshold(kit,d.id);
  // Existing unique story pieces are retained as midground subjects. They use
  // several topology-aware placements rather than occupying a fixed prop shelf.
  const wanted=[[-4.6,-9.2],[4.6,-9.2],[-9.2,-9.2],[9.2,-9.2],[-14,0],[14,0],[-14,8],[14,8]];
  const oldMap=(index,cb)=>{
+  if(d.id==='3-7')return;
   if(OFFICE_QUALITY[d.id]&&index>1)return;
   // With stage-specific architecture developing deeper, look for blocked pads.
   const override=style.landmarks?.[index], [x,z,a=0]=override||wanted[index];
@@ -61,11 +77,12 @@ export function dressStoryQuality(T,scene,d,maze,sun,quality,camera,hero){
  const composed={at:oldMap};
  if(!SCHOOL_QUALITY[d.id])addOfficeProps(d.id,composed)||addFinaleProps(d.id,composed);
  kit.draw();
+ const painted=paintArtStage(T,art,maze,style,d.id,camera,hero,kit.groundContacts());
 
  // True route barriers stay unchanged physically; treat the risers as low
  // topography rather than tall bands of blocking tape across the screen.
  const box=new T.BoxGeometry(),body=new T.InstancedMesh(box,new T.MeshToonMaterial({color:mid}),maze.walls.length);
- const top=new T.InstancedMesh(box,new T.MeshToonMaterial({color:new T.Color(line).lerp(new T.Color(mid),.55)}),maze.walls.length);
+ const top=new T.InstancedMesh(box,new T.MeshToonMaterial({color:new T.Color(d.id==='3-7'?'#76657b':line).lerp(new T.Color(mid),.55)}),maze.walls.length);
  const q=new T.Object3D(),h=style.ground==='moss'?.25:.13;
  maze.walls.forEach((w,i)=>{
    const x=(w.x0+w.x1)/2,z=(w.z0+w.z1)/2,dx=w.x1-w.x0,dz=w.z1-w.z0;

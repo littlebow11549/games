@@ -1,6 +1,6 @@
 import {loadStageAtlas} from './stage-textures.js?v=20261125perf1';
-import { makeSchool } from './campus-school-3d.js';
-import { makeWaterfall } from './campus-water-3d.js';
+import { makeSchool } from './campus-school-3d.js?v=20261127stage';
+import { makeWaterfall } from './campus-water-3d.js?v=20261127stage';
 // Atlas paintings are not reference screenshots. Navigation remains owned by sunny-maze.
 const TAU = Math.PI*2;
 let PLANTS,LANDMARKS,GROUND;
@@ -33,7 +33,7 @@ function tiles(c,W,H,key,count){
   blit(c,GROUND,key,-1.25,-1.25,w+2.5,h+2.5);c.restore();
  }
 }
-function floor(w,h,cells,cell,footprints,extent){
+function floor(w,h,cells,cell,footprints,extent,maze,schoolPos){
  return graphic(w,h,(c,W,H)=>{
   const px=v=>(v+extent)/(2*extent)*W, s=cell*W/(extent*2), u=W/(extent*2);
   const random=RAND(113781);
@@ -59,19 +59,60 @@ function floor(w,h,cells,cell,footprints,extent){
   tiles(c,W,H,'dirt',5);
   c.fillStyle='#fff5c431';c.fillRect(0,0,W,H);
   c.restore();
+  // One baked texture for distinct walking surfaces: gravel trails, terracotta
+  // courtyard and pale stone at the school. Joined cells do not get false seams.
+  c.save();c.clip(mask);c.translate(px(0),px(0));c.scale(u,u);
+  const pathRandom=RAND(81227);
+  for(const p of cells){
+   const court=p.row>=3&&p.row<=5&&p.col>=3&&p.col<=5;
+   const entry=p.row<2&&p.col<4;
+   const school=p.row>=6&&p.col>=4;
+   if(court||entry||school){
+    const glow=c.createRadialGradient(p.x-.28,p.z-.34,.18,p.x,p.z,3.48);
+    glow.addColorStop(0,court?'#f3bf8c95':entry?'#fff1ba8a':'#f7dfb58a');glow.addColorStop(1,'#ead29a00');
+    c.fillStyle=glow;c.fillRect(p.x-2.8,p.z-2.8,5.6,5.6);
+   }
+   for(let j=0;j<22;j++){
+    const x=p.x+(pathRandom()-.5)*4.34,z=p.z+(pathRandom()-.5)*4.34;
+    const r=.018+pathRandom()*.049;
+    c.fillStyle=j%4===0?'#fff5cd9f':'#997f5642';c.beginPath();c.ellipse(x,z,2*r,.64*r,j%3,0,TAU);c.fill();
+   }
+  }
+  // Textured stone pavers in the main courtyard follow the existing grid.
+  for(let r=-4;r<=4;r++)for(let q=-5;q<=5;q++){
+   const x=q*.56+(r%2)*.28,z=r*.41+.60;
+   if((x/2.84)**2+((z-.6)/1.95)**2>1)continue;
+   c.beginPath();c.roundRect(x-.253,z-.188,.506,.376,.073);
+   c.fillStyle=['#bb8c6452','#fff2c580','#d796746a','#f8dab087'][Math.floor(pathRandom()*4)];c.fill();
+   c.strokeStyle='#9e74474e';c.lineWidth=.023;c.stroke();
+  }
+  for(const [x,z,angle,count] of [[maze.start.x,maze.start.z+.42,0,5],[maze.exit.x,maze.exit.z-1.20,0,5],[schoolPos.x+2.9,schoolPos.z+2.52,Math.PI/2,4]]){
+   c.save();c.translate(x,z);c.rotate(angle);
+   for(let i=0;i<count;i++){
+    const X=(i-(count-1)/2)*.51;c.beginPath();c.roundRect(X-.235,-.255,.47,.51,.11);
+    c.fillStyle=i%2?'#ebd7afab':'#ffebc1c4';c.fill();c.strokeStyle='#9b805974';c.lineWidth=.031;c.stroke();
+   }
+   c.restore();
+  }
+  c.restore();
   c.save();c.globalAlpha=.18;c.filter='blur(6px)';
   c.lineWidth=13;c.strokeStyle='#dce989';c.stroke(mask);c.restore();
   // Pond is wholly in the enclosed northern ornamental garden. Art isn't collision.
   c.save();c.translate(px(WATER_POS.x),px(WATER_POS.z));c.scale(u,u);
   const pool=new Path2D(POND);
-  c.lineWidth=.28;c.strokeStyle='#63835b';c.stroke(pool);
-  c.lineWidth=.16;c.strokeStyle='#d8dfae';c.stroke(pool);
+  c.lineWidth=.44;c.strokeStyle='#657c54';c.stroke(pool);
+  c.lineWidth=.27;c.strokeStyle='#97866a';c.stroke(pool);
+  c.lineWidth=.17;c.strokeStyle='#e4d8b4';c.stroke(pool);
   c.save();c.clip(pool);blit(c,GROUND,'water',-4.1,-2.1,8.3,4.1);
   const g=c.createLinearGradient(0,-1.7,0,1.6);
   g.addColorStop(0,'#16577850');g.addColorStop(.33,'#17658010');g.addColorStop(.8,'#dbf4cd04');g.addColorStop(1,'#dcf6cc3e');
   c.fillStyle=g;c.fillRect(-5,-2.5,10,5);
   c.restore();
   c.lineWidth=.032;c.strokeStyle='#f2f6ca8a';c.stroke(pool);
+  for(const [x,z,k] of [[-2.89,-.99,.32],[-1.93,-1.32,.22],[1.37,-1.43,.33],[2.91,-.85,.26],[-2.03,1.15,.32],[.84,.90,.28],[2.83,.49,.26]]){
+   c.beginPath();c.ellipse(x,z,k,k*.49,-.15,0,TAU);c.fillStyle='#d4f8db66';c.fill();
+   c.beginPath();c.ellipse(x+.03,z+.04,k*.74,k*.30,-.15,0,TAU);c.fillStyle='#487a8c64';c.fill();
+  }
   for(const [x,y,k] of [[-2.72,.38,.25],[-2.52,.53,.17],[2.18,.61,.23]]){
    c.fillStyle='#7ea847';c.beginPath();c.ellipse(x,y,k,k*.55,-.20,.22,TAU-.08);c.lineTo(x,y);c.fill();
    c.fillStyle='#ffc9a0';c.beginPath();c.ellipse(x-.07,y-.02,.07,.035,.2,0,TAU);c.fill();
@@ -96,7 +137,7 @@ export function dressCampus3D(THREE,scene,{maze,world,sun,camera,hero,radius=26}
  const oldBg=scene.background,oldFog=scene.fog,oldSun=sun?.color.clone();
  scene.background=new THREE.Color(0xc8dfa2);scene.fog=new THREE.Fog(0xc8dfa2,48,108);
  sun?.color.setHex(0xffe8bc);
- const textures=[],materials=[],geometries=[],footprints=[],occluders=[];
+ const textures=[],materials=[],geometries=[],footprints=[],occluders=[],batches=[];
  const texture=canvas=>{const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;textures.push(t);return t;};
  const mat=(Type,cfg)=>{const m=new Type(cfg);materials.push(m);return m;};
  const random=RAND(225381);
@@ -167,6 +208,56 @@ export function dressCampus3D(THREE,scene,{maze,world,sun,camera,hero,radius=26}
  school.position.set(positions.school.x,0,positions.school.z);root.add(school);
  footprints.push({x:positions.water.x,z:positions.water.z+.5,w:4.8,shadow:.30,shadowH:1.32,k:.25});
  footprints.push({x:positions.school.x,z:positions.school.z+.65,w:9.0,shadow:.26,shadowH:2.15,k:.30});
+ // Solid foreground accents sit behind an existing barrier, never on actor paths.
+ const benchPaint=0xc49059,benchShade=0x776246,teal=0x547c60,mint=0x92b284;
+ const pieces={board:[],stone:[],bloom:[]};
+ const piece=(kind,x,y,z,w,h,d,color,turn=0)=>pieces[kind].push({x,y,z,w,h,d,color,turn});
+ const outside=(x,z,rx,rz)=>!cells.some(p=>Math.abs(p.x-x)<cell*.5+rx&&Math.abs(p.z-z)<cell*.5+rz);
+ function bench(x,z,turn=0){
+   if(!outside(x,z,turn?.44:1.12,turn?1.12:.44)||nearLandmark(x,z,.18))return;
+   const board=(X,Y,Z,W,H,D,color)=>{
+    piece('board',x+X*Math.cos(turn)+Z*Math.sin(turn),Y,z-X*Math.sin(turn)+Z*Math.cos(turn),W,H,D,color,turn);
+   };
+   board(0,.44,0,1.92,.11,.48,benchShade);
+   for(const off of [-.14,0,.14])board(0,.515,off,1.96,.046,.125,benchPaint);
+   for(const off of [-.66,.66]){
+    board(off,.26,0,.16,.42,.35,teal);
+    board(off,.66,-.19,.11,.53,.11,teal);
+   }
+   board(0,.79,-.19,1.98,.14,.105,benchPaint);
+   board(0,.91,-.19,1.99,.068,.113,0xe4b579);
+   footprints.push({x,z,w:2.35,shadow:.12,shadowH:.54,k:.27});
+ }
+ function lantern(x,z){
+   if(!outside(x,z,.38,.38)||nearLandmark(x,z,.20))return;
+   piece('stone',x,.12,z,.59,.21,.55,benchShade);
+   piece('stone',x,.32,z,.29,.24,.29,mint);
+   piece('stone',x,.48,z,.49,.13,.49,teal);
+   piece('board',x,.66,z,.33,.28,.34,0xf4cc82);
+   for(const X of [-.165,.165])for(const Z of [-.168,.168])
+    piece('board',x+X,.65,z+Z,.052,.28,.052,benchShade);
+   piece('stone',x,.835,z,.60,.12,.60,teal);
+   piece('stone',x,.919,z,.40,.12,.40,mint);
+   piece('bloom',x,1.019,z,.18,.102,.18,0xe2b35c);
+   footprints.push({x,z,w:1.10,shadow:.08,shadowH:.38,k:.22});
+ }
+ bench(-8.74,-1.15,Math.PI/2);bench(8.40,-2.01,-Math.PI/2);
+ bench(-13.31,-20.31);bench(10.10,-10.89);
+ lantern(-11.87,-20.25);lantern(-6.57,-21.31);lantern(-7.05,-.30);lantern(6.98,.67);
+ lantern(-6.22,20.94);lantern(3.32,21.37);
+ const tmp=new THREE.Object3D(),color=new THREE.Color();
+ const kitMaterial=mat(THREE.MeshLambertMaterial,{color:0xffffff,flatShading:true,toneMapped:false});
+ for(const [kind,list] of Object.entries(pieces)){
+   if(!list.length)continue;
+   const geo=kind==='board'?new THREE.BoxGeometry():kind==='stone'?new THREE.CylinderGeometry(.39,.52,1,8):new THREE.SphereGeometry(.5,8,5);
+   const batch=new THREE.InstancedMesh(geo,kitMaterial,list.length);
+   geometries.push(geo);batches.push(batch);batch.name='Campus furniture | '+kind;
+   list.forEach(({x,y,z,w,h,d,color:hex,turn},i)=>{
+    tmp.position.set(x,y,z);tmp.scale.set(w,h,d);tmp.rotation.set(0,turn,0);tmp.updateMatrix();
+    batch.setMatrixAt(i,tmp.matrix);batch.setColorAt(i,color.setHex(hex));
+   });
+   batch.computeBoundingSphere();root.add(batch);
+ }
  function plaque(x,z,label){
    const pic=graphic(420,150,c=>{
     c.lineJoin='round';c.strokeStyle='#684f3d';c.lineWidth=7;
@@ -182,7 +273,7 @@ export function dressCampus3D(THREE,scene,{maze,world,sun,camera,hero,radius=26}
  plaque(maze.start.x-2.35,maze.start.z+.26,'前庭入口');
  const extent=radius+21;
  const groundGeo=new THREE.PlaneGeometry(extent*2,extent*2);geometries.push(groundGeo);
- const ground=new THREE.Mesh(groundGeo,mat(THREE.MeshBasicMaterial,{map:texture(floor(2048,2048,cells,cell,footprints,extent)),toneMapped:false}));
+ const ground=new THREE.Mesh(groundGeo,mat(THREE.MeshBasicMaterial,{map:texture(floor(2048,2048,cells,cell,footprints,extent,maze,positions.school)),toneMapped:false}));
  ground.rotation.x=-Math.PI/2;ground.position.y=-.036;root.add(ground);
  const sh=new THREE.Mesh(groundGeo,mat(THREE.ShadowMaterial,{opacity:.23,depthWrite:false}));
  sh.rotation.x=-Math.PI/2;sh.receiveShadow=true;sh.position.y=.004;root.add(sh);
@@ -201,8 +292,8 @@ export function dressCampus3D(THREE,scene,{maze,world,sun,camera,hero,radius=26}
   const sg=new Set(),sm=new Set(),st=new Set();
   school.traverse(o=>{if(o.geometry)sg.add(o.geometry);for(const m of (Array.isArray(o.material)?o.material:[o.material]))if(m){sm.add(m);if(m.map)st.add(m.map);}});
   sg.forEach(x=>x.dispose());sm.forEach(x=>x.dispose());st.forEach(x=>x.dispose());
-  root.removeFromParent();for(const o of textures)o.dispose();for(const o of materials)o.dispose();for(const o of geometries)o.dispose();
+  root.removeFromParent();for(const o of batches)o.dispose();for(const o of textures)o.dispose();for(const o of materials)o.dispose();for(const o of geometries)o.dispose();
   if(world.parent===scene){art.forEach(([o,v])=>o.visible=v);maze.group.visible=oldMaze;scene.background=oldBg;scene.fog=oldFog;if(sun&&oldSun)sun.color.copy(oldSun);}
  }
- return {root,update,dispose,landmarks:positions,stats:{art:'Actual 3D waterfall/rock bank and school, stylized cel colors',walkCells:cells.length,borderStickers:rimCount,trees:seen.length,landmarks:true}};
+ return {root,update,dispose,landmarks:positions,stats:{art:'Painted campus circulation with solid garden fixtures, waterfall and teaching building',walkCells:cells.length,borderStickers:rimCount,trees:seen.length,landmarks:true,furnitureDraws:batches.length}};
 }
