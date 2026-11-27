@@ -1,3 +1,4 @@
+import {dangerDisc,outwardWave,sweepInk,laneInk,flightCross} from './attack-art.js?v=20261127combatfinal';
 import {impactProfile,impactFrames} from './impact-art.js?v=20261127impact3d';
 // 場景內網格／粒子特效與面向鏡頭的8格命中火花。
 // 刀光 slash 在這版改當拳風使用。
@@ -46,8 +47,8 @@ export class Fx {
       const it = this.items[i];
       it.t += dt;
       const k = Math.min(1, it.t / it.life);
-      it.tick(k, dt, it.obj);
-      if (k >= 1) {
+      const done=it.tick(k, dt, it.obj);
+      if (done===true || k >= 1) {
         releaseFx(it.obj);
         this.items.splice(i, 1);
       }
@@ -86,18 +87,17 @@ export class Fx {
     const g = new THREE.Group();
     g.position.set(pos.x, y, pos.z);
     g.rotation.y = yaw;
-    const positions=[],colors=[],indices=[],segments=32,bands=3;
-    const palette=[new THREE.Color(0xf0440d),new THREE.Color(0xffaf2c),new THREE.Color(color),new THREE.Color(0xff7a16)];
+    const positions=[],uvs=[],indices=[],segments=40,bands=3;
     for(let i=0;i<=segments;i++){
       const t=i/segments,angle=-Math.PI/2-arc/2+t*arc,flame=Math.sin(Math.PI*t);
       const outer=radius*(1+.09*Math.sin(t*Math.PI*9)*flame),width=radius*.36*Math.pow(Math.max(0,flame),.55);
-      for(let j=0;j<=bands;j++){const r=outer-width*(1-j/bands);positions.push(Math.cos(angle)*r,Math.sin(angle)*r,0);colors.push(palette[j].r,palette[j].g,palette[j].b);}
+      for(let j=0;j<=bands;j++){const r=outer-width*(1-j/bands);positions.push(Math.cos(angle)*r,Math.sin(angle)*r,0);uvs.push(t,j/bands);}
       if(i<segments)for(let j=0;j<bands;j++){const n=i*4+j;indices.push(n,n+4,n+1,n+1,n+4,n+5);}
     }
-    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.setIndex(indices);
-    const material=additive(0xffffff,.85);material.vertexColors=true;
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));geometry.setIndex(indices);
+    const material=sweepInk(color,dir);g.name='Attack | ink sweep';
     const m=new THREE.Mesh(geometry,material);m.rotation.x=-Math.PI/2;g.add(m);
-    return this.add(g,arc>5?.36:.25,k=>{m.material.opacity=.85*(1-k);g.rotation.y=yaw+dir*(arc>5?1.4:.6)*k;g.scale.setScalar(.85+.35*k);});
+    return this.add(g,arc>5?.36:.25,k=>{material.uniforms.phase.value=k;g.rotation.y=yaw+dir*(arc>5?1.4:.35)*k;g.scale.setScalar(.92+.10*k);});
   }
 
   // 地面衝擊環
@@ -142,19 +142,31 @@ export class Fx {
     });
   }
 
-  // 預警圈：外框固定、內圈逐漸填滿，填滿即判定
+  // Ground warning bounds remain fixed; timing follows the game's simulation.
   telegraph(pos, radius, life, color = 0xff3b30) {
-    const g = new THREE.Group();
-    g.position.set(pos.x, 0.14, pos.z);
-    const mk = (geo, op) => {
-      const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false }));
-      m.rotation.x = -Math.PI / 2;
-      g.add(m);
-      return m;
-    };
-    mk(new THREE.RingGeometry(radius * 0.96, radius, 48), 0.9);
-    const fill = mk(new THREE.CircleGeometry(radius, 48), 0.3);
-    return this.add(g, life, (k) => fill.scale.setScalar(Math.max(0.001, k)));
+    const m=dangerDisc(pos,radius,color);
+    return this.add(m,life,k=>{m.material.uniforms.phase.value=k;});
+  }
+
+  releaseWave(pos,radius,color=0xffa949,life=.5) {
+    if(this.items.filter(it=>it.obj.userData.releaseWave).length>=8)return null;
+    const m=outwardWave(pos,radius,color);
+    m.userData.releaseWave=true;
+    return this.add(m,life,k=>{m.material.uniforms.phase.value=k;});
+  }
+
+  projectileWake(mesh,velocity,radius,color) {
+    if(this.items.filter(it=>it.obj.userData.projectileWake).length>=12)return null;
+    const wake=flightCross(radius,color);
+    wake.userData.projectileWake=true;
+    wake.position.copy(mesh.position);
+    wake.rotation.y=Math.atan2(velocity.x,velocity.z);
+    return this.add(wake,4,(k,dt)=>{
+      if(!mesh.parent)return true;
+      wake.position.copy(mesh.position);
+      wake.rotation.y=Math.atan2(velocity.x,velocity.z);
+      wake.children[0].material.uniforms.phase.value+=dt;
+    });
   }
 
   // 光柱
@@ -168,16 +180,18 @@ export class Fx {
   }
 
   // 殘影：衝拳路徑上留下的拖尾
-  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7, { alignToPath = false } = {}) {
+  trail(from, to, width, color = 0xffe08a, life = 0.3, opacity = 0.7, { alignToPath = true } = {}) {
     const len = Math.hypot(to.x - from.x, to.z - from.z);
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), additive(color, opacity));
+    if(len<.025)return null;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(width, len), laneInk(color,opacity));
+    m.name='Attack | directional ground stroke';
     m.rotation.x = -Math.PI / 2;
     const yaw = Math.atan2(to.x - from.x, to.z - from.z);
     // A plane's local Y axis becomes -Z after the ground rotation. The positive
     // angle aligns it to the endpoints; leave older effect styles unchanged.
     m.rotation.z = alignToPath ? yaw : -yaw;
     m.position.set((from.x + to.x) / 2, 0.2, (from.z + to.z) / 2);
-    return this.add(m, life, (k) => { m.material.opacity = opacity * (1 - k); m.scale.x = 1 - k * 0.6; });
+    return this.add(m, life, (k) => { m.material.uniforms.phase.value=k; m.scale.x = 1 - k * 0.6; });
   }
 
   // 半球衝擊波：變身與爆炸用

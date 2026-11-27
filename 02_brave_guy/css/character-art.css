@@ -42,3 +42,197 @@
 /* Optional native-outline trace for speech cells with painted panel corners. */
 .game-art .character-speech::before{-webkit-clip-path:var(--speech-clip,none);clip-path:var(--speech-clip,none)}
 .game-art .character-speech::after{display:none!important}
+
+/* Player dialogue, shared ink silhouette and role colors. Skill title art,
+   NPC battle speech, HUD portraits and transformation artwork stay separate. */
+.game-art {
+  --dialogue-ink:#30243e;
+  --dialogue-text:#231d31;
+  --dialogue-paper:#fffcf1;
+}
+.game-art .dialog {
+  --dialogue-accent:#ffce66;
+  --dialogue-tint:#fff0c9;
+  --dialogue-deep:#96601e;
+}
+.game-art .dialog[data-who="hero"] { --dialogue-accent:#aee66d; --dialogue-tint:#eff9d5; --dialogue-deep:#405f27; }
+.game-art .dialog[data-who="angel"] { --dialogue-accent:#ffc1d9; --dialogue-tint:#fff1f6; --dialogue-deep:#873a64; }
+.game-art .dialog[data-who="other"] { --dialogue-accent:#d4befb; --dialogue-tint:#f5edff; --dialogue-deep:#624584; }
+
+.game-art .dialog .dlg-box {
+  background:linear-gradient(0deg,var(--dialogue-tint),var(--dialogue-paper) 43%);
+  border:3px solid var(--dialogue-ink);
+  border-radius:21px 15px 21px 16px;
+  color:var(--dialogue-text);
+  box-shadow:0 5px 0 var(--dialogue-accent),0 8px 0 var(--dialogue-ink),0 12px 25px #150d2770;
+  min-height:118px;
+  max-height:min(46dvh,360px);
+  padding:11px 17px 30px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--dialogue-accent) var(--dialogue-paper);
+  text-shadow:none;
+}
+.game-art .dialog:not(.stars) { padding-bottom:calc(22px + var(--safe-b)); }
+.game-art .dialog .dlg-box::before {
+  content:"";
+  display:block;
+  position:absolute;
+  inset:45px 14px auto;
+  height:2px;
+  pointer-events:none;
+  background:linear-gradient(90deg,var(--dialogue-accent) 15%,var(--dialogue-tint) 68%,transparent);
+  opacity:.9;
+}
+.game-art .dialog #dlg-name {
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  max-width:calc(100% - 88px);
+  min-height:26px;
+  padding:3px 12px 3px 9px;
+  margin:0 0 12px;
+  border:2px solid var(--dialogue-ink);
+  border-radius:11px 12px 12px 5px;
+  background:var(--dialogue-accent);
+  color:var(--dialogue-ink);
+  font-size:clamp(13px,2.8vw,15px);
+  line-height:1.15;
+  overflow-wrap:anywhere;
+}
+.game-art .dialog #dlg-name::before {
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:3px;
+  border:2px solid var(--dialogue-ink);
+  background:var(--dialogue-paper);
+  transform:rotate(45deg);
+  flex:0 0 auto;
+}
+.game-art .dialog #dlg-name[hidden] { display:none; }
+.game-art .dialog #dlg-text {
+  font-family:var(--font-body);
+  color:var(--dialogue-text);
+  margin:0;
+  font-weight:750;
+  font-size:clamp(15px,2vw,19px);
+  line-height:1.47;
+  letter-spacing:.012em;
+  overflow-wrap:anywhere;
+  text-wrap:pretty;
+}
+.game-art .dialog.narration #dlg-text {
+  margin-top:35px;
+  color:var(--dialogue-deep);
+  font-style:normal;
+}
+.game-art .dialog #dlg-skip {
+  top:9px;
+  right:11px;
+  min-width:59px;
+  min-height:34px;
+  padding:3px 9px;
+  background:var(--dialogue-paper);
+  color:var(--dialogue-ink);
+  border:2px solid var(--dialogue-ink);
+  border-radius:11px;
+  box-shadow:0 2px 0 var(--dialogue-accent);
+  cursor:pointer;
+}
+.game-art .dialog #dlg-skip:focus-visible {
+  outline:2px solid var(--dialogue-deep);
+  outline-offset:2px;
+}
+.game-art .dialog .dlg-next {
+  display:grid;
+  place-items:center;
+  background:var(--dialogue-accent);
+  border:2px solid var(--dialogue-ink);
+  border-radius:8px;
+  bottom:7px;
+  right:13px;
+  width:23px;
+  height:18px;
+  font-size:0;
+  animation:none;
+  pointer-events:none;
+}
+.game-art .dialog .dlg-next::before {
+  content:"";
+  width:6px;
+  height:6px;
+  border-bottom:2px solid var(--dialogue-ink);
+  border-right:2px solid var(--dialogue-ink);
+  transform:translateY(-1px) rotate(45deg);
+}
+@media(max-width:520px) {
+  .game-art .dialog .dlg-box { padding:10px 13px 31px;min-height:114px;border-radius:17px 14px 17px 13px; }
+  .game-art .dialog #dlg-skip { min-height:38px;top:6px;right:8px; }
+  .game-art .dialog .dlg-box::before { inset-inline:11px; }
+}
+@media(max-height:530px) and (orientation:landscape) {
+  .game-art .dialog:not(.stars) .dlg-box { max-height:65dvh; }
+  .game-art .dialog.stars .dlg-box { padding:9px 11px 27px; }
+  .game-art .dialog.stars #dlg-text { font-size:14px;line-height:1.4; }
+}
+
+.game-art .taunt.hero.character-speech:not(.has-word-art) {
+  --speaker-shell:#dced77;
+  --speaker-line:#725316;
+  --speaker-fill:#fff9dc;
+  width:max-content;
+  min-width:104px;
+  max-width:min(238px,calc(100vw - 24px));
+  min-height:37px;
+  padding:7px 16px 8px !important;
+  border:2px solid var(--dialogue-ink) !important;
+  border-radius:15px 10px 15px 12px !important;
+  background:linear-gradient(154deg,#fffdf6 26%,var(--speaker-fill)) !important;
+  color:var(--dialogue-text) !important;
+  box-shadow:0 3px 0 var(--speaker-shell),0 5px 0 var(--dialogue-ink),0 7px 12px #26152e4f !important;
+  line-height:1.42;
+  font-size:clamp(13px,2.7vw,15px);
+  font-weight:800;
+  overflow-wrap:anywhere;
+  text-wrap:pretty;
+}
+.game-art .taunt.hero.character-speech[data-speaker="angel"]:not(.has-word-art) {
+  --speaker-shell:#f5aaca; --speaker-line:#9e4678; --speaker-fill:#fff2fa;
+}
+.game-art .taunt.hero.character-speech[data-speaker="nightmare"]:not(.has-word-art) {
+  --speaker-shell:#bd9bee; --speaker-line:#7350a0; --speaker-fill:#f7efff;
+}
+.game-art .taunt.hero.character-speech:not(.has-word-art)::before {
+  display:block !important;
+  inset:-5px auto auto 10px !important;
+  width:10px;
+  height:10px;
+  border:2px solid var(--speaker-line) !important;
+  border-radius:3px;
+  background:var(--speaker-shell) !important;
+  clip-path:none;
+  -webkit-clip-path:none;
+  transform:rotate(45deg) !important;
+  z-index:1 !important;
+  pointer-events:none;
+}
+.game-art .taunt.hero.character-speech:not(.has-word-art)::after {
+  display:block !important;
+  z-index:1;
+  left:calc(50% - 5px);
+  width:10px;
+  height:10px;
+  margin:0;
+  bottom:-8px;
+  border:solid var(--dialogue-ink);
+  border-width:0 2px 2px 0;
+  border-radius:0 0 3px;
+  background:var(--speaker-fill);
+  transform:rotate(45deg);
+  pointer-events:none;
+}
+@media(prefers-reduced-motion:reduce) {
+  .game-art .taunt.hero.character-speech:not(.has-word-art) { animation:none; }
+}

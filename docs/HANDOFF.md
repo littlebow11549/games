@@ -1,5 +1,8 @@
 # 專案交接入口
 
+- 2026-11-27 勇氣超人全角色攻擊演出、兩位 Tripo 小精靈與正式入口：[交接紀錄](handoffs/2026-11-27-combat-art-and-tripo-spirits.md)。
+- 2026-11-27 主角實戰對話泡泡與底部劇情對話設計：[交接紀錄](handoffs/2026-11-27-player-dialogue-redesign.md)。
+
 - 2026-11-27 黑森林 2-1 立體地標、霧與路線驗證：[交接紀錄](handoffs/2026-11-27-forest-solid-landmarks.md)。
 
 - 2026-11-27 加班鬼與加班鬼王 3D、職場龍待配置：[交接紀錄](handoffs/2026-11-27-kaban-office-rigs.md)。
@@ -442,3 +445,7 @@
 - [2026-11-27: Textured Little Angel shoulder companion](handoffs/2026-11-27-little-angel-companion.md)
 
 - [2026-11-27: Impact animation and shadow polish](handoffs/2026-11-27-impact-art-shadow-polish.md)
+
+- [2026-11-27: Little Angel ice and snow combat VFX](handoffs/2026-11-27-little-angel-ice-fx.md)
+
+- [2026-11-27: Guest roster attack art](handoffs/2026-11-27-guest-attack-art.md)

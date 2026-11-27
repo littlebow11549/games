@@ -4,9 +4,9 @@ const stageArtReady=import('./stage-art/catalog.js?v=20261127landmarks2').then(m
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
 import { createPuaProjectile, disposeProjectileMaterial } from './pua-projectile.js?v=20261120assets';
 import { angelText } from './angel-language.js?v=20261120assets';
-import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261126incubus';
+import { createNightmareBossSkills } from './nightmare-boss-skills.js?v=20261127combatfinal';
 import { ROSTER, createRosterPicker, characterUnlocked, createUnlockNotice } from './playable-roster.js?v=20261120assets';
-import { createGuestCombat } from './guest-combat.js?v=20261120angelstraight';
+import { createGuestCombat } from './guest-combat.js?v=20261127combatfinal';
 import { placeSpeech } from './speech-layout.js?v=20261120assets';
 import { createSecretToggle } from './secret-toggle.js?v=20261120assets';
 import { createProgressReset } from './progress-reset.js?v=20261120assets';
@@ -22,7 +22,8 @@ import { createActorShadows } from './actor-shadows.js?v=20261127impact3d';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
 import { jiasenModels, jiasenMove, jiasenAttackTime, buildJiamangPan } from './jiasen-motion.js?v=20261126jiasen';
-import { Fx } from './fx.js?v=20261127impact3d';
+import {beamInk} from './attack-art.js?v=20261127combatfinal';
+import { Fx } from './fx.js?v=20261127combatfinal';
 import {queueEnding,creditEnding,restoreEnding} from './ending-save.js?v=20261127finishfx';
 import { setSystemArt, updateCombo, decorateSystemUI, burstMeter } from './system-art.js?v=20261120nightdialogue';
 import { createCinematics } from './cinematics.js?v=20261120nightcast';
@@ -482,7 +483,8 @@ function clearField() {
 const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
 const OFFICE_BOSS_MODELS={qianBiz:'qian_manager',lanMgr:'lan_manager'};
 const ARCHIVE_STAGE_BOSSES=new Set(['hell','guan']);
-const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...BOSS_GROUPS.duo,...Object.values(OFFICE_BOSS_MODELS),'kaban','kabanKing',...ARCHIVE_STAGE_BOSSES,...GANQIAO_MODELS]);
+const guestSpiritSlots={student_spirit:"student",brave_spirit:"brave"};
+const deferredModelKinds=new Set([...Object.keys(guestSpiritSlots),'student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...BOSS_GROUPS.duo,...Object.values(OFFICE_BOSS_MODELS),'kaban','kabanKing',...ARCHIVE_STAGE_BOSSES,...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -490,13 +492,16 @@ function prepareStageModel(kind) {
   const cfg=deferredModels.get(kind);
   const task=loadModel(kind,cfg).then(ok=>{
     deferredModels.delete(kind);
+    const spiritSlot=guestSpiritSlots[kind];
     const slot=kind==='angel_playable'?'angel':kind;
-    const previous=hero.vis[slot];
+    const prevGroup=spiritSlot?angel.vis:hero.vis;
+    const key=spiritSlot||slot;
+    const previous=prevGroup?.[key];
     if (!ok || !previous) return;
     const next=createVisual(kind);
     next.root.visible=false;
     scene.remove(previous.root);previous.dispose();
-    hero.vis[slot]=next;scene.add(next.root);
+    prevGroup[key]=next;scene.add(next.root);
   });
   deferredModelLoads.set(kind,task);
   return task;
@@ -513,7 +518,7 @@ function startStage(index, character=null) {
   if(!stageId)return;
   const needsArt=stageArt&&(stageId==='1-1'||stageArt.STORY_DESIGN[stageId]);
   const pack=needsArt?stageArt.preparedStageArt(stageId):null;
-  const stageVisualKinds=selectedCharacter==='angel'?['angel_playable']:selectedCharacter==='nightmare'?['nightmare']:[STAGES[index].form];
+  const stageVisualKinds=selectedCharacter==='angel'?['angel_playable','student_spirit']:selectedCharacter==='nightmare'?['nightmare','brave_spirit']:[STAGES[index].form];
   if (STAGES[index].boss==='nightmare'&&!stageVisualKinds.includes('nightmare')) stageVisualKinds.push('nightmare');
   const campusModel=STAGES[index].boss==='qian'?'qian_school':STAGES[index].boss==='lan'?'lan_school':null;
   if(campusModel)stageVisualKinds.push(campusModel);
@@ -1463,10 +1468,10 @@ function stunHero(sec, text) {
   return true;
 }
 const bossLine = (e, i) => popup(e.pos, e.def.height + 0.5, e.def.lines[i === undefined ? Math.floor(Math.random() * e.def.lines.length) : i % e.def.lines.length], 'shout');
-function boomAt(pos, r) {
+function boomAt(pos, r, color=0xff9b50) {
   audio.sfx('boss_slam');
-  fx.ring(pos, 1, r, 0xff8a3d, 0.5);
-  fx.burst(pos, 0xffb347, 26, 10, 0.4, 0.3);
+  fx.releaseWave(pos,r,color,.53);
+  fx.burst(pos,color,20,10,0.4,0.24);
   game.shake = Math.max(game.shake, 0.6);
 }
 function disposeShot(mesh){if(mesh.isSprite){disposeProjectileMaterial(mesh.material);mesh.removeFromParent();}else disposeOwned(mesh);}
@@ -1477,7 +1482,9 @@ function hostileShot(from, yaw, o = {}) {
   mesh.position.set(from.x, 1.2, from.z);
   if(o.pan){mesh.rotation.x=.23;mesh.rotation.y=yaw;}
   scene.add(mesh);
-  shots.push({ mesh, vel: forward(yaw).multiplyScalar(o.speed || 11), life: o.life || 2.4, radius: r + 0.3, dmg: o.dmg || 80, hostile: true, owner:o.owner, pan: o.pan, silence: o.silence });
+  const vel=forward(yaw).multiplyScalar(o.speed||11);
+  shots.push({ mesh, vel, life: o.life || 2.4, radius: r + 0.3, dmg: o.dmg || 80, hostile: true, owner:o.owner, pan: o.pan, silence: o.silence });
+  if(o.pua===undefined)fx.projectileWake(mesh,vel,Math.max(r,.38),o.pan?0xffae67:(o.color||0xff5a4f));
 }
 function addHazard(type, pos, r, warn, life) {
   const color = { fire: 0x9b3bd6, meeting: 0x8a8f96, pie: 0xffd98a }[type];
@@ -1485,7 +1492,8 @@ function addHazard(type, pos, r, warn, life) {
   mesh.rotation.x = -Math.PI / 2;
   mesh.position.set(pos.x, 0.06, pos.z);
   scene.add(mesh);
-  hazards.push({ type, pos: pos.clone(), r, warn, life, t: 0, tick: 0, mesh });
+  if(warn>0){fx.telegraph(pos,r,warn,color);mesh.visible=false;}
+  hazards.push({ type, color, pos: pos.clone(), r, warn, life, t: 0, tick: 0, mesh });
 }
 
 // 守關者的招式庫。start 在出招瞬間呼叫；update 每幀呼叫，回傳 true 表示這招結束。
@@ -1494,28 +1502,33 @@ const nightmareBossSkills=createNightmareBossSkills({scene,hero,fx,arena:ARENA_R
 const MOVES = {
  ...nightmareBossSkills.moves,
   slam: { range: 5, cd: 3,
-    start(e) { e.aim = e.pos.clone(); e.visual.play(...(jiasenMove(e,'slam')||folaidiMove(e,'slam')||ganqiaoMove(e,'slam')||(e.visual.actions?.kabanSlam?['kabanSlam',.95]:null)||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim, 5.5, 0.95); },
-    update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim, 6.5); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(jiasenMove(e,'slam')||folaidiMove(e,'slam')||ganqiaoMove(e,'slam')||(e.visual.actions?.kabanSlam?['kabanSlam',.95]:null)||(e.def.vis==='lan_school'&&e.visual.actions?.skill3?['skill3',0.95/0.6]:['attack',0.95/0.6]))); fx.telegraph(e.aim,5.5+HERO.radius,.95); },
+    update(e) { if (e.cast.t < 0.95) return false; boomAt(e.aim,5.5+HERO.radius); if (dist2d(hero.pos, e.aim) < 5.5 + HERO.radius) hurtHero(e.def.dmg); return true; } },
   charge: { minRange: 6, cd: 7,
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(jiasenMove(e,'charge')||folaidiMove(e,'charge')||ganqiaoMove(e,'charge')||(e.visual.actions?.chargeRush?['chargeRush',1.5]:null)||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.ring(e.pos, 1, 4, 0xff3b30, 0.6); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(jiasenMove(e,'charge')||folaidiMove(e,'charge')||ganqiaoMove(e,'charge')||(e.visual.actions?.chargeRush?['chargeRush',1.5]:null)||(e.def.vis==='qian_school'&&e.visual.actions?.skill2?['skill2',.7]:['attack',.7]))); fx.trail(e.pos,e.pos.clone().addScaledVector(e.chargeDir,12),e.def.radius*2+2.4,0xff5635,.7,.36); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.7 && t < 1.5) {
+        const first=!e.cast.burstArt;
+        if(first){e.cast.burstArt=true;fx.releaseWave(e.pos,2.4,0xff8f48,.3);}
+        const prev=e.pos.clone();
         e.pos.addScaledVector(e.chargeDir, 15 * dt);
+        if(first||Math.floor(t*14)!==Math.floor((t-dt)*14))fx.trail(prev,e.pos,e.def.radius*2+1,0xffbd69,.22);
         e.yaw = Math.atan2(e.chargeDir.x, e.chargeDir.z);
         if (!e.struck && d < e.def.radius + 1.2) { e.struck = true; hurtHero(150); knockHero(e.pos, 10); }
       }
       return t >= 1.5;
     } },
   summon: { cd: 16, cond: (e) => enemies.filter((x) => alive(x) && !x.def.boss).length < 4 && e.hp < e.maxHp * 0.8,
-    start(e) { const pose=jiasenMove(e,'summon')||folaidiMove(e,'summon')||ganqiaoMove(e,'summon');if(pose)e.visual.play(...pose);else if(e.visual.actions?.kabanSummon)e.visual.play('kabanSummon',.52);else if(e.visual.actions?.officeSummon)e.visual.play('officeSummon',.52);else if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
+    start(e) { const pose=jiasenMove(e,'summon')||folaidiMove(e,'summon')||ganqiaoMove(e,'summon');if(pose)e.visual.play(...pose);else if(e.visual.actions?.kabanSummon)e.visual.play('kabanSummon',.52);else if(e.visual.actions?.officeSummon)e.visual.play('officeSummon',.52);else if(e.def.vis==='qian_school'&&e.visual.actions?.skill3)e.visual.play('skill3',.52); bossLine(e);fx.releaseWave(e.pos,5,0xc19cff,.46); banner('心魔召喚爪牙'); for (let i = 0; i < (e.def.minionN || 7); i++) spawnEnemy(e.def.minion, new THREE.Vector3(e.pos.x + rand(-5, 5), 0, e.pos.z + rand(-5, 5)), i * 0.06); },
     update: (e) => e.cast.t > 0.5 },
   fan: { range: 7, cd: 3.5,   // 錢大姐的紙扇：把人扇回場邊
-    start(e) { e.visual.play(e.visual.actions?.officeFan?'officeFan':e.def.vis==='qian_school'&&e.visual.actions?.skill1?'skill1':'attack', 1); fx.telegraph(e.pos, 7, 0.6, 0xf4c542); bossLine(e); },
+    start(e) { e.visual.play(e.visual.actions?.officeFan?'officeFan':e.def.vis==='qian_school'&&e.visual.actions?.skill1?'skill1':'attack', 1); fx.telegraph(e.pos,7.5,.6,0xf4c542); bossLine(e); },
     update(e, dt, d) {
       if (e.cast.t < 0.6) return false;
       audio.sfx('fan');
-      fx.slash(e.pos, e.yaw, 7.5, 2.4, 0xffffff, 1, 1.2);
+      fx.slash(e.pos,e.yaw,7.5,2.4,0xffcf66,1,1.2);
+      fx.releaseWave(e.pos,7.5,0xffcf66,.35);
       if (d < 7.5 && hero.invuln <= 0) { hurtHero(70); knockHero(e.pos, 22); }
       return true;
     } },
@@ -1523,29 +1536,31 @@ const MOVES = {
     start(e) { if(e.visual.actions?.officeWhistle)e.visual.play('officeWhistle',1);else if(e.def.vis==='lan_school'&&e.visual.actions?.skill1)e.visual.play('skill1',1); bossLine(e); fx.telegraph(e.pos, 10, 1.0, 0x3a6fd0); audio.sfx('whistle'); },
     update(e, dt, d) {
       if (e.cast.t < 1.0) return false;
-      fx.ring(e.pos, 1, 10, 0x9fd4ff, 0.4);
+      fx.releaseWave(e.pos,10,0x9fd4ff,.4);
       if (d < 10 && hero.movingT > 0.2 && stunHero(1.3, '罰站！')) hurtHero(90);
       return true;
     } },
   spread: { minRange: 4, cd: 5,
-    start(e) { bossLine(e); e.visual.play(e.visual.actions?.spreadCast?'spreadCast':e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', e.visual.actions?.spreadCast?.getClip().duration ?? 0.5 / 0.6); },
+    start(e) { bossLine(e);fx.telegraph(e.pos,2.2,.5,0xffdca2); e.visual.play(e.visual.actions?.spreadCast?'spreadCast':e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', e.visual.actions?.spreadCast?.getClip().duration ?? 0.5 / 0.6); },
     update(e) { if (e.cast.t < 0.5) return false; for (let i = -2; i <= 2; i++) hostileShot(e.pos, e.yaw + i * 0.25, { dmg: 80, speed: 12, color: 0xf2efe0 }); audio.sfx('shoot'); return true; } },
   mDash: { minRange: 4, cd: 4, // 鏡像的勇氣衝拳
     start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(e.def.incubus&&e.visual.actions?.finalDash?['finalDash',.95]:e.visual.actions?.hellRush?['hellRush',.95]:['skill1',.9])); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.5 && t < 0.72) {
+        const prev=e.pos.clone();
         e.pos.addScaledVector(e.chargeDir, (11 / 0.22) * dt);
+        fx.trail(prev,e.pos,2.6,0xc283ff,.22);
         if (!e.struck && d < 2.2) { e.struck = true; hurtHero(140); knockHero(e.pos, 8); }
       }
       return t >= 0.95;
     } },
   mKi: { minRange: 5, cd: 5,   // 鏡像的氣功彈
-    start(e) { e.visual.play(e.visual.actions?.hellKi?'hellKi':'skill2', 0.7); },
+    start(e) { fx.telegraph(e.pos,2.2,.5,0xb06cff);e.visual.play(e.visual.actions?.hellKi?'hellKi':'skill2',0.7); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 150, speed: 13, radius: 1.3, color: 0xb06cff, life: 2.6 }); audio.sfx('shoot'); return true; } },
   mQuake: { range: 6.5, cd: 6, // 鏡像的氣功震地
-    start(e) { e.aim = e.pos.clone(); e.visual.play(...(e.def.incubus&&e.visual.actions?.finalQuake?['finalQuake',.85]:e.visual.actions?.hellQuake?['hellQuake',.9]:['skill3',.9])); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
-    update(e) { if (e.cast.t < 0.8) return false; boomAt(e.aim, 8); fx.dome(e.aim, 7, 0xb06cff, 0.5); if (dist2d(hero.pos, e.aim) < 7.5) hurtHero(180); return true; } },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(e.def.incubus&&e.visual.actions?.finalQuake?['finalQuake',.85]:e.visual.actions?.hellQuake?['hellQuake',.9]:['skill3',.9])); fx.telegraph(e.aim,7.5,.8,0xb06cff); },
+    update(e) { if (e.cast.t < 0.8) return false; boomAt(e.aim,7.5,0xb06cff); if (dist2d(hero.pos, e.aim) < 7.5) hurtHero(180); return true; } },
   guiltTalk: { cd: 5,          // 情勒：不扣血，但罪惡感會漲
     start(e) { if(e.visual.actions?.hellTaunt)e.visual.play('hellTaunt',.7);else if(e.def.incubus&&e.visual.actions?.talk)e.visual.play('talk',.7); bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
     update: (e) => e.cast.t > 0.7 },
@@ -1558,17 +1573,18 @@ const MOVES = {
       if (e.cast.hp0 - e.hp > e.maxHp * 0.03) { popup(e.pos, e.def.height + 0.5, '（被打斷了）', 'good'); e.stun = 1.2; return true; }
       if (e.cast.t < 2.2) return false;
       e.hp = Math.min(e.maxHp, e.hp + e.maxHp * 0.12);
-      popup(e.pos, e.def.height + 0.5, '回血', 'good');
+      popup(e.pos, e.def.height + 0.5, '回血', 'good');fx.releaseWave(e.pos,3,0x83ffa0,.42);
       return true;
     } },
   meeting: { cd: 9,            // 「會議中」：站在裡面什麼都不會發生，只有勇氣一直掉
     start(e) { if(e.visual.actions?.officeMeeting)e.visual.play('officeMeeting',.52); bossLine(e, hazards.length % 2); addHazard('meeting', hero.pos, 6, 0.8, 7); },
     update: (e) => e.cast.t > 0.5 },
   breath: { range: 13, cd: 5,  // 幹譙龍用噴的
-    start(e) { bossLine(e); e.cast.n = 0; e.cast.yaw0 = e.yaw; e.visual.play(...(ganqiaoMove(e,'breath')||['attack',1.9])); },
+    start(e) { bossLine(e); e.cast.n = 0; e.cast.yaw0 = e.yaw;fx.telegraph(e.pos,2.5,.5,0xa6daff); e.visual.play(...(ganqiaoMove(e,'breath')||['attack',1.9])); },
     update(e) {
       const t = e.cast.t;
       while (e.cast.n < 12 && t >= 0.5 + e.cast.n * 0.1) {
+        if(e.cast.n===0)fx.burst(e.pos,0xafd6ff,9,8,1.1,.21);
         hostileShot(e.pos, e.cast.yaw0 - 0.6 + e.cast.n * 0.11, { dmg: 70, speed: 13, radius: 0.5, color: 0x9cc7f0, silence: 2 });
         e.cast.n++;
       }
@@ -1584,12 +1600,12 @@ const MOVES = {
         if (tmp.length() > 0.5) e.pos.addScaledVector(tmp.normalize(), 9 * dt);
         return false;
       }
-      if (!e.aim) { e.aim = hero.pos.clone(); fx.telegraph(e.aim, 4.4, 0.6); }
+      if (!e.aim) { e.aim = hero.pos.clone(); fx.telegraph(e.aim,4.8,Math.max(.01,2.2-t)); }
       e.pos.lerp(e.aim, Math.min(1, 6 * dt));
       e.y = Math.max(0, 9 * (1 - (t - 1.6) / 0.6));
       if (t < 2.2) return false;
       e.y = 0; e.fly = false;
-      boomAt(e.aim, 5.5);
+      boomAt(e.aim,4.8);
       if (dist2d(hero.pos, e.aim) < 4.8) hurtHero(200);
       e.stun = 2.2; // 落地後的空檔
       return true;
@@ -1598,19 +1614,20 @@ const MOVES = {
     start(e) { if(e.visual.actions?.guanPies)e.visual.play('guanPies',.41); bossLine(e, 3); for (let i = 0; i < 3; i++) { const a = rand(0, 6.28); addHazard('pie', tmp.set(hero.pos.x + Math.cos(a) * rand(3, 7), 0, hero.pos.z + Math.sin(a) * rand(3, 7)), 1.2, 0, 9); } },
     update: (e) => e.cast.t > 0.4 },
   copy: { minRange: 4, cd: 4.5, // 新雞模仿主角的氣功彈
-    start(e) { bossLine(e, 0); e.visual.play(e.visual.actions?.copyCast?'copyCast':'attack', 0.8); },
+    start(e) { bossLine(e,0);fx.telegraph(e.pos,2,.5,0xa9e670);e.visual.play(e.visual.actions?.copyCast?'copyCast':'attack',0.8); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 90, speed: 14, radius: 0.9, color: 0x9be564 }); audio.sfx('shoot'); return true; } },
   gossip: { cd: 8,             // 八卦蛇咬耳朵：其他敵人加速
-    start(e) { audio.sfx('notify');bossLine(e); fx.ring(e.pos, 1, 12, 0xff9a3c, 0.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play(e.visual.actions?.gossipCast?'gossipCast':'attack', 0.6); },
+    start(e) { audio.sfx('notify');bossLine(e); fx.releaseWave(e.pos,12,0xffa85c,.6); for (const x of enemies) if (x !== e && alive(x)) x.haste = 5; e.visual.play(e.visual.actions?.gossipCast?'gossipCast':'attack', 0.6); },
     update: (e) => e.cast.t > 0.6 },
   // 超惡夢波：魔王二型態的大招。蓄力後放出三道擴張的惡夢衝擊波；施放全程無敵，玩家要靠走位閃到場邊。
   nightmareWave: { cd: 8,
-    start(e) { bossLine(e); e.castInvuln = true; e.cast.wv = 0; audio.sfx('beam_start'); popup(e.pos, e.def.height + 0.9, '超惡夢波！', 'shout'); fx.telegraph(e.pos, 3.5, 2.2, 0x8a4fd6); e.visual.play(...(e.def.incubus&&e.visual.actions?.wave?['wave',2]:['attack',1.4])); game.shake = 0.4; },
+    start(e) { bossLine(e); e.castInvuln = true; e.cast.wv = 0; audio.sfx('beam_start'); popup(e.pos, e.def.height + 0.9, '超惡夢波！', 'shout'); fx.telegraph(e.pos,7,.9,0x8a4fd6); e.visual.play(...(e.def.incubus&&e.visual.actions?.wave?['wave',2]:['attack',1.4])); game.shake = 0.4; },
     update(e) {
       const t = e.cast.t;
       if (t > 0.9 && e.cast.wv < 3 && t > 0.9 + e.cast.wv * 0.33) {
         const r = 7 + e.cast.wv * 4.5;
-        fx.ring(e.pos, 1, r, 0x8a4fd6, 0.7); fx.dome(e.pos, r * 0.7, 0xb06cff, 0.4);
+        fx.releaseWave(e.pos,r,0xb06cff,.65);
+        if(e.cast.wv<2)fx.telegraph(e.pos,r+4.5,Math.max(.01,.9+(e.cast.wv+1)*.33-t),0x8a4fd6);
         if (dist2d(hero.pos, e.pos) < r && hero.invuln <= 0 && hero.state !== 'transforming') { hurtHero(210); hero.invuln = Math.max(hero.invuln, 0.45); }
         audio.sfx('beam_hit');
         e.cast.wv++;
@@ -1820,6 +1837,7 @@ function updateEnemy(e, dt, attackers) {
         hostileShot(e.pos, e.yaw, { dmg: def.dmg, pan: def.pan, color: def.pan ? 0x39404f : 0xff5a4f, radius: def.pan ? 0.5 : 0.3 });
         audio.sfx('shoot');
       } else {
+        fx.slash(e.pos,e.yaw,def.reach+.6,1.8,0xff6f56,1,.76);
         const f = forward(e.yaw);
         const ang = Math.acos(THREE.MathUtils.clamp((dx * f.x + dz * f.z) / d, -1, 1));
         if (d < def.reach + 0.6 && ang < 0.9) hurtHero(def.dmg);
@@ -1837,6 +1855,7 @@ function updateHazards(dt) {
   for (const h of hazards) {
     h.t += dt;
     const active = h.t >= h.warn;
+    if(active&&!h.mesh.visible){h.mesh.visible=true;fx.releaseWave(h.pos,h.r,h.color,.46);if(h.type==='fire')fx.burst(h.pos,0xd683ff,9,3,.12,.18); }
     const inside = dist2d(hero.pos, h.pos) < h.r;
     h.mesh.material.opacity = active ? 0.55 : 0.2 + 0.2 * Math.sin(h.t * 20);
     if (active && inside && game.phase === 'playing') {
@@ -2177,12 +2196,8 @@ function startSkill(name, mv) {
   if (name === 'skill1') hero.invuln = Math.max(hero.invuln, def.dur);
   if (name === 'ult') {
     hero.invuln = Math.max(hero.invuln, def.dur + 0.3);
-    const mat = new THREE.MeshBasicMaterial({ color: 0x5fd83a, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false });
-    beam = new THREE.Group();
-    const outer = new THREE.Mesh(new THREE.CylinderGeometry(def.width / 2, def.width / 2, def.length, 20, 1, true), mat);
-    const core = new THREE.Mesh(new THREE.CylinderGeometry(def.width / 9, def.width / 9, def.length, 12), new THREE.MeshBasicMaterial({ color: 0xf4ffd6 }));
-    for (const m of [outer, core]) { m.rotation.x = Math.PI / 2; m.position.z = def.length / 2 + 0.8; beam.add(m); }
-    beam.userData.mat = mat;
+    beam=beamInk(def.width,def.length);
+    fx.releaseWave(hero.pos,4,0xe1ff9c,.42);
     scene.add(beam);
     game.shake = 0.5;
     say('ult');
@@ -2288,8 +2303,8 @@ function updateHero(dt) {
     if (!hero.hitDone && hero.t >= c.hitAt) {
       hero.hitDone = true;
       const brave = hero.form === 'brave';
-      if (brave) fx.slash(hero.pos, hero.yaw, c.range, Math.min(c.arc, Math.PI * 2), hero.character==='nightmare'?0xb46cff:c.heavy ? 0xfff0b0 : 0xffe9a8, hero.combo === 1 ? -1 : 1, 1.0);
-      if (c.heavy) fx.ring(hero.pos, 0.6, c.range, 0xfff0b0, 0.3);
+      fx.slash(hero.pos,hero.yaw,c.range,Math.min(c.arc,Math.PI*2),hero.character==='nightmare'?0xb46cff:brave?(c.heavy?0xffbb5d:0xffedb4):hero.form==='worker'?0xb3e6fa:0xffd289,hero.combo===1?-1:1,brave?1:.86);
+      if(c.heavy)fx.releaseWave(hero.pos,c.range,hero.character==='nightmare'?0xbb65ff:0xffc061,.32);
       arcStrike(hero.pos, hero.yaw, c.range, c.arc, c.mult, { kb: c.kb, launch: c.launch, heavy: c.heavy, src: 'combo' });
     }
     for (const a of actions) {
@@ -2312,9 +2327,8 @@ function updateHero(dt) {
     lineStrike(before, hero.pos, s.width, s.mult, { kb: s.kb, launch: s.launch, heavy: true, src: 'skill1' }, hero.data.hitSet);
     if (hero.data.step === 0 && hero.t >= 0.24) {
       hero.data.step = 1;
-      fx.trail(hero.data.from, hero.pos, s.width, 0xffe08a, 0.35);
-      fx.ring(hero.pos, 0.5, s.endRadius, 0xffe08a, 0.35);
-      fx.dome(hero.pos, s.endRadius * 0.7, 0xffe08a, 0.35);
+      fx.trail(hero.data.from,hero.pos,s.width,0xffaf44,.35);
+      fx.releaseWave(hero.pos,s.endRadius,0xffa648,.35);
       fx.burst(hero.pos, 0xffe08a, 24, 12, 0.4, 0.3);
       areaStrike(hero.pos, s.endRadius, 1.8, { kb: 10, launch: 7, heavy: true });
       game.shake = Math.max(game.shake, 0.4);
@@ -2332,7 +2346,10 @@ function updateHero(dt) {
       g.position.set(hero.pos.x, 1.2, hero.pos.z).addScaledVector(forward(hero.yaw), 1.2);
       scene.add(g);
       shots.push({ mesh: g, vel: forward(hero.yaw).multiplyScalar(s.speed), life: s.life, radius: s.radius, mult: s.mult, hostile: false, hitSet: new Set(), blast: s.blast, blastMult: s.blastMult, src: 'skill2' });
-      if (!hallFx?.attachKiShot(g, shots.at(-1).vel)) fx.ring(hero.pos, 0.5, 3, 0x9be564, 0.25);
+      if(!hallFx?.attachKiShot(g,shots.at(-1).vel)){
+        fx.projectileWake(g,shots.at(-1).vel,s.radius,0xa5ed63);
+        fx.releaseWave(hero.pos,3,0xbfee75,.25);
+      }
       audio.sfx('ki_shot');
     }
     if (hero.t >= s.dur) hero.state = 'free';
@@ -2341,7 +2358,7 @@ function updateHero(dt) {
     const s = SKILLS.skill3;
     if (hero.data.step === 0 && hero.t >= 0.26) {
       hero.data.step = 1;
-      fx.dome(hero.pos, s.radius, 0xffe08a, 0.5);
+      fx.releaseWave(hero.pos,s.radius,0xffad45,.5);
       fx.slash(hero.pos,hero.yaw,s.radius,Math.PI*1.85,0xfff6bf,1,.25);
       fx.burst(hero.pos, 0xffe08a, 40, 14, 0.3, 0.34);
       game.shake = Math.max(game.shake, 0.8);
@@ -2351,7 +2368,7 @@ function updateHero(dt) {
     }
     if (hero.data.step === 1 && hero.t >= 0.46) {
       hero.data.step = 2;
-      fx.ring(hero.pos, s.radius * 0.7, s.ripple, 0xffe08a, 0.4);
+      fx.releaseWave(hero.pos,s.ripple,0xffd67d,.4);
       areaStrike(hero.pos, s.ripple, s.rippleMult, { kb: 5, launch: 5 });
     }
     if (hero.t >= s.dur) hero.state = 'free';
@@ -2371,6 +2388,7 @@ function updateHero(dt) {
     if (beam) {
       beam.position.set(hero.pos.x, 1.2, hero.pos.z);
       beam.rotation.y = hero.yaw;
+      beam.userData.mat.uniforms.phase.value=k;
       const w = k < 0.08 ? k / 0.08 : k > 0.9 ? (1 - k) / 0.1 : 1 + Math.sin(hero.t * 50) * 0.06;
       beam.scale.set(Math.max(0.01, w), Math.max(0.01, w), 1);
     }
@@ -2388,10 +2406,10 @@ function updateHero(dt) {
       endUlt();
       const end = hero.pos.clone().addScaledVector(f, s.length * 0.5);
       areaStrike(end, s.endRadius, s.endMult, { kb: 12, launch: 10, heavy: true });
-      fx.dome(end, s.endRadius, 0xc8ff8a, 0.5);
+      fx.releaseWave(end,s.endRadius,0xc8ff75,.5);
       // 收尾：以主角為中心的全場衝擊波，場上小怪基本上一次清光（守關者只是受重傷）
       areaStrike(hero.pos, ARENA_RADIUS * 2.2, s.novaMult, { kb: 16, launch: 14, stun: 1.5, heavy: true });
-      for (let i = 0; i < 4; i++) fx.ring(hero.pos, 1 + i * 2, ARENA_RADIUS * (0.5 + i * 0.25), i % 2 ? 0xffffff : 0xc8ff8a, 0.5 + i * 0.15);
+      for(let i=0;i<3;i++)fx.releaseWave(hero.pos,ARENA_RADIUS*(.5+i*.36),i%2?0xf3ffa4:0xb3ee58,.56+i*.12);
       fx.dome(hero.pos, ARENA_RADIUS * 0.9, 0xc8ff8a, 0.8);
       for (let i = 0; i < 14; i++) { const a = Math.random() * 6.283, r = rand(4, ARENA_RADIUS - 2); fx.pillar(new THREE.Vector3(hero.pos.x + Math.sin(a) * r, 0, hero.pos.z + Math.cos(a) * r), 1.4, 16, 0xe8ffc0, 0.7); }
       fx.burst(hero.pos, 0xc8ff8a, 60, 22, 0.6, 0.4);
@@ -2435,7 +2453,7 @@ function updateShots(dt) {
       if (s.life <= 0 || out) {
         audio.sfx('ki_blast');
         if(!(s.src==='skill2' && hallFx?.impactKi(s.mesh.position,s.vel))) {
-          fx.dome(s.mesh.position, s.blast, 0x9be564, 0.4);
+          fx.releaseWave(s.mesh.position,s.blast,0xb9ff62,.4);
           fx.burst(s.mesh.position, 0x9be564, 24, 10, 1, 0.3);
         }
         areaStrike(s.mesh.position, s.blast, s.blastMult, { kb: 10, launch: 8, heavy: true });
@@ -2675,6 +2693,11 @@ function updateAngel(dt) {
     const hover=Math.sin(angel.hoverClock*4.3), bank=Math.cos(angel.hoverClock*3.8);
     root.position.set(angel.pos.x,1.5+hover*.10+(angel.rescueT>0?.07:0),angel.pos.z);
     root.rotation.set(bank*.055,facing*.40,hover*.085);
+  } else if(guest()&&angel.visual.actions?.idle){
+    angel.hoverClock=((angel.hoverClock||0)+dt)%(Math.PI*20);
+    const k=Math.sin(angel.hoverClock*4.1);
+    root.position.set(angel.pos.x,2.05+k*.12,angel.pos.z);
+    root.rotation.set(k*.055,facing*.42,k*.08);
   } else {
     root.position.set(angel.pos.x,guest()?2.1+Math.sin(game.time*4)*.15:1.5,angel.pos.z);
     root.rotation.y=facing;
@@ -2892,7 +2915,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127impact3d';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127combatfinal';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);
