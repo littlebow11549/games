@@ -1,6 +1,7 @@
 // A single soft footprint batch keeps actors grounded when real-time shadows are off.
 export function createActorShadows(THREE,scene) {
-  const size=32, max=128, data=new Uint8Array(size*size*4);
+  // Up to 400 live mobs, plus special actors and the brief death-animation overlap.
+  const size=32, max=512, data=new Uint8Array(size*size*4);
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
     const i=(y*size+x)*4;
     const r=Math.hypot((x+.5)*2/size-1,(y+.5)*2/size-1);
@@ -44,7 +45,12 @@ export function createActorShadows(THREE,scene) {
         stamp(e.visual?.root,radius*1.75,radius*1.4);
       }
       mesh.count=count;
-      mesh.instanceMatrix.needsUpdate=count>0;
+      // Only upload matrices used this frame; normal density keeps the same draw workload.
+      if(count>0){
+        mesh.instanceMatrix.clearUpdateRanges();
+        mesh.instanceMatrix.addUpdateRange(0,count*16);
+        mesh.instanceMatrix.needsUpdate=true;
+      }
     }
   };
 }

@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 錢經理與藍經理 3D、大量敵人影子：[交接紀錄](handoffs/2026-11-27-office-managers-runtime.md)。
+
 - 2026-11-26 3-2 新雞＋八卦蛇 3D 與雙王血條：[交接紀錄](handoffs/2026-11-26-office-duo-runtime.md)。
 
 - 2026-11-26 主角上班族 3D、戰鬥與變身動作：[交接報告](handoffs/2026-11-26-worker-runtime.md)。

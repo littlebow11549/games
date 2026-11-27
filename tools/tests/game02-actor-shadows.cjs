@@ -24,6 +24,7 @@ ambush.visual.root.position.y=0;enemy.visual.root.position.y=3;
 shadows.update(hero,ally,[enemy,boss],ambush,false);
 assert.equal(shadow.count,4);assert.equal(get(3)[0][1],h[1]);
 assert.ok(get(1)[1][0]>get(3)[1][0]);
-shadows.update(hero,null,Array(200).fill(enemy),null,false);assert.equal(shadow.count,128);
+shadows.update(hero,null,Array(200).fill(enemy),null,false);assert.equal(shadow.count,201);
+assert.equal(shadow.instanceMatrix.updateRanges[0].count,201*16);
 assert.doesNotMatch(fs.readFileSync(path.join(dir,'js/main.js'),'utf8'),/BLOB_GEO/);
 console.log('PASS: contact shadows remain at ground height, follow actors, support quality fallback and boss swap, cap at one instanced batch');
