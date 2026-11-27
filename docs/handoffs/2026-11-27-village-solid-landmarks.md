@@ -1,0 +1,6 @@
+# 2026-11-27 | 2-2 Village 3D landmarks
+
+- Release key: `20261127village`. Replace just the two foreground painted house cards with a teal-roofed supply shop and rose-roofed bakery. The shop has stacked supplies, and the bakery has a striped awning and bread display. Both have short stepped roofs, lit windows and a physical landing.
+- Landmark meshes are grouped/instanced by shape. The new shared placement module is used by the prior 2-1 forest too. It rejects geometry intersecting padded walkable grid cells and hides full groups only when they occlude the camera-to-hero line. Skip the two old foreground prop clusters that overlap the buildings; further scenery, grade, smoke, embers, lamplight, radar and all battle/route rules are unchanged.
+- Chrome H5: desktop and 390px portrait, quality 0. Verified two solid groups, no painted foreground house cards, animated smoke and ember/lamplight objects present; observed both road edges and 2-1 still had its two solids with animated fog. No physical mobile GPU benchmark. Node: 14 targeted game02 suites pass, including full footprints, occlusion, disposal and 2-1 regression.
+- To roll back, revert this atomic release commit; it does not change game data or assets.

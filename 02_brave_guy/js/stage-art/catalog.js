@@ -14,8 +14,8 @@ export function prepareStageArt(id){
    await campus.prepareCampus();
    return {...campus,...fx};
   }
-  const [story,paint,landmarks]=await Promise.all([import('./story-polish.js?v=20261127forest'),import('./story-quality-paint.js?v=20261125perf1'),import('./story-polish-art.js?v=20261125perf1')]);
-  await Promise.all([paint.prepareStoryPaint(id),id==='2-1'?null:landmarks.prepareStoryLandmarks(id)]);
+  const [story,paint,landmarks]=await Promise.all([import('./story-polish.js?v=20261127village'),import('./story-quality-paint.js?v=20261125perf1'),import('./story-polish-art.js?v=20261125perf1')]);
+  await Promise.all([paint.prepareStoryPaint(id),(id==='2-1'||id==='2-2')?null:landmarks.prepareStoryLandmarks(id)]);
   return story;
  })().then(pack=>{prepared.set(id,pack);return pack;}).finally(()=>pending.delete(id));
  pending.set(id,task);

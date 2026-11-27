@@ -4,7 +4,7 @@ const THREE=require(path.join(root,'vendor/three/three.module.min.js'));
 const load=(n,expr,env={})=>vm.runInNewContext(read(n).replace(/^import .*;$/gm,'').replaceAll('export ', '')+'\n'+expr,env);
 const makeStoryMaze=load('story-maze-engine','makeStoryMaze'), makeQualityKit=load('story-quality-kit','makeQualityKit');
 const rows=Array.from(load('story-quality-school','SCHOOL_QUALITY["2-1"].rows'));
-const forest=load('forest-landmarks','makeForestLandmarks',{makeQualityKit});
+const forest=load('forest-landmarks','makeForestLandmarks',{mountLandmarks:load('solid-landmarks','mountLandmarks',{makeQualityKit})});
 const maze=makeStoryMaze(THREE,rows),root3d=new THREE.Group(),camera={position:new THREE.Vector3(0,9,12)},hero={pos:new THREE.Vector3(0,0,0)};
 const baseline=JSON.stringify([maze.start,maze.boss,maze.exit,maze.walls,maze.walkCells]);
 const art=forest(THREE,root3d,maze,camera,hero);

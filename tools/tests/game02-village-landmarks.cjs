@@ -1,0 +1,30 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=path.resolve(__dirname,'../../02_brave_guy'),read=n=>fs.readFileSync(path.join(root,'js/stage-art',n+'.js'),'utf8');
+const T=require(path.join(root,'vendor/three/three.module.min.js'));
+const load=(n,expr,env={})=>vm.runInNewContext(read(n).replace(/^import .*;$/gm,'').replaceAll('export ', '')+'\n'+expr,env);
+const rows=Array.from(load('story-quality-school','SCHOOL_QUALITY["2-2"].rows'));
+const maze=load('story-maze-engine','makeStoryMaze')(T,rows),world=new T.Group();
+const camera={position:new T.Vector3(0,9,12)},hero={pos:new T.Vector3()};
+const before=JSON.stringify([maze.start,maze.boss,maze.exit,maze.walls,maze.walkCells]);
+const mountLandmarks=load('solid-landmarks','mountLandmarks',{makeQualityKit:load('story-quality-kit','makeQualityKit')});
+const art=load('village-landmarks','makeVillageLandmarks',{mountLandmarks})(T,world,maze,camera,hero);
+assert.equal(art.count,2);
+assert.match(world.children[0].name,/Supply shop/);
+assert.match(world.children[1].name,/Bakery/);
+assert.ok(art.solids>100);
+for(const group of world.children){
+ const b=new T.Box3().setFromObject(group);
+ assert.ok(b.max.y-b.min.y>3&&b.max.z-b.min.z>2.5);
+ assert.ok(group.children.length<=8&&group.children.every(m=>m.isInstancedMesh));
+ for(let x=b.min.x;x<=b.max.x;x+=.13)for(let z=b.min.z;z<=b.max.z;z+=.13)assert.ok(maze.blocked({x,z},.05));
+ const x=(b.min.x+b.max.x)/2,z=(b.min.z+b.max.z)/2;
+ camera.position.set(x,3,z+4);hero.pos.set(x,0,z-4);art.update();
+ assert.equal(group.visible,false);
+ camera.position.set(0,9,12);hero.pos.set(0,0,0);art.update();
+ assert.equal(group.visible,true);
+}
+art.dispose();assert.equal(world.children.length,0);
+assert.equal(JSON.stringify([maze.start,maze.boss,maze.exit,maze.walls,maze.walkCells]),before);
+assert.match(read('story-polish'),/d.id==='2-2'\?makeVillageLandmarks/);
+assert.match(read('catalog'),/id==='2-1'\|\|id==='2-2'/);
+console.log('PASS: Village 3D supply shop and bakery, full footprint and camera sightline, no route changes');
