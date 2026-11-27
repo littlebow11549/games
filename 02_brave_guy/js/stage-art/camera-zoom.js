@@ -15,7 +15,7 @@
     const trace=document.createElementNS(glyph.namespaceURI,'path');
     trace.setAttribute('d','M14.8 6.7A6 6 0 1 0 16 12M15.7 3.6v4.2h-4.3');
     glyph.append(trace);reset.append(readout,glyph);
-    document.querySelector('#btn-pause').before(reset);
+    document.querySelector('#btn-mute').before(reset);
     canvas.style.touchAction = 'none';
     function setZoom(value) {
       if (!Number.isFinite(value)) return;

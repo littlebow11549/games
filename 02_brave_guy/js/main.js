@@ -1,6 +1,6 @@
 import {makeCrowdVisualBudget,makeCrowdResolution,needsChaseSight} from './crowd-visual-budget.js?v=20261127quality';
 import {showSupportBubble} from './support-bubble.js?v=20261127flamework';
-import {enableCameraZoom} from './stage-art/camera-zoom.js?v=20261127stagefx';
+import {enableCameraZoom} from './stage-art/camera-zoom.js?v=20261127zoomswap';
 let stageArt=null;
 const stageArtReady=import('./stage-art/catalog.js?v=20261127stagefx').then(m=>stageArt=m).catch(e=>{console.warn('Stage art unavailable; keeping the original scene',e);});
 import { applyCharacterArt, applyCharacterSpeech, characterSkillTitle } from './character-art.js?v=20261120nightdialogue';
