@@ -1,6 +1,38 @@
 {
   "_說明": "素材插槽表。值為 null 時遊戲使用程式拼的佔位版；素材到位後把路徑填進來即可替換，不需改程式。模型格式見 assets/README.md，音樂見 assets/records/brave_guy_record04_music.md。 音訊填 .ogg 路徑；裝置不支援 OGG 時程式會自動改讀同名的 .mp3。",
   "models": {
+    "hell": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor14_hell_motion.glb",
+      "height": 2.3,
+      "rotationY": 0,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "spawn": "Spawn",
+        "die": "Fall",
+        "hellRush": "Rush",
+        "hellQuake": "Quake",
+        "hellFire": "Fire",
+        "hellTaunt": "Taunt",
+        "hellKi": "Ki"
+      },
+      "cacheBounds": true
+    },
+    "guan": {
+      "url": "assets/runtime/stage-art/brave_guy_charactor25_boss_guan_motion.glb",
+      "height": 3.4,
+      "rotationY": 0,
+      "clips": {
+        "idle": "Idle",
+        "run": "Run",
+        "spawn": "Spawn",
+        "die": "Fall",
+        "guanDive": "Dive",
+        "guanPies": "Pies",
+        "spreadCast": "Spread"
+      },
+      "cacheBounds": true
+    },
     "qian_manager": {
       "url": "assets/runtime/stage-art/brave_guy_charactor09_qian_manager_motion.glb",
       "height": 2.1,

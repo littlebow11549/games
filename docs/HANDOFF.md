@@ -1,5 +1,7 @@
 # 專案交接入口
 
+- 2026-11-27 地獄超人與冠老闆 3D、招式對齊：[交接紀錄](handoffs/2026-11-27-hell-guan-runtime.md)。
+
 - 2026-11-27 錢經理與藍經理 3D、大量敵人影子：[交接紀錄](handoffs/2026-11-27-office-managers-runtime.md)。
 
 - 2026-11-26 3-2 新雞＋八卦蛇 3D 與雙王血條：[交接紀錄](handoffs/2026-11-26-office-duo-runtime.md)。

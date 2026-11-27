@@ -17,7 +17,7 @@ import { RunRecords, formatTime, words } from './run-records.js?v=20261120assets
 import { disposeOwned } from './dispose-owned.js?v=20261120assets';
 import * as THREE from '../vendor/three/three.module.min.js';
 import { buildWorld, ARENA_RADIUS } from './world.js?v=20261120assets';
-import { createVisual, loadModel } from './visuals.js?v=20261127managers';
+import { createVisual, loadModel } from './visuals.js?v=20261127hellGuan';
 import { createActorShadows } from './actor-shadows.js?v=20261127managers';
 import { GANQIAO_MODELS, ganqiaoStageModels, ganqiaoMove, ganqiaoAttackDuration } from './ganqiao-motion.js?v=20261126dragon';
 import { folaidiNeeded, folaidiMove, folaidiSpawn } from './folaidi-motion.js?v=20261126folaidi';
@@ -479,7 +479,8 @@ function clearField() {
 // 開始（或重來）指定的關卡
 const junxiongModel = stage => stage.map===3 ? "junxiong_office" : "junxiong";
 const OFFICE_BOSS_MODELS={qianBiz:'qian_manager',lanMgr:'lan_manager'};
-const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...BOSS_GROUPS.duo,...Object.values(OFFICE_BOSS_MODELS),...GANQIAO_MODELS]);
+const ARCHIVE_STAGE_BOSSES=new Set(['hell','guan']);
+const deferredModelKinds=new Set(['student','worker','angel_playable','nightmare','qian_school','lan_school','folaidi','jiasen','jiamang','junxiong','junxiong_office','incubus','incubus_final',...BOSS_GROUPS.duo,...Object.values(OFFICE_BOSS_MODELS),...ARCHIVE_STAGE_BOSSES,...GANQIAO_MODELS]);
 const deferredModels=new Map(), deferredModelLoads=new Map();
 function prepareStageModel(kind) {
   if (!deferredModels.has(kind)) return deferredModelLoads.get(kind);
@@ -522,6 +523,7 @@ function startStage(index, character=null) {
   if (st.rules?.junxiong) stageVisualKinds.push(junxiongModel(st));
   const officeBossModel=OFFICE_BOSS_MODELS[st.boss];
   if(officeBossModel)stageVisualKinds.push(officeBossModel);
+  if(ARCHIVE_STAGE_BOSSES.has(st.boss))stageVisualKinds.push(st.boss);
   if (st.boss==='duo') stageVisualKinds.push(...BOSS_GROUPS.duo);
   if (st.boss==='incubus') stageVisualKinds.push('incubus','incubus_final');
   const pendingModels=stageVisualKinds.filter(kind=>deferredModels.has(kind));
@@ -999,7 +1001,7 @@ function spawnEnemy(kind, at, delay = 0) {
   const visual = createVisual(def.vis || kind, !!def.boss,
     kind==='midKing'?{modelKind:'ganqiao_mid',height:def.height}:
     kind==='folaidiKing'?{modelKind:'folaidi',height:def.height,kingWake:true}:
-    kind==='jiamangKing'?{height:def.height}:officeModel?{modelKind:officeModel,height:def.height}:null); // 只有守關者投射即時陰影
+    kind==='jiamangKing'?{height:def.height}:officeModel?{modelKind:officeModel,height:def.height}:ARCHIVE_STAGE_BOSSES.has(kind)?{height:def.height}:null); // 只有守關者投射即時陰影
 
   const pos = at ? at.clone() : new THREE.Vector3();
   if (!at) {
@@ -1518,7 +1520,7 @@ const MOVES = {
     start(e) { bossLine(e); e.visual.play(e.visual.actions?.spreadCast?'spreadCast':e.def.vis==='lan_school'&&e.visual.actions?.skill2?'skill2':'attack', e.visual.actions?.spreadCast?.getClip().duration ?? 0.5 / 0.6); },
     update(e) { if (e.cast.t < 0.5) return false; for (let i = -2; i <= 2; i++) hostileShot(e.pos, e.yaw + i * 0.25, { dmg: 80, speed: 12, color: 0xf2efe0 }); audio.sfx('shoot'); return true; } },
   mDash: { minRange: 4, cd: 4, // 鏡像的勇氣衝拳
-    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(e.def.incubus&&e.visual.actions?.finalDash?['finalDash',.95]:['skill1',.9])); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
+    start(e, dx, dz, d) { e.chargeDir = new THREE.Vector3(dx / d, 0, dz / d); e.struck = false; e.visual.play(...(e.def.incubus&&e.visual.actions?.finalDash?['finalDash',.95]:e.visual.actions?.hellRush?['hellRush',.95]:['skill1',.9])); fx.trail(e.pos, e.pos.clone().addScaledVector(e.chargeDir, 11), 3, 0xb06cff, 0.55); },
     update(e, dt, d) {
       const t = e.cast.t;
       if (t > 0.5 && t < 0.72) {
@@ -1528,16 +1530,16 @@ const MOVES = {
       return t >= 0.95;
     } },
   mKi: { minRange: 5, cd: 5,   // 鏡像的氣功彈
-    start(e) { e.visual.play('skill2', 0.7); },
+    start(e) { e.visual.play(e.visual.actions?.hellKi?'hellKi':'skill2', 0.7); },
     update(e) { if (e.cast.t < 0.5) return false; hostileShot(e.pos, e.yaw, { dmg: 150, speed: 13, radius: 1.3, color: 0xb06cff, life: 2.6 }); audio.sfx('shoot'); return true; } },
   mQuake: { range: 6.5, cd: 6, // 鏡像的氣功震地
-    start(e) { e.aim = e.pos.clone(); e.visual.play(...(e.def.incubus&&e.visual.actions?.finalQuake?['finalQuake',.85]:['skill3',.9])); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
+    start(e) { e.aim = e.pos.clone(); e.visual.play(...(e.def.incubus&&e.visual.actions?.finalQuake?['finalQuake',.85]:e.visual.actions?.hellQuake?['hellQuake',.9]:['skill3',.9])); fx.telegraph(e.aim, 7, 0.8, 0xb06cff); },
     update(e) { if (e.cast.t < 0.8) return false; boomAt(e.aim, 8); fx.dome(e.aim, 7, 0xb06cff, 0.5); if (dist2d(hero.pos, e.aim) < 7.5) hurtHero(180); return true; } },
   guiltTalk: { cd: 5,          // 情勒：不扣血，但罪惡感會漲
-    start(e) { if(e.def.incubus&&e.visual.actions?.talk)e.visual.play('talk',.7); bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
+    start(e) { if(e.visual.actions?.hellTaunt)e.visual.play('hellTaunt',.7);else if(e.def.incubus&&e.visual.actions?.talk)e.visual.play('talk',.7); bossLine(e); if (hero.state !== 'transforming' && !game.final && !(guest()&&hero.guestBurstT>0)) { hero.guilt += 8; if (hero.guilt >= hero.guiltMax) guiltBurst(); } },
     update: (e) => e.cast.t > 0.7 },
   firePools: { cd: 9,          // 寫著難聽話的黑火
-    start(e) { bossLine(e); for (let i = 0; i < 5; i++) { const a = rand(0, 6.28), r = i === 0 ? 0 : rand(2, 7); addHazard('fire', tmp.set(hero.pos.x + Math.cos(a) * r, 0, hero.pos.z + Math.sin(a) * r), 2.4, 0.9, 5); } },
+    start(e) { if(e.visual.actions?.hellFire)e.visual.play('hellFire',.51); bossLine(e); for (let i = 0; i < 5; i++) { const a = rand(0, 6.28), r = i === 0 ? 0 : rand(2, 7); addHazard('fire', tmp.set(hero.pos.x + Math.cos(a) * r, 0, hero.pos.z + Math.sin(a) * r), 2.4, 0.9, 5); } },
     update: (e) => e.cast.t > 0.5 },
   heal: { cd: 16, cond: (e) => e.hp < e.maxHp * 0.6, // 「會後再討論」：沒被打斷就回血
     start(e) { popup(e.pos, e.def.height + 0.5, '這個我們會後再討論！', 'shout'); e.cast.hp0 = e.hp; if(e.visual.actions?.officeHeal)e.visual.play('officeHeal',2.2); fx.telegraph(e.pos, 3, 2.2, 0x5fe07a); },
@@ -1562,7 +1564,7 @@ const MOVES = {
       return t >= 1.9;
     } },
   dive: { cd: 8,               // 冠老闆飛起來打不到，俯衝落地後才有空檔
-    start(e) { bossLine(e); e.fly = true; e.aim = null; },
+    start(e) { if(e.visual.actions?.guanDive)e.visual.play('guanDive',2.2); bossLine(e); e.fly = true; e.aim = null; },
     update(e, dt) {
       const t = e.cast.t;
       if (t < 1.6) {
@@ -1582,7 +1584,7 @@ const MOVES = {
       return true;
     } },
   pies: { cd: 10,              // 畫大餅：看起來像補血道具
-    start(e) { bossLine(e, 3); for (let i = 0; i < 3; i++) { const a = rand(0, 6.28); addHazard('pie', tmp.set(hero.pos.x + Math.cos(a) * rand(3, 7), 0, hero.pos.z + Math.sin(a) * rand(3, 7)), 1.2, 0, 9); } },
+    start(e) { if(e.visual.actions?.guanPies)e.visual.play('guanPies',.41); bossLine(e, 3); for (let i = 0; i < 3; i++) { const a = rand(0, 6.28); addHazard('pie', tmp.set(hero.pos.x + Math.cos(a) * rand(3, 7), 0, hero.pos.z + Math.sin(a) * rand(3, 7)), 1.2, 0, 9); } },
     update: (e) => e.cast.t > 0.4 },
   copy: { minRange: 4, cd: 4.5, // 新雞模仿主角的氣功彈
     start(e) { bossLine(e, 0); e.visual.play(e.visual.actions?.copyCast?'copyCast':'attack', 0.8); },
@@ -1704,7 +1706,7 @@ function updateEnemy(e, dt, attackers) {
     if (!e.shown) {
       e.shown = true; audio.sfx('spawn'); e.visual.root.visible = true; fx.ring(e.pos, 0.3, def.radius * 3, 0xb48cff, 0.4);
       if(intro)e.visual.play('spawn',intro);
-      else if((OFFICE_BOSS_MODELS[e.kind]||BOSS_GROUPS.duo.includes(e.kind))&&e.visual.actions?.spawn)e.visual.play('spawn',.45);
+      else if((OFFICE_BOSS_MODELS[e.kind]||ARCHIVE_STAGE_BOSSES.has(e.kind)||BOSS_GROUPS.duo.includes(e.kind))&&e.visual.actions?.spawn)e.visual.play('spawn',.45);
     }
     e.visual.root.scale.setScalar((intro?1:Math.min(1, e.t / 0.35)) * e.size);
     if(intro)e.visual.updateSpawn?.(e.t/intro);
@@ -2864,7 +2866,7 @@ async function boot() {
   await stageArtReady;
   async function loadManifest(){
   try {
-    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127managers';
+    const url = new URLSearchParams(location.search).get('manifest') || 'assets/manifest.json?v=20261127hellGuan';
     return await (await fetch(url)).json();
   } catch (err) {
     console.warn('[manifest] 讀取失敗，全部使用佔位素材', err);

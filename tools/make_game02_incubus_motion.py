@@ -163,6 +163,9 @@ def bake(kind, data, out, *, motion_profile=None):
     }
     # Repair the moving shoulder/cuff surfaces in mesh space. Keep original topology.
     if motion_profile is not None:frames=motion_profile[5]
+    if len(frames)>4:
+        taller=Image.new('RGB',(sheet.width,sheet.height+215*(len(frames)-4)),'#ebebeb')
+        taller.paste(sheet,(0,0));sheet=taller;paint=ImageDraw.Draw(sheet)
     j['animations']=[]
     times=np.linspace(0,1,29)
     sample={name:np.stack([motion(name,t) for t in times]) for name in durations}
