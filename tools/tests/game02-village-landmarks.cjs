@@ -26,5 +26,5 @@ for(const group of world.children){
 art.dispose();assert.equal(world.children.length,0);
 assert.equal(JSON.stringify([maze.start,maze.boss,maze.exit,maze.walls,maze.walkCells]),before);
 assert.match(read('story-polish'),/d.id==='2-2'\?makeVillageLandmarks/);
-assert.match(read('catalog'),/id==='2-1'\|\|id==='2-2'/);
+assert.doesNotMatch(read('catalog'),/prepareStoryLandmarks/);
 console.log('PASS: Village 3D supply shop and bakery, full footprint and camera sightline, no route changes');

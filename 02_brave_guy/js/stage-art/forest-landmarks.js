@@ -1,4 +1,4 @@
-import {mountLandmarks} from './solid-landmarks.js';
+import {mountLandmarks} from './solid-landmarks.js?v=20261127landmarks';
 
 // Chapter 2 landmark silhouettes are composed out of solid, instanced toon meshes.
 // Shape numbers are in world units so the full footprint can be verified against the maze.

@@ -1,4 +1,4 @@
-import {mountLandmarks} from './solid-landmarks.js';
+import {mountLandmarks} from './solid-landmarks.js?v=20261127landmarks';
 
 const ink=0x302d4b, wood=0x755570, cream=0xf9d3ad, glow=0xffca77, candle=0xffe8a7, stone=0x77738f;
 function lamp(p,x,y,z){

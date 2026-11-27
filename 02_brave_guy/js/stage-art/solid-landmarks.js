@@ -31,7 +31,7 @@ export function mountLandmarks(T,root,maze,camera,hero,edge,specs){
    };
    for(const batch of group.children)batch.name=spec.name+' / instanced forms';
    const side=Math.sign(spec.x);
-   const candidates=[[0,0],[side*.65,0],[side*1.3,0],[side*1.7,.75],[side*2.4,0]];
+   const candidates=spec.candidates??[[0,0],[side*.65,0],[side*1.3,0],[side*1.7,.75],[side*2.4,0]];
    let box;
    for(const [dx,dz] of candidates){
      group.position.set(spec.x+dx,0,spec.z+dz);

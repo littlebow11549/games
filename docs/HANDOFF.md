@@ -434,3 +434,5 @@
 - [UI 大改版 + 第二批設計需求](handoffs/2026-11-09-ui-overhaul-and-reqs.md)（2026-11-09）
 
 - [2026-11-27: 2-2 Village solid landmarks](handoffs/2026-11-27-village-solid-landmarks.md)
+
+- [2026-11-27: All story foreground 3D landmarks](handoffs/2026-11-27-all-story-solid-landmarks.md)
