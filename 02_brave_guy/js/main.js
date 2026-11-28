@@ -686,7 +686,7 @@ function screenPos(world, yOffset = 0) {
 
 function popup(world, height, text, cls = '', voice = '') {
   const ui = $('world-ui');
-  if (ui.childElementCount > 70) return; // 大量敵人時不要塞爆 DOM
+  if (cls !== 'shout' && ui.childElementCount > 70) return; // 大量敵人時不要塞爆 DOM
   const p = screenPos(world, height);
   const el = document.createElement('div');
   el.className = `dmg ${cls}`;
@@ -703,7 +703,13 @@ function popup(world, height, text, cls = '', voice = '') {
     el.style.left=`${Math.max(pad,Math.min(innerWidth-pad,p.x))}px`;
     el.style.top=`${Math.max(96,Math.min(innerHeight-90,p.y))}px`;
   }
-  (announcement?$('skill-announcements'):ui).append(el);
+  if (announcement) {
+    const layer = $('skill-announcements');
+    // A new atlas shout replaces only its predecessor, not a skill title.
+    layer.querySelector('.popup-announcement')?.remove();
+    el.classList.add('popup-announcement');
+    layer.append(el);
+  } else ui.append(el);
   el.addEventListener('animationend', () => el.remove());
 }
 
